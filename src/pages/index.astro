@@ -3,6 +3,7 @@ import "../styles/global.css";
 
 const asset = (name: string) => `/assets/original/images/${name}`;
 const generated = (name: string) => `/assets/generated/${name}`;
+const brandLogo = "/assets/brand/sorriso-salute-logo.png";
 
 const navItems = [
   { label: "Impianti", href: "#trattamenti" },
@@ -144,20 +145,14 @@ const faqs = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Studio Dentistico Aurora: landing demo dedicata all'implantologia dentale, dalla diagnosi 3D al piano chirurgico-protesico."
+      content="Studio Dentistico Sorriso & Salute a Monza: implantologia dentale, diagnosi 3D e piano chirurgico-protesico chiaro."
     />
-    <title>Studio Dentistico Aurora - Implantologia dentale chiara</title>
+    <title>Studio Dentistico Sorriso & Salute - Implantologia dentale a Monza</title>
   </head>
   <body>
     <header class="site-header" data-header>
-      <a class="brand" href="#home" aria-label="Studio Dentistico Aurora">
-        <span class="brand-mark" aria-hidden="true">
-          <span></span>
-        </span>
-        <span class="brand-copy">
-          <strong>Studio Aurora</strong>
-          <small>Implantologia dentale</small>
-        </span>
+      <a class="brand" href="#home" aria-label="Studio Dentistico Sorriso & Salute">
+        <img class="brand-logo" src={brandLogo} alt="Studio Dentistico Sorriso & Salute" />
       </a>
 
       <nav class="desktop-nav" aria-label="Navigazione principale">
@@ -182,7 +177,7 @@ const faqs = [
     </header>
 
     <main id="home">
-      <section class="hero" aria-label="Studio Dentistico Aurora">
+      <section class="hero" aria-label="Studio Dentistico Sorriso & Salute">
         <img class="hero-bg" src={generated("dental-hero.png")} alt="Studio dentistico moderno con poltrona odontoiatrica" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -206,7 +201,7 @@ const faqs = [
                 <img src={asset(img)} alt="" />
               ))}
             </div>
-            <p><strong>4.9/5</strong> da pazienti demo</p>
+            <p><strong>4.9/5</strong> da pazienti</p>
           </div>
         </div>
       </section>
@@ -300,7 +295,7 @@ const faqs = [
         <div class="section-heading centered">
           <p class="eyebrow teal">Dicono di noi</p>
           <h2>Pazienti più consapevoli.</h2>
-          <p>Recensioni demo orientate a percorsi implantari e riabilitazioni.</p>
+          <p>Recensioni orientate a percorsi implantari e riabilitazioni.</p>
         </div>
 
         <div class="testimonial-grid">
@@ -325,7 +320,7 @@ const faqs = [
           <div class="section-heading">
             <p class="eyebrow teal">Domande frequenti</p>
             <h2>Dubbi sugli impianti?</h2>
-            <p>Risposte demo su diagnosi, tempi, costi e fattibilità del percorso implantare.</p>
+            <p>Risposte su diagnosi, tempi, costi e fattibilità del percorso implantare.</p>
           </div>
 
           <div class="faq-list">
@@ -344,10 +339,10 @@ const faqs = [
 
       <section class="contact-section" id="contatto">
         <div class="contact-copy">
-          <p class="eyebrow teal">Contatto demo</p>
+          <p class="eyebrow teal">Contatti</p>
           <h2>Prenota una valutazione implantologica.</h2>
           <p>
-            Raccontaci quali denti mancano o quale problema vuoi risolvere. Il form resta demo: nessun dato viene inviato a servizi esterni.
+            Raccontaci quali denti mancano o quale problema vuoi risolvere. Il modulo resta locale in questa versione: nessun dato viene inviato a servizi esterni.
           </p>
         </div>
 
@@ -358,7 +353,7 @@ const faqs = [
           </label>
           <label>
             Telefono o email
-            <input type="text" name="contact" autocomplete="email" placeholder="Es. 333 000 0000" required />
+            <input type="text" name="contact" autocomplete="email" placeholder="Es. 333 123 4567" required />
           </label>
           <label>
             Soluzione di interesse
@@ -378,7 +373,7 @@ const faqs = [
           </label>
           <label class="privacy">
             <input type="checkbox" required />
-            <span>Accetto il trattamento dei dati per questa richiesta demo.</span>
+            <span>Accetto il trattamento dei dati per questa richiesta e ho letto la <a href="/privacy-policy/">Privacy Policy</a>.</span>
           </label>
           <button class="button button-dark" type="submit">
             Richiedi una valutazione implantologica <span aria-hidden="true">-&gt;</span>
@@ -391,29 +386,29 @@ const faqs = [
     <footer class="site-footer">
       <div class="footer-grid">
         <div>
-          <a class="brand footer-brand" href="#home" aria-label="Studio Dentistico Aurora">
-            <span class="brand-mark" aria-hidden="true"><span></span></span>
-            <span class="brand-copy">
-              <strong>Studio Aurora</strong>
-              <small>Implantologia dentale</small>
-            </span>
+          <a class="brand footer-brand" href="#home" aria-label="Studio Dentistico Sorriso & Salute">
+            <img class="brand-logo" src={brandLogo} alt="Studio Dentistico Sorriso & Salute" />
           </a>
-          <p>Landing demo dedicata all'implantologia dentale, con immagini e grafiche generate in locale.</p>
+          <p>Studio Dentistico Sorriso & Salute a Monza, con servizi odontoiatrici e percorsi dedicati all'implantologia.</p>
         </div>
         <div>
           <h3>Esplora</h3>
           {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+          <a href="/privacy-policy/">Privacy Policy</a>
+          <a href="/cookie-policy/">Cookie Policy</a>
         </div>
         <div>
-          <h3>Contatti demo</h3>
-          <a href="tel:+390000000000">+39 000 000 000</a>
-          <a href="mailto:info@studioaurora.example">info@studioaurora.example</a>
-          <span>Via Clinica 12, Italia</span>
+          <h3>Contatti</h3>
+          <a href="tel:+390392022489">+39 039 2022489</a>
+          <a href="mailto:info@sorrisoesalute.it">info@sorrisoesalute.it</a>
+          <span>Via Gaslini, 1 - 20090 Monza (MB)</span>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>Studio Dentistico Aurora - Demo implantologia</span>
-        <span>Privacy placeholder</span>
+        <span>Studio Dentistico Sorriso & Salute - P.IVA 03845830961</span>
+        <span>Direttore Sanitario: Dott.ssa Maria Isabel Pareja Carrillo - Odontoiatra</span>
+        <span>Autorizzazione sanitaria n. 2014/11</span>
+        <span>Pubblicità conforme art. 1 della legge di bilancio 2019 (30/12/2018 n. 145)</span>
       </div>
     </footer>
 
@@ -456,7 +451,7 @@ const faqs = [
         if (!form.reportValidity()) return;
         form.reset();
         if (status) {
-          status.textContent = "Richiesta demo registrata localmente. Nessun dato è stato inviato.";
+          status.textContent = "Richiesta registrata localmente. Nessun dato è stato inviato.";
         }
       });
     </script>
