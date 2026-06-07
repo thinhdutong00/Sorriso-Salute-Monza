@@ -1,0 +1,464 @@
+---
+import "../styles/global.css";
+
+const asset = (name: string) => `/assets/original/images/${name}`;
+const generated = (name: string) => `/assets/generated/${name}`;
+
+const navItems = [
+  { label: "Impianti", href: "#trattamenti" },
+  { label: "Vantaggi", href: "#vantaggi" },
+  { label: "Metodo", href: "#metodo" },
+  { label: "FAQ", href: "#faq" },
+];
+
+const treatments = [
+  {
+    title: "Impianto singolo",
+    text: "Una soluzione per sostituire un dente mancante con un piano chiaro, dalla diagnosi alla corona definitiva.",
+    image: generated("treatment-hygiene.png"),
+    wide: true,
+  },
+  {
+    title: "Più denti mancanti",
+    text: "Ponti su impianti e soluzioni protesiche progettate per recuperare funzione, stabilità ed estetica.",
+    image: generated("treatment-whitening.png"),
+  },
+  {
+    title: "Arcata completa",
+    text: "Percorsi per riabilitazioni estese, con valutazione clinica per capire se una protesi fissa è indicata.",
+    image: generated("treatment-implant.png"),
+  },
+  {
+    title: "Rigenerazione ossea",
+    text: "Quando l'osso non è sufficiente, valutiamo tecniche preparatorie e tempi realistici prima dell'intervento.",
+    image: generated("treatment-aligner.png"),
+  },
+  {
+    title: "Protesi su impianti",
+    text: "La parte visibile viene progettata insieme alla chirurgia, così forma, masticazione e pulizia restano coerenti.",
+    image: generated("treatment-conservative.png"),
+  },
+];
+
+const advantages = [
+  {
+    label: "01",
+    title: "Diagnosi 3D",
+    text: "Valutiamo osso, gengiva e spazi protesici prima di proporre qualsiasi intervento.",
+  },
+  {
+    label: "02",
+    title: "Piano trasparente",
+    text: "Tempi, fasi, alternative e costi vengono spiegati prima di iniziare il percorso implantare.",
+  },
+  {
+    label: "03",
+    title: "Chirurgia programmata",
+    text: "Ogni appuntamento è organizzato per ridurre imprevisti, ansia e decisioni prese in fretta.",
+  },
+];
+
+const steps = [
+  {
+    number: "01",
+    title: "Prima visita implantologica",
+    text: "Partiamo da denti mancanti, fastidi, aspettative estetiche e abitudini di masticazione.",
+    icon: "icon-consultation",
+  },
+  {
+    number: "02",
+    title: "Esami e diagnosi",
+    text: "Controllo clinico, immagini e valutazione dell'osso per capire quali soluzioni sono realistiche.",
+    icon: "icon-diagnosis",
+  },
+  {
+    number: "03",
+    title: "Piano chirurgico-protesico",
+    text: "Definiamo posizione degli impianti, tipo di protesi, fasi operative e preventivo.",
+    icon: "icon-plan",
+  },
+  {
+    number: "04",
+    title: "Intervento e controlli",
+    text: "Dopo l'inserimento degli impianti, seguiamo guarigione, protesi e mantenimento.",
+    icon: "icon-followup",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "Mi mancava un molare e non capivo quale soluzione scegliere. Il piano implantare era chiaro, con tempi e costi spiegati bene.",
+    name: "Marta Rinaldi",
+    city: "Udine",
+    avatar: asset("client-30.jpg"),
+  },
+  {
+    quote:
+      "Avevo paura dell'intervento. Sapere cosa sarebbe successo in ogni fase mi ha aiutato ad affrontare il percorso con più calma.",
+    name: "Luca Moretti",
+    city: "Pordenone",
+    avatar: asset("client-40.jpg"),
+  },
+  {
+    quote:
+      "Per la mia riabilitazione mi hanno mostrato alternative, limiti e tempi. Ho apprezzato la trasparenza prima di decidere.",
+    name: "Elena Sartori",
+    city: "Trieste",
+    avatar: asset("client-50.jpg"),
+  },
+];
+
+const faqs = [
+  {
+    q: "Quando è indicato un impianto dentale?",
+    a: "Un impianto può essere valutato quando manca uno o più denti e ci sono condizioni cliniche favorevoli. La decisione dipende da osso disponibile, salute gengivale, abitudini e obiettivi protesici.",
+  },
+  {
+    q: "Serve una TAC o una diagnosi 3D?",
+    a: "Spesso sì, soprattutto per pianificare posizione degli impianti, volumi ossei e rapporti con strutture anatomiche importanti. Se necessaria, viene proposta dopo la prima valutazione.",
+  },
+  {
+    q: "Quanto dura un percorso implantare?",
+    a: "Dipende dal caso. Un impianto singolo può richiedere fasi diverse tra diagnosi, intervento, guarigione e corona. Le riabilitazioni estese o con poco osso possono richiedere più tempo.",
+  },
+  {
+    q: "Posso avere denti fissi subito?",
+    a: "In alcuni casi è possibile valutare un carico immediato, ma non è indicato per tutti. Serve verificare stabilità, osso disponibile e tipo di riabilitazione.",
+  },
+  {
+    q: "Cosa succede se ho poco osso?",
+    a: "La mancanza di osso non esclude automaticamente gli impianti. Si valutano alternative protesiche, rigenerazione ossea o percorsi preparatori in base alla situazione clinica.",
+  },
+  {
+    q: "Quanto costa un impianto?",
+    a: "Il costo dipende da diagnosi, numero di impianti, eventuali procedure preparatorie e tipo di protesi. Dopo la visita ricevi un preventivo leggibile con fasi e alternative.",
+  },
+];
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Studio Dentistico Aurora: landing demo dedicata all'implantologia dentale, dalla diagnosi 3D al piano chirurgico-protesico."
+    />
+    <title>Studio Dentistico Aurora - Implantologia dentale chiara</title>
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="#home" aria-label="Studio Dentistico Aurora">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span>
+        </span>
+        <span class="brand-copy">
+          <strong>Studio Aurora</strong>
+          <small>Implantologia dentale</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigazione principale">
+        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+
+      <a class="header-cta" href="#contatto">
+        <span>Prenota visita implantologica</span>
+        <span aria-hidden="true">-&gt;</span>
+      </a>
+
+      <button class="menu-button" type="button" aria-label="Apri menu" aria-expanded="false" data-menu-button>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="mobile-nav" aria-label="Menu mobile" data-mobile-nav>
+        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+        <a href="#contatto">Prenota visita implantologica</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero" aria-label="Studio Dentistico Aurora">
+        <img class="hero-bg" src={generated("dental-hero.png")} alt="Studio dentistico moderno con poltrona odontoiatrica" />
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Studio odontoiatrico privato</p>
+          <h1>
+            Implantologia chiara.<br />
+            <span>Denti fissi, se indicati.</span>
+          </h1>
+          <p class="hero-lead">
+            Valuta una soluzione per sostituire denti mancanti con diagnosi accurata, tempi realistici e un piano chirurgico-protesico comprensibile.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#contatto">
+              Prenota visita implantologica <span aria-hidden="true">-&gt;</span>
+            </a>
+            <a class="button button-secondary" href="#trattamenti">Scopri le soluzioni</a>
+          </div>
+          <div class="social-proof" aria-label="Recensioni pazienti">
+            <div class="avatar-row" aria-hidden="true">
+              {["client-30.jpg", "client-40.jpg", "client-50.jpg", "client-60.jpg", "client-70.jpg"].map((img) => (
+                <img src={asset(img)} alt="" />
+              ))}
+            </div>
+            <p><strong>4.9/5</strong> da pazienti demo</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-white" id="trattamenti">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow teal">Soluzioni implantari</p>
+            <h2>Un piano per ogni dente mancante.</h2>
+          </div>
+          <p>
+            Dal singolo impianto alla riabilitazione completa, ogni proposta parte da diagnosi, fattibilità e obiettivo protesico.
+          </p>
+        </div>
+
+        <div class="treatment-grid">
+          {treatments.map((item) => (
+            <article class:list={["treatment-card", item.wide && "wide"]}>
+              <img src={item.image} alt="" loading="lazy" />
+              <div class="card-scrim"></div>
+              <div class="card-content">
+                <span>Info</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section section-muted" id="vantaggi">
+        <div class="advantage-layout">
+          <div class="image-stack">
+            <img class="main-image" src={generated("dental-advantage.png")} alt="Studio dentistico moderno con scanner digitale" loading="lazy" />
+            <div class="floating-note">
+              <strong>Prima visita implantologica</strong>
+              <span>Diagnosi, fattibilità e alternative</span>
+            </div>
+          </div>
+
+          <div class="advantage-copy">
+            <p class="eyebrow teal">Perché sceglierci</p>
+            <h2>
+              Meno dubbi.<br />
+              Più controllo.<br />
+              <span>Nessuna promessa facile.</span>
+            </h2>
+            <p>
+              Prima di parlare di intervento, capisci se l'impianto è indicato, quali passaggi servono e quali alternative puoi valutare.
+            </p>
+
+            <div class="advantage-list">
+              {advantages.map((item) => (
+                <article>
+                  <span>{item.label}</span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section method-section" id="metodo">
+        <div class="section-heading split dark">
+          <div>
+            <p class="eyebrow mint">Il metodo</p>
+            <h2>Implantologia passo passo.</h2>
+          </div>
+          <p>
+            Dalla diagnosi alla protesi, ogni fase viene spiegata prima di iniziare.
+          </p>
+        </div>
+
+        <div class="method-grid">
+          {steps.map((step) => (
+            <article class="method-card">
+              <span class="method-number">{step.number}</span>
+              <div class:list={["method-icon", step.icon]} aria-hidden="true"></div>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section section-white" id="recensioni">
+        <div class="section-heading centered">
+          <p class="eyebrow teal">Dicono di noi</p>
+          <h2>Pazienti più consapevoli.</h2>
+          <p>Recensioni demo orientate a percorsi implantari e riabilitazioni.</p>
+        </div>
+
+        <div class="testimonial-grid">
+          {testimonials.map((item) => (
+            <article class="testimonial-card">
+              <div class="stars" aria-label="Cinque stelle">*****</div>
+              <blockquote>"{item.quote}"</blockquote>
+              <footer>
+                <img src={item.avatar} alt="" loading="lazy" />
+                <div>
+                  <strong>{item.name}</strong>
+                  <span>{item.city}</span>
+                </div>
+              </footer>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section section-muted" id="faq">
+        <div class="faq-wrap">
+          <div class="section-heading">
+            <p class="eyebrow teal">Domande frequenti</p>
+            <h2>Dubbi sugli impianti?</h2>
+            <p>Risposte demo su diagnosi, tempi, costi e fattibilità del percorso implantare.</p>
+          </div>
+
+          <div class="faq-list">
+            {faqs.map((item, index) => (
+              <details class="faq-item" open={index === 0}>
+                <summary>
+                  <span>{item.q}</span>
+                  <span class="faq-icon" aria-hidden="true">+</span>
+                </summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contatto">
+        <div class="contact-copy">
+          <p class="eyebrow teal">Contatto demo</p>
+          <h2>Prenota una valutazione implantologica.</h2>
+          <p>
+            Raccontaci quali denti mancano o quale problema vuoi risolvere. Il form resta demo: nessun dato viene inviato a servizi esterni.
+          </p>
+        </div>
+
+        <form class="contact-form" data-form>
+          <label>
+            Nome e cognome
+            <input type="text" name="name" autocomplete="name" placeholder="Es. Giulia Rossi" required />
+          </label>
+          <label>
+            Telefono o email
+            <input type="text" name="contact" autocomplete="email" placeholder="Es. 333 000 0000" required />
+          </label>
+          <label>
+            Soluzione di interesse
+            <select name="treatment" required>
+              <option value="">Seleziona</option>
+              <option>Prima visita implantologica</option>
+              <option>Impianto singolo</option>
+              <option>Più denti mancanti</option>
+              <option>Arcata completa</option>
+              <option>Rigenerazione ossea</option>
+              <option>Protesi su impianti</option>
+            </select>
+          </label>
+          <label>
+            Messaggio
+            <textarea name="message" rows="4" placeholder="Es. mi manca un molare, vorrei valutare un impianto"></textarea>
+          </label>
+          <label class="privacy">
+            <input type="checkbox" required />
+            <span>Accetto il trattamento dei dati per questa richiesta demo.</span>
+          </label>
+          <button class="button button-dark" type="submit">
+            Richiedi una valutazione implantologica <span aria-hidden="true">-&gt;</span>
+          </button>
+          <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div>
+          <a class="brand footer-brand" href="#home" aria-label="Studio Dentistico Aurora">
+            <span class="brand-mark" aria-hidden="true"><span></span></span>
+            <span class="brand-copy">
+              <strong>Studio Aurora</strong>
+              <small>Implantologia dentale</small>
+            </span>
+          </a>
+          <p>Landing demo dedicata all'implantologia dentale, con immagini e grafiche generate in locale.</p>
+        </div>
+        <div>
+          <h3>Esplora</h3>
+          {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+        </div>
+        <div>
+          <h3>Contatti demo</h3>
+          <a href="tel:+390000000000">+39 000 000 000</a>
+          <a href="mailto:info@studioaurora.example">info@studioaurora.example</a>
+          <span>Via Clinica 12, Italia</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>Studio Dentistico Aurora - Demo implantologia</span>
+        <span>Privacy placeholder</span>
+      </div>
+    </footer>
+
+    <script>
+      const menuButton = document.querySelector("[data-menu-button]");
+      const mobileNav = document.querySelector("[data-mobile-nav]");
+
+      const closeMobileMenu = () => {
+        menuButton?.setAttribute("aria-expanded", "false");
+        mobileNav?.classList.remove("is-open");
+      };
+
+      menuButton?.addEventListener("click", () => {
+        const expanded = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", String(!expanded));
+        mobileNav?.classList.toggle("is-open", !expanded);
+      });
+
+      mobileNav?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
+      window.addEventListener("hashchange", closeMobileMenu);
+
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        item.addEventListener("toggle", () => {
+          if (!(item instanceof HTMLDetailsElement) || !item.open) return;
+          document.querySelectorAll(".faq-item").forEach((other) => {
+            if (other !== item && other instanceof HTMLDetailsElement) other.open = false;
+          });
+        });
+      });
+
+      const form = document.querySelector("[data-form]");
+      const status = document.querySelector("[data-form-status]");
+
+      form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!(form instanceof HTMLFormElement)) return;
+        if (!form.reportValidity()) return;
+        form.reset();
+        if (status) {
+          status.textContent = "Richiesta demo registrata localmente. Nessun dato è stato inviato.";
+        }
+      });
+    </script>
+  </body>
+</html>
