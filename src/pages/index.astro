@@ -4,6 +4,7 @@ import "../styles/global.css";
 const asset = (name: string) => `/assets/original/images/${name}`;
 const generated = (name: string) => `/assets/generated/${name}`;
 const brandLogo = "/assets/brand/sorriso-salute-logo.png";
+const heroImage = "/assets/brand/sorriso-salute-hero-waiting-room.png";
 
 const navItems = [
   { label: "Impianti", href: "#trattamenti" },
@@ -178,7 +179,7 @@ const faqs = [
 
     <main id="home">
       <section class="hero" aria-label="Studio Dentistico Sorriso & Salute">
-        <img class="hero-bg" src={generated("dental-hero.png")} alt="Studio dentistico moderno con poltrona odontoiatrica" />
+        <img class="hero-bg" src={heroImage} alt="Sala d'attesa dello Studio Dentistico Sorriso & Salute" />
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <p class="eyebrow">Studio odontoiatrico privato</p>
