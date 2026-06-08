@@ -292,11 +292,11 @@ textarea {
 .hero {
   position: relative;
   display: grid;
-  min-height: 640px;
-  height: min(860px, 92svh);
+  min-height: 980px;
+  height: auto;
   overflow: hidden;
   place-items: center;
-  padding: 136px 24px 58px;
+  padding: 160px 24px 96px;
   background: var(--dark-panel);
 }
 
@@ -323,7 +323,7 @@ textarea {
 .hero-content {
   position: relative;
   z-index: 1;
-  width: min(1020px, 100%);
+  width: min(980px, 100%);
   margin: 0 auto;
   text-align: center;
 }
@@ -347,12 +347,12 @@ textarea {
 
 .hero h1 {
   margin: 0 auto;
-  max-width: 1050px;
+  max-width: 980px;
   color: #ffffff;
-  font-size: clamp(3.6rem, 8vw, 7.6rem);
+  font-size: clamp(3.6rem, 6.8vw, 6.6rem);
   font-weight: 800;
   letter-spacing: 0;
-  line-height: 0.94;
+  line-height: 0.98;
 }
 
 .hero h1 span {
@@ -361,7 +361,7 @@ textarea {
 
 .hero-lead {
   width: min(760px, 100%);
-  margin: 28px auto 0;
+  margin: 24px auto 0;
   color: rgba(255, 255, 255, 0.72);
   font-size: clamp(1.05rem, 2vw, 1.45rem);
   font-weight: 400;
@@ -373,7 +373,7 @@ textarea {
   flex-wrap: wrap;
   justify-content: center;
   gap: 14px;
-  margin-top: 42px;
+  margin-top: 36px;
 }
 
 .button {
