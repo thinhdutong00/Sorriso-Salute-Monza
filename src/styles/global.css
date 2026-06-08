@@ -1212,6 +1212,7 @@ textarea {
 .choice-btn {
   position: relative;
   display: grid;
+  align-items: center;
   width: 100%;
   min-height: 74px;
   padding: 0.92rem 4.35rem 0.92rem 1.25rem;
@@ -1287,7 +1288,7 @@ textarea {
   overflow-wrap: anywhere;
   font-size: 1.08rem;
   font-weight: 800;
-  line-height: 1.18;
+  line-height: 1.12;
 }
 
 .calendar-head {
