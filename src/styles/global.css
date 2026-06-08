@@ -804,25 +804,32 @@ textarea {
 }
 
 .faq-wrap {
-  width: min(1180px, 100%);
+  width: min(1180px, calc(100% - 48px));
   margin: 0 auto;
 }
 
 .faq-wrap .section-heading {
-  margin-bottom: 34px;
+  max-width: 820px;
+  margin: 0 auto 44px;
+  text-align: center;
 }
 
 .faq-wrap .section-heading h2 {
-  max-width: 520px;
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.04;
 }
 
 .faq-wrap .section-heading p:not(.eyebrow) {
-  max-width: 520px;
+  max-width: 720px;
+  margin: 22px auto 0;
 }
 
 .faq-list {
   display: grid;
   gap: 16px;
+  width: 100%;
+  margin: 0 auto;
   min-width: 0;
 }
 
