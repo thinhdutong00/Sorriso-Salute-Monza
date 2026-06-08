@@ -91,24 +91,24 @@ const steps = [
 const testimonials = [
   {
     quote:
-      "Mi mancava un molare e non capivo quale soluzione scegliere. Il piano implantare era chiaro, con tempi e costi spiegati bene.",
-    name: "Marta Rinaldi",
-    city: "Udine",
-    avatar: asset("client-30.jpg"),
+      "Ho effettuato un impianto dentale e sono rimasta molto soddisfatta. Il personale è qualificato e attento, l'ambiente è pulito e accogliente. Consigliato.",
+    name: "Lucia G.",
+    source: "Recensione Google",
+    initials: "LG",
   },
   {
     quote:
-      "Avevo paura dell'intervento. Sapere cosa sarebbe successo in ogni fase mi ha aiutato ad affrontare il percorso con più calma.",
-    name: "Luca Moretti",
-    city: "Pordenone",
-    avatar: asset("client-40.jpg"),
+      "Ho fatto un intervento con impianti dentali presso questa clinica. Professionalità, competenza e attenzione al paziente sono davvero eccellenti.",
+    name: "Cinzia T.",
+    source: "Recensione Google",
+    initials: "CT",
   },
   {
     quote:
-      "Per la mia riabilitazione mi hanno mostrato alternative, limiti e tempi. Ho apprezzato la trasparenza prima di decidere.",
-    name: "Elena Sartori",
-    city: "Trieste",
-    avatar: asset("client-50.jpg"),
+      "Il dottor Gatti mi ha seguito per un impianto dentale con grande professionalità. Mi sono sentita tranquilla in ogni fase del trattamento.",
+    name: "Martina S.",
+    source: "Recensione Google",
+    initials: "MS",
   },
 ];
 
@@ -322,10 +322,10 @@ const faqs = [
               <div class="stars" aria-label="Cinque stelle">*****</div>
               <blockquote>"{item.quote}"</blockquote>
               <footer>
-                <img src={item.avatar} alt="" loading="lazy" />
+                <span class="testimonial-initial" aria-hidden="true">{item.initials}</span>
                 <div>
                   <strong>{item.name}</strong>
-                  <span>{item.city}</span>
+                  <span>{item.source}</span>
                 </div>
               </footer>
             </article>

@@ -823,11 +823,26 @@ textarea {
   border-top: 1px solid var(--clinic-line);
 }
 
-.testimonial-card img {
+.testimonial-card img,
+.testimonial-initial {
   width: 48px;
   height: 48px;
   border-radius: 999px;
+}
+
+.testimonial-card img {
   object-fit: cover;
+}
+
+.testimonial-initial {
+  display: grid;
+  flex: 0 0 48px;
+  place-items: center;
+  background: var(--clinic-ink);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
 }
 
 .testimonial-card strong,
