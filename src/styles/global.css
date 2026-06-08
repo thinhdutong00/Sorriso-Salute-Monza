@@ -799,17 +799,30 @@ textarea {
 }
 
 .faq-wrap {
-  width: min(760px, 100%);
+  display: grid;
+  grid-template-columns: minmax(320px, 0.78fr) minmax(560px, 1.22fr);
+  align-items: start;
+  width: min(1180px, 100%);
   margin: 0 auto;
+  gap: clamp(48px, 7vw, 96px);
 }
 
 .faq-wrap .section-heading {
-  margin-bottom: 34px;
+  margin: 0;
+}
+
+.faq-wrap .section-heading h2 {
+  max-width: 520px;
+}
+
+.faq-wrap .section-heading p:not(.eyebrow) {
+  max-width: 520px;
 }
 
 .faq-list {
   display: grid;
-  gap: 14px;
+  gap: 16px;
+  min-width: 0;
 }
 
 .faq-item {
@@ -824,8 +837,8 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  min-height: 74px;
-  padding: 0 28px;
+  min-height: 82px;
+  padding: 0 32px;
   color: var(--clinic-ink);
   cursor: pointer;
   font-size: 1.08rem;
@@ -855,8 +868,9 @@ textarea {
 
 .faq-item p {
   margin: 0;
-  padding: 0 28px 28px;
+  padding: 0 32px 32px;
   color: var(--clinic-muted);
+  font-size: 1.05rem;
   line-height: 1.68;
 }
 
@@ -1690,6 +1704,7 @@ textarea {
   .section-heading.split,
   .advantage-layout,
   .contact-section,
+  .faq-wrap,
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -1699,8 +1714,13 @@ textarea {
   }
 
   .advantage-layout,
-  .contact-section {
+  .contact-section,
+  .faq-wrap {
     width: min(760px, calc(100% - 40px));
+  }
+
+  .faq-wrap .section-heading {
+    margin-bottom: 34px;
   }
 
   .contact-copy h2 {
