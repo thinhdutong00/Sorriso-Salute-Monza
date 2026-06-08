@@ -799,16 +799,12 @@ textarea {
 }
 
 .faq-wrap {
-  display: grid;
-  grid-template-columns: minmax(320px, 0.78fr) minmax(560px, 1.22fr);
-  align-items: start;
   width: min(1180px, 100%);
   margin: 0 auto;
-  gap: clamp(48px, 7vw, 96px);
 }
 
 .faq-wrap .section-heading {
-  margin: 0;
+  margin-bottom: 34px;
 }
 
 .faq-wrap .section-heading h2 {
@@ -1704,7 +1700,6 @@ textarea {
   .section-heading.split,
   .advantage-layout,
   .contact-section,
-  .faq-wrap,
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -1714,13 +1709,8 @@ textarea {
   }
 
   .advantage-layout,
-  .contact-section,
-  .faq-wrap {
+  .contact-section {
     width: min(760px, calc(100% - 40px));
-  }
-
-  .faq-wrap .section-heading {
-    margin-bottom: 34px;
   }
 
   .contact-copy h2 {
