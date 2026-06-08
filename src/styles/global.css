@@ -103,7 +103,7 @@ textarea {
 }
 
 .site-header {
-  position: fixed;
+  position: absolute;
   top: 28px;
   left: 50%;
   z-index: 50;
@@ -470,6 +470,7 @@ textarea {
   font-weight: 800;
   letter-spacing: 0;
   line-height: 0.98;
+  text-wrap: balance;
 }
 
 .section-heading p:not(.eyebrow),
@@ -861,8 +862,8 @@ textarea {
 
 .contact-section {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(320px, 520px);
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 460px);
+  align-items: center;
   width: min(1180px, calc(100% - 48px));
   margin: 0 auto;
   padding: clamp(72px, 9vw, 120px) 0;
@@ -870,7 +871,14 @@ textarea {
 }
 
 .contact-copy {
-  padding-top: 28px;
+  min-width: 0;
+}
+
+.contact-copy h2 {
+  max-width: 620px;
+  font-size: clamp(2.45rem, 4.8vw, 4.55rem);
+  line-height: 1;
+  overflow-wrap: break-word;
 }
 
 .contact-copy p:not(.eyebrow) {
@@ -883,6 +891,7 @@ textarea {
   gap: 26px;
   align-content: space-between;
   min-height: 360px;
+  min-width: 0;
   padding: 34px;
   border: 1px solid rgba(14, 56, 76, 0.08);
   border-radius: 28px;
@@ -910,7 +919,7 @@ textarea {
 }
 
 .contact-card .button {
-  justify-self: start;
+  justify-self: stretch;
 }
 
 .site-footer {
@@ -1674,6 +1683,32 @@ textarea {
 
   .request-actions {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 1120px) {
+  .section-heading.split,
+  .advantage-layout,
+  .contact-section,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading.split {
+    align-items: start;
+  }
+
+  .advantage-layout,
+  .contact-section {
+    width: min(760px, calc(100% - 40px));
+  }
+
+  .contact-copy h2 {
+    max-width: 100%;
+  }
+
+  .contact-card {
+    min-height: 0;
   }
 }
 
