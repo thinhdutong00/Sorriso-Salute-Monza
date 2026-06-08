@@ -1492,18 +1492,24 @@ textarea {
 }
 
 .request-actions {
-  display: flex;
-  justify-content: stretch;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   gap: 0.75rem;
+  width: 100%;
   margin-top: 0.2rem;
 }
 
+.request-actions[hidden] {
+  display: none;
+}
+
 .request-btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   min-width: 0;
-  min-height: 50px;
+  min-height: 58px;
   padding: 0.88rem 1.08rem;
   border: 1px solid transparent;
   border-radius: 14px;
@@ -1515,6 +1521,10 @@ textarea {
   text-align: center;
   text-decoration: none;
   transition: color 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.request-btn[hidden] {
+  display: none;
 }
 
 .request-btn:hover,
@@ -1545,15 +1555,6 @@ textarea {
 .request-btn-outline:focus-visible {
   border-color: var(--clinic-teal);
   box-shadow: 0 12px 26px rgba(30, 132, 181, 0.1);
-}
-
-.request-actions .request-btn {
-  flex: 1 1 0;
-}
-
-.request-form.is-prev-only .request-actions [data-prev-step] {
-  width: 100%;
-  flex-basis: 100%;
 }
 
 @media (max-width: 760px) {
@@ -1660,7 +1661,7 @@ textarea {
   }
 
   .request-actions .request-btn {
-    min-height: 54px;
+    min-height: 56px;
     padding-inline: 0.85rem;
   }
 }

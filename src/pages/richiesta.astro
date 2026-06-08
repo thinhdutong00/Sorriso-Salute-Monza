@@ -153,6 +153,7 @@ import "../styles/global.css";
 
         const steps = [...form.querySelectorAll(".request-step")];
         const progress = form.querySelector(".request-progress");
+        const actions = form.querySelector(".request-actions");
         const prevBtn = form.querySelector("[data-prev-step]");
         const nextBtn = form.querySelector("[data-next-step]");
         const submitBtn = form.querySelector("[data-submit-step]");
@@ -219,15 +220,10 @@ import "../styles/global.css";
           steps.forEach((item) => item.classList.toggle("is-active", Number(item.dataset.step) === step));
           progress?.style.setProperty("--progress", `${(step / totalSteps) * 100}%`);
           progress?.setAttribute("aria-valuenow", String(step));
+          if (actions instanceof HTMLElement) actions.hidden = step === 1;
           if (prevBtn instanceof HTMLButtonElement) prevBtn.hidden = step === 1;
           if (nextBtn instanceof HTMLButtonElement) nextBtn.hidden = step !== 5;
           if (submitBtn instanceof HTMLButtonElement) submitBtn.hidden = step !== totalSteps;
-          form.classList.toggle(
-            "is-prev-only",
-            prevBtn instanceof HTMLButtonElement && nextBtn instanceof HTMLButtonElement && submitBtn instanceof HTMLButtonElement
-              ? !prevBtn.hidden && nextBtn.hidden && submitBtn.hidden
-              : false
-          );
           setError();
           updateSummary();
           requestAnimationFrame(() => {
