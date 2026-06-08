@@ -694,7 +694,7 @@ textarea {
   position: relative;
   overflow: hidden;
   padding-top: clamp(64px, 7vw, 92px);
-  padding-bottom: 0;
+  padding-bottom: clamp(58px, 5vw, 84px);
   background:
     radial-gradient(circle at 80% 10%, rgba(30, 132, 181, 0.26), transparent 32%),
     linear-gradient(180deg, var(--clinic-teal-dark), #08293a);
@@ -784,11 +784,11 @@ textarea {
 .method-dentist {
   position: absolute;
   right: max(28px, calc((100vw - 1180px) / 2));
-  bottom: 0;
+  bottom: -1px;
   z-index: 1;
   display: block;
-  width: clamp(270px, 24vw, 350px);
-  max-height: min(620px, 82%);
+  width: clamp(320px, 28vw, 420px);
+  max-height: min(680px, 90%);
   object-fit: contain;
   object-position: bottom center;
   filter: drop-shadow(0 34px 54px rgba(0, 0, 0, 0.28));
