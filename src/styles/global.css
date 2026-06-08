@@ -310,6 +310,7 @@ textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 62% 18%;
   opacity: 0.62;
 }
 
@@ -572,6 +573,10 @@ textarea {
 .image-stack {
   position: relative;
   min-height: 620px;
+}
+
+.mobile-advantage-image {
+  display: none;
 }
 
 .main-image {
@@ -1815,6 +1820,10 @@ textarea {
     padding: 120px 18px 64px;
   }
 
+  .hero-bg {
+    object-position: center;
+  }
+
   .hero h1 {
     font-size: clamp(3rem, 17vw, 4.35rem);
   }
@@ -1863,6 +1872,15 @@ textarea {
   .image-stack,
   .main-image {
     height: 430px;
+  }
+
+  .advantage-layout > .image-stack {
+    display: none;
+  }
+
+  .mobile-advantage-image {
+    display: block;
+    margin: 26px 0 0;
   }
 
   .floating-note {
