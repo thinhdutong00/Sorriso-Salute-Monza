@@ -496,6 +496,78 @@ textarea {
   line-height: 1.65;
 }
 
+.pain-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.pain-section::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 14% 18%, rgba(30, 132, 181, 0.14), transparent 32%),
+    radial-gradient(circle at 88% 74%, rgba(82, 114, 130, 0.13), transparent 30%);
+}
+
+.pain-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  gap: 22px;
+}
+
+.pain-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 22px;
+  min-height: 168px;
+  padding: clamp(24px, 3vw, 36px);
+  border: 1px solid rgba(14, 56, 76, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 18px 48px rgba(14, 56, 76, 0.06);
+}
+
+.pain-card span {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  place-items: center;
+  background: var(--clinic-ink);
+  color: #ffffff;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.pain-card p {
+  margin: 0;
+  color: var(--clinic-ink);
+  font-size: clamp(1.12rem, 1.8vw, 1.34rem);
+  font-weight: 700;
+  line-height: 1.38;
+}
+
+.pain-cta {
+  display: flex;
+  justify-content: center;
+  width: min(1180px, 100%);
+  margin: 34px auto 0;
+}
+
+.pain-cta .button {
+  width: min(420px, 100%);
+}
+
 .treatment-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -1856,6 +1928,10 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .pain-grid {
+    grid-template-columns: 1fr;
+  }
+
   .hero {
     min-height: 720px;
     height: auto;
@@ -1950,6 +2026,18 @@ textarea {
   .button {
     width: 100%;
     min-width: 0;
+  }
+
+  .pain-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    min-height: 0;
+  }
+
+  .pain-card span {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
   }
 
   .section {
