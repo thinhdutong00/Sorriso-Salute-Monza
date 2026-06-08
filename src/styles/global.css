@@ -792,12 +792,12 @@ textarea {
 
 .method-dentist {
   position: absolute;
-  right: max(28px, calc((100vw - 1180px) / 2));
-  bottom: -1px;
+  right: clamp(-34px, 1.5vw, 26px);
+  bottom: -58px;
   z-index: 1;
   display: block;
-  width: clamp(320px, 28vw, 420px);
-  max-height: min(680px, 90%);
+  width: clamp(390px, 33vw, 500px);
+  max-height: min(760px, 98%);
   object-fit: contain;
   object-position: bottom center;
   filter: drop-shadow(0 34px 54px rgba(0, 0, 0, 0.28));
