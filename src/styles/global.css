@@ -324,7 +324,7 @@ textarea {
 .hero-content {
   position: relative;
   z-index: 1;
-  width: min(980px, 100%);
+  width: min(1120px, 100%);
   margin: 0 auto;
   text-align: center;
 }
@@ -348,9 +348,9 @@ textarea {
 
 .hero h1 {
   margin: 0 auto;
-  max-width: 980px;
+  max-width: 1120px;
   color: #ffffff;
-  font-size: clamp(3.6rem, 6.8vw, 6.6rem);
+  font-size: clamp(3.2rem, 5.35vw, 5.6rem);
   font-weight: 800;
   letter-spacing: 0;
   line-height: 0.98;
@@ -361,10 +361,10 @@ textarea {
 }
 
 .hero-lead {
-  width: min(760px, 100%);
+  width: min(920px, 100%);
   margin: 24px auto 0;
   color: rgba(255, 255, 255, 0.72);
-  font-size: clamp(1.05rem, 2vw, 1.45rem);
+  font-size: clamp(1.02rem, 1.55vw, 1.28rem);
   font-weight: 400;
   line-height: 1.52;
 }
@@ -375,6 +375,15 @@ textarea {
   justify-content: center;
   gap: 14px;
   margin-top: 36px;
+}
+
+.hero-note {
+  width: min(780px, 100%);
+  margin: 22px auto 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(0.98rem, 1.35vw, 1.16rem);
+  font-weight: 700;
+  line-height: 1.45;
 }
 
 .button {
@@ -405,7 +414,7 @@ textarea {
   display: inline-flex;
   align-items: center;
   gap: 16px;
-  margin-top: 34px;
+  margin-top: 24px;
   color: rgba(255, 255, 255, 0.74);
 }
 
@@ -1912,7 +1921,7 @@ textarea {
   }
 
   .hero {
-    min-height: 700px;
+    min-height: 780px;
     padding: 120px 18px 64px;
   }
 
@@ -1921,7 +1930,16 @@ textarea {
   }
 
   .hero h1 {
-    font-size: clamp(3rem, 17vw, 4.35rem);
+    font-size: clamp(2.45rem, 10.8vw, 3.6rem);
+    line-height: 1.02;
+  }
+
+  .hero-lead {
+    font-size: 1rem;
+  }
+
+  .hero-note {
+    font-size: 0.96rem;
   }
 
   .hero-actions,
