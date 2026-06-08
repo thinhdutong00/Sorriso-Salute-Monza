@@ -850,6 +850,10 @@ textarea {
   display: block;
 }
 
+.testimonial-card .testimonial-initial {
+  display: grid;
+}
+
 .testimonial-card span {
   margin-top: 4px;
   color: var(--clinic-muted);
