@@ -49,17 +49,17 @@
 :root {
   --clinic-white: #ffffff;
   --clinic-mist: #f9fcff;
-  --clinic-mint: #e6f5fb;
+  --clinic-mint: #e8f5fb;
   --clinic-teal: #1e84b5;
   --clinic-teal-dark: #0e384c;
   --clinic-blue: #1e84b5;
   --clinic-ink: #0e384c;
   --clinic-muted: #527282;
   --clinic-line: #d8e8ef;
-  --clinic-warm: #f2b84b;
-  --dark-panel: #082a3a;
+  --clinic-warm: #1e84b5;
+  --dark-panel: #0e384c;
   --dark-panel-2: #0e384c;
-  --shadow-soft: 0 24px 70px rgba(11, 32, 33, 0.12);
+  --shadow-soft: 0 24px 70px rgba(14, 56, 76, 0.12);
   color-scheme: light;
 }
 
@@ -113,10 +113,10 @@ textarea {
   width: min(1060px, calc(100% - 40px));
   min-height: 76px;
   padding: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(216, 232, 239, 0.22);
   border-radius: 999px;
-  background: rgba(7, 21, 22, 0.78);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+  background: rgba(14, 56, 76, 0.88);
+  box-shadow: 0 24px 80px rgba(14, 56, 76, 0.26);
   backdrop-filter: blur(18px);
   transform: translateX(-50%);
 }
@@ -153,7 +153,7 @@ textarea {
   inset: 7px;
   content: "";
   border-radius: inherit;
-  background: #071516;
+  background: var(--clinic-teal-dark);
 }
 
 .brand-mark span {
@@ -231,7 +231,7 @@ textarea {
   padding: 0 24px;
   background: #ffffff;
   color: var(--clinic-ink);
-  box-shadow: inset 0 0 0 1px rgba(16, 32, 39, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(14, 56, 76, 0.08), 0 12px 28px rgba(14, 56, 76, 0.16);
 }
 
 .header-cta:hover,
@@ -267,7 +267,7 @@ textarea {
   display: none;
   width: min(320px, calc(100vw - 40px));
   padding: 14px;
-  border: 1px solid rgba(16, 32, 39, 0.1);
+  border: 1px solid rgba(14, 56, 76, 0.1);
   border-radius: 24px;
   background: #ffffff;
   box-shadow: var(--shadow-soft);
@@ -315,8 +315,8 @@ textarea {
 
 .hero-overlay {
   background:
-    radial-gradient(circle at 50% 30%, rgba(14, 143, 136, 0.28), transparent 34%),
-    linear-gradient(180deg, rgba(5, 12, 14, 0.82), rgba(5, 12, 14, 0.7) 42%, rgba(5, 12, 14, 0.95)),
+    radial-gradient(circle at 50% 28%, rgba(30, 132, 181, 0.34), transparent 34%),
+    linear-gradient(180deg, rgba(14, 56, 76, 0.84), rgba(14, 56, 76, 0.72) 42%, rgba(14, 56, 76, 0.96)),
     url("/assets/original/images/noise.svg");
 }
 
@@ -356,7 +356,7 @@ textarea {
 }
 
 .hero h1 span {
-  color: var(--clinic-mint);
+  color: #dff1f8;
 }
 
 .hero-lead {
@@ -385,12 +385,12 @@ textarea {
 .button-primary {
   background: var(--clinic-teal);
   color: #ffffff;
-  box-shadow: 0 18px 45px rgba(14, 143, 136, 0.3);
+  box-shadow: 0 18px 45px rgba(30, 132, 181, 0.32);
 }
 
 .button-secondary {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(216, 232, 239, 0.34);
+  background: rgba(249, 252, 255, 0.1);
   color: #ffffff;
 }
 
@@ -423,7 +423,7 @@ textarea {
 .avatar-row img {
   width: 36px;
   height: 36px;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(249, 252, 255, 0.88);
   border-radius: 999px;
   object-fit: cover;
 }
@@ -494,10 +494,10 @@ textarea {
   grid-column: span 4;
   min-height: 340px;
   overflow: hidden;
-  border: 1px solid rgba(16, 32, 39, 0.08);
+  border: 1px solid rgba(14, 56, 76, 0.08);
   border-radius: 28px;
   background: var(--clinic-ink);
-  box-shadow: 0 18px 50px rgba(16, 32, 39, 0.08);
+  box-shadow: 0 18px 50px rgba(14, 56, 76, 0.08);
 }
 
 .treatment-card.wide {
@@ -523,7 +523,7 @@ textarea {
 }
 
 .card-scrim {
-  background: linear-gradient(180deg, rgba(4, 15, 16, 0.08), rgba(4, 15, 16, 0.78));
+  background: linear-gradient(180deg, rgba(14, 56, 76, 0.06), rgba(14, 56, 76, 0.84));
 }
 
 .card-content {
@@ -589,10 +589,10 @@ textarea {
   gap: 6px;
   width: min(280px, 72%);
   padding: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(216, 232, 239, 0.72);
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 20px 50px rgba(16, 32, 39, 0.15);
+  box-shadow: 0 20px 50px rgba(14, 56, 76, 0.15);
   backdrop-filter: blur(14px);
 }
 
@@ -607,7 +607,7 @@ textarea {
 }
 
 .advantage-copy h2 span {
-  color: #8a979b;
+  color: var(--clinic-muted);
 }
 
 .advantage-copy > p {
@@ -654,8 +654,8 @@ textarea {
 .method-section {
   overflow: hidden;
   background:
-    radial-gradient(circle at 80% 10%, rgba(14, 143, 136, 0.22), transparent 32%),
-    linear-gradient(180deg, var(--dark-panel), #030909);
+    radial-gradient(circle at 80% 10%, rgba(30, 132, 181, 0.26), transparent 32%),
+    linear-gradient(180deg, var(--clinic-teal-dark), #08293a);
   color: #ffffff;
 }
 
@@ -680,9 +680,9 @@ textarea {
   position: relative;
   min-height: 310px;
   padding: 34px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(216, 232, 239, 0.16);
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.035);
+  background: rgba(249, 252, 255, 0.045);
 }
 
 .method-number {
@@ -700,10 +700,10 @@ textarea {
   height: 52px;
   margin-bottom: 58px;
   border-radius: 18px;
-  background-color: rgba(14, 143, 136, 0.28);
+  background-color: rgba(30, 132, 181, 0.28);
   background-position: center;
   background-size: cover;
-  box-shadow: 0 12px 34px rgba(14, 143, 136, 0.22);
+  box-shadow: 0 12px 34px rgba(30, 132, 181, 0.22);
 }
 
 .method-icon.icon-consultation {
@@ -746,10 +746,10 @@ textarea {
   display: grid;
   min-height: 380px;
   padding: 38px;
-  border: 1px solid rgba(16, 32, 39, 0.06);
+  border: 1px solid rgba(14, 56, 76, 0.06);
   border-radius: 28px;
   background: #ffffff;
-  box-shadow: 0 16px 40px rgba(16, 32, 39, 0.05);
+  box-shadow: 0 16px 40px rgba(14, 56, 76, 0.05);
 }
 
 .stars {
@@ -812,10 +812,10 @@ textarea {
 }
 
 .faq-item {
-  border: 1px solid rgba(16, 32, 39, 0.08);
+  border: 1px solid rgba(14, 56, 76, 0.08);
   border-radius: 20px;
   background: #ffffff;
-  box-shadow: 0 14px 35px rgba(16, 32, 39, 0.05);
+  box-shadow: 0 14px 35px rgba(14, 56, 76, 0.05);
 }
 
 .faq-item summary {
@@ -884,7 +884,7 @@ textarea {
   align-content: space-between;
   min-height: 360px;
   padding: 34px;
-  border: 1px solid rgba(16, 32, 39, 0.08);
+  border: 1px solid rgba(14, 56, 76, 0.08);
   border-radius: 28px;
   background: #ffffff;
   box-shadow: var(--shadow-soft);
@@ -915,7 +915,7 @@ textarea {
 
 .site-footer {
   padding: 70px 24px 28px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(216, 232, 239, 0.1);
   background: var(--dark-panel-2);
   color: rgba(255, 255, 255, 0.66);
 }
