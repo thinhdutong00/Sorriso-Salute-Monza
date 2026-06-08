@@ -1,0 +1,418 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Richiedi una valutazione implantologica allo Studio Dentistico Sorriso & Salute di Monza."
+    />
+    <meta name="theme-color" content="#0E384C" />
+    <title>Richiedi una valutazione | Sorriso & Salute Monza</title>
+  </head>
+  <body class="request-body">
+    <header class="request-topbar">
+      <div class="request-topbar-inner">
+        <a class="request-back-link" href="/" data-back-link>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15.5 4.5 8 12l7.5 7.5" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          Indietro
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="request-shell" aria-labelledby="request-title">
+        <h1 class="request-title" id="request-title">Richiedi una valutazione</h1>
+
+        <form class="request-form" id="valutazione" novalidate>
+          <div class="request-progress" role="progressbar" aria-label="Avanzamento richiesta" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"></div>
+
+          <div class="request-step is-active" data-step="1">
+            <p class="quiz-kicker">Inquadramento clinico</p>
+            <h2 class="quiz-title">Qual è il problema principale?</h2>
+            <p class="quiz-copy">Scegli la situazione più vicina alla tua.</p>
+            <div class="quiz-options" data-field="problema">
+              <button class="choice-btn" type="button" data-value="Mi manca un dente singolo"><strong>Mi manca un dente singolo</strong></button>
+              <button class="choice-btn" type="button" data-value="Mi mancano più denti"><strong>Mi mancano più denti</strong></button>
+              <button class="choice-btn" type="button" data-value="Dentiera mobile o protesi instabile"><strong>Protesi instabile</strong></button>
+              <button class="choice-btn" type="button" data-value="Ho già impianti o una situazione da rivalutare"><strong>Voglio una seconda opinione</strong></button>
+            </div>
+          </div>
+
+          <div class="request-step" data-step="2">
+            <p class="quiz-kicker">Obiettivo desiderato</p>
+            <h2 class="quiz-title">Qual è il tuo obiettivo?</h2>
+            <p class="quiz-copy">Aiuta lo studio a capire la priorità.</p>
+            <div class="quiz-options" data-field="obiettivo">
+              <button class="choice-btn" type="button" data-value="Masticare meglio e senza fastidi"><strong>Masticare meglio</strong></button>
+              <button class="choice-btn" type="button" data-value="Avere denti fissi e un sorriso naturale"><strong>Avere denti fissi</strong></button>
+              <button class="choice-btn" type="button" data-value="Evitare o stabilizzare la dentiera mobile"><strong>Stabilizzare la dentiera</strong></button>
+              <button class="choice-btn" type="button" data-value="Capire se posso fare carico immediato"><strong>Capire i tempi</strong></button>
+            </div>
+          </div>
+
+          <div class="request-step" data-step="3">
+            <p class="quiz-kicker">Preferenza appuntamento</p>
+            <h2 class="quiz-title">Scegli una data per la prima valutazione</h2>
+            <p class="muted">Scegli un giorno indicativo.</p>
+            <div class="calendar-head">
+              <p class="calendar-title" data-calendar-title></p>
+              <div class="calendar-nav" aria-label="Navigazione calendario">
+                <button type="button" data-prev-month aria-label="Mese precedente">‹</button>
+                <button type="button" data-next-month aria-label="Mese successivo">›</button>
+              </div>
+            </div>
+            <div class="calendar-grid" data-calendar-grid aria-label="Calendario selezionabile"></div>
+          </div>
+
+          <div class="request-step" data-step="4">
+            <p class="quiz-kicker">Orario preferito</p>
+            <h2 class="quiz-title">Scegli una fascia oraria</h2>
+            <p class="muted">Lo studio confermerà l'orario.</p>
+            <div class="slot-grid" data-slot-grid aria-label="Orari selezionabili"></div>
+          </div>
+
+          <div class="request-step" data-step="5">
+            <p class="quiz-kicker">Dati di contatto</p>
+            <h2 class="quiz-title">Lascia i tuoi recapiti</h2>
+            <p class="muted">Servono per ricontattarti.</p>
+            <div class="field-grid">
+              <label>
+                Nome e cognome
+                <input name="nomeCompleto" autocomplete="name" required />
+              </label>
+              <label>
+                Telefono
+                <input name="telefono" type="tel" inputmode="tel" autocomplete="tel" required />
+              </label>
+              <label>
+                Email
+                <input name="email" type="email" autocomplete="email" required />
+              </label>
+            </div>
+            <label>
+              Note/Messaggio
+              <textarea name="messaggio" placeholder="Aggiungi dettagli utili"></textarea>
+            </label>
+          </div>
+
+          <div class="request-step" data-step="6">
+            <p class="quiz-kicker">Riepilogo richiesta</p>
+            <h2 class="quiz-title">Controlla la richiesta</h2>
+            <p class="quiz-copy">Invieremo il riepilogo allo studio.</p>
+            <div class="summary-box" data-summary-box aria-live="polite"></div>
+          </div>
+
+          <p class="form-error" data-form-error aria-live="polite"></p>
+
+          <div class="request-actions">
+            <button class="request-btn request-btn-outline" type="button" data-prev-step hidden>Torna indietro</button>
+            <button class="request-btn request-btn-outline" type="button" data-next-step hidden>Continua</button>
+            <button class="request-btn request-btn-primary" type="submit" data-submit-step hidden>Invia richiesta</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const backLink = document.querySelector("[data-back-link]");
+        backLink?.addEventListener("click", (event) => {
+          if (window.history.length <= 1) return;
+          event.preventDefault();
+          window.history.back();
+        });
+
+        const form = document.querySelector("#valutazione");
+        if (!(form instanceof HTMLFormElement)) return;
+
+        const totalSteps = 6;
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const maxDate = new Date(today);
+        maxDate.setMonth(maxDate.getMonth() + 3);
+
+        const minMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        const maxMonth = new Date(maxDate.getFullYear(), maxDate.getMonth(), 1);
+
+        const monthFormatter = new Intl.DateTimeFormat("it-IT", { month: "long", year: "numeric" });
+        const dateFormatter = new Intl.DateTimeFormat("it-IT", { weekday: "long", day: "2-digit", month: "long" });
+        const isoDate = (date) => {
+          const offset = date.getTimezoneOffset() * 60000;
+          return new Date(date.getTime() - offset).toISOString().slice(0, 10);
+        };
+        const isSameMonth = (a, b) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
+        const selected = (value) => value || "Non indicato";
+
+        const steps = [...form.querySelectorAll(".request-step")];
+        const progress = form.querySelector(".request-progress");
+        const prevBtn = form.querySelector("[data-prev-step]");
+        const nextBtn = form.querySelector("[data-next-step]");
+        const submitBtn = form.querySelector("[data-submit-step]");
+        const formError = form.querySelector("[data-form-error]");
+        const calendarGrid = form.querySelector("[data-calendar-grid]");
+        const calendarTitle = form.querySelector("[data-calendar-title]");
+        const prevMonthBtn = form.querySelector("[data-prev-month]");
+        const nextMonthBtn = form.querySelector("[data-next-month]");
+        const slotGrid = form.querySelector("[data-slot-grid]");
+        const summaryBox = form.querySelector("[data-summary-box]");
+        const fields = {
+          nomeCompleto: form.querySelector('[name="nomeCompleto"]'),
+          telefono: form.querySelector('[name="telefono"]'),
+          email: form.querySelector('[name="email"]'),
+          messaggio: form.querySelector('[name="messaggio"]'),
+        };
+
+        let currentStep = 1;
+        let selectedDate = "";
+        let selectedDateLabel = "";
+        let selectedSlot = "";
+        let displayedMonth = new Date(minMonth);
+        const quiz = {
+          problema: "",
+          obiettivo: "",
+        };
+
+        const setError = (message = "") => {
+          if (formError) formError.textContent = message;
+        };
+
+        const officeSlots = () => {
+          const ranges = [
+            ["09:00", "12:30"],
+            ["14:00", "19:00"],
+          ];
+          const slots = [];
+          ranges.forEach(([start, end]) => {
+            const [startH, startM] = start.split(":").map(Number);
+            const [endH, endM] = end.split(":").map(Number);
+            const cursor = new Date(2000, 0, 1, startH, startM);
+            const limit = new Date(2000, 0, 1, endH, endM);
+            while (cursor <= limit) {
+              slots.push(cursor.toTimeString().slice(0, 5));
+              cursor.setMinutes(cursor.getMinutes() + 30);
+            }
+          });
+          return slots;
+        };
+
+        const updateSummary = () => {
+          if (!summaryBox) return;
+          summaryBox.innerHTML = `
+            <span class="summary-line"><strong>Problema da risolvere</strong>${selected(quiz.problema)}</span>
+            <span class="summary-line"><strong>Risultato desiderato</strong>${selected(quiz.obiettivo)}</span>
+            <span class="summary-line"><strong>Preferenza appuntamento</strong>${selectedDateLabel || "Non indicata"} · ${selectedSlot || "Non indicato"}</span>
+            <span class="summary-line"><strong>Contatto</strong>${fields.nomeCompleto?.value || "-"} · ${fields.telefono?.value || "-"} · ${fields.email?.value || "-"}</span>
+            <span class="summary-line"><strong>Note</strong>${fields.messaggio?.value || "Nessuna nota inserita"}</span>
+          `;
+        };
+
+        const showStep = (step) => {
+          currentStep = step;
+          steps.forEach((item) => item.classList.toggle("is-active", Number(item.dataset.step) === step));
+          progress?.style.setProperty("--progress", `${(step / totalSteps) * 100}%`);
+          progress?.setAttribute("aria-valuenow", String(step));
+          if (prevBtn instanceof HTMLButtonElement) prevBtn.hidden = step === 1;
+          if (nextBtn instanceof HTMLButtonElement) nextBtn.hidden = step !== 5;
+          if (submitBtn instanceof HTMLButtonElement) submitBtn.hidden = step !== totalSteps;
+          form.classList.toggle(
+            "is-prev-only",
+            prevBtn instanceof HTMLButtonElement && nextBtn instanceof HTMLButtonElement && submitBtn instanceof HTMLButtonElement
+              ? !prevBtn.hidden && nextBtn.hidden && submitBtn.hidden
+              : false
+          );
+          setError();
+          updateSummary();
+          requestAnimationFrame(() => {
+            form.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        };
+
+        const validateStep = () => {
+          if (currentStep <= 2) {
+            const activeStep = steps.find((item) => Number(item.dataset.step) === currentStep);
+            const field = activeStep?.querySelector(".quiz-options")?.dataset.field;
+            if (field && !quiz[field]) {
+              setError("Seleziona una risposta per continuare.");
+              return false;
+            }
+          }
+
+          if (currentStep === 3 && !selectedDate) {
+            setError("Seleziona una data disponibile.");
+            return false;
+          }
+
+          if (currentStep === 4 && !selectedSlot) {
+            setError("Seleziona un orario preferito.");
+            return false;
+          }
+
+          if (currentStep === 5) {
+            const required = [fields.nomeCompleto, fields.telefono, fields.email].filter((field) => field instanceof HTMLInputElement);
+            const invalid = required.find((field) => !field.checkValidity());
+            if (invalid) {
+              invalid.reportValidity();
+              setError("Completa i dati di contatto per preparare il riepilogo.");
+              return false;
+            }
+          }
+
+          return true;
+        };
+
+        const buildCalendar = () => {
+          if (!calendarGrid || !calendarTitle || !(prevMonthBtn instanceof HTMLButtonElement) || !(nextMonthBtn instanceof HTMLButtonElement)) return;
+          calendarGrid.innerHTML = "";
+          calendarTitle.textContent = monthFormatter.format(displayedMonth);
+          prevMonthBtn.disabled = isSameMonth(displayedMonth, minMonth);
+          nextMonthBtn.disabled = isSameMonth(displayedMonth, maxMonth);
+
+          ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"].forEach((day) => {
+            const label = document.createElement("span");
+            label.className = "calendar-weekday";
+            label.textContent = day;
+            calendarGrid.append(label);
+          });
+
+          const firstDay = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth(), 1);
+          const daysInMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() + 1, 0).getDate();
+          const leadingBlanks = (firstDay.getDay() + 6) % 7;
+
+          for (let i = 0; i < leadingBlanks; i += 1) {
+            const blank = document.createElement("span");
+            blank.setAttribute("aria-hidden", "true");
+            calendarGrid.append(blank);
+          }
+
+          for (let dayNumber = 1; dayNumber <= daysInMonth; dayNumber += 1) {
+            const date = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth(), dayNumber);
+            const day = date.getDay();
+            const isWeekend = day === 0 || day === 6;
+            const isOutOfRange = date < today || date > maxDate;
+            const value = isoDate(date);
+            const label = dateFormatter.format(date);
+            const labelParts = label.split(" ");
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "date-btn";
+            button.setAttribute("aria-pressed", "false");
+            button.disabled = isWeekend || isOutOfRange;
+            button.dataset.value = value;
+            button.dataset.label = label;
+            button.innerHTML = `<small>${labelParts[0].slice(0, 3)}</small><span>${dayNumber}</span>`;
+            if (selectedDate === value) button.setAttribute("aria-pressed", "true");
+            button.addEventListener("click", () => {
+              selectedDate = value;
+              selectedDateLabel = label;
+              form.querySelectorAll(".date-btn").forEach((btn) => btn.setAttribute("aria-pressed", "false"));
+              button.setAttribute("aria-pressed", "true");
+              updateSummary();
+              setError();
+              window.setTimeout(() => showStep(4), 140);
+            });
+            calendarGrid.append(button);
+          }
+        };
+
+        const buildSlots = () => {
+          if (!slotGrid) return;
+          slotGrid.innerHTML = "";
+          officeSlots().forEach((slot) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "slot-btn";
+            button.textContent = slot;
+            button.setAttribute("aria-pressed", "false");
+            button.addEventListener("click", () => {
+              selectedSlot = slot;
+              form.querySelectorAll(".slot-btn").forEach((btn) => btn.setAttribute("aria-pressed", "false"));
+              button.setAttribute("aria-pressed", "true");
+              updateSummary();
+              setError();
+              window.setTimeout(() => showStep(5), 140);
+            });
+            slotGrid.append(button);
+          });
+        };
+
+        form.querySelectorAll(".quiz-options").forEach((group) => {
+          const field = group.dataset.field;
+          group.querySelectorAll(".choice-btn").forEach((button) => {
+            button.setAttribute("aria-pressed", "false");
+            button.addEventListener("click", () => {
+              if (!field) return;
+              quiz[field] = button.dataset.value || "";
+              group.querySelectorAll(".choice-btn").forEach((btn) => btn.setAttribute("aria-pressed", "false"));
+              button.setAttribute("aria-pressed", "true");
+              updateSummary();
+              setError();
+              if (currentStep < 3) {
+                window.setTimeout(() => showStep(currentStep + 1), 140);
+              }
+            });
+          });
+        });
+
+        prevBtn?.addEventListener("click", () => showStep(Math.max(1, currentStep - 1)));
+        nextBtn?.addEventListener("click", () => {
+          if (validateStep()) showStep(Math.min(totalSteps, currentStep + 1));
+        });
+        prevMonthBtn?.addEventListener("click", () => {
+          displayedMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() - 1, 1);
+          buildCalendar();
+        });
+        nextMonthBtn?.addEventListener("click", () => {
+          displayedMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() + 1, 1);
+          buildCalendar();
+        });
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (currentStep !== totalSteps) {
+            if (validateStep()) showStep(Math.min(totalSteps, currentStep + 1));
+            return;
+          }
+          if (!validateStep()) return;
+
+          const subject = `Richiesta valutazione implantologia - ${fields.nomeCompleto?.value || ""}`;
+          const body = [
+            "Nuova richiesta di valutazione implantologica",
+            "",
+            "QUADRO PAZIENTE",
+            `Problema principale: ${quiz.problema}`,
+            `Obiettivo desiderato: ${quiz.obiettivo}`,
+            "",
+            "PREFERENZA APPUNTAMENTO",
+            `Data preferita: ${selectedDateLabel} (${selectedDate})`,
+            `Orario preferito: ${selectedSlot}`,
+            "",
+            "DATI DI CONTATTO",
+            `Nome e cognome: ${fields.nomeCompleto?.value || ""}`,
+            `Telefono: ${fields.telefono?.value || ""}`,
+            `Email: ${fields.email?.value || ""}`,
+            "",
+            "NOTE DEL PAZIENTE",
+            fields.messaggio?.value || "Nessuna nota inserita",
+            "",
+            "Fonte: pagina richiesta implantologia Sorriso & Salute Monza",
+          ].join("\n");
+
+          window.location.href = `mailto:info@sorrisoesalute.it?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
+
+        buildCalendar();
+        buildSlots();
+        updateSummary();
+        showStep(1);
+      })();
+    </script>
+  </body>
+</html>
