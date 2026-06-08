@@ -5,6 +5,7 @@ const asset = (name: string) => `/assets/original/images/${name}`;
 const generated = (name: string) => `/assets/generated/${name}`;
 const brandLogo = "/assets/brand/sorriso-salute-logo.png";
 const heroImage = "/assets/brand/sorriso-salute-hero-waiting-room.png";
+const dentistCutout = "/assets/brand/dentist-cutout.png";
 
 const navItems = [
   { label: "Impianti", href: "#trattamenti" },
@@ -277,25 +278,30 @@ const faqs = [
       </section>
 
       <section class="section method-section" id="metodo">
-        <div class="section-heading split dark">
-          <div>
-            <p class="eyebrow mint">Il metodo</p>
-            <h2>Implantologia passo passo.</h2>
-          </div>
-          <p>
-            Dalla diagnosi alla protesi, ogni fase viene spiegata prima di iniziare.
-          </p>
-        </div>
+        <div class="method-inner">
+          <div class="method-content">
+            <div class="section-heading split dark">
+              <div>
+                <p class="eyebrow mint">Il metodo</p>
+                <h2>Implantologia passo passo.</h2>
+              </div>
+              <p>
+                Dalla diagnosi alla protesi, ogni fase viene spiegata prima di iniziare.
+              </p>
+            </div>
 
-        <div class="method-grid">
-          {steps.map((step) => (
-            <article class="method-card">
-              <span class="method-number">{step.number}</span>
-              <div class:list={["method-icon", step.icon]} aria-hidden="true"></div>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
-            </article>
-          ))}
+            <div class="method-grid">
+              {steps.map((step) => (
+                <article class="method-card">
+                  <span class="method-number">{step.number}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <img class="method-dentist" src={dentistCutout} alt="" loading="lazy" aria-hidden="true" />
         </div>
       </section>
 
