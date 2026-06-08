@@ -35,30 +35,32 @@ import "../styles/global.css";
 
           <div class="request-step is-active" data-step="1">
             <p class="quiz-kicker">Inquadramento clinico</p>
-            <h2 class="quiz-title">Qual è il problema principale?</h2>
-            <p class="quiz-copy">Scegli la situazione più vicina alla tua.</p>
+            <h2 class="quiz-title">Quale problema vuoi risolvere?</h2>
+            <p class="quiz-copy">Scegli la situazione per cui vuoi fissare una valutazione in studio.</p>
             <div class="quiz-options" data-field="problema">
-              <button class="choice-btn" type="button" data-value="Mi manca un dente singolo"><strong>Mi manca un dente singolo</strong></button>
-              <button class="choice-btn" type="button" data-value="Mi mancano più denti"><strong>Mi mancano più denti</strong></button>
-              <button class="choice-btn" type="button" data-value="Dentiera mobile o protesi instabile"><strong>Protesi instabile</strong></button>
+              <button class="choice-btn" type="button" data-value="Devo sostituire un dente mancante"><strong>Sostituire un dente mancante</strong></button>
+              <button class="choice-btn" type="button" data-value="Devo risolvere più denti mancanti"><strong>Risolvere più denti mancanti</strong></button>
+              <button class="choice-btn" type="button" data-value="La dentiera o protesi mobile è instabile"><strong>Stabilizzare una protesi mobile</strong></button>
+              <button class="choice-btn" type="button" data-value="Vorrei un consulto in studio per capire se l'implantologia è indicata"><strong>Fare un consulto in studio</strong></button>
             </div>
           </div>
 
           <div class="request-step" data-step="2">
             <p class="quiz-kicker">Obiettivo desiderato</p>
-            <h2 class="quiz-title">Qual è il tuo obiettivo?</h2>
-            <p class="quiz-copy">Aiuta lo studio a capire la priorità.</p>
+            <h2 class="quiz-title">Quale risultato vuoi ottenere?</h2>
+            <p class="quiz-copy">Indica la priorità della visita: aiuta lo studio a preparare il consulto.</p>
             <div class="quiz-options" data-field="obiettivo">
-              <button class="choice-btn" type="button" data-value="Masticare meglio e senza fastidi"><strong>Masticare meglio</strong></button>
-              <button class="choice-btn" type="button" data-value="Avere denti fissi e un sorriso naturale"><strong>Avere denti fissi</strong></button>
-              <button class="choice-btn" type="button" data-value="Evitare o stabilizzare la dentiera mobile"><strong>Stabilizzare la dentiera</strong></button>
+              <button class="choice-btn" type="button" data-value="Tornare a masticare con stabilità"><strong>Tornare a masticare con stabilità</strong></button>
+              <button class="choice-btn" type="button" data-value="Avere denti fissi dove indicato clinicamente"><strong>Avere denti fissi, se indicato</strong></button>
+              <button class="choice-btn" type="button" data-value="Stabilizzare o sostituire la protesi mobile"><strong>Stabilizzare o sostituire la protesi</strong></button>
+              <button class="choice-btn" type="button" data-value="Ricevere un consulto in studio per capire il piano più adatto"><strong>Capire il piano più adatto in visita</strong></button>
             </div>
           </div>
 
           <div class="request-step" data-step="3">
             <p class="quiz-kicker">Preferenza appuntamento</p>
             <h2 class="quiz-title">Scegli una data per la prima valutazione</h2>
-            <p class="muted">Scegli un giorno indicativo.</p>
+            <p class="muted">Scegli un giorno indicativo per essere ricontattato e confermare la visita.</p>
             <div class="calendar-head">
               <p class="calendar-title" data-calendar-title></p>
               <div class="calendar-nav" aria-label="Navigazione calendario">
@@ -72,14 +74,14 @@ import "../styles/global.css";
           <div class="request-step" data-step="4">
             <p class="quiz-kicker">Orario preferito</p>
             <h2 class="quiz-title">Scegli una fascia oraria</h2>
-            <p class="muted">Lo studio confermerà l'orario.</p>
+            <p class="muted">Lo studio ti ricontatterà per confermare la disponibilità.</p>
             <div class="slot-grid" data-slot-grid aria-label="Orari selezionabili"></div>
           </div>
 
           <div class="request-step" data-step="5">
             <p class="quiz-kicker">Dati di contatto</p>
             <h2 class="quiz-title">Lascia i tuoi recapiti</h2>
-            <p class="muted">Servono per ricontattarti.</p>
+            <p class="muted">Servono allo studio per confermare la valutazione.</p>
             <div class="field-grid">
               <label>
                 Nome e cognome
@@ -103,7 +105,7 @@ import "../styles/global.css";
           <div class="request-step" data-step="6">
             <p class="quiz-kicker">Riepilogo richiesta</p>
             <h2 class="quiz-title">Controlla la richiesta</h2>
-            <p class="quiz-copy">Invieremo il riepilogo allo studio.</p>
+            <p class="quiz-copy">Invia la richiesta allo studio per essere ricontattato e fissare la visita.</p>
             <div class="summary-box" data-summary-box aria-live="polite"></div>
           </div>
 
@@ -112,7 +114,7 @@ import "../styles/global.css";
           <div class="request-actions">
             <button class="request-btn request-btn-outline" type="button" data-prev-step hidden>Torna indietro</button>
             <button class="request-btn request-btn-outline" type="button" data-next-step hidden>Continua</button>
-            <button class="request-btn request-btn-primary" type="submit" data-submit-step hidden>Invia richiesta</button>
+            <button class="request-btn request-btn-primary" type="submit" data-submit-step hidden>Invia richiesta di visita</button>
           </div>
         </form>
       </section>
