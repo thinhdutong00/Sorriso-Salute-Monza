@@ -814,9 +814,11 @@ textarea {
 }
 
 .stars {
-  color: var(--clinic-warm);
-  font-size: 1.1rem;
-  letter-spacing: 0.08em;
+  color: #fbbc04;
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.06em;
 }
 
 .testimonial-card blockquote {
