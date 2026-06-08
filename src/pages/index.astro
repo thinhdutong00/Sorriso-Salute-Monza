@@ -342,44 +342,22 @@ const faqs = [
           <p class="eyebrow teal">Contatti</p>
           <h2>Prenota una valutazione implantologica.</h2>
           <p>
-            Raccontaci quali denti mancano o quale problema vuoi risolvere. Il modulo resta locale in questa versione: nessun dato viene inviato a servizi esterni.
+            Raccontaci quali denti mancano o quale problema vuoi risolvere tramite il modulo guidato multistep.
           </p>
         </div>
 
-        <form class="contact-form" data-form>
-          <label>
-            Nome e cognome
-            <input type="text" name="name" autocomplete="name" placeholder="Es. Giulia Rossi" required />
-          </label>
-          <label>
-            Telefono o email
-            <input type="text" name="contact" autocomplete="email" placeholder="Es. 333 123 4567" required />
-          </label>
-          <label>
-            Soluzione di interesse
-            <select name="treatment" required>
-              <option value="">Seleziona</option>
-              <option>Prima visita implantologica</option>
-              <option>Impianto singolo</option>
-              <option>Più denti mancanti</option>
-              <option>Arcata completa</option>
-              <option>Rigenerazione ossea</option>
-              <option>Protesi su impianti</option>
-            </select>
-          </label>
-          <label>
-            Messaggio
-            <textarea name="message" rows="4" placeholder="Es. mi manca un molare, vorrei valutare un impianto"></textarea>
-          </label>
-          <label class="privacy">
-            <input type="checkbox" required />
-            <span>Accetto il trattamento dei dati per questa richiesta e ho letto la <a href="/privacy-policy/">Privacy Policy</a>.</span>
-          </label>
-          <button class="button button-dark" type="submit">
-            Richiedi una valutazione implantologica <span aria-hidden="true">-&gt;</span>
-          </button>
-          <p class="form-status" role="status" aria-live="polite" data-form-status></p>
-        </form>
+        <div class="contact-card">
+          <div>
+            <span>Modulo unico</span>
+            <h3>Compila la richiesta in pochi passaggi.</h3>
+            <p>
+              Il percorso multistep raccoglie problema, obiettivo, preferenza di data e recapiti, poi prepara la richiesta da inviare allo studio.
+            </p>
+          </div>
+          <a class="button button-dark" href="/richiesta/">
+            Vai al modulo di richiesta <span aria-hidden="true">-&gt;</span>
+          </a>
+        </div>
       </section>
     </main>
 
@@ -440,19 +418,6 @@ const faqs = [
             if (other !== item && other instanceof HTMLDetailsElement) other.open = false;
           });
         });
-      });
-
-      const form = document.querySelector("[data-form]");
-      const status = document.querySelector("[data-form-status]");
-
-      form?.addEventListener("submit", (event) => {
-        event.preventDefault();
-        if (!(form instanceof HTMLFormElement)) return;
-        if (!form.reportValidity()) return;
-        form.reset();
-        if (status) {
-          status.textContent = "Richiesta registrata localmente. Nessun dato è stato inviato.";
-        }
       });
     </script>
   </body>
