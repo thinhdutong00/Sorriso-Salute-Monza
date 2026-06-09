@@ -1054,6 +1054,151 @@ textarea {
   line-height: 1.68;
 }
 
+.faq-rich {
+  padding: 0 32px 32px;
+}
+
+.faq-rich p {
+  padding: 0;
+}
+
+.faq-inline-link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #1E84B5;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.faq-inline-link:hover,
+.faq-inline-link:focus-visible {
+  color: var(--clinic-teal-dark);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.convention-dialog {
+  width: min(1040px, calc(100vw - 32px));
+  max-height: min(840px, calc(100vh - 32px));
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 28px;
+  background: transparent;
+  color: var(--clinic-ink);
+}
+
+.convention-dialog::backdrop {
+  background: rgba(4, 28, 40, 0.64);
+  backdrop-filter: blur(8px);
+}
+
+.convention-panel {
+  display: grid;
+  max-height: min(840px, calc(100vh - 32px));
+  overflow: hidden;
+  border: 1px solid rgba(14, 56, 76, 0.1);
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 34px 90px rgba(4, 28, 40, 0.28);
+}
+
+.convention-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  padding: clamp(28px, 4vw, 42px) clamp(24px, 4vw, 42px) 20px;
+  gap: 24px;
+}
+
+.convention-header h2 {
+  margin: 0;
+  color: var(--clinic-ink);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.02;
+}
+
+.convention-header p:not(.eyebrow) {
+  max-width: 680px;
+  margin: 14px 0 0;
+  color: var(--clinic-muted);
+  font-size: 1.05rem;
+  line-height: 1.58;
+}
+
+.convention-close {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgba(14, 56, 76, 0.1);
+  border-radius: 999px;
+  background: var(--clinic-mist);
+  color: var(--clinic-teal-dark);
+  cursor: pointer;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.convention-scroll {
+  overflow-y: auto;
+  padding: 4px clamp(24px, 4vw, 42px) clamp(24px, 4vw, 34px);
+}
+
+.convention-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.convention-logo-card {
+  display: grid;
+  min-height: 112px;
+  place-items: center;
+  padding: 18px;
+  border: 1px solid rgba(14, 56, 76, 0.08);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(14, 56, 76, 0.05);
+}
+
+.convention-logo-card img {
+  display: block;
+  width: 100%;
+  max-width: 190px;
+  max-height: 76px;
+  object-fit: contain;
+}
+
+.convention-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(24px, 4vw, 42px) clamp(24px, 4vw, 34px);
+  border-top: 1px solid rgba(14, 56, 76, 0.08);
+  gap: 20px;
+}
+
+.convention-footer a {
+  color: #1E84B5;
+  font-weight: 800;
+}
+
+.convention-footer .button {
+  min-height: 52px;
+  padding: 0 28px;
+}
+
 .contact-section {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(340px, 460px);
@@ -2163,6 +2308,56 @@ textarea {
 
   .faq-item p {
     padding: 0 20px 22px;
+  }
+
+  .faq-rich {
+    padding: 0 20px 22px;
+  }
+
+  .convention-dialog {
+    width: calc(100vw - 20px);
+    max-height: calc(100vh - 20px);
+    border-radius: 22px;
+  }
+
+  .convention-panel {
+    max-height: calc(100vh - 20px);
+    border-radius: 22px;
+  }
+
+  .convention-header {
+    padding: 24px 20px 16px;
+    gap: 14px;
+  }
+
+  .convention-close {
+    width: 42px;
+    height: 42px;
+  }
+
+  .convention-scroll {
+    padding: 0 20px 22px;
+  }
+
+  .convention-logo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .convention-logo-card {
+    min-height: 92px;
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .convention-footer {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px 20px 22px;
+  }
+
+  .convention-footer a {
+    text-align: center;
   }
 
   .contact-section {

@@ -108,6 +108,70 @@ const faqs = [
     a: "Il costo dipende da diagnosi, numero di impianti, eventuali procedure preparatorie e tipo di protesi. Dopo la visita ricevi un preventivo leggibile con fasi e alternative.",
   },
 ];
+
+const directConventions = [
+  { label: "Fisde", src: "/assets/brand/convenzioni/dirette/01-fisde-convenzione-dentista-monza.jpg" },
+  { label: "Faschim", src: "/assets/brand/convenzioni/dirette/02-faschim-convenzione-dentista-monza.jpg" },
+  { label: "Mapfre", src: "/assets/brand/convenzioni/dirette/03-mapfree-dentista-monza.jpg" },
+  { label: "Caspie", src: "/assets/brand/convenzioni/dirette/04-caspie-convenzione-dentista-monza.jpg" },
+  { label: "Coopsalute", src: "/assets/brand/convenzioni/dirette/05-coopsalute.jpg" },
+  { label: "Fasi", src: "/assets/brand/convenzioni/dirette/06-fasi-convenzione-dentista-monza.jpg" },
+  { label: "Assirecre", src: "/assets/brand/convenzioni/dirette/07-assirecre-dentista-monza.jpg" },
+  { label: "Fasdac", src: "/assets/brand/convenzioni/dirette/08-fasdac-convenzione-dentista-monza.jpg" },
+  { label: "Prontocare", src: "/assets/brand/convenzioni/dirette/09-prontocare-convenzione-dentista-monza.jpg" },
+  { label: "Casagit", src: "/assets/brand/convenzioni/dirette/10-casagit-convenzione-dentista-monza.jpg" },
+  { label: "Ente Mutuo", src: "/assets/brand/convenzioni/dirette/11-entemutuo-convenzione-dentista-monza.jpg" },
+  { label: "Blue Assistance", src: "/assets/brand/convenzioni/dirette/12-blueassist-convenzione-dentista-monza.jpg" },
+  { label: "UniSalute", src: "/assets/brand/convenzioni/dirette/13-unisalute-convenzione-dentista-monza.jpg" },
+  { label: "Fondo Est", src: "/assets/brand/convenzioni/dirette/14-fondo-est.jpg" },
+  { label: "Mutua MBA", src: "/assets/brand/convenzioni/dirette/15-mutua-mba.jpg" },
+  { label: "Fasdip", src: "/assets/brand/convenzioni/dirette/16-fasdip.jpg" },
+  { label: "Fasi Open", src: "/assets/brand/convenzioni/dirette/17-fasiopen-convenzione-dentista-monza.jpg" },
+  { label: "Poste Assicura", src: "/assets/brand/convenzioni/dirette/18-logo-posteassicura.jpg" },
+  { label: "Poste Vita", src: "/assets/brand/convenzioni/dirette/19-logo-postevita.jpg" },
+  { label: "My Rete", src: "/assets/brand/convenzioni/dirette/20-my-rete-sorriso-e-salute.png" },
+  { label: "AXA", src: "/assets/brand/convenzioni/dirette/21-axa-convenzione-dentista-monza.jpg" },
+  { label: "Allianz", src: "/assets/brand/convenzioni/dirette/22-allianz-convenzione-dentista-monza.jpg" },
+  { label: "Societa Mutuo Soccorso", src: "/assets/brand/convenzioni/dirette/23-societa-mutuo-soccorso-convenzione-dentista.jpg" },
+  { label: "My Assistance", src: "/assets/brand/convenzioni/dirette/24-my-assistance-1.jpg" },
+  { label: "Cooperazione Salute", src: "/assets/brand/convenzioni/dirette/25-cooperazione-salute.jpg" },
+  { label: "Marsh", src: "/assets/brand/convenzioni/dirette/26-marsh.jpg" },
+  { label: "SAS", src: "/assets/brand/convenzioni/dirette/27-sas-ok.jpg" },
+  { label: "Fisdaf", src: "/assets/brand/convenzioni/dirette/28-fisdaf.jpg" },
+  { label: "AON", src: "/assets/brand/convenzioni/dirette/29-logo-aon-2.jpg" },
+  { label: "AON Convenzioni Aziendali", src: "/assets/brand/convenzioni/dirette/30-logohome.png" },
+  { label: "Convenzione diretta", src: "/assets/brand/convenzioni/dirette/31-image-removebg-preview.png" },
+  { label: "Health Assistance", src: "/assets/brand/convenzioni/dirette/32-health-assistance-logo.png" },
+];
+
+const indirectConventions = [
+  { label: "ADE", src: "/assets/brand/convenzioni/indirette/01-ade.jpg" },
+  { label: "Insieme Salute", src: "/assets/brand/convenzioni/indirette/02-insiemesalute.jpg" },
+  { label: "WinSalute", src: "/assets/brand/convenzioni/indirette/03-winsalute.jpg" },
+  { label: "ALDAI", src: "/assets/brand/convenzioni/indirette/04-aldai.jpg" },
+  { label: "Assilt", src: "/assets/brand/convenzioni/indirette/05-assilt.jpg" },
+  { label: "Cadgi", src: "/assets/brand/convenzioni/indirette/06-cadgi.jpg" },
+  { label: "Fimiv", src: "/assets/brand/convenzioni/indirette/07-fimiv.jpg" },
+  { label: "Odontonetwork", src: "/assets/brand/convenzioni/indirette/08-odontonetwork.jpg" },
+  { label: "Fondo Salute", src: "/assets/brand/convenzioni/indirette/09-fondo-salute.jpg" },
+];
+
+const conventionGroups = [
+  {
+    id: "dirette",
+    title: "Convenzioni dirette",
+    description: "Fondi, assicurazioni e network con gestione diretta della pratica in studio.",
+    source: "https://www.sorrisoesalute.it/convenzioni-dirette-studio-dentistico-monza/",
+    logos: directConventions,
+  },
+  {
+    id: "indirette",
+    title: "Convenzioni indirette",
+    description: "Enti e fondi per cui il paziente può informarsi sulle modalità di rimborso indiretto.",
+    source: "https://www.sorrisoesalute.it/convenzioni-indirette/",
+    logos: indirectConventions,
+  },
+];
 ---
 
 <!doctype html>
@@ -352,6 +416,22 @@ const faqs = [
                 <p>{item.a}</p>
               </details>
             ))}
+            <details class="faq-item">
+              <summary>
+                <span>Avete convenzioni dirette e indirette?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-rich">
+                <p>
+                  Sì, lo studio collabora con fondi sanitari, mutue, assicurazioni e network sia in forma diretta che indiretta.
+                  Per capire se la tua copertura può essere utilizzata, consulta l'elenco delle
+                  <button class="faq-inline-link" type="button" data-convention-open="dirette">convenzioni dirette</button>
+                  e delle
+                  <button class="faq-inline-link" type="button" data-convention-open="indirette">convenzioni indirette</button>,
+                  oppure chiedilo durante la valutazione.
+                </p>
+              </div>
+            </details>
           </div>
         </div>
       </section>
@@ -410,6 +490,38 @@ const faqs = [
       </div>
     </footer>
 
+    {conventionGroups.map((group) => (
+      <dialog class="convention-dialog" data-convention-dialog={group.id} aria-labelledby={`convention-title-${group.id}`}>
+        <div class="convention-panel">
+          <header class="convention-header">
+            <div>
+              <p class="eyebrow teal">Convenzioni studio</p>
+              <h2 id={`convention-title-${group.id}`}>{group.title}</h2>
+              <p>{group.description}</p>
+            </div>
+            <button class="convention-close" type="button" aria-label="Chiudi popup" data-convention-close>
+              <span aria-hidden="true">×</span>
+            </button>
+          </header>
+
+          <div class="convention-scroll">
+            <div class="convention-logo-grid">
+              {group.logos.map((logo) => (
+                <div class="convention-logo-card">
+                  <img src={logo.src} alt={logo.label} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <footer class="convention-footer">
+            <a href={group.source} target="_blank" rel="noreferrer">Vedi pagina ufficiale</a>
+            <button class="button button-dark" type="button" data-convention-close>Chiudi</button>
+          </footer>
+        </div>
+      </dialog>
+    ))}
+
     <script>
       const menuButton = document.querySelector("[data-menu-button]");
       const mobileNav = document.querySelector("[data-mobile-nav]");
@@ -437,6 +549,38 @@ const faqs = [
           document.querySelectorAll(".faq-item").forEach((other) => {
             if (other !== item && other instanceof HTMLDetailsElement) other.open = false;
           });
+        });
+      });
+
+      const closeConventionDialog = (dialog) => {
+        if (!(dialog instanceof HTMLDialogElement)) return;
+        dialog.close();
+        document.body.classList.remove("modal-open");
+      };
+
+      document.querySelectorAll("[data-convention-open]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const target = button.getAttribute("data-convention-open");
+          const dialog = document.querySelector(`[data-convention-dialog="${target}"]`);
+          if (!(dialog instanceof HTMLDialogElement)) return;
+          dialog.showModal();
+          document.body.classList.add("modal-open");
+        });
+      });
+
+      document.querySelectorAll(".convention-dialog").forEach((dialog) => {
+        if (!(dialog instanceof HTMLDialogElement)) return;
+
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) closeConventionDialog(dialog);
+        });
+
+        dialog.addEventListener("close", () => {
+          document.body.classList.remove("modal-open");
+        });
+
+        dialog.querySelectorAll("[data-convention-close]").forEach((button) => {
+          button.addEventListener("click", () => closeConventionDialog(dialog));
         });
       });
     </script>
