@@ -219,9 +219,25 @@ const conventionGroups = [
       name="description"
       content="Studio Dentistico Sorriso & Salute a Monza: implantologia dentale, diagnosi 3D e piano chirurgico-protesico chiaro."
     />
+    <script is:inline>
+      window.__loaderStart = performance.now();
+      document.documentElement.classList.add("reveal-ready", "loader-active");
+    </script>
     <title>Studio Dentistico Sorriso & Salute - Implantologia dentale a Monza</title>
   </head>
   <body>
+    <div class="page-loader" id="pageLoader" aria-hidden="true">
+      <div class="loader-logo">
+        <span class="loader-mark">
+          <img src="/assets/loader-tooth.png" width="300" height="353" alt="" />
+        </span>
+        <span class="loader-wordmark">
+          <span>STUDIO DENTISTICO</span>
+          <strong>SORRISO &amp; SALUTE</strong>
+        </span>
+      </div>
+    </div>
+
     <header class="site-header" data-header>
       <a class="brand" href="#home" aria-label="Studio Dentistico Sorriso & Salute">
         <img class="brand-logo" src={brandLogo} alt="Studio Dentistico Sorriso & Salute" />
@@ -563,10 +579,6 @@ const conventionGroups = [
         </div>
       </div>
       <div class="footer-bottom">
-        <span>Studio Dentistico Sorriso & Salute</span>
-        <span>Sorriso & Salute S.r.l. - P. IVA: 03845830961</span>
-        <span>Direttore Sanitario: Dott.ssa Maria Isabel Pareja Carrillo — Odontoiatra</span>
-        <span>Titolare e Amministratore: Gianni Focarelli</span>
         <span>Autorizzazione sanitaria n. 2014/11</span>
         <span>Pubblicità conforme art. 1 della legge di bilancio 2019 (30/12/2018 n. 145)</span>
       </div>
@@ -604,6 +616,31 @@ const conventionGroups = [
     ))}
 
     <script>
+      const loader = document.querySelector("#pageLoader");
+      const loaderMinDuration = 900;
+      let loaderHidden = false;
+
+      const hideLoader = () => {
+        if (!loader || loaderHidden) return;
+        loaderHidden = true;
+        loader.classList.add("loader-hidden");
+        document.documentElement.classList.remove("loader-active");
+        window.dispatchEvent(new CustomEvent("sorriso:loader-hidden"));
+        window.setTimeout(() => loader.remove(), 420);
+      };
+
+      const scheduleLoaderHide = () => {
+        const startedAt = window.__loaderStart || performance.now();
+        const elapsed = performance.now() - startedAt;
+        window.setTimeout(hideLoader, Math.max(0, loaderMinDuration - elapsed));
+      };
+
+      if (document.readyState === "complete") {
+        scheduleLoaderHide();
+      } else {
+        window.addEventListener("load", scheduleLoaderHide, { once: true });
+      }
+
       const menuButton = document.querySelector("[data-menu-button]");
       const mobileNav = document.querySelector("[data-mobile-nav]");
 
