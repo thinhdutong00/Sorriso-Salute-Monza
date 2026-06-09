@@ -848,15 +848,16 @@ textarea {
   align-content: start;
   min-height: 216px;
   padding: 26px;
-  border: 1px solid rgba(216, 232, 239, 0.16);
+  border: 1px solid rgba(14, 56, 76, 0.08);
   border-radius: 24px;
-  background: rgba(249, 252, 255, 0.045);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 18px 46px rgba(4, 28, 40, 0.12);
 }
 
 .method-number {
   display: block;
   margin-bottom: 22px;
-  color: rgba(255, 255, 255, 0.22);
+  color: #1E84B5;
   font-size: clamp(2.8rem, 5vw, 4.2rem);
   font-weight: 800;
   line-height: 1;
@@ -864,25 +865,25 @@ textarea {
 
 .method-card h3 {
   margin: 0 0 12px;
-  color: #ffffff;
+  color: var(--clinic-ink);
   font-size: clamp(1.22rem, 1.7vw, 1.46rem);
   line-height: 1.12;
 }
 
 .method-card p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.62);
+  color: var(--clinic-muted);
   line-height: 1.62;
 }
 
 .method-dentist {
   position: absolute;
-  right: clamp(-34px, 1.5vw, 26px);
-  bottom: -58px;
+  right: clamp(-54px, 0.8vw, 16px);
+  bottom: -74px;
   z-index: 1;
   display: block;
-  width: clamp(390px, 33vw, 500px);
-  max-height: min(760px, 98%);
+  width: clamp(430px, 37vw, 560px);
+  max-height: min(820px, 104%);
   object-fit: contain;
   object-position: bottom center;
   filter: drop-shadow(0 34px 54px rgba(0, 0, 0, 0.28));
@@ -1112,6 +1113,17 @@ textarea {
 
 .contact-card .button {
   justify-self: stretch;
+  min-height: 64px;
+  white-space: normal;
+}
+
+.contact-note {
+  margin: -10px 0 0;
+  color: var(--clinic-muted);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: center;
 }
 
 .site-footer {
