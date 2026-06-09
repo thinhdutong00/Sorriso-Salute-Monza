@@ -10,6 +10,7 @@ const dentistCutout = "/assets/brand/dentist-cutout.png";
 const navItems = [
   { label: "Vantaggi", href: "#vantaggi" },
   { label: "Metodo", href: "#metodo" },
+  { label: "Chi siamo", href: "#chi-siamo" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -79,6 +80,34 @@ const testimonials = [
     name: "Alex Oggiano",
     source: "Recensione Google",
     initials: "AO",
+  },
+];
+
+const team = [
+  {
+    name: "Gianni Focarelli",
+    role: "Titolare e Amministratore della Sorriso&Salute srl",
+    image: "/assets/brand/team/staff-gianni-focarelli.webp",
+  },
+  {
+    name: "Dott.ssa Moreschi Chiara",
+    role: "Equipe odontoiatrica",
+    image: "/assets/brand/team/staff-chiara-moreschi.webp",
+  },
+  {
+    name: "Dott.ssa Maria Isabel Pareja Carrillo",
+    role: "Odontoiatra, Direttore Sanitario",
+    image: "/assets/brand/team/staff-maria-pareja.webp",
+  },
+  {
+    name: "Dott.ssa Cacciabue Paola",
+    role: "Odontoiatra Specialista in Ortodonzia",
+    image: "/assets/brand/team/staff-paola-cacciabue.webp",
+  },
+  {
+    name: "Dott.ssa Dervishi Denisa",
+    role: "Odontoiatra Generalista",
+    image: "/assets/brand/team/staff-denisa-dervishi.webp",
   },
 ];
 
@@ -393,6 +422,30 @@ const conventionGroups = [
                   <span>{item.source}</span>
                 </div>
               </footer>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section section-white team-section" id="chi-siamo">
+        <div class="section-heading split team-heading">
+          <div>
+            <p class="eyebrow teal">Chi siamo</p>
+            <h2>Il team che valuta il tuo caso</h2>
+          </div>
+          <p>
+            Professionisti dello Studio Dentistico Sorriso & Salute seguono diagnosi, piano clinico e controlli del percorso implantare.
+          </p>
+        </div>
+
+        <div class="team-grid" aria-label="Equipe Studio Dentistico Sorriso & Salute">
+          {team.map((member) => (
+            <article class="team-card">
+              <img src={member.image} alt={`${member.name} - ${member.role}`} loading="lazy" />
+              <div>
+                <h3>{member.name}</h3>
+                <p>{member.role}</p>
+              </div>
             </article>
           ))}
         </div>
