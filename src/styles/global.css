@@ -1189,6 +1189,7 @@ body.modal-open {
 
 .convention-panel {
   display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   max-height: min(840px, calc(100vh - 32px));
   overflow: hidden;
   border: 1px solid rgba(14, 56, 76, 0.1);
@@ -1236,6 +1237,7 @@ body.modal-open {
 }
 
 .convention-scroll {
+  min-height: 0;
   overflow-y: auto;
   padding: 4px clamp(24px, 4vw, 42px) clamp(24px, 4vw, 34px);
 }
@@ -1277,6 +1279,10 @@ body.modal-open {
 .convention-footer a {
   color: #1E84B5;
   font-weight: 800;
+}
+
+.convention-footer-single {
+  justify-content: flex-end;
 }
 
 .convention-footer .button {

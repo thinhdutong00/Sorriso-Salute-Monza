@@ -567,8 +567,10 @@ const conventionGroups = [
             </div>
           </div>
 
-          <footer class="convention-footer">
-            <a href={group.source} target="_blank" rel="noreferrer">Vedi pagina ufficiale</a>
+          <footer class={`convention-footer ${group.id === "indirette" ? "convention-footer-single" : ""}`}>
+            {group.id === "dirette" && (
+              <a href={group.source} target="_blank" rel="noreferrer">Vedi pagina ufficiale</a>
+            )}
             <button class="button button-dark" type="button" data-convention-close>Chiudi</button>
           </footer>
         </div>
