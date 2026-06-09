@@ -6,6 +6,13 @@ const generated = (name: string) => `/assets/generated/${name}`;
 const brandLogo = "/assets/brand/sorriso-salute-logo.png";
 const heroImage = "/assets/brand/sorriso-salute-hero-waiting-room.png";
 const dentistCutout = "/assets/brand/dentist-cutout.png";
+const reviewAvatars = [
+  "/assets/brand/reviews/review-10-monza.png",
+  "/assets/brand/reviews/review-06-monza.png",
+  "/assets/brand/reviews/review-05-monza.png",
+  "/assets/brand/reviews/review-01-profile.png",
+  "/assets/brand/reviews/review-11-monza.png",
+];
 
 const navItems = [
   { label: "Vantaggi", href: "#vantaggi" },
@@ -264,8 +271,8 @@ const conventionGroups = [
           </p>
           <div class="social-proof" aria-label="Recensioni pazienti">
             <div class="avatar-row" aria-hidden="true">
-              {["client-30.jpg", "client-40.jpg", "client-50.jpg", "client-60.jpg", "client-70.jpg"].map((img) => (
-                <img src={asset(img)} alt="" />
+              {reviewAvatars.map((img) => (
+                <img src={img} alt="" />
               ))}
             </div>
             <p><strong>4.9/5</strong> da pazienti</p>
