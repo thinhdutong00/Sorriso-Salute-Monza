@@ -8,56 +8,26 @@ const heroImage = "/assets/brand/sorriso-salute-hero-waiting-room.png";
 const dentistCutout = "/assets/brand/dentist-cutout.png";
 
 const navItems = [
-  { label: "Impianti", href: "#trattamenti" },
   { label: "Vantaggi", href: "#vantaggi" },
   { label: "Metodo", href: "#metodo" },
   { label: "FAQ", href: "#faq" },
 ];
 
-const treatments = [
-  {
-    title: "Impianto singolo",
-    text: "Una soluzione per sostituire un dente mancante con un piano chiaro, dalla diagnosi alla corona definitiva.",
-    image: "/assets/brand/implant-solutions/implant-single.png",
-    wide: true,
-  },
-  {
-    title: "Più denti mancanti",
-    text: "Ponti su impianti e soluzioni protesiche progettate per recuperare funzione, stabilità ed estetica.",
-    image: "/assets/brand/implant-solutions/multiple-teeth.png",
-  },
-  {
-    title: "Arcata completa",
-    text: "Percorsi per riabilitazioni estese, con valutazione clinica per capire se una protesi fissa è indicata.",
-    image: "/assets/brand/implant-solutions/full-arch.png",
-  },
-  {
-    title: "Rigenerazione ossea",
-    text: "Quando l'osso non è sufficiente, valutiamo tecniche preparatorie e tempi realistici prima dell'intervento.",
-    image: "/assets/brand/implant-solutions/bone-regeneration.png",
-  },
-  {
-    title: "Protesi su impianti",
-    text: "La parte visibile viene progettata insieme alla chirurgia, così forma, masticazione e pulizia restano coerenti.",
-    image: "/assets/brand/implant-solutions/implant-prosthesis.png",
-  },
-];
-
 const advantages = [
   {
     icon: "scan",
-    title: "Scansione 3D Digitale",
-    text: "Niente impronte fastidiose con la pasta. Progettiamo tutto a computer.",
+    title: "Progettazione Digitale Preventiva",
+    text: "Analizziamo l'anatomia ossea tramite uno studio tridimensionale prima dell'intervento. Questo ci permette di stabilire l'esatta posizione degli impianti in anticipo, eliminando ogni imprevisto in fase chirurgica.",
   },
   {
     icon: "guided",
-    title: "Chirurgia Senza Bisturi (dove possibile)",
-    text: "Posizioniamo l'impianto con precisione millimetrica, riducendo gonfiore e punti di sutura.",
+    title: "Gestione del Comfort e del Dolore",
+    text: "Utilizziamo tecniche d'intervento mininvasive associate alla sedazione cosciente. Il paziente affronta la seduta in uno stato di totale relax, senza avvertire stress, dolore o ansia.",
   },
   {
     icon: "fixed",
-    title: "Denti Fissi Immediati",
-    text: "Esci dallo studio lo stesso giorno con i denti provvisori fissi, pronti per sorridere.",
+    title: "Protocollo di Monitoraggio e Stabilità",
+    text: "Seguiamo il decorso post-operatorio attraverso controlli clinici programmati. Monitoriamo la corretta osteointegrazione biologica per garantire la massima stabilità e durata dell'impianto nel tempo.",
   },
 ];
 
@@ -194,7 +164,7 @@ const faqs = [
             <a class="button button-primary" href="/richiesta/">
               Prenota visita implantologica <span aria-hidden="true">-&gt;</span>
             </a>
-            <a class="button button-secondary" href="#trattamenti">Scopri le soluzioni</a>
+            <a class="button button-secondary" href="#vantaggi">Scopri il metodo</a>
           </div>
           <p class="hero-note">
             Visita conoscitiva e studio radiografico preliminare eseguiti direttamente dal Direttore Sanitario.
@@ -243,32 +213,6 @@ const faqs = [
         </div>
       </section>
 
-      <section class="section section-white" id="trattamenti">
-        <div class="section-heading split">
-          <div>
-            <p class="eyebrow teal">Soluzioni implantari</p>
-            <h2>Un piano per ogni dente mancante.</h2>
-          </div>
-          <p>
-            Dal singolo impianto alla riabilitazione completa, ogni proposta parte da diagnosi, fattibilità e obiettivo protesico.
-          </p>
-        </div>
-
-        <div class="treatment-grid">
-          {treatments.map((item) => (
-            <article class:list={["treatment-card", item.wide && "wide"]}>
-              <img src={item.image} alt="" loading="lazy" />
-              <div class="card-scrim"></div>
-              <div class="card-content">
-                <span>Info</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section class="section section-muted" id="vantaggi">
         <div class="advantage-layout">
           <div class="advantage-media">
@@ -285,10 +229,10 @@ const faqs = [
           <div class="advantage-copy">
             <p class="eyebrow teal">Perché sceglierci</p>
             <h2>
-              Perché l'Implantologia Computer-Guidata è diversa dal passato.
+              Il Metodo Clinico: Come Gestiamo il Tuo Percorso
             </h2>
             <p>
-              Tre passaggi semplici per rendere il percorso più prevedibile, controllato e confortevole.
+              Il nostro approccio è sviluppato per azzerare l'incertezza e ridurre al minimo il disagio del paziente, attraverso un protocollo strutturato in 3 fasi.
             </p>
             <div class="image-stack mobile-advantage-image" aria-hidden="true">
               <img class="main-image" src={generated("dental-advantage.png")} alt="" loading="lazy" />
