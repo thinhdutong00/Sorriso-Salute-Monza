@@ -726,6 +726,10 @@ textarea {
   line-height: 1.45;
 }
 
+.advantage-copy h2 {
+  font-size: clamp(2.5rem, 4.75vw, 4.35rem);
+}
+
 .advantage-copy h2 span {
   color: var(--clinic-muted);
 }
@@ -748,7 +752,7 @@ textarea {
   align-items: start;
 }
 
-.advantage-list article > span {
+.advantage-icon {
   display: grid;
   width: 52px;
   height: 52px;
@@ -756,7 +760,16 @@ textarea {
   border-radius: 16px;
   background: var(--clinic-ink);
   color: var(--clinic-mint);
-  font-weight: 800;
+}
+
+.advantage-icon svg {
+  width: 27px;
+  height: 27px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 
 .advantage-list h3 {

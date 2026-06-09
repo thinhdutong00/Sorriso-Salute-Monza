@@ -45,19 +45,19 @@ const treatments = [
 
 const advantages = [
   {
-    label: "01",
-    title: "Diagnosi 3D",
-    text: "Valutiamo osso, gengiva e spazi protesici prima di proporre qualsiasi intervento.",
+    icon: "scan",
+    title: "Scansione 3D Digitale",
+    text: "Niente impronte fastidiose con la pasta. Progettiamo tutto a computer.",
   },
   {
-    label: "02",
-    title: "Piano trasparente",
-    text: "Tempi, fasi, alternative e costi vengono spiegati prima di iniziare il percorso implantare.",
+    icon: "guided",
+    title: "Chirurgia Senza Bisturi (dove possibile)",
+    text: "Posizioniamo l'impianto con precisione millimetrica, riducendo gonfiore e punti di sutura.",
   },
   {
-    label: "03",
-    title: "Chirurgia programmata",
-    text: "Ogni appuntamento è organizzato per ridurre imprevisti, ansia e decisioni prese in fretta.",
+    icon: "fixed",
+    title: "Denti Fissi Immediati",
+    text: "Esci dallo studio lo stesso giorno con i denti provvisori fissi, pronti per sorridere.",
   },
 ];
 
@@ -285,12 +285,10 @@ const faqs = [
           <div class="advantage-copy">
             <p class="eyebrow teal">Perché sceglierci</p>
             <h2>
-              Meno dubbi.<br />
-              Più controllo.<br />
-              <span>Nessuna promessa facile.</span>
+              Perché l'Implantologia Computer-Guidata è diversa dal passato.
             </h2>
             <p>
-              Prima di parlare di intervento, capisci se l'impianto è indicato, quali passaggi servono e quali alternative puoi valutare.
+              Tre passaggi semplici per rendere il percorso più prevedibile, controllato e confortevole.
             </p>
             <div class="image-stack mobile-advantage-image" aria-hidden="true">
               <img class="main-image" src={generated("dental-advantage.png")} alt="" loading="lazy" />
@@ -303,7 +301,33 @@ const faqs = [
             <div class="advantage-list">
               {advantages.map((item) => (
                 <article>
-                  <span>{item.label}</span>
+                  <span class="advantage-icon" aria-hidden="true">
+                    {item.icon === "scan" && (
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M4 7V5a1 1 0 0 1 1-1h2" />
+                        <path d="M17 4h2a1 1 0 0 1 1 1v2" />
+                        <path d="M20 17v2a1 1 0 0 1-1 1h-2" />
+                        <path d="M7 20H5a1 1 0 0 1-1-1v-2" />
+                        <path d="M7 12h10" />
+                        <path d="M9 9h6" />
+                        <path d="M9 15h6" />
+                      </svg>
+                    )}
+                    {item.icon === "guided" && (
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M12 3v18" />
+                        <path d="M3 12h18" />
+                        <circle cx="12" cy="12" r="6" />
+                        <circle cx="12" cy="12" r="1.8" />
+                      </svg>
+                    )}
+                    {item.icon === "fixed" && (
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M7 5c-1.7 1.2-2.4 3.1-1.9 5.4l1.4 6.7c.3 1.5 2.1 1.9 2.9.6l1-1.7c.8-1.3 2.6-1.3 3.4 0l1 1.7c.8 1.3 2.6.9 2.9-.6l1.4-6.7c.5-2.3-.2-4.2-1.9-5.4-1.1-.8-2.5-.9-3.8-.4l-.7.3c-.8.3-1.6.3-2.4 0l-.7-.3c-1.2-.5-2.6-.4-3.7.4Z" />
+                        <path d="m8 11 2 2 4-5" />
+                      </svg>
+                    )}
+                  </span>
                   <div>
                     <h3>{item.title}</h3>
                     <p>{item.text}</p>
