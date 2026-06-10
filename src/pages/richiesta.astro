@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 ---
 
 <!doctype html>
@@ -12,6 +13,7 @@ import "../styles/global.css";
       content="Richiedi una valutazione implantologica allo Studio Dentistico Sorriso & Salute di Monza."
     />
     <meta name="theme-color" content="#0E384C" />
+    <GoogleAdsTracking />
     <title>Richiedi una valutazione | Sorriso & Salute Monza</title>
   </head>
   <body class="request-body">
@@ -132,6 +134,7 @@ import "../styles/global.css";
         const form = document.querySelector("#valutazione");
         if (!(form instanceof HTMLFormElement)) return;
 
+        const contactConversionId = "AW-18196734570/lK03CIzcu7wcEOrE8ORD";
         const totalSteps = 6;
         const today = new Date();
         today.setHours(0, 0, 0, 0);
@@ -176,9 +179,31 @@ import "../styles/global.css";
         let selectedDateLabel = "";
         let selectedSlot = "";
         let displayedMonth = new Date(minMonth);
+        let isSubmitting = false;
         const quiz = {
           problema: "",
           obiettivo: "",
+        };
+
+        const reportContactConversion = (callback) => {
+          let completed = false;
+          const finish = () => {
+            if (completed) return;
+            completed = true;
+            callback();
+          };
+
+          window.setTimeout(finish, 1200);
+
+          if (typeof window.gtag !== "function") {
+            finish();
+            return;
+          }
+
+          window.gtag("event", "conversion", {
+            send_to: contactConversionId,
+            event_callback: finish,
+          });
         };
 
         const setError = (message = "") => {
@@ -377,6 +402,9 @@ import "../styles/global.css";
             return;
           }
           if (!validateStep()) return;
+          if (isSubmitting) return;
+          isSubmitting = true;
+          if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = true;
 
           const subject = `Richiesta valutazione implantologia - ${fields.nomeCompleto?.value || ""}`;
           const body = [
@@ -401,7 +429,10 @@ import "../styles/global.css";
             "Fonte: pagina richiesta implantologia Sorriso & Salute Monza",
           ].join("\n");
 
-          window.location.href = `mailto:info@sorrisoesalute.it?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          const mailtoUrl = `mailto:info@sorrisoesalute.it?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          reportContactConversion(() => {
+            window.location.href = mailtoUrl;
+          });
         });
 
         buildCalendar();

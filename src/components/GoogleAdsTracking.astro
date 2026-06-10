@@ -1,0 +1,20 @@
+---
+const googleAdsId = "AW-18196734570";
+const callConversionId = "AW-18196734570/niV2CMvlu7wcEOrE8ORD";
+const phoneConversionNumber = "039 2022489";
+---
+
+<!-- Google tag (gtag.js) -->
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`} is:inline></script>
+<script is:inline define:vars={{ googleAdsId, callConversionId, phoneConversionNumber }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  window.gtag = window.gtag || gtag;
+  window.gtag("js", new Date());
+  window.gtag("config", googleAdsId);
+  window.gtag("config", callConversionId, {
+    phone_conversion_number: phoneConversionNumber,
+  });
+</script>

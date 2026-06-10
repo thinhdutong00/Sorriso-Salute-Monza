@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 
 const asset = (name: string) => `/assets/original/images/${name}`;
 const generated = (name: string) => `/assets/generated/${name}`;
@@ -219,6 +220,7 @@ const conventionGroups = [
       name="description"
       content="Studio Dentistico Sorriso & Salute a Monza: implantologia dentale, diagnosi 3D e piano chirurgico-protesico chiaro."
     />
+    <GoogleAdsTracking />
     <script is:inline>
       window.__loaderStart = performance.now();
       document.documentElement.classList.add("reveal-ready", "loader-active");
@@ -563,7 +565,7 @@ const conventionGroups = [
         </div>
         <div>
           <h3>Contatti</h3>
-          <a href="tel:+390392022489">Telefono: +39 039 2022489</a>
+          <a href="tel:+390392022489">Telefono: 039 2022489</a>
           <a href="https://wa.me/393892490181" target="_blank" rel="noreferrer">WhatsApp: +39 389 2490181</a>
           <a href="mailto:info@sorrisoesalute.it">Email: info@sorrisoesalute.it</a>
           <span>Sede: Via Gaslini, 1 — 20090 Monza / 20900 Monza (MB)</span>
