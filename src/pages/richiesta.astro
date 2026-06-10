@@ -32,7 +32,7 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
       <section class="request-shell" aria-labelledby="request-title">
         <h1 class="request-title" id="request-title">Richiedi una valutazione</h1>
 
-        <form class="request-form" id="valutazione" novalidate>
+        <form class="request-form" id="valutazione" action="/api/send-lead" method="post" novalidate>
           <div class="request-progress" role="progressbar" aria-label="Avanzamento richiesta" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"></div>
 
           <div class="request-step is-active" data-step="1">
@@ -208,6 +208,35 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 
         const setError = (message = "") => {
           if (formError) formError.textContent = message;
+        };
+
+        const buildLeadPayload = () => ({
+          nome: fields.nomeCompleto?.value || "",
+          telefono: fields.telefono?.value || "",
+          email: fields.email?.value || "",
+          servizio: "Valutazione implantologica",
+          messaggio: fields.messaggio?.value || "",
+          paginaProvenienza: document.referrer || "",
+          paginaCorrente: window.location.href,
+          problema: quiz.problema,
+          obiettivo: quiz.obiettivo,
+          dataPreferita: selectedDateLabel && selectedDate ? `${selectedDateLabel} (${selectedDate})` : selectedDateLabel || selectedDate,
+          orarioPreferito: selectedSlot,
+        });
+
+        const sendLead = async () => {
+          const response = await fetch("/api/send-lead", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(buildLeadPayload()),
+          });
+
+          if (response.ok) return;
+
+          const result = await response.json().catch(() => ({}));
+          throw new Error(result.error || "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
         };
 
         const officeSlots = () => {
@@ -395,7 +424,7 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
           buildCalendar();
         });
 
-        form.addEventListener("submit", (event) => {
+        form.addEventListener("submit", async (event) => {
           event.preventDefault();
           if (currentStep !== totalSteps) {
             if (validateStep()) showStep(Math.min(totalSteps, currentStep + 1));
@@ -406,33 +435,16 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
           isSubmitting = true;
           if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = true;
 
-          const subject = `Richiesta valutazione implantologia - ${fields.nomeCompleto?.value || ""}`;
-          const body = [
-            "Nuova richiesta di valutazione implantologica",
-            "",
-            "QUADRO PAZIENTE",
-            `Problema principale: ${quiz.problema}`,
-            `Obiettivo desiderato: ${quiz.obiettivo}`,
-            "",
-            "PREFERENZA APPUNTAMENTO",
-            `Data preferita: ${selectedDateLabel} (${selectedDate})`,
-            `Orario preferito: ${selectedSlot}`,
-            "",
-            "DATI DI CONTATTO",
-            `Nome e cognome: ${fields.nomeCompleto?.value || ""}`,
-            `Telefono: ${fields.telefono?.value || ""}`,
-            `Email: ${fields.email?.value || ""}`,
-            "",
-            "NOTE DEL PAZIENTE",
-            fields.messaggio?.value || "Nessuna nota inserita",
-            "",
-            "Fonte: pagina richiesta implantologia Sorriso & Salute Monza",
-          ].join("\n");
-
-          const mailtoUrl = `mailto:info@sorrisoesalute.it?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-          reportContactConversion(() => {
-            window.location.href = mailtoUrl;
-          });
+          try {
+            await sendLead();
+            reportContactConversion(() => {
+              window.location.href = "/thank-you-page/";
+            });
+          } catch (error) {
+            isSubmitting = false;
+            if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = false;
+            setError(error instanceof Error ? error.message : "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+          }
         });
 
         buildCalendar();
