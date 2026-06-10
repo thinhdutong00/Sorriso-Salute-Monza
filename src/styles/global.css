@@ -2169,6 +2169,28 @@ body.modal-open {
   box-shadow: 0 12px 26px rgba(30, 132, 181, 0.1);
 }
 
+.thank-you-shell {
+  display: grid;
+  gap: 1.1rem;
+  max-width: 760px;
+}
+
+.thank-you-copy {
+  max-width: 650px;
+  margin: 0;
+  color: var(--clinic-muted);
+  font-size: clamp(1.08rem, 2vw, 1.24rem);
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.thank-you-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.45rem;
+}
+
 @media (max-width: 760px) {
   .request-topbar {
     min-height: 88px;
@@ -2275,6 +2297,10 @@ body.modal-open {
   .request-actions .request-btn {
     min-height: 56px;
     padding-inline: 0.85rem;
+  }
+
+  .thank-you-actions {
+    grid-template-columns: 1fr;
   }
 }
 

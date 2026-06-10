@@ -1,0 +1,46 @@
+---
+import "../styles/global.css";
+import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Grazie per aver richiesto una valutazione allo Studio Dentistico Sorriso & Salute di Monza."
+    />
+    <meta name="theme-color" content="#0E384C" />
+    <GoogleAdsTracking />
+    <title>Grazie | Sorriso & Salute Monza</title>
+  </head>
+  <body class="request-body">
+    <header class="request-topbar">
+      <div class="request-topbar-inner">
+        <a class="request-back-link" href="/">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15.5 4.5 8 12l7.5 7.5" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          Home
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="request-shell thank-you-shell" aria-labelledby="thank-you-title">
+        <p class="quiz-kicker">Richiesta inviata</p>
+        <h1 class="request-title" id="thank-you-title">Grazie, abbiamo ricevuto la tua richiesta.</h1>
+        <p class="thank-you-copy">
+          Lo studio ti ricontatterà per confermare la prima valutazione e verificare la disponibilità
+          dell'appuntamento indicato.
+        </p>
+        <div class="thank-you-actions">
+          <a class="request-btn request-btn-primary" href="/">Torna alla home</a>
+          <a class="request-btn request-btn-outline" href="/richiesta/">Invia una nuova richiesta</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
