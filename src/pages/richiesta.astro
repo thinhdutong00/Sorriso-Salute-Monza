@@ -134,7 +134,6 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
         const form = document.querySelector("#valutazione");
         if (!(form instanceof HTMLFormElement)) return;
 
-        const contactConversionId = "AW-18196734570/lK03CIzcu7wcEOrE8ORD";
         const totalSteps = 6;
         const today = new Date();
         today.setHours(0, 0, 0, 0);
@@ -183,27 +182,6 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
         const quiz = {
           problema: "",
           obiettivo: "",
-        };
-
-        const reportContactConversion = (callback) => {
-          let completed = false;
-          const finish = () => {
-            if (completed) return;
-            completed = true;
-            callback();
-          };
-
-          window.setTimeout(finish, 1200);
-
-          if (typeof window.gtag !== "function") {
-            finish();
-            return;
-          }
-
-          window.gtag("event", "conversion", {
-            send_to: contactConversionId,
-            event_callback: finish,
-          });
         };
 
         const setError = (message = "") => {
@@ -437,9 +415,7 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 
           try {
             await sendLead();
-            reportContactConversion(() => {
-              window.location.href = "/thank-you-page/";
-            });
+            window.location.href = "/thank-you-page/";
           } catch (error) {
             isSubmitting = false;
             if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = false;
