@@ -224,7 +224,7 @@ textarea {
 }
 
 .site-header {
-  position: absolute;
+  position: fixed;
   top: 28px;
   left: 50%;
   z-index: 50;
@@ -241,6 +241,12 @@ textarea {
   backdrop-filter: blur(18px);
   transform: translateX(-50%);
   transition: transform 220ms ease, opacity 220ms ease;
+}
+
+.site-header.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 36px));
 }
 
 .brand {
@@ -1569,6 +1575,7 @@ body.modal-open {
   bottom: 0;
   left: 0;
   z-index: 80;
+  display: none;
   width: 100%;
   overflow: hidden;
   border-top: 1px solid rgba(216, 232, 239, 0.84);
@@ -1583,30 +1590,6 @@ body.modal-open {
   opacity: 1;
   pointer-events: auto;
   visibility: visible;
-}
-
-.sticky-cta__ticker {
-  overflow: hidden;
-  background: var(--clinic-ink);
-  color: #ffffff;
-}
-
-.sticky-cta__track {
-  display: flex;
-  width: max-content;
-  animation: stickyTicker 34s linear infinite;
-}
-
-.sticky-cta__message {
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  min-height: 38px;
-  padding: 0 26px;
-  font-size: 0.84rem;
-  font-weight: 850;
-  line-height: 1.25;
-  white-space: nowrap;
 }
 
 .sticky-cta__actions {
@@ -1667,16 +1650,6 @@ body.modal-open {
 
 .sticky-cta__button[hidden] {
   display: none;
-}
-
-@keyframes stickyTicker {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 .legal-body {
@@ -2451,16 +2424,9 @@ body.modal-open {
 
 @media (max-width: 980px) {
   .site-header {
-    position: fixed;
     grid-template-columns: auto 1fr auto;
     width: min(720px, calc(100% - 28px));
     top: 16px;
-  }
-
-  .site-header.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: translate(-50%, calc(-100% - 24px));
   }
 
   .desktop-nav,
@@ -2761,13 +2727,8 @@ body.modal-open {
   }
 
   .sticky-cta {
+    display: block;
     width: 100%;
-  }
-
-  .sticky-cta__message {
-    min-height: 34px;
-    padding: 0 18px;
-    font-size: 0.76rem;
   }
 
   .sticky-cta.is-call-visible .sticky-cta__actions {
@@ -2857,16 +2818,6 @@ body.modal-open {
   }
 
   .legal-nav {
-    display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sticky-cta__track {
-    animation: none;
-  }
-
-  .sticky-cta__message:nth-child(n + 2) {
     display: none;
   }
 }

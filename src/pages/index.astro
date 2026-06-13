@@ -654,17 +654,6 @@ const conventionGroups = [
     </footer>
 
     <aside class="sticky-cta" data-sticky-cta aria-label="Azioni rapide">
-      <p class="sr-only">Prenota ora la tua valutazione implantologica e fai il primo passo verso un piano clinico chiaro.</p>
-      <div class="sticky-cta__ticker" aria-hidden="true">
-        <div class="sticky-cta__track">
-          <span class="sticky-cta__message">Prenota ora la tua valutazione: lo studio ti ricontatta entro 2 ore lavorative</span>
-          <span class="sticky-cta__message">Scegli oggi il tuo appuntamento e ricevi un piano clinico chiaro</span>
-          <span class="sticky-cta__message">Fai il primo passo verso denti stabili: richiedi la tua visita dedicata</span>
-          <span class="sticky-cta__message">Prenota ora la tua valutazione: lo studio ti ricontatta entro 2 ore lavorative</span>
-          <span class="sticky-cta__message">Scegli oggi il tuo appuntamento e ricevi un piano clinico chiaro</span>
-          <span class="sticky-cta__message">Fai il primo passo verso denti stabili: richiedi la tua visita dedicata</span>
-        </div>
-      </div>
       <div class="sticky-cta__actions">
         <a class="sticky-cta__button sticky-cta__button--primary" href="/richiesta/">Prenota una visita ora</a>
         <a
@@ -716,7 +705,6 @@ const conventionGroups = [
       const stickyCta = document.querySelector("[data-sticky-cta]");
       const stickyCtaTrigger = document.querySelector("#situazioni");
       const callStudioButton = document.querySelector("[data-call-studio]");
-      const mobileHeaderQuery = window.matchMedia("(max-width: 980px)");
       let lastScrollY = window.scrollY;
 
       const closeMobileMenu = () => {
@@ -731,14 +719,8 @@ const conventionGroups = [
         header?.classList.remove("is-hidden");
       });
 
-      const updateMobileHeader = () => {
+      const updateStickyHeader = () => {
         if (!header) return;
-        if (!mobileHeaderQuery.matches) {
-          header.classList.remove("is-hidden");
-          lastScrollY = window.scrollY;
-          return;
-        }
-
         const currentScrollY = window.scrollY;
         const isMenuOpen = mobileNav?.classList.contains("is-open");
         const scrollDelta = currentScrollY - lastScrollY;
@@ -761,8 +743,7 @@ const conventionGroups = [
         lastScrollY = currentScrollY;
       };
 
-      window.addEventListener("scroll", updateMobileHeader, { passive: true });
-      mobileHeaderQuery.addEventListener("change", updateMobileHeader);
+      window.addEventListener("scroll", updateStickyHeader, { passive: true });
 
       mobileNav?.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", closeMobileMenu);
