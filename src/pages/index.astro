@@ -243,6 +243,42 @@ const conventionGroups = [
     <title>Studio Dentistico Sorriso & Salute - Implantologia dentale a Monza</title>
   </head>
   <body class="has-sticky-cta">
+    <div class="page-loader" id="pageLoader" aria-hidden="true">
+      <div class="loader-logo">
+        <span class="loader-mark">
+          <img src="/assets/loader-tooth.png" width="300" height="353" alt="" decoding="async" />
+        </span>
+        <span class="loader-wordmark">
+          <span>STUDIO DENTISTICO</span>
+          <strong>SORRISO &amp; SALUTE</strong>
+        </span>
+      </div>
+    </div>
+    <script is:inline>
+      (() => {
+        const loader = document.querySelector("#pageLoader");
+        if (!loader) return;
+
+        const startedAt = performance.now();
+        const minDuration = 520;
+
+        const hideLoader = () => {
+          if (loader.classList.contains("loader-hidden")) return;
+          const removeLoader = () => loader.remove();
+          loader.addEventListener("transitionend", removeLoader, { once: true });
+          loader.classList.add("loader-hidden");
+          window.setTimeout(removeLoader, 360);
+        };
+
+        const scheduleHide = () => {
+          const elapsed = performance.now() - startedAt;
+          window.setTimeout(hideLoader, Math.max(0, minDuration - elapsed));
+        };
+
+        window.requestAnimationFrame(() => window.requestAnimationFrame(scheduleHide));
+      })();
+    </script>
+
     <header class="site-header" data-header>
       <a class="brand" href="#home" aria-label="Studio Dentistico Sorriso & Salute">
         <img class="brand-logo" src={brandLogo} alt="Studio Dentistico Sorriso & Salute" width="360" height="87" decoding="async" />
