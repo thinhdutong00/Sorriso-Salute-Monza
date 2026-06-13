@@ -242,7 +242,7 @@ const conventionGroups = [
     <GoogleAdsTracking />
     <title>Studio Dentistico Sorriso & Salute - Implantologia dentale a Monza</title>
   </head>
-  <body>
+  <body class="has-sticky-cta">
     <header class="site-header" data-header>
       <a class="brand" href="#home" aria-label="Studio Dentistico Sorriso & Salute">
         <img class="brand-logo" src={brandLogo} alt="Studio Dentistico Sorriso & Salute" width="360" height="87" decoding="async" />
@@ -617,6 +617,31 @@ const conventionGroups = [
       </div>
     </footer>
 
+    <aside class="sticky-cta" data-sticky-cta aria-label="Azioni rapide">
+      <p class="sr-only">Prenota la tua valutazione implantologica: lo studio ti ricontatta entro 2 ore lavorative.</p>
+      <div class="sticky-cta__ticker" aria-hidden="true">
+        <div class="sticky-cta__track">
+          <span class="sticky-cta__message">Prenota la tua valutazione implantologica: lo studio ti ricontatta entro 2 ore lavorative</span>
+          <span class="sticky-cta__message">Blocca ora il tuo appuntamento e ricevi un percorso clinico chiaro</span>
+          <span class="sticky-cta__message">Prima visita dedicata: diagnosi, fattibilità e alternative per il tuo sorriso</span>
+          <span class="sticky-cta__message">Prenota la tua valutazione implantologica: lo studio ti ricontatta entro 2 ore lavorative</span>
+          <span class="sticky-cta__message">Blocca ora il tuo appuntamento e ricevi un percorso clinico chiaro</span>
+          <span class="sticky-cta__message">Prima visita dedicata: diagnosi, fattibilità e alternative per il tuo sorriso</span>
+        </div>
+      </div>
+      <div class="sticky-cta__actions">
+        <a class="sticky-cta__button sticky-cta__button--primary" href="/richiesta/">Prenota una visita ora</a>
+        <a
+          class="sticky-cta__button sticky-cta__button--call"
+          href="tel:+390392022489"
+          data-call-studio
+          hidden
+        >
+          Chiama lo studio
+        </a>
+      </div>
+    </aside>
+
     {conventionGroups.map((group) => (
       <dialog class="convention-dialog" data-convention-dialog={group.id} aria-labelledby={`convention-title-${group.id}`}>
         <div class="convention-panel">
@@ -649,8 +674,13 @@ const conventionGroups = [
     ))}
 
     <script>
+      const header = document.querySelector("[data-header]");
       const menuButton = document.querySelector("[data-menu-button]");
       const mobileNav = document.querySelector("[data-mobile-nav]");
+      const stickyCta = document.querySelector("[data-sticky-cta]");
+      const callStudioButton = document.querySelector("[data-call-studio]");
+      const mobileHeaderQuery = window.matchMedia("(max-width: 980px)");
+      let lastScrollY = window.scrollY;
 
       const closeMobileMenu = () => {
         menuButton?.setAttribute("aria-expanded", "false");
@@ -661,7 +691,41 @@ const conventionGroups = [
         const expanded = menuButton.getAttribute("aria-expanded") === "true";
         menuButton.setAttribute("aria-expanded", String(!expanded));
         mobileNav?.classList.toggle("is-open", !expanded);
+        header?.classList.remove("is-hidden");
       });
+
+      const updateMobileHeader = () => {
+        if (!header) return;
+        if (!mobileHeaderQuery.matches) {
+          header.classList.remove("is-hidden");
+          lastScrollY = window.scrollY;
+          return;
+        }
+
+        const currentScrollY = window.scrollY;
+        const isMenuOpen = mobileNav?.classList.contains("is-open");
+        const scrollDelta = currentScrollY - lastScrollY;
+
+        if (currentScrollY < 24 || isMenuOpen) {
+          header.classList.remove("is-hidden");
+          lastScrollY = currentScrollY;
+          return;
+        }
+
+        if (Math.abs(scrollDelta) < 6) return;
+
+        if (scrollDelta > 0) {
+          closeMobileMenu();
+          header.classList.add("is-hidden");
+        } else {
+          header.classList.remove("is-hidden");
+        }
+
+        lastScrollY = currentScrollY;
+      };
+
+      window.addEventListener("scroll", updateMobileHeader, { passive: true });
+      mobileHeaderQuery.addEventListener("change", updateMobileHeader);
 
       mobileNav?.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", closeMobileMenu);
@@ -709,6 +773,50 @@ const conventionGroups = [
           button.addEventListener("click", () => closeConventionDialog(dialog));
         });
       });
+
+      const isStudioOpenInRome = () => {
+        const parts = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Europe/Rome",
+          weekday: "short",
+          hour: "2-digit",
+          minute: "2-digit",
+          hourCycle: "h23",
+        }).formatToParts(new Date());
+
+        const valueFor = (type) => parts.find((part) => part.type === type)?.value;
+        const weekday = valueFor("weekday");
+        const hour = Number(valueFor("hour"));
+        const minute = Number(valueFor("minute"));
+
+        if (!weekday || Number.isNaN(hour) || Number.isNaN(minute)) {
+          throw new Error("Unable to read opening hours");
+        }
+
+        const openWeekdays = new Set(["Mon", "Tue", "Wed", "Thu", "Fri"]);
+        const minutes = hour * 60 + minute;
+        const morningOpen = minutes >= 9 * 60 && minutes < 12 * 60 + 30;
+        const afternoonOpen = minutes >= 14 * 60 && minutes < 19 * 60;
+
+        return openWeekdays.has(weekday) && (morningOpen || afternoonOpen);
+      };
+
+      const updateCallStudioButton = () => {
+        if (!(callStudioButton instanceof HTMLElement)) return;
+
+        let isOpen = false;
+        try {
+          isOpen = isStudioOpenInRome();
+        } catch {
+          isOpen = false;
+        }
+
+        callStudioButton.hidden = !isOpen;
+        stickyCta?.classList.toggle("is-call-visible", isOpen);
+        document.body.classList.toggle("sticky-call-visible", isOpen);
+      };
+
+      updateCallStudioButton();
+      window.setInterval(updateCallStudioButton, 60 * 1000);
     </script>
   </body>
 </html>
