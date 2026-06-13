@@ -5,15 +5,23 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 
 const asset = (name: string) => `/assets/original/images/${name}`;
 const generated = (name: string) => `/assets/generated/${name}`;
-const brandLogo = "/assets/brand/sorriso-salute-logo.png";
+const brandLogo = "/assets/brand/sorriso-salute-logo-360.webp";
 const heroImage = "/assets/brand/sorriso-salute-hero-waiting-room.png";
-const dentistCutout = "/assets/brand/dentist-cutout.png";
+const heroAvifSrcSet =
+  "/assets/brand/hero/sorriso-salute-hero-480.avif 480w, /assets/brand/hero/sorriso-salute-hero-720.avif 720w, /assets/brand/hero/sorriso-salute-hero-941.avif 941w";
+const heroWebpSrcSet =
+  "/assets/brand/hero/sorriso-salute-hero-480.webp 480w, /assets/brand/hero/sorriso-salute-hero-720.webp 720w, /assets/brand/hero/sorriso-salute-hero-941.webp 941w";
+const advantageAvifSrcSet =
+  "/assets/generated/optimized/dental-advantage-480.avif 480w, /assets/generated/optimized/dental-advantage-720.avif 720w, /assets/generated/optimized/dental-advantage-980.avif 980w";
+const advantageWebpSrcSet =
+  "/assets/generated/optimized/dental-advantage-480.webp 480w, /assets/generated/optimized/dental-advantage-720.webp 720w, /assets/generated/optimized/dental-advantage-980.webp 980w";
+const dentistCutout = "/assets/brand/dentist-cutout.webp";
 const reviewAvatars = [
-  "/assets/brand/reviews/review-10-monza.png",
-  "/assets/brand/reviews/review-06-monza.png",
-  "/assets/brand/reviews/review-05-monza.png",
-  "/assets/brand/reviews/review-01-profile.png",
-  "/assets/brand/reviews/review-11-monza.png",
+  "/assets/brand/reviews/optimized/review-10-monza-72.webp",
+  "/assets/brand/reviews/optimized/review-06-monza-72.webp",
+  "/assets/brand/reviews/optimized/review-05-monza-72.webp",
+  "/assets/brand/reviews/optimized/review-01-profile-72.webp",
+  "/assets/brand/reviews/optimized/review-11-monza-72.webp",
 ];
 
 const navItems = [
@@ -222,29 +230,22 @@ const conventionGroups = [
       content="Studio Dentistico Sorriso & Salute a Monza: implantologia dentale, diagnosi 3D e piano chirurgico-protesico chiaro."
     />
     <FaviconLinks />
+    <link
+      rel="preload"
+      as="image"
+      href="/assets/brand/hero/sorriso-salute-hero-720.avif"
+      imagesrcset={heroAvifSrcSet}
+      imagesizes="100vw"
+      type="image/avif"
+      fetchpriority="high"
+    />
     <GoogleAdsTracking />
-    <script is:inline>
-      window.__loaderStart = performance.now();
-      document.documentElement.classList.add("reveal-ready", "loader-active");
-    </script>
     <title>Studio Dentistico Sorriso & Salute - Implantologia dentale a Monza</title>
   </head>
   <body>
-    <div class="page-loader" id="pageLoader" aria-hidden="true">
-      <div class="loader-logo">
-        <span class="loader-mark">
-          <img src="/assets/loader-tooth.png" width="300" height="353" alt="" />
-        </span>
-        <span class="loader-wordmark">
-          <span>STUDIO DENTISTICO</span>
-          <strong>SORRISO &amp; SALUTE</strong>
-        </span>
-      </div>
-    </div>
-
     <header class="site-header" data-header>
       <a class="brand" href="#home" aria-label="Studio Dentistico Sorriso & Salute">
-        <img class="brand-logo" src={brandLogo} alt="Studio Dentistico Sorriso & Salute" />
+        <img class="brand-logo" src={brandLogo} alt="Studio Dentistico Sorriso & Salute" width="360" height="87" decoding="async" />
       </a>
 
       <nav class="desktop-nav" aria-label="Navigazione principale">
@@ -270,7 +271,19 @@ const conventionGroups = [
 
     <main id="home">
       <section class="hero" aria-label="Studio Dentistico Sorriso & Salute">
-        <img class="hero-bg" src={heroImage} alt="Sala d'attesa dello Studio Dentistico Sorriso & Salute" />
+        <picture>
+          <source srcset={heroAvifSrcSet} sizes="100vw" type="image/avif" />
+          <source srcset={heroWebpSrcSet} sizes="100vw" type="image/webp" />
+          <img
+            class="hero-bg"
+            src={heroImage}
+            alt="Sala d'attesa dello Studio Dentistico Sorriso & Salute"
+            width="941"
+            height="1672"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <p class="eyebrow">Studio odontoiatrico a Monza</p>
@@ -292,7 +305,7 @@ const conventionGroups = [
           <div class="social-proof" aria-label="Recensioni pazienti">
             <div class="avatar-row" aria-hidden="true">
               {reviewAvatars.map((img) => (
-                <img src={img} alt="" />
+                <img src={img} alt="" width="36" height="36" loading="lazy" decoding="async" />
               ))}
             </div>
             <p><strong>4.9/5</strong> da pazienti</p>
@@ -337,7 +350,19 @@ const conventionGroups = [
         <div class="advantage-layout">
           <div class="advantage-media">
             <div class="image-stack">
-              <img class="main-image" src={generated("dental-advantage.png")} alt="Studio dentistico moderno con riunito odontoiatrico" loading="lazy" />
+              <picture>
+                <source srcset={advantageAvifSrcSet} sizes="(max-width: 760px) 84vw, 520px" type="image/avif" />
+                <source srcset={advantageWebpSrcSet} sizes="(max-width: 760px) 84vw, 520px" type="image/webp" />
+                <img
+                  class="main-image"
+                  src={generated("dental-advantage.png")}
+                  alt="Studio dentistico moderno con riunito odontoiatrico"
+                  width="1254"
+                  height="1254"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
               <div class="floating-note">
                 <strong>Prima visita implantologica</strong>
                 <span>Diagnosi, fattibilità e alternative</span>
@@ -355,7 +380,11 @@ const conventionGroups = [
               Il nostro approccio è sviluppato per azzerare l'incertezza e ridurre al minimo il disagio del paziente, attraverso un protocollo strutturato in 3 fasi.
             </p>
             <div class="image-stack mobile-advantage-image" aria-hidden="true">
-              <img class="main-image" src={generated("dental-advantage.png")} alt="" loading="lazy" />
+              <picture>
+                <source srcset={advantageAvifSrcSet} sizes="84vw" type="image/avif" />
+                <source srcset={advantageWebpSrcSet} sizes="84vw" type="image/webp" />
+                <img class="main-image" src={generated("dental-advantage.png")} alt="" width="1254" height="1254" loading="lazy" decoding="async" />
+              </picture>
               <div class="floating-note">
                 <strong>Prima visita implantologica</strong>
                 <span>Diagnosi, fattibilità e alternative</span>
@@ -436,7 +465,7 @@ const conventionGroups = [
             </div>
           </div>
 
-          <img class="method-dentist" src={dentistCutout} alt="" loading="eager" aria-hidden="true" />
+          <img class="method-dentist" src={dentistCutout} alt="" width="351" height="602" loading="lazy" decoding="async" aria-hidden="true" />
         </div>
       </section>
 
@@ -555,7 +584,7 @@ const conventionGroups = [
       <div class="footer-grid">
         <div>
           <a class="brand footer-brand" href="#home" aria-label="Studio Dentistico Sorriso & Salute">
-            <img class="brand-logo" src={brandLogo} alt="Studio Dentistico Sorriso & Salute" />
+            <img class="brand-logo" src={brandLogo} alt="Studio Dentistico Sorriso & Salute" width="360" height="87" loading="lazy" decoding="async" />
           </a>
           <p>Studio Dentistico Sorriso & Salute a Monza, con servizi odontoiatrici e percorsi dedicati all'implantologia.</p>
         </div>
@@ -620,31 +649,6 @@ const conventionGroups = [
     ))}
 
     <script>
-      const loader = document.querySelector("#pageLoader");
-      const loaderMinDuration = 900;
-      let loaderHidden = false;
-
-      const hideLoader = () => {
-        if (!loader || loaderHidden) return;
-        loaderHidden = true;
-        loader.classList.add("loader-hidden");
-        document.documentElement.classList.remove("loader-active");
-        window.dispatchEvent(new CustomEvent("sorriso:loader-hidden"));
-        window.setTimeout(() => loader.remove(), 420);
-      };
-
-      const scheduleLoaderHide = () => {
-        const startedAt = window.__loaderStart || performance.now();
-        const elapsed = performance.now() - startedAt;
-        window.setTimeout(hideLoader, Math.max(0, loaderMinDuration - elapsed));
-      };
-
-      if (document.readyState === "complete") {
-        scheduleLoaderHide();
-      } else {
-        window.addEventListener("load", scheduleLoaderHide, { once: true });
-      }
-
       const menuButton = document.querySelector("[data-menu-button]");
       const mobileNav = document.querySelector("[data-mobile-nav]");
 

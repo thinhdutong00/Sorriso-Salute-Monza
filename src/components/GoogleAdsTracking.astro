@@ -1,18 +1,58 @@
----
-const googleAdsId = "AW-18196734570";
----
-
 <!-- Google tag (gtag.js) -->
-<script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`} is:inline></script>
 <script is:inline>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  window.gtag = window.gtag || gtag;
-  gtag("js", new Date());
-  gtag('config', 'AW-18196734570');
-  gtag('config', 'AW-18196734570/niV2CMvlu7wCEOrE8ORD', {
-    'phone_conversion_number': '039 2022489'
-  });
+  (() => {
+    const googleAdsId = "AW-18196734570";
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+
+    window.gtag = window.gtag || gtag;
+    window.gtag("js", new Date());
+    window.gtag("config", googleAdsId);
+    window.gtag("config", "AW-18196734570/niV2CMvlu7wCEOrE8ORD", {
+      phone_conversion_number: "039 2022489",
+    });
+
+    const loadGoogleAds = () => {
+      if (window.__googleAdsLoaded) return;
+      window.__googleAdsLoaded = true;
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`;
+      document.head.appendChild(script);
+    };
+
+    const scheduleGoogleAds = () => {
+      if (window.location.pathname.includes("/thank-you-page")) {
+        loadGoogleAds();
+        return;
+      }
+
+      const loadOnInteraction = () => {
+        cleanup();
+        loadGoogleAds();
+      };
+
+      const cleanup = () => {
+        window.removeEventListener("pointerdown", loadOnInteraction);
+        window.removeEventListener("keydown", loadOnInteraction);
+        window.removeEventListener("scroll", loadOnInteraction);
+        window.removeEventListener("touchstart", loadOnInteraction);
+      };
+
+      window.addEventListener("pointerdown", loadOnInteraction, { once: true, passive: true });
+      window.addEventListener("keydown", loadOnInteraction, { once: true });
+      window.addEventListener("scroll", loadOnInteraction, { once: true, passive: true });
+      window.addEventListener("touchstart", loadOnInteraction, { once: true, passive: true });
+      window.setTimeout(loadGoogleAds, 8000);
+    };
+
+    if (document.readyState === "complete") {
+      scheduleGoogleAds();
+    } else {
+      window.addEventListener("load", scheduleGoogleAds, { once: true });
+    }
+  })();
 </script>
