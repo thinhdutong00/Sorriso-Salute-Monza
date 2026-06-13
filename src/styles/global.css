@@ -2285,13 +2285,27 @@ body.modal-open {
   }
 
   .pain-card {
+    position: relative;
     grid-template-columns: 1fr;
-    gap: 18px;
+    gap: 0;
     min-height: 0;
+    overflow: hidden;
   }
 
   .pain-card span {
-    font-size: clamp(2.6rem, 14vw, 3.5rem);
+    position: absolute;
+    right: 18px;
+    bottom: 14px;
+    z-index: 0;
+    color: var(--clinic-teal);
+    opacity: 0.14;
+    font-size: clamp(4.2rem, 19vw, 5.7rem);
+    pointer-events: none;
+  }
+
+  .pain-card p {
+    position: relative;
+    z-index: 1;
   }
 
   .section {
