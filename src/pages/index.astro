@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 
 const asset = (name: string) => `/assets/original/images/${name}`;
@@ -220,6 +221,7 @@ const conventionGroups = [
       name="description"
       content="Studio Dentistico Sorriso & Salute a Monza: implantologia dentale, diagnosi 3D e piano chirurgico-protesico chiaro."
     />
+    <FaviconLinks />
     <GoogleAdsTracking />
     <script is:inline>
       window.__loaderStart = performance.now();
