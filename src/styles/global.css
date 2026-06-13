@@ -2197,10 +2197,30 @@ body.modal-open {
 
   .team-card img {
     display: block;
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 1 / 1;
     height: auto;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center 21%;
+  }
+
+  .team-card:nth-child(1) img {
+    object-position: center 21%;
+  }
+
+  .team-card:nth-child(2) img {
     object-position: center top;
+  }
+
+  .team-card:nth-child(3) img {
+    object-position: center 17%;
+  }
+
+  .team-card:nth-child(4) img {
+    object-position: center 52%;
+  }
+
+  .team-card:nth-child(5) img {
+    object-position: center 10%;
   }
 
   .image-stack,
