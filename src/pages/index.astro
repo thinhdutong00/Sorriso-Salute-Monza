@@ -34,18 +34,23 @@ const navItems = [
 const advantages = [
   {
     icon: "scan",
-    title: "Progettazione Digitale Preventiva",
-    text: "Analizziamo l'anatomia ossea tramite uno studio tridimensionale prima dell'intervento. Questo ci permette di stabilire l'esatta posizione degli impianti in anticipo, eliminando ogni imprevisto in fase chirurgica.",
+    title: "Valutazione e diagnosi 3D",
+    text: "Analisi iniziale, studio radiografico e, quando necessario, diagnosi 3D per valutare osso, posizione degli impianti e fattibilità del trattamento.",
+  },
+  {
+    icon: "plan",
+    title: "Piano implantoprotesico personalizzato",
+    text: "Il dentista definisce se il caso può richiedere impianto singolo, ponte su impianti, protesi stabilizzata o protesi fissa su impianti.",
   },
   {
     icon: "guided",
-    title: "Gestione del Comfort e del Dolore",
-    text: "Utilizziamo tecniche d'intervento mininvasive associate alla sedazione cosciente. Il paziente affronta la seduta in uno stato di totale relax, senza avvertire stress, dolore o ansia.",
+    title: "Intervento e comfort",
+    text: "Quando indicato, vengono usate tecniche mininvasive e strumenti per gestire ansia e comfort durante la seduta.",
   },
   {
     icon: "fixed",
-    title: "Protocollo di Monitoraggio e Stabilità",
-    text: "Seguiamo il decorso post-operatorio attraverso controlli clinici programmati. Monitoriamo la corretta osteointegrazione biologica per garantire la massima stabilità e durata dell'impianto nel tempo.",
+    title: "Protesi finale e controlli",
+    text: "Dopo la fase implantare, viene realizzata la protesi finale e programmato il monitoraggio nel tempo.",
   },
 ];
 
@@ -76,45 +81,323 @@ const steps = [
   },
 ];
 
+const patientSituations = [
+  {
+    slug: "dente-mancante",
+    label: "Dente mancante",
+    title: "Mi manca un solo dente",
+    text: "Si può valutare la sostituzione del dente perso con un impianto in titanio e una corona, senza coinvolgere i denti vicini quando non necessario.",
+    solution: "Impianto singolo + corona",
+    cta: "Valuta impianto singolo",
+    image: "/assets/brand/implant-solutions/implant-single.png",
+    optimizedImage: "/assets/brand/implant-solutions/optimized/implant-single",
+  },
+  {
+    slug: "piu-denti-mancanti",
+    label: "Più denti mancanti",
+    title: "Mi mancano più denti vicini",
+    text: "In alcuni casi più denti mancanti possono essere sostituiti con impianti e ponte fisso, per migliorare masticazione ed estetica.",
+    solution: "Ponte su impianti",
+    cta: "Valuta ponte su impianti",
+    image: "/assets/brand/implant-solutions/multiple-teeth.png",
+    optimizedImage: "/assets/brand/implant-solutions/optimized/multiple-teeth",
+  },
+  {
+    slug: "protesi-mobile-instabile",
+    label: "Protesi mobile instabile",
+    title: "La mia dentiera o protesi si muove",
+    text: "Se la protesi mobile crea fastidio quando mangi o parli, si possono valutare soluzioni su impianti per migliorare stabilità e comfort.",
+    solution: "Protesi mobile stabilizzata o protesi su impianti",
+    cta: "Valuta una protesi più stabile",
+    image: "/assets/brand/implant-solutions/implant-prosthesis.png",
+    optimizedImage: "/assets/brand/implant-solutions/optimized/implant-prosthesis",
+  },
+  {
+    slug: "arcata-completa",
+    label: "Arcata completa / molti denti mancanti",
+    title: "Ho perso molti denti o uso una dentiera",
+    text: "Nei casi idonei si può valutare una riabilitazione con impianti e protesi fissa, anche con carico immediato quando le condizioni cliniche lo permettono.",
+    solution: "Protesi fissa su impianti / denti fissi",
+    cta: "Voglio capire se posso avere denti fissi.",
+    image: "/assets/brand/implant-solutions/full-arch.png",
+    optimizedImage: "/assets/brand/implant-solutions/optimized/full-arch",
+  },
+];
+
 const testimonials = [
   {
-    quote:
-      "Trattamento di impianti dentali: intervento impeccabile e risultato finale perfetto. Studio moderno, personale gentile e medico professionale.",
-    name: "Marialuisa Mariani",
-    source: "Recensione Google",
-    initials: "MM",
+    name: "Anna",
+    initials: "A",
+    quote: "Ottima l'accoglienza e molto professionale la dottoressa e molto scrupolosa.",
+    date: "25 maggio 2026",
+    doctor: "Dott.ssa Denisa Dervishi",
+    treatment: "protesi mobile",
+    verified: true,
   },
   {
-    quote:
-      "Ci sono stato per fare un impianto, devo ringraziare il dottore e le assistenti: persone gentilissime e molto preparate.",
-    name: "Giuseppe Consolandi",
-    source: "Recensione Google",
+    name: "GM",
     initials: "GC",
+    quote: "Ottimo intervento. Impegno da lodare. Ottima puntualità.",
+    date: "19 maggio 2026",
+    doctor: "Dott.ssa Chiara Moreschi",
+    treatment: "impianto dentale",
+    verified: true,
   },
   {
-    quote:
-      "Ho effettuato un intervento con impianti: tutto perfetto. Bravi e attenti, ne è valsa la pena.",
-    name: "Alex Oggiano",
-    source: "Recensione Google",
-    initials: "AO",
+    name: "M.G.",
+    initials: "MG",
+    quote: "È un medico molto preparato, di grande esperienza, estremamente scrupoloso, con un uso del trapano deciso ma delicato.",
+    date: "8 maggio 2026",
+    doctor: "Dott.ssa Maria Isabel Pareja Carrillo",
+    treatment: "protesi dentaria totale",
+    verified: true,
+  },
+  {
+    name: "T.m.",
+    initials: "TM",
+    quote: "È sempre stata gentile con mia mamma 92 anni e visto le problematiche che ha. Grazie per la sua professionalità.",
+    date: "6 maggio 2026",
+    doctor: "Dott.ssa Denisa Dervishi",
+    treatment: "scheletrato con ganci",
+    verified: true,
+  },
+  {
+    name: "Paola",
+    initials: "P",
+    quote: "La dottoressa è stata gentile, molto professionale, ha tenuto conto delle mie esigenze! Mi ha trasmesso molta sicurezza! Veramente brava!",
+    date: "4 maggio 2026",
+    doctor: "Dott.ssa Maria Isabel Pareja Carrillo",
+    treatment: "protesi dentaria totale",
+    verified: true,
+  },
+  {
+    name: "Irene P.",
+    initials: "IP",
+    quote: "Dentista brava, gentile e molto preparata. Grande professionalità.",
+    date: "17 aprile 2026",
+    doctor: "Dott.ssa Chiara Moreschi",
+    treatment: "impianto dentale",
+    verified: true,
+  },
+  {
+    name: "MG Z",
+    initials: "MZ",
+    quote: "Ottima in tutto, cordiale, professionale, eccellente anche sul piano umano. La consiglio vivamente.",
+    date: "7 aprile 2026",
+    doctor: "Dott.ssa Chiara Moreschi",
+    treatment: "impianto dentale",
+    verified: true,
+  },
+  {
+    name: "CL",
+    initials: "CL",
+    quote: "Dottoressa molto delicata e professionale, esprime tutto quello che sta facendo e che deve fare.",
+    date: "18 marzo 2026",
+    doctor: "Dott.ssa Denisa Dervishi",
+    treatment: "ricostruzione dente con perno",
+    verified: true,
+  },
+  {
+    name: "Daniela S.",
+    initials: "DS",
+    quote: "Ho avuto un'esperienza molto positiva con la dott.ssa Carrillo: è molto professionale ma allo stesso tempo empatica e scrupolosa in ogni fase della visita. Studio pulito ed organizzato. Consiglio vivamente a chi cerca un professionista competente e gentile!",
+    date: "3 marzo 2026",
+    doctor: "Dott.ssa Maria Isabel Pareja Carrillo",
+    treatment: "corona dentale",
+    verified: true,
+  },
+  {
+    name: "GG",
+    initials: "GG",
+    quote: "Professionalità e attenzione al paziente che in certe situazioni mette a proprio agio.",
+    date: "29 gennaio 2026",
+    doctor: "Dott.ssa Chiara Moreschi",
+    treatment: "impianto dentale",
+    verified: true,
+  },
+  {
+    name: "LZ",
+    initials: "LZ",
+    quote: "Tutto perfetto complimenti, post impianto nessun dolore.",
+    date: "28 gennaio 2026",
+    doctor: "Dott.ssa Chiara Moreschi",
+    treatment: "impianto dentale",
+    verified: true,
+  },
+  {
+    name: "Tommaso",
+    initials: "T",
+    quote: "Esperienza molto positiva. Ho iniziato un percorso di implantologia dentale (due impianti) e questo è stato il primo intervento. Fin da subito ho ricevuto spiegazioni chiare, dettagliate e rassicuranti su ogni fase del trattamento e sui prossimi passaggi. La dottoressa e il suo team si sono dimostrati molto professionali, attenti e disponibili, mettendomi a mio agio durante tutta la visita e l'intervento. La procedura è stata svolta con grande cura e precisione. Lo studio è accogliente, pulito e ben organizzato, e l'attenzione al paziente è costante. Ottime prime impressioni, che mi fanno affrontare con serenità i prossimi appuntamenti. Consigliato.",
+    date: "16 dicembre 2025",
+    doctor: "Dott.ssa Chiara Moreschi",
+    treatment: "impianto dentale",
+    verified: true,
+  },
+  {
+    name: "Melissa",
+    initials: "M",
+    quote: "Bravissima dottoressa molto efficiente nel suo lavoro.",
+    date: "10 dicembre 2025",
+    doctor: "Dott.ssa Maria Isabel Pareja Carrillo",
+    treatment: "corona dentale",
+    verified: true,
+  },
+  {
+    name: "AB",
+    initials: "AB",
+    quote: "Professionalmente ineccepibile: è intervenuta su un molare già sottoposto ad otturazioni e dolente, convincendomi, nonostante la mia titubanza, a non devitalizzarlo. Il tempo le ha dato ragione. Discreta ed empatica.",
+    date: "3 dicembre 2025",
+    doctor: "Dott.ssa Denisa Dervishi",
+    treatment: "corona dentale",
+    verified: true,
+  },
+  {
+    name: "LC",
+    initials: "LC",
+    quote: "La dottoressa è stata molto precisa, delicata e gentile.",
+    date: "2 dicembre 2025",
+    doctor: "Dott.ssa Chiara Moreschi",
+    treatment: "impianto dentale",
+    verified: true,
+  },
+  {
+    name: "Fg",
+    initials: "F",
+    quote: "Concreta, mi ha risolto un problema complicato, grazie.",
+    date: "2 dicembre 2025",
+    doctor: "Dott.ssa Chiara Moreschi",
+    treatment: "impianto dentale",
+    verified: true,
+  },
+  {
+    name: "Rossella B.",
+    initials: "RB",
+    quote: "Pignola, precisa, attenta alle problematiche del paziente. Spiega il da farsi in modo dettagliato, disponibile.",
+    date: "28 novembre 2025",
+    doctor: "Dott.ssa Denisa Dervishi",
+    treatment: "ricostruzione dente con perno",
+    verified: true,
+  },
+  {
+    name: "L.R.",
+    initials: "LR",
+    quote: "La dottoressa Dervishi è veramente brava, attenta, molto carina nei modi e chiara nelle spiegazioni. La sua gentilezza mi ha convinto per affidarmi a questo studio.",
+    date: "3 novembre 2025",
+    doctor: "Dott.ssa Denisa Dervishi",
+    treatment: "protesi mobile",
+    verified: true,
+  },
+  {
+    name: "A.C.",
+    initials: "AC",
+    quote: "Molto precisa e attenta anche alle piccole problematiche.",
+    date: "3 novembre 2025",
+    doctor: "Dott.ssa Maria Isabel Pareja Carrillo",
+    treatment: "protesi mobile",
+    verified: true,
+  },
+  {
+    name: "Elena",
+    initials: "E",
+    quote: "Professionale e sempre calma nonostante alcune difficoltà durante l'intervento. Ti spiega ogni passaggio e cerca sempre di metterti a proprio agio.",
+    date: "22 ottobre 2025",
+    doctor: "Dott.ssa Maria Isabel Pareja Carrillo",
+    treatment: "corona dentale",
+    verified: true,
+  },
+  {
+    name: "A.C.",
+    initials: "AC",
+    quote: "Molto professionale, ha saputo consigliarmi il trattamento idoneo per le mie esigenze.",
+    date: "15 ottobre 2025",
+    doctor: "Dott.ssa Denisa Dervishi",
+    treatment: "scheletrato con ganci",
+    verified: true,
+  },
+  {
+    name: "Rossella",
+    initials: "R",
+    quote: "La Dott.ssa Carrillo è una professionista preparata e all'avanguardia. Molto empatica e attenta ai pazienti sia dal punto di vista della salute sia sotto l'aspetto emotivo. Ho fatto e continuo a fare con lei un percorso di cura lungo e complicato ma sono contenta del risultato. Non la cambierei per nessuna ragione. Professionista seria e instancabile.",
+    date: "14 ottobre 2025",
+    doctor: "Dott.ssa Maria Isabel Pareja Carrillo",
+    treatment: "corona dentale",
+    verified: true,
+  },
+  {
+    name: "Marcello Schifone C.",
+    initials: "MS",
+    quote: "Come consuetudine la dottoressa Maribel è stata estremamente squisita ed esplicativa per il proseguo del trattamento.",
+    date: "14 ottobre 2025",
+    doctor: "Dott.ssa Maria Isabel Pareja Carrillo",
+    treatment: "corona dentale",
+    verified: true,
+  },
+  {
+    name: "Marcello Schifone",
+    initials: "MS",
+    quote: "Predisposizione per impianto due denti arcata inferiore lato destro.",
+    date: "9 ottobre 2025",
+    doctor: "Dott.ssa Chiara Moreschi",
+    treatment: "impianto dentale",
+    verified: true,
+  },
+  {
+    name: "Riccardo",
+    initials: "R",
+    quote: "Gentilissimi e professionali, impianto installato in meno di mezz'ora.",
+    date: "8 ottobre 2025",
+    doctor: "Dott.ssa Chiara Moreschi",
+    treatment: "impianto dentale",
+    verified: true,
+  },
+  {
+    name: "ML",
+    initials: "ML",
+    quote: "Buona esposizione e cura nel lavoro per l'intervento di sostituzione ponte.",
+    date: "7 ottobre 2025",
+    doctor: "Dott.ssa Maria Isabel Pareja Carrillo",
+    treatment: "ponte dentale",
+    verified: true,
+  },
+  {
+    name: "ML",
+    initials: "ML",
+    quote: "Nonostante l'intervento di innesto impianto fosse abbastanza invasivo confesso che ho provato meno dolore delle mie attese.",
+    date: "7 ottobre 2025",
+    doctor: "Dott.ssa Chiara Moreschi",
+    treatment: "impianto dentale",
+    verified: true,
+  },
+  {
+    name: "Giorgio",
+    initials: "G",
+    quote: "Grande professionalità e gentilezza della Dottoressa Dervishi.",
+    date: "7 ottobre 2025",
+    doctor: "Dott.ssa Denisa Dervishi",
+    treatment: "protesi mobile",
+    verified: true,
+  },
+  {
+    name: "Maurizio Brescello",
+    initials: "MB",
+    quote: "Ringrazio la dottoressa Isabel per la sua competenza e professionalità. Avendo un lavoro complesso da fare e un serio problema ad affrontare le cure è sempre stata molto attenta e mi ha sempre spiegato il lavoro che avrebbe fatto nella seduta. Grazie mille.",
+    date: "6 ottobre 2025",
+    doctor: "Dott.ssa Maria Isabel Pareja Carrillo",
+    treatment: "corona dentale",
+    verified: true,
   },
 ];
 
 const team = [
   {
-    name: "Gianni Focarelli",
-    role: "Titolare e Amministratore della Sorriso&Salute srl",
-    image: "/assets/brand/team/staff-gianni-focarelli.webp",
-  },
-  {
-    name: "Dott.ssa Moreschi Chiara",
-    role: "Equipe odontoiatrica",
-    image: "/assets/brand/team/staff-chiara-moreschi.webp",
-  },
-  {
     name: "Dott.ssa Maria Isabel Pareja Carrillo",
     role: "Odontoiatra, Direttore Sanitario",
     image: "/assets/brand/team/staff-maria-pareja.webp",
+  },
+  {
+    name: "Dott.ssa Moreschi Chiara",
+    role: "Equipe chirurgica implantare",
+    image: "/assets/brand/team/staff-chiara-moreschi.webp",
   },
   {
     name: "Dott.ssa Cacciabue Paola",
@@ -125,6 +408,11 @@ const team = [
     name: "Dott.ssa Dervishi Denisa",
     role: "Odontoiatra Generalista",
     image: "/assets/brand/team/staff-denisa-dervishi.webp",
+  },
+  {
+    name: "Gianni Focarelli",
+    role: "Titolare e Amministratore della Sorriso&Salute srl",
+    image: "/assets/brand/team/staff-gianni-focarelli.webp",
   },
 ];
 
@@ -327,11 +615,11 @@ const conventionGroups = [
             Impianti dentali per tornare a mangiare e sorridere con sicurezza
           </h1>
           <p class="hero-lead">
-            Grazie alla pianificazione digitale 3D e alla sedazione cosciente, affronti l'intervento senza l'ansia del dolore. Un percorso trasparente, garantito da protocolli di controllo post-operatorio inclusi, per proteggere la salute della tua bocca nel tempo.
+            Ti manca un dente, più denti o hai una dentiera instabile? Lo studio valuta la soluzione più adatta al tuo caso tra impianto singolo, ponte su impianti, protesi stabilizzata o denti fissi.
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="/richiesta/">
-              Prenota visita implantologica <span aria-hidden="true">-&gt;</span>
+              Voglio capire quale soluzione è adatta a me
             </a>
             <a class="button button-secondary" href="#vantaggi">Scopri il metodo</a>
           </div>
@@ -346,6 +634,43 @@ const conventionGroups = [
             </div>
             <p><strong>4.9/5</strong> da pazienti</p>
           </div>
+        </div>
+      </section>
+
+      <section class="section section-white situations-section" aria-labelledby="situazioni-oggi-title">
+        <div class="section-heading centered">
+          <p class="eyebrow teal">Soluzioni implantari</p>
+          <h2 id="situazioni-oggi-title">In quale di queste situazioni ti trovi oggi?</h2>
+          <p>
+            Ogni percorso implantare parte da una valutazione clinica: queste card aiutano a orientarti tra le soluzioni più frequenti.
+          </p>
+        </div>
+
+        <div class="situations-grid" aria-label="Situazioni implantari frequenti">
+          {patientSituations.map((situation) => (
+            <article class="situation-card">
+              <picture>
+                <source
+                  srcset={`${situation.optimizedImage}-480.avif 480w, ${situation.optimizedImage}-720.avif 720w, ${situation.optimizedImage}-1080.avif 1080w`}
+                  sizes="(max-width: 680px) calc(100vw - 38px), (max-width: 980px) calc((100vw - 54px) / 2), 280px"
+                  type="image/avif"
+                />
+                <img src={situation.image} alt="" width="640" height="420" loading="lazy" decoding="async" />
+              </picture>
+              <div class="situation-card__content">
+                <span class="situation-card__label">{situation.label}</span>
+                <h3>{situation.title}</h3>
+                <p>{situation.text}</p>
+                <div class="situation-card__solution">
+                  <span>Soluzione</span>
+                  <strong>{situation.solution}</strong>
+                </div>
+                <a class="situation-card__cta" href={`/richiesta/?problema=${situation.slug}`}>
+                  {situation.cta}
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -413,7 +738,7 @@ const conventionGroups = [
               Come Gestiamo il Tuo Percorso
             </h2>
             <p>
-              Il nostro approccio è sviluppato per azzerare l'incertezza e ridurre al minimo il disagio del paziente, attraverso un protocollo strutturato in 3 fasi.
+              Il percorso implantare viene costruito in 4 passaggi, dalla diagnosi iniziale alla protesi finale e ai controlli nel tempo.
             </p>
             <div class="image-stack mobile-advantage-image" aria-hidden="true">
               <picture>
@@ -448,6 +773,14 @@ const conventionGroups = [
                         <path d="M3 12h18" />
                         <circle cx="12" cy="12" r="6" />
                         <circle cx="12" cy="12" r="1.8" />
+                      </svg>
+                    )}
+                    {item.icon === "plan" && (
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M5 5h14v14H5z" />
+                        <path d="M8 9h8" />
+                        <path d="M8 13h5" />
+                        <path d="m14.5 15.5 1.5 1.5 3-3" />
                       </svg>
                     )}
                     {item.icon === "fixed" && (
@@ -499,6 +832,9 @@ const conventionGroups = [
                 </article>
               ))}
             </div>
+            <a class="button button-primary method-mobile-cta" href="/richiesta/">
+              Prenota visita implantologica <span aria-hidden="true">-&gt;</span>
+            </a>
           </div>
 
           <img class="method-dentist" src={dentistCutout} alt="" width="351" height="602" loading="lazy" decoding="async" aria-hidden="true" />
@@ -512,20 +848,39 @@ const conventionGroups = [
           <p>Recensioni orientate a percorsi implantari e riabilitazioni.</p>
         </div>
 
-        <div class="testimonial-grid">
-          {testimonials.map((item) => (
-            <article class="testimonial-card">
-              <div class="stars" aria-label="Cinque stelle">★★★★★</div>
-              <blockquote>"{item.quote}"</blockquote>
-              <footer>
-                <span class="testimonial-initial" aria-hidden="true">{item.initials}</span>
-                <div>
-                  <strong>{item.name}</strong>
-                  <span>{item.source}</span>
-                </div>
-              </footer>
-            </article>
-          ))}
+        <div class="testimonial-carousel" data-testimonial-carousel>
+          <button class="testimonial-nav testimonial-nav--prev" type="button" aria-label="Recensione precedente" data-testimonial-prev>
+            <span aria-hidden="true">‹</span>
+          </button>
+
+          <div class="testimonial-viewport">
+            <div class="testimonial-track" data-testimonial-track>
+              {testimonials.map((item) => (
+                <article class="testimonial-card" data-testimonial-card>
+                  <header class="testimonial-card__header">
+                    <span class="testimonial-initial" aria-hidden="true">{item.initials}</span>
+                    <div>
+                      <strong>{item.name}</strong>
+                      {item.verified && <span class="testimonial-badge">Appuntamento verificato</span>}
+                    </div>
+                  </header>
+                  <div class="stars" aria-label="Cinque stelle">★★★★★</div>
+                  <blockquote>{item.quote}</blockquote>
+                  <footer class="testimonial-meta">
+                    <span>{item.date}</span>
+                    <span>{item.doctor}</span>
+                    <span>{item.treatment}</span>
+                  </footer>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <button class="testimonial-nav testimonial-nav--next" type="button" aria-label="Recensione successiva" data-testimonial-next>
+            <span aria-hidden="true">›</span>
+          </button>
+
+          <button class="testimonial-more" type="button" data-testimonial-more>guarda altre nostre recensioni</button>
         </div>
       </section>
 
@@ -655,7 +1010,12 @@ const conventionGroups = [
 
     <aside class="sticky-cta" data-sticky-cta aria-label="Azioni rapide">
       <div class="sticky-cta__actions">
-        <a class="sticky-cta__button sticky-cta__button--primary" href="/richiesta/">Prenota una visita ora</a>
+        <a class="sticky-cta__button sticky-cta__button--primary" href="/richiesta/">
+          <svg class="sticky-cta__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 2v4M16 2v4M3.5 9h17M5 5h14a1.5 1.5 0 0 1 1.5 1.5V19A1.5 1.5 0 0 1 19 20.5H5A1.5 1.5 0 0 1 3.5 19V6.5A1.5 1.5 0 0 1 5 5Z" />
+          </svg>
+          <span>Prenota una visita</span>
+        </a>
         <a
           class="sticky-cta__button sticky-cta__button--call"
           href="tel:+390392022489"
@@ -666,6 +1026,28 @@ const conventionGroups = [
         </a>
       </div>
     </aside>
+
+    <a
+      class="whatsapp-float"
+      href="https://wa.me/393892490181"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Apri chat WhatsApp"
+      data-whatsapp-float
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35ZM12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88ZM20.46 3.49A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.31-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.49-8.42Z" />
+      </svg>
+    </a>
+    <a
+      class="whatsapp-message"
+      href="https://wa.me/393892490181"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Dubbi su quale percorso sia meglio per te? Sentiamoci su WhatsApp"
+    >
+      Dubbi su quale percorso sia meglio per te? Sentiamoci su whatsapp!
+    </a>
 
     {conventionGroups.map((group) => (
       <dialog class="convention-dialog" data-convention-dialog={group.id} aria-labelledby={`convention-title-${group.id}`}>
@@ -705,6 +1087,9 @@ const conventionGroups = [
       const stickyCta = document.querySelector("[data-sticky-cta]");
       const stickyCtaTrigger = document.querySelector("#situazioni");
       const callStudioButton = document.querySelector("[data-call-studio]");
+      const testimonialCarousel = document.querySelector("[data-testimonial-carousel]");
+      const whatsappFloat = document.querySelector("[data-whatsapp-float]");
+      const whatsappTrigger = document.querySelector("#faq");
       let lastScrollY = window.scrollY;
 
       const closeMobileMenu = () => {
@@ -829,6 +1214,17 @@ const conventionGroups = [
         stickyCta.classList.toggle("is-visible", hasPassedTrigger);
       };
 
+      const updateWhatsappVisibility = () => {
+        if (!(whatsappFloat instanceof HTMLElement)) return;
+        if (!(whatsappTrigger instanceof HTMLElement)) {
+          whatsappFloat.classList.remove("is-visible");
+          return;
+        }
+
+        const hasReachedFaq = whatsappTrigger.getBoundingClientRect().top <= window.innerHeight * 0.85;
+        whatsappFloat.classList.toggle("is-visible", hasReachedFaq);
+      };
+
       const updateCallStudioButton = () => {
         if (!(callStudioButton instanceof HTMLElement)) return;
 
@@ -844,10 +1240,113 @@ const conventionGroups = [
         document.body.classList.toggle("sticky-call-visible", isOpen);
       };
 
+      const setupTestimonials = () => {
+        if (!(testimonialCarousel instanceof HTMLElement)) return;
+
+        const track = testimonialCarousel.querySelector("[data-testimonial-track]");
+        const cards = Array.from(testimonialCarousel.querySelectorAll("[data-testimonial-card]"));
+        const prevButton = testimonialCarousel.querySelector("[data-testimonial-prev]");
+        const nextButton = testimonialCarousel.querySelector("[data-testimonial-next]");
+        const moreButton = testimonialCarousel.querySelector("[data-testimonial-more]");
+
+        if (!(track instanceof HTMLElement) || !cards.length) return;
+
+        const mobileQuery = window.matchMedia("(max-width: 680px)");
+        const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const visibleDesktopCards = 3;
+        const initialMobileCards = 4;
+        const mobileStep = 3;
+        const autoplayDelay = 4600;
+        let currentIndex = 0;
+        let mobileVisibleCount = initialMobileCards;
+        let autoplayId;
+
+        const maxIndex = () => Math.max(cards.length - visibleDesktopCards, 0);
+
+        const setDesktopIndex = (index) => {
+          currentIndex = (index + maxIndex() + 1) % (maxIndex() + 1);
+          const firstCard = cards[0];
+          const secondCard = cards[1];
+          const cardStep = secondCard
+            ? secondCard.getBoundingClientRect().left - firstCard.getBoundingClientRect().left
+            : firstCard.getBoundingClientRect().width;
+          track.style.transform = `translateX(-${currentIndex * cardStep}px)`;
+        };
+
+        const stopAutoplay = () => {
+          if (!autoplayId) return;
+          window.clearInterval(autoplayId);
+          autoplayId = undefined;
+        };
+
+        const startAutoplay = () => {
+          stopAutoplay();
+          if (mobileQuery.matches || reducedMotionQuery.matches || cards.length <= visibleDesktopCards) return;
+          autoplayId = window.setInterval(() => setDesktopIndex(currentIndex + 1), autoplayDelay);
+        };
+
+        const updateMobileCards = () => {
+          cards.forEach((card, index) => {
+            if (!(card instanceof HTMLElement)) return;
+            card.hidden = index >= mobileVisibleCount;
+          });
+
+          if (moreButton instanceof HTMLButtonElement) {
+            moreButton.hidden = mobileVisibleCount >= cards.length;
+          }
+        };
+
+        const setMode = () => {
+          if (mobileQuery.matches) {
+            stopAutoplay();
+            track.style.transform = "";
+            mobileVisibleCount = Math.max(mobileVisibleCount, initialMobileCards);
+            updateMobileCards();
+            return;
+          }
+
+          cards.forEach((card) => {
+            if (card instanceof HTMLElement) card.hidden = false;
+          });
+
+          if (moreButton instanceof HTMLButtonElement) moreButton.hidden = true;
+          setDesktopIndex(Math.min(currentIndex, maxIndex()));
+          startAutoplay();
+        };
+
+        prevButton?.addEventListener("click", () => {
+          setDesktopIndex(currentIndex - 1);
+          startAutoplay();
+        });
+
+        nextButton?.addEventListener("click", () => {
+          setDesktopIndex(currentIndex + 1);
+          startAutoplay();
+        });
+
+        moreButton?.addEventListener("click", () => {
+          mobileVisibleCount = Math.min(mobileVisibleCount + mobileStep, cards.length);
+          updateMobileCards();
+        });
+
+        mobileQuery.addEventListener("change", setMode);
+        reducedMotionQuery.addEventListener("change", setMode);
+        window.addEventListener("resize", () => {
+          if (!mobileQuery.matches) setDesktopIndex(Math.min(currentIndex, maxIndex()));
+        });
+
+        setMode();
+      };
+
       updateStickyCtaVisibility();
+      updateWhatsappVisibility();
       updateCallStudioButton();
+      setupTestimonials();
       window.addEventListener("scroll", updateStickyCtaVisibility, { passive: true });
+      window.addEventListener("scroll", updateWhatsappVisibility, { passive: true });
+      window.addEventListener("hashchange", updateWhatsappVisibility);
       window.addEventListener("resize", updateStickyCtaVisibility);
+      window.addEventListener("resize", updateWhatsappVisibility);
       window.setInterval(updateCallStudioButton, 60 * 1000);
     </script>
   </body>

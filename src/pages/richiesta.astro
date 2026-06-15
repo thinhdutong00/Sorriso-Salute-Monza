@@ -42,10 +42,10 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
             <h2 class="quiz-title">Quale problema vuoi risolvere?</h2>
             <p class="quiz-copy">Scegli la situazione per cui vuoi fissare una valutazione in studio.</p>
             <div class="quiz-options" data-field="problema">
-              <button class="choice-btn" type="button" data-value="Devo sostituire un dente mancante"><strong>Sostituire un dente mancante</strong></button>
-              <button class="choice-btn" type="button" data-value="Devo risolvere più denti mancanti"><strong>Risolvere più denti mancanti</strong></button>
-              <button class="choice-btn" type="button" data-value="La dentiera o protesi mobile è instabile"><strong>Stabilizzare una protesi mobile</strong></button>
-              <button class="choice-btn" type="button" data-value="Vorrei un consulto in studio per capire se l'implantologia è indicata"><strong>Fare un consulto in studio</strong></button>
+              <button class="choice-btn" type="button" data-value="Mi manca un solo dente"><strong>Mi manca un solo dente</strong></button>
+              <button class="choice-btn" type="button" data-value="Mi mancano più denti vicini"><strong>Mi mancano più denti vicini</strong></button>
+              <button class="choice-btn" type="button" data-value="La mia dentiera o protesi si muove"><strong>La mia dentiera o protesi si muove</strong></button>
+              <button class="choice-btn" type="button" data-value="Ho perso molti denti o uso una dentiera"><strong>Ho perso molti denti o uso una dentiera</strong></button>
             </div>
           </div>
 
@@ -185,6 +185,12 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
           problema: "",
           obiettivo: "",
         };
+        const problemPresets = new Map([
+          ["dente-mancante", "Mi manca un solo dente"],
+          ["piu-denti-mancanti", "Mi mancano più denti vicini"],
+          ["protesi-mobile-instabile", "La mia dentiera o protesi si muove"],
+          ["arcata-completa", "Ho perso molti denti o uso una dentiera"],
+        ]);
 
         const setError = (message = "") => {
           if (formError) formError.textContent = message;
@@ -373,6 +379,14 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
           });
         };
 
+        const markQuizChoice = (field, value) => {
+          const group = form.querySelector(`.quiz-options[data-field="${field}"]`);
+          if (!group) return;
+          group.querySelectorAll(".choice-btn").forEach((button) => {
+            button.setAttribute("aria-pressed", button.dataset.value === value ? "true" : "false");
+          });
+        };
+
         form.querySelectorAll(".quiz-options").forEach((group) => {
           const field = group.dataset.field;
           group.querySelectorAll(".choice-btn").forEach((button) => {
@@ -428,7 +442,15 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
         buildCalendar();
         buildSlots();
         updateSummary();
-        showStep(1);
+        const presetProblem = problemPresets.get(new URLSearchParams(window.location.search).get("problema") || "");
+        if (presetProblem) {
+          quiz.problema = presetProblem;
+          markQuizChoice("problema", presetProblem);
+          updateSummary();
+          showStep(2);
+        } else {
+          showStep(1);
+        }
       })();
     </script>
   </body>
