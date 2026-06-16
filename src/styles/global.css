@@ -637,6 +637,10 @@ textarea {
   text-wrap: balance;
 }
 
+.desktop-nowrap {
+  white-space: nowrap;
+}
+
 .section-heading p:not(.eyebrow),
 .advantage-copy > p,
 .contact-copy p {
@@ -2984,6 +2988,10 @@ body.modal-open {
   .advantage-copy h2,
   .contact-copy h2 {
     font-size: clamp(2.2rem, 11vw, 3.4rem);
+  }
+
+  .desktop-nowrap {
+    white-space: normal;
   }
 
   .advantage-layout {
