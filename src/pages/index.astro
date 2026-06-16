@@ -614,8 +614,11 @@ const conventionGroups = [
           <h1>
             Impianti dentali per tornare a mangiare e sorridere con sicurezza
           </h1>
-          <p class="hero-lead">
+          <p class="hero-lead hero-lead-desktop">
             Dal 2003 a Monza abbiamo aiutato oltre 7.000 persone a ritrovare la sicurezza di sorridere e il piacere di masticare senza dolore. Che ti manchi un solo dente o un'intera arcata, progettiamo la soluzione implantare su misura per restituirti il comfort che stai cercando.
+          </p>
+          <p class="hero-lead hero-lead-mobile">
+            Dal 2003 a Monza abbiamo aiutato oltre 7.000 persone a ritrovare la sicurezza di sorridere e il piacere di masticare senza dolore.
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="/richiesta/">
@@ -652,7 +655,7 @@ const conventionGroups = [
               <picture>
                 <source
                   srcset={`${situation.optimizedImage}-480.avif 480w, ${situation.optimizedImage}-720.avif 720w, ${situation.optimizedImage}-1080.avif 1080w`}
-                  sizes="(max-width: 680px) calc(100vw - 38px), (max-width: 980px) calc((100vw - 54px) / 2), 280px"
+                  sizes="(max-width: 680px) calc(100vw - 38px), (max-width: 1120px) calc((min(100vw - 48px, 760px) - 18px) / 2), calc((min(100vw - 48px, 1420px) - 72px) / 4)"
                   type="image/avif"
                 />
                 <img src={situation.image} alt="" width="640" height="420" loading="lazy" decoding="async" />
