@@ -86,7 +86,7 @@ const patientSituations = [
     slug: "dente-mancante",
     label: "Dente mancante",
     title: "Mi manca un solo dente",
-    text: "Si può valutare la sostituzione del dente perso con un impianto in titanio e una corona, senza coinvolgere i denti vicini quando non necessario.",
+    text: "Sostituisci il dente perso con un impianto in titanio e una corona fissa, senza intaccare i denti vicini sani.",
     solution: "Impianto singolo + corona",
     cta: "Valuta impianto singolo",
     image: "/assets/brand/implant-solutions/implant-single.png",
@@ -96,7 +96,7 @@ const patientSituations = [
     slug: "piu-denti-mancanti",
     label: "Più denti mancanti",
     title: "Mi mancano più denti vicini",
-    text: "In alcuni casi più denti mancanti possono essere sostituiti con impianti e ponte fisso, per migliorare masticazione ed estetica.",
+    text: "Ripristina la corretta masticazione e l'estetica con impianti multipli o un ponte fisso su impianti.",
     solution: "Ponte su impianti",
     cta: "Valuta ponte su impianti",
     image: "/assets/brand/implant-solutions/multiple-teeth.png",
@@ -105,10 +105,10 @@ const patientSituations = [
   {
     slug: "protesi-mobile-instabile",
     label: "Protesi mobile instabile",
-    title: "La mia dentiera o protesi si muove",
-    text: "Se la protesi mobile crea fastidio quando mangi o parli, si possono valutare soluzioni su impianti per migliorare stabilità e comfort.",
+    title: "La mia dentiera si muove",
+    text: "Elimina i fastidi quando mangi o parli. Stabilizza la tua attuale protesi mobile grazie ai nostri impianti.",
     solution: "Protesi mobile stabilizzata o protesi su impianti",
-    cta: "Valuta una protesi più stabile",
+    cta: "Scopri la protesi stabilizzata",
     image: "/assets/brand/implant-solutions/implant-prosthesis.png",
     optimizedImage: "/assets/brand/implant-solutions/optimized/implant-prosthesis",
   },
@@ -116,9 +116,9 @@ const patientSituations = [
     slug: "arcata-completa",
     label: "Arcata completa / molti denti mancanti",
     title: "Ho perso molti denti o uso una dentiera",
-    text: "Nei casi idonei si può valutare una riabilitazione con impianti e protesi fissa, anche con carico immediato quando le condizioni cliniche lo permettono.",
+    text: "Torna a sorridere con una protesi fissa su impianti. Nei casi idonei, è possibile avere denti fissi in meno di 24 ore.",
     solution: "Protesi fissa su impianti / denti fissi",
-    cta: "Voglio capire se posso avere denti fissi.",
+    cta: "Scopri l'arcata fissa",
     image: "/assets/brand/implant-solutions/full-arch.png",
     optimizedImage: "/assets/brand/implant-solutions/optimized/full-arch",
   },
@@ -642,7 +642,7 @@ const conventionGroups = [
           <p class="eyebrow teal">Soluzioni implantari</p>
           <h2 id="situazioni-oggi-title">In quale di queste situazioni ti trovi oggi?</h2>
           <p>
-            Ogni percorso implantare parte da una valutazione clinica: queste card aiutano a orientarti tra le soluzioni più frequenti.
+            Più di 7000 impianti posizionati e protesi stabilizzate in 23 anni di attività.
           </p>
         </div>
 
@@ -661,10 +661,6 @@ const conventionGroups = [
                 <span class="situation-card__label">{situation.label}</span>
                 <h3>{situation.title}</h3>
                 <p>{situation.text}</p>
-                <div class="situation-card__solution">
-                  <span>Soluzione</span>
-                  <strong>{situation.solution}</strong>
-                </div>
                 <a class="situation-card__cta" href={`/richiesta/?problema=${situation.slug}`}>
                   {situation.cta}
                 </a>

@@ -789,27 +789,6 @@ textarea {
   line-height: 1.6;
 }
 
-.situation-card__solution {
-  display: grid;
-  gap: 5px;
-  margin-top: auto;
-  padding-top: 2px;
-}
-
-.situation-card__solution span {
-  color: var(--clinic-muted);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.situation-card__solution strong {
-  color: var(--clinic-ink);
-  font-size: 1rem;
-  line-height: 1.32;
-}
-
 .situation-card__cta {
   display: inline-flex;
   align-items: center;
@@ -818,7 +797,7 @@ textarea {
   margin-top: 4px;
   padding: 0 18px;
   border-radius: 999px;
-  background: var(--clinic-ink);
+  background: #1674a4;
   color: #ffffff;
   font-size: 0.92rem;
   font-weight: 800;
@@ -828,7 +807,7 @@ textarea {
 }
 
 .situation-card__cta:hover {
-  background: var(--clinic-teal-dark);
+  background: #126389;
   transform: translateY(-1px);
 }
 
@@ -2879,6 +2858,10 @@ body.modal-open {
   .hero {
     min-height: 780px;
     padding: 120px 18px 64px;
+  }
+
+  .hero-content {
+    width: min(520px, calc(100vw - 36px));
   }
 
   .hero-bg {
