@@ -640,7 +640,7 @@ const conventionGroups = [
         </div>
       </section>
 
-      <section class="section section-white situations-section" aria-labelledby="situazioni-oggi-title">
+      <section class="section section-white situations-section scroll-reveal" aria-labelledby="situazioni-oggi-title" data-scroll-reveal>
         <div class="section-heading centered">
           <p class="eyebrow teal">AFFIDATI AI NOSTRI SPECIALISTI</p>
           <h2 id="situazioni-oggi-title">In quale di queste situazioni ti trovi oggi?</h2>
@@ -651,7 +651,7 @@ const conventionGroups = [
 
         <div class="situations-grid" aria-label="Situazioni implantari frequenti">
           {patientSituations.map((situation) => (
-            <article class="situation-card">
+            <article class="situation-card card-reveal" data-card-reveal>
               <picture>
                 <source
                   srcset={`${situation.optimizedImage}-480.avif 480w, ${situation.optimizedImage}-720.avif 720w, ${situation.optimizedImage}-1080.avif 1080w`}
@@ -673,7 +673,7 @@ const conventionGroups = [
         </div>
       </section>
 
-      <section class="section section-muted pain-section" id="situazioni">
+      <section class="section section-muted pain-section scroll-reveal" id="situazioni" data-scroll-reveal>
         <div class="section-heading centered">
           <p class="eyebrow teal">Prima della visita</p>
           <h2>
@@ -685,19 +685,19 @@ const conventionGroups = [
         </div>
 
         <div class="pain-grid" aria-label="Situazioni frequenti">
-          <article class="pain-card">
+          <article class="pain-card card-reveal" data-card-reveal>
             <span aria-hidden="true">01</span>
             <p>Metti la mano davanti alla bocca quando ridi o parli con gli altri.</p>
           </article>
-          <article class="pain-card">
+          <article class="pain-card card-reveal" data-card-reveal>
             <span aria-hidden="true">02</span>
             <p>Rinunci alla carne o ai cibi duri al ristorante per paura che salti un dente o per il dolore.</p>
           </article>
-          <article class="pain-card">
+          <article class="pain-card card-reveal" data-card-reveal>
             <span aria-hidden="true">03</span>
             <p>Hai paura di iniziare i lavori perché temi che il prezzo finale raddoppi a sorpresa.</p>
           </article>
-          <article class="pain-card">
+          <article class="pain-card card-reveal" data-card-reveal>
             <span aria-hidden="true">04</span>
             <p>Sei terrorizzato dalla poltrona del dentista per via di un trauma passato.</p>
           </article>
@@ -708,7 +708,7 @@ const conventionGroups = [
         </div>
       </section>
 
-      <section class="section section-muted" id="vantaggi">
+      <section class="section section-muted scroll-reveal" id="vantaggi" data-scroll-reveal>
         <div class="advantage-layout">
           <div class="advantage-media">
             <div class="image-stack">
@@ -755,7 +755,7 @@ const conventionGroups = [
 
             <div class="advantage-list">
               {advantages.map((item) => (
-                <article>
+                <article class="card-reveal" data-card-reveal>
                   <span class="advantage-icon" aria-hidden="true">
                     {item.icon === "scan" && (
                       <svg viewBox="0 0 24 24" focusable="false">
@@ -803,7 +803,7 @@ const conventionGroups = [
         </div>
       </section>
 
-      <section class="section method-section" id="metodo">
+      <section class="section method-section scroll-reveal" id="metodo" data-scroll-reveal>
         <div class="method-inner">
           <div class="method-content">
             <div class="section-heading dark method-heading">
@@ -816,7 +816,7 @@ const conventionGroups = [
 
             <div class="method-grid">
               {steps.map((step) => (
-                <article class="method-card">
+                <article class="method-card card-reveal" data-card-reveal>
                   <span class="method-number">{step.number}</span>
                   <h3>{step.title}</h3>
                   <p>
@@ -842,7 +842,7 @@ const conventionGroups = [
         </div>
       </section>
 
-      <section class="section section-white" id="recensioni">
+      <section class="section section-white scroll-reveal" id="recensioni" data-scroll-reveal>
         <div class="section-heading centered">
           <p class="eyebrow teal">Dicono di noi</p>
           <h2>Competenza ed affidabilità</h2>
@@ -857,7 +857,7 @@ const conventionGroups = [
           <div class="testimonial-viewport">
             <div class="testimonial-track" data-testimonial-track>
               {testimonials.map((item) => (
-                <article class="testimonial-card" data-testimonial-card>
+                <article class="testimonial-card card-reveal" data-testimonial-card data-card-reveal>
                   <header class="testimonial-card__header">
                     <span class="testimonial-initial" aria-hidden="true">{item.initials}</span>
                     <div>
@@ -885,7 +885,7 @@ const conventionGroups = [
         </div>
       </section>
 
-      <section class="section section-white team-section" id="chi-siamo">
+      <section class="section section-white team-section scroll-reveal" id="chi-siamo" data-scroll-reveal>
         <div class="section-heading split team-heading">
           <div>
             <p class="eyebrow teal">Chi siamo</p>
@@ -898,7 +898,7 @@ const conventionGroups = [
 
         <div class="team-grid" aria-label="Equipe Studio Dentistico Sorriso & Salute">
           {team.map((member) => (
-            <article class="team-card">
+            <article class="team-card card-reveal" data-card-reveal>
               <img src={member.image} alt={`${member.name} - ${member.role}`} loading="lazy" />
               <div>
                 <h3>{member.name}</h3>
@@ -909,7 +909,7 @@ const conventionGroups = [
         </div>
       </section>
 
-      <section class="section section-muted" id="faq">
+      <section class="section section-muted scroll-reveal" id="faq" data-scroll-reveal>
         <div class="faq-wrap">
           <div class="section-heading">
             <p class="eyebrow teal">Domande frequenti</p>
@@ -919,7 +919,7 @@ const conventionGroups = [
 
           <div class="faq-list">
             {faqs.map((item, index) => (
-              <details class="faq-item" open={index === 0}>
+              <details class="faq-item card-reveal" open={index === 0} data-card-reveal>
                 <summary>
                   <span>{item.q}</span>
                   <span class="faq-icon" aria-hidden="true">+</span>
@@ -927,7 +927,7 @@ const conventionGroups = [
                 <p>{item.a}</p>
               </details>
             ))}
-            <details class="faq-item">
+            <details class="faq-item card-reveal" data-card-reveal>
               <summary>
                 <span>Avete convenzioni dirette e indirette?</span>
                 <span class="faq-icon" aria-hidden="true">+</span>
@@ -947,7 +947,7 @@ const conventionGroups = [
         </div>
       </section>
 
-      <section class="contact-section" id="contatto">
+      <section class="contact-section scroll-reveal" id="contatto" data-scroll-reveal>
         <div class="contact-copy">
           <p class="eyebrow teal">Inizia il tuo percorso con noi</p>
           <h2>Il primo passo per tornare a masticare con più sicurezza</h2>
@@ -956,7 +956,7 @@ const conventionGroups = [
           </p>
         </div>
 
-        <div class="contact-card">
+        <div class="contact-card card-reveal" data-card-reveal>
           <div>
             <span>Modulo unico</span>
             <h3>Compila la richiesta in pochi passaggi.</h3>
@@ -1091,6 +1091,9 @@ const conventionGroups = [
       const testimonialCarousel = document.querySelector("[data-testimonial-carousel]");
       const whatsappFloat = document.querySelector("[data-whatsapp-float]");
       const whatsappTrigger = document.querySelector("#faq");
+      const revealSections = Array.from(document.querySelectorAll("[data-scroll-reveal]"));
+      const revealCards = Array.from(document.querySelectorAll("[data-card-reveal]"));
+      const revealElements = [...revealSections, ...revealCards];
       let lastScrollY = window.scrollY;
 
       const closeMobileMenu = () => {
@@ -1339,10 +1342,71 @@ const conventionGroups = [
         setMode();
       };
 
+      const showRevealElements = () => {
+        revealElements.forEach((element) => {
+          if (element instanceof HTMLElement) element.classList.add("is-visible");
+        });
+      };
+
+      const setupRevealEffects = () => {
+        if (!revealElements.length) return;
+
+        const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        if (reducedMotionQuery.matches || !("IntersectionObserver" in window)) {
+          showRevealElements();
+          return;
+        }
+
+        const revealElement = (element) => {
+          element.classList.add("is-visible");
+        };
+
+        const setupRevealGroup = (elements, options, initialViewportFactor) => {
+          const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                revealElement(entry.target);
+                observer.unobserve(entry.target);
+              });
+            },
+            options
+          );
+
+          elements.forEach((element) => {
+            if (!(element instanceof HTMLElement)) return;
+            if (element.getBoundingClientRect().top < window.innerHeight * initialViewportFactor) {
+              revealElement(element);
+              return;
+            }
+            revealObserver.observe(element);
+          });
+        };
+
+        setupRevealGroup(
+          revealSections,
+          {
+            rootMargin: "0px 0px -4% 0px",
+            threshold: 0.01,
+          },
+          0.92
+        );
+
+        setupRevealGroup(
+          revealCards,
+          {
+            rootMargin: "0px 0px 16% 0px",
+            threshold: 0.01,
+          },
+          1.08
+        );
+      };
+
       updateStickyCtaVisibility();
       updateWhatsappVisibility();
       updateCallStudioButton();
       setupTestimonials();
+      setupRevealEffects();
       window.addEventListener("scroll", updateStickyCtaVisibility, { passive: true });
       window.addEventListener("scroll", updateWhatsappVisibility, { passive: true });
       window.addEventListener("hashchange", updateWhatsappVisibility);
