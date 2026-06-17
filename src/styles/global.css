@@ -2707,7 +2707,7 @@ body.modal-open {
 
   .request-title {
     margin-bottom: 0.85rem;
-    font-size: clamp(2.25rem, 12vw, 3rem);
+    font-size: clamp(1.95rem, 9vw, 2.35rem);
   }
 
   .request-progress {
