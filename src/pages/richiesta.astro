@@ -71,21 +71,21 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
             <p class="quiz-kicker">Dati di contatto</p>
             <h2 class="quiz-title">Lascia i tuoi recapiti</h2>
             <div class="field-grid">
-              <label>
+              <label for="nomeCompleto">
                 Nome e cognome
-                <input name="nomeCompleto" autocomplete="name" required />
+                <input id="nomeCompleto" name="nomeCompleto" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" required />
               </label>
-              <label>
+              <label for="telefono">
                 Telefono
-                <input name="telefono" type="tel" inputmode="tel" autocomplete="tel" required />
+                <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="next" required />
               </label>
-              <label>
+              <label for="email">
                 Email
-                <input name="email" type="email" autocomplete="email" required />
+                <input id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" required />
               </label>
             </div>
             <label>
-              Note/Messaggio
+              Note/Messaggio (facoltativo)
               <textarea name="messaggio" placeholder="Aggiungi dettagli utili"></textarea>
             </label>
           </div>
