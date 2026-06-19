@@ -879,29 +879,50 @@ textarea {
   line-height: 1.6;
 }
 
+.situation-card__actions {
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+}
+
 .situation-card__cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 52px;
-  margin-top: 4px;
   padding: 0 18px;
   border-radius: 999px;
   border: 1px solid rgba(30, 55, 183, 0.14);
   background: var(--clinic-teal);
   color: #ffffff;
   box-shadow: 0 12px 24px rgba(30, 55, 183, 0.18);
+  cursor: pointer;
+  font-family: inherit;
   font-size: 0.92rem;
   font-weight: 800;
   line-height: 1.2;
   text-align: center;
   transition: transform 180ms ease, background 180ms ease;
+  white-space: normal;
 }
 
 .situation-card__cta:hover {
   background: var(--clinic-teal-dark);
   color: #ffffff;
   transform: translateY(-1px);
+}
+
+.situation-card__cta--call {
+  border-color: rgba(30, 55, 183, 0.18);
+  background: var(--button-secondary);
+  color: var(--clinic-teal);
+  box-shadow: none;
+}
+
+.situation-card__cta--call:hover,
+.situation-card__cta--call:focus-visible {
+  background: rgba(30, 55, 183, 0.1);
+  color: var(--clinic-teal-dark);
 }
 
 @media (min-width: 1121px) {
@@ -1742,6 +1763,90 @@ body.modal-open {
   padding: 0 28px;
 }
 
+.convention-dialog--full {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  border-radius: 0;
+}
+
+.convention-dialog--full .convention-panel {
+  width: 100%;
+}
+
+.convention-panel--full {
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.convention-header--full {
+  border-bottom: 1px solid rgba(226, 221, 214, 0.9);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+}
+
+.convention-full-scroll {
+  min-height: 0;
+  overflow-y: auto;
+  padding: clamp(28px, 4vw, 46px) clamp(18px, 5vw, 56px) clamp(42px, 6vw, 76px);
+}
+
+.convention-full-section {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 42px) 0;
+}
+
+.convention-full-section + .convention-full-section {
+  margin-top: clamp(20px, 5vw, 54px);
+  border-top: 1px solid rgba(226, 221, 214, 0.9);
+}
+
+.convention-full-heading {
+  max-width: 760px;
+  margin-bottom: clamp(22px, 4vw, 34px);
+}
+
+.convention-full-heading h3 {
+  margin: 0;
+  color: var(--clinic-ink);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.04;
+}
+
+.convention-full-heading p:not(.eyebrow) {
+  margin: 14px 0 0;
+  color: var(--clinic-muted);
+  font-size: 1.05rem;
+  line-height: 1.58;
+}
+
+.convention-booking-cta {
+  width: fit-content;
+  min-height: 58px;
+  margin: clamp(24px, 4vw, 38px) auto 0;
+  padding: 0 34px;
+  background: var(--clinic-teal);
+  color: #ffffff;
+  box-shadow: 0 16px 30px rgba(30, 55, 183, 0.22);
+}
+
+.convention-booking-cta:hover,
+.convention-booking-cta:focus-visible {
+  background: var(--clinic-teal-dark);
+  color: #ffffff;
+}
+
 .contact-section {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(340px, 460px);
@@ -1822,6 +1927,50 @@ body.modal-open {
   font-weight: 700;
   line-height: 1.45;
   text-align: center;
+}
+
+.booking-choice-body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 14% 8%, rgba(30, 55, 183, 0.16), transparent 30%),
+    linear-gradient(180deg, #ffffff, var(--surface-warm));
+}
+
+.booking-choice-shell {
+  display: grid;
+  width: min(440px, 100%);
+  gap: 14px;
+}
+
+.booking-choice-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 64px;
+  padding: 0 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(30, 55, 183, 0.16);
+  background: var(--button-secondary-solid);
+  color: var(--clinic-teal);
+  box-shadow: 0 12px 24px rgba(42, 38, 35, 0.08);
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.booking-choice-button--primary {
+  background: var(--clinic-teal);
+  color: #ffffff;
+  box-shadow: 0 16px 30px rgba(30, 55, 183, 0.22);
+}
+
+.booking-choice-button:hover,
+.booking-choice-button:focus-visible {
+  transform: translateY(-1px);
 }
 
 .site-footer {
@@ -3277,6 +3426,63 @@ body.modal-open {
   .convention-panel {
     max-height: calc(100vh - 20px);
     border-radius: 22px;
+  }
+
+  .convention-dialog--full {
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+  }
+
+  .convention-dialog--full .convention-panel {
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+  }
+
+  .convention-header--full {
+    padding: 20px 18px 16px;
+    gap: 14px;
+  }
+
+  .convention-header--full h2 {
+    font-size: clamp(1.85rem, 9vw, 2.45rem);
+  }
+
+  .convention-close {
+    width: 44px;
+    height: 44px;
+  }
+
+  .convention-full-scroll {
+    padding: 16px 18px 42px;
+  }
+
+  .convention-full-section {
+    padding: 18px 0 30px;
+  }
+
+  .convention-full-heading h3 {
+    font-size: clamp(1.8rem, 8vw, 2.35rem);
+  }
+
+  .convention-logo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .convention-logo-card {
+    min-height: 96px;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .convention-booking-cta {
+    width: 100%;
   }
 
   .sticky-cta {

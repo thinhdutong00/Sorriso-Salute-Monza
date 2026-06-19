@@ -1,0 +1,27 @@
+---
+import "../styles/global.css";
+import FaviconLinks from "../components/FaviconLinks.astro";
+import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Scegli come prenotare una visita presso lo Studio Dentistico Sorriso & Salute di Monza."
+    />
+    <meta name="theme-color" content="#1E37B7" />
+    <FaviconLinks />
+    <GoogleAdsTracking />
+    <title>Prenota la tua visita | Sorriso & Salute Monza</title>
+  </head>
+  <body class="booking-choice-body">
+    <main class="booking-choice-shell" aria-label="Preferenze prenotazione">
+      <a class="booking-choice-button" href="tel:+390392022489">Chiama lo studio</a>
+      <a class="booking-choice-button booking-choice-button--primary" href="/richiesta/">Prenota online (consigliato)</a>
+    </main>
+  </body>
+</html>

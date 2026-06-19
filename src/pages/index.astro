@@ -664,9 +664,14 @@ const conventionGroups = [
                 <span class="situation-card__label">{situation.label}</span>
                 <h3>{situation.title}</h3>
                 <p>{situation.text}</p>
-                <a class="situation-card__cta" href={`/richiesta/?problema=${situation.slug}`}>
-                  {situation.cta}
-                </a>
+                <div class="situation-card__actions">
+                  <button class="situation-card__cta" type="button" data-convention-open="tutte">
+                    Scopri le nostre convenzioni
+                  </button>
+                  <a class="situation-card__cta situation-card__cta--call" href="tel:+390392022489">
+                    Chiama lo studio per maggiori informazioni
+                  </a>
+                </div>
               </div>
             </article>
           ))}
@@ -1081,6 +1086,45 @@ const conventionGroups = [
       </dialog>
     ))}
 
+    <dialog class="convention-dialog convention-dialog--full" data-convention-dialog="tutte" aria-labelledby="convention-title-tutte">
+      <div class="convention-panel convention-panel--full">
+        <header class="convention-header convention-header--full">
+          <div>
+            <p class="eyebrow teal">Convenzioni studio</p>
+            <h2 id="convention-title-tutte">Scopri le nostre convenzioni</h2>
+            <p>Consulta gli enti, i fondi e le assicurazioni convenzionati con lo studio.</p>
+          </div>
+          <button class="convention-close" type="button" aria-label="Chiudi popup" data-convention-close>
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+
+        <div class="convention-full-scroll">
+          {conventionGroups.map((group) => (
+            <section class="convention-full-section" aria-labelledby={`convention-full-title-${group.id}`}>
+              <div class="convention-full-heading">
+                <p class="eyebrow teal">Convenzioni studio</p>
+                <h3 id={`convention-full-title-${group.id}`}>{group.title}</h3>
+                <p>{group.description}</p>
+              </div>
+
+              <div class="convention-logo-grid">
+                {group.logos.map((logo) => (
+                  <div class="convention-logo-card">
+                    <img src={logo.src} alt={logo.label} loading="lazy" />
+                  </div>
+                ))}
+              </div>
+
+              <a class="button button-dark convention-booking-cta" href="/richiesta/" data-booking-link>
+                Prenota Ora la Tua Visita
+              </a>
+            </section>
+          ))}
+        </div>
+      </div>
+    </dialog>
+
     <script>
       const header = document.querySelector("[data-header]");
       const menuButton = document.querySelector("[data-menu-button]");
@@ -1094,6 +1138,7 @@ const conventionGroups = [
       const revealSections = Array.from(document.querySelectorAll("[data-scroll-reveal]"));
       const revealCards = Array.from(document.querySelectorAll("[data-card-reveal]"));
       const revealElements = [...revealSections, ...revealCards];
+      const mobileBookingQuery = window.matchMedia("(max-width: 760px)");
       let lastScrollY = window.scrollY;
 
       const closeMobileMenu = () => {
@@ -1180,6 +1225,16 @@ const conventionGroups = [
           button.addEventListener("click", () => closeConventionDialog(dialog));
         });
       });
+
+      const updateBookingLinks = () => {
+        const bookingHref = mobileBookingQuery.matches ? "/preferenze-prenotazione/" : "/richiesta/";
+        document.querySelectorAll("[data-booking-link]").forEach((link) => {
+          if (link instanceof HTMLAnchorElement) link.setAttribute("href", bookingHref);
+        });
+      };
+
+      updateBookingLinks();
+      mobileBookingQuery.addEventListener("change", updateBookingLinks);
 
       const isStudioOpenInRome = () => {
         const parts = new Intl.DateTimeFormat("en-GB", {
