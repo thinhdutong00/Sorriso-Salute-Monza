@@ -1060,6 +1060,21 @@ textarea {
   font-size: 1rem;
 }
 
+.button-dark.advantage-cta,
+.button-dark.mobile-advantage-cta {
+  background: var(--clinic-teal);
+  color: #ffffff;
+  box-shadow: 0 16px 30px rgba(30, 55, 183, 0.22);
+}
+
+.button-dark.advantage-cta:hover,
+.button-dark.advantage-cta:focus-visible,
+.button-dark.mobile-advantage-cta:hover,
+.button-dark.mobile-advantage-cta:focus-visible {
+  background: var(--clinic-teal-dark);
+  color: #ffffff;
+}
+
 .floating-note {
   position: absolute;
   right: 0;
@@ -1160,11 +1175,11 @@ textarea {
 }
 
 .method-inner {
-  position: static;
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 900px) minmax(260px, 1fr);
+  grid-template-columns: minmax(0, 940px) minmax(240px, 1fr);
   align-items: start;
-  width: min(1240px, 100%);
+  width: min(1320px, 100%);
   margin: 0 auto;
   padding: clamp(28px, 4.5vw, 54px);
   border-radius: 26px;
@@ -1216,7 +1231,7 @@ textarea {
   position: relative;
   display: grid;
   align-content: start;
-  min-height: 330px;
+  min-height: 300px;
   padding: 24px;
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 18px;
@@ -1254,7 +1269,7 @@ textarea {
 .method-dentist {
   position: absolute;
   right: clamp(-72px, -3.5vw, -40px);
-  bottom: -78px;
+  bottom: 0;
   z-index: 1;
   display: block;
   width: auto;
