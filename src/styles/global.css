@@ -912,19 +912,6 @@ textarea {
   transform: translateY(-1px);
 }
 
-.situation-card__cta--call {
-  border-color: rgba(30, 55, 183, 0.18);
-  background: var(--button-secondary);
-  color: var(--clinic-teal);
-  box-shadow: none;
-}
-
-.situation-card__cta--call:hover,
-.situation-card__cta--call:focus-visible {
-  background: rgba(30, 55, 183, 0.1);
-  color: var(--clinic-teal-dark);
-}
-
 @media (min-width: 1121px) {
   .situations-grid {
     width: min(1420px, 100%);
@@ -1075,8 +1062,8 @@ textarea {
 
 .floating-note {
   position: absolute;
-  right: -22px;
-  bottom: 44px;
+  right: 0;
+  bottom: 0;
   display: grid;
   gap: 6px;
   width: min(280px, 72%);
@@ -3291,11 +3278,6 @@ body.modal-open {
   .mobile-advantage-cta {
     display: inline-flex;
     margin-top: 28px;
-  }
-
-  .floating-note {
-    right: 16px;
-    bottom: 16px;
   }
 
   .method-grid,
