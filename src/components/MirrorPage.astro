@@ -32,6 +32,14 @@ const serviceTitleMatch = body.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
 const serviceTitle = serviceTitleMatch
   ? serviceTitleMatch[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
   : page.title.split("|")[0].trim();
+const stickyCtaText = isActivityServicePage
+  ? serviceTitle
+  : "Richiedi una visita in meno di 2 minuti";
+const stickyCtaButtonText = isActivityServicePage ? "Richiedi una visita" : "vai al modulo";
+const stickyCtaLabel = isActivityServicePage ? "Servizio" : "";
+const stickyCtaVariant = isActivityServicePage
+  ? "activity-sticky-cta activity-sticky-cta--service"
+  : "activity-sticky-cta activity-sticky-cta--generic";
 
 const activityStickyScript = `
 (() => {
@@ -129,24 +137,20 @@ const mirrorHeaderScript = `
     <script is:inline set:html={removeLegacyAppointmentButtonScript} />
     <script is:inline set:html={mirrorHeaderScript} />
     {
-      isActivityServicePage && (
-        <aside class="activity-sticky-cta" data-activity-sticky-cta aria-label="Prenotazione servizio">
+      (
+        <aside class={stickyCtaVariant} data-activity-sticky-cta aria-label="Prenotazione visita">
           <div class="activity-sticky-cta__inner">
             <div class="activity-sticky-cta__service">
-              <span>Servizio</span>
-              <strong>{serviceTitle}</strong>
+              {stickyCtaLabel && <span>{stickyCtaLabel}</span>}
+              <strong>{stickyCtaText}</strong>
             </div>
             <a class="activity-sticky-cta__button" href="/richiesta/">
-              Richiedi una visita
+              {stickyCtaButtonText}
             </a>
           </div>
         </aside>
       )
     }
-    {
-      isActivityServicePage && (
-        <script is:inline set:html={activityStickyScript} />
-      )
-    }
+    <script is:inline set:html={activityStickyScript} />
   </body>
 </html>
