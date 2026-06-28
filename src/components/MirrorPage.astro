@@ -122,6 +122,107 @@ const mirrorHeaderScript = `
   window.addEventListener("load", updateHeader);
 })();
 `;
+
+const mirrorNavigationScript = `
+(() => {
+  const body = document.body;
+  const panel = document.querySelector("[data-mirror-kebab-menu]");
+  const backdrop = document.querySelector("[data-mirror-menu-backdrop]");
+  const closeButton = document.querySelector("[data-mirror-menu-close]");
+
+  const normalise = (value) =>
+    (value || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\\u0300-\\u036f]/g, "")
+      .trim();
+
+  const getNav = () => document.querySelector(".ekit-template-content-header .elementskit-navbar-nav");
+
+  const createNavLink = (className, href, label) => {
+    const item = document.createElement("li");
+    item.className = "menu-item nav-item elementskit-mobile-builder-content " + className;
+    const link = document.createElement("a");
+    link.className = "ekit-menu-nav-link mirror-nav-link";
+    link.href = href;
+    link.textContent = label;
+    item.append(link);
+    return item;
+  };
+
+  const createMenuButton = () => {
+    const item = document.createElement("li");
+    item.className = "menu-item nav-item elementskit-mobile-builder-content mirror-nav-menu-item";
+    const button = document.createElement("button");
+    button.className = "ekit-menu-nav-link mirror-menu-toggle";
+    button.type = "button";
+    button.setAttribute("data-mirror-menu-toggle", "");
+    button.setAttribute("aria-controls", "mirror-kebab-menu");
+    button.setAttribute("aria-expanded", "false");
+    button.innerHTML =
+      '<span class="mirror-menu-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span><span>Menu</span>';
+    item.append(button);
+    return item;
+  };
+
+  const enhanceNav = () => {
+    const nav = getNav();
+    if (!nav) {
+      window.setTimeout(enhanceNav, 120);
+      return;
+    }
+
+    nav.querySelectorAll(":scope > li").forEach((item) => {
+      if (item.classList.contains("mirror-nav-item")) return;
+      const link = item.querySelector("a");
+      const label = normalise(link?.textContent);
+      if (label === "chi siamo" || label === "attivita") {
+        item.classList.add("mirror-nav-item-hidden");
+      }
+    });
+
+    if (!nav.querySelector(".mirror-nav-urgent")) {
+      const urgent = createNavLink("mirror-nav-item mirror-nav-urgent", "/urgenze/", "Urgenze");
+      const call = createNavLink("mirror-nav-item mirror-nav-call", "tel:+390392022489", "Chiama in studio");
+      const menu = createMenuButton();
+      nav.append(urgent, call, menu);
+    }
+  };
+
+  const setMenuState = (isOpen) => {
+    if (!panel || !backdrop) return;
+    panel.hidden = !isOpen;
+    backdrop.hidden = !isOpen;
+    body.classList.toggle("mirror-menu-open", isOpen);
+    document.querySelectorAll("[data-mirror-menu-toggle]").forEach((button) => {
+      button.setAttribute("aria-expanded", String(isOpen));
+    });
+    if (isOpen) panel.focus({ preventScroll: true });
+  };
+
+  enhanceNav();
+
+  document.addEventListener("click", (event) => {
+    const toggle = event.target.closest("[data-mirror-menu-toggle]");
+    if (toggle) {
+      event.preventDefault();
+      setMenuState(panel?.hidden !== false);
+      return;
+    }
+
+    if (event.target.closest("[data-mirror-menu-close]") || event.target === backdrop) {
+      event.preventDefault();
+      setMenuState(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenuState(false);
+  });
+
+  closeButton?.addEventListener("click", () => setMenuState(false));
+})();
+`;
 ---
 
 <!doctype html>
@@ -134,8 +235,56 @@ const mirrorHeaderScript = `
   <body class:list={[page.bodyClass, "brand-palette", "mirror-header-over-hero"]} id={page.bodyId || undefined}>
     <PageLoader />
     <Fragment set:html={body} />
+    <div class="mirror-menu-backdrop" data-mirror-menu-backdrop hidden></div>
+    <aside
+      id="mirror-kebab-menu"
+      class="mirror-kebab-menu"
+      data-mirror-kebab-menu
+      tabindex="-1"
+      aria-label="Menu principale"
+      hidden
+    >
+      <div class="mirror-kebab-menu__header">
+        <button type="button" class="mirror-kebab-menu__close" data-mirror-menu-close aria-label="Chiudi menu">
+          <span aria-hidden="true">×</span>
+          Chiudi
+        </button>
+      </div>
+      <nav class="mirror-kebab-menu__content" aria-label="Navigazione estesa">
+        <section class="mirror-kebab-menu__section">
+          <h2>Studio</h2>
+          <a href="/chi-siamo/">Chi siamo</a>
+          <a href="/struttura-studio-dentistico-monza/">La Struttura</a>
+          <a href="/contatti/">Contatti</a>
+          <a href="/convenzioni-dirette-studio-dentistico-monza/">Convenzioni</a>
+        </section>
+        <section class="mirror-kebab-menu__section">
+          <h2>Attività</h2>
+          <a href="/attivita/">Tutte le attività</a>
+          <a href="/attivita/igiene-orale-e-profilassi/">Igiene orale e profilassi</a>
+          <a href="/attivita/protesi-dentale/">Protesi dentale</a>
+          <a href="/attivita/odontoiatria-conservativa/">Conservativa</a>
+          <a href="/attivita/estetica-del-sorriso/">Estetica del sorriso</a>
+          <a href="/attivita/parodontologia/">Parodontologia</a>
+          <a href="/attivita/ortodonzia/">Ortodonzia</a>
+          <a href="/attivita/chirurgia-orale/">Chirurgia orale</a>
+          <a href="/attivita/pedodonzia/">Pedodonzia</a>
+          <a href="/attivita/gnatologia/">Gnatologia</a>
+          <a href="/implantologia/">Implantologia</a>
+        </section>
+        <section class="mirror-kebab-menu__section">
+          <h2>Prenota e informazioni</h2>
+          <a href="/urgenze/">Urgenze</a>
+          <a href="tel:+390392022489">Chiama in studio</a>
+          <a href="/richiesta/">Richiedi appuntamento</a>
+          <a href="/convenzioni-dirette/">Convenzioni dirette</a>
+          <a href="/convenzioni-indirette/">Convenzioni indirette</a>
+        </section>
+      </nav>
+    </aside>
     <script is:inline set:html={removeLegacyAppointmentButtonScript} />
     <script is:inline set:html={mirrorHeaderScript} />
+    <script is:inline set:html={mirrorNavigationScript} />
     {
       (
         <aside class={stickyCtaVariant} data-activity-sticky-cta aria-label="Prenotazione visita">

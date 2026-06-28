@@ -1,0 +1,129 @@
+---
+import BrandPalette from "../components/BrandPalette.astro";
+import FaviconLinks from "../components/FaviconLinks.astro";
+import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import PageLoader from "../components/PageLoader.astro";
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Urgenze odontoiatriche a Monza: lo Studio Dentistico Sorriso & Salute visita di solito i pazienti il giorno in cui chiamano."
+    />
+    <meta name="theme-color" content="#1e37b7" />
+    <link rel="canonical" href="https://sorrisoesalutemonza.it/urgenze/" />
+    <title>Urgenze | Studio Dentistico Sorriso & Salute Monza</title>
+    <FaviconLinks />
+    <GoogleAdsTracking />
+    <BrandPalette />
+    <style is:inline>
+      .urgent-page {
+        min-height: 100vh;
+        margin: 0;
+        background: #ffffff;
+        color: #0f172a;
+        font-family: Inter, system-ui, sans-serif;
+      }
+
+      .urgent-shell {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        padding: 32px;
+      }
+
+      .urgent-card {
+        width: min(760px, 100%);
+        padding: clamp(34px, 6vw, 72px);
+        border: 1px solid #bfc5d2;
+        border-radius: 18px;
+        background: #ffffff;
+        box-shadow: 0 24px 70px rgba(30, 55, 183, 0.12);
+      }
+
+      .urgent-kicker {
+        margin: 0 0 16px;
+        color: #1e37b7;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .urgent-title {
+        margin: 0;
+        color: #0f172a;
+        font-size: clamp(40px, 7vw, 74px);
+        font-weight: 400;
+        line-height: 0.98;
+        text-transform: uppercase;
+      }
+
+      .urgent-copy {
+        max-width: 620px;
+        margin: 24px 0 0;
+        color: #475569;
+        font-size: 20px;
+        line-height: 1.5;
+      }
+
+      .urgent-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 34px;
+      }
+
+      .urgent-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 56px;
+        padding: 0 24px;
+        border: 1px solid #1e37b7;
+        border-radius: 8px;
+        color: #1e37b7;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .urgent-action--primary {
+        background: #1e37b7;
+        color: #ffffff;
+      }
+
+      @media (max-width: 620px) {
+        .urgent-shell {
+          padding: 18px;
+        }
+
+        .urgent-actions,
+        .urgent-action {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body class="urgent-page brand-palette">
+    <PageLoader />
+    <main class="urgent-shell">
+      <section class="urgent-card" aria-labelledby="urgent-title">
+        <p class="urgent-kicker">Urgenze odontoiatriche</p>
+        <h1 id="urgent-title" class="urgent-title">Siamo qui quando serve</h1>
+        <p class="urgent-copy">
+          Emergenza: i pazienti sono di solito visti il giorno in cui chiamano. Contatta lo studio per
+          descrivere il problema e ricevere le indicazioni più adatte.
+        </p>
+        <div class="urgent-actions">
+          <a class="urgent-action urgent-action--primary" href="tel:+390392022489">Chiama in studio</a>
+          <a class="urgent-action" href="/richiesta/">Richiedi appuntamento</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
