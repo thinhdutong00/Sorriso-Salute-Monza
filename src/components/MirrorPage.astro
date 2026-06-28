@@ -53,12 +53,18 @@ const activityStickyScript = `
   const hero =
     document.querySelector('.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child') ||
     document.querySelector(".elementor-widget-elementskit-breadcrumb")?.closest(".elementor-element");
+  const footer = document.querySelector(".ekit-template-content-footer") || document.querySelector("footer");
 
   const updateVisibility = () => {
     const threshold = hero
       ? hero.getBoundingClientRect().bottom + window.scrollY - 24
       : Math.round(window.innerHeight * 0.72);
-    bar.classList.toggle("is-visible", window.scrollY > threshold);
+    const isPastHero = window.scrollY > threshold;
+    const isAtFooterEnd = footer
+      ? footer.getBoundingClientRect().bottom <= window.innerHeight + 2
+      : false;
+
+    bar.classList.toggle("is-visible", isPastHero && !isAtFooterEnd);
   };
 
   updateVisibility();
