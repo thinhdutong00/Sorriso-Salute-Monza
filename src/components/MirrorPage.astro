@@ -18,10 +18,14 @@ if (!page) {
 }
 
 const pagesDir = path.resolve("src/data/mirror/pages");
-const [head, body] = await Promise.all([
+const [head, rawBody] = await Promise.all([
   readFile(path.join(pagesDir, page.headFile), "utf8"),
   readFile(path.join(pagesDir, page.bodyFile), "utf8"),
 ]);
+const body = rawBody.replaceAll(
+  "Un sorriso più sano non può aspettare, <br />Prenota ora!",
+  "Un sorriso<br />che sembri tuo,<br />solo migliore",
+);
 
 const isActivityServicePage =
   page.path.startsWith("/attivita/") &&
