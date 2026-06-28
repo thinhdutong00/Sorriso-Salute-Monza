@@ -3,7 +3,12 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://sorrisoesalutemonza.it",
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        !page.endsWith("/attivita/implantologia/") && !page.endsWith("/prenota-una-visita/"),
+    }),
+  ],
   build: {
     inlineStylesheets: "always",
   },

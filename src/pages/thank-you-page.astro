@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 ---
@@ -16,6 +17,7 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
     <meta name="theme-color" content="#1E37B7" />
     <FaviconLinks />
     <GoogleAdsTracking />
+    <BrandPalette />
     <script is:inline>
       if (typeof window.gtag === "function") {
         window.gtag("event", "conversion", {
@@ -25,7 +27,7 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
     </script>
     <title>Grazie | Sorriso & Salute Monza</title>
   </head>
-  <body class="request-body">
+  <body class="request-body brand-palette">
     <header class="request-topbar">
       <div class="request-topbar-inner">
         <a class="request-back-link" href="/">

@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 ---
@@ -16,9 +17,10 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
     <meta name="theme-color" content="#1E37B7" />
     <FaviconLinks />
     <GoogleAdsTracking />
+    <BrandPalette />
     <title>Prenota la tua visita | Sorriso & Salute Monza</title>
   </head>
-  <body class="booking-choice-body">
+  <body class="booking-choice-body brand-palette">
     <main class="booking-choice-shell" aria-label="Preferenze prenotazione">
       <a class="booking-choice-button" href="tel:+390392022489">Chiama lo studio</a>
       <a class="booking-choice-button booking-choice-button--primary" href="/richiesta/">Prenota online (consigliato)</a>

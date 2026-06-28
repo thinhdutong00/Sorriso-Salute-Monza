@@ -1,0 +1,152 @@
+---
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import BrandPalette from "./BrandPalette.astro";
+import GoogleAdsTracking from "./GoogleAdsTracking.astro";
+import PageLoader from "./PageLoader.astro";
+import manifest from "../data/mirror/manifest.json";
+
+interface Props {
+  mirrorPath: string;
+}
+
+const { mirrorPath } = Astro.props;
+const page = manifest.pages.find((entry) => entry.path === mirrorPath);
+
+if (!page) {
+  throw new Error(`Missing mirrored page for ${mirrorPath}`);
+}
+
+const pagesDir = path.resolve("src/data/mirror/pages");
+const [head, body] = await Promise.all([
+  readFile(path.join(pagesDir, page.headFile), "utf8"),
+  readFile(path.join(pagesDir, page.bodyFile), "utf8"),
+]);
+
+const isActivityServicePage =
+  page.path.startsWith("/attivita/") &&
+  page.path !== "/attivita/" &&
+  page.path !== "/attivita/implantologia/";
+
+const serviceTitleMatch = body.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+const serviceTitle = serviceTitleMatch
+  ? serviceTitleMatch[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
+  : page.title.split("|")[0].trim();
+
+const activityStickyScript = `
+(() => {
+  const bar = document.querySelector("[data-activity-sticky-cta]");
+  if (!bar) return;
+
+  const hero =
+    document.querySelector('.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child') ||
+    document.querySelector(".elementor-widget-elementskit-breadcrumb")?.closest(".elementor-element");
+
+  const updateVisibility = () => {
+    const threshold = hero
+      ? hero.getBoundingClientRect().bottom + window.scrollY - 24
+      : Math.round(window.innerHeight * 0.72);
+    bar.classList.toggle("is-visible", window.scrollY > threshold);
+  };
+
+  updateVisibility();
+  window.addEventListener("scroll", updateVisibility, { passive: true });
+  window.addEventListener("resize", updateVisibility);
+})();
+`;
+
+const removeLegacyAppointmentButtonScript = `
+document.querySelectorAll(".btn-scroll-centrato").forEach((button) => button.remove());
+`;
+
+const mirrorHeaderScript = `
+(() => {
+  const body = document.body;
+  const header = document.querySelector(".ekit-template-content-header");
+  if (!header) return;
+
+  let lastY = window.scrollY;
+  let ticking = false;
+
+  const getHero = () => {
+    if (body.classList.contains("home")) {
+      return document.querySelector(".elementor-7051 .elementor-element.elementor-element-5c1edef1");
+    }
+
+    return (
+      document.querySelector('.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child:has(.elementor-widget-elementskit-breadcrumb)') ||
+      document.querySelector(".elementor-widget-elementskit-breadcrumb")?.closest(".elementor-element") ||
+      document.querySelector('.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child')
+    );
+  };
+
+  const updateHeader = () => {
+    const currentY = Math.max(0, window.scrollY || window.pageYOffset || 0);
+    const hero = getHero();
+    const headerHeight = header.getBoundingClientRect().height || 88;
+    const heroBottom = hero ? hero.getBoundingClientRect().bottom + currentY : window.innerHeight * 0.72;
+    const isPastHero = currentY + headerHeight >= heroBottom - 8;
+    const scrollingDown = currentY > lastY + 6;
+    const scrollingUp = currentY < lastY - 6;
+
+    body.classList.toggle("mirror-header-over-hero", !isPastHero);
+    body.classList.toggle("mirror-header-solid", isPastHero);
+
+    if (currentY <= 12 || scrollingUp) {
+      body.classList.remove("mirror-header-hidden");
+    } else if (scrollingDown && currentY > headerHeight + 28) {
+      body.classList.add("mirror-header-hidden");
+    }
+
+    lastY = currentY;
+    ticking = false;
+  };
+
+  const requestUpdate = () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateHeader);
+  };
+
+  updateHeader();
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+  window.addEventListener("load", updateHeader);
+})();
+`;
+---
+
+<!doctype html>
+<html lang={page.lang || "it-IT"}>
+  <head>
+    <Fragment set:html={head} />
+    <GoogleAdsTracking />
+    <BrandPalette />
+  </head>
+  <body class:list={[page.bodyClass, "brand-palette", "mirror-header-over-hero"]} id={page.bodyId || undefined}>
+    <PageLoader />
+    <Fragment set:html={body} />
+    <script is:inline set:html={removeLegacyAppointmentButtonScript} />
+    <script is:inline set:html={mirrorHeaderScript} />
+    {
+      isActivityServicePage && (
+        <aside class="activity-sticky-cta" data-activity-sticky-cta aria-label="Prenotazione servizio">
+          <div class="activity-sticky-cta__inner">
+            <div class="activity-sticky-cta__service">
+              <span>Servizio</span>
+              <strong>{serviceTitle}</strong>
+            </div>
+            <a class="activity-sticky-cta__button" href="/richiesta/">
+              Richiedi una visita
+            </a>
+          </div>
+        </aside>
+      )
+    }
+    {
+      isActivityServicePage && (
+        <script is:inline set:html={activityStickyScript} />
+      )
+    }
+  </body>
+</html>

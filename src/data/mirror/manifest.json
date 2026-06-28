@@ -1,0 +1,490 @@
+{
+  "generatedAt": "2026-06-27T21:24:20.089Z",
+  "source": "https://www.sorrisoesalute.it",
+  "target": "https://sorrisoesalutemonza.it",
+  "reservedRedirects": {
+    "/attivita/implantologia/": "/implantologia/",
+    "/prenota-una-visita/": "/richiesta/"
+  },
+  "pages": [
+    {
+      "path": "/",
+      "sourceUrl": "https://www.sorrisoesalute.it/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/",
+      "title": "Home - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "home wp-singular page-template page-template-elementor_header_footer page page-id-7051 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-7051",
+      "bodyId": "",
+      "headFile": "home.head.html",
+      "bodyFile": "home.body.html"
+    },
+    {
+      "path": "/attivita/",
+      "sourceUrl": "https://www.sorrisoesalute.it/attivita/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/",
+      "title": "Attività - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-101 page-parent wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-101",
+      "bodyId": "",
+      "headFile": "attivita.head.html",
+      "bodyFile": "attivita.body.html"
+    },
+    {
+      "path": "/attivita/chirurgia-orale/",
+      "sourceUrl": "https://www.sorrisoesalute.it/attivita/chirurgia-orale/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/chirurgia-orale/",
+      "title": "Chirurgia Orale e Chirurgia Estrattiva a Monza | Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-7479 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-7479",
+      "bodyId": "",
+      "headFile": "attivita__chirurgia-orale.head.html",
+      "bodyFile": "attivita__chirurgia-orale.body.html"
+    },
+    {
+      "path": "/attivita/endodonzia/",
+      "sourceUrl": "https://www.sorrisoesalute.it/attivita/endodonzia/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/endodonzia/",
+      "title": "Endodonzia e Devitalizzazione Denti a Monza | Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-7501 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-7501",
+      "bodyId": "",
+      "headFile": "attivita__endodonzia.head.html",
+      "bodyFile": "attivita__endodonzia.body.html"
+    },
+    {
+      "path": "/attivita/estetica-del-sorriso/",
+      "sourceUrl": "https://www.sorrisoesalute.it/attivita/estetica-del-sorriso/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/estetica-del-sorriso/",
+      "title": "Estetica del Sorriso e Sbiancamento a Monza | Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-2485 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-2485",
+      "bodyId": "",
+      "headFile": "attivita__estetica-del-sorriso.head.html",
+      "bodyFile": "attivita__estetica-del-sorriso.body.html"
+    },
+    {
+      "path": "/attivita/gnatologia/",
+      "sourceUrl": "https://www.sorrisoesalute.it/attivita/gnatologia/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/gnatologia/",
+      "title": "Gnatologia e Articolazione Temporo-Mandibolare | Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-7502 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-7502",
+      "bodyId": "",
+      "headFile": "attivita__gnatologia.head.html",
+      "bodyFile": "attivita__gnatologia.body.html"
+    },
+    {
+      "path": "/attivita/igiene-orale-e-profilassi/",
+      "sourceUrl": "https://www.sorrisoesalute.it/attivita/igiene-orale-e-profilassi/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/igiene-orale-e-profilassi/",
+      "title": "Igiene Orale e Profilassi a Monza e Brianza | Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-5680 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-5680",
+      "bodyId": "",
+      "headFile": "attivita__igiene-orale-e-profilassi.head.html",
+      "bodyFile": "attivita__igiene-orale-e-profilassi.body.html"
+    },
+    {
+      "path": "/attivita/odontoiatria-conservativa/",
+      "sourceUrl": "https://www.sorrisoesalute.it/attivita/odontoiatria-conservativa/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/odontoiatria-conservativa/",
+      "title": "Odontoiatria Conservativa a Monza | Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-5694 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-5694",
+      "bodyId": "",
+      "headFile": "attivita__odontoiatria-conservativa.head.html",
+      "bodyFile": "attivita__odontoiatria-conservativa.body.html"
+    },
+    {
+      "path": "/attivita/ortodonzia/",
+      "sourceUrl": "https://www.sorrisoesalute.it/attivita/ortodonzia/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/ortodonzia/",
+      "title": "Ortodonzia e Apparecchio Invisibile a Monza | Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-5699 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-5699",
+      "bodyId": "",
+      "headFile": "attivita__ortodonzia.head.html",
+      "bodyFile": "attivita__ortodonzia.body.html"
+    },
+    {
+      "path": "/attivita/parodontologia/",
+      "sourceUrl": "https://www.sorrisoesalute.it/attivita/parodontologia/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/parodontologia/",
+      "title": "Parodontologia: Cura delle Gengive e Parodontite | Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-7478 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-7478",
+      "bodyId": "",
+      "headFile": "attivita__parodontologia.head.html",
+      "bodyFile": "attivita__parodontologia.body.html"
+    },
+    {
+      "path": "/attivita/pedodonzia/",
+      "sourceUrl": "https://www.sorrisoesalute.it/attivita/pedodonzia/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/pedodonzia/",
+      "title": "Pedodonzia - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-7503 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-7503",
+      "bodyId": "",
+      "headFile": "attivita__pedodonzia.head.html",
+      "bodyFile": "attivita__pedodonzia.body.html"
+    },
+    {
+      "path": "/attivita/protesi-dentale/",
+      "sourceUrl": "https://www.sorrisoesalute.it/attivita/protesi-dentale/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/protesi-dentale/",
+      "title": "Protesi dentale - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-6711 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-6711",
+      "bodyId": "",
+      "headFile": "attivita__protesi-dentale.head.html",
+      "bodyFile": "attivita__protesi-dentale.body.html"
+    },
+    {
+      "path": "/chi-siamo-studio-dentistico-monza/",
+      "sourceUrl": "https://www.sorrisoesalute.it/chi-siamo-studio-dentistico-monza/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/chi-siamo-studio-dentistico-monza/",
+      "title": "Chi Siamo | Studio Dentistico Sorriso & Salute a Monza",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-539 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-539",
+      "bodyId": "",
+      "headFile": "chi-siamo-studio-dentistico-monza.head.html",
+      "bodyFile": "chi-siamo-studio-dentistico-monza.body.html"
+    },
+    {
+      "path": "/chi-siamo/",
+      "sourceUrl": "https://www.sorrisoesalute.it/chi-siamo",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/chi-siamo-studio-dentistico-monza/",
+      "title": "Chi Siamo | Studio Dentistico Sorriso & Salute a Monza",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-539 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-539",
+      "bodyId": "",
+      "headFile": "chi-siamo.head.html",
+      "bodyFile": "chi-siamo.body.html"
+    },
+    {
+      "path": "/contatti/",
+      "sourceUrl": "https://www.sorrisoesalute.it/contatti/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/contatti/",
+      "title": "Studio Dentistico Sorriso & Salute Monza | Prenotazioni e Info",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-156 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-156",
+      "bodyId": "",
+      "headFile": "contatti.head.html",
+      "bodyFile": "contatti.body.html"
+    },
+    {
+      "path": "/convenzioni-dirette-studio-dentistico-monza/",
+      "sourceUrl": "https://www.sorrisoesalute.it/convenzioni-dirette-studio-dentistico-monza/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/convenzioni-dirette-studio-dentistico-monza/",
+      "title": "Convenzioni Dirette Studio Dentistico Monza | Sorriso & Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-3610 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-3610",
+      "bodyId": "",
+      "headFile": "convenzioni-dirette-studio-dentistico-monza.head.html",
+      "bodyFile": "convenzioni-dirette-studio-dentistico-monza.body.html"
+    },
+    {
+      "path": "/convenzioni-dirette/",
+      "sourceUrl": "https://www.sorrisoesalute.it/convenzioni-dirette/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/convenzioni-dirette-studio-dentistico-monza/",
+      "title": "Convenzioni Dirette Studio Dentistico Monza | Sorriso & Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-3610 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-3610",
+      "bodyId": "",
+      "headFile": "convenzioni-dirette.head.html",
+      "bodyFile": "convenzioni-dirette.body.html"
+    },
+    {
+      "path": "/convenzioni-indirette/",
+      "sourceUrl": "https://www.sorrisoesalute.it/convenzioni-indirette/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/convenzioni-indirette/",
+      "title": "Convenzioni Indirette Studio Dentistico Monza | Sorriso & Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-7733 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-7733",
+      "bodyId": "",
+      "headFile": "convenzioni-indirette.head.html",
+      "bodyFile": "convenzioni-indirette.body.html"
+    },
+    {
+      "path": "/cookie-policy/",
+      "sourceUrl": "https://www.sorrisoesalute.it/cookie-policy/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/cookie-policy/",
+      "title": "Cookie Policy - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template-default page page-id-8076 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-kit-4078 elementor-page elementor-page-8076",
+      "bodyId": "",
+      "headFile": "cookie-policy.head.html",
+      "bodyFile": "cookie-policy.body.html"
+    },
+    {
+      "path": "/doctors/",
+      "sourceUrl": "https://www.sorrisoesalute.it/doctors/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/doctors/",
+      "title": "Equipe - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-4148 page-parent wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-4148",
+      "bodyId": "",
+      "headFile": "doctors.head.html",
+      "bodyFile": "doctors.body.html"
+    },
+    {
+      "path": "/doctors/dr-rohini-joe/",
+      "sourceUrl": "https://www.sorrisoesalute.it/doctors/dr-rohini-joe/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/doctors/dr-rohini-joe/",
+      "title": "Dr.Rohini Joe - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-3425 page-child parent-pageid-4148 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-3425",
+      "bodyId": "",
+      "headFile": "doctors__dr-rohini-joe.head.html",
+      "bodyFile": "doctors__dr-rohini-joe.body.html"
+    },
+    {
+      "path": "/doctors/jacob-jones/",
+      "sourceUrl": "https://www.sorrisoesalute.it/doctors/jacob-jones/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/doctors/jacob-jones/",
+      "title": "Jacob Jones - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-5728 page-child parent-pageid-4148 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-5728",
+      "bodyId": "",
+      "headFile": "doctors__jacob-jones.head.html",
+      "bodyFile": "doctors__jacob-jones.body.html"
+    },
+    {
+      "path": "/doctors/jordan-brown/",
+      "sourceUrl": "https://www.sorrisoesalute.it/doctors/jordan-brown/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/doctors/jordan-brown/",
+      "title": "Jordan Brown - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-5723 page-child parent-pageid-4148 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-5723",
+      "bodyId": "",
+      "headFile": "doctors__jordan-brown.head.html",
+      "bodyFile": "doctors__jordan-brown.body.html"
+    },
+    {
+      "path": "/doctors/taylor-smith/",
+      "sourceUrl": "https://www.sorrisoesalute.it/doctors/taylor-smith/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/doctors/taylor-smith/",
+      "title": "Taylor Smith - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-5744 page-child parent-pageid-4148 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-5744",
+      "bodyId": "",
+      "headFile": "doctors__taylor-smith.head.html",
+      "bodyFile": "doctors__taylor-smith.body.html"
+    },
+    {
+      "path": "/faqs/",
+      "sourceUrl": "https://www.sorrisoesalute.it/faqs/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/faqs/",
+      "title": "FAQs - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-4058 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-4058",
+      "bodyId": "",
+      "headFile": "faqs.head.html",
+      "bodyFile": "faqs.body.html"
+    },
+    {
+      "path": "/home-image/",
+      "sourceUrl": "https://www.sorrisoesalute.it/home-image/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/home-image/",
+      "title": "Home - Image - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-7026 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-7026",
+      "bodyId": "",
+      "headFile": "home-image.head.html",
+      "bodyFile": "home-image.body.html"
+    },
+    {
+      "path": "/home-slider/",
+      "sourceUrl": "https://www.sorrisoesalute.it/home-slider/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/home-slider/",
+      "title": "Home - Slider - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-7032 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-7032",
+      "bodyId": "",
+      "headFile": "home-slider.head.html",
+      "bodyFile": "home-slider.body.html"
+    },
+    {
+      "path": "/home-video/",
+      "sourceUrl": "https://www.sorrisoesalute.it/home-video/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/home-video/",
+      "title": "Home - Video - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-7038 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-7038",
+      "bodyId": "",
+      "headFile": "home-video.head.html",
+      "bodyFile": "home-video.body.html"
+    },
+    {
+      "path": "/privacy-policy/",
+      "sourceUrl": "https://www.sorrisoesalute.it/privacy-policy/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/privacy-policy/",
+      "title": "Privacy Policy - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "privacy-policy wp-singular page-template-default page page-id-3 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-kit-4078 elementor-page elementor-page-3",
+      "bodyId": "",
+      "headFile": "privacy-policy.head.html",
+      "bodyFile": "privacy-policy.body.html"
+    },
+    {
+      "path": "/protesi-dentale/",
+      "sourceUrl": "https://www.sorrisoesalute.it/protesi-dentale",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/protesi-dentale/",
+      "title": "Protesi dentale - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-6711 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-6711",
+      "bodyId": "",
+      "headFile": "protesi-dentale.head.html",
+      "bodyFile": "protesi-dentale.body.html"
+    },
+    {
+      "path": "/recensioni-studio-dentistico-monza/",
+      "sourceUrl": "https://www.sorrisoesalute.it/recensioni-studio-dentistico-monza/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/recensioni-studio-dentistico-monza/",
+      "title": "Recensioni Studio Dentistico Sorriso & Salute a Monza",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-3636 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-3636",
+      "bodyId": "",
+      "headFile": "recensioni-studio-dentistico-monza.head.html",
+      "bodyFile": "recensioni-studio-dentistico-monza.body.html"
+    },
+    {
+      "path": "/sample-page/",
+      "sourceUrl": "https://www.sorrisoesalute.it/sample-page/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/sample-page/",
+      "title": "Sample Page - Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template-default page page-id-2 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-kit-4078",
+      "bodyId": "",
+      "headFile": "sample-page.head.html",
+      "bodyFile": "sample-page.body.html"
+    },
+    {
+      "path": "/struttura-studio-dentistico-monza/",
+      "sourceUrl": "https://www.sorrisoesalute.it/struttura-studio-dentistico-monza/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/struttura-studio-dentistico-monza/",
+      "title": "La Nostra Struttura | Studio Dentistico Sorriso & Salute a Monza",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-7543 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-7543",
+      "bodyId": "",
+      "headFile": "struttura-studio-dentistico-monza.head.html",
+      "bodyFile": "struttura-studio-dentistico-monza.body.html"
+    },
+    {
+      "path": "/studio-dentistico-monza-dentista/igiene-orale-e-profilassi/",
+      "sourceUrl": "https://www.sorrisoesalute.it/studio-dentistico-monza-dentista/igiene-orale-e-profilassi/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/igiene-orale-e-profilassi/",
+      "title": "Igiene Orale e Profilassi a Monza e Brianza | Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-5680 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-5680",
+      "bodyId": "",
+      "headFile": "studio-dentistico-monza-dentista__igiene-orale-e-profilassi.head.html",
+      "bodyFile": "studio-dentistico-monza-dentista__igiene-orale-e-profilassi.body.html"
+    },
+    {
+      "path": "/studio-dentistico-monza-dentista/ortodonzia/",
+      "sourceUrl": "https://www.sorrisoesalute.it/studio-dentistico-monza-dentista/ortodonzia/",
+      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/ortodonzia/",
+      "title": "Ortodonzia e Apparecchio Invisibile a Monza | Sorriso e Salute",
+      "lang": "en-US",
+      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-5699 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-5699",
+      "bodyId": "",
+      "headFile": "studio-dentistico-monza-dentista__ortodonzia.head.html",
+      "bodyFile": "studio-dentistico-monza-dentista__ortodonzia.body.html"
+    }
+  ],
+  "failedAssets": [
+    {
+      "url": "https://www.sorrisoesalute.it/wp-content/plugins/elementskit/modules/parallax/",
+      "error": "asset status 403"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/plugins/elementor/assets/images/placeholder.png&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;ekit_slider_tab_content&quot;:&quot;&quot;},{&quot;ekit_slider_title&quot;:&quot;Slide Two&quot;,&quot;_id&quot;:&quot;4058bad&quot;,&quot;ekit_slider_tab_content&quot;:&quot;7a2bb38d***1764370821368&quot;,&quot;ekit_slider_thumbs_image&quot;:{&quot;url&quot;:&quot;https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/plugins/elementor/assets/images/placeholder.png&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;}}],&quot;progressBar&quot;:&quot;&quot;,&quot;speedTime&quot;:800,&quot;loopEnable&quot;:&quot;yes&quot;,&quot;autoPlayDelay&quot;:5000,&quot;breakpointsOption&quot;:{&quot;360&quot;:{&quot;slidesPerView&quot;:1,&quot;spaceBetween&quot;:0},&quot;767&quot;:{&quot;slidesPerView&quot;:1,&quot;spaceBetween&quot;:0},&quot;1024&quot;:{&quot;slidesPerView&quot;:1,&quot;spaceBetween&quot;:0}}}}",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://www.sorrisoesalute.it/wp-content/uploads/2021/03/Sorrisosalute.mp4?_=1&quot;}",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://www.sorrisoesalute.it/wp-content/plugins/elementor/assets/",
+      "error": "asset status 403"
+    },
+    {
+      "url": "https://www.sorrisoesalute.it/wp-content/uploads",
+      "error": "asset status 403"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/03/Paradontite-infiammazione.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/03/Paradontite-da-sapere.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/03/Paradontite-infiammazione-225x300.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/03/Paradontite-infiammazione-773x1030.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/03/Paradontite-infiammazione-768x1024.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/03/Paradontite-infiammazione-529x705.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/03/Paradontite-da-sapere-300x200.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/03/Paradontite-da-sapere-768x512.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/03/Paradontite-da-sapere-705x470.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/02/Denti-saliva-monza-brianza.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/02/Denti-saliva-monza-brianza-300x200.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/02/Denti-saliva-monza-brianza-768x512.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2020/02/Denti-saliva-monza-brianza-705x470.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2024/10/team-3.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2024/10/team-4.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2024/10/team-1.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2024/10/team-2.jpg",
+      "error": "asset status 404"
+    },
+    {
+      "url": "https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/plugins/elementor/assets/images/placeholder.png&quot;,&quot;id&quot;:&quot;&quot;,&quot;size&quot;:&quot;&quot;},&quot;ekit_slider_tab_content&quot;:&quot;&quot;},{&quot;ekit_slider_title&quot;:&quot;Slide Two&quot;,&quot;_id&quot;:&quot;4058bad&quot;,&quot;ekit_slider_tab_content&quot;:&quot;a75869f***1764365345835&quot;,&quot;ekit_slider_thumbs_image&quot;:{&quot;url&quot;:&quot;https://mll2louvmivi.i.optimole.com/w:auto/h:auto/q:mauto/f:best/https://www.sorrisoesalute.it/wp-content/uploads/2025/11/Monza-di-sera-e1701271017744.jpg&quot;,&quot;id&quot;:7204,&quot;size&quot;:&quot;&quot;,&quot;alt&quot;:&quot;&quot;,&quot;source&quot;:&quot;library&quot;}}],&quot;progressBar&quot;:&quot;&quot;,&quot;speedTime&quot;:800,&quot;loopEnable&quot;:&quot;yes&quot;,&quot;autoPlayDelay&quot;:5000,&quot;breakpointsOption&quot;:{&quot;360&quot;:{&quot;slidesPerView&quot;:1,&quot;spaceBetween&quot;:0},&quot;767&quot;:{&quot;slidesPerView&quot;:1,&quot;spaceBetween&quot;:0},&quot;1024&quot;:{&quot;slidesPerView&quot;:1,&quot;spaceBetween&quot;:0}}}}",
+      "error": "asset status 404"
+    }
+  ]
+}

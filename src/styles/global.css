@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap");
+
 :root {
+  --nav-font-family: Inter, sans-serif;
   --clinic-white: #ffffff;
   --clinic-mist: #f5f2ef;
   --clinic-mint: #eef2ff;
@@ -309,6 +312,12 @@ textarea {
   transform: translate(-50%, calc(-100% - 36px));
 }
 
+.site-header,
+.site-header a,
+.site-header button {
+  font-family: var(--nav-font-family);
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -390,8 +399,11 @@ textarea {
 
 .desktop-nav a {
   color: rgba(255, 255, 255, 0.82);
+  font-family: var(--nav-font-family);
   font-size: 0.95rem;
   font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1;
   white-space: nowrap;
 }
 
@@ -466,7 +478,10 @@ textarea {
   padding: 14px 16px;
   border-radius: 16px;
   color: var(--clinic-ink);
-  font-weight: 800;
+  font-family: var(--nav-font-family);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.2;
 }
 
 .mobile-nav a:hover {

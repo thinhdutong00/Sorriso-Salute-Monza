@@ -1,0 +1,187 @@
+<div class="page-loader" id="pageLoader" aria-hidden="true">
+  <div class="loader-logo">
+    <span class="loader-mark">
+      <img src="/assets/loader-tooth.png" width="300" height="353" alt="" decoding="async" />
+    </span>
+    <span class="loader-wordmark">
+      <span>STUDIO DENTISTICO</span>
+      <strong>SORRISO &amp; SALUTE</strong>
+    </span>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const loader = document.querySelector("#pageLoader");
+    if (!loader) return;
+
+    const startedAt = performance.now();
+    const minDuration = 520;
+
+    const hideLoader = () => {
+      if (loader.classList.contains("loader-hidden")) return;
+      const removeLoader = () => loader.remove();
+      loader.addEventListener("transitionend", removeLoader, { once: true });
+      loader.classList.add("loader-hidden");
+      window.setTimeout(removeLoader, 360);
+    };
+
+    const scheduleHide = () => {
+      const elapsed = performance.now() - startedAt;
+      window.setTimeout(hideLoader, Math.max(0, minDuration - elapsed));
+    };
+
+    window.requestAnimationFrame(() => window.requestAnimationFrame(scheduleHide));
+  })();
+</script>
+
+<style>
+  .page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    background: var(--accent, #1e37b7);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 220ms ease, visibility 220ms ease;
+    contain: layout style paint;
+  }
+
+  .page-loader.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .loader-logo {
+    display: grid;
+    justify-items: center;
+    gap: 0.82rem;
+    filter: drop-shadow(0 16px 28px rgba(10, 24, 82, 0.16));
+    animation: loader-pop 360ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .loader-mark {
+    position: relative;
+    width: clamp(88px, 17vw, 132px);
+    aspect-ratio: 300 / 353;
+  }
+
+  .loader-mark img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .loader-mark::before {
+    position: absolute;
+    top: 28.9%;
+    left: 22.9%;
+    z-index: 2;
+    width: 18.8%;
+    height: 17.6%;
+    border-radius: 999px;
+    background: var(--accent, #1e37b7);
+    content: "";
+    animation: loader-eye-cover 520ms ease-in-out 40ms both;
+  }
+
+  .loader-mark::after {
+    position: absolute;
+    top: 36.5%;
+    left: 25.1%;
+    z-index: 3;
+    width: 16.5%;
+    height: 2.9%;
+    border-radius: 999px;
+    background: var(--white, #ffffff);
+    content: "";
+    transform: scaleX(0) rotate(-8deg);
+    transform-origin: center;
+    animation: loader-wink-line 520ms ease-in-out 40ms both;
+  }
+
+  .loader-wordmark {
+    display: grid;
+    justify-items: center;
+    color: var(--white, #ffffff);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+
+  .loader-wordmark span {
+    font-size: clamp(0.78rem, 2.5vw, 1rem);
+    font-weight: 760;
+  }
+
+  .loader-wordmark strong {
+    font-size: clamp(0.98rem, 3vw, 1.28rem);
+    font-weight: 950;
+  }
+
+  @keyframes loader-pop {
+    0% {
+      opacity: 0;
+      transform: scale(0.88) translateY(6px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes loader-eye-cover {
+    0%,
+    26%,
+    100% {
+      opacity: 0;
+      transform: scale(0.05);
+    }
+
+    48%,
+    68% {
+      opacity: 1;
+      transform: scale(1.18);
+    }
+  }
+
+  @keyframes loader-wink-line {
+    0%,
+    26%,
+    100% {
+      opacity: 0;
+      transform: scaleX(0) rotate(-8deg);
+    }
+
+    48%,
+    68% {
+      opacity: 1;
+      transform: scaleX(1) rotate(-8deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .loader-logo,
+    .loader-mark::before,
+    .loader-mark::after {
+      animation: none;
+    }
+
+    .loader-mark::before,
+    .loader-mark::after {
+      opacity: 0;
+    }
+
+    .page-loader {
+      transition-duration: 120ms;
+    }
+  }
+</style>

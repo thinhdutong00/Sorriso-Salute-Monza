@@ -1,0 +1,21 @@
+---
+import MirrorPage from "../components/MirrorPage.astro";
+import manifest from "../data/mirror/manifest.json";
+
+export function getStaticPaths() {
+  return manifest.pages
+    .filter((page) => page.path !== "/")
+    .map((page) => ({
+      params: {
+        slug: page.path.replace(/^\/|\/$/g, ""),
+      },
+      props: {
+        mirrorPath: page.path,
+      },
+    }));
+}
+
+const { mirrorPath } = Astro.props;
+---
+
+<MirrorPage mirrorPath={mirrorPath} />
