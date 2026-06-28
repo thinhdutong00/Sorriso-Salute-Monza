@@ -172,11 +172,20 @@ const mirrorNavigationScript = `
       return;
     }
 
-    nav.querySelectorAll(":scope > li").forEach((item) => {
+    Array.from(nav.children).forEach((item) => {
+      if (!(item instanceof HTMLElement) || item.tagName !== "LI") return;
       if (item.classList.contains("mirror-nav-item")) return;
       const link = item.querySelector("a");
       const label = normalise(link?.textContent);
-      if (label === "chi siamo" || label === "attivita") {
+      const href = link?.getAttribute("href") || "";
+      if (
+        label === "chi siamo" ||
+        label.startsWith("chi siamo") ||
+        label === "attivita" ||
+        label.startsWith("attivita") ||
+        href.includes("/chi-siamo") ||
+        href.includes("/attivita/")
+      ) {
         item.classList.add("mirror-nav-item-hidden");
       }
     });
@@ -201,6 +210,21 @@ const mirrorNavigationScript = `
   };
 
   enhanceNav();
+  window.setTimeout(enhanceNav, 250);
+  window.setTimeout(enhanceNav, 900);
+
+  const observeNav = () => {
+    const nav = getNav();
+    if (!nav || nav.dataset.mirrorNavObserved) return;
+    nav.dataset.mirrorNavObserved = "true";
+    new MutationObserver(() => window.requestAnimationFrame(enhanceNav)).observe(nav, {
+      childList: true,
+      subtree: true,
+    });
+  };
+
+  observeNav();
+  window.setTimeout(observeNav, 300);
 
   document.addEventListener("click", (event) => {
     const toggle = event.target.closest("[data-mirror-menu-toggle]");
