@@ -18,11 +18,160 @@ if (!page) {
 }
 
 const pagesDir = path.resolve("src/data/mirror/pages");
-const [head, rawBody] = await Promise.all([
+const [rawHead, rawBody] = await Promise.all([
   readFile(path.join(pagesDir, page.headFile), "utf8"),
   readFile(path.join(pagesDir, page.bodyFile), "utf8"),
 ]);
-const body = rawBody.replaceAll(
+
+const replaceFirst = (source: string, search: string, replacement: string) => source.replace(search, replacement);
+
+const applyActivityIndexItalianHead = (html: string) => {
+  if (page.path !== "/attivita/") return html;
+
+  return html
+    .replace(
+      'content="Services Home Dental Care We are excited to meet you and provide the best dental [&hellip;]"',
+      'content="Scopri le attività odontoiatriche dello Studio Dentistico Sorriso & Salute a Monza."',
+    )
+    .replaceAll('"inLanguage":"en-US"', '"inLanguage":"it-IT"')
+    .replace('hreflang="en-US"', 'hreflang="it-IT"')
+    .replace('hreflang="en"', 'hreflang="it"');
+};
+
+const applyActivityIndexItalianBody = (html: string) => {
+  if (page.path !== "/attivita/") return html;
+
+  const cards = [
+    {
+      oldTitle: "Dental Care",
+      oldHref: "https://demo.awaikenthemes.com/primecare/demo2/services/dental-care/",
+      title: "Igiene orale e profilassi",
+      description: "Igiene professionale, prevenzione e controlli periodici per mantenere denti e gengive in salute.",
+      href: "/attivita/igiene-orale-e-profilassi/",
+    },
+    {
+      oldTitle: "Cosmetic Dentistry",
+      oldHref: "https://demo.awaikenthemes.com/primecare/demo2/services/cosmetic-dentistry/",
+      title: "Estetica del sorriso",
+      description: "Trattamenti estetici per migliorare armonia, colore e naturalezza del sorriso.",
+      href: "/attivita/estetica-del-sorriso/",
+    },
+    {
+      oldTitle: "Dental Implants",
+      oldHref: "https://demo.awaikenthemes.com/primecare/demo2/services/dental-implants/",
+      title: "Implantologia",
+      description: "Impianti dentali in titanio per tornare a sorridere e masticare con sicurezza.",
+      href: "/implantologia/",
+    },
+    {
+      oldTitle: "Teeth Whitening",
+      oldHref: "https://demo.awaikenthemes.com/primecare/demo2/services/teeth-whitening/",
+      title: "Odontoiatria conservativa",
+      description: "Cura delle lesioni dei denti e restauri conservativi per preservare struttura e funzione.",
+      href: "/attivita/odontoiatria-conservativa/",
+    },
+    {
+      oldTitle: "Emergency Dental Care",
+      title: "Chirurgia orale",
+      description: "Estrazioni, rimozione di lesioni e interventi chirurgici gestiti con attenzione e pianificazione.",
+      href: "/attivita/chirurgia-orale/",
+    },
+    {
+      oldTitle: "Dental Sealants",
+      title: "Parodontologia",
+      description: "Diagnosi e trattamento dei problemi gengivali e dei tessuti di sostegno del dente.",
+      href: "/attivita/parodontologia/",
+    },
+    {
+      oldTitle: "Pediatric Dentistry",
+      title: "Pedodonzia",
+      description: "Cure odontoiatriche dedicate ai bambini, con approccio attento e rassicurante.",
+      href: "/attivita/pedodonzia/",
+    },
+    {
+      oldTitle: "Restorative Dentistry",
+      title: "Protesi dentale",
+      description: "Soluzioni protesiche fisse o mobili per ripristinare estetica e funzione masticatoria.",
+      href: "/attivita/protesi-dentale/",
+    },
+  ];
+
+  let next = html
+    .replace(
+      '<h1 class="elementor-heading-title elementor-size-default">Services</h1>',
+      '<h1 class="elementor-heading-title elementor-size-default">Attività</h1>',
+    )
+    .replace("Personalized Care For Patient", "Cure personalizzate")
+    .replace(
+      "We understand that each patient is unique, and listen to concerns.",
+      "Ascoltiamo ogni paziente e costruiamo percorsi di cura adatti alle sue esigenze.",
+    )
+    .replace("Family Friendly", "Studio accogliente")
+    .replace(
+      "No matter your age or dental needs, we are here to help.",
+      "Accogliamo adulti e bambini con attenzione, chiarezza e continuità.",
+    )
+    .replace("Why Choose Us", "Perché scegliere Sorriso & Salute")
+    .replace("Exceptional dental care tailored to your needs", "Cure odontoiatriche pensate per le tue esigenze")
+    .replace(
+      "We take the time to understand your individual needs and goals, creating customized treatment plans to help you achieve optimal oral health.",
+      "Dedichiamo tempo all’ascolto delle esigenze di ogni paziente e costruiamo piani di cura personalizzati per raggiungere salute, funzione ed estetica.",
+    )
+    .replace(
+      "we believe that your dental experience should be more than just a routine visit. Our goal is to provide comprehensive, personalized care in a welcoming environment, where your comfort and well-being come first.",
+      "Crediamo che l’esperienza dal dentista debba essere chiara, serena e accompagnata passo dopo passo. Il nostro obiettivo è offrire cure complete in un ambiente accogliente, dove comfort e benessere vengono prima di tutto.",
+    )
+    .replace("Years Of Experience", "Anni di attività")
+    .replace("Happy Patients", "Persone aiutate")
+    .replace("Treatment Completed", "Impianti e protesi")
+    .replace('data-to-value="20"', 'data-to-value="23"')
+    .replace('data-to-value="5"', 'data-to-value="10"')
+    .replace('data-to-value="986"', 'data-to-value="10"')
+    .replace('<span class="elementor-counter-number-suffix">M+</span>', '<span class="elementor-counter-number-suffix">.000+</span>')
+    .replace(
+      /(<div class="elementor-counter-title">Impianti e protesi<\/div>[\s\S]*?<span class="elementor-counter-number-suffix">)\+/,
+      "$1.000+",
+    )
+    .replace("Testimonials", "Recensioni")
+    .replace("Listen from our happy patients", "Le parole dei nostri pazienti")
+    .replace(
+      "The goal of our clinic is to provide friendly, caring dentistry and the highest level of general, cosmetic, and specialist dental treatments. With dental practices throughout the world.",
+      "Ogni percorso nasce dall’ascolto e da una diagnosi chiara, con l’obiettivo di offrire cure precise, comprensibili e adatte alla persona.",
+    )
+    .replaceAll(
+      "I want to say thank you to my doctor Steve! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus.” “Thank you for helping me overcome my fear of the dentist! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus.",
+      "Professionalità, attenzione e chiarezza in ogni fase del percorso. Mi sono sentito seguito e ascoltato fin dalla prima visita.",
+    )
+    .replaceAll("Patient", "Paziente")
+    .replace("Dianne Russell", "Paziente Sorriso & Salute")
+    .replace("Jane Cooper", "Paziente Sorriso & Salute")
+    .replace("Artemisia Udinese", "Paziente Sorriso & Salute")
+    .replace("jenny wilson", "Paziente Sorriso & Salute");
+
+  for (const card of cards) {
+    next = replaceFirst(next, card.oldTitle, card.title);
+    next = replaceFirst(
+      next,
+      "<p>We are excited to meet you and provide the best dental care.</p>",
+      `<p>${card.description}</p>`,
+    );
+
+    if (card.oldHref) {
+      next = next.replace(card.oldHref, card.href);
+    } else {
+      next = replaceFirst(
+        next,
+        '<a class="elementskit-btn whitespace--normal" href="#">',
+        `<a class="elementskit-btn whitespace--normal" href="${card.href}">`,
+      );
+    }
+  }
+
+  return next.replaceAll("Learn More", "Nel dettaglio");
+};
+
+const head = applyActivityIndexItalianHead(rawHead);
+const body = applyActivityIndexItalianBody(rawBody).replaceAll(
   "Un sorriso più sano non può aspettare, <br />Prenota ora!",
   "Un sorriso<br />che sembri tuo,<br />solo migliore.",
 );
@@ -260,7 +409,7 @@ const mirrorNavigationScript = `
 ---
 
 <!doctype html>
-<html lang={page.lang || "it-IT"}>
+<html lang="it-IT">
   <head>
     <Fragment set:html={head} />
     <GoogleAdsTracking />
