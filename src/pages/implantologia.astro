@@ -13,11 +13,11 @@ const advantageWebpSrcSet =
   "/assets/generated/optimized/dental-advantage-480.webp 480w, /assets/generated/optimized/dental-advantage-720.webp 720w, /assets/generated/optimized/dental-advantage-980.webp 980w";
 const dentistCutout = "/assets/brand/dentist-cutout.webp";
 const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Chi siamo", href: "/chi-siamo/" },
-  { label: "Attività", href: "/attivita/" },
+  { label: "Dicono di noi", href: "/recensioni-studio-dentistico-monza/" },
   { label: "La Struttura", href: "/struttura-studio-dentistico-monza/" },
-  { label: "Contatti", href: "/contatti/" },
+  { label: "Convenzioni", href: "/convenzioni-dirette-studio-dentistico-monza/" },
+  { label: "Urgenze", href: "/urgenze/" },
+  { label: "Chiama in studio", href: "tel:+390392022489", icon: "phone" },
 ];
 
 const advantages = [
@@ -519,7 +519,23 @@ const conventionGroups = [
       </a>
 
       <nav class="desktop-nav" aria-label="Navigazione principale">
-        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+        {
+          navItems.map((item) => (
+            <a href={item.href}>
+              <span>{item.label}</span>
+              {
+                item.icon === "phone" && (
+                  <svg class="nav-link-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                    <path
+                      d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.31-.31.76-.42 1.17-.28 1.29.43 2.64.66 4.02.66.66 0 1.2.54 1.2 1.2v3.48c0 .66-.54 1.2-1.2 1.2C10.43 21.94 2.06 13.57 2.06 3.4c0-.66.54-1.2 1.2-1.2h3.49c.66 0 1.2.54 1.2 1.2 0 1.38.22 2.73.66 4.02.13.41.03.86-.29 1.17l-2.2 2.2Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                )
+              }
+            </a>
+          ))
+        }
       </nav>
 
       <button
@@ -530,7 +546,7 @@ const conventionGroups = [
         aria-expanded="false"
         data-kebab-menu-toggle
       >
-        <span class="kebab-button__dots" aria-hidden="true">
+        <span class="kebab-button__icon" aria-hidden="true">
           <span></span>
           <span></span>
           <span></span>

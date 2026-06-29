@@ -420,6 +420,7 @@ textarea {
   position: relative;
   display: inline-flex;
   align-items: center;
+  gap: 10px;
   height: 32px;
   color: var(--clinic-ink);
   font-family: var(--nav-font-family);
@@ -428,6 +429,15 @@ textarea {
   letter-spacing: 0;
   line-height: 1;
   white-space: nowrap;
+}
+
+.nav-link-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 2px;
+  flex: 0 0 auto;
+  color: currentColor;
 }
 
 .desktop-nav a::after {
@@ -523,19 +533,21 @@ textarea {
   color: rgba(255, 255, 255, 0.82);
 }
 
-.kebab-button__dots {
+.kebab-button__icon {
   display: inline-flex;
   flex-direction: column;
-  gap: 4px;
   align-items: center;
+  gap: 4px;
   justify-content: center;
-  width: 18px;
-  height: 22px;
+  width: 20px;
+  height: 32px;
+  transform: translateY(1px);
 }
 
-.kebab-button__dots span {
-  width: 4px;
-  height: 4px;
+.kebab-button__icon span {
+  display: block;
+  width: 20px;
+  height: 2px;
   border-radius: 999px;
   background: currentColor;
 }
