@@ -513,7 +513,7 @@ const conventionGroups = [
   <body class="has-sticky-cta">
     <PageLoader />
 
-    <header class="site-header" data-header>
+    <header class="site-header is-over-hero" data-header>
       <a class="brand" href="/" aria-label="Studio Dentistico Sorriso & Salute">
         <img class="brand-logo" src={brandLogo} alt="Studio Dentistico Sorriso & Salute" width="360" height="87" decoding="async" />
       </a>
@@ -521,6 +521,22 @@ const conventionGroups = [
       <nav class="desktop-nav" aria-label="Navigazione principale">
         {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
       </nav>
+
+      <button
+        class="kebab-button"
+        type="button"
+        aria-label="Apri menu esteso"
+        aria-controls="implantologia-kebab-menu"
+        aria-expanded="false"
+        data-kebab-menu-toggle
+      >
+        <span class="kebab-button__dots" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span>Menu</span>
+      </button>
 
       <button class="menu-button" type="button" aria-label="Apri menu" aria-expanded="false" data-menu-button>
         <span></span>
@@ -533,6 +549,47 @@ const conventionGroups = [
         <a href="/richiesta/">Richiedi appuntamento</a>
       </nav>
     </header>
+
+    <div class="kebab-backdrop" data-kebab-backdrop hidden></div>
+    <aside id="implantologia-kebab-menu" class="kebab-menu" data-kebab-menu tabindex="-1" aria-label="Menu principale" hidden>
+      <div class="kebab-menu__header">
+        <button type="button" class="kebab-menu__close" data-kebab-menu-close aria-label="Chiudi menu">
+          <span aria-hidden="true">×</span>
+          Chiudi
+        </button>
+      </div>
+      <nav class="kebab-menu__content" aria-label="Navigazione estesa">
+        <section class="kebab-menu__section">
+          <h2>Studio</h2>
+          <a href="/chi-siamo/">Chi siamo</a>
+          <a href="/struttura-studio-dentistico-monza/">La Struttura</a>
+          <a href="/contatti/">Contatti</a>
+          <a href="/convenzioni-dirette-studio-dentistico-monza/">Convenzioni</a>
+        </section>
+        <section class="kebab-menu__section">
+          <h2>Attività</h2>
+          <a href="/attivita/">Tutte le attività</a>
+          <a href="/attivita/igiene-orale-e-profilassi/">Igiene orale e profilassi</a>
+          <a href="/attivita/protesi-dentale/">Protesi dentale</a>
+          <a href="/attivita/odontoiatria-conservativa/">Conservativa</a>
+          <a href="/attivita/estetica-del-sorriso/">Estetica del sorriso</a>
+          <a href="/attivita/parodontologia/">Parodontologia</a>
+          <a href="/attivita/ortodonzia/">Ortodonzia</a>
+          <a href="/attivita/chirurgia-orale/">Chirurgia orale</a>
+          <a href="/attivita/pedodonzia/">Pedodonzia</a>
+          <a href="/attivita/gnatologia/">Gnatologia</a>
+          <a href="/implantologia/">Implantologia</a>
+        </section>
+        <section class="kebab-menu__section">
+          <h2>Prenota e informazioni</h2>
+          <a href="/urgenze/">Urgenze</a>
+          <a href="tel:+390392022489">Chiama in studio</a>
+          <a href="/richiesta/">Richiedi appuntamento</a>
+          <a href="/convenzioni-dirette/">Convenzioni dirette</a>
+          <a href="/convenzioni-indirette/">Convenzioni indirette</a>
+        </section>
+      </nav>
+    </aside>
 
     <main id="home">
       <section class="hero" aria-label="Implantologia dentale a Monza">
@@ -1042,6 +1099,9 @@ const conventionGroups = [
       const header = document.querySelector("[data-header]");
       const menuButton = document.querySelector("[data-menu-button]");
       const mobileNav = document.querySelector("[data-mobile-nav]");
+      const hero = document.querySelector(".hero");
+      const kebabPanel = document.querySelector("[data-kebab-menu]");
+      const kebabBackdrop = document.querySelector("[data-kebab-backdrop]");
       const stickyCta = document.querySelector("[data-sticky-cta]");
       const stickyCtaTrigger = document.querySelector("#situazioni");
       const callStudioButton = document.querySelector("[data-call-studio]");
@@ -1059,10 +1119,35 @@ const conventionGroups = [
         mobileNav?.classList.remove("is-open");
       };
 
+      const setKebabMenuState = (isOpen) => {
+        if (!(kebabPanel instanceof HTMLElement) || !(kebabBackdrop instanceof HTMLElement)) return;
+
+        kebabPanel.hidden = !isOpen;
+        kebabBackdrop.hidden = !isOpen;
+        document.body.classList.toggle("kebab-menu-open", isOpen);
+        document.querySelectorAll("[data-kebab-menu-toggle]").forEach((button) => {
+          button.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        if (isOpen) {
+          closeMobileMenu();
+          header?.classList.remove("is-hidden");
+          kebabPanel.focus({ preventScroll: true });
+        }
+      };
+
+      const updateHeaderTone = () => {
+        if (!(header instanceof HTMLElement)) return;
+        const heroBottom = hero instanceof HTMLElement ? hero.getBoundingClientRect().bottom : 0;
+        const headerHeight = header.getBoundingClientRect().height || 96;
+        header.classList.toggle("is-over-hero", heroBottom > headerHeight * 0.72);
+      };
+
       menuButton?.addEventListener("click", () => {
         const expanded = menuButton.getAttribute("aria-expanded") === "true";
         menuButton.setAttribute("aria-expanded", String(!expanded));
         mobileNav?.classList.toggle("is-open", !expanded);
+        setKebabMenuState(false);
         header?.classList.remove("is-hidden");
       });
 
@@ -1070,9 +1155,12 @@ const conventionGroups = [
         if (!header) return;
         const currentScrollY = window.scrollY;
         const isMenuOpen = mobileNav?.classList.contains("is-open");
+        const isKebabOpen = kebabPanel instanceof HTMLElement && !kebabPanel.hidden;
         const scrollDelta = currentScrollY - lastScrollY;
 
-        if (currentScrollY < 24 || isMenuOpen) {
+        updateHeaderTone();
+
+        if (currentScrollY < 24 || isMenuOpen || isKebabOpen) {
           header.classList.remove("is-hidden");
           lastScrollY = currentScrollY;
           return;
@@ -1091,12 +1179,42 @@ const conventionGroups = [
       };
 
       window.addEventListener("scroll", updateStickyHeader, { passive: true });
+      window.addEventListener("resize", updateStickyHeader);
 
       mobileNav?.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", closeMobileMenu);
       });
 
-      window.addEventListener("hashchange", closeMobileMenu);
+      kebabPanel?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setKebabMenuState(false));
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!(event.target instanceof Element)) return;
+
+        const toggle = event.target.closest("[data-kebab-menu-toggle]");
+        if (toggle) {
+          event.preventDefault();
+          setKebabMenuState(kebabPanel instanceof HTMLElement ? kebabPanel.hidden : true);
+          return;
+        }
+
+        if (event.target.closest("[data-kebab-menu-close]") || event.target === kebabBackdrop) {
+          event.preventDefault();
+          setKebabMenuState(false);
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") return;
+        closeMobileMenu();
+        setKebabMenuState(false);
+      });
+
+      window.addEventListener("hashchange", () => {
+        closeMobileMenu();
+        setKebabMenuState(false);
+      });
 
       document.querySelectorAll(".faq-item").forEach((item) => {
         item.addEventListener("toggle", () => {
@@ -1370,6 +1488,7 @@ const conventionGroups = [
         );
       };
 
+      updateStickyHeader();
       updateStickyCtaVisibility();
       updateWhatsappVisibility();
       updateCallStudioButton();
