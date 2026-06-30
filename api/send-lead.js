@@ -62,6 +62,8 @@ const buildRows = (lead) =>
     ["Pagina form", lead.paginaCorrente],
     ["Problema principale", lead.problema],
     ["Obiettivo desiderato", lead.obiettivo],
+    ["Urgenza", lead.urgenza],
+    ["Contatto preferito", lead.preferenzaContatto],
     ["Data preferita", lead.dataPreferita],
     ["Orario preferito", lead.orarioPreferito],
   ].filter(([, value]) => normalizeText(value));
@@ -93,6 +95,8 @@ export default async function handler(req, res) {
       paginaCorrente: normalizeText(body.paginaCorrente),
       problema: normalizeText(body.problema),
       obiettivo: normalizeText(body.obiettivo),
+      urgenza: normalizeText(body.urgenza),
+      preferenzaContatto: normalizeText(body.preferenzaContatto),
       dataPreferita: normalizeText(body.dataPreferita),
       orarioPreferito: normalizeText(body.orarioPreferito),
     };
@@ -128,7 +132,7 @@ export default async function handler(req, res) {
     const payload = {
       from,
       to,
-      subject: `Nuova richiesta valutazione - ${lead.nome}`,
+      subject: `Nuova richiesta ${lead.servizio ? `- ${lead.servizio}` : "valutazione"} - ${lead.nome}`,
       html,
       text,
     };

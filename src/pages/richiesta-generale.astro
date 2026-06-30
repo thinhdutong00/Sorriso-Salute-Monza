@@ -1,0 +1,417 @@
+---
+import "../styles/global.css";
+import BrandPalette from "../components/BrandPalette.astro";
+import FaviconLinks from "../components/FaviconLinks.astro";
+import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Richiedi una visita allo Studio Dentistico Sorriso & Salute di Monza scegliendo il trattamento più adatto."
+    />
+    <meta name="theme-color" content="#0E384C" />
+    <FaviconLinks />
+    <GoogleAdsTracking />
+    <BrandPalette />
+    <title>Richiedi una visita | Sorriso & Salute Monza</title>
+  </head>
+  <body class="request-body brand-palette">
+    <header class="request-topbar">
+      <div class="request-topbar-inner">
+        <a class="request-back-link" href="/" data-back-link>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15.5 4.5 8 12l7.5 7.5" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          Indietro
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="request-shell" aria-labelledby="request-title">
+        <h1 class="request-title" id="request-title">Richiedi una visita</h1>
+
+        <form class="request-form" id="richiesta-generale" action="/api/send-lead" method="post" novalidate>
+          <div class="request-progress" role="progressbar" aria-label="Avanzamento richiesta" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"></div>
+
+          <div class="request-step is-active" data-step="1">
+            <p class="quiz-kicker">Trattamento</p>
+            <h2 class="quiz-title">Per quale trattamento vuoi essere ricontattato?</h2>
+            <p class="quiz-copy">Scegli l'area più vicina alla tua esigenza: useremo questa informazione per orientare meglio la prima chiamata.</p>
+            <div class="quiz-options" data-field="servizio"></div>
+          </div>
+
+          <div class="request-step" data-step="2">
+            <p class="quiz-kicker">Obiettivo</p>
+            <h2 class="quiz-title" data-objective-title>Cosa vuoi ottenere?</h2>
+            <p class="quiz-copy" data-service-summary></p>
+            <div class="quiz-options" data-field="obiettivo"></div>
+          </div>
+
+          <div class="request-step" data-step="3">
+            <p class="quiz-kicker">Priorità</p>
+            <h2 class="quiz-title">Quanto è urgente e come preferisci essere contattato?</h2>
+            <div class="quiz-options" data-field="urgenza">
+              <button class="choice-btn" type="button" data-value="Appena possibile"><strong>Appena possibile</strong><small>Vorrei essere richiamato rapidamente.</small></button>
+              <button class="choice-btn" type="button" data-value="Nei prossimi giorni"><strong>Nei prossimi giorni</strong><small>Non è urgente, ma voglio organizzarmi.</small></button>
+              <button class="choice-btn" type="button" data-value="Sto solo valutando"><strong>Sto solo valutando</strong><small>Mi serve prima capire opzioni e costi.</small></button>
+            </div>
+            <div class="quiz-options" data-field="preferenzaContatto">
+              <button class="choice-btn" type="button" data-value="Telefono"><strong>Telefono</strong></button>
+              <button class="choice-btn" type="button" data-value="WhatsApp"><strong>WhatsApp</strong></button>
+              <button class="choice-btn" type="button" data-value="Email"><strong>Email</strong></button>
+            </div>
+          </div>
+
+          <div class="request-step" data-step="4">
+            <p class="quiz-kicker">Dati di contatto</p>
+            <h2 class="quiz-title">Lascia i tuoi recapiti</h2>
+            <div class="summary-box" data-summary-box></div>
+            <div class="field-grid">
+              <label for="nomeCompleto">
+                Nome e cognome
+                <input id="nomeCompleto" name="nomeCompleto" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" required />
+              </label>
+              <label for="telefono">
+                Telefono
+                <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="next" required />
+              </label>
+              <label for="email">
+                Email
+                <input id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" />
+              </label>
+            </div>
+            <label>
+              Note/Messaggio (facoltativo)
+              <textarea name="messaggio" placeholder="Aggiungi dettagli utili o sintomi particolari"></textarea>
+            </label>
+          </div>
+
+          <p class="form-error" data-form-error aria-live="polite"></p>
+
+          <div class="request-actions">
+            <button class="request-btn request-btn-outline" type="button" data-prev-step hidden>Indietro</button>
+            <button class="request-btn request-btn-primary" type="button" data-next-step>Continua</button>
+            <button class="request-btn request-btn-primary" type="submit" data-submit-step hidden>Invia la tua richiesta</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      (() => {
+        const backLink = document.querySelector("[data-back-link]");
+        backLink?.addEventListener("click", (event) => {
+          if (window.history.length <= 1) return;
+          event.preventDefault();
+          window.history.back();
+        });
+
+        const form = document.querySelector("#richiesta-generale");
+        if (!(form instanceof HTMLFormElement)) return;
+
+        const serviceOptions = [
+          { slug: "igiene-orale-e-profilassi", label: "Igiene orale e profilassi", group: "igiene" },
+          { slug: "odontoiatria-conservativa", label: "Conservativa", group: "conservativa" },
+          { slug: "estetica-del-sorriso", label: "Estetica del sorriso", group: "estetica" },
+          { slug: "parodontologia", label: "Parodontologia", group: "parodontologia" },
+          { slug: "ortodonzia", label: "Ortodonzia", group: "ortodonzia" },
+          { slug: "chirurgia-orale", label: "Chirurgia orale", group: "chirurgia" },
+          { slug: "endodonzia", label: "Endodonzia", group: "conservativa" },
+          { slug: "gnatologia", label: "Gnatologia", group: "ortodonzia" },
+          { slug: "pedodonzia", label: "Pedodonzia", group: "pedodonzia" },
+          { slug: "protesi-dentale", label: "Protesi dentale", group: "protesi" },
+          { slug: "implantologia", label: "Implantologia", group: "implantologia" },
+        ];
+
+        const objectivesByGroup = {
+          igiene: [
+            "Prevenzione e controllo periodico",
+            "Pulizia professionale",
+            "Gengive che sanguinano",
+            "Macchie, tartaro o alito cattivo",
+          ],
+          conservativa: [
+            "Ho dolore o sensibilità",
+            "Ho una carie o un dente rotto",
+            "Vorrei salvare un dente",
+            "Voglio fare un controllo",
+          ],
+          estetica: [
+            "Sbiancamento dentale",
+            "Faccette o correzione forma denti",
+            "Sorriso più armonico",
+            "Capire quali opzioni ho",
+          ],
+          parodontologia: [
+            "Gengive che sanguinano",
+            "Gengive ritirate",
+            "Denti che si muovono",
+            "Prevenire un peggioramento",
+          ],
+          ortodonzia: [
+            "Allineare i denti",
+            "Valutare bite o dolori mandibolari",
+            "Apparecchio invisibile",
+            "Valutazione per bambino o adulto",
+          ],
+          chirurgia: [
+            "Estrazione dentale",
+            "Dente del giudizio",
+            "Lesione, cisti o gonfiore",
+            "Vorrei una valutazione",
+          ],
+          pedodonzia: [
+            "Prima visita per un bambino",
+            "Dolore o carie",
+            "Prevenzione e sigillature",
+            "Trauma dentale",
+          ],
+          protesi: [
+            "Sostituire denti mancanti",
+            "Protesi instabile",
+            "Rifare una protesi",
+            "Masticare meglio",
+          ],
+          implantologia: [
+            "Mi manca un solo dente",
+            "Mi mancano più denti vicini",
+            "La mia dentiera o protesi si muove",
+            "Ho perso molti denti o uso una dentiera",
+          ],
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const presetService = params.get("servizio") || "";
+        const selectedService = serviceOptions.find((item) => item.slug === presetService);
+        const hasPresetService = Boolean(selectedService);
+        const totalSteps = hasPresetService ? 3 : 4;
+        const steps = [...form.querySelectorAll(".request-step")];
+        const progress = form.querySelector(".request-progress");
+        const nextBtn = form.querySelector("[data-next-step]");
+        const prevBtn = form.querySelector("[data-prev-step]");
+        const submitBtn = form.querySelector("[data-submit-step]");
+        const formError = form.querySelector("[data-form-error]");
+        const serviceGroup = form.querySelector('[data-field="servizio"]');
+        const objectiveGroup = form.querySelector('[data-field="obiettivo"]');
+        const serviceSummary = form.querySelector("[data-service-summary]");
+        const summaryBox = form.querySelector("[data-summary-box]");
+        const fields = {
+          nomeCompleto: form.querySelector('[name="nomeCompleto"]'),
+          telefono: form.querySelector('[name="telefono"]'),
+          email: form.querySelector('[name="email"]'),
+          messaggio: form.querySelector('[name="messaggio"]'),
+        };
+        const quiz = {
+          servizio: selectedService?.label || "",
+          servizioSlug: selectedService?.slug || "",
+          servizioGroup: selectedService?.group || "",
+          obiettivo: "",
+          urgenza: "",
+          preferenzaContatto: "",
+        };
+        let currentStep = hasPresetService ? 2 : 1;
+        let isSubmitting = false;
+
+        const setError = (message = "") => {
+          if (formError) formError.textContent = message;
+        };
+
+        const escapeHtml = (value) =>
+          String(value || "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#39;");
+
+        const effectiveStepIndex = (step) => (hasPresetService ? step - 1 : step);
+
+        const renderChoiceButtons = (container, options, field) => {
+          if (!container) return;
+          container.innerHTML = "";
+          options.forEach((option) => {
+            const value = typeof option === "string" ? option : option.label;
+            const slug = typeof option === "string" ? "" : option.slug;
+            const group = typeof option === "string" ? "" : option.group;
+            const button = document.createElement("button");
+            button.className = "choice-btn";
+            button.type = "button";
+            button.dataset.value = value;
+            if (slug) button.dataset.slug = slug;
+            if (group) button.dataset.group = group;
+            button.setAttribute("aria-pressed", "false");
+            button.innerHTML = `<strong>${escapeHtml(value)}</strong>`;
+            button.addEventListener("click", () => {
+              quiz[field] = value;
+              if (field === "servizio") {
+                quiz.servizioSlug = slug;
+                quiz.servizioGroup = group;
+                quiz.obiettivo = "";
+                renderObjectives();
+              }
+              container.querySelectorAll(".choice-btn").forEach((item) => item.setAttribute("aria-pressed", "false"));
+              button.setAttribute("aria-pressed", "true");
+              setError();
+              window.setTimeout(() => showStep(Math.min(4, currentStep + 1)), 140);
+            });
+            container.append(button);
+          });
+        };
+
+        const renderObjectives = () => {
+          const objectives = objectivesByGroup[quiz.servizioGroup] || objectivesByGroup.conservativa;
+          renderChoiceButtons(objectiveGroup, objectives, "obiettivo");
+          if (serviceSummary) {
+            serviceSummary.textContent = quiz.servizio
+              ? `Hai scelto: ${quiz.servizio}. Ti facciamo solo una domanda mirata per capire meglio la tua esigenza.`
+              : "Ti facciamo solo una domanda mirata per capire meglio la tua esigenza.";
+          }
+        };
+
+        const buildSummary = () => {
+          if (!summaryBox) return;
+          summaryBox.innerHTML = [
+            ["Trattamento", quiz.servizio],
+            ["Obiettivo", quiz.obiettivo],
+            ["Urgenza", quiz.urgenza],
+            ["Contatto preferito", quiz.preferenzaContatto],
+          ]
+            .filter(([, value]) => value)
+            .map(([label, value]) => `<span class="summary-line"><strong>${escapeHtml(label)}</strong>${escapeHtml(value)}</span>`)
+            .join("");
+        };
+
+        const markChoice = (field, value) => {
+          const group = form.querySelector(`.quiz-options[data-field="${field}"]`);
+          group?.querySelectorAll(".choice-btn").forEach((button) => {
+            button.setAttribute("aria-pressed", button.dataset.value === value ? "true" : "false");
+          });
+        };
+
+        const showStep = (step) => {
+          currentStep = step;
+          steps.forEach((item) => item.classList.toggle("is-active", Number(item.dataset.step) === step));
+          const stepIndex = effectiveStepIndex(step);
+          progress?.style.setProperty("--progress", `${(stepIndex / totalSteps) * 100}%`);
+          progress?.setAttribute("aria-valuemax", String(totalSteps));
+          progress?.setAttribute("aria-valuenow", String(stepIndex));
+          if (prevBtn instanceof HTMLButtonElement) prevBtn.hidden = stepIndex <= 1;
+          if (nextBtn instanceof HTMLButtonElement) nextBtn.hidden = step === 4;
+          if (submitBtn instanceof HTMLButtonElement) submitBtn.hidden = step !== 4;
+          if (step === 4) buildSummary();
+          setError();
+          requestAnimationFrame(() => form.scrollIntoView({ behavior: "smooth", block: "start" }));
+        };
+
+        const validateStep = () => {
+          if (currentStep === 1 && !quiz.servizio) {
+            setError("Seleziona un trattamento per continuare.");
+            return false;
+          }
+          if (currentStep === 2 && !quiz.obiettivo) {
+            setError("Seleziona l'obiettivo principale.");
+            return false;
+          }
+          if (currentStep === 3 && (!quiz.urgenza || !quiz.preferenzaContatto)) {
+            setError("Seleziona urgenza e preferenza di contatto.");
+            return false;
+          }
+          if (currentStep === 4) {
+            const required = [fields.nomeCompleto, fields.telefono].filter((field) => field instanceof HTMLInputElement);
+            const invalid = required.find((field) => !field.checkValidity());
+            if (invalid) {
+              invalid.reportValidity();
+              setError("Completa nome e telefono per inviare la richiesta.");
+              return false;
+            }
+            if (fields.email instanceof HTMLInputElement && fields.email.value && !fields.email.checkValidity()) {
+              fields.email.reportValidity();
+              setError("Inserisci un indirizzo email valido oppure lascia il campo vuoto.");
+              return false;
+            }
+          }
+          return true;
+        };
+
+        const buildLeadPayload = () => ({
+          nome: fields.nomeCompleto?.value || "",
+          telefono: fields.telefono?.value || "",
+          email: fields.email?.value || "",
+          servizio: quiz.servizio || "Richiesta generale",
+          messaggio: fields.messaggio?.value || "",
+          paginaProvenienza: document.referrer || "",
+          paginaCorrente: window.location.href,
+          obiettivo: quiz.obiettivo,
+          urgenza: quiz.urgenza,
+          preferenzaContatto: quiz.preferenzaContatto,
+        });
+
+        const sendLead = async () => {
+          const response = await fetch("/api/send-lead", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(buildLeadPayload()),
+          });
+
+          if (response.ok) return;
+          const result = await response.json().catch(() => ({}));
+          throw new Error(result.error || "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+        };
+
+        renderChoiceButtons(serviceGroup, serviceOptions, "servizio");
+        renderObjectives();
+        if (hasPresetService) {
+          steps.find((step) => Number(step.dataset.step) === 1)?.setAttribute("hidden", "");
+          markChoice("servizio", quiz.servizio);
+        }
+
+        form.querySelectorAll('.quiz-options[data-field="urgenza"], .quiz-options[data-field="preferenzaContatto"]').forEach((group) => {
+          const field = group.dataset.field;
+          group.querySelectorAll(".choice-btn").forEach((button) => {
+            button.setAttribute("aria-pressed", "false");
+            button.addEventListener("click", () => {
+              if (!field) return;
+              quiz[field] = button.dataset.value || "";
+              group.querySelectorAll(".choice-btn").forEach((item) => item.setAttribute("aria-pressed", "false"));
+              button.setAttribute("aria-pressed", "true");
+              setError();
+            });
+          });
+        });
+
+        nextBtn?.addEventListener("click", () => {
+          if (validateStep()) showStep(Math.min(4, currentStep + 1));
+        });
+
+        prevBtn?.addEventListener("click", () => {
+          const previous = hasPresetService && currentStep === 2 ? 2 : Math.max(hasPresetService ? 2 : 1, currentStep - 1);
+          if (previous !== currentStep) showStep(previous);
+        });
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          if (!validateStep() || isSubmitting) return;
+          isSubmitting = true;
+          if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = true;
+
+          try {
+            await sendLead();
+            window.location.href = "/thank-you-page/";
+          } catch (error) {
+            isSubmitting = false;
+            if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = false;
+            setError(error instanceof Error ? error.message : "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+          }
+        });
+
+        showStep(currentStep);
+      })();
+    </script>
+  </body>
+</html>

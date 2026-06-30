@@ -502,6 +502,10 @@ const stickyCtaLabel = isActivityServicePage ? "Servizio" : "";
 const stickyCtaVariant = isActivityServicePage
   ? "activity-sticky-cta activity-sticky-cta--service"
   : "activity-sticky-cta activity-sticky-cta--generic";
+const stickyCtaServiceSlug = isActivityServicePage ? page.path.replace(/^\/attivita\/|\/$/g, "") : "";
+const stickyCtaHref = stickyCtaServiceSlug
+  ? `/richiesta-generale/?servizio=${encodeURIComponent(stickyCtaServiceSlug)}`
+  : "/richiesta-generale/";
 const shouldRenderStickyCta = page.path !== "/recensioni-studio-dentistico-monza/";
 
 const activityStickyScript = `
@@ -1012,7 +1016,7 @@ const treatmentCardsScript = `
       '<div class="elementor-element elementor-element-orientation-quiz-widget v2-service-item ekit-equal-height-disable elementor-widget elementor-widget-elementskit-icon-box" data-element_type="widget" data-e-type="widget" data-widget_type="elementskit-icon-box.default">',
       '<div class="elementor-widget-container">',
       '<div class="ekit-wid-con">',
-      '<div class="elementskit-infobox text-left text-left icon-top-align elementor-animation- gradient-active hover_from_bottom" data-treatment-card="orientation">',
+      '<a class="elementskit-infobox text-left text-left icon-top-align elementor-animation- gradient-active hover_from_bottom" data-treatment-card="orientation" href="/orientamento-sorriso/" aria-label="Apri il modulo quiz di orientamento sorriso">',
       '<div class="elementskit-box-header elementor-animation-">',
       '<div class="elementskit-info-box-icon">' + icons.guidance + '</div>',
       '</div>',
@@ -1020,14 +1024,14 @@ const treatmentCardsScript = `
       '<h3 class="elementskit-info-box-title">Hai già in mente un risultato che vuoi ottenere ma non sai da dove iniziare?</h3>',
       '<div class="box-footer disable_hover_button">',
       '<div class="btn-wraper">',
-      '<a class="elementskit-btn whitespace--normal" href="/orientamento-sorriso/">',
+      '<span class="elementskit-btn whitespace--normal">',
       'Clicca qui',
       '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true"><path d="M1 7H15M15 7L9 1M15 7L9 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+      '</span>',
+      '</div>',
+      '</div>',
+      '</div>',
       '</a>',
-      '</div>',
-      '</div>',
-      '</div>',
-      '</div>',
       '</div>',
       '</div>',
       '</div>',
@@ -1459,7 +1463,7 @@ const reviewsPageScript = `
               {stickyCtaLabel && <span>{stickyCtaLabel}</span>}
               <strong>{stickyCtaText}</strong>
             </div>
-            <a class="activity-sticky-cta__button" href="/richiesta/">
+            <a class="activity-sticky-cta__button" href={stickyCtaHref}>
               {stickyCtaButtonText}
             </a>
           </div>
