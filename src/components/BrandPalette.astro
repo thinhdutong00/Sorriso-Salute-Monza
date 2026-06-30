@@ -4096,6 +4096,291 @@
       max-width: 100% !important;
     }
   }
+
+  body.brand-palette,
+  body.brand-palette * {
+    box-sizing: border-box !important;
+  }
+
+  html,
+  body.brand-palette {
+    max-width: 100% !important;
+    overflow-x: clip !important;
+  }
+
+  body.brand-palette img,
+  body.brand-palette picture,
+  body.brand-palette video,
+  body.brand-palette canvas,
+  body.brand-palette iframe {
+    max-width: 100% !important;
+  }
+
+  body.brand-palette .elementor,
+  body.brand-palette .elementor-section,
+  body.brand-palette .elementor-container,
+  body.brand-palette .elementor-column,
+  body.brand-palette .elementor-widget,
+  body.brand-palette .elementor-widget-container,
+  body.brand-palette .e-con,
+  body.brand-palette .e-con-inner,
+  body.brand-palette .ekit-wid-con {
+    max-width: 100% !important;
+  }
+
+  @media (max-width: 1024px) {
+    body.brand-palette .elementor-section .elementor-container {
+      flex-wrap: wrap !important;
+    }
+
+    body.brand-palette .elementor-column {
+      min-width: 0 !important;
+    }
+
+    body.brand-palette .elementor-widget-wrap {
+      max-width: 100% !important;
+    }
+
+    body.brand-palette .e-con.e-child:has(> .v2-service-item) {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    body.brand-palette .v2-service-item .elementskit-infobox[data-treatment-card] {
+      min-height: 0 !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1058fb0 > .e-con-inner {
+      width: min(100% - 40px, 920px) !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-f73322a {
+      gap: 22px !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    body.brand-palette {
+      --mobile-page-gutter: 16px;
+    }
+
+    body.brand-palette .ekit-template-content-header .elementskit-menu-container:not(.active),
+    body.brand-palette .ekit-template-content-header .elementskit-menu-offcanvas-elements:not(.active) {
+      left: auto !important;
+      right: 100% !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      transform: translate3d(0, 0, 0) !important;
+    }
+
+    body.brand-palette .ekit-template-content-header .elementskit-navbar-nav {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    body.brand-palette .elementor-section,
+    body.brand-palette .e-con {
+      --padding-left: var(--mobile-page-gutter) !important;
+      --padding-right: var(--mobile-page-gutter) !important;
+      --padding-top: clamp(56px, 12vw, 72px) !important;
+      --padding-bottom: clamp(56px, 12vw, 72px) !important;
+    }
+
+    body.brand-palette .e-con > .e-con-inner {
+      width: min(100%, 560px) !important;
+      max-width: 100% !important;
+      padding-right: 0 !important;
+      padding-left: 0 !important;
+    }
+
+    body.brand-palette .elementor-widget-heading,
+    body.brand-palette .elementor-widget-text-editor,
+    body.brand-palette .elementor-widget-button,
+    body.brand-palette .elementor-widget-image,
+    body.brand-palette .elementor-widget-elementskit-icon-box {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    body.brand-palette h1,
+    body.brand-palette h2,
+    body.brand-palette h3,
+    body.brand-palette .elementor-heading-title,
+    body.brand-palette .elementskit-info-box-title {
+      overflow-wrap: anywhere !important;
+      text-wrap: balance;
+    }
+
+    body.brand-palette h2.elementor-heading-title,
+    body.brand-palette .elementor-widget-heading h2.elementor-heading-title,
+    body.brand-palette .wp-block-heading,
+    body.brand-palette .quiz-title {
+      font-size: clamp(28px, 7.6vw, 32px) !important;
+      line-height: 1.08 !important;
+    }
+
+    body.brand-palette h3.elementor-heading-title,
+    body.brand-palette .elementor-widget-heading h3.elementor-heading-title,
+    body.brand-palette .section-title .elementor-heading-title {
+      font-size: 14px !important;
+      line-height: 1.22 !important;
+    }
+
+    body.brand-palette:not(.home) .elementor[data-elementor-type="wp-page"] > .elementor-element:first-child:has(.elementor-widget-elementskit-breadcrumb) {
+      min-height: clamp(360px, 82vw, 430px) !important;
+      --padding-top: 112px !important;
+      --padding-bottom: 72px !important;
+    }
+
+    body.brand-palette:not(.home) .elementor[data-elementor-type="wp-page"] > .elementor-element:first-child:has(.elementor-widget-elementskit-breadcrumb) .elementor-heading-title {
+      max-width: 12ch !important;
+      font-size: clamp(40px, 12vw, 48px) !important;
+      line-height: 0.98 !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1376b220 .elementor-heading-title {
+      max-width: 8.5ch !important;
+      font-size: clamp(44px, 13.4vw, 54px) !important;
+      line-height: 0.98 !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-5c1edef1 {
+      min-height: 100svh !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1058fb0,
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-653d69fd,
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-422c1ea,
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-e8411f6 {
+      --padding-top: 64px !important;
+      --padding-bottom: 64px !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1058fb0 > .e-con-inner,
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-653d69fd > .e-con-inner,
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-422c1ea > .e-con-inner,
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-e8411f6 > .e-con-inner {
+      width: min(100%, 560px) !important;
+      grid-template-columns: 1fr !important;
+      gap: 28px !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1058fb0 .elementor-widget-text-editor p,
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-e8411f6 .elementor-widget-text-editor p {
+      font-size: 16px !important;
+      line-height: 1.52 !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-e8411f6 {
+      background-position: center top !important;
+      background-size: 100% auto !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-f73322a,
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-f73322a > .e-con-inner {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      width: 100% !important;
+      gap: 18px !important;
+    }
+
+    body.brand-palette .v2-service-item,
+    body.brand-palette .v2-service-item > .elementor-widget-container,
+    body.brand-palette .v2-service-item .ekit-wid-con,
+    body.brand-palette .v2-service-item .elementskit-infobox {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    body.brand-palette .v2-service-item .elementskit-infobox {
+      min-height: 0 !important;
+      border-radius: 16px !important;
+    }
+
+    body.brand-palette .v2-service-item .elementskit-infobox[data-treatment-card] .treatment-card-media {
+      min-height: 156px !important;
+      aspect-ratio: 16 / 9 !important;
+    }
+
+    body.brand-palette .v2-service-item .elementskit-infobox[data-treatment-card] .elementskit-box-header {
+      margin-top: -34px !important;
+      padding: 0 22px !important;
+    }
+
+    body.brand-palette .v2-service-item .elementskit-infobox[data-treatment-card] .elementskit-info-box-icon {
+      width: 68px !important;
+      height: 68px !important;
+    }
+
+    body.brand-palette .v2-service-item .elementskit-infobox[data-treatment-card] .elementskit-info-box-icon svg {
+      width: 30px !important;
+      height: 30px !important;
+    }
+
+    body.brand-palette .v2-service-item .elementskit-infobox[data-treatment-card] .box-body {
+      padding: 20px 22px 24px !important;
+    }
+
+    body.brand-palette .v2-service-item .elementskit-infobox[data-treatment-card] .box-body .elementskit-info-box-title {
+      margin-bottom: 12px !important;
+      font-size: 24px !important;
+      line-height: 1.12 !important;
+    }
+
+    body.brand-palette .v2-service-item .elementskit-infobox[data-treatment-card] .box-body p {
+      margin-bottom: 22px !important;
+      font-size: 16px !important;
+      line-height: 1.5 !important;
+    }
+
+    body.brand-palette .elementor-button,
+    body.brand-palette .elementskit-btn,
+    body.brand-palette button,
+    body.brand-palette input,
+    body.brand-palette select,
+    body.brand-palette textarea {
+      max-width: 100% !important;
+    }
+
+    body.brand-palette .elementor-button {
+      white-space: normal !important;
+    }
+
+    body.brand-palette .ekit-template-content-footer .e-con,
+    body.brand-palette footer .e-con {
+      --padding-left: var(--mobile-page-gutter) !important;
+      --padding-right: var(--mobile-page-gutter) !important;
+    }
+
+    body.brand-palette .ekit-template-content-footer .elementor-heading-title {
+      font-size: clamp(30px, 9vw, 40px) !important;
+      line-height: 1.05 !important;
+    }
+  }
+
+  @media (max-width: 430px) {
+    body.brand-palette {
+      --mobile-page-gutter: 14px;
+    }
+
+    body.brand-palette .activity-sticky-cta__inner {
+      padding: 12px 14px calc(12px + env(safe-area-inset-bottom)) !important;
+    }
+
+    body.brand-palette .activity-sticky-cta__service strong {
+      font-size: 16px !important;
+      line-height: 1.12 !important;
+    }
+
+    body.brand-palette .activity-sticky-cta__button {
+      min-height: 50px !important;
+      font-size: 15px !important;
+    }
+
+    body.brand-palette .v2-service-item .elementskit-infobox[data-treatment-card] .box-body .elementskit-info-box-title {
+      font-size: 22px !important;
+    }
+  }
 </style>
 
 <script is:inline>

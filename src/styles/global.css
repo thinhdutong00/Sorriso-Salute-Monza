@@ -4050,3 +4050,283 @@ body.modal-open {
     display: none;
   }
 }
+
+/* Final responsive safety net for mobile/tablet layouts. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video,
+canvas,
+svg,
+iframe {
+  max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .section,
+  .hero,
+  .legal-hero {
+    padding-right: clamp(18px, 4vw, 28px);
+    padding-left: clamp(18px, 4vw, 28px);
+  }
+
+  .section-heading,
+  .pain-grid,
+  .situations-grid,
+  .treatment-grid,
+  .advantage-layout,
+  .method-inner,
+  .testimonial-carousel,
+  .contact-section,
+  .footer-grid,
+  .legal-main {
+    max-width: 100%;
+  }
+
+  .treatment-grid,
+  .situations-grid,
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .treatment-card,
+  .treatment-card.wide {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-header {
+    min-height: 72px;
+    padding: 10px 14px;
+  }
+
+  .brand-logo {
+    width: min(190px, 58vw);
+    max-height: 44px;
+  }
+
+  .menu-button {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+  }
+
+  .mobile-nav {
+    right: 14px;
+    width: calc(100vw - 28px);
+    border-radius: 16px;
+  }
+
+  .hero {
+    min-height: 520px;
+    padding: 112px 18px 76px;
+  }
+
+  .hero-content {
+    gap: 18px;
+  }
+
+  .hero h1 {
+    max-width: 12ch;
+    font-size: clamp(2.6rem, 12vw, 3rem);
+    line-height: 0.98;
+  }
+
+  .hero-breadcrumb,
+  .hero-lead {
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .hero-lead-desktop {
+    display: none;
+  }
+
+  .hero-lead-mobile {
+    display: block;
+  }
+
+  .hero-actions {
+    width: 100%;
+    margin-top: 18px;
+    gap: 10px;
+  }
+
+  .hero-actions .button,
+  .button {
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+    padding: 0 18px;
+    white-space: normal;
+  }
+
+  .section {
+    padding: 64px 18px;
+  }
+
+  .section-heading {
+    margin-bottom: 30px;
+  }
+
+  .section-heading.split,
+  .pain-grid,
+  .situations-grid,
+  .treatment-grid,
+  .advantage-layout,
+  .method-grid,
+  .team-grid,
+  .contact-section,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading h2,
+  .advantage-copy h2,
+  .contact-copy h2,
+  .method-heading h2 {
+    font-size: clamp(1.85rem, 8vw, 2.25rem);
+    line-height: 1.06;
+  }
+
+  .section-heading p:not(.eyebrow),
+  .advantage-copy > p,
+  .contact-copy p {
+    font-size: 1rem;
+    line-height: 1.52;
+  }
+
+  .desktop-nowrap {
+    white-space: normal;
+  }
+
+  .pain-card,
+  .method-card,
+  .testimonial-card,
+  .contact-card {
+    padding: 22px;
+    border-radius: 16px;
+  }
+
+  .pain-card span,
+  .method-number {
+    font-size: clamp(2.25rem, 13vw, 3rem);
+  }
+
+  .situations-grid,
+  .treatment-grid,
+  .team-grid {
+    width: 100%;
+    gap: 18px;
+  }
+
+  .situation-card {
+    grid-template-rows: 180px 1fr;
+    border-radius: 16px;
+  }
+
+  .situation-card__content,
+  .card-content {
+    padding: 22px;
+  }
+
+  .treatment-card,
+  .treatment-card.wide {
+    min-height: 360px;
+    border-radius: 18px;
+  }
+
+  .advantage-layout,
+  .contact-section {
+    width: 100%;
+  }
+
+  .image-stack,
+  .main-image {
+    height: auto;
+    min-height: 0;
+  }
+
+  .main-image {
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+  }
+
+  .method-inner {
+    width: 100%;
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  .testimonial-track {
+    gap: 18px;
+  }
+
+  .team-card,
+  .testimonial-card {
+    min-width: 0;
+  }
+
+  .footer-grid {
+    gap: 28px;
+  }
+
+  .footer-cta {
+    align-items: stretch;
+  }
+
+  .activity-sticky-cta__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 430px) {
+  .section,
+  .hero,
+  .legal-hero,
+  .contact-section {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .site-header {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .brand-logo {
+    width: min(176px, 56vw);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.35rem, 12.4vw, 2.85rem);
+  }
+
+  .section-heading h2,
+  .advantage-copy h2,
+  .contact-copy h2,
+  .method-heading h2 {
+    font-size: clamp(1.75rem, 8.2vw, 2.05rem);
+  }
+
+  .pain-card,
+  .method-card,
+  .testimonial-card,
+  .contact-card,
+  .situation-card__content,
+  .card-content {
+    padding: 20px;
+  }
+}

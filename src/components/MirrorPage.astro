@@ -440,8 +440,13 @@ const applyTeamImageQuality = (html: string) =>
     .replaceAll("/mirror-assets/17e1228eb0204f46.jpg", "/mirror-assets/f5eda933d608941c.jpg")
     .replaceAll("/mirror-assets/08448b643258e77b.jpg", "/mirror-assets/3c534c254b8e2942.jpg");
 
+const applyGeneralRequestCtaLinks = (html: string) =>
+  html
+    .replaceAll('href="/richiesta/"', 'href="/richiesta-generale/"')
+    .replaceAll("href='/richiesta/'", "href='/richiesta-generale/'");
+
 const head = applyAboutHeadImage(applyBrandColorTokens(applyActivityIndexItalianHead(rawHead)));
-const body = removeConventionHeroBreadcrumb(
+const body = applyGeneralRequestCtaLinks(removeConventionHeroBreadcrumb(
   removeReviewsHeroBreadcrumb(
     removeAboutHeroBreadcrumb(
       applyActivityHeroDescription(
@@ -454,7 +459,7 @@ const body = removeConventionHeroBreadcrumb(
             "Un sorriso<br />che sembri<br />tuo, solo migliore.",
           ).replace(
             '<a class="elementor-button elementor-button-link elementor-size-sm" href="/chi-siamo/">',
-            '<a class="elementor-button elementor-button-link elementor-size-sm mirror-hero-primary" href="/richiesta/">',
+            '<a class="elementor-button elementor-button-link elementor-size-sm mirror-hero-primary" href="/richiesta-generale/">',
           ).replace(
             '<span class="elementor-button-text">Il nostro studio</span>',
             '<span class="elementor-button-text">Prenota una visita</span>',
@@ -482,7 +487,7 @@ const body = removeConventionHeroBreadcrumb(
       ),
     ),
   ),
-);
+));
 
 const isActivityServicePage =
   page.path.startsWith("/attivita/") &&
@@ -534,8 +539,9 @@ const activityStickyScript = `
       ? hero.getBoundingClientRect().bottom + window.scrollY - 24
       : Math.round(window.innerHeight * 0.72);
     const isPastHero = window.scrollY > threshold;
+    const barHeight = bar instanceof HTMLElement ? bar.offsetHeight : 0;
     const isAtFooterEnd = footer
-      ? footer.getBoundingClientRect().bottom <= window.innerHeight + 2
+      ? footer.getBoundingClientRect().bottom <= window.innerHeight + barHeight + 8
       : false;
 
     bar.classList.toggle("is-visible", isPastHero && !isAtFooterEnd);
@@ -556,7 +562,7 @@ const footerLayoutScript = `
   const footer = document.querySelector(".ekit-template-content-footer");
   if (!footer) return;
 
-  footer.querySelectorAll('.elementor-element-6314a76 a[href="/richiesta/"], .elementor-element-6314a76 a[href="/convenzioni-dirette/"]').forEach((link) => {
+  footer.querySelectorAll('.elementor-element-6314a76 a[href="/richiesta-generale/"], .elementor-element-6314a76 a[href="/convenzioni-dirette/"]').forEach((link) => {
     link.classList.add("footer-underlined-link");
   });
 
@@ -910,7 +916,7 @@ const treatmentCardsScript = `
     {
       slug: "esthetic",
       titles: ["Estetica del Sorriso", "Estetica del sorriso", "Cosmetic Dentistry"],
-      image: "/mirror-assets/f0b156f8aa6f7b07.jpg",
+      image: "/assets/generated/esthetic-smile-natural.jpg",
       alt: "Valutazione estetica del sorriso allo specchio",
       icon: icons.esthetic,
     },
@@ -1442,7 +1448,7 @@ const reviewsPageScript = `
           <h2>Prenota e informazioni</h2>
           <a href="/urgenze/">Urgenze</a>
           <a href="tel:+390392022489">Chiama in studio</a>
-          <a href="/richiesta/">Richiedi appuntamento</a>
+          <a href="/richiesta-generale/">Richiedi appuntamento</a>
           <a href="/convenzioni-dirette/">Convenzioni dirette</a>
           <a href="/convenzioni-indirette/">Convenzioni indirette</a>
         </section>

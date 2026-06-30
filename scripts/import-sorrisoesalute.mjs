@@ -16,7 +16,7 @@ const MAX_PAGES = 260;
 
 const RESERVED_REDIRECTS = new Map([
   ["/attivita/implantologia/", "/implantologia/"],
-  ["/prenota-una-visita/", "/richiesta/"],
+  ["/prenota-una-visita/", "/richiesta-generale/"],
 ]);
 
 const REMOVED_NEWS_PREFIXES = ["/news/", "/category/news/"];
@@ -25,6 +25,7 @@ const REMOVED_BLOG_ARCHIVE_PREFIXES = ["/author/", "/tag/", "/category/"];
 const PRESERVED_LOCAL_PATHS = new Set([
   "/implantologia/",
   "/richiesta/",
+  "/richiesta-generale/",
   "/thank-you-page/",
   "/preferenze-prenotazione/",
 ]);
@@ -413,7 +414,7 @@ function replaceContactForms(fragment) {
     ) {
       return [
         '<div class="mirror-request-cta" data-source-form-replaced="true">',
-        '<a href="/richiesta/">Prenota una visita</a>',
+        '<a href="/richiesta-generale/">Prenota una visita</a>',
         "</div>",
       ].join("");
     }
@@ -450,8 +451,8 @@ async function rewriteHtmlFragment(fragment, sourceUrl, pagePath) {
   output = applyBrandPaletteColors(output);
   output = applyLocalContentOverrides(output, pagePath);
   output = output.replace(/href=(["'])\/attivita\/implantologia\/?\1/gi, 'href="/implantologia/"');
-  output = output.replace(/href=(["'])\/prenota-una-visita\/?\1/gi, 'href="/richiesta/"');
-  output = output.replace(/action=(["'])[^"']*\1/gi, 'action="/richiesta/"');
+  output = output.replace(/href=(["'])\/prenota-una-visita\/?\1/gi, 'href="/richiesta-generale/"');
+  output = output.replace(/action=(["'])[^"']*\1/gi, 'action="/richiesta-generale/"');
   output = removeNewsReferences(output);
   output = removeBlogSections(output);
   output = output.replace(/\bpage-single-post\b/g, "page-content");
@@ -501,8 +502,8 @@ async function rewriteUrl(rawValue, baseUrl, attrName) {
       const pagePath = normalizePagePath(url.pathname);
       if (RESERVED_REDIRECTS.has(pagePath)) return RESERVED_REDIRECTS.get(pagePath);
       if (pagePath === "/attivita/implantologia/") return "/implantologia/";
-      if (pagePath === "/prenota-una-visita/") return "/richiesta/";
-      if (attrName === "action") return "/richiesta/";
+      if (pagePath === "/prenota-una-visita/") return "/richiesta-generale/";
+      if (attrName === "action") return "/richiesta-generale/";
       return `${pagePath}${url.hash || ""}`;
     }
 

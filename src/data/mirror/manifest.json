@@ -4,7 +4,7 @@
   "target": "https://sorrisoesalutemonza.it",
   "reservedRedirects": {
     "/attivita/implantologia/": "/implantologia/",
-    "/prenota-una-visita/": "/richiesta/"
+    "/prenota-una-visita/": "/richiesta-generale/"
   },
   "pages": [
     {

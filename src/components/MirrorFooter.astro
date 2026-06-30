@@ -16,6 +16,11 @@ const applySharedFooterCopy = (html: string) =>
     "Un sorriso<br />che sembri tuo,<br />solo migliore.",
   );
 
+const applyGeneralRequestCtaLinks = (html: string) =>
+  html
+    .replaceAll('href="/richiesta/"', 'href="/richiesta-generale/"')
+    .replaceAll("href='/richiesta/'", "href='/richiesta-generale/'");
+
 const hydrateOptimoleImages = (html: string) =>
   html.replace(/<img\b[^>]*>/gi, (tag) => {
     const optSrc = tag.match(/\sdata-opt-src=(["'])(.*?)\1/i)?.[2];
@@ -38,7 +43,9 @@ if (!footerMatch) {
   throw new Error("Missing mirrored footer markup");
 }
 
-const footer = hydrateOptimoleImages(applySharedFooterCopy(applyBrandColorTokens(footerMatch[0].trim())));
+const footer = applyGeneralRequestCtaLinks(
+  hydrateOptimoleImages(applySharedFooterCopy(applyBrandColorTokens(footerMatch[0].trim()))),
+);
 ---
 
 <link rel="stylesheet" href="/mirror-assets/61ad75894f1dfee0.css" media="all" />

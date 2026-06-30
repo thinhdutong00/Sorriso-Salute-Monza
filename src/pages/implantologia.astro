@@ -1115,7 +1115,6 @@ const conventionGroups = [
       const revealSections = Array.from(document.querySelectorAll("[data-scroll-reveal]"));
       const revealCards = Array.from(document.querySelectorAll("[data-card-reveal]"));
       const revealElements = [...revealSections, ...revealCards];
-      const mobileBookingQuery = window.matchMedia("(max-width: 760px)");
       let lastScrollY = window.scrollY;
 
       const closeMobileMenu = () => {
@@ -1262,14 +1261,12 @@ const conventionGroups = [
       });
 
       const updateBookingLinks = () => {
-        const bookingHref = mobileBookingQuery.matches ? "/preferenze-prenotazione/" : "/richiesta/";
         document.querySelectorAll("[data-booking-link]").forEach((link) => {
-          if (link instanceof HTMLAnchorElement) link.setAttribute("href", bookingHref);
+          if (link instanceof HTMLAnchorElement) link.setAttribute("href", "/richiesta/");
         });
       };
 
       updateBookingLinks();
-      mobileBookingQuery.addEventListener("change", updateBookingLinks);
 
       const updateStickyCtaVisibility = () => {
         if (!(stickyCta instanceof HTMLElement)) return;
@@ -1277,8 +1274,9 @@ const conventionGroups = [
           ? hero.getBoundingClientRect().bottom + window.scrollY - 24
           : Math.round(window.innerHeight * 0.72);
         const isPastHero = window.scrollY > threshold;
+        const stickyCtaHeight = stickyCta.offsetHeight;
         const isAtFooterEnd = footer instanceof HTMLElement
-          ? footer.getBoundingClientRect().bottom <= window.innerHeight + 2
+          ? footer.getBoundingClientRect().bottom <= window.innerHeight + stickyCtaHeight + 8
           : false;
 
         stickyCta.classList.toggle("is-visible", isPastHero && !isAtFooterEnd);
