@@ -1,8 +1,19 @@
 ---
+import "../styles/global.css";
 import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import MirrorFooter from "../components/MirrorFooter.astro";
 import PageLoader from "../components/PageLoader.astro";
+
+const brandLogo = "/assets/brand/sorriso-salute-logo-360.webp";
+const navItems = [
+  { label: "Dicono di noi", href: "/recensioni-studio-dentistico-monza/" },
+  { label: "La Struttura", href: "/struttura-studio-dentistico-monza/" },
+  { label: "Convenzioni", href: "/convenzioni-dirette-studio-dentistico-monza/" },
+  { label: "Urgenze", href: "/urgenze/" },
+  { label: "Chiama in studio", href: "tel:+390392022489", icon: "phone" },
+];
 ---
 
 <!doctype html>
@@ -14,7 +25,7 @@ import PageLoader from "../components/PageLoader.astro";
       name="description"
       content="Urgenze odontoiatriche a Monza: lo Studio Dentistico Sorriso & Salute visita di solito i pazienti il giorno in cui chiamano."
     />
-    <meta name="theme-color" content="#1e37b7" />
+    <meta name="theme-color" content="#0E384C" />
     <link rel="canonical" href="https://sorrisoesalutemonza.it/urgenze/" />
     <title>Urgenze | Studio Dentistico Sorriso & Salute Monza</title>
     <FaviconLinks />
@@ -22,84 +33,234 @@ import PageLoader from "../components/PageLoader.astro";
     <BrandPalette />
     <style is:inline>
       .urgent-page {
+        --urgent-blue: #0e384c;
+        --urgent-ink: #10283a;
+        --urgent-sky: #edf7fd;
+        --urgent-line: #d9e4ec;
         min-height: 100vh;
         margin: 0;
-        background: #ffffff;
-        color: #0f172a;
+        background: var(--urgent-sky) !important;
+        color: var(--urgent-ink);
         font-family: Inter, system-ui, sans-serif;
       }
 
-      .urgent-shell {
-        display: grid;
-        min-height: 100vh;
-        place-items: center;
-        padding: 32px;
+      .urgent-page * {
+        box-sizing: border-box;
       }
 
-      .urgent-card {
-        width: min(760px, 100%);
-        padding: clamp(34px, 6vw, 72px);
-        border: 1px solid #bfc5d2;
-        border-radius: 18px;
-        background: #ffffff;
-        box-shadow: 0 24px 70px rgba(30, 55, 183, 0.12);
+      body.urgent-page {
+        background: var(--urgent-sky) !important;
+      }
+
+      .urgent-page .site-header {
+        border-bottom: 1px solid var(--urgent-line);
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: none;
+        backdrop-filter: none;
+      }
+
+      .urgent-page .site-header .brand-logo {
+        filter: brightness(0) saturate(100%) invert(15%) sepia(39%) saturate(943%) hue-rotate(164deg) brightness(93%) contrast(94%);
+      }
+
+      .urgent-page .desktop-nav a,
+      .urgent-page .kebab-button {
+        color: var(--urgent-ink);
+        text-shadow: none;
+      }
+
+      body.urgent-page .kebab-button {
+        border: 0 !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        color: var(--urgent-ink) !important;
+      }
+
+      .urgent-page .desktop-nav a:hover,
+      .urgent-page .desktop-nav a:focus-visible,
+      .urgent-page .kebab-button:hover,
+      .urgent-page .kebab-button:focus-visible,
+      .urgent-page .desktop-nav a[aria-current="page"] {
+        color: var(--urgent-blue);
+      }
+
+      body.urgent-page .kebab-button:hover,
+      body.urgent-page .kebab-button:focus-visible {
+        background: transparent !important;
+        background-color: transparent !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+        color: var(--urgent-ink) !important;
+      }
+
+      .urgent-page .kebab-menu {
+        background: var(--urgent-blue);
+        color: #ffffff;
+      }
+
+      .urgent-page .kebab-backdrop {
+        background: rgba(8, 42, 56, 0.72);
+      }
+
+      body.urgent-page.kebab-menu-open .site-header .brand-logo {
+        filter: none !important;
+      }
+
+      body.urgent-page .kebab-menu__section h2,
+      body.urgent-page .kebab-menu__section a,
+      body.urgent-page .kebab-menu__close,
+      body.urgent-page .kebab-menu__close span {
+        color: #ffffff !important;
+      }
+
+      body.urgent-page .kebab-menu__close,
+      body.urgent-page .kebab-menu__close:hover,
+      body.urgent-page .kebab-menu__close:focus-visible {
+        background: transparent !important;
+        background-color: transparent !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+      }
+
+      .urgent-main {
+        min-height: 100vh;
+        background: var(--urgent-sky);
+      }
+
+      .urgent-hero {
+        display: flex;
+        align-items: flex-start;
+        min-height: 100vh;
+        background: var(--urgent-sky);
+        padding: clamp(174px, 13.9vw, 246px) clamp(22px, 4vw, 72px) clamp(70px, 9vw, 130px);
+      }
+
+      .urgent-hero__inner {
+        width: min(1580px, 100%);
+        margin: 0 auto;
+        text-align: center;
       }
 
       .urgent-kicker {
-        margin: 0 0 16px;
-        color: #1e37b7;
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 0;
+        margin: 0 0 clamp(34px, 4vw, 58px);
+        color: var(--urgent-ink) !important;
+        font-size: clamp(15px, 1.05vw, 19px);
+        font-weight: 800;
+        line-height: 1.2;
         text-transform: uppercase;
       }
 
       .urgent-title {
         margin: 0;
-        color: #0f172a;
-        font-size: clamp(40px, 7vw, 74px);
+        color: #0f172a !important;
+        font-size: clamp(52px, 6.2vw, 116px);
         font-weight: 400;
-        line-height: 0.98;
+        line-height: 0.96;
         text-transform: uppercase;
       }
 
-      .urgent-copy {
-        max-width: 620px;
-        margin: 24px 0 0;
-        color: #475569;
-        font-size: 20px;
-        line-height: 1.5;
+      .urgent-lead,
+      .urgent-support {
+        margin-right: auto;
+        margin-left: auto;
+        color: var(--urgent-ink) !important;
+        font-weight: 400;
+        line-height: 1.35;
+      }
+
+      .urgent-lead {
+        max-width: 1500px;
+        margin-top: clamp(44px, 4.4vw, 70px);
+        font-size: clamp(25px, 2.1vw, 42px);
+      }
+
+      .urgent-support {
+        max-width: 1440px;
+        margin-top: clamp(28px, 3.2vw, 52px);
+        font-size: clamp(22px, 1.8vw, 36px);
       }
 
       .urgent-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 14px;
-        margin-top: 34px;
+        justify-content: center;
+        gap: 16px;
+        margin-top: clamp(32px, 3.4vw, 48px);
       }
 
       .urgent-action {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 56px;
-        padding: 0 24px;
-        border: 1px solid #1e37b7;
+        min-height: 58px;
+        padding: 0 28px;
+        border: 1px solid var(--urgent-blue);
         border-radius: 8px;
-        color: #1e37b7;
+        color: var(--urgent-blue) !important;
         font-size: 16px;
-        font-weight: 700;
+        font-weight: 800;
         text-decoration: none;
+        transition: transform 180ms ease, box-shadow 180ms ease;
       }
 
       .urgent-action--primary {
-        background: #1e37b7;
-        color: #ffffff;
+        border-color: var(--urgent-blue);
+        background: var(--urgent-blue);
+        color: #ffffff !important;
+      }
+
+      .urgent-action:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+      }
+
+      body.urgent-page .urgent-kicker,
+      body.urgent-page .urgent-title {
+        color: var(--urgent-ink) !important;
+      }
+
+      body.urgent-page .urgent-title {
+        color: #0f172a !important;
+      }
+
+      body.urgent-page .urgent-lead,
+      body.urgent-page .urgent-support {
+        color: var(--urgent-ink) !important;
+      }
+
+      body.urgent-page .urgent-action:not(.urgent-action--primary) {
+        color: var(--urgent-blue) !important;
+      }
+
+      @media (max-width: 980px) {
+        .urgent-page .mobile-nav a:last-child {
+          display: none;
+        }
       }
 
       @media (max-width: 620px) {
-        .urgent-shell {
-          padding: 18px;
+        .urgent-hero {
+          padding: 130px 18px 54px;
+        }
+
+        .urgent-kicker {
+          margin-bottom: 32px;
+          font-size: 13px;
+        }
+
+        .urgent-title {
+          font-size: clamp(42px, 14vw, 62px);
+        }
+
+        .urgent-lead {
+          margin-top: 38px;
+          font-size: 24px;
+        }
+
+        .urgent-support {
+          margin-top: 30px;
+          font-size: 20px;
         }
 
         .urgent-actions,
@@ -111,19 +272,225 @@ import PageLoader from "../components/PageLoader.astro";
   </head>
   <body class="urgent-page brand-palette">
     <PageLoader />
-    <main class="urgent-shell">
-      <section class="urgent-card" aria-labelledby="urgent-title">
-        <p class="urgent-kicker">Urgenze odontoiatriche</p>
-        <h1 id="urgent-title" class="urgent-title">Siamo qui quando serve</h1>
-        <p class="urgent-copy">
-          Emergenza: i pazienti sono di solito visti il giorno in cui chiamano. Contatta lo studio per
-          descrivere il problema e ricevere le indicazioni più adatte.
-        </p>
-        <div class="urgent-actions">
-          <a class="urgent-action urgent-action--primary" href="tel:+390392022489">Chiama in studio</a>
-          <a class="urgent-action" href="/richiesta/">Richiedi appuntamento</a>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="/" aria-label="Studio Dentistico Sorriso & Salute">
+        <img class="brand-logo" src={brandLogo} alt="Studio Dentistico Sorriso & Salute" width="360" height="87" decoding="async" />
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navigazione principale">
+        {
+          navItems.map((item) => (
+            <a href={item.href} aria-current={item.href === "/urgenze/" ? "page" : undefined}>
+              <span>{item.label}</span>
+              {
+                item.icon === "phone" && (
+                  <svg class="nav-link-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                    <path
+                      d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.31-.31.76-.42 1.17-.28 1.29.43 2.64.66 4.02.66.66 0 1.2.54 1.2 1.2v3.48c0 .66-.54 1.2-1.2 1.2C10.43 21.94 2.06 13.57 2.06 3.4c0-.66.54-1.2 1.2-1.2h3.49c.66 0 1.2.54 1.2 1.2 0 1.38.22 2.73.66 4.02.13.41.03.86-.29 1.17l-2.2 2.2Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                )
+              }
+            </a>
+          ))
+        }
+      </nav>
+
+      <button
+        class="kebab-button"
+        type="button"
+        aria-label="Apri menu esteso"
+        aria-controls="urgenze-kebab-menu"
+        aria-expanded="false"
+        data-kebab-menu-toggle
+      >
+        <span class="kebab-button__icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span>Menu</span>
+      </button>
+
+      <button class="menu-button" type="button" aria-label="Apri menu" aria-expanded="false" data-menu-button>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="mobile-nav" aria-label="Menu mobile" data-mobile-nav>
+        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+    </header>
+
+    <div class="kebab-backdrop" data-kebab-backdrop hidden></div>
+    <aside id="urgenze-kebab-menu" class="kebab-menu" data-kebab-menu tabindex="-1" aria-label="Menu principale" hidden>
+      <div class="kebab-menu__header">
+        <button type="button" class="kebab-menu__close" data-kebab-menu-close aria-label="Chiudi menu">
+          <span aria-hidden="true">×</span>
+          Chiudi
+        </button>
+      </div>
+      <nav class="kebab-menu__content" aria-label="Navigazione estesa">
+        <section class="kebab-menu__section">
+          <h2>Studio</h2>
+          <a href="/chi-siamo/">Chi siamo</a>
+          <a href="/struttura-studio-dentistico-monza/">La Struttura</a>
+          <a href="/contatti/">Contatti</a>
+          <a href="/convenzioni-dirette-studio-dentistico-monza/">Convenzioni</a>
+        </section>
+        <section class="kebab-menu__section">
+          <h2>Attività</h2>
+          <a href="/attivita/">Tutte le attività</a>
+          <a href="/attivita/igiene-orale-e-profilassi/">Igiene orale e profilassi</a>
+          <a href="/attivita/protesi-dentale/">Protesi dentale</a>
+          <a href="/attivita/odontoiatria-conservativa/">Conservativa</a>
+          <a href="/attivita/estetica-del-sorriso/">Estetica del sorriso</a>
+          <a href="/attivita/parodontologia/">Parodontologia</a>
+          <a href="/attivita/ortodonzia/">Ortodonzia</a>
+          <a href="/attivita/chirurgia-orale/">Chirurgia orale</a>
+          <a href="/attivita/pedodonzia/">Pedodonzia</a>
+          <a href="/attivita/gnatologia/">Gnatologia</a>
+          <a href="/implantologia/">Implantologia</a>
+        </section>
+        <section class="kebab-menu__section">
+          <h2>Prenota e informazioni</h2>
+          <a href="/urgenze/">Urgenze</a>
+          <a href="tel:+390392022489">Chiama in studio</a>
+          <a href="/richiesta/">Richiedi appuntamento</a>
+          <a href="/convenzioni-dirette/">Convenzioni dirette</a>
+          <a href="/convenzioni-indirette/">Convenzioni indirette</a>
+        </section>
+      </nav>
+    </aside>
+
+    <main class="urgent-main">
+      <section class="urgent-hero" aria-labelledby="urgent-title">
+        <div class="urgent-hero__inner">
+          <p class="urgent-kicker">Urgenze odontoiatriche</p>
+          <h1 id="urgent-title" class="urgent-title">Siamo qui <br /> quando serve</h1>
+          <p class="urgent-lead">
+            Emergenza: i pazienti sono di solito visti il giorno in cui chiamano. Contatta lo studio per
+            descrivere il problema e ricevere le indicazioni più adatte.
+          </p>
+          <p class="urgent-support">
+            Per dolore improvviso, trauma, gonfiore o protesi danneggiata, ti aiutiamo a capire il passo corretto
+            e a fissare una valutazione nel minor tempo possibile.
+          </p>
+          <div class="urgent-actions">
+            <a class="urgent-action urgent-action--primary" href="tel:+390392022489">Chiama in studio</a>
+            <a class="urgent-action" href="/richiesta/">Richiedi appuntamento</a>
+          </div>
         </div>
       </section>
     </main>
+
+    <MirrorFooter />
+
+    <script is:inline>
+      (() => {
+        const header = document.querySelector("[data-header]");
+        const menuButton = document.querySelector("[data-menu-button]");
+        const mobileNav = document.querySelector("[data-mobile-nav]");
+        const kebabPanel = document.querySelector("[data-kebab-menu]");
+        const kebabBackdrop = document.querySelector("[data-kebab-backdrop]");
+        let lastScrollY = window.scrollY;
+
+        const closeMobileMenu = () => {
+          menuButton?.setAttribute("aria-expanded", "false");
+          mobileNav?.classList.remove("is-open");
+        };
+
+        const setKebabMenuState = (isOpen) => {
+          if (!(kebabPanel instanceof HTMLElement) || !(kebabBackdrop instanceof HTMLElement)) return;
+
+          kebabPanel.hidden = !isOpen;
+          kebabBackdrop.hidden = !isOpen;
+          document.body.classList.toggle("kebab-menu-open", isOpen);
+          document.querySelectorAll("[data-kebab-menu-toggle]").forEach((button) => {
+            button.setAttribute("aria-expanded", String(isOpen));
+          });
+
+          if (isOpen) {
+            closeMobileMenu();
+            header?.classList.remove("is-hidden");
+            kebabPanel.focus({ preventScroll: true });
+          }
+        };
+
+        menuButton?.addEventListener("click", () => {
+          const expanded = menuButton.getAttribute("aria-expanded") === "true";
+          menuButton.setAttribute("aria-expanded", String(!expanded));
+          mobileNav?.classList.toggle("is-open", !expanded);
+          setKebabMenuState(false);
+          header?.classList.remove("is-hidden");
+        });
+
+        const updateStickyHeader = () => {
+          if (!header) return;
+          const currentScrollY = window.scrollY;
+          const isMenuOpen = mobileNav?.classList.contains("is-open");
+          const isKebabOpen = kebabPanel instanceof HTMLElement && !kebabPanel.hidden;
+          const scrollDelta = currentScrollY - lastScrollY;
+
+          if (currentScrollY < 24 || isMenuOpen || isKebabOpen) {
+            header.classList.remove("is-hidden");
+            lastScrollY = currentScrollY;
+            return;
+          }
+
+          if (Math.abs(scrollDelta) < 6) return;
+
+          if (scrollDelta > 0) {
+            closeMobileMenu();
+            header.classList.add("is-hidden");
+          } else {
+            header.classList.remove("is-hidden");
+          }
+
+          lastScrollY = currentScrollY;
+        };
+
+        window.addEventListener("scroll", updateStickyHeader, { passive: true });
+        window.addEventListener("resize", updateStickyHeader);
+
+        mobileNav?.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", closeMobileMenu);
+        });
+
+        kebabPanel?.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => setKebabMenuState(false));
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!(event.target instanceof Element)) return;
+
+          const toggle = event.target.closest("[data-kebab-menu-toggle]");
+          if (toggle) {
+            event.preventDefault();
+            setKebabMenuState(kebabPanel instanceof HTMLElement ? kebabPanel.hidden : true);
+            return;
+          }
+
+          if (event.target.closest("[data-kebab-menu-close]") || event.target === kebabBackdrop) {
+            event.preventDefault();
+            setKebabMenuState(false);
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key !== "Escape") return;
+          closeMobileMenu();
+          setKebabMenuState(false);
+        });
+
+        window.addEventListener("hashchange", () => {
+          closeMobileMenu();
+          setKebabMenuState(false);
+        });
+      })();
+    </script>
   </body>
 </html>

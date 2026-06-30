@@ -6,11 +6,12 @@
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
     "build": "astro build",
-    "preview": "astro preview --host 127.0.0.1"
+    "preview": "astro preview --host 127.0.0.1",
+    "migrate:reviews": "node scripts/migrate-reviews.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
+    "@neondatabase/serverless": "^1.1.0",
     "astro": "6.4.4"
-  },
-  "devDependencies": {}
+  }
 }

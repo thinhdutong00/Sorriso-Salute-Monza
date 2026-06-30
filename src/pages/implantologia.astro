@@ -610,16 +610,12 @@ const conventionGroups = [
     <main id="home">
       <section class="hero" aria-label="Implantologia dentale a Monza">
         <div class="hero-content">
-          <nav class="hero-breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a>
-            <span aria-hidden="true">/</span>
-            <a href="/attivita/">Attività</a>
-            <span aria-hidden="true">/</span>
-            <span>Implantologia</span>
-          </nav>
           <h1>
             Implantologia
           </h1>
+          <p class="hero-breadcrumb hero-service-description">
+            Sostituisci i denti mancanti con soluzioni stabili, progettate per tornare a sorridere e masticare con sicurezza.
+          </p>
           <p class="hero-lead hero-lead-desktop">
             <strong>Dal 2003 a Monza, attraverso solo la chirurgia implantare, abbiamo aiutato oltre 10.000 persone a ritrovare la sicurezza di sorridere e il piacere di masticare senza dolore.</strong> Che ti manchi un solo dente o un'intera arcata, progettiamo la soluzione implantare su misura per restituirti il comfort che stai cercando.
           </p>
@@ -1000,21 +996,14 @@ const conventionGroups = [
       </div>
     </footer>
 
-    <aside class="sticky-cta" data-sticky-cta aria-label="Azioni rapide">
-      <div class="sticky-cta__actions">
-        <a class="sticky-cta__button sticky-cta__button--primary" href="/richiesta/">
-          <svg class="sticky-cta__icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M8 2v4M16 2v4M3.5 9h17M5 5h14a1.5 1.5 0 0 1 1.5 1.5V19A1.5 1.5 0 0 1 19 20.5H5A1.5 1.5 0 0 1 3.5 19V6.5A1.5 1.5 0 0 1 5 5Z" />
-          </svg>
-          <span>Prenota una visita</span>
-        </a>
-        <a
-          class="sticky-cta__button sticky-cta__button--call"
-          href="tel:+390392022489"
-          data-call-studio
-          hidden
-        >
-          Chiama lo studio
+    <aside class="activity-sticky-cta activity-sticky-cta--service" data-activity-sticky-cta aria-label="Prenotazione visita implantologica">
+      <div class="activity-sticky-cta__inner">
+        <div class="activity-sticky-cta__service">
+          <span>Servizio</span>
+          <strong>Implantologia</strong>
+        </div>
+        <a class="activity-sticky-cta__button" href="/richiesta/">
+          Richiedi una visita
         </a>
       </div>
     </aside>
@@ -1118,9 +1107,8 @@ const conventionGroups = [
       const hero = document.querySelector(".hero");
       const kebabPanel = document.querySelector("[data-kebab-menu]");
       const kebabBackdrop = document.querySelector("[data-kebab-backdrop]");
-      const stickyCta = document.querySelector("[data-sticky-cta]");
-      const stickyCtaTrigger = document.querySelector("#situazioni");
-      const callStudioButton = document.querySelector("[data-call-studio]");
+      const stickyCta = document.querySelector("[data-activity-sticky-cta]");
+      const footer = document.querySelector(".site-footer");
       const testimonialCarousel = document.querySelector("[data-testimonial-carousel]");
       const whatsappFloat = document.querySelector("[data-whatsapp-float]");
       const whatsappTrigger = document.querySelector("#faq");
@@ -1283,41 +1271,17 @@ const conventionGroups = [
       updateBookingLinks();
       mobileBookingQuery.addEventListener("change", updateBookingLinks);
 
-      const isStudioOpenInRome = () => {
-        const parts = new Intl.DateTimeFormat("en-GB", {
-          timeZone: "Europe/Rome",
-          weekday: "short",
-          hour: "2-digit",
-          minute: "2-digit",
-          hourCycle: "h23",
-        }).formatToParts(new Date());
-
-        const valueFor = (type) => parts.find((part) => part.type === type)?.value;
-        const weekday = valueFor("weekday");
-        const hour = Number(valueFor("hour"));
-        const minute = Number(valueFor("minute"));
-
-        if (!weekday || Number.isNaN(hour) || Number.isNaN(minute)) {
-          throw new Error("Unable to read opening hours");
-        }
-
-        const openWeekdays = new Set(["Mon", "Tue", "Wed", "Thu", "Fri"]);
-        const minutes = hour * 60 + minute;
-        const morningOpen = minutes >= 9 * 60 && minutes < 12 * 60 + 30;
-        const afternoonOpen = minutes >= 14 * 60 && minutes < 19 * 60;
-
-        return openWeekdays.has(weekday) && (morningOpen || afternoonOpen);
-      };
-
       const updateStickyCtaVisibility = () => {
         if (!(stickyCta instanceof HTMLElement)) return;
-        if (!(stickyCtaTrigger instanceof HTMLElement)) {
-          stickyCta.classList.remove("is-visible");
-          return;
-        }
+        const threshold = hero instanceof HTMLElement
+          ? hero.getBoundingClientRect().bottom + window.scrollY - 24
+          : Math.round(window.innerHeight * 0.72);
+        const isPastHero = window.scrollY > threshold;
+        const isAtFooterEnd = footer instanceof HTMLElement
+          ? footer.getBoundingClientRect().bottom <= window.innerHeight + 2
+          : false;
 
-        const hasPassedTrigger = stickyCtaTrigger.getBoundingClientRect().bottom <= 0;
-        stickyCta.classList.toggle("is-visible", hasPassedTrigger);
+        stickyCta.classList.toggle("is-visible", isPastHero && !isAtFooterEnd);
       };
 
       const updateWhatsappVisibility = () => {
@@ -1329,21 +1293,6 @@ const conventionGroups = [
 
         const hasReachedFaq = whatsappTrigger.getBoundingClientRect().top <= window.innerHeight * 0.85;
         whatsappFloat.classList.toggle("is-visible", hasReachedFaq);
-      };
-
-      const updateCallStudioButton = () => {
-        if (!(callStudioButton instanceof HTMLElement)) return;
-
-        let isOpen = false;
-        try {
-          isOpen = isStudioOpenInRome();
-        } catch {
-          isOpen = false;
-        }
-
-        callStudioButton.hidden = !isOpen;
-        stickyCta?.classList.toggle("is-call-visible", isOpen);
-        document.body.classList.toggle("sticky-call-visible", isOpen);
       };
 
       const setupTestimonials = () => {
@@ -1507,7 +1456,6 @@ const conventionGroups = [
       updateStickyHeader();
       updateStickyCtaVisibility();
       updateWhatsappVisibility();
-      updateCallStudioButton();
       setupTestimonials();
       setupRevealEffects();
       window.addEventListener("scroll", updateStickyCtaVisibility, { passive: true });
@@ -1515,7 +1463,6 @@ const conventionGroups = [
       window.addEventListener("hashchange", updateWhatsappVisibility);
       window.addEventListener("resize", updateStickyCtaVisibility);
       window.addEventListener("resize", updateWhatsappVisibility);
-      window.setInterval(updateCallStudioButton, 60 * 1000);
     </script>
   </body>
 </html>

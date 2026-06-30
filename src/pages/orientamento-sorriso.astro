@@ -1,0 +1,418 @@
+---
+import "../styles/global.css";
+import BrandPalette from "../components/BrandPalette.astro";
+import FaviconLinks from "../components/FaviconLinks.astro";
+import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Rispondi a poche domande per orientarti verso il percorso odontoiatrico più adatto al tuo sorriso."
+    />
+    <meta name="theme-color" content="#0E384C" />
+    <FaviconLinks />
+    <GoogleAdsTracking />
+    <BrandPalette />
+    <title>Orientamento sorriso | Sorriso & Salute Monza</title>
+  </head>
+  <body class="request-body brand-palette orientation-body">
+    <header class="request-topbar">
+      <div class="request-topbar-inner">
+        <a class="request-back-link" href="/" data-back-link>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15.5 4.5 8 12l7.5 7.5" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          Indietro
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="request-shell orientation-shell" aria-labelledby="orientation-title">
+        <p class="quiz-kicker">Orientamento sorriso</p>
+        <h1 class="request-title orientation-title" id="orientation-title">Capisci da dove iniziare</h1>
+        <p class="orientation-copy">
+          Rispondi a poche domande: ci aiuteranno a capire il tuo obiettivo e a ricontattarti con un percorso più chiaro.
+        </p>
+
+        <form class="request-form orientation-form" id="orientamento-sorriso" action="/api/send-lead" method="post" novalidate>
+          <div class="request-progress" role="progressbar" aria-label="Avanzamento quiz" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"></div>
+
+          <div class="request-step is-active" data-step="1">
+            <p class="quiz-kicker">Obiettivo desiderato</p>
+            <h2 class="quiz-title">Che risultato vorresti ottenere?</h2>
+            <div class="quiz-options" data-field="obiettivo">
+              <button class="choice-btn" type="button" data-value="Migliorare estetica e armonia del sorriso"><strong>Migliorare estetica e armonia del sorriso</strong></button>
+              <button class="choice-btn" type="button" data-value="Tornare a masticare meglio"><strong>Tornare a masticare meglio</strong></button>
+              <button class="choice-btn" type="button" data-value="Risolvere dolore o fastidio"><strong>Risolvere dolore o fastidio</strong></button>
+              <button class="choice-btn" type="button" data-value="Sostituire denti mancanti"><strong>Sostituire denti mancanti</strong></button>
+              <button class="choice-btn" type="button" data-value="Allineare i denti"><strong>Allineare i denti</strong></button>
+              <button class="choice-btn" type="button" data-value="Non so da dove iniziare"><strong>Non so da dove iniziare</strong></button>
+            </div>
+          </div>
+
+          <div class="request-step" data-step="2">
+            <p class="quiz-kicker">Urgenza</p>
+            <h2 class="quiz-title">Quanto è urgente per te?</h2>
+            <div class="quiz-options" data-field="urgenza">
+              <button class="choice-btn" type="button" data-value="Appena possibile"><strong>Appena possibile</strong></button>
+              <button class="choice-btn" type="button" data-value="Entro qualche settimana"><strong>Entro qualche settimana</strong></button>
+              <button class="choice-btn" type="button" data-value="Sto valutando con calma"><strong>Sto valutando con calma</strong></button>
+            </div>
+          </div>
+
+          <div class="request-step" data-step="3">
+            <p class="quiz-kicker">Preferenza</p>
+            <h2 class="quiz-title">Come preferisci essere aiutato?</h2>
+            <div class="quiz-options" data-field="preferenza">
+              <button class="choice-btn" type="button" data-value="Vorrei essere richiamato"><strong>Vorrei essere richiamato</strong></button>
+              <button class="choice-btn" type="button" data-value="Vorrei prenotare una visita"><strong>Vorrei prenotare una visita</strong></button>
+              <button class="choice-btn" type="button" data-value="Vorrei capire prima il trattamento più adatto"><strong>Vorrei capire prima il trattamento più adatto</strong></button>
+            </div>
+          </div>
+
+          <div class="request-step" data-step="4">
+            <p class="quiz-kicker">Dati di contatto</p>
+            <h2 class="quiz-title">Dove possiamo ricontattarti?</h2>
+            <div class="field-grid">
+              <label for="nomeCompleto">
+                Nome e cognome
+                <input id="nomeCompleto" name="nomeCompleto" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" required />
+              </label>
+              <label for="telefono">
+                Telefono
+                <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="next" required />
+              </label>
+              <label for="email">
+                Email facoltativa
+                <input id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" />
+              </label>
+            </div>
+            <label>
+              Note facoltative
+              <textarea name="messaggio" placeholder="Aggiungi dettagli utili sul risultato che vorresti ottenere"></textarea>
+            </label>
+          </div>
+
+          <p class="form-error" data-form-error aria-live="polite"></p>
+
+          <div class="request-actions orientation-actions">
+            <button class="request-btn request-btn-primary" type="submit" data-submit-step hidden>Invia il quiz</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <style is:global>
+      body.orientation-body {
+        min-height: 100svh;
+        background:
+          radial-gradient(circle at 10% 0%, rgba(191, 197, 210, 0.18), transparent 34vw),
+          #ffffff;
+      }
+
+      body.orientation-body .orientation-shell {
+        width: min(1120px, calc(100% - 48px));
+        max-width: none;
+        padding-top: clamp(56px, 8vh, 96px);
+        padding-bottom: clamp(60px, 9vh, 112px);
+        background: transparent !important;
+        background-color: transparent !important;
+      }
+
+      body.orientation-body .orientation-shell > .quiz-kicker {
+        display: block;
+        margin: 0 auto 18px;
+        color: var(--brand-primary) !important;
+        text-align: center;
+      }
+
+      body.orientation-body .orientation-title {
+        max-width: 820px;
+        margin-top: 0;
+        margin-right: auto;
+        margin-bottom: 22px;
+        margin-left: auto;
+        text-align: center;
+      }
+
+      body.orientation-body .orientation-copy {
+        max-width: 720px;
+        margin: 0 auto clamp(38px, 5vw, 66px);
+        color: var(--brand-description);
+        text-align: center;
+      }
+
+      body.orientation-body .orientation-form {
+        width: min(980px, 100%);
+        margin: 0 auto;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        gap: clamp(24px, 3vw, 34px);
+      }
+
+      body.orientation-body .orientation-form .request-progress {
+        width: min(100%, 880px);
+        height: 8px;
+        margin: 0 auto clamp(34px, 5vw, 58px);
+      }
+
+      body.orientation-body .orientation-form .request-step.is-active {
+        width: 100%;
+        gap: clamp(18px, 2vw, 28px);
+      }
+
+      body.orientation-body .orientation-form .request-step > .quiz-kicker {
+        margin: 0 0 14px;
+        color: var(--brand-primary) !important;
+      }
+
+      body.orientation-body .orientation-form .quiz-title {
+        max-width: 900px;
+        margin: 0 0 clamp(18px, 3vw, 30px);
+        font-size: clamp(42px, 5.3vw, 78px) !important;
+        font-weight: 400 !important;
+        line-height: 0.98 !important;
+      }
+
+      body.orientation-body .orientation-form .quiz-options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(14px, 2vw, 22px);
+      }
+
+      body.orientation-body .orientation-actions {
+        display: block;
+        width: min(100%, 520px);
+        margin-top: 8px;
+      }
+
+      body.orientation-body .orientation-actions [hidden] {
+        display: none !important;
+      }
+
+      body.orientation-body .orientation-actions:empty {
+        display: none !important;
+      }
+
+      body.orientation-body .request-btn {
+        min-width: 0;
+      }
+
+      @media (max-width: 760px) {
+        body.orientation-body .orientation-shell {
+          width: min(100% - 32px, 640px);
+          padding-top: 42px;
+          padding-bottom: 64px;
+        }
+
+        body.orientation-body .orientation-shell > .quiz-kicker {
+          margin-bottom: 12px;
+          text-align: left;
+        }
+
+        body.orientation-body .orientation-title,
+        body.orientation-body .orientation-copy {
+          text-align: left;
+        }
+
+        body.orientation-body .orientation-title {
+          max-width: none;
+          margin-bottom: 18px;
+          font-size: clamp(44px, 14vw, 62px) !important;
+          line-height: 0.98 !important;
+        }
+
+        body.orientation-body .orientation-copy {
+          margin-bottom: 42px;
+          font-size: 18px !important;
+          line-height: 1.45 !important;
+        }
+
+        body.orientation-body .orientation-form .request-progress {
+          margin-bottom: 34px;
+        }
+
+        body.orientation-body .orientation-form .request-step > .quiz-kicker {
+          margin-bottom: 12px;
+        }
+
+        body.orientation-body .orientation-form .quiz-title {
+          font-size: clamp(34px, 11vw, 48px) !important;
+          line-height: 1 !important;
+        }
+
+        body.orientation-body .orientation-form .quiz-options {
+          grid-template-columns: 1fr;
+        }
+
+        body.orientation-body .orientation-actions {
+          width: 100%;
+        }
+
+        body.orientation-body .request-btn {
+          width: 100%;
+        }
+      }
+    </style>
+
+    <script is:inline>
+      (() => {
+        const backLink = document.querySelector("[data-back-link]");
+        backLink?.addEventListener("click", (event) => {
+          if (window.history.length <= 1) return;
+          event.preventDefault();
+          window.history.back();
+        });
+
+        const form = document.querySelector("#orientamento-sorriso");
+        if (!(form instanceof HTMLFormElement)) return;
+
+        const totalSteps = 4;
+        const steps = [...form.querySelectorAll(".request-step")];
+        const progress = form.querySelector(".request-progress");
+        const submitBtn = form.querySelector("[data-submit-step]");
+        const formError = form.querySelector("[data-form-error]");
+        const fields = {
+          nomeCompleto: form.querySelector('[name="nomeCompleto"]'),
+          telefono: form.querySelector('[name="telefono"]'),
+          email: form.querySelector('[name="email"]'),
+          messaggio: form.querySelector('[name="messaggio"]'),
+        };
+        const quiz = {
+          obiettivo: "",
+          urgenza: "",
+          preferenza: "",
+        };
+        let currentStep = 1;
+        let isSubmitting = false;
+
+        const setError = (message = "") => {
+          if (formError) formError.textContent = message;
+        };
+
+        const showStep = (step) => {
+          currentStep = Math.max(1, Math.min(totalSteps, step));
+          steps.forEach((item) => item.classList.toggle("is-active", Number(item.dataset.step) === currentStep));
+          progress?.style.setProperty("--progress", `${(currentStep / totalSteps) * 100}%`);
+          progress?.setAttribute("aria-valuenow", String(currentStep));
+          if (submitBtn instanceof HTMLButtonElement) submitBtn.hidden = currentStep !== totalSteps;
+          setError();
+          requestAnimationFrame(() => {
+            form.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        };
+
+        const validateStep = () => {
+          const activeStep = steps.find((item) => Number(item.dataset.step) === currentStep);
+          const field = activeStep?.querySelector(".quiz-options")?.dataset.field;
+
+          if (field && !quiz[field]) {
+            setError("Seleziona una risposta per continuare.");
+            return false;
+          }
+
+          if (currentStep === totalSteps) {
+            const required = [fields.nomeCompleto, fields.telefono].filter((fieldItem) => fieldItem instanceof HTMLInputElement);
+            const invalidRequired = required.find((fieldItem) => !fieldItem.checkValidity());
+            if (invalidRequired) {
+              invalidRequired.reportValidity();
+              setError("Nome e telefono sono obbligatori.");
+              return false;
+            }
+
+            if (fields.email instanceof HTMLInputElement && fields.email.value && !fields.email.checkValidity()) {
+              fields.email.reportValidity();
+              setError("Inserisci un indirizzo email valido oppure lascia il campo vuoto.");
+              return false;
+            }
+          }
+
+          return true;
+        };
+
+        const buildProblemSummary = () =>
+          [
+            quiz.urgenza ? `Urgenza: ${quiz.urgenza}` : "",
+            quiz.preferenza ? `Preferenza: ${quiz.preferenza}` : "",
+          ]
+            .filter(Boolean)
+            .join(" | ");
+
+        const buildLeadPayload = () => ({
+          nome: fields.nomeCompleto?.value || "",
+          telefono: fields.telefono?.value || "",
+          email: fields.email?.value || "",
+          servizio: "Quiz orientamento sorriso",
+          messaggio: fields.messaggio?.value || "",
+          paginaProvenienza: document.referrer || "",
+          paginaCorrente: window.location.href,
+          obiettivo: quiz.obiettivo,
+          problema: buildProblemSummary(),
+        });
+
+        const sendLead = async () => {
+          const response = await fetch("/api/send-lead", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(buildLeadPayload()),
+          });
+
+          if (response.ok) return;
+
+          const result = await response.json().catch(() => ({}));
+          throw new Error(result.error || "Non siamo riusciti a inviare il quiz. Riprova tra poco.");
+        };
+
+        form.querySelectorAll(".quiz-options").forEach((group) => {
+          const field = group.dataset.field;
+          group.querySelectorAll(".choice-btn").forEach((button) => {
+            button.setAttribute("aria-pressed", "false");
+            button.addEventListener("click", () => {
+              if (!field) return;
+              quiz[field] = button.dataset.value || "";
+              group.querySelectorAll(".choice-btn").forEach((btn) => btn.setAttribute("aria-pressed", "false"));
+              button.setAttribute("aria-pressed", "true");
+              setError();
+              window.setTimeout(() => showStep(currentStep + 1), 140);
+            });
+          });
+        });
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          if (currentStep !== totalSteps) {
+            if (validateStep()) showStep(currentStep + 1);
+            return;
+          }
+          if (!validateStep()) return;
+          if (isSubmitting) return;
+          isSubmitting = true;
+          if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = true;
+
+          try {
+            await sendLead();
+            window.location.href = "/thank-you-page/";
+          } catch (error) {
+            isSubmitting = false;
+            if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = false;
+            setError(error instanceof Error ? error.message : "Non siamo riusciti a inviare il quiz. Riprova tra poco.");
+          }
+        });
+
+        showStep(1);
+      })();
+    </script>
+  </body>
+</html>

@@ -4,18 +4,18 @@
   --nav-font-family: Inter, sans-serif;
   --clinic-white: #ffffff;
   --clinic-mist: #f5f2ef;
-  --clinic-mint: #eef2ff;
-  --clinic-teal: #1E37B7;
-  --clinic-teal-dark: #172D96;
-  --clinic-blue: #1E37B7;
+  --clinic-mint: #D9ECF4;
+  --clinic-teal: #0E384C;
+  --clinic-teal-dark: #082A38;
+  --clinic-blue: #1e84b5;
   --clinic-ink: #2a2623;
   --clinic-muted: #625d56;
   --clinic-line: #e2ddd6;
-  --clinic-warm: #1E37B7;
-  --accent: #1E37B7;
+  --clinic-warm: #0E384C;
+  --accent: #0E384C;
   --white: #ffffff;
-  --dark-panel: #0f1f63;
-  --dark-panel-2: #0f1f63;
+  --dark-panel: #0E384C;
+  --dark-panel-2: #082A38;
   --surface-warm: #f5f2ef;
   --surface-card: #ffffff;
   --surface-soft: #fbfaf8;
@@ -436,6 +436,7 @@ textarea {
   width: 16px;
   height: 16px;
   margin-left: 2px;
+  margin-right: clamp(8px, 0.8vw, 14px);
   flex: 0 0 auto;
   color: currentColor;
 }
@@ -506,6 +507,7 @@ textarea {
   align-items: center;
   justify-self: end;
   gap: 10px;
+  margin-left: clamp(12px, 1.2vw, 22px);
   height: 40px;
   padding: 0;
   border: 0;
@@ -746,11 +748,11 @@ body.kebab-menu-open {
   justify-content: center;
   min-height: 52px;
   margin-top: 8px;
-  border: 1px solid rgba(30, 55, 183, 0.12);
+  border: 1px solid rgba(14, 56, 76, 0.12);
   border-radius: 999px;
   background: var(--clinic-teal);
   color: #ffffff;
-  box-shadow: 0 14px 28px rgba(15, 31, 99, 0.18);
+  box-shadow: 0 14px 28px rgba(8, 42, 56, 0.18);
   text-align: center;
 }
 
@@ -770,7 +772,7 @@ body.kebab-menu-open {
   place-items: center;
   isolation: isolate;
   padding: 150px 24px 132px;
-  background: var(--clinic-teal);
+  background: #0E384C;
   color: #ffffff;
 }
 
@@ -827,6 +829,14 @@ body.kebab-menu-open {
 
 .hero-breadcrumb span[aria-hidden="true"] {
   color: rgba(255, 255, 255, 0.68);
+}
+
+.hero-service-description {
+  display: block;
+  width: min(860px, 100%);
+  margin: 0 auto;
+  color: #ffffff;
+  text-wrap: balance;
 }
 
 .eyebrow {
@@ -906,7 +916,7 @@ body.kebab-menu-open {
 .button-primary {
   background: var(--clinic-teal);
   color: #ffffff;
-  box-shadow: 0 14px 28px rgba(30, 55, 183, 0.22);
+  box-shadow: 0 14px 28px rgba(14, 56, 76, 0.22);
 }
 
 .button-primary:hover,
@@ -1035,7 +1045,7 @@ body.kebab-menu-open {
   pointer-events: none;
   content: "";
   background:
-    radial-gradient(circle at 14% 18%, rgba(30, 55, 183, 0.08), transparent 32%),
+    radial-gradient(circle at 14% 18%, rgba(14, 56, 76, 0.08), transparent 32%),
     radial-gradient(circle at 88% 74%, rgba(217, 210, 201, 0.34), transparent 30%);
 }
 
@@ -1092,7 +1102,7 @@ body.kebab-menu-open {
   width: min(420px, 100%);
   background: var(--clinic-teal);
   color: #ffffff;
-  box-shadow: 0 14px 28px rgba(30, 55, 183, 0.22);
+  box-shadow: 0 14px 28px rgba(14, 56, 76, 0.22);
 }
 
 .pain-cta .button:hover,
@@ -1193,10 +1203,10 @@ body.kebab-menu-open {
   min-height: 52px;
   padding: 0 18px;
   border-radius: 999px;
-  border: 1px solid rgba(30, 55, 183, 0.14);
+  border: 1px solid rgba(14, 56, 76, 0.14);
   background: var(--clinic-teal);
   color: #ffffff;
-  box-shadow: 0 12px 24px rgba(30, 55, 183, 0.18);
+  box-shadow: 0 12px 24px rgba(14, 56, 76, 0.18);
   cursor: pointer;
   font-family: inherit;
   font-size: 0.92rem;
@@ -1241,10 +1251,10 @@ body.kebab-menu-open {
   grid-column: span 4;
   min-height: 340px;
   overflow: hidden;
-  border: 1px solid rgba(15, 31, 99, 0.08);
+  border: 1px solid rgba(8, 42, 56, 0.08);
   border-radius: 28px;
   background: var(--clinic-ink);
-  box-shadow: 0 18px 50px rgba(15, 31, 99, 0.08);
+  box-shadow: 0 18px 50px rgba(8, 42, 56, 0.08);
 }
 
 .treatment-card.wide {
@@ -1271,7 +1281,7 @@ body.kebab-menu-open {
 
 .card-scrim {
   background:
-    linear-gradient(180deg, rgba(15, 31, 99, 0.02) 0%, rgba(15, 31, 99, 0.24) 44%, rgba(15, 31, 99, 0.64) 100%);
+    linear-gradient(180deg, rgba(8, 42, 56, 0.02) 0%, rgba(8, 42, 56, 0.24) 44%, rgba(8, 42, 56, 0.64) 100%);
 }
 
 .card-content {
@@ -1365,7 +1375,7 @@ body.kebab-menu-open {
 .button-dark.mobile-advantage-cta {
   background: var(--clinic-teal);
   color: #ffffff;
-  box-shadow: 0 16px 30px rgba(30, 55, 183, 0.22);
+  box-shadow: 0 16px 30px rgba(14, 56, 76, 0.22);
 }
 
 .button-dark.advantage-cta:hover,
@@ -1485,7 +1495,7 @@ body.kebab-menu-open {
   padding: clamp(28px, 4.5vw, 54px);
   border-radius: 26px;
   background:
-    radial-gradient(circle at 88% 12%, rgba(30, 55, 183, 0.34), transparent 34%),
+    radial-gradient(circle at 88% 12%, rgba(14, 56, 76, 0.34), transparent 34%),
     linear-gradient(180deg, var(--dark-panel), #09184d);
   box-shadow: 0 22px 62px rgba(42, 38, 35, 0.18);
   gap: clamp(28px, 4vw, 56px);
@@ -1760,7 +1770,7 @@ body.kebab-menu-open {
   pointer-events: none;
   content: "";
   background:
-    radial-gradient(circle at 16% 18%, rgba(30, 55, 183, 0.08), transparent 32%),
+    radial-gradient(circle at 16% 18%, rgba(14, 56, 76, 0.08), transparent 32%),
     linear-gradient(180deg, rgba(245, 242, 239, 0), rgba(217, 210, 201, 0.24));
 }
 
@@ -1929,7 +1939,7 @@ body.kebab-menu-open {
   padding: 0;
   border: 0;
   background: transparent;
-  color: #1E37B7;
+  color: var(--clinic-teal);
   cursor: pointer;
   font: inherit;
   font-weight: 800;
@@ -2053,7 +2063,7 @@ body.modal-open {
 }
 
 .convention-footer a {
-  color: #1E37B7;
+  color: var(--clinic-teal);
   font-weight: 800;
 }
 
@@ -2141,7 +2151,7 @@ body.modal-open {
   padding: 0 34px;
   background: var(--clinic-teal);
   color: #ffffff;
-  box-shadow: 0 16px 30px rgba(30, 55, 183, 0.22);
+  box-shadow: 0 16px 30px rgba(14, 56, 76, 0.22);
 }
 
 .convention-booking-cta:hover,
@@ -2214,7 +2224,7 @@ body.modal-open {
   white-space: normal;
   background: var(--clinic-teal);
   color: #ffffff;
-  box-shadow: 0 14px 28px rgba(30, 55, 183, 0.18);
+  box-shadow: 0 14px 28px rgba(14, 56, 76, 0.18);
 }
 
 .contact-card .button:hover,
@@ -2239,7 +2249,7 @@ body.modal-open {
   place-items: center;
   padding: 24px;
   background:
-    radial-gradient(circle at 14% 8%, rgba(30, 55, 183, 0.16), transparent 30%),
+    radial-gradient(circle at 14% 8%, rgba(14, 56, 76, 0.16), transparent 30%),
     linear-gradient(180deg, #ffffff, var(--surface-warm));
 }
 
@@ -2256,7 +2266,7 @@ body.modal-open {
   min-height: 64px;
   padding: 0 24px;
   border-radius: 999px;
-  border: 1px solid rgba(30, 55, 183, 0.16);
+  border: 1px solid rgba(14, 56, 76, 0.16);
   background: var(--button-secondary-solid);
   color: var(--clinic-teal);
   box-shadow: 0 12px 24px rgba(42, 38, 35, 0.08);
@@ -2268,7 +2278,7 @@ body.modal-open {
 .booking-choice-button--primary {
   background: var(--clinic-teal);
   color: #ffffff;
-  box-shadow: 0 16px 30px rgba(30, 55, 183, 0.22);
+  box-shadow: 0 16px 30px rgba(14, 56, 76, 0.22);
 }
 
 .booking-choice-button:hover,
@@ -2333,6 +2343,96 @@ body.modal-open {
 
 .footer-bottom span {
   max-width: 340px;
+}
+
+.activity-sticky-cta {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(100%);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.activity-sticky-cta.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.activity-sticky-cta__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  width: 100%;
+  min-height: 86px;
+  margin: 0;
+  padding: 14px clamp(20px, 6vw, 76px);
+  gap: 24px;
+  border: 0;
+  border-top: 1px solid rgba(191, 197, 210, 0.78);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 -10px 28px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.activity-sticky-cta__service {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.activity-sticky-cta__service span {
+  color: var(--clinic-muted);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.activity-sticky-cta__service strong {
+  overflow: hidden;
+  color: var(--clinic-teal);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.activity-sticky-cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  min-height: 56px;
+  padding: 0 26px;
+  border-radius: 8px;
+  background: var(--clinic-teal);
+  color: #ffffff;
+  font-family: var(--nav-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  box-shadow: 0 14px 30px rgba(14, 56, 76, 0.24);
+  transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.activity-sticky-cta__button:hover,
+.activity-sticky-cta__button:focus-visible {
+  background: var(--clinic-teal-dark);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 18px 34px rgba(14, 56, 76, 0.28);
 }
 
 .sticky-cta {
@@ -2406,7 +2506,7 @@ body.modal-open {
 .sticky-cta__button--primary {
   background: var(--clinic-teal);
   color: #ffffff;
-  box-shadow: 0 14px 30px rgba(30, 55, 183, 0.22);
+  box-shadow: 0 14px 30px rgba(14, 56, 76, 0.22);
 }
 
 .sticky-cta__button--primary:hover,
@@ -2442,7 +2542,7 @@ body.modal-open {
   border-radius: 999px;
   background: #25d366;
   color: #ffffff;
-  box-shadow: 0 18px 36px rgba(15, 31, 99, 0.22);
+  box-shadow: 0 18px 36px rgba(8, 42, 56, 0.22);
   opacity: 0;
   pointer-events: none;
   transform: translateY(14px) scale(0.92);
@@ -2459,7 +2559,7 @@ body.modal-open {
 
 .whatsapp-float:hover,
 .whatsapp-float:focus-visible {
-  box-shadow: 0 22px 42px rgba(15, 31, 99, 0.28);
+  box-shadow: 0 22px 42px rgba(8, 42, 56, 0.28);
   transform: translateY(-2px) scale(1);
 }
 
@@ -2480,7 +2580,7 @@ body.modal-open {
   border-radius: 18px 18px 4px 18px;
   background: #f2fff7;
   color: var(--clinic-ink);
-  box-shadow: 0 16px 34px rgba(15, 31, 99, 0.18);
+  box-shadow: 0 16px 34px rgba(8, 42, 56, 0.18);
   font-size: 0.93rem;
   font-weight: 800;
   line-height: 1.28;
@@ -2514,7 +2614,7 @@ body.modal-open {
 
 .whatsapp-message:hover,
 .whatsapp-message:focus-visible {
-  box-shadow: 0 20px 40px rgba(15, 31, 99, 0.24);
+  box-shadow: 0 20px 40px rgba(8, 42, 56, 0.24);
 }
 
 .legal-body {
@@ -2696,7 +2796,7 @@ body.modal-open {
   margin-bottom: 0.18rem;
   overflow: hidden;
   border-radius: 999px;
-  background: rgba(30, 55, 183, 0.12);
+  background: rgba(14, 56, 76, 0.12);
 }
 
 .request-progress::before {
@@ -2704,7 +2804,7 @@ body.modal-open {
   inset: 0 auto 0 0;
   width: var(--progress);
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--clinic-teal), #1E37B7);
+  background: linear-gradient(90deg, var(--clinic-teal), var(--clinic-blue));
   content: "";
   transition: width 240ms ease;
 }
@@ -2807,27 +2907,27 @@ body.modal-open {
 
 .choice-btn:hover,
 .choice-btn:focus-visible {
-  border-color: rgba(30, 55, 183, 0.7);
-  box-shadow: 0 14px 32px rgba(30, 55, 183, 0.12);
+  border-color: rgba(14, 56, 76, 0.7);
+  box-shadow: 0 14px 32px rgba(14, 56, 76, 0.12);
   transform: translateY(-1px);
 }
 
 .choice-btn:hover::before,
 .choice-btn:focus-visible::before {
   border-color: var(--clinic-teal);
-  box-shadow: 0 0 0 5px rgba(30, 55, 183, 0.1);
+  box-shadow: 0 0 0 5px rgba(14, 56, 76, 0.1);
 }
 
 .choice-btn[aria-pressed="true"] {
   border-color: var(--clinic-teal);
   background: linear-gradient(135deg, rgba(238, 242, 255, 0.92), #ffffff);
-  box-shadow: 0 16px 34px rgba(30, 55, 183, 0.14);
+  box-shadow: 0 16px 34px rgba(14, 56, 76, 0.14);
 }
 
 .choice-btn[aria-pressed="true"]::before {
   border-color: var(--clinic-teal);
   background: var(--clinic-teal);
-  box-shadow: 0 0 0 5px rgba(30, 55, 183, 0.12);
+  box-shadow: 0 0 0 5px rgba(14, 56, 76, 0.12);
 }
 
 .choice-btn[aria-pressed="true"]::after {
@@ -2939,7 +3039,7 @@ body.modal-open {
 .date-btn:focus-visible,
 .slot-btn:focus-visible {
   border-color: var(--clinic-teal);
-  box-shadow: 0 10px 24px rgba(30, 55, 183, 0.12);
+  box-shadow: 0 10px 24px rgba(14, 56, 76, 0.12);
 }
 
 .date-btn[aria-pressed="true"],
@@ -2947,7 +3047,7 @@ body.modal-open {
   border-color: var(--clinic-teal);
   background: var(--clinic-teal);
   color: #ffffff;
-  box-shadow: 0 12px 26px rgba(30, 55, 183, 0.18);
+  box-shadow: 0 12px 26px rgba(14, 56, 76, 0.18);
 }
 
 .date-btn[aria-pressed="true"] small {
@@ -3006,7 +3106,7 @@ body.modal-open {
 .request-form textarea:focus,
 .request-form button:focus-visible,
 .request-back-link:focus-visible {
-  outline: 3px solid rgba(30, 55, 183, 0.28);
+  outline: 3px solid rgba(14, 56, 76, 0.28);
   outline-offset: 2px;
 }
 
@@ -3029,7 +3129,7 @@ body.modal-open {
   display: grid;
   gap: 0.08rem;
   padding-bottom: 0.58rem;
-  border-bottom: 1px solid rgba(15, 31, 99, 0.08);
+  border-bottom: 1px solid rgba(8, 42, 56, 0.08);
 }
 
 .summary-line:last-child {
@@ -3090,7 +3190,7 @@ body.modal-open {
   border-color: var(--clinic-teal);
   background: var(--clinic-teal);
   color: #ffffff;
-  box-shadow: 0 14px 30px rgba(30, 55, 183, 0.18);
+  box-shadow: 0 14px 30px rgba(14, 56, 76, 0.18);
 }
 
 .request-btn-primary:hover,
@@ -3108,7 +3208,7 @@ body.modal-open {
 .request-btn-outline:hover,
 .request-btn-outline:focus-visible {
   border-color: var(--clinic-teal);
-  box-shadow: 0 12px 26px rgba(30, 55, 183, 0.1);
+  box-shadow: 0 12px 26px rgba(14, 56, 76, 0.1);
 }
 
 .thank-you-shell {
@@ -3438,6 +3538,28 @@ body.modal-open {
     height: 46px;
   }
 
+  .activity-sticky-cta {
+    padding: 0;
+  }
+
+  .activity-sticky-cta__inner {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .activity-sticky-cta__service strong {
+    font-size: 18px;
+    white-space: normal;
+  }
+
+  .activity-sticky-cta__button {
+    width: 100%;
+    min-width: 0;
+    min-height: 52px;
+  }
+
   .kebab-menu {
     inset: 10px;
     width: auto;
@@ -3622,8 +3744,8 @@ body.modal-open {
 
   .method-section {
     background:
-      radial-gradient(circle at 80% 10%, rgba(30, 55, 183, 0.26), transparent 32%),
-      linear-gradient(180deg, var(--clinic-teal-dark), #0f1f63);
+      radial-gradient(circle at 80% 10%, rgba(14, 56, 76, 0.26), transparent 32%),
+      linear-gradient(180deg, var(--clinic-teal-dark), var(--dark-panel));
   }
 
   .method-inner {
@@ -3887,8 +4009,8 @@ body.modal-open {
     width: 100%;
     padding: 72px 18px;
     background:
-      radial-gradient(circle at 80% 10%, rgba(30, 55, 183, 0.26), transparent 32%),
-      linear-gradient(180deg, var(--clinic-teal-dark), #0f1f63);
+      radial-gradient(circle at 80% 10%, rgba(14, 56, 76, 0.26), transparent 32%),
+      linear-gradient(180deg, var(--clinic-teal-dark), var(--dark-panel));
     color: #ffffff;
   }
 

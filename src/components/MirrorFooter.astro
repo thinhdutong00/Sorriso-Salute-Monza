@@ -1,0 +1,219 @@
+---
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+
+const applyBrandColorTokens = (html: string) =>
+  html
+    .replace(/#1e37b7/gi, "#0E384C")
+    .replace(/#172d96/gi, "#082A38")
+    .replace(/#0f1f63/gi, "#082A38")
+    .replace(/rgba\(\s*30\s*,\s*55\s*,\s*183\s*,/gi, "rgba(14, 56, 76,")
+    .replace(/rgba\(\s*15\s*,\s*31\s*,\s*99\s*,/gi, "rgba(8, 42, 56,");
+
+const applySharedFooterCopy = (html: string) =>
+  html.replaceAll(
+    "Un sorriso più sano non può aspettare, <br />Prenota ora!",
+    "Un sorriso<br />che sembri tuo,<br />solo migliore.",
+  );
+
+const hydrateOptimoleImages = (html: string) =>
+  html.replace(/<img\b[^>]*>/gi, (tag) => {
+    const optSrc = tag.match(/\sdata-opt-src=(["'])(.*?)\1/i)?.[2];
+
+    if (!optSrc) return tag;
+
+    if (/\ssrc=(["']).*?\1/i.test(tag)) {
+      return tag.replace(/\ssrc=(["']).*?\1/i, ` src="${optSrc}"`);
+    }
+
+    return tag.replace("<img", `<img src="${optSrc}"`);
+  });
+
+const homeBody = await readFile(path.resolve("src/data/mirror/pages/home.body.html"), "utf8");
+const footerMatch = homeBody.match(
+  /<div class="ekit-template-content-markup ekit-template-content-footer[\s\S]*?(?=<template id="tp-language")/,
+);
+
+if (!footerMatch) {
+  throw new Error("Missing mirrored footer markup");
+}
+
+const footer = hydrateOptimoleImages(applySharedFooterCopy(applyBrandColorTokens(footerMatch[0].trim())));
+---
+
+<link rel="stylesheet" href="/mirror-assets/61ad75894f1dfee0.css" media="all" />
+<link rel="stylesheet" href="/mirror-assets/91f924a36b4b0b13.css" media="all" />
+<link rel="stylesheet" href="/mirror-assets/27f32a1034fd3277.css" media="all" />
+
+<style is:inline>
+  .ekit-template-content-footer {
+    --footer-container-width: 1300px;
+    font-family: var(--brand-font-family, Inter, system-ui, sans-serif);
+    line-height: 1.5;
+  }
+
+  .ekit-template-content-footer,
+  .ekit-template-content-footer * {
+    box-sizing: border-box;
+  }
+
+  .ekit-template-content-footer .elementor {
+    width: 100%;
+  }
+
+  .ekit-template-content-footer .elementor a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .ekit-template-content-footer .e-con {
+    position: relative;
+    display: var(--display, flex);
+    flex-direction: var(--flex-direction, column);
+    flex-wrap: var(--flex-wrap, nowrap);
+    align-items: var(--align-items, stretch);
+    justify-content: var(--justify-content, flex-start);
+    align-content: var(--align-content, normal);
+    gap: var(--row-gap, 0) var(--column-gap, 0);
+    width: var(--width, 100%);
+    max-width: min(100%, var(--width, 100%));
+    margin: var(--margin-top, 0) var(--margin-right, 0) var(--margin-bottom, 0) var(--margin-left, 0);
+    padding: var(--padding-top, 0) var(--padding-right, 0) var(--padding-bottom, 0) var(--padding-left, 0);
+    border-color: var(--border-color, transparent);
+    border-style: var(--border-style, none);
+    border-width: var(--border-top-width, 0) var(--border-right-width, 0) var(--border-bottom-width, 0) var(--border-left-width, 0);
+  }
+
+  .ekit-template-content-footer .e-con.e-child {
+    flex-basis: var(--width, auto);
+    flex-grow: var(--container-widget-flex-grow, var(--flex-grow, 0));
+    flex-shrink: var(--flex-shrink, 1);
+  }
+
+  .ekit-template-content-footer .e-con-boxed > .e-con-inner {
+    display: flex;
+    flex-direction: var(--flex-direction, column);
+    flex-wrap: var(--flex-wrap, nowrap);
+    align-items: var(--align-items, stretch);
+    justify-content: var(--justify-content, flex-start);
+    gap: var(--row-gap, 0) var(--column-gap, 0);
+    width: min(100%, var(--footer-container-width));
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .ekit-template-content-footer .elementor-element {
+    align-self: var(--align-self, auto);
+    flex-basis: var(--flex-basis, auto);
+    order: var(--order, 0);
+  }
+
+  .ekit-template-content-footer .elementor-widget,
+  .ekit-template-content-footer .elementor-widget-container {
+    width: 100%;
+  }
+
+  .ekit-template-content-footer .elementor-heading-title {
+    margin: 0;
+  }
+
+  .ekit-template-content-footer .elementor-widget-text-editor p {
+    margin: 0 0 1em;
+  }
+
+  .ekit-template-content-footer .elementor-widget-text-editor p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ekit-template-content-footer .elementor-widget-image img {
+    display: inline-block;
+    max-width: 100%;
+  }
+
+  .ekit-template-content-footer .elementor-button-wrapper {
+    line-height: 1;
+  }
+
+  .ekit-template-content-footer .elementor-align-right .elementor-button-wrapper {
+    text-align: right;
+  }
+
+  .ekit-template-content-footer .elementor-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 17px 28px 17px 18px !important;
+    border-radius: 14px;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .ekit-template-content-footer .elementor-button-content-wrapper {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .ekit-template-content-footer .elementor-button-icon,
+  .ekit-template-content-footer .elementor-button-text {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .ekit-template-content-footer .ekit_social_media {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ekit-template-content-footer .ekit_social_media > li > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ekit-template-content-footer .ekit-wid-con,
+  .ekit-template-content-footer .ekit_global_links {
+    display: block;
+  }
+
+  .ekit-template-content-footer .elementskit-infobox.media {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .ekit-template-content-footer .elementskit-box-header {
+    flex: 0 0 auto;
+  }
+
+  .ekit-template-content-footer .elementskit-info-box-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ekit-template-content-footer .box-body {
+    flex: 1 1 auto;
+  }
+
+  .ekit-template-content-footer .elementskit-info-box-title {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .ekit-template-content-footer .elementor-tablet-align-left .elementor-button-wrapper {
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .ekit-template-content-footer {
+      --footer-container-width: 100%;
+    }
+  }
+</style>
+
+<Fragment set:html={footer} />

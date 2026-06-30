@@ -5,6 +5,7 @@ import BrandPalette from "./BrandPalette.astro";
 import GoogleAdsTracking from "./GoogleAdsTracking.astro";
 import PageLoader from "./PageLoader.astro";
 import manifest from "../data/mirror/manifest.json";
+import { sourceReviews } from "../data/reviews-seed";
 
 interface Props {
   mirrorPath: string;
@@ -25,6 +26,254 @@ const [rawHead, rawBody] = await Promise.all([
 
 const replaceFirst = (source: string, search: string, replacement: string) => source.replace(search, replacement);
 
+const applyBrandColorTokens = (html: string) =>
+  html
+    .replace(/#1e37b7/gi, "#0E384C")
+    .replace(/#172d96/gi, "#082A38")
+    .replace(/#0f1f63/gi, "#082A38")
+    .replace(/rgba\(\s*30\s*,\s*55\s*,\s*183\s*,/gi, "rgba(14, 56, 76,")
+    .replace(/rgba\(\s*15\s*,\s*31\s*,\s*99\s*,/gi, "rgba(8, 42, 56,");
+
+const activityHeroDescriptions: Record<string, string> = {
+  "/attivita/":
+    "Scopri trattamenti chiari e personalizzati per prevenire, curare e valorizzare il tuo sorriso.",
+  "/attivita/chirurgia-orale/":
+    "Affronta estrazioni e piccoli interventi con un percorso pianificato, attento al comfort e al recupero.",
+  "/attivita/endodonzia/":
+    "Salva il dente naturale, elimina il dolore e ripristina la funzione con una devitalizzazione precisa.",
+  "/attivita/estetica-del-sorriso/":
+    "Migliora colore, forma e armonia dei denti con trattamenti mirati a un sorriso naturale.",
+  "/attivita/gnatologia/":
+    "Riduci dolori mandibolari, tensioni e disturbi della masticazione con una valutazione funzionale mirata.",
+  "/attivita/igiene-orale-e-profilassi/":
+    "Proteggi denti e gengive con controlli e igiene professionale pensati per prevenire problemi futuri.",
+  "/attivita/odontoiatria-conservativa/":
+    "Cura carie e lesioni preservando il più possibile il dente naturale, estetica e funzionalità.",
+  "/attivita/ortodonzia/":
+    "Allinea il sorriso, migliora la masticazione e scegli soluzioni discrete adatte alla tua quotidianità.",
+  "/attivita/parodontologia/":
+    "Ferma i problemi gengivali, proteggi i denti e ritrova stabilità con cure mirate.",
+  "/attivita/pedodonzia/":
+    "Accompagna i bambini dal dentista con cure delicate, prevenzione e un approccio rassicurante.",
+  "/attivita/protesi-dentale/":
+    "Ripristina denti mancanti, masticazione ed estetica con soluzioni fisse o mobili su misura.",
+};
+
+const conventionPagePaths = new Set([
+  "/convenzioni-dirette-studio-dentistico-monza/",
+  "/convenzioni-dirette/",
+  "/convenzioni-indirette/",
+]);
+const aboutBreadcrumbPagePaths = new Set(["/chi-siamo/", "/chi-siamo-studio-dentistico-monza/"]);
+const aboutSectionImageUrl = "https://sorrisoesalutemonza.it/assets/brand/sorriso-salute-sala-operativa.png";
+const isReviewsPage = page.path === "/recensioni-studio-dentistico-monza/";
+
+const escapeHtml = (value: string) =>
+  value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+
+const applyActivityHeroDescription = (html: string) => {
+  const description = activityHeroDescriptions[page.path];
+  if (!description) return html;
+
+  return html.replace(
+    /<ol class="ekit-breadcrumb">[\s\S]*?<\/ol>/,
+    `<p class="activity-hero-description">${escapeHtml(description)}</p>`,
+  );
+};
+
+const removeReviewsHeroBreadcrumb = (html: string) => {
+  if (page.path !== "/recensioni-studio-dentistico-monza/") return html;
+
+  return html.replace(/<ol class="ekit-breadcrumb">[\s\S]*?<\/ol>/, "");
+};
+
+const removeConventionHeroBreadcrumb = (html: string) => {
+  if (!conventionPagePaths.has(page.path)) return html;
+
+  return html.replace(/<ol class="ekit-breadcrumb">[\s\S]*?<\/ol>/, "");
+};
+
+const removeAboutHeroBreadcrumb = (html: string) => {
+  if (!aboutBreadcrumbPagePaths.has(page.path)) return html;
+
+  return html.replace(/<ol class="ekit-breadcrumb">[\s\S]*?<\/ol>/, "");
+};
+
+type DisplayReview = {
+  id: string | number;
+  rating: number;
+  title: string;
+  dateLabel: string;
+  content: string;
+  author: string;
+  sourcePage?: number;
+};
+
+const REVIEWS_PER_PAGE = 5;
+const REVIEWS_PAGE_PATH = "/recensioni-studio-dentistico-monza/";
+const reviewsPageCount = Math.max(1, Math.ceil(sourceReviews.length / REVIEWS_PER_PAGE));
+
+const clampRating = (rating: number) => Math.min(5, Math.max(1, Math.round(rating)));
+
+const buildReviewsPageHref = (pageNumber: number) =>
+  pageNumber <= 1 ? REVIEWS_PAGE_PATH : `${REVIEWS_PAGE_PATH}?reviews-page=${pageNumber}`;
+
+const buildGlsrStars = (rating: number) => {
+  const normalizedRating = clampRating(rating);
+
+  return Array.from({ length: 5 }, (_, index) =>
+    `<span class="glsr-star ${index < normalizedRating ? "glsr-star-full" : "glsr-star-empty"}" aria-hidden="true"></span>`,
+  ).join("");
+};
+
+const buildGlsrReview = (review: DisplayReview, type = "local") => {
+  const rating = clampRating(review.rating);
+  const reviewId = escapeHtml(String(review.id));
+
+  return `<div class="glsr-review" data-type="${escapeHtml(type)}" id="${reviewId}" data-assigned='[]' data-review-id="${reviewId}">
+<div class="glsr-review-title"><h4 class="glsr-tag-value">${escapeHtml(review.title)}</h4></div>
+<div class="glsr-review-rating"><div class="glsr-star-rating glsr-stars" role="img" aria-label="Rated ${rating} out of 5 stars" data-rating="${rating}" data-reviews="0">${buildGlsrStars(rating)}</div></div> <div class="glsr-review-date"><span class="glsr-tag-value">${escapeHtml(review.dateLabel)}</span></div>
+<div class="glsr-review-content"><div class="glsr-tag-value" data-expanded="false"><p>${escapeHtml(review.content)}</p></div></div>
+<div class="glsr-review-author"><span class="glsr-tag-value">${escapeHtml(review.author)}</span></div>
+</div>`;
+};
+
+const getSourceReviewsPage = (pageNumber: number) =>
+  sourceReviews.slice((pageNumber - 1) * REVIEWS_PER_PAGE, pageNumber * REVIEWS_PER_PAGE);
+
+const buildGlsrPagination = (currentPage: number, totalPages: number) => {
+  if (totalPages <= 1) return "";
+
+  const links: string[] = [];
+
+  if (currentPage > 1) {
+    links.push(`<a class="page-numbers prev" data-page="${currentPage - 1}" href="${buildReviewsPageHref(currentPage - 1)}">Previous</a>`);
+  }
+
+  for (let pageNumber = 1; pageNumber <= totalPages; pageNumber += 1) {
+    if (pageNumber === currentPage) {
+      links.push(`<span class="page-numbers current" aria-current="page" data-page="${pageNumber}"><span class="meta-nav screen-reader-text">Page </span>${pageNumber}</span>`);
+    } else {
+      links.push(`<a class="page-numbers" data-page="${pageNumber}" href="${buildReviewsPageHref(pageNumber)}"><span class="meta-nav screen-reader-text">Page </span>${pageNumber}</a>`);
+    }
+  }
+
+  if (currentPage < totalPages) {
+    links.push(`<a class="page-numbers next" data-page="${currentPage + 1}" href="${buildReviewsPageHref(currentPage + 1)}">Next</a>`);
+  }
+
+  return `<div class="glsr-pagination glsr-ajax-pagination" data-id="glsr_85761207" data-pagination="ajax" data-reviews-pagination><div class="pagination">
+<nav class="navigation" role="navigation">
+<h2 class="screen-reader-text">Site Reviews navigation</h2>
+<div class="nav-links">
+${links.join("\n")}
+</div>
+</nav>
+</div></div>`;
+};
+
+const reviewsFormMarkup = `<p><div class="glsr glsr-default" id="glsr_5cfbac45" data-from="shortcode" data-shortcode="site_reviews_form"><div class="glsr-form-wrap">
+<form class="glsr-review-form glsr-form" method="post" enctype="multipart/form-data" data-review-form novalidate>
+<input type="hidden" name="site-reviews[_action]" value="submit-review" />
+<input type="hidden" name="site-reviews[_nonce]" value="" />
+<input type="hidden" name="site-reviews[_post_id]" value="3636" />
+<input type="hidden" name="site-reviews[_referer]" value="" />
+<input type="hidden" name="site-reviews[assigned_posts]" value="" />
+<input type="hidden" name="site-reviews[assigned_terms]" value="" />
+<input type="hidden" name="site-reviews[assigned_users]" value="" />
+<input type="hidden" name="site-reviews[excluded]" value="" />
+<input type="hidden" name="site-reviews[form_id]" value="glsr_5cfbac45" />
+<input type="hidden" name="site-reviews[terms_exist]" value="1" />
+<input type="hidden" name="site-reviews[form_signature]" value="" />
+<div class="glsr-field" style="display:none;"><label for="site-reviews-3831cc21-glsr_5cfbac45">Testo recensione</label><input type="text" class="glsr-input glsr-input-text" id="site-reviews-3831cc21-glsr_5cfbac45" name="site-reviews[3831cc21]" value="" tabindex="-1" autocomplete="new-password" aria-hidden="true" /></div>
+<div class="glsr-field glsr-field-rating" data-field="rating">
+<label class="glsr-label" for="glsr_5cfbac45-rating">
+<span>Esprimi una tua preferenza</span>
+</label>
+<select class="browser-default disable-select no_wrap no-wrap glsr-select" id="glsr_5cfbac45-rating" name="site-reviews[rating]"><option value="">Select a Rating</option><option value="5">5 Stars</option><option value="4">4 Stars</option><option value="3">3 Stars</option><option value="2">2 Stars</option><option value="1">1 Star</option></select>
+<div class="glsr-field-error"></div>
+</div>
+<div class="glsr-field glsr-field-text glsr-required" data-field="title">
+<label class="glsr-label" for="glsr_5cfbac45-title">
+<span>Titolo recensione</span>
+</label>
+<input type="text" class="glsr-input glsr-input-text" id="glsr_5cfbac45-title" name="site-reviews[title]" required maxlength="120" placeholder="Inserisci un breve titolo della tua recensione" value="" />
+<div class="glsr-field-error"></div>
+</div>
+<div class="glsr-field glsr-field-textarea glsr-required" data-field="content">
+<label class="glsr-label" for="glsr_5cfbac45-content">
+<span>Testo recensione</span>
+</label>
+<textarea class="glsr-textarea" id="glsr_5cfbac45-content" name="site-reviews[content]" required maxlength="2000" placeholder="Parlaci della tua esperienza" rows="5"></textarea>
+<div class="glsr-field-error"></div>
+</div>
+<div class="glsr-field glsr-field-text glsr-required" data-field="name">
+<label class="glsr-label" for="glsr_5cfbac45-name">
+<span>Nome</span>
+</label>
+<input type="text" class="glsr-input glsr-input-text" id="glsr_5cfbac45-name" name="site-reviews[name]" required maxlength="80" placeholder="Inserisci il tuo nome" value="" />
+<div class="glsr-field-error"></div>
+</div>
+<div class="glsr-field glsr-field-email" data-field="email">
+<label class="glsr-label" for="glsr_5cfbac45-email">
+<span>Email</span>
+</label>
+<input type="email" class="glsr-input glsr-input-email" id="glsr_5cfbac45-email" name="site-reviews[email]" required maxlength="254" placeholder="Inserisci la tua email" value="" />
+<div class="glsr-field-error"></div>
+</div>
+<div class="glsr-field glsr-field-choice" data-field="terms">
+<span class="glsr-field-toggle">
+<span class="glsr-toggle">
+<label for="glsr_5cfbac45-terms-1">Questa recensione è basata sulla mia esperienza presso lo studio sorriso&amp;salute</label>
+<span class="glsr-toggle-switch">
+<input type="checkbox" class="glsr-input-toggle" id="glsr_5cfbac45-terms-1" name="site-reviews[terms]" value="1" /> &#8203; <!-- zero-space character used for alignment -->
+<span class="glsr-toggle-track"></span>
+</span>
+</span>
+</span>
+<div class="glsr-field-error"></div>
+</div>
+<div class="glsr-form-message" data-review-message role="status" aria-live="polite">
+</div>
+<div data-field="submit-button">
+<div class="wp-block-buttons is-layout-flex">
+<div class="wp-block-button">
+<button type="submit" class="glsr-button wp-block-button__link wp-element-button" aria-busy="false" data-loading="Submitting, please wait..." data-review-submit>Inserisci recensione</button>
+</div>
+</div>
+</div>
+</form>
+</div></div></p>`;
+
+const reviewsListMarkup = `<p><div class="glsr glsr-default" id="glsr_85761207" data-from="shortcode" data-shortcode="site_reviews" data-pagination="ajax" data-reviews-app><div class="glsr-reviews-wrap">
+<div class="glsr-reviews" data-reviews-list>
+${getSourceReviewsPage(1).map((review) => buildGlsrReview(review)).join("\n")}
+</div>
+${buildGlsrPagination(1, reviewsPageCount)}
+</div></div></p>`;
+
+const applyReviewsPageBody = (html: string) => {
+  if (!isReviewsPage) return html;
+
+  return html
+    .replace(
+      /<p><div class="glsr glsr-default" id="glsr_5cfbac45"[\s\S]*?<\/div><\/div><\/p>/,
+      reviewsFormMarkup,
+    )
+    .replace(
+      /<p><div class="glsr glsr-default" id="glsr_85761207"[\s\S]*?<\/div><\/div><\/p>/,
+      reviewsListMarkup,
+    )
+    .replace(/<script\b[^>]*id=["']site-reviews-js-before["'][^>]*>[\s\S]*?<\/script>\s*/gi, "")
+    .replace(/<script\b[^>]*id=["']site-reviews-js["'][^>]*>[\s\S]*?<\/script>\s*/gi, "")
+    .replace(/<script\b[^>]*id=["']site-reviews-js-after["'][^>]*>[\s\S]*?<\/script>\s*/gi, "");
+};
+
 const applyActivityIndexItalianHead = (html: string) => {
   if (page.path !== "/attivita/") return html;
 
@@ -36,6 +285,18 @@ const applyActivityIndexItalianHead = (html: string) => {
     .replaceAll('"inLanguage":"en-US"', '"inLanguage":"it-IT"')
     .replace('hreflang="en-US"', 'hreflang="it-IT"')
     .replace('hreflang="en"', 'hreflang="it"');
+};
+
+const applyAboutHeadImage = (html: string) => {
+  if (!aboutBreadcrumbPagePaths.has(page.path)) return html;
+
+  return html
+    .replaceAll("https://sorrisoesalutemonza.it/mirror-assets/d11d1a58bbcb5793.jpg", aboutSectionImageUrl)
+    .replaceAll("https://sorrisoesalutemonza.it/mirror-assets/e412d210c2a1a484.jpg", aboutSectionImageUrl)
+    .replace('<meta property="og:image:width" content="524" />', '<meta property="og:image:width" content="1254" />')
+    .replace('<meta property="og:image:height" content="800" />', '<meta property="og:image:height" content="1254" />')
+    .replace('<meta property="og:image:type" content="image/jpeg" />', '<meta property="og:image:type" content="image/png" />')
+    .replace('"width":524,"height":800', '"width":1254,"height":1254');
 };
 
 const applyActivityIndexItalianBody = (html: string) => {
@@ -170,16 +431,64 @@ const applyActivityIndexItalianBody = (html: string) => {
   return next.replaceAll("Learn More", "Nel dettaglio");
 };
 
-const head = applyActivityIndexItalianHead(rawHead);
-const body = applyActivityIndexItalianBody(rawBody).replaceAll(
-  "Un sorriso più sano non può aspettare, <br />Prenota ora!",
-  "Un sorriso<br />che sembri tuo,<br />solo migliore.",
+const applyTeamImageQuality = (html: string) =>
+  html
+    .replaceAll("/mirror-assets/7fcfebef17625c0d.jpg", "/mirror-assets/daae628ee3304e4b.jpg")
+    .replaceAll("/mirror-assets/d6c481af575ae85d.jpg", "/mirror-assets/47631e8360b707e5.jpg")
+    .replaceAll("/mirror-assets/b412d88e57762a62.jpg", "/mirror-assets/5d5d89332720d5c2.jpg")
+    .replaceAll("/mirror-assets/3fa9876eb18831fd.jpg", "/mirror-assets/ee7445f0cd76ddc1.jpg")
+    .replaceAll("/mirror-assets/17e1228eb0204f46.jpg", "/mirror-assets/f5eda933d608941c.jpg")
+    .replaceAll("/mirror-assets/08448b643258e77b.jpg", "/mirror-assets/3c534c254b8e2942.jpg");
+
+const head = applyAboutHeadImage(applyBrandColorTokens(applyActivityIndexItalianHead(rawHead)));
+const body = removeConventionHeroBreadcrumb(
+  removeReviewsHeroBreadcrumb(
+    removeAboutHeroBreadcrumb(
+      applyActivityHeroDescription(
+        applyBrandColorTokens(
+          applyReviewsPageBody(applyActivityIndexItalianBody(applyTeamImageQuality(rawBody))).replaceAll(
+            "Un sorriso più sano non può aspettare, <br />Prenota ora!",
+            "Un sorriso<br />che sembri tuo,<br />solo migliore.",
+          ).replaceAll(
+            '"We smile different"',
+            "Un sorriso<br />che sembri<br />tuo, solo migliore.",
+          ).replace(
+            '<a class="elementor-button elementor-button-link elementor-size-sm" href="/chi-siamo/">',
+            '<a class="elementor-button elementor-button-link elementor-size-sm mirror-hero-primary" href="/richiesta/">',
+          ).replace(
+            '<span class="elementor-button-text">Il nostro studio</span>',
+            '<span class="elementor-button-text">Prenota una visita</span>',
+          ).replace(
+            `</a>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-4b01d0c9`,
+            `</a>
+<a class="elementor-button elementor-button-link elementor-size-sm mirror-hero-secondary" href="/attivita/">
+<span class="elementor-button-content-wrapper">
+<span class="elementor-button-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none"><path d="M1 7H15M15 7L9 1M15 7L9 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+<span class="elementor-button-text">Scopri i nostri trattamenti</span>
+</span>
+</a>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-4b01d0c9`,
+          ),
+        ),
+      ),
+    ),
+  ),
 );
 
 const isActivityServicePage =
   page.path.startsWith("/attivita/") &&
   page.path !== "/attivita/" &&
   page.path !== "/attivita/implantologia/";
+const isActivityMirrorPage = page.path === "/attivita/" || isActivityServicePage;
 
 const serviceTitleMatch = body.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
 const serviceTitle = serviceTitleMatch
@@ -193,18 +502,30 @@ const stickyCtaLabel = isActivityServicePage ? "Servizio" : "";
 const stickyCtaVariant = isActivityServicePage
   ? "activity-sticky-cta activity-sticky-cta--service"
   : "activity-sticky-cta activity-sticky-cta--generic";
+const shouldRenderStickyCta = page.path !== "/recensioni-studio-dentistico-monza/";
 
 const activityStickyScript = `
 (() => {
+  const body = document.body;
   const bar = document.querySelector("[data-activity-sticky-cta]");
   if (!bar) return;
 
-  const hero =
-    document.querySelector('.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child') ||
-    document.querySelector(".elementor-widget-elementskit-breadcrumb")?.closest(".elementor-element");
+  const getHero = () => {
+    if (body.classList.contains("home")) {
+      return document.querySelector(".elementor-7051 .elementor-element.elementor-element-5c1edef1");
+    }
+
+    return (
+      document.querySelector('.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child:has(.elementor-widget-elementskit-breadcrumb)') ||
+      document.querySelector(".elementor-widget-elementskit-breadcrumb")?.closest(".elementor-element") ||
+      document.querySelector('.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child')
+    );
+  };
+
   const footer = document.querySelector(".ekit-template-content-footer") || document.querySelector("footer");
 
   const updateVisibility = () => {
+    const hero = getHero();
     const threshold = hero
       ? hero.getBoundingClientRect().bottom + window.scrollY - 24
       : Math.round(window.innerHeight * 0.72);
@@ -224,6 +545,33 @@ const activityStickyScript = `
 
 const removeLegacyAppointmentButtonScript = `
 document.querySelectorAll(".btn-scroll-centrato").forEach((button) => button.remove());
+`;
+
+const footerLayoutScript = `
+(() => {
+  const footer = document.querySelector(".ekit-template-content-footer");
+  if (!footer) return;
+
+  footer.querySelectorAll('.elementor-element-6314a76 a[href="/richiesta/"], .elementor-element-6314a76 a[href="/convenzioni-dirette/"]').forEach((link) => {
+    link.classList.add("footer-underlined-link");
+  });
+
+  const openingHours = footer.querySelector(".elementor-element-f03c6dd .elementor-widget-container");
+  const contactsColumn = footer.querySelector(".elementor-element-f80a286");
+  if (!openingHours || !contactsColumn || contactsColumn.querySelector(".footer-emergency-note")) return;
+
+  const emergencyText = "Emergenza:";
+  const emergencyParagraph = Array.from(openingHours.querySelectorAll("p")).find((paragraph) =>
+    (paragraph.textContent || "").trim().startsWith(emergencyText),
+  );
+
+  if (!emergencyParagraph) return;
+
+  const note = document.createElement("div");
+  note.className = "footer-emergency-note";
+  note.append(emergencyParagraph);
+  contactsColumn.append(note);
+})();
 `;
 
 const mirrorHeaderScript = `
@@ -298,13 +646,16 @@ const mirrorNavigationScript = `
 
   const getNav = () => document.querySelector(".ekit-template-content-header .elementskit-navbar-nav");
 
-  const createNavLink = (className, href, label) => {
+  const phoneIcon =
+    '<svg class="mirror-nav-link__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.31-.31.76-.42 1.17-.28 1.29.43 2.64.66 4.02.66.66 0 1.2.54 1.2 1.2v3.48c0 .66-.54 1.2-1.2 1.2C10.43 21.94 2.06 13.57 2.06 3.4c0-.66.54-1.2 1.2-1.2h3.49c.66 0 1.2.54 1.2 1.2 0 1.38.22 2.73.66 4.02.13.41.03.86-.29 1.17l-2.2 2.2Z" fill="currentColor"/></svg>';
+
+  const createNavLink = (className, href, label, trailingIcon = "") => {
     const item = document.createElement("li");
     item.className = "menu-item nav-item elementskit-mobile-builder-content " + className;
     const link = document.createElement("a");
     link.className = "ekit-menu-nav-link mirror-nav-link";
     link.href = href;
-    link.textContent = label;
+    link.innerHTML = "<span>" + label + "</span>" + trailingIcon;
     item.append(link);
     return item;
   };
@@ -338,22 +689,31 @@ const mirrorNavigationScript = `
       const label = normalise(link?.textContent);
       const href = link?.getAttribute("href") || "";
       if (
+        label === "home" ||
         label === "chi siamo" ||
         label.startsWith("chi siamo") ||
         label === "attivita" ||
         label.startsWith("attivita") ||
+        label === "la struttura" ||
+        label === "contatti" ||
+        href === "/" ||
         href.includes("/chi-siamo") ||
-        href.includes("/attivita/")
+        href.includes("/attivita/") ||
+        href.includes("/struttura-studio-dentistico-monza") ||
+        href.includes("/contatti")
       ) {
         item.classList.add("mirror-nav-item-hidden");
       }
     });
 
-    if (!nav.querySelector(".mirror-nav-urgent")) {
+    if (!nav.querySelector(".mirror-nav-reviews")) {
+      const reviews = createNavLink("mirror-nav-item mirror-nav-reviews", "/recensioni-studio-dentistico-monza/", "Dicono di noi");
+      const structure = createNavLink("mirror-nav-item mirror-nav-structure", "/struttura-studio-dentistico-monza/", "La Struttura");
+      const conventions = createNavLink("mirror-nav-item mirror-nav-conventions", "/convenzioni-dirette-studio-dentistico-monza/", "Convenzioni");
       const urgent = createNavLink("mirror-nav-item mirror-nav-urgent", "/urgenze/", "Urgenze");
-      const call = createNavLink("mirror-nav-item mirror-nav-call", "tel:+390392022489", "Chiama in studio");
+      const call = createNavLink("mirror-nav-item mirror-nav-call", "tel:+390392022489", "Chiama in studio", phoneIcon);
       const menu = createMenuButton();
-      nav.append(urgent, call, menu);
+      nav.append(reviews, structure, conventions, urgent, call, menu);
     }
   };
 
@@ -406,6 +766,625 @@ const mirrorNavigationScript = `
   closeButton?.addEventListener("click", () => setMenuState(false));
 })();
 `;
+
+const counterFallbackScript = `
+(() => {
+  const formatCounterValue = (value, delimiter) => {
+    const roundedValue = Math.round(value);
+
+    if (!delimiter) {
+      return String(roundedValue);
+    }
+
+    return new Intl.NumberFormat("en-US")
+      .format(roundedValue)
+      .replaceAll(",", delimiter);
+  };
+
+  const animateCounter = (counter) => {
+    if (counter.dataset.counterFallbackDone === "true") return;
+
+    const targetValue = Number(counter.dataset.toValue || counter.dataset.value);
+    const startValue = Number(counter.dataset.fromValue || 0);
+    const duration = Number(counter.dataset.duration || counter.dataset.animationDuration || 1200);
+    const delimiter = counter.dataset.delimiter || "";
+
+    if (!Number.isFinite(targetValue)) return;
+
+    counter.dataset.counterFallbackDone = "true";
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || duration <= 0) {
+      counter.textContent = formatCounterValue(targetValue, delimiter);
+      return;
+    }
+
+    const startTime = window.performance.now();
+
+    const step = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const currentValue = startValue + (targetValue - startValue) * easedProgress;
+
+      counter.textContent = formatCounterValue(currentValue, delimiter);
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  };
+
+  const initCounters = () => {
+    const counters = Array.from(document.querySelectorAll(".elementor-counter-number[data-to-value], .number-percentage[data-value]"));
+
+    if (!counters.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      counters.forEach(animateCounter);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          observer.unobserve(entry.target);
+          animateCounter(entry.target);
+        });
+      },
+      {
+        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.15,
+      },
+    );
+
+    counters.forEach((counter) => observer.observe(counter));
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCounters, { once: true });
+  } else {
+    initCounters();
+  }
+})();
+`;
+
+const treatmentCardsScript = `
+(() => {
+  const normalizeTitle = (value) =>
+    String(value || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\\u0300-\\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+
+  const icon = (body) =>
+    '<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+    body +
+    '</svg>';
+
+  const icons = {
+    hygiene: icon('<path d="M7.1 4.8c1.2-1.5 3.1-1 4.9.1 1.8-1.1 3.7-1.6 4.9-.1 2.3 2.8.2 7.1-.9 9.7-.7 1.6-.7 4.7-2.4 4.7-1.2 0-1.2-3.7-1.6-5.1-.3-1-1.7-1-2 0-.4 1.4-.4 5.1-1.6 5.1-1.7 0-1.7-3.1-2.4-4.7-1.1-2.6-3.2-6.9-.9-9.7Z" /><path d="M8 11.3h8" /><path d="M8.8 13.9h6.4" /><path d="M18.4 3.4v2.4" /><path d="M17.2 4.6h2.4" />'),
+    prosthesis: icon('<path d="M4.2 11.4c1.6-2.8 4.4-2.8 6 0" /><path d="M13.8 11.4c1.6-2.8 4.4-2.8 6 0" /><path d="M6.1 11.2v5.4c0 1 .8 1.8 1.8 1.8s1.8-.8 1.8-1.8v-5.4" /><path d="M14.3 11.2v5.4c0 1 .8 1.8 1.8 1.8s1.8-.8 1.8-1.8v-5.4" /><path d="M9.8 13.1h4.4" />'),
+    conservative: icon('<path d="M7.1 4.8c1.2-1.5 3.1-1 4.9.1 1.8-1.1 3.7-1.6 4.9-.1 2.3 2.8.2 7.1-.9 9.7-.7 1.6-.7 4.7-2.4 4.7-1.2 0-1.2-3.8-1.6-5.2-.3-1.1-1.7-1.1-2 0-.4 1.4-.4 5.2-1.6 5.2-1.7 0-1.7-3.1-2.4-4.7-1.1-2.6-3.2-6.9-.9-9.7Z" /><path d="M9.1 10.2h5.8" /><path d="M12 7.3v5.8" />'),
+    esthetic: icon('<path d="M7.1 4.9c1.1-1.5 3-1.1 4.9.1 1.9-1.2 3.8-1.6 4.9-.1 2.3 2.9.2 7.1-.9 9.7-.7 1.6-.8 4.6-2.4 4.6-1.1 0-1.1-3.4-1.6-4.9-.3-.9-1.7-.9-2 0-.5 1.5-.5 4.9-1.6 4.9-1.6 0-1.7-3-2.4-4.6-1.1-2.6-3.2-6.8-.9-9.7Z" /><path d="M18.5 4.2v3" /><path d="M17 5.7h3" /><path d="M19.1 15.6v2.2" /><path d="M18 16.7h2.2" />'),
+    periodontology: icon('<path d="M5 14c2.4-2 4.7-2 7 0s4.6 2 7 0" /><path d="M7.1 5.1c1.2-1.6 3.1-1.1 4.9.1 1.8-1.2 3.7-1.7 4.9-.1 1.8 2.3.9 5.4-.2 8.1" /><path d="M7.3 13.2c-1.1-2.7-2-5.8-.2-8.1" /><path d="M10 15.2v4.3" /><path d="M14 15.2v4.3" />'),
+    orthodontics: icon('<path d="M5.3 8.7c1.2-4.7 4.7-3 6.7-1.6 2-1.4 5.5-3.1 6.7 1.6" /><path d="M6 12.2h12" /><path d="M7.7 10.6v3.2" /><path d="M11 10.6v3.2" /><path d="M13 10.6v3.2" /><path d="M16.3 10.6v3.2" /><path d="M8.4 15c.6 2.5 1.4 4 2.3 4 .6 0 .6-2.6 1.3-2.6s.7 2.6 1.3 2.6c.9 0 1.7-1.5 2.3-4" />'),
+    surgery: icon('<path d="M4.2 19.8 12.3 11.7" /><path d="m12.3 11.7 4.8-4.8 2.8 2.8-4.8 4.8-2.8-2.8Z" /><path d="m17.1 6.9 1.9-1.9 1.9 1.9-1.9 1.9" /><path d="M4.2 19.8h4.5" /><path d="m6.2 17.8 2 2" />'),
+    implant: icon('<path d="M12 3.4v5.1" /><path d="M8.6 8.5h6.8" /><path d="M9.8 8.5h4.4l-.7 3.1h-3l-.7-3.1Z" /><path d="M10.5 11.6h3" /><path d="M10.8 14h2.4" /><path d="M11.1 16.4h1.8" /><path d="M12 11.6v8.9" />'),
+    endodontics: icon('<path d="M7 4.9c1.2-1.5 3.1-1 5 .1 1.9-1.1 3.8-1.6 5-.1 2.3 2.8.2 7.1-.9 9.7-.7 1.6-.8 4.6-2.4 4.6-1.1 0-1.1-3.5-1.7-5-.3-.8-1.7-.8-2 0-.6 1.5-.6 5-1.7 5-1.6 0-1.7-3-2.4-4.6C4.8 12 2.7 7.7 7 4.9Z" /><path d="M12 8v8.5" /><path d="M10.2 11.1h3.6" />'),
+    gnathology: icon('<path d="M5 14.2c.9 3.2 3.5 5.3 7 5.3s6.1-2.1 7-5.3" /><path d="M7 9.5c1.3-2 3.1-3 5-3s3.7 1 5 3" /><path d="M7.7 13.2h8.6" /><path d="M9.6 10.4v5.2" /><path d="M14.4 10.4v5.2" />'),
+    pedodontics: icon('<path d="M8.2 6.1c1-1.3 2.5-.9 3.8.1 1.3-1 2.8-1.4 3.8-.1 1.8 2.2.3 5.5-.5 7.5-.5 1.2-.6 3.8-2 3.8-.9 0-.9-2.9-1.3-4-.3-.7-1.7-.7-2 0-.4 1.1-.4 4-1.3 4-1.4 0-1.5-2.6-2-3.8-.8-2-2.3-5.3-.5-7.5Z" /><path d="M8.4 20.2c2.2 1.5 5 1.5 7.2 0" /><path d="M6.2 3.8h2.2" /><path d="M7.3 2.7v2.2" />'),
+    guidance: icon('<path d="M12 3.5a6.5 6.5 0 0 0-4 11.6v2.4h8v-2.4a6.5 6.5 0 0 0-4-11.6Z" /><path d="M9.5 20.5h5" /><path d="M10 17.5h4" /><path d="M9.4 10.2 11.2 12l3.4-3.8" />'),
+  };
+
+  const cards = [
+    {
+      slug: "hygiene",
+      titles: ["Igiene Orale e Profilassi", "Igiene orale e profilassi", "Dental Care"],
+      image: "/mirror-assets/5d1f4896a99ea528.jpg",
+      alt: "Igiene orale quotidiana con filo interdentale",
+      icon: icons.hygiene,
+    },
+    {
+      slug: "prosthesis",
+      titles: ["Protesi Dentale", "Protesi dentale", "Restorative Dentistry"],
+      image: "/assets/brand/dental-cad-monitor.png",
+      alt: "Progettazione digitale di una protesi dentale",
+      icon: icons.prosthesis,
+    },
+    {
+      slug: "conservative",
+      titles: ["Conservativa", "Odontoiatria conservativa", "Teeth Whitening"],
+      image: "/mirror-assets/936aa37f5650fe50.jpg",
+      alt: "Restauro conservativo del dente",
+      icon: icons.conservative,
+    },
+    {
+      slug: "esthetic",
+      titles: ["Estetica del Sorriso", "Estetica del sorriso", "Cosmetic Dentistry"],
+      image: "/mirror-assets/f0b156f8aa6f7b07.jpg",
+      alt: "Valutazione estetica del sorriso allo specchio",
+      icon: icons.esthetic,
+    },
+    {
+      slug: "periodontology",
+      titles: ["Parodontologia", "Dental Sealants"],
+      image: "/mirror-assets/598a95ac622e41af.jpg",
+      alt: "Valutazione parodontale",
+      icon: icons.periodontology,
+    },
+    {
+      slug: "orthodontics",
+      titles: ["Ortodonzia"],
+      image: "/assets/generated/treatment-aligner.png",
+      alt: "Allineatori e ortodonzia",
+      icon: icons.orthodontics,
+    },
+    {
+      slug: "surgery",
+      titles: ["Chirurgia Orale", "Chirurgia orale", "Emergency Dental Care"],
+      image: "/mirror-assets/a5ef4bcf4eac89cb.jpg",
+      alt: "Preparazione per chirurgia orale",
+      icon: icons.surgery,
+    },
+    {
+      slug: "implantology",
+      titles: ["Implantologia", "Dental Implants"],
+      image: "/assets/generated/treatment-implant.png",
+      alt: "Implantologia dentale",
+      icon: icons.implant,
+    },
+    {
+      slug: "endodontics",
+      titles: ["Endodonzia"],
+      image: "/mirror-assets/8813161e3f5db154.jpg",
+      alt: "Trattamento endodontico",
+      icon: icons.endodontics,
+    },
+    {
+      slug: "gnathology",
+      titles: ["Gnatologia"],
+      image: "/assets/generated/treatment-aligner.png",
+      alt: "Bite trasparente per valutazione gnatologica",
+      icon: icons.gnathology,
+    },
+    {
+      slug: "pedodontics",
+      titles: ["Pedodonzia", "Pediatric Dentistry"],
+      image: "/mirror-assets/0b18b64a0ee4eb07.jpg",
+      alt: "Odontoiatria per bambini",
+      icon: icons.pedodontics,
+    },
+  ];
+
+  const cardsByTitle = new Map();
+  cards.forEach((card) => {
+    card.titles.forEach((title) => cardsByTitle.set(normalizeTitle(title), card));
+  });
+
+  const normalizeDetailLink = (card) => {
+    const link = card.querySelector(".box-footer .elementskit-btn");
+    if (!link) return;
+
+    const brandPrimary =
+      getComputedStyle(document.body).getPropertyValue("--brand-primary").trim() ||
+      getComputedStyle(document.documentElement).getPropertyValue("--brand-primary").trim() ||
+      "#0E384C";
+
+    link.classList.add("treatment-card-detail-link");
+    link.style.setProperty("background", "transparent", "important");
+    link.style.setProperty("background-color", "transparent", "important");
+    link.style.setProperty("background-image", "none", "important");
+    link.style.setProperty("box-shadow", "none", "important");
+    link.style.setProperty("color", brandPrimary, "important");
+    link.style.setProperty("text-decoration", "none", "important");
+
+    const arrow = link.querySelector("svg");
+    if (arrow) {
+      arrow.style.setProperty("color", brandPrimary, "important");
+      arrow.style.setProperty("display", "block", "important");
+      arrow.style.setProperty("overflow", "visible", "important");
+      arrow.style.setProperty("stroke", brandPrimary, "important");
+      arrow.style.setProperty("transform", "none", "important");
+      arrow.style.setProperty("visibility", "visible", "important");
+    }
+
+    link.querySelectorAll("svg, svg *").forEach((node) => {
+      node.style.setProperty("fill", "none", "important");
+      node.style.setProperty("opacity", "1", "important");
+      node.style.setProperty("stroke", brandPrimary, "important");
+      node.style.setProperty("transform", "none", "important");
+      node.style.setProperty("visibility", "visible", "important");
+    });
+  };
+
+  const buildOrientationCard = () => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "elementor-element elementor-element-orientation-quiz e-con-full e-flex e-con e-child mirror-orientation-card-wrap";
+    wrapper.dataset.element_type = "container";
+    wrapper.dataset.eType = "container";
+
+    wrapper.innerHTML = [
+      '<div class="elementor-element elementor-element-orientation-quiz-widget v2-service-item ekit-equal-height-disable elementor-widget elementor-widget-elementskit-icon-box" data-element_type="widget" data-e-type="widget" data-widget_type="elementskit-icon-box.default">',
+      '<div class="elementor-widget-container">',
+      '<div class="ekit-wid-con">',
+      '<div class="elementskit-infobox text-left text-left icon-top-align elementor-animation- gradient-active hover_from_bottom" data-treatment-card="orientation">',
+      '<div class="elementskit-box-header elementor-animation-">',
+      '<div class="elementskit-info-box-icon">' + icons.guidance + '</div>',
+      '</div>',
+      '<div class="box-body">',
+      '<h3 class="elementskit-info-box-title">Hai già in mente un risultato che vuoi ottenere ma non sai da dove iniziare?</h3>',
+      '<div class="box-footer disable_hover_button">',
+      '<div class="btn-wraper">',
+      '<a class="elementskit-btn whitespace--normal" href="/orientamento-sorriso/">',
+      'Clicca qui',
+      '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true"><path d="M1 7H15M15 7L9 1M15 7L9 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+      '</a>',
+      '</div>',
+      '</div>',
+      '</div>',
+      '</div>',
+      '</div>',
+      '</div>',
+      '</div>',
+    ].join("");
+
+    return wrapper;
+  };
+
+  const addOrientationCard = () => {
+    if (!document.body.classList.contains("home")) return;
+    if (document.querySelector('[data-treatment-card="orientation"]')) return;
+
+    const serviceCards = Array.from(document.querySelectorAll(".elementor-7051 .v2-service-item .elementskit-infobox[data-treatment-card]"));
+    const lastCard = serviceCards[serviceCards.length - 1];
+    const lastWrapper = lastCard?.closest(".e-con.e-child");
+    const grid = lastWrapper?.parentElement;
+
+    if (!grid || !lastWrapper) return;
+
+    const wrapper = buildOrientationCard();
+    grid.append(wrapper);
+  };
+
+  const decorateCards = () => {
+    document.querySelectorAll(".v2-service-item .elementskit-infobox").forEach((card) => {
+      const titleElement = card.querySelector(".elementskit-info-box-title");
+      const config = cardsByTitle.get(normalizeTitle(titleElement?.textContent));
+
+      if (!config) return;
+
+      card.dataset.treatmentCard = config.slug;
+
+      const iconBox = card.querySelector(".elementskit-info-box-icon");
+      if (iconBox && iconBox.dataset.treatmentIcon !== config.slug) {
+        iconBox.innerHTML = config.icon;
+        iconBox.dataset.treatmentIcon = config.slug;
+      }
+
+      if (!card.querySelector(".treatment-card-media")) {
+        const media = document.createElement("div");
+        media.className = "treatment-card-media";
+
+        const image = document.createElement("img");
+        image.src = config.image;
+        image.alt = config.alt;
+        image.loading = "lazy";
+        image.decoding = "async";
+
+        media.append(image);
+        card.prepend(media);
+      }
+
+      normalizeDetailLink(card);
+    });
+
+    addOrientationCard();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", decorateCards, { once: true });
+  } else {
+    decorateCards();
+  }
+})();
+`;
+
+const reviewsPageScript = `
+(() => {
+  const app = document.querySelector("[data-reviews-app]");
+  const form = document.querySelector("[data-review-form]");
+  if (!app || !form) return;
+
+  const list = app.querySelector("[data-reviews-list]");
+  const message = form.querySelector("[data-review-message]");
+  const submitButton = form.querySelector("[data-review-submit]");
+  const reviewsWrap = app.querySelector(".glsr-reviews-wrap");
+  const sourceReviews = ${JSON.stringify(sourceReviews).replace(/</g, "\\u003c")};
+  const REVIEWS_PER_PAGE = ${REVIEWS_PER_PAGE};
+  const REVIEWS_PAGE_PATH = "${REVIEWS_PAGE_PATH}";
+  let userReviews = [];
+
+  const escapeHtml = (value) =>
+    String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+
+  const clampRating = (value) => {
+    const rating = Number(value);
+    if (!Number.isFinite(rating)) return 1;
+    return Math.min(5, Math.max(1, Math.round(rating)));
+  };
+
+  const formatDate = (value) => {
+    if (!value) return new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(new Date());
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return String(value);
+    return new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(date);
+  };
+
+  const reviewsPageHref = (pageNumber) => pageNumber <= 1 ? REVIEWS_PAGE_PATH : REVIEWS_PAGE_PATH + "?reviews-page=" + pageNumber;
+
+  const stars = (rating) => {
+    const normalizedRating = clampRating(rating);
+    return Array.from({ length: 5 }, (_, index) =>
+      '<span class="glsr-star ' + (index < normalizedRating ? "glsr-star-full" : "glsr-star-empty") + '" aria-hidden="true"></span>',
+    ).join("");
+  };
+
+  const normalizeReview = (review) => ({
+    id: String(review.id || "user-" + Date.now()),
+    rating: clampRating(review.rating),
+    title: String(review.title || ""),
+    dateLabel: String(review.dateLabel || formatDate(review.createdAt || review.created_at)),
+    content: String(review.content || ""),
+    author: String(review.author || ""),
+    source: review.source || "site",
+  });
+
+  const buildReview = (review, type) => {
+    const normalized = normalizeReview(review);
+    const rating = clampRating(normalized.rating);
+    const htmlId = normalized.id.startsWith("review-") ? normalized.id : "review-" + normalized.id;
+
+    return '<div class="glsr-review" data-type="' + escapeHtml(type || normalized.source || "site") + '" id="' + escapeHtml(htmlId) + '" data-assigned=\\'[]\\' data-review-id="' + escapeHtml(normalized.id) + '">' +
+      '<div class="glsr-review-title"><h4 class="glsr-tag-value">' + escapeHtml(normalized.title) + '</h4></div>' +
+      '<div class="glsr-review-rating"><div class="glsr-star-rating glsr-stars" role="img" aria-label="Rated ' + rating + ' out of 5 stars" data-rating="' + rating + '" data-reviews="0">' + stars(rating) + '</div></div> <div class="glsr-review-date"><span class="glsr-tag-value">' + escapeHtml(normalized.dateLabel) + '</span></div>' +
+      '<div class="glsr-review-content"><div class="glsr-tag-value" data-expanded="false"><p>' + escapeHtml(normalized.content) + '</p></div></div>' +
+      '<div class="glsr-review-author"><span class="glsr-tag-value">' + escapeHtml(normalized.author) + '</span></div> ' +
+      '</div>';
+  };
+
+  const getReviews = () => userReviews.concat(sourceReviews);
+
+  const totalPages = () => Math.max(1, Math.ceil(getReviews().length / REVIEWS_PER_PAGE));
+
+  const pageFromLocation = () => {
+    const page = Number(new URLSearchParams(window.location.search).get("reviews-page") || "1");
+    if (!Number.isFinite(page)) return 1;
+    return Math.min(totalPages(), Math.max(1, Math.round(page)));
+  };
+
+  const buildPagination = (currentPage) => {
+    const total = totalPages();
+    if (total <= 1) return "";
+
+    const links = [];
+    if (currentPage > 1) {
+      links.push('<a class="page-numbers prev" data-page="' + (currentPage - 1) + '" href="' + reviewsPageHref(currentPage - 1) + '">Previous</a>');
+    }
+
+    for (let pageNumber = 1; pageNumber <= total; pageNumber += 1) {
+      if (pageNumber === currentPage) {
+        links.push('<span class="page-numbers current" aria-current="page" data-page="' + pageNumber + '"><span class="meta-nav screen-reader-text">Page </span>' + pageNumber + '</span>');
+      } else {
+        links.push('<a class="page-numbers" data-page="' + pageNumber + '" href="' + reviewsPageHref(pageNumber) + '"><span class="meta-nav screen-reader-text">Page </span>' + pageNumber + '</a>');
+      }
+    }
+
+    if (currentPage < total) {
+      links.push('<a class="page-numbers next" data-page="' + (currentPage + 1) + '" href="' + reviewsPageHref(currentPage + 1) + '">Next</a>');
+    }
+
+    return '<div class="glsr-pagination glsr-ajax-pagination" data-id="glsr_85761207" data-pagination="ajax" data-reviews-pagination><div class="pagination">' +
+      '<nav class="navigation" role="navigation">' +
+      '<h2 class="screen-reader-text">Site Reviews navigation</h2>' +
+      '<div class="nav-links">' + links.join("") + '</div>' +
+      '</nav>' +
+      '</div></div>';
+  };
+
+  const renderPage = (requestedPage, options = {}) => {
+    if (!list) return;
+    const page = Math.min(totalPages(), Math.max(1, Math.round(Number(requestedPage) || 1)));
+    const start = (page - 1) * REVIEWS_PER_PAGE;
+    const html = getReviews().slice(start, start + REVIEWS_PER_PAGE).map((review) => {
+      const reviewType = String(review.id || "").startsWith("review-") ? "local" : (review.source || "site");
+      return buildReview(review, reviewType);
+    }).join("");
+
+    app.classList.add("glsr-hide");
+    list.innerHTML = html || '<p>Non ci sono ancora recensioni pubblicate.</p>';
+
+    const pagination = app.querySelector("[data-reviews-pagination]");
+    const nextPagination = buildPagination(page);
+    if (pagination) {
+      pagination.outerHTML = nextPagination;
+    } else if (nextPagination && reviewsWrap) {
+      reviewsWrap.insertAdjacentHTML("beforeend", nextPagination);
+    }
+
+    window.setTimeout(() => app.classList.remove("glsr-hide"), 20);
+
+    if (options.push) {
+      window.history.pushState({}, "", reviewsPageHref(page));
+    }
+
+    if (options.scroll && app.scrollIntoView) {
+      app.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const setMessage = (text, type = "") => {
+    if (!message) return;
+    message.textContent = text;
+    message.classList.toggle("glsr-form-success", type === "success");
+    message.classList.toggle("glsr-form-failed", type === "error");
+    if (!text) {
+      message.classList.remove("glsr-form-success", "glsr-form-failed");
+    }
+  };
+
+  const clearFieldErrors = () => {
+    form.querySelectorAll(".glsr-field-is-invalid").forEach((field) => field.classList.remove("glsr-field-is-invalid"));
+    form.querySelectorAll(".glsr-is-invalid").forEach((field) => field.classList.remove("glsr-is-invalid"));
+    form.querySelectorAll(".glsr-field-error").forEach((field) => {
+      field.textContent = "";
+    });
+  };
+
+  const markInvalid = (fieldName, text) => {
+    const field = form.querySelector('[data-field="' + fieldName + '"]');
+    if (!field) return;
+    field.classList.add("glsr-field-is-invalid");
+    const input = field.querySelector("input, select, textarea");
+    input?.classList.add("glsr-is-invalid");
+    const error = field.querySelector(".glsr-field-error");
+    if (error) error.textContent = text;
+  };
+
+  const readPayload = () => {
+    const data = new FormData(form);
+    return {
+      rating: data.get("site-reviews[rating]"),
+      title: data.get("site-reviews[title]"),
+      content: data.get("site-reviews[content]"),
+      author: data.get("site-reviews[name]"),
+      email: data.get("site-reviews[email]"),
+      consent: data.get("site-reviews[terms]") === "1",
+      website: data.get("site-reviews[3831cc21]") || data.get("website") || "",
+    };
+  };
+
+  const validatePayload = (payload) => {
+    clearFieldErrors();
+    let valid = true;
+
+    if (!payload.rating) {
+      markInvalid("rating", "Seleziona una valutazione da 1 a 5 stelle");
+      valid = false;
+    }
+    if (!String(payload.title || "").trim()) {
+      markInvalid("title", "Inserisci un titolo valido");
+      valid = false;
+    }
+    if (!String(payload.content || "").trim()) {
+      markInvalid("content", "Inserisci un testo recensione valido");
+      valid = false;
+    }
+    if (!String(payload.author || "").trim()) {
+      markInvalid("name", "Inserisci un nome valido");
+      valid = false;
+    }
+    if (!String(payload.email || "").trim()) {
+      markInvalid("email", "Inserisci un indirizzo email valido");
+      valid = false;
+    }
+    if (!payload.consent) {
+      markInvalid("terms", "Conferma che la recensione è basata sulla tua esperienza");
+      valid = false;
+    }
+
+    return valid;
+  };
+
+  const loadReviews = async () => {
+    try {
+      const response = await fetch("/api/reviews", {
+        headers: { Accept: "application/json" },
+        cache: "no-store",
+      });
+      if (!response.ok) return;
+      const payload = await response.json();
+      if (!Array.isArray(payload.reviews)) return;
+      userReviews = payload.reviews.map(normalizeReview);
+      renderPage(pageFromLocation());
+    } catch {
+      renderPage(pageFromLocation());
+    }
+  };
+
+  app.addEventListener("click", (event) => {
+    const link = event.target.closest(".page-numbers");
+    if (!link || !link.dataset.page) return;
+    event.preventDefault();
+    renderPage(Number(link.dataset.page), { push: true, scroll: true });
+  });
+
+  form.addEventListener("input", (event) => {
+    const field = event.target.closest(".glsr-field");
+    if (!field) return;
+    field.classList.remove("glsr-field-is-invalid");
+    field.querySelector(".glsr-is-invalid")?.classList.remove("glsr-is-invalid");
+    const error = field.querySelector(".glsr-field-error");
+    if (error) error.textContent = "";
+  });
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const payload = readPayload();
+
+    if (!validatePayload(payload)) {
+      setMessage("Compila tutti i campi obbligatori prima di inviare.", "error");
+      return;
+    }
+
+    submitButton?.setAttribute("aria-busy", "true");
+    submitButton?.setAttribute("disabled", "");
+    setMessage("Invio della recensione in corso...");
+
+    try {
+      const response = await fetch("/api/reviews", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || "Invio non riuscito");
+      }
+
+      if (result.review) {
+        userReviews = [normalizeReview(result.review)].concat(userReviews);
+      }
+      form.reset();
+      clearFieldErrors();
+      renderPage(1, { push: true });
+      setMessage("Grazie, la tua recensione è stata pubblicata.", "success");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Invio non riuscito. Riprova tra poco.", "error");
+    } finally {
+      submitButton?.setAttribute("aria-busy", "false");
+      submitButton?.removeAttribute("disabled");
+    }
+  });
+
+  window.addEventListener("popstate", () => renderPage(pageFromLocation()));
+
+  renderPage(pageFromLocation());
+  loadReviews();
+})();
+`;
 ---
 
 <!doctype html>
@@ -415,7 +1394,7 @@ const mirrorNavigationScript = `
     <GoogleAdsTracking />
     <BrandPalette />
   </head>
-  <body class:list={[page.bodyClass, "brand-palette", "mirror-header-over-hero"]} id={page.bodyId || undefined}>
+  <body class:list={[page.bodyClass, "brand-palette", "mirror-header-over-hero", isActivityMirrorPage && "mirror-activity-page", isReviewsPage && "mirror-reviews-page"]} id={page.bodyId || undefined}>
     <PageLoader />
     <Fragment set:html={body} />
     <div class="mirror-menu-backdrop" data-mirror-menu-backdrop hidden></div>
@@ -466,10 +1445,14 @@ const mirrorNavigationScript = `
       </nav>
     </aside>
     <script is:inline set:html={removeLegacyAppointmentButtonScript} />
+    <script is:inline set:html={footerLayoutScript} />
     <script is:inline set:html={mirrorHeaderScript} />
     <script is:inline set:html={mirrorNavigationScript} />
+    <script is:inline set:html={counterFallbackScript} />
+    <script is:inline set:html={treatmentCardsScript} />
+    {isReviewsPage && <script is:inline set:html={reviewsPageScript} />}
     {
-      (
+      shouldRenderStickyCta && (
         <aside class={stickyCtaVariant} data-activity-sticky-cta aria-label="Prenotazione visita">
           <div class="activity-sticky-cta__inner">
             <div class="activity-sticky-cta__service">
@@ -483,6 +1466,6 @@ const mirrorNavigationScript = `
         </aside>
       )
     }
-    <script is:inline set:html={activityStickyScript} />
+    {shouldRenderStickyCta && <script is:inline set:html={activityStickyScript} />}
   </body>
 </html>
