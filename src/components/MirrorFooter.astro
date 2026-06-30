@@ -46,6 +46,33 @@ if (!footerMatch) {
 const footer = applyGeneralRequestCtaLinks(
   hydrateOptimoleImages(applySharedFooterCopy(applyBrandColorTokens(footerMatch[0].trim()))),
 );
+
+const footerLayoutScript = `
+(() => {
+  const footer = document.querySelector(".ekit-template-content-footer");
+  if (!footer) return;
+
+  footer.querySelectorAll('.elementor-element-6314a76 a[href="/richiesta-generale/"], .elementor-element-6314a76 a[href="/convenzioni-dirette/"]').forEach((link) => {
+    link.classList.add("footer-underlined-link");
+  });
+
+  const openingHours = footer.querySelector(".elementor-element-f03c6dd .elementor-widget-container");
+  const contactsColumn = footer.querySelector(".elementor-element-f80a286");
+  if (!openingHours || !contactsColumn || contactsColumn.querySelector(".footer-emergency-note")) return;
+
+  const emergencyText = "Emergenza:";
+  const emergencyParagraph = Array.from(openingHours.querySelectorAll("p")).find((paragraph) =>
+    (paragraph.textContent || "").trim().startsWith(emergencyText),
+  );
+
+  if (!emergencyParagraph) return;
+
+  const note = document.createElement("div");
+  note.className = "footer-emergency-note";
+  note.append(emergencyParagraph);
+  contactsColumn.append(note);
+})();
+`;
 ---
 
 <link rel="stylesheet" href="/mirror-assets/61ad75894f1dfee0.css" media="all" />
@@ -74,6 +101,12 @@ const footer = applyGeneralRequestCtaLinks(
   }
 
   .ekit-template-content-footer .e-con {
+    --border-top-width: 0;
+    --border-right-width: 0;
+    --border-bottom-width: 0;
+    --border-left-width: 0;
+    --border-style: none;
+    --border-color: transparent;
     position: relative;
     display: var(--display, flex);
     flex-direction: var(--flex-direction, column);
@@ -224,3 +257,4 @@ const footer = applyGeneralRequestCtaLinks(
 </style>
 
 <Fragment set:html={footer} />
+<script is:inline set:html={footerLayoutScript} />

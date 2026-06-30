@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import BrandPalette from "./BrandPalette.astro";
 import GoogleAdsTracking from "./GoogleAdsTracking.astro";
+import MirrorFooter from "./MirrorFooter.astro";
 import PageLoader from "./PageLoader.astro";
 import manifest from "../data/mirror/manifest.json";
 import { sourceReviews } from "../data/reviews-seed";
@@ -445,8 +446,11 @@ const applyGeneralRequestCtaLinks = (html: string) =>
     .replaceAll('href="/richiesta/"', 'href="/richiesta-generale/"')
     .replaceAll("href='/richiesta/'", "href='/richiesta-generale/'");
 
+const removeMirroredFooter = (html: string) =>
+  html.replace(/<div class="ekit-template-content-markup ekit-template-content-footer[\s\S]*?(?=<template id="tp-language")/, "");
+
 const head = applyAboutHeadImage(applyBrandColorTokens(applyActivityIndexItalianHead(rawHead)));
-const body = applyGeneralRequestCtaLinks(removeConventionHeroBreadcrumb(
+const body = removeMirroredFooter(applyGeneralRequestCtaLinks(removeConventionHeroBreadcrumb(
   removeReviewsHeroBreadcrumb(
     removeAboutHeroBreadcrumb(
       applyActivityHeroDescription(
@@ -487,7 +491,7 @@ const body = applyGeneralRequestCtaLinks(removeConventionHeroBreadcrumb(
       ),
     ),
   ),
-));
+)));
 
 const isActivityServicePage =
   page.path.startsWith("/attivita/") &&
@@ -555,33 +559,6 @@ const activityStickyScript = `
 
 const removeLegacyAppointmentButtonScript = `
 document.querySelectorAll(".btn-scroll-centrato").forEach((button) => button.remove());
-`;
-
-const footerLayoutScript = `
-(() => {
-  const footer = document.querySelector(".ekit-template-content-footer");
-  if (!footer) return;
-
-  footer.querySelectorAll('.elementor-element-6314a76 a[href="/richiesta-generale/"], .elementor-element-6314a76 a[href="/convenzioni-dirette/"]').forEach((link) => {
-    link.classList.add("footer-underlined-link");
-  });
-
-  const openingHours = footer.querySelector(".elementor-element-f03c6dd .elementor-widget-container");
-  const contactsColumn = footer.querySelector(".elementor-element-f80a286");
-  if (!openingHours || !contactsColumn || contactsColumn.querySelector(".footer-emergency-note")) return;
-
-  const emergencyText = "Emergenza:";
-  const emergencyParagraph = Array.from(openingHours.querySelectorAll("p")).find((paragraph) =>
-    (paragraph.textContent || "").trim().startsWith(emergencyText),
-  );
-
-  if (!emergencyParagraph) return;
-
-  const note = document.createElement("div");
-  note.className = "footer-emergency-note";
-  note.append(emergencyParagraph);
-  contactsColumn.append(note);
-})();
 `;
 
 const mirrorHeaderScript = `
@@ -1425,7 +1402,10 @@ const reviewsPageScript = `
       <nav class="mirror-kebab-menu__content" aria-label="Navigazione estesa">
         <section class="mirror-kebab-menu__section">
           <h2>Studio</h2>
+          <a href="/">Home</a>
           <a href="/chi-siamo/">Chi siamo</a>
+          <a href="/doctors/">Equipe</a>
+          <a href="/recensioni-studio-dentistico-monza/">Dicono di noi</a>
           <a href="/struttura-studio-dentistico-monza/">La Struttura</a>
           <a href="/contatti/">Contatti</a>
           <a href="/convenzioni-dirette-studio-dentistico-monza/">Convenzioni</a>
@@ -1440,9 +1420,10 @@ const reviewsPageScript = `
           <a href="/attivita/parodontologia/">Parodontologia</a>
           <a href="/attivita/ortodonzia/">Ortodonzia</a>
           <a href="/attivita/chirurgia-orale/">Chirurgia orale</a>
-          <a href="/attivita/pedodonzia/">Pedodonzia</a>
-          <a href="/attivita/gnatologia/">Gnatologia</a>
           <a href="/implantologia/">Implantologia</a>
+          <a href="/attivita/endodonzia/">Endodonzia</a>
+          <a href="/attivita/gnatologia/">Gnatologia</a>
+          <a href="/attivita/pedodonzia/">Pedodonzia</a>
         </section>
         <section class="mirror-kebab-menu__section">
           <h2>Prenota e informazioni</h2>
@@ -1455,7 +1436,7 @@ const reviewsPageScript = `
       </nav>
     </aside>
     <script is:inline set:html={removeLegacyAppointmentButtonScript} />
-    <script is:inline set:html={footerLayoutScript} />
+    <MirrorFooter />
     <script is:inline set:html={mirrorHeaderScript} />
     <script is:inline set:html={mirrorNavigationScript} />
     <script is:inline set:html={counterFallbackScript} />
