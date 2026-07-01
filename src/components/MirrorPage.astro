@@ -68,6 +68,8 @@ const conventionPagePaths = new Set([
 const aboutBreadcrumbPagePaths = new Set(["/chi-siamo/", "/chi-siamo-studio-dentistico-monza/"]);
 const aboutSectionImageUrl = "https://sorrisoesalutemonza.it/assets/brand/sorriso-salute-sala-operativa.png";
 const isReviewsPage = page.path === "/recensioni-studio-dentistico-monza/";
+const imageHeroPagePaths = new Set(["/", "/home-image/", "/home-slider/", "/home-video/", "/implantologia/"]);
+const hasImageHero = imageHeroPagePaths.has(page.path);
 
 const escapeHtml = (value: string) =>
   value
@@ -1413,7 +1415,7 @@ const reviewsPageScript = `
     <GoogleAdsTracking />
     <BrandPalette />
   </head>
-  <body class:list={[page.bodyClass, "brand-palette", "mirror-header-over-hero", isActivityMirrorPage && "mirror-activity-page", isReviewsPage && "mirror-reviews-page"]} id={page.bodyId || undefined}>
+  <body class:list={[page.bodyClass, "brand-palette", "mirror-header-over-hero", hasImageHero && "mirror-hero-image", isActivityMirrorPage && "mirror-activity-page", isReviewsPage && "mirror-reviews-page"]} id={page.bodyId || undefined}>
     <PageLoader />
     <Fragment set:html={body} />
     <div class="mirror-menu-backdrop" data-mirror-menu-backdrop hidden></div>

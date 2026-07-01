@@ -3502,8 +3502,15 @@ body.modal-open {
   }
 
   .site-header {
-    min-height: 76px;
-    padding: 12px 16px;
+    min-height: 58px;
+    padding: 7px 15px;
+  }
+
+  .site-header.is-over-hero {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(8, 42, 56, 0.22);
+    box-shadow: none;
+    backdrop-filter: blur(8px);
   }
 
   .brand {
@@ -3512,8 +3519,8 @@ body.modal-open {
   }
 
   .brand-logo {
-    width: 178px;
-    max-height: 42px;
+    width: min(162px, 48vw);
+    max-height: 40px;
   }
 
   .brand-mark {
@@ -3534,8 +3541,8 @@ body.modal-open {
   }
 
   .menu-button {
-    width: 46px;
-    height: 46px;
+    width: 33px;
+    height: 33px;
   }
 
   .activity-sticky-cta {
@@ -4108,19 +4115,19 @@ iframe {
 
 @media (max-width: 767px) {
   .site-header {
-    min-height: 72px;
-    padding: 10px 14px;
+    min-height: 58px;
+    padding: 7px 15px;
   }
 
   .brand-logo {
-    width: min(190px, 58vw);
-    max-height: 44px;
+    width: min(162px, 48vw);
+    max-height: 40px;
   }
 
   .menu-button {
-    width: 48px;
-    height: 48px;
-    flex: 0 0 48px;
+    width: 33px;
+    height: 33px;
+    flex: 0 0 33px;
   }
 
   .mobile-nav {
@@ -4307,7 +4314,7 @@ iframe {
   }
 
   .brand-logo {
-    width: min(176px, 56vw);
+    width: min(162px, 48vw);
   }
 
   .hero h1 {
