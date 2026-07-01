@@ -462,12 +462,12 @@ const removeFormerTeamMembers = (html: string) =>
     .replaceAll(' aria-label="6 of 6"', ' aria-label="5 of 5"');
 
 const studioMapEmbedUrl =
-  "https://www.openstreetmap.org/export/embed.html?bbox=9.2957067%2C45.5898975%2C9.3077067%2C45.5958975&layer=mapnik&marker=45.5928975%2C9.3017067";
+  "https://maps.google.com/maps?q=Studio%20Dentistico%20Sorriso%20%26%20Salute%20Via%20Gaslini%201%2020090%20Monza&t=m&z=16&output=embed&iwloc=near";
 
 const applyStudioMapEmbed = (html: string) =>
   html.replace(
-    /<iframe loading="lazy"\s+src="about:blank"\s+data-opt-src="https:\/\/maps\.google\.com\/maps\?q=Via%20Gaslini[^"]*"\s+title="Via Gaslini, 1 20090 MONZA \(MB\)"\s+aria-label="Via Gaslini, 1 20090 MONZA \(MB\)"\s*><\/iframe>/g,
-    `<iframe loading="lazy" src="${studioMapEmbedUrl}" title="Studio Dentistico Sorriso & Salute - Via Gaslini 1, Monza" aria-label="Mappa Studio Dentistico Sorriso & Salute, Via Gaslini 1, Monza" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`,
+    /<iframe\b(?=[^>]*\bdata-opt-src=["']https:\/\/maps\.google\.com\/maps\?)[\s\S]*?<\/iframe>/gi,
+    `<iframe loading="lazy" src="${studioMapEmbedUrl}" title="Studio Dentistico Sorriso & Salute - Via Gaslini 1, Monza" aria-label="Mappa Google Studio Dentistico Sorriso & Salute, Via Gaslini 1, Monza" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`,
   );
 
 const applyGeneralRequestCtaLinks = (html: string) =>
@@ -575,12 +575,12 @@ const activityStickyScript = `
       ? hero.getBoundingClientRect().bottom + window.scrollY - 24
       : Math.round(window.innerHeight * 0.72);
     const isPastHero = window.scrollY > threshold;
-    const barHeight = bar instanceof HTMLElement ? bar.offsetHeight : 0;
-    const isAtFooterEnd = footer
-      ? footer.getBoundingClientRect().bottom <= window.innerHeight + barHeight + 8
+    const footerRect = footer ? footer.getBoundingClientRect() : null;
+    const isInsideFooter = footerRect
+      ? footerRect.top <= window.innerHeight && footerRect.bottom >= 0
       : false;
 
-    bar.classList.toggle("is-visible", isPastHero && !isAtFooterEnd);
+    bar.classList.toggle("is-visible", isPastHero && !isInsideFooter);
   };
 
   updateVisibility();
