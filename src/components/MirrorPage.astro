@@ -441,6 +441,35 @@ const applyTeamImageQuality = (html: string) =>
     .replaceAll("/mirror-assets/17e1228eb0204f46.jpg", "/mirror-assets/f5eda933d608941c.jpg")
     .replaceAll("/mirror-assets/08448b643258e77b.jpg", "/mirror-assets/3c534c254b8e2942.jpg");
 
+const removeFormerTeamMembers = (html: string) =>
+  html
+    .replace(
+      /,\{&quot;ekit_slider_title&quot;:&quot;Slide Four&quot;[\s\S]*?&quot;_id&quot;:&quot;b174070&quot;\}/g,
+      "",
+    )
+    .replace(
+      /<div class="swiper-slide ekit-swiper-slide elementor-repeater-item-b174070">[\s\S]*?(?=<div class="swiper-slide ekit-swiper-slide elementor-repeater-item-b66330d">)/g,
+      "",
+    )
+    .replace(
+      /<div class="swiper-slide" role="group" aria-roledescription="slide" aria-label="\d+ of 6"><figure class="swiper-slide-inner"><img data-opt-id=1735081603[\s\S]*?<\/figure><\/div>/g,
+      "",
+    )
+    .replaceAll(' aria-label="1 of 6"', ' aria-label="1 of 5"')
+    .replaceAll(' aria-label="2 of 6"', ' aria-label="2 of 5"')
+    .replaceAll(' aria-label="4 of 6"', ' aria-label="3 of 5"')
+    .replaceAll(' aria-label="5 of 6"', ' aria-label="4 of 5"')
+    .replaceAll(' aria-label="6 of 6"', ' aria-label="5 of 5"');
+
+const studioMapEmbedUrl =
+  "https://www.openstreetmap.org/export/embed.html?bbox=9.2957067%2C45.5898975%2C9.3077067%2C45.5958975&layer=mapnik&marker=45.5928975%2C9.3017067";
+
+const applyStudioMapEmbed = (html: string) =>
+  html.replace(
+    /<iframe loading="lazy"\s+src="about:blank"\s+data-opt-src="https:\/\/maps\.google\.com\/maps\?q=Via%20Gaslini[^"]*"\s+title="Via Gaslini, 1 20090 MONZA \(MB\)"\s+aria-label="Via Gaslini, 1 20090 MONZA \(MB\)"\s*><\/iframe>/g,
+    `<iframe loading="lazy" src="${studioMapEmbedUrl}" title="Studio Dentistico Sorriso & Salute - Via Gaslini 1, Monza" aria-label="Mappa Studio Dentistico Sorriso & Salute, Via Gaslini 1, Monza" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`,
+  );
+
 const applyGeneralRequestCtaLinks = (html: string) =>
   html
     .replaceAll('href="/richiesta/"', 'href="/richiesta-generale/"')
@@ -455,9 +484,12 @@ const body = removeMirroredFooter(applyGeneralRequestCtaLinks(removeConventionHe
     removeAboutHeroBreadcrumb(
       applyActivityHeroDescription(
         applyBrandColorTokens(
-          applyReviewsPageBody(applyActivityIndexItalianBody(applyTeamImageQuality(rawBody))).replaceAll(
+          applyReviewsPageBody(applyActivityIndexItalianBody(applyStudioMapEmbed(removeFormerTeamMembers(applyTeamImageQuality(rawBody))))).replaceAll(
             "Un sorriso più sano non può aspettare, <br />Prenota ora!",
             "Un sorriso<br />che sembri tuo,<br />solo migliore.",
+          ).replaceAll(
+            "Trattamenti completati",
+            "Operazioni chirurgiche eseguite",
           ).replaceAll(
             '"We smile different"',
             "Un sorriso<br />che sembri<br />tuo, solo migliore.",

@@ -52,6 +52,17 @@ const footerLayoutScript = `
   const footer = document.querySelector(".ekit-template-content-footer");
   if (!footer) return;
 
+  const bottomBar = footer.querySelector(".elementor-element-11f18a5");
+  if (bottomBar && !bottomBar.querySelector(".footer-legal-disclosure")) {
+    const legal = document.createElement("div");
+    legal.className = "footer-legal-disclosure";
+    legal.innerHTML = [
+      "<p>Autorizzazione sanitaria n. 2014/11</p>",
+      "<p>Pubblicità conforme art. 1 della legge di bilancio 2019 (30/12/2018 n. 145)</p>",
+    ].join("");
+    bottomBar.append(legal);
+  }
+
   footer.querySelectorAll('.elementor-element-6314a76 a[href="/richiesta-generale/"], .elementor-element-6314a76 a[href="/convenzioni-dirette/"]').forEach((link) => {
     link.classList.add("footer-underlined-link");
   });
@@ -243,6 +254,25 @@ const footerLayoutScript = `
     margin-bottom: 0;
   }
 
+  .ekit-template-content-footer .footer-legal-disclosure {
+    width: 100%;
+    margin-top: 10px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.45;
+    opacity: 0.88;
+  }
+
+  .ekit-template-content-footer .footer-legal-disclosure p {
+    margin: 0;
+  }
+
+  .ekit-template-content-footer .footer-legal-disclosure p + p {
+    margin-top: 2px;
+  }
+
   @media (max-width: 1024px) {
     .ekit-template-content-footer .elementor-tablet-align-left .elementor-button-wrapper {
       text-align: left;
@@ -252,6 +282,13 @@ const footerLayoutScript = `
   @media (max-width: 767px) {
     .ekit-template-content-footer {
       --footer-container-width: 100%;
+    }
+
+    .ekit-template-content-footer .footer-legal-disclosure {
+      margin-top: 8px;
+      padding-top: 10px;
+      font-size: 12px;
+      line-height: 1.4;
     }
   }
 </style>
