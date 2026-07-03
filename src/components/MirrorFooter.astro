@@ -52,15 +52,46 @@ const footerLayoutScript = `
   const footer = document.querySelector(".ekit-template-content-footer");
   if (!footer) return;
 
+  const topBar = footer.querySelector(".elementor-element-20c83f9");
+  const conventionsBlock = footer.querySelector(".elementor-element-238d565");
+  if (topBar && conventionsBlock && conventionsBlock.parentElement !== topBar) {
+    topBar.append(conventionsBlock);
+  }
+
   const bottomBar = footer.querySelector(".elementor-element-11f18a5");
-  if (bottomBar && !bottomBar.querySelector(".footer-legal-disclosure")) {
-    const legal = document.createElement("div");
-    legal.className = "footer-legal-disclosure";
-    legal.innerHTML = [
-      "<p>Autorizzazione sanitaria n. 2014/11</p>",
-      "<p>Pubblicità conforme art. 1 della legge di bilancio 2019 (30/12/2018 n. 145)</p>",
-    ].join("");
-    bottomBar.append(legal);
+  if (bottomBar) {
+    const copyright = bottomBar.querySelector(".elementor-element-fc27f95");
+    let policyLinks = bottomBar.querySelector(".footer-policy-links");
+
+    if (!policyLinks) {
+      policyLinks = document.createElement("div");
+      policyLinks.className = "footer-policy-links";
+      policyLinks.innerHTML = [
+        '<a href="/cookie-policy/">Cookie Policy</a>',
+        '<a href="/privacy-policy/">Privacy Policy</a>',
+      ].join("");
+      if (copyright) {
+        copyright.after(policyLinks);
+      } else {
+        bottomBar.prepend(policyLinks);
+      }
+    }
+
+    const infoHeading = footer.querySelector(".elementor-element-c743a5a");
+    const policySource = footer.querySelector(".elementor-element-9a81a1f");
+    if (infoHeading) infoHeading.hidden = true;
+    if (policySource) policySource.hidden = true;
+
+    let legal = bottomBar.querySelector(".footer-legal-disclosure");
+    if (!legal) {
+      legal = document.createElement("div");
+      legal.className = "footer-legal-disclosure";
+      legal.innerHTML = [
+        "<p>Autorizzazione sanitaria n. 2014/11</p>",
+        "<p>Pubblicità conforme art. 1 della legge di bilancio 2019 (30/12/2018 n. 145)</p>",
+      ].join("");
+    }
+    policyLinks.after(legal);
   }
 
   footer.querySelectorAll('.elementor-element-6314a76 a[href="/richiesta-generale/"], .elementor-element-6314a76 a[href="/convenzioni-dirette/"]').forEach((link) => {
@@ -68,8 +99,8 @@ const footerLayoutScript = `
   });
 
   const openingHours = footer.querySelector(".elementor-element-f03c6dd .elementor-widget-container");
-  const contactsColumn = footer.querySelector(".elementor-element-f80a286");
-  if (!openingHours || !contactsColumn || contactsColumn.querySelector(".footer-emergency-note")) return;
+  const directorColumn = footer.querySelector(".elementor-element-bd743c0");
+  if (!openingHours || !directorColumn || directorColumn.querySelector(".footer-emergency-note")) return;
 
   const emergencyText = "Emergenza:";
   const emergencyParagraph = Array.from(openingHours.querySelectorAll("p")).find((paragraph) =>
@@ -81,7 +112,7 @@ const footerLayoutScript = `
   const note = document.createElement("div");
   note.className = "footer-emergency-note";
   note.append(emergencyParagraph);
-  contactsColumn.append(note);
+  directorColumn.append(note);
 })();
 `;
 ---
