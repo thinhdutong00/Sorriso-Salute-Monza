@@ -4337,3 +4337,34 @@ iframe {
     padding: 20px;
   }
 }
+
+@media (max-width: 767px) {
+  body.has-sticky-cta {
+    --section-mobile-gutter: 18px;
+    --section-mobile-width: calc(100vw - (var(--section-mobile-gutter) * 2));
+  }
+
+  body.has-sticky-cta .hero,
+  body.has-sticky-cta .section,
+  body.has-sticky-cta .contact-section {
+    padding-left: var(--section-mobile-gutter);
+    padding-right: var(--section-mobile-gutter);
+  }
+
+  body.has-sticky-cta .hero-content,
+  body.has-sticky-cta .section-heading,
+  body.has-sticky-cta .pain-grid,
+  body.has-sticky-cta .situations-grid,
+  body.has-sticky-cta .treatment-grid,
+  body.has-sticky-cta .advantage-layout,
+  body.has-sticky-cta .method-inner,
+  body.has-sticky-cta .testimonial-carousel,
+  body.has-sticky-cta .team-grid,
+  body.has-sticky-cta .faq-wrap,
+  body.has-sticky-cta .contact-section {
+    width: var(--section-mobile-width);
+    max-width: var(--section-mobile-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
