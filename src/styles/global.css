@@ -4367,4 +4367,16 @@ iframe {
     margin-left: auto;
     margin-right: auto;
   }
+
+  body.has-sticky-cta .section-heading:not(.centered),
+  body.has-sticky-cta .advantage-copy,
+  body.has-sticky-cta .contact-copy,
+  body.has-sticky-cta .method-heading,
+  body.has-sticky-cta .convention-header,
+  body.has-sticky-cta .convention-full-heading {
+    width: var(--section-mobile-width);
+    max-width: var(--section-mobile-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
