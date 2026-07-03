@@ -53,9 +53,27 @@ const footerLayoutScript = `
   if (!footer) return;
 
   const topBar = footer.querySelector(".elementor-element-20c83f9");
+  const footerColumns = footer.querySelector(".elementor-element-8cca364");
   const conventionsBlock = footer.querySelector(".elementor-element-238d565");
-  if (topBar && conventionsBlock && conventionsBlock.parentElement !== topBar) {
-    topBar.append(conventionsBlock);
+  if (conventionsBlock) {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const placeConventionsBlock = () => {
+      const target = mediaQuery.matches ? footerColumns : topBar;
+      if (target && conventionsBlock.parentElement !== target) {
+        if (mediaQuery.matches) {
+          target.prepend(conventionsBlock);
+        } else {
+          target.append(conventionsBlock);
+        }
+      }
+    };
+
+    placeConventionsBlock();
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", placeConventionsBlock);
+    } else if (typeof mediaQuery.addListener === "function") {
+      mediaQuery.addListener(placeConventionsBlock);
+    }
   }
 
   const bottomBar = footer.querySelector(".elementor-element-11f18a5");
