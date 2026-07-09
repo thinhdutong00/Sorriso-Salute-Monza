@@ -3387,6 +3387,89 @@
     background-color: var(--brand-primary-pale) !important;
   }
 
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 {
+    --brand-review-card-height: 420px;
+    --brand-review-line-clamp: 5;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .swiper-slide,
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .swiper-slide-inner {
+    height: auto !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .elementskit-single-testimonial-slider {
+    display: flex !important;
+    flex-direction: column !important;
+    height: var(--brand-review-card-height) !important;
+    min-height: var(--brand-review-card-height) !important;
+    max-height: var(--brand-review-card-height) !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .elementskit-single-testimonial-slider.brand-review-expanded {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .elementskit-commentor-content {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .elementskit-commentor-content p {
+    display: -webkit-box !important;
+    margin-bottom: 0 !important;
+    overflow: hidden !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: var(--brand-review-line-clamp) !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-expanded .elementskit-commentor-content {
+    flex: 0 0 auto !important;
+    overflow: visible !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-expanded .elementskit-commentor-content p {
+    display: block !important;
+    overflow: visible !important;
+    -webkit-line-clamp: unset !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .elementskit-commentor-bio {
+    flex: 0 0 auto !important;
+    margin-top: auto !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-expanded .elementskit-commentor-bio {
+    margin-top: 22px !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-toggle {
+    align-self: flex-start !important;
+    margin: 14px 0 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: var(--brand-secondary) !important;
+    font: inherit !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-toggle:hover,
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-toggle:focus-visible {
+    color: var(--brand-primary) !important;
+  }
+
   body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1058fb0,
   body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1058fb0:not(.elementor-motion-effects-element-type-background),
   body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1058fb0 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
@@ -6603,6 +6686,11 @@
 	      --row-gap: 0 !important;
 	    }
 
+	    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 {
+	      --brand-review-card-height: 360px;
+	      --brand-review-line-clamp: 5;
+	    }
+
 	    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .swiper-navigation-button {
 	      transform: translateY(-30px) !important;
 	    }
@@ -6674,6 +6762,8 @@
 <script is:inline>
   (() => {
     const teamSlidersSelector = ".elementor-element-4954a511, .elementor-element-b46e7c4";
+    const reviewSliderSelector = ".elementor-element-a5f5b74";
+    const reviewToggleThreshold = 145;
 
     const normalizeText = (value) => value.replace(/\u00a0/g, " ").replace(/\s+/g, " ").trim();
 
@@ -6780,10 +6870,79 @@
       });
     };
 
+    const syncReviewSwiper = (card) => {
+      const swiper = card.closest(".swiper")?.swiper;
+      if (!swiper) return;
+
+      window.requestAnimationFrame(() => {
+        swiper.update?.();
+        swiper.updateSlides?.();
+        swiper.updateAutoHeight?.(240);
+      });
+    };
+
+    const collapseReviewCard = (card) => {
+      const button = card.querySelector(".brand-review-toggle");
+      card.classList.remove("brand-review-expanded");
+      card.classList.add("brand-review-collapsed");
+      if (button) {
+        button.textContent = "leggi di più";
+        button.setAttribute("aria-expanded", "false");
+      }
+    };
+
+    const enhanceReviewCard = (card) => {
+      if (card.dataset.brandReviewToggle === "true") return;
+
+      const content = card.querySelector(".elementskit-commentor-content");
+      const paragraph = content?.querySelector("p");
+      if (!content || !paragraph) return;
+
+      card.dataset.brandReviewToggle = "true";
+      card.classList.add("brand-review-collapsed");
+
+      const text = normalizeText(paragraph.textContent || "");
+      if (text.length <= reviewToggleThreshold) return;
+
+      card.classList.add("brand-review-has-toggle");
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "brand-review-toggle";
+      button.textContent = "leggi di più";
+      button.setAttribute("aria-expanded", "false");
+
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const shouldExpand = !card.classList.contains("brand-review-expanded");
+        if (shouldExpand) {
+          card.classList.add("brand-review-expanded");
+          card.classList.remove("brand-review-collapsed");
+          button.textContent = "leggi meno";
+          button.setAttribute("aria-expanded", "true");
+        } else {
+          collapseReviewCard(card);
+        }
+
+        syncReviewSwiper(card);
+      });
+
+      content.insertAdjacentElement("afterend", button);
+    };
+
+    const enhanceReviewCards = () => {
+      document.querySelectorAll(`${reviewSliderSelector} .elementskit-single-testimonial-slider`).forEach(enhanceReviewCard);
+    };
+
     const run = () => {
       enhanceTeamCards();
+      enhanceReviewCards();
       window.setTimeout(enhanceTeamCards, 600);
+      window.setTimeout(enhanceReviewCards, 600);
       window.setTimeout(enhanceTeamCards, 1600);
+      window.setTimeout(enhanceReviewCards, 1600);
     };
 
     if (document.readyState === "loading") {
