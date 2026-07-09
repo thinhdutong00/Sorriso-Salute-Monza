@@ -70,6 +70,7 @@ const aboutSectionImageUrl = "https://sorrisoesalutemonza.it/assets/brand/sorris
 const isReviewsPage = page.path === "/recensioni-studio-dentistico-monza/";
 const imageHeroPagePaths = new Set(["/", "/home-image/", "/home-slider/", "/home-video/", "/implantologia/"]);
 const hasImageHero = imageHeroPagePaths.has(page.path);
+const isAboutPage = aboutBreadcrumbPagePaths.has(page.path);
 
 const escapeHtml = (value: string) =>
   value
@@ -291,7 +292,7 @@ const applyActivityIndexItalianHead = (html: string) => {
 };
 
 const applyAboutHeadImage = (html: string) => {
-  if (!aboutBreadcrumbPagePaths.has(page.path)) return html;
+  if (!isAboutPage) return html;
 
   return html
     .replaceAll("https://sorrisoesalutemonza.it/mirror-assets/d11d1a58bbcb5793.jpg", aboutSectionImageUrl)
@@ -443,6 +444,20 @@ const applyTeamImageQuality = (html: string) =>
     .replaceAll("/mirror-assets/17e1228eb0204f46.jpg", "/mirror-assets/f5eda933d608941c.jpg")
     .replaceAll("/mirror-assets/08448b643258e77b.jpg", "/mirror-assets/3c534c254b8e2942.jpg");
 
+const applyAboutTeamMobileHeading = (html: string) => {
+  if (!isAboutPage) return html;
+
+  return html
+    .replace(
+      "elementor-element-078620e section-title",
+      "elementor-element-078620e section-title about-team-eyebrow",
+    )
+    .replace(
+      '<h2 class="elementor-heading-title elementor-size-default">Eccellenza e Innovazione nel Nostro Team</h2>',
+      '<h2 class="elementor-heading-title elementor-size-default about-team-title">Eccellenza <span class="about-team-title__mobile-line">e Innovazione</span> nel Nostro Team</h2>',
+    );
+};
+
 const removeFormerTeamMembers = (html: string) =>
   html
     .replace(
@@ -486,7 +501,7 @@ const body = removeMirroredFooter(applyGeneralRequestCtaLinks(removeConventionHe
     removeAboutHeroBreadcrumb(
       applyActivityHeroDescription(
         applyBrandColorTokens(
-          applyReviewsPageBody(applyActivityIndexItalianBody(applyStudioMapEmbed(removeFormerTeamMembers(applyTeamImageQuality(rawBody))))).replaceAll(
+          applyReviewsPageBody(applyActivityIndexItalianBody(applyStudioMapEmbed(removeFormerTeamMembers(applyAboutTeamMobileHeading(applyTeamImageQuality(rawBody)))))).replaceAll(
             "Un sorriso più sano non può aspettare, <br />Prenota ora!",
             "Un sorriso<br />che sembri tuo,<br />solo migliore.",
           ).replaceAll(
@@ -532,6 +547,42 @@ const isActivityServicePage =
   page.path !== "/attivita/" &&
   page.path !== "/attivita/implantologia/";
 const isActivityMirrorPage = page.path === "/attivita/" || isActivityServicePage;
+
+const aboutTeamMobileStyles = `
+@media (max-width: 767px) {
+  body.brand-palette.page-id-539 .about-team-eyebrow .elementor-heading-title {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding-left: 0 !important;
+  }
+
+  body.brand-palette.page-id-539 .about-team-eyebrow .elementor-heading-title::before {
+    position: static !important;
+    display: block !important;
+    width: 18px !important;
+    height: 18px !important;
+    flex: 0 0 18px !important;
+    background: url("/favicon-32x32.png") center / contain no-repeat !important;
+    transform: none !important;
+  }
+
+  body.brand-palette.page-id-539 .about-team-title {
+    max-width: min(100%, 21rem) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    font-size: clamp(2.05rem, 10vw, 2.65rem) !important;
+    line-height: 1.08 !important;
+    text-wrap: balance !important;
+  }
+
+  body.brand-palette.page-id-539 .about-team-title__mobile-line {
+    white-space: nowrap !important;
+  }
+}
+`;
 
 const serviceTitleMatch = body.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
 const serviceTitle = serviceTitleMatch
@@ -1414,6 +1465,7 @@ const reviewsPageScript = `
     <Fragment set:html={head} />
     <GoogleAdsTracking />
     <BrandPalette />
+    {isAboutPage && <style is:inline set:html={aboutTeamMobileStyles} />}
   </head>
   <body class:list={[page.bodyClass, "brand-palette", "mirror-header-over-hero", hasImageHero && "mirror-hero-image", isActivityMirrorPage && "mirror-activity-page", isReviewsPage && "mirror-reviews-page"]} id={page.bodyId || undefined}>
     <PageLoader />
