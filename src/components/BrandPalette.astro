@@ -3448,8 +3448,8 @@
   }
 
   body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-toggle {
-    align-self: flex-start !important;
-    margin: 14px 0 0 !important;
+    display: inline !important;
+    margin: 0 !important;
     padding: 0 !important;
     min-height: 0 !important;
     border: 0 !important;
@@ -6885,10 +6885,30 @@
       const button = card.querySelector(".brand-review-toggle");
       card.classList.remove("brand-review-expanded");
       card.classList.add("brand-review-collapsed");
-      if (button) {
-        button.textContent = "leggi di più";
-        button.setAttribute("aria-expanded", "false");
-      }
+      renderReviewText(card, false);
+    };
+
+    const getCollapsedReviewText = (text) => {
+      if (text.length <= reviewToggleThreshold) return text;
+
+      const slice = text.slice(0, reviewToggleThreshold).trim();
+      const lastSpace = slice.lastIndexOf(" ");
+      const trimmed = lastSpace > reviewToggleThreshold - 32 ? slice.slice(0, lastSpace) : slice;
+      return `${trimmed.replace(/[.,;:!?]+$/u, "")}...`;
+    };
+
+    const renderReviewText = (card, isExpanded) => {
+      const paragraph = card.querySelector(".elementskit-commentor-content p");
+      const button = card.querySelector(".brand-review-toggle");
+      const fullText = card.dataset.brandReviewFullText || "";
+      if (!paragraph || !button || !fullText) return;
+
+      paragraph.textContent = isExpanded ? fullText : getCollapsedReviewText(fullText);
+      paragraph.append(" ");
+      paragraph.append(button);
+
+      button.textContent = isExpanded ? "leggi meno" : "leggi di più";
+      button.setAttribute("aria-expanded", isExpanded ? "true" : "false");
     };
 
     const enhanceReviewCard = (card) => {
@@ -6904,6 +6924,7 @@
       const text = normalizeText(paragraph.textContent || "");
       if (text.length <= reviewToggleThreshold) return;
 
+      card.dataset.brandReviewFullText = text;
       card.classList.add("brand-review-has-toggle");
 
       const button = document.createElement("button");
@@ -6920,8 +6941,7 @@
         if (shouldExpand) {
           card.classList.add("brand-review-expanded");
           card.classList.remove("brand-review-collapsed");
-          button.textContent = "leggi meno";
-          button.setAttribute("aria-expanded", "true");
+          renderReviewText(card, true);
         } else {
           collapseReviewCard(card);
         }
@@ -6929,7 +6949,8 @@
         syncReviewSwiper(card);
       });
 
-      content.insertAdjacentElement("afterend", button);
+      paragraph.append(button);
+      renderReviewText(card, false);
     };
 
     const enhanceReviewCards = () => {
