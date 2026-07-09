@@ -3413,6 +3413,13 @@
     overflow: visible !important;
   }
 
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .elementskit-testimonial-slider.brand-review-slider-expanded,
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-slider-expanded .ekit-main-swiper,
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-slider-expanded .swiper-wrapper {
+    height: auto !important;
+    min-height: var(--brand-review-card-height) !important;
+  }
+
   body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .elementskit-commentor-content {
     flex: 1 1 auto !important;
     min-height: 0 !important;
@@ -3420,11 +3427,12 @@
   }
 
   body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .elementskit-commentor-content p {
-    display: -webkit-box !important;
+    display: block !important;
+    width: 100% !important;
     margin-bottom: 0 !important;
-    overflow: hidden !important;
-    -webkit-box-orient: vertical !important;
-    -webkit-line-clamp: var(--brand-review-line-clamp) !important;
+    overflow: visible !important;
+    text-align: left !important;
+    -webkit-line-clamp: unset !important;
   }
 
   body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-expanded .elementskit-commentor-content {
@@ -3454,13 +3462,14 @@
     min-height: 0 !important;
     border: 0 !important;
     background: transparent !important;
-    color: var(--brand-secondary) !important;
+    color: inherit !important;
     font: inherit !important;
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    line-height: 1.2 !important;
-    text-decoration: underline !important;
-    text-underline-offset: 3px !important;
+    font-size: inherit !important;
+    font-weight: 600 !important;
+    line-height: inherit !important;
+    text-decoration: none !important;
+    vertical-align: baseline !important;
+    white-space: nowrap !important;
     box-shadow: none !important;
     cursor: pointer !important;
   }
@@ -3468,6 +3477,28 @@
   body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-toggle:hover,
   body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-toggle:focus-visible {
     color: var(--brand-primary) !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-avatar-initial {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 54px !important;
+    height: 54px !important;
+    border-radius: 14px !important;
+    background: var(--brand-primary-pale) !important;
+    color: var(--brand-primary) !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-avatar-initial img {
+    display: none !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-a5f5b74 .brand-review-avatar-initial::before {
+    content: attr(data-review-initial);
   }
 
   body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1058fb0,
@@ -6871,21 +6902,35 @@
     };
 
     const syncReviewSwiper = (card) => {
-      const swiper = card.closest(".swiper")?.swiper;
+      const slider = card.closest(".elementskit-testimonial-slider");
+      const swiperElement = card.closest(".swiper");
+      const swiper = swiperElement?.swiper;
+      const isExpanded = Boolean(slider?.querySelector(".brand-review-expanded"));
+      slider?.classList.toggle("brand-review-slider-expanded", isExpanded);
       if (!swiper) return;
 
       window.requestAnimationFrame(() => {
+        const wrapper = swiperElement.querySelector(".swiper-wrapper");
+        if (isExpanded) {
+          swiperElement.style.removeProperty("height");
+          wrapper?.style.removeProperty("height");
+        } else {
+          const cardHeight = card.getBoundingClientRect().height;
+          swiperElement.style.height = `${cardHeight}px`;
+          if (wrapper) wrapper.style.height = `${cardHeight}px`;
+        }
+
+        swiper.updateSize?.();
         swiper.update?.();
         swiper.updateSlides?.();
-        swiper.updateAutoHeight?.(240);
       });
     };
 
     const collapseReviewCard = (card) => {
-      const button = card.querySelector(".brand-review-toggle");
       card.classList.remove("brand-review-expanded");
       card.classList.add("brand-review-collapsed");
       renderReviewText(card, false);
+      syncReviewSwiper(card);
     };
 
     const getCollapsedReviewText = (text) => {
@@ -6894,7 +6939,7 @@
       const slice = text.slice(0, reviewToggleThreshold).trim();
       const lastSpace = slice.lastIndexOf(" ");
       const trimmed = lastSpace > reviewToggleThreshold - 32 ? slice.slice(0, lastSpace) : slice;
-      return `${trimmed.replace(/[.,;:!?]+$/u, "")}...`;
+      return trimmed.replace(/[.,;:!?]+$/u, "");
     };
 
     const renderReviewText = (card, isExpanded) => {
@@ -6904,11 +6949,13 @@
       if (!paragraph || !button || !fullText) return;
 
       paragraph.textContent = isExpanded ? fullText : getCollapsedReviewText(fullText);
-      paragraph.append(" ");
+      paragraph.append("\u00a0");
       paragraph.append(button);
 
-      button.textContent = isExpanded ? "leggi meno" : "leggi di più";
+      button.textContent = isExpanded ? "leggi di meno −" : "leggi di più +";
       button.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+      const authorName = normalizeText(card.querySelector(".elementskit-author-name")?.textContent || "questo paziente");
+      button.setAttribute("aria-label", `${isExpanded ? "Riduci" : "Espandi"} la recensione di ${authorName}`);
     };
 
     const enhanceReviewCard = (card) => {
@@ -6917,6 +6964,17 @@
       const content = card.querySelector(".elementskit-commentor-content");
       const paragraph = content?.querySelector("p");
       if (!content || !paragraph) return;
+
+      const author = card.querySelector(".elementskit-author-name");
+      const authorName = normalizeText(author?.textContent || "");
+      const avatar = card.querySelector(".elementskit-commentor-image");
+      const authorDescription = card.querySelector(".elementskit-author-des");
+      if (avatar && authorName) {
+        avatar.classList.add("brand-review-avatar-initial");
+        avatar.dataset.reviewInitial = authorName.charAt(0).toUpperCase();
+        avatar.setAttribute("aria-hidden", "true");
+      }
+      if (authorDescription) authorDescription.textContent = "Paziente verificato";
 
       card.dataset.brandReviewToggle = "true";
       card.classList.add("brand-review-collapsed");
@@ -6930,8 +6988,9 @@
       const button = document.createElement("button");
       button.type = "button";
       button.className = "brand-review-toggle";
-      button.textContent = "leggi di più";
+      button.textContent = "leggi di più +";
       button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-label", `Espandi la recensione di ${authorName || "questo paziente"}`);
 
       button.addEventListener("click", (event) => {
         event.preventDefault();
@@ -6939,6 +6998,9 @@
 
         const shouldExpand = !card.classList.contains("brand-review-expanded");
         if (shouldExpand) {
+          card.closest(".elementskit-testimonial-slider")?.querySelectorAll(".brand-review-expanded").forEach((expandedCard) => {
+            if (expandedCard !== card) collapseReviewCard(expandedCard);
+          });
           card.classList.add("brand-review-expanded");
           card.classList.remove("brand-review-collapsed");
           renderReviewText(card, true);
