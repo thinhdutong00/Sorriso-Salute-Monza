@@ -3502,11 +3502,14 @@
 
     body.brand-palette .mirror-kebab-menu {
       inset: 0 !important;
-      grid-template-rows: auto minmax(0, 1fr) auto !important;
+      grid-template-rows: auto auto auto !important;
       width: 100% !important;
       height: 100dvh !important;
       max-height: none !important;
       padding: max(18px, env(safe-area-inset-top)) 20px max(16px, env(safe-area-inset-bottom)) !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      overscroll-behavior: contain !important;
       border-radius: 0 !important;
       background: #ffffff !important;
       color: #ffffff !important;
@@ -3514,6 +3517,7 @@
     }
 
     body.brand-palette .mirror-kebab-menu__header {
+      position: static !important;
       justify-content: space-between !important;
       gap: 18px !important;
       min-height: 52px !important;
@@ -3550,17 +3554,23 @@
     }
 
     body.brand-palette .mirror-kebab-menu__content {
+      min-height: auto !important;
+      overflow: visible !important;
       padding: 18px 8px 18px 0 !important;
-      overscroll-behavior: contain !important;
       scrollbar-color: rgba(14, 56, 76, 0.72) rgba(14, 56, 76, 0.12) !important;
     }
 
     body.brand-palette .mirror-kebab-menu__cta {
+      position: sticky !important;
+      bottom: 0 !important;
+      z-index: 2 !important;
       display: grid !important;
       grid-template-columns: minmax(0, 1fr) !important;
       gap: 10px !important;
       padding-top: 12px !important;
+      padding-bottom: max(2px, env(safe-area-inset-bottom)) !important;
       border-top: 1px solid rgba(14, 56, 76, 0.22) !important;
+      background: #ffffff !important;
     }
 
     body.brand-palette .mirror-kebab-menu__cta-button {
