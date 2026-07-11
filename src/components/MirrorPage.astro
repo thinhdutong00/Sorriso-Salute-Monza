@@ -800,6 +800,19 @@ const mirrorNavigationScript = `
     if (isOpen) panel.focus({ preventScroll: true });
   };
 
+  const sectionToggles = Array.from(panel?.querySelectorAll("[data-mirror-menu-section-toggle]") || []);
+
+  const setSectionState = (button, isOpen) => {
+    const section = button.closest("[data-mirror-menu-section]");
+    if (!section) return;
+    button.setAttribute("aria-expanded", String(isOpen));
+    section.classList.toggle("is-open", isOpen);
+  };
+
+  sectionToggles.forEach((button) => {
+    setSectionState(button, button.getAttribute("aria-expanded") === "true");
+  });
+
   enhanceNav();
   window.setTimeout(enhanceNav, 250);
   window.setTimeout(enhanceNav, 900);
@@ -818,6 +831,14 @@ const mirrorNavigationScript = `
   window.setTimeout(observeNav, 300);
 
   document.addEventListener("click", (event) => {
+    const sectionToggle = event.target.closest("[data-mirror-menu-section-toggle]");
+    if (sectionToggle && window.matchMedia("(max-width: 767px)").matches) {
+      event.preventDefault();
+      const willOpen = sectionToggle.getAttribute("aria-expanded") !== "true";
+      sectionToggles.forEach((button) => setSectionState(button, button === sectionToggle && willOpen));
+      return;
+    }
+
     const toggle = event.target.closest("[data-mirror-menu-toggle]");
     if (toggle) {
       event.preventDefault();
@@ -1488,38 +1509,59 @@ const reviewsPageScript = `
         </button>
       </div>
       <nav class="mirror-kebab-menu__content" aria-label="Navigazione estesa">
-        <section class="mirror-kebab-menu__section">
-          <h2>Studio</h2>
-          <a href="/">Home</a>
-          <a href="/chi-siamo/">Chi siamo</a>
-          <a href="/doctors/">Equipe</a>
-          <a href="/recensioni-studio-dentistico-monza/">Dicono di noi</a>
-          <a href="/struttura-studio-dentistico-monza/">La Struttura</a>
-          <a href="/contatti/">Contatti</a>
-          <a href="/convenzioni-dirette-studio-dentistico-monza/">Convenzioni</a>
+        <section class="mirror-kebab-menu__section is-open" data-mirror-menu-section>
+          <h2>
+            <button class="mirror-kebab-menu__section-toggle" type="button" aria-expanded="true" data-mirror-menu-section-toggle>
+              <span>Attività</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M6 9L12 15L18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+          </h2>
+          <div class="mirror-kebab-menu__section-content">
+            <a href="/attivita/">Tutte le attività</a>
+            <a href="/attivita/igiene-orale-e-profilassi/">Igiene orale e profilassi</a>
+            <a href="/attivita/protesi-dentale/">Protesi dentale</a>
+            <a href="/attivita/odontoiatria-conservativa/">Conservativa</a>
+            <a href="/attivita/estetica-del-sorriso/">Estetica del sorriso</a>
+            <a href="/attivita/parodontologia/">Parodontologia</a>
+            <a href="/attivita/ortodonzia/">Ortodonzia</a>
+            <a href="/attivita/chirurgia-orale/">Chirurgia orale</a>
+            <a href="/implantologia/">Implantologia</a>
+            <a href="/attivita/endodonzia/">Endodonzia</a>
+            <a href="/attivita/gnatologia/">Gnatologia</a>
+            <a href="/attivita/pedodonzia/">Pedodonzia</a>
+          </div>
         </section>
-        <section class="mirror-kebab-menu__section">
-          <h2>Attività</h2>
-          <a href="/attivita/">Tutte le attività</a>
-          <a href="/attivita/igiene-orale-e-profilassi/">Igiene orale e profilassi</a>
-          <a href="/attivita/protesi-dentale/">Protesi dentale</a>
-          <a href="/attivita/odontoiatria-conservativa/">Conservativa</a>
-          <a href="/attivita/estetica-del-sorriso/">Estetica del sorriso</a>
-          <a href="/attivita/parodontologia/">Parodontologia</a>
-          <a href="/attivita/ortodonzia/">Ortodonzia</a>
-          <a href="/attivita/chirurgia-orale/">Chirurgia orale</a>
-          <a href="/implantologia/">Implantologia</a>
-          <a href="/attivita/endodonzia/">Endodonzia</a>
-          <a href="/attivita/gnatologia/">Gnatologia</a>
-          <a href="/attivita/pedodonzia/">Pedodonzia</a>
+        <section class="mirror-kebab-menu__section" data-mirror-menu-section>
+          <h2>
+            <button class="mirror-kebab-menu__section-toggle" type="button" aria-expanded="false" data-mirror-menu-section-toggle>
+              <span>Studio</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M6 9L12 15L18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+          </h2>
+          <div class="mirror-kebab-menu__section-content">
+            <a href="/">Home</a>
+            <a href="/chi-siamo/">Chi siamo</a>
+            <a href="/doctors/">Equipe</a>
+            <a href="/recensioni-studio-dentistico-monza/">Dicono di noi</a>
+            <a href="/struttura-studio-dentistico-monza/">La Struttura</a>
+            <a href="/contatti/">Contatti</a>
+            <a href="/convenzioni-dirette-studio-dentistico-monza/">Convenzioni</a>
+          </div>
         </section>
-        <section class="mirror-kebab-menu__section">
-          <h2>Prenota e informazioni</h2>
-          <a href="/urgenze/">Urgenze</a>
-          <a href="tel:+390392022489">Chiama in studio</a>
-          <a href="/richiesta-generale/">Richiedi appuntamento</a>
-          <a href="/convenzioni-dirette/">Convenzioni dirette</a>
-          <a href="/convenzioni-indirette/">Convenzioni indirette</a>
+        <section class="mirror-kebab-menu__section" data-mirror-menu-section>
+          <h2>
+            <button class="mirror-kebab-menu__section-toggle" type="button" aria-expanded="false" data-mirror-menu-section-toggle>
+              <span>Prenota e informazioni</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M6 9L12 15L18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+          </h2>
+          <div class="mirror-kebab-menu__section-content">
+            <a href="/urgenze/">Urgenze</a>
+            <a href="tel:+390392022489">Chiama in studio</a>
+            <a href="/richiesta-generale/">Richiedi appuntamento</a>
+            <a href="/convenzioni-dirette/">Convenzioni dirette</a>
+            <a href="/convenzioni-indirette/">Convenzioni indirette</a>
+          </div>
         </section>
       </nav>
       <div class="mirror-kebab-menu__cta" aria-label="Contatti rapidi">

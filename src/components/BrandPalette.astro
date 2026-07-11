@@ -3018,6 +3018,55 @@
     text-transform: none !important;
   }
 
+  body.brand-palette .mirror-kebab-menu__section-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 14px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+    font: inherit !important;
+    line-height: inherit !important;
+    text-align: left !important;
+    box-shadow: none !important;
+    cursor: default !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__section-toggle svg {
+    display: none !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__section-content {
+    display: grid !important;
+    gap: 14px !important;
+  }
+
+  @media (min-width: 768px) {
+    body.brand-palette .mirror-kebab-menu__content {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section:nth-child(1) {
+      order: 2 !important;
+      margin-top: 28px !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section:nth-child(2) {
+      order: 1 !important;
+      margin-top: 0 !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section:nth-child(3) {
+      order: 3 !important;
+    }
+  }
+
   body.brand-palette .mirror-kebab-menu__section a {
     position: relative !important;
     display: inline-flex !important;
@@ -3519,6 +3568,45 @@
 
     body.brand-palette .mirror-kebab-menu__section h2 {
       font-size: 24px !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section {
+      gap: 0 !important;
+      margin-top: 22px !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section:first-child {
+      margin-top: 0 !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section-toggle {
+      cursor: pointer !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section-toggle:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.9) !important;
+      outline-offset: 4px !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section-toggle svg {
+      display: block !important;
+      flex: 0 0 24px !important;
+      width: 24px !important;
+      height: 24px !important;
+      transition: transform 180ms ease !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section.is-open .mirror-kebab-menu__section-toggle svg {
+      transform: rotate(180deg) !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section-content {
+      gap: 14px !important;
+      margin-top: 14px !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section:not(.is-open) .mirror-kebab-menu__section-content {
+      display: none !important;
     }
   }
 
