@@ -463,6 +463,10 @@
     display: none !important;
   }
 
+  body.brand-palette.home .elementor-7051 .mobile-hero-copy {
+    display: contents !important;
+  }
+
   @media (min-width: 1025px) {
     body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-e8d3704 > .e-con-inner {
       width: min(calc(100% - 32px), 1420px) !important;
@@ -5920,20 +5924,21 @@
 
     body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1376b220::before {
       display: inline-block !important;
-      max-width: 24ch !important;
+      width: min(100%, 300px) !important;
+      max-width: 300px !important;
       margin-bottom: 12px !important;
       margin-left: auto !important;
       margin-right: auto !important;
-      padding: 8px 12px !important;
+      padding: 10px 18px !important;
       color: rgba(255, 255, 255, 0.82) !important;
       background: rgba(255, 255, 255, 0.1) !important;
       border: 1px solid rgba(255, 255, 255, 0.42) !important;
-      border-radius: 6px !important;
+      border-radius: 16px !important;
       font-family: var(--brand-font-family) !important;
       font-size: 13px !important;
       font-weight: 600 !important;
-      line-height: 1.35 !important;
-      letter-spacing: 0 !important;
+      line-height: 1.5 !important;
+      letter-spacing: 0.5px !important;
       text-transform: uppercase !important;
       white-space: pre-line !important;
       content: "La scienza pensata per\A la tua salute orale" !important;
@@ -7091,8 +7096,8 @@
 
     body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-9daee80 {
       display: grid !important;
-      grid-template-rows: minmax(0, 1fr) auto auto !important;
-      gap: 22px !important;
+      grid-template-rows: minmax(0, 1fr) auto !important;
+      gap: 30px !important;
       align-items: center !important;
       --align-items: center !important;
       min-height: calc(max(680px, calc(100svh - 90px)) - 96px) !important;
@@ -7102,6 +7107,19 @@
       --padding-right: 0 !important;
       text-align: center !important;
       transform: none !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .mobile-hero-copy {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      align-self: stretch !important;
+      gap: 22px !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      text-align: center !important;
+      transform: translateY(28px) !important;
     }
 
     body.brand-palette.home .elementor-7051 .mobile-hero-reviews {
@@ -7130,6 +7148,12 @@
       font-size: 18px !important;
       font-weight: 700 !important;
       line-height: 1 !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .mobile-hero-reviews__google svg {
+      display: block !important;
+      width: 22px !important;
+      height: 22px !important;
     }
 
     body.brand-palette.home .elementor-7051 .mobile-hero-reviews__content,
