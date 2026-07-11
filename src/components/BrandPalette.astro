@@ -3050,6 +3050,10 @@
     display: none !important;
   }
 
+  body.brand-palette .mirror-kebab-menu__link-icon {
+    display: none !important;
+  }
+
   @media (min-width: 768px) {
     body.brand-palette .mirror-kebab-menu__content {
       display: flex !important;
@@ -3641,6 +3645,23 @@
       font-weight: 400 !important;
       line-height: 1.25 !important;
       letter-spacing: 0 !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section:not(.mirror-kebab-menu__section--activities) .mirror-kebab-menu__section-content a {
+      gap: 10px !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__link-icon {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex: 0 0 20px !important;
+      width: 20px !important;
+      min-width: 20px !important;
+      color: var(--brand-primary) !important;
+      font-size: 15px !important;
+      line-height: 1 !important;
+      text-align: center !important;
     }
 
     body.brand-palette .mirror-kebab-menu__section:not(.is-open) .mirror-kebab-menu__section-content {
