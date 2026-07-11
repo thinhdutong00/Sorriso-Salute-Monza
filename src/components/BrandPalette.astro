@@ -459,6 +459,10 @@
     stroke: #ffffff !important;
   }
 
+  body.brand-palette.home .elementor-7051 .mobile-hero-reviews {
+    display: none !important;
+  }
+
   @media (min-width: 1025px) {
     body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-e8d3704 > .e-con-inner {
       width: min(calc(100% - 32px), 1420px) !important;
@@ -5915,12 +5919,16 @@
     }
 
     body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1376b220::before {
-      display: block !important;
+      display: inline-block !important;
       max-width: 24ch !important;
       margin-bottom: 12px !important;
       margin-left: auto !important;
       margin-right: auto !important;
+      padding: 8px 12px !important;
       color: rgba(255, 255, 255, 0.82) !important;
+      background: rgba(255, 255, 255, 0.1) !important;
+      border: 1px solid rgba(255, 255, 255, 0.42) !important;
+      border-radius: 6px !important;
       font-family: var(--brand-font-family) !important;
       font-size: 13px !important;
       font-weight: 600 !important;
@@ -7057,7 +7065,7 @@
       min-height: max(680px, calc(100svh - 90px)) !important;
       justify-content: center !important;
       padding-top: 48px !important;
-      padding-bottom: 48px !important;
+      padding-bottom: 24px !important;
     }
 
     body.brand-palette.home .elementor.elementor-7051[data-elementor-type="wp-page"] > .elementor-element.elementor-element-5c1edef1.e-con.e-parent {
@@ -7082,15 +7090,76 @@
     }
 
     body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-9daee80 {
-      gap: 14px !important;
+      display: grid !important;
+      grid-template-rows: minmax(0, 1fr) auto auto !important;
+      gap: 22px !important;
       align-items: center !important;
       --align-items: center !important;
+      min-height: calc(max(680px, calc(100svh - 90px)) - 96px) !important;
       padding-left: 0 !important;
       padding-right: 0 !important;
       --padding-left: 0 !important;
       --padding-right: 0 !important;
       text-align: center !important;
       transform: none !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .mobile-hero-reviews {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      align-self: center !important;
+      gap: 10px !important;
+      width: auto !important;
+      max-width: min(100%, 340px) !important;
+      margin: 0 auto !important;
+      color: #ffffff !important;
+      text-align: left !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .mobile-hero-reviews__google {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex: 0 0 34px !important;
+      width: 34px !important;
+      height: 34px !important;
+      color: var(--brand-primary) !important;
+      background: #ffffff !important;
+      border-radius: 50% !important;
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      line-height: 1 !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .mobile-hero-reviews__content,
+    body.brand-palette.home .elementor-7051 .mobile-hero-reviews__score {
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .mobile-hero-reviews__content {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 3px !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .mobile-hero-reviews__score {
+      gap: 8px !important;
+      font-size: 15px !important;
+      line-height: 1 !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .mobile-hero-reviews__stars {
+      color: #fbbc04 !important;
+      font-size: 13px !important;
+      letter-spacing: 1px !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .mobile-hero-reviews__label {
+      color: rgba(255, 255, 255, 0.78) !important;
+      font-size: 11px !important;
+      line-height: 1.3 !important;
     }
 
     body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1376b220,
@@ -7110,6 +7179,11 @@
       margin-left: auto !important;
       margin-right: auto !important;
       text-align: center !important;
+    }
+
+    body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-46187a7 {
+      align-self: end !important;
+      margin-bottom: 0 !important;
     }
 
     body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-1376b220 .elementor-heading-title {
