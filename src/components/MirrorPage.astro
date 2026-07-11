@@ -835,7 +835,7 @@ const mirrorNavigationScript = `
     if (sectionToggle && window.matchMedia("(max-width: 767px)").matches) {
       event.preventDefault();
       const willOpen = sectionToggle.getAttribute("aria-expanded") !== "true";
-      sectionToggles.forEach((button) => setSectionState(button, button === sectionToggle && willOpen));
+      setSectionState(sectionToggle, willOpen);
       return;
     }
 
