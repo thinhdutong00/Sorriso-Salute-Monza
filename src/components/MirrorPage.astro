@@ -1480,9 +1480,11 @@ const reviewsPageScript = `
       hidden
     >
       <div class="mirror-kebab-menu__header">
+        <a class="mirror-kebab-menu__logo" href="/" aria-label="Studio Dentistico Sorriso e Salute - Home">
+          <span class="mirror-kebab-menu__logo-mark" aria-hidden="true"></span>
+        </a>
         <button type="button" class="mirror-kebab-menu__close" data-mirror-menu-close aria-label="Chiudi menu">
           <span aria-hidden="true">×</span>
-          Chiudi
         </button>
       </div>
       <nav class="mirror-kebab-menu__content" aria-label="Navigazione estesa">
@@ -1521,24 +1523,27 @@ const reviewsPageScript = `
         </section>
       </nav>
       <div class="mirror-kebab-menu__cta" aria-label="Contatti rapidi">
-        <a class="mirror-kebab-menu__cta-primary" href="/richiesta-generale/">Prenota una visita</a>
         <a
-          class="mirror-kebab-menu__cta-icon"
-          href="https://api.whatsapp.com/send?phone=393892490181"
-          aria-label="Contattaci su WhatsApp"
-          title="WhatsApp"
-        >
-          <i class="fab fa-whatsapp" aria-hidden="true"></i>
-        </a>
-        <a
-          class="mirror-kebab-menu__cta-icon"
+          class="mirror-kebab-menu__cta-button mirror-kebab-menu__cta-button--call"
           href="tel:+390392022489"
           aria-label="Chiama lo studio"
-          title="Telefono"
         >
           <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
             <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.31-.31.76-.42 1.17-.28 1.29.43 2.64.66 4.02.66.66 0 1.2.54 1.2 1.2v3.48c0 .66-.54 1.2-1.2 1.2C10.43 21.94 2.06 13.57 2.06 3.4c0-.66.54-1.2 1.2-1.2h3.49c.66 0 1.2.54 1.2 1.2 0 1.38.22 2.73.66 4.02.13.41.03.86-.29 1.17l-2.2 2.2Z" fill="currentColor"></path>
           </svg>
+          <span>Chiama lo studio</span>
+        </a>
+        <a
+          class="mirror-kebab-menu__cta-button mirror-kebab-menu__cta-button--book"
+          href="/richiesta-generale/"
+          aria-label="Prenota ora"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+            <rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <path d="M16 3V7M8 3V7M3 10H21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            <path d="M8 14H8.01M12 14H12.01M16 14H16.01M8 17H8.01M12 17H12.01" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+          </svg>
+          <span>Prenota ora</span>
         </a>
       </div>
     </aside>

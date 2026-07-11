@@ -2961,6 +2961,10 @@
     padding-bottom: 12px !important;
   }
 
+  body.brand-palette .mirror-kebab-menu__logo {
+    display: none !important;
+  }
+
   body.brand-palette .mirror-kebab-menu__close {
     display: inline-flex !important;
     align-items: center !important;
@@ -3424,60 +3428,93 @@
     }
 
     body.brand-palette .mirror-kebab-menu {
-      top: max(12px, env(safe-area-inset-top)) !important;
-      right: 14px !important;
-      bottom: max(12px, env(safe-area-inset-bottom)) !important;
-      left: 14px !important;
+      inset: 0 !important;
       grid-template-rows: auto minmax(0, 1fr) auto !important;
-      width: auto !important;
-      height: auto !important;
+      width: 100% !important;
+      height: 100dvh !important;
       max-height: none !important;
-      padding: 22px 22px 16px !important;
+      padding: max(18px, env(safe-area-inset-top)) 20px max(16px, env(safe-area-inset-bottom)) !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__header {
+      justify-content: space-between !important;
+      gap: 18px !important;
+      min-height: 52px !important;
+      padding-bottom: 14px !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__logo {
+      display: block !important;
+      width: min(210px, calc(100% - 64px)) !important;
+      color: #ffffff !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__logo-mark {
+      display: block !important;
+      width: 100% !important;
+      aspect-ratio: 1120 / 270 !important;
+      background: #ffffff !important;
+      -webkit-mask: url("/mirror-assets/568e7b4baac5c946.png") center / contain no-repeat !important;
+      mask: url("/mirror-assets/568e7b4baac5c946.png") center / contain no-repeat !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__close {
+      flex: 0 0 44px !important;
+      justify-content: center !important;
+      width: 44px !important;
+      height: 44px !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__close span {
+      font-size: 40px !important;
     }
 
     body.brand-palette .mirror-kebab-menu__content {
-      padding-bottom: 14px !important;
+      padding: 18px 8px 18px 0 !important;
+      overscroll-behavior: contain !important;
     }
 
     body.brand-palette .mirror-kebab-menu__cta {
       display: grid !important;
-      grid-template-columns: minmax(0, 1fr) 48px 48px !important;
-      gap: 8px !important;
-      padding-top: 14px !important;
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 10px !important;
+      padding-top: 12px !important;
       border-top: 1px solid rgba(255, 255, 255, 0.28) !important;
     }
 
-    body.brand-palette .mirror-kebab-menu__cta a {
+    body.brand-palette .mirror-kebab-menu__cta-button {
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
+      gap: 10px !important;
       min-width: 0 !important;
-      min-height: 48px !important;
+      min-height: 50px !important;
+      padding: 10px 16px !important;
       border: 1px solid rgba(255, 255, 255, 0.72) !important;
       border-radius: 6px !important;
       color: #ffffff !important;
+      font-size: 15px !important;
+      font-weight: 700 !important;
+      line-height: 1.15 !important;
       text-decoration: none !important;
     }
 
-    body.brand-palette .mirror-kebab-menu__cta-primary {
-      padding: 8px 12px !important;
+    body.brand-palette .mirror-kebab-menu__cta-button--call {
+      background: transparent !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__cta-button--book {
       background: var(--brand-secondary) !important;
       border-color: var(--brand-secondary) !important;
-      font-size: 14px !important;
-      font-weight: 700 !important;
-      line-height: 1.15 !important;
-      text-align: center !important;
     }
 
-    body.brand-palette .mirror-kebab-menu__cta-icon {
-      padding: 0 !important;
-      background: transparent !important;
-      font-size: 23px !important;
-    }
-
-    body.brand-palette .mirror-kebab-menu__cta-icon svg {
-      width: 23px !important;
-      height: 23px !important;
+    body.brand-palette .mirror-kebab-menu__cta-button svg {
+      flex: 0 0 22px !important;
+      width: 22px !important;
+      height: 22px !important;
     }
 
     body.brand-palette .mirror-kebab-menu__section h2 {
