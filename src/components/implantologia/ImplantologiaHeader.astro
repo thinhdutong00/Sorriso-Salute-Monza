@@ -1,99 +1,175 @@
 ---
-const logo = "/assets/brand/sorriso-salute-logo-360.webp";
+const logo = "/mirror-assets/568e7b4baac5c946.png";
 
-const pageLinks = [
-  { href: "#panoramica", label: "Panoramica" },
-  { href: "#quando-indicato", label: "Quando è indicato" },
-  { href: "#percorso", label: "Percorso" },
-  { href: "#vantaggi", label: "Vantaggi" },
-  { href: "#faq", label: "FAQ" },
+const primaryLinks = [
+  { href: "/recensioni-studio-dentistico-monza/", label: "Dicono di noi" },
+  { href: "/struttura-studio-dentistico-monza/", label: "La Struttura" },
+  { href: "/convenzioni-dirette-studio-dentistico-monza/", label: "Convenzioni" },
+  { href: "/urgenze/", label: "Urgenze" },
+];
+
+const treatmentLinks = [
+  { href: "/attivita/", label: "Tutti i trattamenti", description: "Scopri tutti i trattamenti" },
+  { href: "/attivita/igiene-orale-e-profilassi/", label: "Igiene orale e profilassi", description: "Pulizia e prevenzione" },
+  { href: "/attivita/protesi-dentale/", label: "Protesi dentale", description: "Sostituisce i denti mancanti" },
+  { href: "/attivita/odontoiatria-conservativa/", label: "Conservativa", description: "Cura carie e denti danneggiati" },
+  { href: "/attivita/estetica-del-sorriso/", label: "Estetica del sorriso", description: "Migliora forma e colore dei denti" },
+  { href: "/attivita/parodontologia/", label: "Parodontologia", description: "Cura gengive e sostegno dei denti" },
+  { href: "/attivita/ortodonzia/", label: "Ortodonzia", description: "Allinea i denti" },
+  { href: "/attivita/chirurgia-orale/", label: "Chirurgia orale", description: "Estrazioni e piccoli interventi" },
+  { href: "/implantologia/", label: "Implantologia", description: "Denti fissi su impianti" },
+  { href: "/attivita/endodonzia/", label: "Endodonzia", description: "Devitalizza e salva il dente" },
+  { href: "/attivita/gnatologia/", label: "Gnatologia", description: "Cura mandibola e masticazione" },
+  { href: "/attivita/pedodonzia/", label: "Pedodonzia", description: "Cure dentali per bambini" },
+];
+
+const studioLinks = [
+  { href: "/", label: "Home" },
+  { href: "/chi-siamo/", label: "Chi siamo" },
+  { href: "/doctors/", label: "Equipe" },
+  { href: "/recensioni-studio-dentistico-monza/", label: "Dicono di noi" },
+  { href: "/struttura-studio-dentistico-monza/", label: "La Struttura" },
+  { href: "/contatti/", label: "Contatti" },
+  { href: "/convenzioni-dirette-studio-dentistico-monza/", label: "Convenzioni" },
+];
+
+const bookingLinks = [
+  { href: "/urgenze/", label: "Urgenze" },
+  { href: "tel:+390392022489", label: "Chiama in studio: 039 2022489" },
+  { href: "/richiesta-generale/", label: "Richiedi appuntamento" },
+  { href: "/convenzioni-dirette/", label: "Convenzioni dirette" },
+  { href: "/convenzioni-indirette/", label: "Convenzioni indirette" },
 ];
 ---
 
-<header class="implant-site-header" data-implant-header>
-  <div class="implant-container implant-site-header__inner">
-    <a class="implant-site-header__logo" href="/" aria-label="Sorriso e Salute Monza - Home">
-      <img src={logo} width="360" height="87" alt="Studio Dentistico Sorriso e Salute" />
+<header class="implant-home-header is-over-hero" data-implant-header>
+  <div class="implant-home-header__inner">
+    <a class="implant-home-header__logo" href="/" aria-label="Studio Dentistico Sorriso e Salute - Home">
+      <span class="implant-home-header__logo-mark" aria-hidden="true"></span>
+      <img src={logo} width="1120" height="270" alt="" aria-hidden="true" />
     </a>
 
-    <nav class="implant-site-header__desktop-nav" aria-label="Sezioni della pagina">
-      {pageLinks.map((link) => <a href={link.href}>{link.label}</a>)}
-      <a class="implant-site-header__book" href="#prenota">Prenota</a>
-    </nav>
-
-    <div class="implant-site-header__actions">
-      <a class="implant-site-header__mobile-book" href="#prenota">Prenota</a>
+    <nav class="implant-home-header__nav" aria-label="Navigazione principale">
+      {primaryLinks.map((link) => <a class="implant-home-header__nav-link" href={link.href}>{link.label}</a>)}
+      <a class="implant-home-header__nav-link implant-home-header__phone" href="tel:+390392022489">
+        <span>Chiama in studio</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+          <path d="M6.62 10.79a15.5 15.5 0 0 0 6.59 6.59l2.2-2.2a1.2 1.2 0 0 1 1.17-.28c1.29.43 2.64.66 4.02.66.66 0 1.2.54 1.2 1.2v3.48c0 .66-.54 1.2-1.2 1.2C10.43 21.94 2.06 13.57 2.06 3.4c0-.66.54-1.2 1.2-1.2h3.49c.66 0 1.2.54 1.2 1.2 0 1.38.22 2.73.66 4.02.13.41.03.86-.29 1.17l-2.2 2.2Z" fill="currentColor"></path>
+        </svg>
+      </a>
       <button
-        class="implant-site-header__menu-button"
+        class="implant-home-header__menu-toggle"
         type="button"
         aria-expanded="false"
         aria-controls="implantologia-site-menu"
-        aria-label="Apri il menu di navigazione"
         data-implant-menu-toggle
       >
-        <span class="implant-site-header__menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
-        <span class="implant-site-header__menu-label">Menu</span>
+        <span class="implant-home-header__menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="implant-home-header__menu-label">Menu</span>
       </button>
-    </div>
+    </nav>
   </div>
 </header>
 
-<div class="implant-menu-backdrop" data-implant-menu-backdrop hidden></div>
+<div class="implant-home-menu-backdrop" data-implant-menu-backdrop hidden></div>
 <aside
-  class="implant-site-menu"
+  class="implant-home-menu"
   id="implantologia-site-menu"
   data-implant-site-menu
   role="dialog"
   aria-modal="true"
-  aria-label="Menu di navigazione"
+  aria-label="Menu principale"
   tabindex="-1"
   hidden
 >
-  <div class="implant-site-menu__header">
-    <img src={logo} width="360" height="87" alt="" aria-hidden="true" />
-    <button type="button" aria-label="Chiudi il menu di navigazione" data-implant-menu-close>
+  <div class="implant-home-menu__header">
+    <a class="implant-home-menu__logo" href="/" aria-label="Studio Dentistico Sorriso e Salute - Home">
+      <span class="implant-home-menu__logo-mark" aria-hidden="true"></span>
+    </a>
+    <button class="implant-home-menu__close" type="button" aria-label="Chiudi menu" data-implant-menu-close>
       <span aria-hidden="true">×</span>
     </button>
   </div>
 
-  <nav class="implant-site-menu__content" aria-label="Navigazione completa">
-    <section>
-      <h2>In questa pagina</h2>
-      <div class="implant-site-menu__links implant-site-menu__links--page">
-        {pageLinks.map((link) => <a href={link.href}>{link.label}</a>)}
-        <a href="#prenota">Prenota</a>
+  <nav class="implant-home-menu__content" aria-label="Navigazione estesa">
+    <section class="implant-home-menu__section implant-home-menu__section--treatments is-open" data-implant-menu-section>
+      <h2>
+        <button
+          class="implant-home-menu__section-toggle"
+          type="button"
+          aria-expanded="true"
+          aria-controls="implant-menu-treatments"
+          data-implant-menu-section-toggle
+        >
+          <span>Trattamenti</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M6 9L12 15L18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+      </h2>
+      <div class="implant-home-menu__section-content" id="implant-menu-treatments">
+        {treatmentLinks.map((link, index) => (
+          <a class:list={[index > 0 && "implant-home-menu__treatment-link"]} href={link.href}>
+            <span class="implant-home-menu__link-copy">
+              <span>{link.label}</span>
+              <small>{link.description}</small>
+            </span>
+          </a>
+        ))}
       </div>
     </section>
 
-    <section>
-      <h2>Trattamenti</h2>
-      <div class="implant-site-menu__links">
-        <a href="/attivita/">Attività principali</a>
-        <a href="/implantologia/">Implantologia</a>
+    <section class="implant-home-menu__section implant-home-menu__section--studio" data-implant-menu-section>
+      <h2>
+        <button
+          class="implant-home-menu__section-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="implant-menu-studio"
+          data-implant-menu-section-toggle
+        >
+          <span>Studio</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M6 9L12 15L18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+      </h2>
+      <div class="implant-home-menu__section-content" id="implant-menu-studio">
+        {studioLinks.map((link) => <a href={link.href}><span>{link.label}</span></a>)}
       </div>
     </section>
 
-    <section>
-      <h2>Studio</h2>
-      <div class="implant-site-menu__links">
-        <a href="/">Home</a>
-        <a href="/chi-siamo/">Chi siamo</a>
-        <a href="/doctors/">Equipe</a>
-        <a href="/recensioni-studio-dentistico-monza/">Dicono di noi</a>
-        <a href="/struttura-studio-dentistico-monza/">La Struttura</a>
-        <a href="/contatti/">Contatti</a>
-        <a href="/convenzioni-dirette-studio-dentistico-monza/">Convenzioni</a>
-      </div>
-    </section>
-
-    <section>
-      <h2>Prenota e informazioni</h2>
-      <div class="implant-site-menu__links">
-        <a href="/urgenze/">Urgenze</a>
-        <a href="/richiesta-generale/">Richiedi appuntamento</a>
+    <section class="implant-home-menu__section implant-home-menu__section--booking" data-implant-menu-section>
+      <h2>
+        <button
+          class="implant-home-menu__section-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="implant-menu-booking"
+          data-implant-menu-section-toggle
+        >
+          <span>Prenota e informazioni</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M6 9L12 15L18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+      </h2>
+      <div class="implant-home-menu__section-content" id="implant-menu-booking">
+        {bookingLinks.map((link) => <a href={link.href}><span>{link.label}</span></a>)}
       </div>
     </section>
   </nav>
+
+  <div class="implant-home-menu__cta" aria-label="Contatti rapidi">
+    <a class="implant-home-menu__cta-button implant-home-menu__cta-button--call" href="tel:+390392022489" aria-label="Chiama lo studio">
+      <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+        <path d="M6.62 10.79a15.5 15.5 0 0 0 6.59 6.59l2.2-2.2a1.2 1.2 0 0 1 1.17-.28c1.29.43 2.64.66 4.02.66.66 0 1.2.54 1.2 1.2v3.48c0 .66-.54 1.2-1.2 1.2C10.43 21.94 2.06 13.57 2.06 3.4c0-.66.54-1.2 1.2-1.2h3.49c.66 0 1.2.54 1.2 1.2 0 1.38.22 2.73.66 4.02.13.41.03.86-.29 1.17l-2.2 2.2Z" fill="currentColor"></path>
+      </svg>
+      <span>Chiama lo studio: 039 2022489</span>
+    </a>
+    <a class="implant-home-menu__cta-button implant-home-menu__cta-button--book" href="/richiesta-generale/" aria-label="Prenota ora">
+      <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+        <rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"></rect>
+        <path d="M16 3V7M8 3V7M3 10H21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path d="M8 14H8.01M12 14H12.01M16 14H16.01M8 17H8.01M12 17H12.01" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+      </svg>
+      <span>Prenota ora</span>
+    </a>
+  </div>
 </aside>
 
 <script>
@@ -107,66 +183,161 @@ const pageLinks = [
     if (!header || !panel || !backdrop || !toggle || !closeButton || header.dataset.menuReady === "true") return;
     header.dataset.menuReady = "true";
 
+    const implantWindow = window as Window & { __implantHeaderController?: AbortController };
+    implantWindow.__implantHeaderController?.abort();
+    const controller = new AbortController();
+    implantWindow.__implantHeaderController = controller;
+    const listenerOptions = { signal: controller.signal };
+    const mobileMedia = window.matchMedia("(max-width: 767px)");
+    const hero = document.querySelector<HTMLElement>("#panoramica");
+    const sections = Array.from(panel.querySelectorAll<HTMLElement>("[data-implant-menu-section]"));
+    const sectionToggles = Array.from(panel.querySelectorAll<HTMLButtonElement>("[data-implant-menu-section-toggle]"));
+
     let lastFocusedElement: HTMLElement | null = null;
+    let lastScrollY = window.scrollY;
+    let scrollFrame = 0;
+
+    const updateHeaderTone = (scrollPosition = Math.max(window.scrollY, 0)) => {
+      const headerHeight = header.getBoundingClientRect().height || 88;
+      const heroBottom = hero
+        ? hero.getBoundingClientRect().bottom + scrollPosition
+        : window.innerHeight * .72;
+      const isPastHero = scrollPosition + headerHeight >= heroBottom - 8;
+      header.classList.toggle("is-over-hero", !mobileMedia.matches && !isPastHero);
+    };
+
+    const syncSectionAccessibility = () => {
+      sections.forEach((section) => {
+        const sectionToggle = section.querySelector<HTMLButtonElement>("[data-implant-menu-section-toggle]");
+        sectionToggle?.setAttribute(
+          "aria-expanded",
+          String(!mobileMedia.matches || section.classList.contains("is-open")),
+        );
+      });
+    };
 
     const getFocusableElements = () =>
       Array.from(
-        panel.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
-        ),
-      ).filter((element) => !element.hasAttribute("hidden"));
+        panel.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
+      ).filter((element) => element.getClientRects().length > 0 && element.getAttribute("aria-hidden") !== "true");
 
     const setMenuState = (isOpen: boolean) => {
       panel.hidden = !isOpen;
       backdrop.hidden = !isOpen;
       toggle.setAttribute("aria-expanded", String(isOpen));
-      toggle.setAttribute("aria-label", isOpen ? "Chiudi il menu di navigazione" : "Apri il menu di navigazione");
       document.body.classList.toggle("implant-menu-open", isOpen);
 
       if (isOpen) {
         lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : toggle;
-        closeButton.focus({ preventScroll: true });
-      } else {
-        lastFocusedElement?.focus({ preventScroll: true });
+        header.classList.remove("is-hidden");
+        requestAnimationFrame(() => closeButton.focus({ preventScroll: true }));
+      } else if (lastFocusedElement?.isConnected) {
+        requestAnimationFrame(() => lastFocusedElement?.focus({ preventScroll: true }));
       }
     };
 
-    toggle.addEventListener("click", () => setMenuState(panel.hidden));
-    closeButton.addEventListener("click", () => setMenuState(false));
-    backdrop.addEventListener("click", () => setMenuState(false));
+    toggle.addEventListener("click", () => setMenuState(panel.hidden), listenerOptions);
+    closeButton.addEventListener("click", () => setMenuState(false), listenerOptions);
+    backdrop.addEventListener("click", () => setMenuState(false), listenerOptions);
 
-    panel.addEventListener("click", (event) => {
-      if (event.target instanceof Element && event.target.closest("a[href]")) setMenuState(false);
+    panel.addEventListener(
+      "click",
+      (event) => {
+        if (event.target instanceof Element && event.target.closest("a[href]")) setMenuState(false);
+      },
+      listenerOptions,
+    );
+
+    sectionToggles.forEach((sectionToggle) => {
+      sectionToggle.addEventListener(
+        "click",
+        () => {
+          if (!mobileMedia.matches) return;
+          const section = sectionToggle.closest<HTMLElement>("[data-implant-menu-section]");
+          if (!section) return;
+          const shouldOpen = !section.classList.contains("is-open");
+          section.classList.toggle("is-open", shouldOpen);
+          sectionToggle.setAttribute("aria-expanded", String(shouldOpen));
+        },
+        listenerOptions,
+      );
     });
 
-    document.addEventListener("click", (event) => {
-      if (panel.hidden || !(event.target instanceof Node)) return;
-      if (!panel.contains(event.target) && !toggle.contains(event.target)) setMenuState(false);
-    });
+    document.addEventListener(
+      "click",
+      (event) => {
+        if (panel.hidden || !(event.target instanceof Node)) return;
+        if (!panel.contains(event.target) && !toggle.contains(event.target)) setMenuState(false);
+      },
+      listenerOptions,
+    );
 
-    document.addEventListener("keydown", (event) => {
-      if (panel.hidden) return;
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (panel.hidden) return;
 
-      if (event.key === "Escape") {
-        event.preventDefault();
-        setMenuState(false);
-        return;
-      }
+        if (event.key === "Escape") {
+          event.preventDefault();
+          setMenuState(false);
+          return;
+        }
 
-      if (event.key !== "Tab") return;
-      const focusableElements = getFocusableElements();
-      const first = focusableElements[0];
-      const last = focusableElements.at(-1);
-      if (!first || !last) return;
+        if (event.key !== "Tab") return;
+        const focusableElements = getFocusableElements();
+        const first = focusableElements[0];
+        const last = focusableElements.at(-1);
+        if (!first || !last) {
+          event.preventDefault();
+          panel.focus();
+          return;
+        }
 
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    });
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      },
+      listenerOptions,
+    );
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (scrollFrame) return;
+        scrollFrame = requestAnimationFrame(() => {
+          const currentScrollY = Math.max(window.scrollY, 0);
+          const delta = currentScrollY - lastScrollY;
+          const menuIsOpen = !panel.hidden;
+          updateHeaderTone(currentScrollY);
+
+          if (!menuIsOpen && Math.abs(delta) >= 6) {
+            if (delta > 0 && currentScrollY > header.offsetHeight + 28) header.classList.add("is-hidden");
+            if (delta < 0 || currentScrollY <= 12) header.classList.remove("is-hidden");
+          }
+
+          lastScrollY = currentScrollY;
+          scrollFrame = 0;
+        });
+      },
+      { passive: true, signal: controller.signal },
+    );
+
+    window.addEventListener(
+      "resize",
+      () => {
+        updateHeaderTone();
+        syncSectionAccessibility();
+      },
+      { passive: true, signal: controller.signal },
+    );
+
+    setMenuState(false);
+    syncSectionAccessibility();
+    updateHeaderTone();
   };
 
   initialiseImplantologiaHeader();
@@ -174,143 +345,475 @@ const pageLinks = [
 </script>
 
 <style is:global>
-  html { scroll-behavior: smooth; }
-  body.implant-menu-open { overflow: hidden; }
-  body.implant-landing main [id] { scroll-margin-top: 96px; }
+  body.implant-landing {
+    --implant-home-header-height: clamp(99.625px, calc(49px + 4.580357vw), 111.6786px);
+    padding-top: var(--implant-home-header-height);
+  }
 
-  .implant-site-header {
-    position: sticky;
-    top: 0;
-    z-index: 80;
-    border-bottom: 1px solid rgba(14, 56, 76, .12);
+  body.implant-menu-open { overflow: hidden; }
+  body.implant-landing main [id] { scroll-margin-top: calc(var(--implant-home-header-height) + 16px); }
+
+  .implant-home-header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 9998;
+    width: 100%;
+    border-bottom: 1px solid rgba(191, 197, 210, .72);
     background: rgba(255, 255, 255, .96);
-    box-shadow: 0 10px 30px rgba(8, 42, 56, .06);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, .1);
+    color: #0f172a;
+    font-family: var(--nav-font-family, Inter, sans-serif);
+    transform: translateY(0);
+    transition: transform 360ms cubic-bezier(.22, 1, .36, 1), background-color 220ms ease, box-shadow 220ms ease;
+    will-change: transform;
+    -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
   }
 
-  .implant-site-header__inner {
-    display: flex;
-    min-height: 82px;
-    align-items: center;
-    gap: 24px;
+  .implant-home-header::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: calc(var(--implant-home-header-height) + var(--implant-home-header-height) + 32px);
+    background: linear-gradient(180deg, rgba(8, 42, 56, .98) 0%, rgba(14, 56, 76, .92) 52%, rgba(14, 56, 76, 0) 100%);
+    content: "";
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease;
   }
 
-  .implant-site-header__logo { flex: 0 0 auto; }
-  .implant-site-header__logo img {
-    display: block;
-    width: 188px;
-    height: auto;
-    filter: brightness(0) saturate(100%) invert(18%) sepia(22%) saturate(1828%) hue-rotate(155deg) brightness(91%) contrast(94%);
+  .implant-home-header.is-hidden { transform: translateY(-105%); }
+
+  .implant-home-header__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px calc(clamp(24px, 4.2vw, 72px) + 10px);
   }
-  .implant-site-header__desktop-nav { display: flex; align-items: center; gap: clamp(11px, 1.35vw, 20px); margin-left: auto; }
-  .implant-site-header__desktop-nav a {
-    color: var(--implant-ink);
-    font-size: 13px;
-    font-weight: 750;
+
+  .implant-home-header__logo {
+    position: relative;
+    display: block;
+    flex: 0 0 auto;
+    width: clamp(210px, 19vw, 260px);
+    aspect-ratio: 1120 / 270;
+  }
+
+  .implant-home-header__logo-mark,
+  .implant-home-menu__logo-mark {
+    position: absolute;
+    inset: 0;
+    display: block;
+    background: #0e384c;
+    -webkit-mask: url("/mirror-assets/568e7b4baac5c946.png") center / contain no-repeat;
+    mask: url("/mirror-assets/568e7b4baac5c946.png") center / contain no-repeat;
+  }
+
+  .implant-home-header__logo img {
+    width: 100%;
+    height: auto;
+    opacity: 0;
+  }
+
+  .implant-home-header__nav {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(16px, 1.9vw, 32px);
+    min-width: 0;
+  }
+
+  .implant-home-header__nav-link,
+  .implant-home-header__menu-toggle {
+    position: relative;
+    display: inline-flex;
+    height: 32px;
+    min-height: 32px;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 32px;
     text-decoration: none;
     white-space: nowrap;
   }
-  .implant-site-header__desktop-nav a:not(.implant-site-header__book):hover,
-  .implant-site-header__desktop-nav a:not(.implant-site-header__book):focus-visible { color: var(--implant-teal); }
-  .implant-site-header__book,
-  .implant-site-header__mobile-book {
+
+  .implant-home-header__menu-toggle { cursor: pointer; }
+
+  .implant-home-header__nav-link::after,
+  .implant-home-header__menu-toggle::after,
+  .implant-home-menu__section-content a::after {
+    position: absolute;
+    right: 50%;
+    bottom: 4px;
+    left: 50%;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    content: "";
+    opacity: 0;
+    transition: left 220ms ease, right 220ms ease, opacity 220ms ease;
+  }
+
+  .implant-home-header__nav-link:hover::after,
+  .implant-home-header__nav-link:focus-visible::after,
+  .implant-home-header__menu-toggle:hover::after,
+  .implant-home-header__menu-toggle:focus-visible::after,
+  .implant-home-menu__section-content a:hover::after,
+  .implant-home-menu__section-content a:focus-visible::after {
+    right: 0;
+    left: 0;
+    opacity: 1;
+  }
+
+  .implant-home-header__phone svg {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+    margin-right: clamp(8px, .8vw, 14px);
+  }
+
+  .implant-home-header__menu-toggle { margin-left: clamp(8px, 1vw, 18px); }
+  .implant-home-header__menu-icon {
     display: inline-flex;
-    min-height: 44px;
-    align-items: center;
+    width: 20px;
+    height: 32px;
+    flex-direction: column;
     justify-content: center;
-    padding: 0 18px;
-    border-radius: 8px;
-    background: var(--implant-ink);
-    color: #fff !important;
-    font-weight: 800;
-    text-decoration: none;
+    gap: 4px;
+    transform: translateY(1px);
   }
+  .implant-home-header__menu-icon span { display: block; width: 20px; height: 2px; border-radius: 999px; background: currentColor; }
 
-  .implant-site-header__actions { display: flex; align-items: center; gap: 10px; }
-  .implant-site-header__mobile-book { display: none; }
-  .implant-site-header__menu-button {
-    display: inline-flex;
-    min-height: 44px;
-    align-items: center;
-    gap: 9px;
-    padding: 0 12px;
-    border: 1px solid rgba(14, 56, 76, .2);
-    border-radius: 8px;
-    background: #fff;
-    color: var(--implant-ink);
-    font: inherit;
-    font-size: 13px;
-    font-weight: 800;
-    cursor: pointer;
-  }
-  .implant-site-header__menu-icon { display: flex; gap: 3px; }
-  .implant-site-header__menu-icon span { width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
-
-  .implant-site-header a:focus-visible,
-  .implant-site-header button:focus-visible,
-  .implant-site-menu a:focus-visible,
-  .implant-site-menu button:focus-visible {
+  .implant-home-header a:focus-visible,
+  .implant-home-header button:focus-visible,
+  .implant-home-menu a:focus-visible,
+  .implant-home-menu button:focus-visible {
     outline: 3px solid #65c7df;
     outline-offset: 3px;
   }
 
-  .implant-menu-backdrop[hidden], .implant-site-menu[hidden] { display: none; }
-  .implant-menu-backdrop {
+  .implant-home-menu-backdrop[hidden],
+  .implant-home-menu[hidden] { display: none; }
+
+  .implant-home-menu-backdrop {
     position: fixed;
     inset: 0;
-    z-index: 100;
-    background: rgba(2, 20, 28, .64);
+    z-index: 10020;
+    background: rgba(0, 15, 7, .68);
+    -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
   }
-  .implant-site-menu {
+
+  .implant-home-menu {
     position: fixed;
     top: 16px;
     right: 16px;
     bottom: 16px;
-    z-index: 110;
+    z-index: 10030;
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
-    width: min(470px, calc(100vw - 32px));
+    width: min(430px, calc(100vw - 32px));
+    padding: 24px 28px 28px;
     overflow: hidden;
-    border-radius: 14px;
-    background: var(--implant-ink-dark);
+    border-radius: 8px;
+    background: #0e384c;
     color: #fff;
     box-shadow: 0 28px 80px rgba(0, 0, 0, .34);
-  }
-  .implant-site-menu__header { display: flex; min-height: 86px; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 24px; border-bottom: 1px solid rgba(255, 255, 255, .14); }
-  .implant-site-menu__header img { width: 180px; height: auto; filter: brightness(0) invert(1); }
-  .implant-site-menu__header button { display: inline-flex; width: 46px; height: 46px; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, .26); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; }
-  .implant-site-menu__header button span { font-size: 34px; font-weight: 300; line-height: 1; }
-  .implant-site-menu__content { display: grid; gap: 30px; overflow-y: auto; padding: 26px 28px 34px; }
-  .implant-site-menu__content section { display: grid; gap: 13px; }
-  .implant-site-menu__content h2 { margin: 0; color: #9ce2d7; font-size: 13px; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
-  .implant-site-menu__links { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 24px; }
-  .implant-site-menu__links a { padding: 8px 0; color: #fff; font-size: 16px; font-weight: 650; text-decoration: none; }
-  .implant-site-menu__links a:hover,
-  .implant-site-menu__links a:focus-visible { color: #9ce2d7; }
-
-  @media (max-width: 1100px) {
-    .implant-site-header__desktop-nav { display: none; }
-    .implant-site-header__actions { margin-left: auto; }
-    .implant-site-header__mobile-book { display: inline-flex; }
+    font-family: var(--nav-font-family, Inter, sans-serif);
+    outline: none;
   }
 
-  @media (max-width: 620px) {
-    body.implant-landing main [id] { scroll-margin-top: 82px; }
-    .implant-site-header__inner { min-height: 68px; gap: 10px; }
-    .implant-site-header__logo img { width: 150px; }
-    .implant-site-header__mobile-book { min-height: 40px; padding: 0 12px; font-size: 12px; }
-    .implant-site-header__menu-button { min-width: 40px; min-height: 40px; justify-content: center; padding: 0 10px; }
-    .implant-site-header__menu-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    .implant-site-menu { top: 8px; right: 8px; bottom: 8px; width: calc(100vw - 16px); border-radius: 12px; }
-    .implant-site-menu__header { min-height: 72px; padding: 13px 18px; }
-    .implant-site-menu__header img { width: 155px; }
-    .implant-site-menu__content { gap: 26px; padding: 22px 20px 30px; }
-    .implant-site-menu__links { grid-template-columns: 1fr; gap: 2px; }
-    .implant-site-menu__links--page { grid-template-columns: 1fr 1fr; gap: 2px 16px; }
+  .implant-home-menu__header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 18px;
+    padding-bottom: 12px;
+  }
+
+  .implant-home-menu__logo { display: none; }
+  .implant-home-menu__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+  }
+  .implant-home-menu__close span { color: #fff; font-size: 34px; font-weight: 300; line-height: .8; }
+
+  .implant-home-menu__content {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 0 8px 18px 0;
+    scrollbar-color: rgba(255, 255, 255, .72) rgba(255, 255, 255, .16);
+    scrollbar-width: thin;
+  }
+
+  .implant-home-menu__section {
+    display: grid;
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .implant-home-menu__section--studio { order: 1; margin-top: 0; }
+  .implant-home-menu__section--treatments { order: 2; }
+  .implant-home-menu__section--booking { order: 3; }
+  .implant-home-menu__section h2 { margin: 0 0 4px; color: #fff; font-size: 26px; font-weight: 700; line-height: 1.1; }
+
+  .implant-home-menu__section-toggle {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    text-align: left;
+    box-shadow: none;
+    cursor: default;
+  }
+  .implant-home-menu__section-toggle svg { display: none; }
+  .implant-home-menu__section-content { display: grid; gap: 14px; }
+  .implant-home-menu__section-content a {
+    position: relative;
+    display: inline-flex;
+    width: max-content;
+    max-width: 100%;
+    align-items: center;
+    padding-bottom: 6px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.25;
+    text-decoration: none;
+  }
+  .implant-home-menu__section-content a::after { bottom: 0; }
+  .implant-home-menu__section-content small { display: none; }
+  .implant-home-menu__link-copy { display: flex; flex-direction: column; }
+  .implant-home-menu__cta { display: none; }
+
+  @media (max-width: 1100px) and (min-width: 768px) {
+    body.implant-landing { --implant-home-header-height: 91.625px; }
+    .implant-home-header__inner { padding-top: 20px; padding-bottom: 20px; }
+    .implant-home-header__nav-link { display: none; }
+    .implant-home-header__nav { flex: 0 0 auto; gap: 0; margin-left: auto; }
+    .implant-home-header__menu-toggle {
+      width: 40px;
+      height: 40px;
+      min-height: 40px;
+      justify-content: center;
+      margin-left: 0;
+      border: 1px solid #0e384c;
+      border-radius: 2px;
+      background: #0e384c;
+      color: #fff;
+    }
+    .implant-home-header__menu-toggle::after { display: none; }
+    .implant-home-header__menu-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+
+  @media (min-width: 768px) {
+    body.implant-landing { padding-top: 0; }
+    body.implant-landing .implant-hero {
+      padding-top: calc(clamp(64px, 8vw, 110px) + var(--implant-home-header-height));
+    }
+
+    .implant-home-header.is-over-hero {
+      border-color: transparent;
+      background: transparent;
+      box-shadow: none;
+      color: #fff;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+    .implant-home-header.is-over-hero::before { opacity: 1; }
+    .implant-home-header.is-over-hero .implant-home-header__logo-mark { background: #fff; }
+    .implant-home-header.is-over-hero .implant-home-header__nav { text-shadow: 0 1px 18px rgba(15, 23, 42, .26); }
+    .implant-home-header.is-over-hero .implant-home-header__nav-link:hover,
+    .implant-home-header.is-over-hero .implant-home-header__nav-link:focus-visible,
+    .implant-home-header.is-over-hero .implant-home-header__menu-toggle:hover,
+    .implant-home-header.is-over-hero .implant-home-header__menu-toggle:focus-visible { color: #fff; opacity: .78; }
+  }
+
+  @media (min-width: 768px) and (max-width: 1100px) {
+    .implant-home-header.is-over-hero .implant-home-header__menu-toggle {
+      border-color: rgba(255, 255, 255, .42);
+      background: rgba(255, 255, 255, .16);
+      color: #fff;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  @media (max-width: 767px) {
+    body.implant-landing { --implant-home-header-height: 68.0536px; }
+    .implant-home-header__inner { gap: 18px; padding: 14px 15px; }
+    .implant-home-header__logo { width: 162px; }
+    .implant-home-header__nav-link { display: none; }
+    .implant-home-header__nav { flex: 0 0 auto; gap: 0; margin-left: auto; }
+    .implant-home-header__menu-toggle {
+      width: auto;
+      height: 33px;
+      min-height: 33px;
+      gap: 6.5px;
+      margin: 0;
+      border: 0;
+      background: transparent;
+      color: #0e384c;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .implant-home-header__menu-toggle::after { display: none; }
+    .implant-home-header__menu-icon { width: 22px; min-width: 22px; height: 22px; gap: 3.75px; transform: none; }
+    .implant-home-header__menu-icon span { width: 22px; height: 2.35px; }
+
+    .implant-home-menu {
+      inset: 0;
+      grid-template-rows: auto auto auto;
+      width: 100%;
+      height: 100dvh;
+      padding: max(18px, env(safe-area-inset-top)) 20px max(16px, env(safe-area-inset-bottom));
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      border-radius: 0;
+      background: #fff;
+      color: #0e384c;
+      box-shadow: none;
+    }
+
+    .implant-home-menu__header {
+      justify-content: space-between;
+      height: 52px;
+      min-height: 52px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(14, 56, 76, .2);
+    }
+    .implant-home-menu__logo { position: relative; display: block; width: min(210px, calc(100% - 64px)); aspect-ratio: 1120 / 270; }
+    .implant-home-menu__close { flex: 0 0 44px; width: 44px; height: 44px; color: #0e384c; }
+    .implant-home-menu__close span { color: #0e384c; font-size: 40px; }
+
+    .implant-home-menu__content {
+      display: block;
+      min-height: auto;
+      overflow: visible;
+      padding: 18px 8px 18px 0;
+      scrollbar-color: rgba(14, 56, 76, .72) rgba(14, 56, 76, .12);
+    }
+
+    .implant-home-menu__section,
+    .implant-home-menu__section--studio,
+    .implant-home-menu__section--treatments,
+    .implant-home-menu__section--booking {
+      display: grid;
+      gap: 0;
+      margin-top: 22px;
+      order: initial;
+    }
+    .implant-home-menu__section:first-child { margin-top: 0; }
+    .implant-home-menu__section h2 { margin: 0 0 4px; color: #0e384c; font-size: 24px; }
+    .implant-home-menu__section-toggle { color: #0e384c; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .implant-home-menu__section-toggle svg { display: block; flex: 0 0 24px; width: 24px; height: 24px; transition: transform 180ms ease; }
+    .implant-home-menu__section.is-open .implant-home-menu__section-toggle svg { transform: rotate(180deg); }
+    .implant-home-menu__section:not(.is-open) .implant-home-menu__section-content { display: none; }
+    .implant-home-menu__section-content { gap: 14px; margin-top: 14px; }
+    .implant-home-menu__section-content a {
+      width: max-content;
+      max-width: 100%;
+      align-items: flex-start;
+      padding: 0 0 6px;
+      color: #0e384c;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+    .implant-home-menu__section-content a::after { display: none; }
+    .implant-home-menu__section-content small { display: block; color: rgba(14, 56, 76, .68); font-size: 12px; font-weight: 400; line-height: 1.25; }
+    .implant-home-menu__section--treatments .implant-home-menu__section-content { gap: 13px; }
+    .implant-home-menu__section--treatments .implant-home-menu__treatment-link { gap: 4px; }
+    .implant-home-menu__section--treatments .implant-home-menu__treatment-link::before {
+      display: inline-flex;
+      width: 14px;
+      min-width: 14px;
+      height: 22px;
+      flex: 0 0 14px;
+      align-items: center;
+      justify-content: center;
+      color: #0e384c;
+      content: "-";
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 22px;
+    }
+    .implant-home-menu__link-copy { align-items: flex-start; gap: 2px; }
+
+    .implant-home-menu__cta {
+      position: sticky;
+      bottom: 0;
+      z-index: 2;
+      isolation: isolate;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      padding-top: 12px;
+      padding-bottom: max(2px, env(safe-area-inset-bottom));
+      border-top: 1px solid rgba(14, 56, 76, .22);
+      background: #fff;
+      box-shadow: 0 -10px 18px rgba(255, 255, 255, .98);
+    }
+    .implant-home-menu__cta::before { position: absolute; inset: -12px -20px -20px; z-index: -1; display: block; background: #fff; content: ""; pointer-events: none; }
+    .implant-home-menu__cta-button {
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border: 1px solid #0e384c;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.15;
+      text-align: center;
+    }
+    .implant-home-menu__cta-button--call { background: transparent; color: #0e384c; }
+    .implant-home-menu .implant-home-menu__cta-button--book { background: #0e384c; color: #fff; }
+    .implant-home-menu__cta-button svg { flex: 0 0 22px; width: 22px; height: 22px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    .implant-home-header,
+    .implant-home-menu__section-toggle svg { transition: none; }
   }
 </style>
