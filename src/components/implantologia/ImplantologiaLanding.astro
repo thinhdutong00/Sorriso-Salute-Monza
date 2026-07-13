@@ -4,7 +4,8 @@ import FaviconLinks from "../FaviconLinks.astro";
 import GoogleAdsTracking from "../GoogleAdsTracking.astro";
 import type { ImplantologiaPage } from "../../data/implantologiaPages";
 import { implantologiaPages } from "../../data/implantologiaPages";
-import ImplantologiaLeadForm from "./ImplantologiaLeadForm.astro";
+import ImplantologiaHeader from "./ImplantologiaHeader.astro";
+import ImplantologiaMultiStepForm from "./ImplantologiaMultiStepForm.astro";
 
 interface Props {
   page: ImplantologiaPage;
@@ -35,21 +36,10 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
     <GoogleAdsTracking />
   </head>
   <body class="implant-landing">
-    <header class="implant-header">
-      <div class="implant-container implant-header__inner">
-        <a href="/" class="implant-logo" aria-label="Sorriso e Salute Monza - Home">
-          <img src={logo} width="360" height="87" alt="Studio Dentistico Sorriso e Salute" />
-        </a>
-        <nav aria-label="Navigazione implantologia">
-          <a href="/implantologia/">Implantologia</a>
-          <a href="#richiedi-valutazione">Richiedi una visita</a>
-          <a class="implant-header__phone" href="tel:+390392022489">039 2022489</a>
-        </nav>
-      </div>
-    </header>
+    <ImplantologiaHeader />
 
     <main>
-      <section class="implant-hero">
+      <section class="implant-hero" id="panoramica">
         <div class="implant-container implant-hero__grid">
           <div class="implant-hero__copy">
             <p class="implant-kicker">Implantologia a Monza</p>
@@ -60,7 +50,7 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
               clinica e il piano di cura dipende dal singolo caso.
             </p>
             <div class="implant-actions">
-              <a class="implant-button implant-button--primary" href="#richiedi-valutazione">Prenota una valutazione</a>
+              <a class="implant-button implant-button--primary" href="#prenota">Richiedi una visita</a>
               <a
                 class="implant-button implant-button--whatsapp"
                 href="https://wa.me/393892490181"
@@ -77,7 +67,7 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
         </div>
       </section>
 
-      <section class="implant-section implant-section--light" aria-labelledby="quando-title">
+      <section class="implant-section implant-section--light" id="quando-indicato" aria-labelledby="quando-title">
         <div class="implant-container implant-two-column">
           <div>
             <p class="implant-kicker">Valutazione personalizzata</p>
@@ -93,7 +83,7 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
         </div>
       </section>
 
-      <section class="implant-section" aria-labelledby="percorso-title">
+      <section class="implant-section" id="percorso" aria-labelledby="percorso-title">
         <div class="implant-container">
           <div class="implant-heading">
             <p class="implant-kicker">Dalla diagnosi ai controlli</p>
@@ -111,7 +101,7 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
         </div>
       </section>
 
-      <section class="implant-section implant-section--dark" aria-labelledby="studio-title">
+      <section class="implant-section implant-section--dark" id="vantaggi" aria-labelledby="studio-title">
         <div class="implant-container implant-two-column">
           <div>
             <p class="implant-kicker implant-kicker--light">Sorriso &amp; Salute Monza</p>
@@ -126,7 +116,7 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
         </div>
       </section>
 
-      <section class="implant-section implant-section--light" aria-labelledby="faq-title">
+      <section class="implant-section implant-section--light" id="faq" aria-labelledby="faq-title">
         <div class="implant-container implant-faq-layout">
           <div>
             <p class="implant-kicker">Domande frequenti</p>
@@ -167,7 +157,7 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
       </section>
 
       <div class="implant-container">
-        <ImplantologiaLeadForm slug={page.slug} serviceInterest={page.serviceInterest} />
+        <ImplantologiaMultiStepForm slug={page.slug} serviceInterest={page.serviceInterest} />
       </div>
     </main>
 
@@ -216,20 +206,6 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
       body.implant-landing *, body.implant-landing *::before, body.implant-landing *::after { box-sizing: border-box; }
       body.implant-landing a { color: inherit; }
       .implant-container { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
-
-      .implant-header {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        border-bottom: 1px solid rgba(14, 56, 76, .1);
-        background: rgba(255, 255, 255, .96);
-        backdrop-filter: blur(14px);
-      }
-      .implant-header__inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-      .implant-logo img { display: block; width: 210px; height: auto; }
-      .implant-header nav { display: flex; align-items: center; gap: 22px; }
-      .implant-header nav a { font-size: 14px; font-weight: 700; text-decoration: none; }
-      .implant-header__phone { padding: 11px 16px; border-radius: 999px; background: var(--implant-ink); color: #fff !important; }
 
       .implant-hero { padding: clamp(64px, 8vw, 110px) 0; background: linear-gradient(135deg, #edf8f6 0%, #fff 58%, #edf5f6 100%); }
       .implant-hero__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr); align-items: center; gap: clamp(40px, 7vw, 86px); }
@@ -298,7 +274,6 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
       .implant-footer a { text-decoration: none; }
 
       @media (max-width: 900px) {
-        .implant-header nav > a:not(.implant-header__phone) { display: none; }
         .implant-hero__grid, .implant-two-column, .implant-faq-layout, .implant-lead { grid-template-columns: 1fr; }
         .implant-hero__media { max-width: 680px; }
         .implant-step-grid, .implant-related-grid { grid-template-columns: 1fr 1fr; }
@@ -306,9 +281,6 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
 
       @media (max-width: 620px) {
         .implant-container { width: min(100% - 28px, 1180px); }
-        .implant-header__inner { min-height: 68px; }
-        .implant-logo img { width: 165px; }
-        .implant-header__phone { padding: 10px 13px; font-size: 12px !important; }
         .implant-hero { padding-top: 52px; }
         .implant-actions, .implant-button { width: 100%; }
         .implant-step-grid, .implant-related-grid, .implant-footer__grid, .implant-lead__form { grid-template-columns: 1fr; }

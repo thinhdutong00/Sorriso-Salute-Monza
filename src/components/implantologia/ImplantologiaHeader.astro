@@ -1,0 +1,316 @@
+---
+const logo = "/assets/brand/sorriso-salute-logo-360.webp";
+
+const pageLinks = [
+  { href: "#panoramica", label: "Panoramica" },
+  { href: "#quando-indicato", label: "Quando è indicato" },
+  { href: "#percorso", label: "Percorso" },
+  { href: "#vantaggi", label: "Vantaggi" },
+  { href: "#faq", label: "FAQ" },
+];
+---
+
+<header class="implant-site-header" data-implant-header>
+  <div class="implant-container implant-site-header__inner">
+    <a class="implant-site-header__logo" href="/" aria-label="Sorriso e Salute Monza - Home">
+      <img src={logo} width="360" height="87" alt="Studio Dentistico Sorriso e Salute" />
+    </a>
+
+    <nav class="implant-site-header__desktop-nav" aria-label="Sezioni della pagina">
+      {pageLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+      <a class="implant-site-header__book" href="#prenota">Prenota</a>
+    </nav>
+
+    <div class="implant-site-header__actions">
+      <a class="implant-site-header__mobile-book" href="#prenota">Prenota</a>
+      <button
+        class="implant-site-header__menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="implantologia-site-menu"
+        aria-label="Apri il menu di navigazione"
+        data-implant-menu-toggle
+      >
+        <span class="implant-site-header__menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="implant-site-header__menu-label">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="implant-menu-backdrop" data-implant-menu-backdrop hidden></div>
+<aside
+  class="implant-site-menu"
+  id="implantologia-site-menu"
+  data-implant-site-menu
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu di navigazione"
+  tabindex="-1"
+  hidden
+>
+  <div class="implant-site-menu__header">
+    <img src={logo} width="360" height="87" alt="" aria-hidden="true" />
+    <button type="button" aria-label="Chiudi il menu di navigazione" data-implant-menu-close>
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+
+  <nav class="implant-site-menu__content" aria-label="Navigazione completa">
+    <section>
+      <h2>In questa pagina</h2>
+      <div class="implant-site-menu__links implant-site-menu__links--page">
+        {pageLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+        <a href="#prenota">Prenota</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Trattamenti</h2>
+      <div class="implant-site-menu__links">
+        <a href="/attivita/">Attività principali</a>
+        <a href="/implantologia/">Implantologia</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Studio</h2>
+      <div class="implant-site-menu__links">
+        <a href="/">Home</a>
+        <a href="/chi-siamo/">Chi siamo</a>
+        <a href="/doctors/">Equipe</a>
+        <a href="/recensioni-studio-dentistico-monza/">Dicono di noi</a>
+        <a href="/struttura-studio-dentistico-monza/">La Struttura</a>
+        <a href="/contatti/">Contatti</a>
+        <a href="/convenzioni-dirette-studio-dentistico-monza/">Convenzioni</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Prenota e informazioni</h2>
+      <div class="implant-site-menu__links">
+        <a href="/urgenze/">Urgenze</a>
+        <a href="/richiesta-generale/">Richiedi appuntamento</a>
+      </div>
+    </section>
+  </nav>
+</aside>
+
+<script>
+  const initialiseImplantologiaHeader = () => {
+    const header = document.querySelector<HTMLElement>("[data-implant-header]");
+    const panel = document.querySelector<HTMLElement>("[data-implant-site-menu]");
+    const backdrop = document.querySelector<HTMLElement>("[data-implant-menu-backdrop]");
+    const toggle = document.querySelector<HTMLButtonElement>("[data-implant-menu-toggle]");
+    const closeButton = document.querySelector<HTMLButtonElement>("[data-implant-menu-close]");
+
+    if (!header || !panel || !backdrop || !toggle || !closeButton || header.dataset.menuReady === "true") return;
+    header.dataset.menuReady = "true";
+
+    let lastFocusedElement: HTMLElement | null = null;
+
+    const getFocusableElements = () =>
+      Array.from(
+        panel.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((element) => !element.hasAttribute("hidden"));
+
+    const setMenuState = (isOpen: boolean) => {
+      panel.hidden = !isOpen;
+      backdrop.hidden = !isOpen;
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      toggle.setAttribute("aria-label", isOpen ? "Chiudi il menu di navigazione" : "Apri il menu di navigazione");
+      document.body.classList.toggle("implant-menu-open", isOpen);
+
+      if (isOpen) {
+        lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : toggle;
+        closeButton.focus({ preventScroll: true });
+      } else {
+        lastFocusedElement?.focus({ preventScroll: true });
+      }
+    };
+
+    toggle.addEventListener("click", () => setMenuState(panel.hidden));
+    closeButton.addEventListener("click", () => setMenuState(false));
+    backdrop.addEventListener("click", () => setMenuState(false));
+
+    panel.addEventListener("click", (event) => {
+      if (event.target instanceof Element && event.target.closest("a[href]")) setMenuState(false);
+    });
+
+    document.addEventListener("click", (event) => {
+      if (panel.hidden || !(event.target instanceof Node)) return;
+      if (!panel.contains(event.target) && !toggle.contains(event.target)) setMenuState(false);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (panel.hidden) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setMenuState(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const focusableElements = getFocusableElements();
+      const first = focusableElements[0];
+      const last = focusableElements.at(-1);
+      if (!first || !last) return;
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+  };
+
+  initialiseImplantologiaHeader();
+  document.addEventListener("astro:page-load", initialiseImplantologiaHeader);
+</script>
+
+<style is:global>
+  html { scroll-behavior: smooth; }
+  body.implant-menu-open { overflow: hidden; }
+  body.implant-landing main [id] { scroll-margin-top: 96px; }
+
+  .implant-site-header {
+    position: sticky;
+    top: 0;
+    z-index: 80;
+    border-bottom: 1px solid rgba(14, 56, 76, .12);
+    background: rgba(255, 255, 255, .96);
+    box-shadow: 0 10px 30px rgba(8, 42, 56, .06);
+    backdrop-filter: blur(14px);
+  }
+
+  .implant-site-header__inner {
+    display: flex;
+    min-height: 82px;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .implant-site-header__logo { flex: 0 0 auto; }
+  .implant-site-header__logo img {
+    display: block;
+    width: 188px;
+    height: auto;
+    filter: brightness(0) saturate(100%) invert(18%) sepia(22%) saturate(1828%) hue-rotate(155deg) brightness(91%) contrast(94%);
+  }
+  .implant-site-header__desktop-nav { display: flex; align-items: center; gap: clamp(11px, 1.35vw, 20px); margin-left: auto; }
+  .implant-site-header__desktop-nav a {
+    color: var(--implant-ink);
+    font-size: 13px;
+    font-weight: 750;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .implant-site-header__desktop-nav a:not(.implant-site-header__book):hover,
+  .implant-site-header__desktop-nav a:not(.implant-site-header__book):focus-visible { color: var(--implant-teal); }
+  .implant-site-header__book,
+  .implant-site-header__mobile-book {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border-radius: 8px;
+    background: var(--implant-ink);
+    color: #fff !important;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .implant-site-header__actions { display: flex; align-items: center; gap: 10px; }
+  .implant-site-header__mobile-book { display: none; }
+  .implant-site-header__menu-button {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 9px;
+    padding: 0 12px;
+    border: 1px solid rgba(14, 56, 76, .2);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--implant-ink);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .implant-site-header__menu-icon { display: flex; gap: 3px; }
+  .implant-site-header__menu-icon span { width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+
+  .implant-site-header a:focus-visible,
+  .implant-site-header button:focus-visible,
+  .implant-site-menu a:focus-visible,
+  .implant-site-menu button:focus-visible {
+    outline: 3px solid #65c7df;
+    outline-offset: 3px;
+  }
+
+  .implant-menu-backdrop[hidden], .implant-site-menu[hidden] { display: none; }
+  .implant-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(2, 20, 28, .64);
+    backdrop-filter: blur(3px);
+  }
+  .implant-site-menu {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 110;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    width: min(470px, calc(100vw - 32px));
+    overflow: hidden;
+    border-radius: 14px;
+    background: var(--implant-ink-dark);
+    color: #fff;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, .34);
+  }
+  .implant-site-menu__header { display: flex; min-height: 86px; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 24px; border-bottom: 1px solid rgba(255, 255, 255, .14); }
+  .implant-site-menu__header img { width: 180px; height: auto; filter: brightness(0) invert(1); }
+  .implant-site-menu__header button { display: inline-flex; width: 46px; height: 46px; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, .26); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; }
+  .implant-site-menu__header button span { font-size: 34px; font-weight: 300; line-height: 1; }
+  .implant-site-menu__content { display: grid; gap: 30px; overflow-y: auto; padding: 26px 28px 34px; }
+  .implant-site-menu__content section { display: grid; gap: 13px; }
+  .implant-site-menu__content h2 { margin: 0; color: #9ce2d7; font-size: 13px; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
+  .implant-site-menu__links { display: grid; grid-template-columns: 1fr 1fr; gap: 5px 24px; }
+  .implant-site-menu__links a { padding: 8px 0; color: #fff; font-size: 16px; font-weight: 650; text-decoration: none; }
+  .implant-site-menu__links a:hover,
+  .implant-site-menu__links a:focus-visible { color: #9ce2d7; }
+
+  @media (max-width: 1100px) {
+    .implant-site-header__desktop-nav { display: none; }
+    .implant-site-header__actions { margin-left: auto; }
+    .implant-site-header__mobile-book { display: inline-flex; }
+  }
+
+  @media (max-width: 620px) {
+    body.implant-landing main [id] { scroll-margin-top: 82px; }
+    .implant-site-header__inner { min-height: 68px; gap: 10px; }
+    .implant-site-header__logo img { width: 150px; }
+    .implant-site-header__mobile-book { min-height: 40px; padding: 0 12px; font-size: 12px; }
+    .implant-site-header__menu-button { min-width: 40px; min-height: 40px; justify-content: center; padding: 0 10px; }
+    .implant-site-header__menu-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .implant-site-menu { top: 8px; right: 8px; bottom: 8px; width: calc(100vw - 16px); border-radius: 12px; }
+    .implant-site-menu__header { min-height: 72px; padding: 13px 18px; }
+    .implant-site-menu__header img { width: 155px; }
+    .implant-site-menu__content { gap: 26px; padding: 22px 20px 30px; }
+    .implant-site-menu__links { grid-template-columns: 1fr; gap: 2px; }
+    .implant-site-menu__links--page { grid-template-columns: 1fr 1fr; gap: 2px 16px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>

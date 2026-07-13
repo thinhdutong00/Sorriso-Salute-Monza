@@ -51,38 +51,68 @@ const readRequestBody = async (req) => {
   }
 };
 
-const buildRows = (lead) =>
-  [
-    ["Nome", lead.nome],
-    ["Telefono", lead.telefono],
-    ["Email", lead.email],
-    ["Servizio", lead.servizio],
-    ["Messaggio", lead.messaggio || "Nessun messaggio inserito"],
-    ["Pagina di provenienza", lead.paginaProvenienza],
-    ["Pagina form", lead.paginaCorrente],
-    ["Problema principale", lead.problema],
-    ["Obiettivo desiderato", lead.obiettivo],
-    ["Urgenza", lead.urgenza],
-    ["Contatto preferito", lead.preferenzaContatto],
-    ["Data preferita", lead.dataPreferita],
-    ["Orario preferito", lead.orarioPreferito],
-    ["Landing page", lead.landingPage],
-    ["Interesse servizio", lead.serviceInterest],
-    ["Titolo pagina", lead.pageTitle],
-    ["UTM source", lead.utmSource],
-    ["UTM medium", lead.utmMedium],
-    ["UTM campaign", lead.utmCampaign],
-    ["UTM ID", lead.utmId],
-    ["UTM ad group", lead.utmAdgroup],
-    ["UTM term", lead.utmTerm],
-    ["UTM content", lead.utmContent],
-    ["Match type", lead.utmMatchtype],
-    ["Device", lead.utmDevice],
-    ["Network", lead.utmNetwork],
-    ["GCLID", lead.gclid],
-    ["GBRAID", lead.gbraid],
-    ["WBRAID", lead.wbraid],
-  ].filter(([, value]) => normalizeText(value));
+const compactRows = (rows) => rows.filter(([, value]) => normalizeText(value));
+
+const buildSections = (lead) => {
+  const isImplantologia =
+    lead.landingPage.startsWith("/implantologia/") ||
+    Boolean(lead.implantologiaProblemType || lead.implantologiaProblemDuration);
+
+  return [
+    {
+      title: isImplantologia ? "Richiesta implantologia" : "Richiesta",
+      rows: compactRows([
+        ["Servizio/interesse", lead.serviceInterest || lead.servizio],
+        ["Situazione indicata", lead.implantologiaProblemType],
+        ["Durata del problema", lead.implantologiaProblemDuration],
+        ["Preferenza data", lead.preferredVisitDate],
+        ["Preferenza orario", lead.preferredVisitTime],
+      ]),
+    },
+    {
+      title: "Contatti",
+      rows: compactRows([
+        ["Nome", lead.nome],
+        ["Telefono", lead.telefono],
+        ["Email", lead.email],
+        ["Messaggio", lead.messaggio || "Nessun messaggio inserito"],
+      ]),
+    },
+    {
+      title: "Dettagli richiesta",
+      rows: compactRows([
+        ["Pagina di provenienza", lead.paginaProvenienza],
+        ["Pagina form", lead.paginaCorrente],
+        ["Problema principale", lead.problema],
+        ["Obiettivo desiderato", lead.obiettivo],
+        ["Urgenza", lead.urgenza],
+        ["Contatto preferito", lead.preferenzaContatto],
+        ["Data preferita", lead.dataPreferita],
+        ["Orario preferito", lead.orarioPreferito],
+      ]),
+    },
+    {
+      title: "Tracking marketing",
+      rows: compactRows([
+        ["Landing page", lead.landingPage],
+        ["Titolo pagina", lead.pageTitle],
+        ["UTM source", lead.utmSource],
+        ["UTM medium", lead.utmMedium],
+        ["UTM campaign", lead.utmCampaign],
+        ["UTM ID", lead.utmId],
+        ["UTM ad group", lead.utmAdgroup],
+        ["UTM term", lead.utmTerm],
+        ["UTM content", lead.utmContent],
+        ["Match type", lead.utmMatchtype],
+        ["Device", lead.utmDevice],
+        ["Network", lead.utmNetwork],
+        ["GCLID", lead.gclid],
+        ["GBRAID", lead.gbraid],
+        ["WBRAID", lead.wbraid],
+      ]),
+    },
+  ].filter(({ rows }) => rows.length > 0);
+};
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -102,11 +132,11 @@ export default async function handler(req, res) {
     const body = await readRequestBody(req);
     const email = normalizeText(body.email);
     const lead = {
-      nome: normalizeText(body.nome || body.nomeCompleto),
-      telefono: normalizeText(body.telefono),
+      nome: normalizeText(body.nome || body.nomeCompleto || body.name),
+      telefono: normalizeText(body.telefono || body.phone),
       email,
       servizio: normalizeText(body.servizio) || "Valutazione implantologica",
-      messaggio: normalizeText(body.messaggio),
+      messaggio: normalizeText(body.messaggio || body.message),
       paginaProvenienza: normalizeText(body.paginaProvenienza || body.page || req.headers?.referer),
       paginaCorrente: normalizeText(body.paginaCorrente),
       problema: normalizeText(body.problema),
@@ -115,6 +145,10 @@ export default async function handler(req, res) {
       preferenzaContatto: normalizeText(body.preferenzaContatto),
       dataPreferita: normalizeText(body.dataPreferita),
       orarioPreferito: normalizeText(body.orarioPreferito),
+      implantologiaProblemType: normalizeText(body.implantologia_problem_type),
+      implantologiaProblemDuration: normalizeText(body.implantologia_problem_duration),
+      preferredVisitDate: normalizeText(body.preferred_visit_date),
+      preferredVisitTime: normalizeText(body.preferred_visit_time),
       landingPage: normalizeText(body.landing_page),
       serviceInterest: normalizeText(body.service_interest),
       pageTitle: normalizeText(body.page_title),
@@ -137,28 +171,39 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Nome e telefono sono obbligatori" });
     }
 
-    const rows = buildRows(lead);
+    const sections = buildSections(lead);
     const text = [
       "Nuova richiesta dal form Sorriso & Salute Monza",
       "",
-      ...rows.map(([label, value]) => `${label}: ${value}`),
+      ...sections.flatMap((section) => [
+        section.title,
+        ...section.rows.map(([label, value]) => `${label}: ${value}`),
+        "",
+      ]),
     ].join("\n");
     const html = `
       <h2>Nuova richiesta dal form Sorriso &amp; Salute Monza</h2>
-      <table cellpadding="8" cellspacing="0" style="border-collapse: collapse; font-family: Arial, sans-serif; font-size: 15px;">
-        <tbody>
-          ${rows
-            .map(
-              ([label, value]) => `
-                <tr>
-                  <th align="left" style="border: 1px solid #d8e3e8; background: #f3f8fb;">${escapeHtml(label)}</th>
-                  <td style="border: 1px solid #d8e3e8;">${escapeHtml(value).replaceAll("\n", "<br>")}</td>
-                </tr>
-              `,
-            )
-            .join("")}
-        </tbody>
-      </table>
+      ${sections
+        .map(
+          (section) => `
+            <h3 style="margin: 24px 0 8px; font-family: Arial, sans-serif; color: #0e384c;">${escapeHtml(section.title)}</h3>
+            <table cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; font-size: 15px;">
+              <tbody>
+                ${section.rows
+                  .map(
+                    ([label, value]) => `
+                      <tr>
+                        <th align="left" style="width: 34%; border: 1px solid #d8e3e8; background: #f3f8fb;">${escapeHtml(label)}</th>
+                        <td style="border: 1px solid #d8e3e8;">${escapeHtml(value).replaceAll("\n", "<br>")}</td>
+                      </tr>
+                    `,
+                  )
+                  .join("")}
+              </tbody>
+            </table>
+          `,
+        )
+        .join("")}
     `;
 
     const payload = {

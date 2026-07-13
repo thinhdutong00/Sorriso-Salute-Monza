@@ -1,0 +1,578 @@
+---
+import type { ImplantologiaPage } from "../../data/implantologiaPages";
+import ImplantologiaAttribution from "./ImplantologiaAttribution.astro";
+import ImplantologiaHiddenFields from "./ImplantologiaHiddenFields.astro";
+
+interface Props {
+  slug: ImplantologiaPage["slug"];
+  serviceInterest: string;
+  heading?: string;
+}
+
+const {
+  slug,
+  serviceInterest,
+  heading = "Richiedi una valutazione implantologica",
+} = Astro.props;
+
+const problemOptionsBySlug: Record<ImplantologiaPage["slug"], string[]> = {
+  "impianto-singolo": [
+    "Ho un dente mancante",
+    "Ho un dente da estrarre",
+    "Ho un dente rotto o compromesso",
+    "Voglio valutare un impianto singolo",
+    "Altro",
+  ],
+  "denti-fissi": [
+    "Ho più denti mancanti",
+    "Uso una protesi mobile",
+    "Vorrei denti più stabili",
+    "Voglio valutare denti fissi su impianti",
+    "Altro",
+  ],
+  "ponte-su-impianti": [
+    "Mi mancano più denti vicini",
+    "Ho un ponte da sostituire",
+    "Devo valutare estrazioni e riabilitazione",
+    "Voglio capire se posso fare un ponte su impianti",
+    "Altro",
+  ],
+  "protesi-instabile": [
+    "La protesi si muove",
+    "Ho difficoltà a masticare",
+    "La protesi crea fastidio",
+    "Vorrei una soluzione più stabile",
+    "Altro",
+  ],
+};
+
+const durationOptions = [
+  "Da poco",
+  "Da alcuni mesi",
+  "Da oltre un anno",
+  "Non saprei, vorrei una valutazione",
+];
+
+const timeSlots = [
+  "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00",
+  "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30",
+];
+---
+
+<section class="implant-lead implant-multistep" id="prenota" aria-labelledby={`implant-form-title-${slug}`}>
+  <div class="implant-lead__intro">
+    <p class="implant-kicker">Richiesta di visita</p>
+    <h2 id={`implant-form-title-${slug}`}>{heading}</h2>
+    <p>
+      Indicaci la situazione e una preferenza di data e orario. Lo studio ti ricontatterà per confermare la
+      disponibilità e valutare il percorso più adatto al singolo caso.
+    </p>
+    <p class="implant-multistep__clinical-note">
+      Ogni indicazione viene definita previa valutazione clinica; il piano dipende dalla situazione individuale.
+    </p>
+    <div class="implant-lead__contacts">
+      <a href="tel:+390392022489">Chiama lo studio: 039 2022489</a>
+      <a
+        href="https://wa.me/393892490181"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-google-ads-conversion="whatsapp-implantologia"
+      >Scrivi su WhatsApp</a>
+    </div>
+  </div>
+
+  <form
+    class="implant-multistep__form"
+    id={`implantologia-form-${slug}`}
+    action="/api/send-lead"
+    method="post"
+    data-implantologia-form
+    novalidate
+  >
+    <ImplantologiaHiddenFields />
+
+    <div
+      class="implant-multistep__progress"
+      role="progressbar"
+      aria-label="Avanzamento del modulo"
+      aria-valuemin="1"
+      aria-valuemax="3"
+      aria-valuenow="1"
+      data-form-progress
+    >
+      <div>
+        <span>Passaggio</span>
+        <strong data-progress-text>1 di 3</strong>
+      </div>
+      <ol aria-hidden="true">
+        <li class="is-active" data-progress-step="0"></li>
+        <li data-progress-step="1"></li>
+        <li data-progress-step="2"></li>
+      </ol>
+    </div>
+
+    <div class="implant-multistep__step" data-form-step="0">
+      <div class="implant-multistep__step-heading">
+        <span>1</span>
+        <div>
+          <p>La tua richiesta</p>
+          <h3 tabindex="-1">Raccontaci cosa vuoi valutare</h3>
+        </div>
+      </div>
+
+      <fieldset data-required-group="implantologia_problem_type">
+        <legend>Qual è la situazione che vuoi valutare?</legend>
+        <div class="implant-multistep__options">
+          {problemOptionsBySlug[slug].map((option, index) => (
+            <label class="implant-multistep__option" for={`problem-${slug}-${index}`}>
+              <input
+                id={`problem-${slug}-${index}`}
+                type="radio"
+                name="implantologia_problem_type"
+                value={option}
+                required
+              />
+              <span>{option}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset data-required-group="implantologia_problem_duration">
+        <legend>Da quanto tempo convivi con questa situazione?</legend>
+        <div class="implant-multistep__options implant-multistep__options--compact">
+          {durationOptions.map((option, index) => (
+            <label class="implant-multistep__option" for={`duration-${slug}-${index}`}>
+              <input
+                id={`duration-${slug}-${index}`}
+                type="radio"
+                name="implantologia_problem_duration"
+                value={option}
+                required
+              />
+              <span>{option}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div class="implant-multistep__navigation implant-multistep__navigation--end">
+        <button type="button" class="implant-multistep__next" data-form-next>Avanti</button>
+      </div>
+    </div>
+
+    <div class="implant-multistep__step" data-form-step="1" hidden>
+      <div class="implant-multistep__step-heading">
+        <span>2</span>
+        <div>
+          <p>Preferenza visita</p>
+          <h3 tabindex="-1">Quando preferiresti venire in studio?</h3>
+        </div>
+      </div>
+
+      <p class="implant-multistep__guidance">
+        Indica una preferenza per la visita. Lo studio ti ricontatterà per confermare data e orario.
+      </p>
+
+      <div class="implant-multistep__date-grid">
+        <label for={`preferred-date-${slug}`}>
+          Data preferita
+          <input
+            id={`preferred-date-${slug}`}
+            name="preferred_visit_date"
+            type="date"
+            required
+            data-preferred-date
+          />
+        </label>
+        <label for={`preferred-time-${slug}`}>
+          Orario preferito
+          <select id={`preferred-time-${slug}`} name="preferred_visit_time" required>
+            <option value="">Seleziona un orario</option>
+            {timeSlots.map((slot) => <option value={slot}>{slot}</option>)}
+          </select>
+        </label>
+      </div>
+
+      <p class="implant-multistep__availability-note">
+        La richiesta non conferma automaticamente l’appuntamento: lo studio ti contatterà per confermare la
+        disponibilità. Le preferenze sono disponibili dal lunedì al venerdì, 9:00–12:30 e 14:00–19:00.
+      </p>
+
+      <div class="implant-multistep__navigation">
+        <button type="button" class="implant-multistep__back" data-form-back>Indietro</button>
+        <button type="button" class="implant-multistep__next" data-form-next>Avanti</button>
+      </div>
+    </div>
+
+    <div class="implant-multistep__step" data-form-step="2" hidden>
+      <div class="implant-multistep__step-heading">
+        <span>3</span>
+        <div>
+          <p>I tuoi contatti</p>
+          <h3 tabindex="-1">Come possiamo ricontattarti?</h3>
+        </div>
+      </div>
+
+      <div class="implant-multistep__contact-grid">
+        <label for={`name-${slug}`}>
+          Nome e cognome
+          <input id={`name-${slug}`} name="name" type="text" autocomplete="name" minlength="2" required />
+        </label>
+        <label for={`phone-${slug}`}>
+          Telefono
+          <input
+            id={`phone-${slug}`}
+            name="phone"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            minlength="6"
+            required
+          />
+        </label>
+        <label for={`email-${slug}`}>
+          Email
+          <input id={`email-${slug}`} name="email" type="email" inputmode="email" autocomplete="email" required />
+        </label>
+        <label for={`message-${slug}`}>
+          Messaggio facoltativo
+          <textarea id={`message-${slug}`} name="message" rows="4"></textarea>
+        </label>
+      </div>
+
+      <label class="implant-multistep__privacy" for={`privacy-${slug}`}>
+        <input id={`privacy-${slug}`} name="privacy_consent" type="checkbox" required />
+        <span>
+          Ho letto la <a href="/privacy-policy/">Privacy Policy</a> e acconsento al trattamento dei dati per essere
+          ricontattato in merito alla richiesta.
+        </span>
+      </label>
+
+      <div class="implant-multistep__navigation">
+        <button type="button" class="implant-multistep__back" data-form-back>Indietro</button>
+        <button type="submit" class="implant-multistep__submit">Richiedi la visita</button>
+      </div>
+    </div>
+
+    <p class="implant-multistep__error" data-form-error aria-live="assertive"></p>
+  </form>
+</section>
+
+<ImplantologiaAttribution serviceInterest={serviceInterest} isLanding />
+
+<script>
+  const markImplantologiaConversionPending = () => {
+    const conversionId =
+      typeof window.crypto?.randomUUID === "function"
+        ? window.crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+    try {
+      window.sessionStorage.setItem("lead_conversion_scope", "implantologia");
+      window.sessionStorage.setItem("lead_conversion_id", conversionId);
+      window.sessionStorage.setItem("lead_conversion_pending", "true");
+    } catch {
+      // L'invio del lead non deve fallire se lo storage è disabilitato.
+    }
+  };
+
+  const initialiseImplantologiaForms = () => {
+    document.querySelectorAll<HTMLFormElement>("form[data-implantologia-form]").forEach((form) => {
+      if (form.dataset.submitHandlerAttached === "true") return;
+      form.dataset.submitHandlerAttached = "true";
+
+      const steps = Array.from(form.querySelectorAll<HTMLElement>("[data-form-step]"));
+      const progress = form.querySelector<HTMLElement>("[data-form-progress]");
+      const progressText = form.querySelector<HTMLElement>("[data-progress-text]");
+      const errorElement = form.querySelector<HTMLElement>("[data-form-error]");
+      const dateInput = form.querySelector<HTMLInputElement>("[data-preferred-date]");
+      let currentStep = 0;
+
+      const toIsoDate = (date: Date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+      };
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const lastAvailableDay = new Date(today);
+      lastAvailableDay.setDate(lastAvailableDay.getDate() + 45);
+
+      if (dateInput) {
+        dateInput.min = toIsoDate(today);
+        dateInput.max = toIsoDate(lastAvailableDay);
+      }
+
+      const setError = (message = "") => {
+        if (errorElement) errorElement.textContent = message;
+      };
+
+      const updateDateValidity = () => {
+        if (!dateInput) return "Seleziona una data preferita.";
+        dateInput.setCustomValidity("");
+        if (!dateInput.value) return "Seleziona una data preferita.";
+
+        const [year, month, day] = dateInput.value.split("-").map(Number);
+        const selectedDate = new Date(year, month - 1, day);
+        selectedDate.setHours(0, 0, 0, 0);
+
+        if (selectedDate < today) {
+          const message = "La data non può essere nel passato.";
+          dateInput.setCustomValidity(message);
+          return message;
+        }
+        if (selectedDate > lastAvailableDay) {
+          const message = "Scegli una data entro i prossimi 45 giorni.";
+          dateInput.setCustomValidity(message);
+          return message;
+        }
+        if (selectedDate.getDay() === 0 || selectedDate.getDay() === 6) {
+          const message = "Lo studio riceve dal lunedì al venerdì: scegli un giorno feriale.";
+          dateInput.setCustomValidity(message);
+          return message;
+        }
+
+        return "";
+      };
+
+      const focusInvalidElement = (element: HTMLElement | null) => {
+        if (!element) return;
+        element.setAttribute("aria-invalid", "true");
+        element.focus({ preventScroll: true });
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+      };
+
+      const validateStep = (stepIndex: number) => {
+        const step = steps[stepIndex];
+        if (!step) return { valid: true, message: "", element: null as HTMLElement | null };
+
+        step.querySelectorAll<HTMLElement>("[aria-invalid='true']").forEach((element) => element.removeAttribute("aria-invalid"));
+
+        if (stepIndex === 0) {
+          const problem = step.querySelector<HTMLInputElement>('input[name="implantologia_problem_type"]:checked');
+          const duration = step.querySelector<HTMLInputElement>('input[name="implantologia_problem_duration"]:checked');
+          if (!problem) {
+            return {
+              valid: false,
+              message: "Seleziona la situazione che vuoi valutare.",
+              element: step.querySelector<HTMLInputElement>('input[name="implantologia_problem_type"]'),
+            };
+          }
+          if (!duration) {
+            return {
+              valid: false,
+              message: "Indica da quanto tempo convivi con questa situazione.",
+              element: step.querySelector<HTMLInputElement>('input[name="implantologia_problem_duration"]'),
+            };
+          }
+        }
+
+        if (stepIndex === 1) {
+          const dateError = updateDateValidity();
+          if (dateError) return { valid: false, message: dateError, element: dateInput };
+        }
+
+        if (stepIndex === 2) {
+          const phoneInput = step.querySelector<HTMLInputElement>('input[name="phone"]');
+          if (phoneInput) {
+            const phoneDigits = phoneInput.value.replace(/\D/g, "");
+            phoneInput.setCustomValidity(phoneDigits.length >= 6 ? "" : "Inserisci un numero di telefono valido.");
+          }
+        }
+
+        const requiredControls = Array.from(
+          step.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+            "input[required]:not([type='radio']), select[required], textarea[required]",
+          ),
+        );
+        const invalidControl = requiredControls.find((control) => !control.checkValidity());
+
+        if (invalidControl) {
+          let message = "Completa tutti i campi obbligatori prima di continuare.";
+          if (invalidControl instanceof HTMLInputElement && invalidControl.type === "email") {
+            message = "Inserisci un indirizzo email valido.";
+          } else if (invalidControl.name === "phone") {
+            message = "Inserisci un numero di telefono valido.";
+          } else if (invalidControl.name === "privacy_consent") {
+            message = "Accetta la Privacy Policy per inviare la richiesta.";
+          } else if (invalidControl.name === "preferred_visit_time") {
+            message = "Seleziona un orario preferito.";
+          }
+          return { valid: false, message, element: invalidControl };
+        }
+
+        return { valid: true, message: "", element: null as HTMLElement | null };
+      };
+
+      const showStep = (stepIndex: number, focusHeading = true) => {
+        currentStep = Math.max(0, Math.min(stepIndex, steps.length - 1));
+        steps.forEach((step, index) => {
+          step.hidden = index !== currentStep;
+        });
+        form.querySelectorAll<HTMLElement>("[data-progress-step]").forEach((indicator, index) => {
+          indicator.classList.toggle("is-active", index <= currentStep);
+        });
+        progress?.setAttribute("aria-valuenow", String(currentStep + 1));
+        if (progressText) progressText.textContent = `${currentStep + 1} di ${steps.length}`;
+        setError();
+
+        if (focusHeading) steps[currentStep]?.querySelector<HTMLElement>("h3")?.focus({ preventScroll: true });
+      };
+
+      form.querySelectorAll<HTMLButtonElement>("[data-form-next]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const result = validateStep(currentStep);
+          if (!result.valid) {
+            setError(result.message);
+            focusInvalidElement(result.element);
+            return;
+          }
+          showStep(currentStep + 1);
+        });
+      });
+
+      form.querySelectorAll<HTMLButtonElement>("[data-form-back]").forEach((button) => {
+        button.addEventListener("click", () => showStep(currentStep - 1));
+      });
+
+      dateInput?.addEventListener("change", () => {
+        const message = updateDateValidity();
+        setError(message);
+        if (!message) dateInput.removeAttribute("aria-invalid");
+      });
+
+      form.addEventListener("input", (event) => {
+        if (event.target instanceof HTMLElement) event.target.removeAttribute("aria-invalid");
+        if (event.target instanceof HTMLInputElement && event.target.name === "phone") {
+          event.target.setCustomValidity("");
+        }
+        if (!(event.target instanceof HTMLInputElement) || event.target !== dateInput) setError();
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        for (let stepIndex = 0; stepIndex < steps.length; stepIndex += 1) {
+          const result = validateStep(stepIndex);
+          if (!result.valid) {
+            showStep(stepIndex, false);
+            setError(result.message);
+            focusInvalidElement(result.element);
+            return;
+          }
+        }
+
+        const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Invio in corso…";
+        }
+        setError();
+
+        const formData = Object.fromEntries(new FormData(form).entries());
+        const payload = {
+          ...formData,
+          nome: formData.name || "",
+          nomeCompleto: formData.name || "",
+          telefono: formData.phone || "",
+          messaggio: formData.message || "",
+          privacy_consent: formData.privacy_consent === "on" ? "true" : "",
+          servizio: "Valutazione implantologica",
+          paginaProvenienza: document.referrer || "",
+          paginaCorrente: window.location.href,
+        };
+
+        try {
+          const response = await fetch("/api/send-lead", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            const result = await response.json().catch(() => ({}));
+            throw new Error(result.error || "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+          }
+
+          markImplantologiaConversionPending();
+          window.location.href = "/thank-you-page/";
+        } catch (error) {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = "Richiedi la visita";
+          }
+          setError(error instanceof Error ? error.message : "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+        }
+      });
+
+      showStep(0, false);
+    });
+  };
+
+  initialiseImplantologiaForms();
+  document.addEventListener("astro:page-load", initialiseImplantologiaForms);
+</script>
+
+<style>
+  .implant-multistep__clinical-note { color: #536d78; font-size: 14px; }
+  .implant-multistep__form { display: grid; gap: 24px; padding: clamp(22px, 3vw, 34px); border-radius: 22px; background: #fff; box-shadow: 0 18px 50px rgba(8, 42, 56, .1); }
+  .implant-multistep__progress { display: grid; gap: 12px; }
+  .implant-multistep__progress > div { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #536d78; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .implant-multistep__progress strong { color: var(--implant-ink); }
+  .implant-multistep__progress ol { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin: 0; padding: 0; list-style: none; }
+  .implant-multistep__progress li { height: 5px; border-radius: 999px; background: #dce7e8; transition: background 180ms ease; }
+  .implant-multistep__progress li.is-active { background: var(--implant-teal); }
+  .implant-multistep__step[hidden] { display: none; }
+  .implant-multistep__step { display: grid; gap: 24px; }
+  .implant-multistep__step-heading { display: flex; align-items: center; gap: 13px; }
+  .implant-multistep__step-heading > span { display: inline-flex; width: 38px; height: 38px; flex: 0 0 auto; align-items: center; justify-content: center; border-radius: 50%; background: var(--implant-mint); color: var(--implant-ink); font-size: 14px; font-weight: 900; }
+  .implant-multistep__step-heading p { margin: 0 0 3px; color: var(--implant-teal); font-size: 11px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+  .implant-multistep__step-heading h3 { margin: 0; color: var(--implant-ink); font-size: clamp(21px, 2.6vw, 28px); line-height: 1.2; }
+  .implant-multistep__step-heading h3:focus { outline: none; }
+  .implant-multistep fieldset { display: grid; gap: 12px; margin: 0; padding: 0; border: 0; }
+  .implant-multistep legend { margin-bottom: 12px; color: var(--implant-ink); font-size: 15px; font-weight: 850; }
+  .implant-multistep__options { display: grid; gap: 9px; }
+  .implant-multistep__option { position: relative; display: block; cursor: pointer; }
+  .implant-multistep__option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  .implant-multistep__option span { position: relative; display: flex; min-height: 48px; align-items: center; padding: 11px 42px 11px 15px; border: 1px solid #cbdadd; border-radius: 12px; background: #fff; color: #284a58; font-size: 14px; font-weight: 700; line-height: 1.4; transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease; }
+  .implant-multistep__option span::after { position: absolute; right: 15px; width: 18px; height: 18px; border: 2px solid #9eb5ba; border-radius: 50%; content: ""; }
+  .implant-multistep__option input:checked + span { border-color: var(--implant-teal); background: #edf9f6; box-shadow: 0 0 0 1px var(--implant-teal); }
+  .implant-multistep__option input:checked + span::after { border: 5px solid var(--implant-teal); }
+  .implant-multistep__option input:focus-visible + span { outline: 3px solid rgba(30, 132, 181, .32); outline-offset: 2px; }
+  .implant-multistep__option input[aria-invalid="true"] + span { border-color: #a12626; }
+  .implant-multistep__guidance { margin: 0; color: #365563; line-height: 1.65; }
+  .implant-multistep__date-grid, .implant-multistep__contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .implant-multistep__contact-grid label:last-child { grid-column: 1 / -1; }
+  .implant-multistep__date-grid label, .implant-multistep__contact-grid label { display: grid; gap: 8px; color: var(--implant-ink); font-size: 13px; font-weight: 800; }
+  .implant-multistep input:not([type="radio"]):not([type="checkbox"]),
+  .implant-multistep select,
+  .implant-multistep textarea { width: 100%; min-height: 48px; border: 1px solid #bfd1d4; border-radius: 12px; padding: 12px 14px; background: #fff; color: #173746; font: inherit; }
+  .implant-multistep textarea { resize: vertical; }
+  .implant-multistep input[aria-invalid="true"], .implant-multistep select[aria-invalid="true"] { border-color: #a12626; box-shadow: 0 0 0 2px rgba(161, 38, 38, .12); }
+  .implant-multistep input:focus-visible, .implant-multistep select:focus-visible, .implant-multistep textarea:focus-visible { outline: 3px solid rgba(30, 132, 181, .28); outline-offset: 2px; }
+  .implant-multistep__availability-note { margin: 0; padding: 14px 16px; border-left: 4px solid var(--implant-teal); border-radius: 8px; background: #eef8f7; color: #4c6873; font-size: 13px; line-height: 1.6; }
+  .implant-multistep__privacy { display: flex; align-items: flex-start; gap: 11px; color: #536d78; font-size: 12px; line-height: 1.55; cursor: pointer; }
+  .implant-multistep__privacy input { width: 19px; height: 19px; flex: 0 0 auto; margin-top: 1px; accent-color: var(--implant-teal); }
+  .implant-multistep__privacy input[aria-invalid="true"] { outline: 2px solid #a12626; outline-offset: 2px; }
+  .implant-multistep__navigation { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .implant-multistep__navigation--end { justify-content: flex-end; }
+  .implant-multistep__navigation button { min-height: 50px; padding: 0 22px; border-radius: 999px; font: inherit; font-weight: 850; cursor: pointer; }
+  .implant-multistep__back { border: 1px solid #bfd1d4; background: #fff; color: var(--implant-ink); }
+  .implant-multistep__next, .implant-multistep__submit { border: 0; background: var(--implant-ink); color: #fff; }
+  .implant-multistep__submit { min-width: 190px; }
+  .implant-multistep__navigation button:hover { transform: translateY(-1px); }
+  .implant-multistep__navigation button:focus-visible { outline: 3px solid rgba(30, 132, 181, .34); outline-offset: 3px; }
+  .implant-multistep__navigation button:disabled { cursor: wait; opacity: .65; transform: none; }
+  .implant-multistep__error { min-height: 21px; margin: -8px 0 0; color: #a12626; font-size: 13px; font-weight: 700; line-height: 1.5; }
+
+  @media (max-width: 620px) {
+    .implant-multistep__form { gap: 20px; padding: 20px; }
+    .implant-multistep__date-grid, .implant-multistep__contact-grid { grid-template-columns: 1fr; }
+    .implant-multistep__contact-grid label:last-child { grid-column: 1; }
+    .implant-multistep__navigation button { flex: 1; padding: 0 15px; }
+    .implant-multistep__navigation--end .implant-multistep__next { flex: 1 1 100%; }
+  }
+</style>
