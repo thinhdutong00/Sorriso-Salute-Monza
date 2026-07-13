@@ -1,0 +1,291 @@
+- generic [active] [ref=f52e1]:
+  - generic [ref=f52e5]:
+    - generic [ref=f52e6]: STUDIO DENTISTICO
+    - strong [ref=f52e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f52e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f52e12]:
+    - link "default-logo" [ref=f52e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f52e20]
+    - generic [ref=f52e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f52e23] [cursor=pointer]:
+            - generic [ref=f52e24]: 
+          - generic [ref=f52e25]:
+            - list [ref=f52e26]:
+              - text:  
+              - listitem [ref=f52e27]:
+                - link "Dicono di noi" [ref=f52e28] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f52e29]: Dicono di noi
+              - listitem [ref=f52e30]:
+                - link "La Struttura" [ref=f52e31] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f52e32]: La Struttura
+              - listitem [ref=f52e33]:
+                - link "Convenzioni" [ref=f52e34] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f52e35]: Convenzioni
+              - listitem [ref=f52e36]:
+                - link "Urgenze" [ref=f52e37] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f52e38]: Urgenze
+              - listitem [ref=f52e39]:
+                - link "Chiama in studio" [ref=f52e40] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f52e41]: Chiama in studio
+                  - img [ref=f52e42]
+              - listitem [ref=f52e44]:
+                - button "Menu" [ref=f52e45] [cursor=pointer]:
+                  - generic [ref=f52e50]: Menu
+            - button "X" [ref=f52e52] [cursor=pointer]
+  - generic [ref=f52e55]:
+    - generic [ref=f52e58]:
+      - heading "A t t i v i t à" [level=1] [ref=f52e61]:
+        - generic [ref=f52e63]:
+          - generic [ref=f52e64]: A
+          - generic [ref=f52e65]: t
+          - generic [ref=f52e66]: t
+          - generic [ref=f52e67]: i
+          - generic [ref=f52e68]: v
+          - generic [ref=f52e69]: i
+          - generic [ref=f52e70]: t
+          - generic [ref=f52e71]: à
+      - paragraph [ref=f52e75]: Scopri trattamenti chiari e personalizzati per prevenire, curare e valorizzare il tuo sorriso.
+    - generic [ref=f52e78]:
+      - generic [ref=f52e83]:
+        - img "Set professionale per igiene orale e profilassi" [ref=f52e85]
+        - img [ref=f52e88]
+        - generic [ref=f52e90]:
+          - heading "Igiene orale e profilassi" [level=3] [ref=f52e91]
+          - paragraph [ref=f52e92]: Igiene professionale, prevenzione e controlli periodici per mantenere denti e gengive in salute.
+          - link "Nel dettaglio" [ref=f52e95] [cursor=pointer]:
+            - /url: /attivita/igiene-orale-e-profilassi/
+            - text: Nel dettaglio
+            - img [ref=f52e96]
+      - img [ref=f52e98] [cursor=pointer]
+      - img [ref=f52e100] [cursor=pointer]
+      - img [ref=f52e102] [cursor=pointer]
+      - img [ref=f52e104] [cursor=pointer]
+      - img [ref=f52e106] [cursor=pointer]
+      - img [ref=f52e108] [cursor=pointer]
+      - img [ref=f52e110] [cursor=pointer]
+    - generic [ref=f52e115]:
+      - heading "C u r e o d o n t o i a t r i c h e p e n s a t e p e r l e t u e e s i g e n z e" [level=2] [ref=f52e119]:
+        - generic [ref=f52e121]:
+          - generic [ref=f52e122]: C
+          - generic [ref=f52e123]: u
+          - generic [ref=f52e124]: r
+          - generic [ref=f52e125]: e
+        - generic [ref=f52e127]:
+          - generic [ref=f52e128]: o
+          - generic [ref=f52e129]: d
+          - generic [ref=f52e130]: o
+          - generic [ref=f52e131]: "n"
+          - generic [ref=f52e132]: t
+          - generic [ref=f52e133]: o
+          - generic [ref=f52e134]: i
+          - generic [ref=f52e135]: a
+          - generic [ref=f52e136]: t
+          - generic [ref=f52e137]: r
+          - generic [ref=f52e138]: i
+          - generic [ref=f52e139]: c
+          - generic [ref=f52e140]: h
+          - generic [ref=f52e141]: e
+        - generic [ref=f52e142]:
+          - generic [ref=f52e143]:
+            - generic [ref=f52e144]: p
+            - generic [ref=f52e145]: e
+            - generic [ref=f52e146]: "n"
+            - generic [ref=f52e147]: s
+            - generic [ref=f52e148]: a
+            - generic [ref=f52e149]: t
+            - generic [ref=f52e150]: e
+          - generic [ref=f52e151]:
+            - generic [ref=f52e152]: p
+            - generic [ref=f52e153]: e
+            - generic [ref=f52e154]: r
+          - generic [ref=f52e155]:
+            - generic [ref=f52e156]: l
+            - generic [ref=f52e157]: e
+        - generic [ref=f52e158]:
+          - generic [ref=f52e159]:
+            - generic [ref=f52e160]: t
+            - generic [ref=f52e161]: u
+            - generic [ref=f52e162]: e
+          - generic [ref=f52e163]:
+            - generic [ref=f52e164]: e
+            - generic [ref=f52e165]: s
+            - generic [ref=f52e166]: i
+            - generic [ref=f52e167]: g
+            - generic [ref=f52e168]: e
+            - generic [ref=f52e169]: "n"
+            - generic [ref=f52e170]: z
+            - generic [ref=f52e171]: e
+      - generic [ref=f52e172]:
+        - generic [ref=f52e173]:
+          - heading "01" [level=2] [ref=f52e176]
+          - generic [ref=f52e179]:
+            - generic [ref=f52e180]: Anni di attività
+            - generic [ref=f52e181]:
+              - generic [ref=f52e182]: "0"
+              - generic [ref=f52e183]: +
+        - generic [ref=f52e184]:
+          - heading "02" [level=2] [ref=f52e187]
+          - generic [ref=f52e190]:
+            - generic [ref=f52e191]: Persone aiutate
+            - generic [ref=f52e192]:
+              - generic [ref=f52e193]: "0"
+              - generic [ref=f52e194]: .000+
+        - generic [ref=f52e195]:
+          - heading "03" [level=2] [ref=f52e198]
+          - generic [ref=f52e201]:
+            - generic [ref=f52e202]: Impianti e protesi
+            - generic [ref=f52e203]:
+              - generic [ref=f52e204]: "0"
+              - generic [ref=f52e205]: .000+
+    - generic [ref=f52e207]:
+      - heading "L e p a r o l e d e i n o s t r i p a z i e n t i" [level=2] [ref=f52e211]:
+        - generic [ref=f52e212]:
+          - generic [ref=f52e213]:
+            - generic [ref=f52e214]: L
+            - generic [ref=f52e215]: e
+          - generic [ref=f52e216]:
+            - generic [ref=f52e217]: p
+            - generic [ref=f52e218]: a
+            - generic [ref=f52e219]: r
+            - generic [ref=f52e220]: o
+            - generic [ref=f52e221]: l
+            - generic [ref=f52e222]: e
+          - generic [ref=f52e223]:
+            - generic [ref=f52e224]: d
+            - generic [ref=f52e225]: e
+            - generic [ref=f52e226]: i
+        - generic [ref=f52e227]:
+          - generic [ref=f52e228]:
+            - generic [ref=f52e229]: "n"
+            - generic [ref=f52e230]: o
+            - generic [ref=f52e231]: s
+            - generic [ref=f52e232]: t
+            - generic [ref=f52e233]: r
+            - generic [ref=f52e234]: i
+          - generic [ref=f52e235]:
+            - generic [ref=f52e236]: p
+            - generic [ref=f52e237]: a
+            - generic [ref=f52e238]: z
+            - generic [ref=f52e239]: i
+            - generic [ref=f52e240]: e
+            - generic [ref=f52e241]: "n"
+            - generic [ref=f52e242]: t
+            - generic [ref=f52e243]: i
+      - generic [ref=f52e249]:
+        - generic [ref=f52e250]:
+          - generic [ref=f52e253]:
+            - img [ref=f52e256]
+            - paragraph [ref=f52e260]: Professionalità, attenzione e chiarezza in ogni fase del percorso. Mi sono sentito seguito e ascoltato fin dalla prima visita.
+            - generic [ref=f52e264]:
+              - strong [ref=f52e265]: Paziente Sorriso & Salute
+              - text: Paziente
+          - generic [ref=f52e268]:
+            - img [ref=f52e271]
+            - paragraph [ref=f52e275]: Professionalità, attenzione e chiarezza in ogni fase del percorso. Mi sono sentito seguito e ascoltato fin dalla prima visita.
+            - generic [ref=f52e279]:
+              - strong [ref=f52e280]: Paziente Sorriso & Salute
+              - text: Paziente
+          - generic [ref=f52e283]:
+            - img [ref=f52e286]
+            - paragraph [ref=f52e290]: Professionalità, attenzione e chiarezza in ogni fase del percorso. Mi sono sentito seguito e ascoltato fin dalla prima visita.
+            - generic [ref=f52e294]:
+              - strong [ref=f52e295]: Paziente Sorriso & Salute
+              - text: Paziente
+          - generic [ref=f52e298]:
+            - img [ref=f52e301]
+            - paragraph [ref=f52e305]: Professionalità, attenzione e chiarezza in ogni fase del percorso. Mi sono sentito seguito e ascoltato fin dalla prima visita.
+            - generic [ref=f52e309]:
+              - strong [ref=f52e310]: Paziente Sorriso & Salute
+              - text: Paziente
+        - generic [ref=f52e312] [cursor=pointer]: 
+        - generic [ref=f52e314] [cursor=pointer]: 
+  - generic [ref=f52e318]:
+    - generic [ref=f52e319]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f52e323]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f52e328] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f52e329]:
+          - img [ref=f52e331]
+          - generic [ref=f52e333]: Richiedi appuntamento
+    - generic [ref=f52e334]:
+      - generic [ref=f52e335]:
+        - generic [ref=f52e339]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f52e340] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f52e341] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f52e345]:
+          - listitem [ref=f52e346]:
+            - link "Facebook" [ref=f52e347] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f52e348]: 
+          - listitem [ref=f52e349]:
+            - link "Instagram" [ref=f52e350] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f52e351]: 
+          - listitem [ref=f52e352]:
+            - link "Whatsapp" [ref=f52e353] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f52e354]: 
+          - listitem [ref=f52e355]:
+            - link "Messanger" [ref=f52e356] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f52e357]: 
+      - generic [ref=f52e358]:
+        - heading "Direttore Sanitario" [level=3] [ref=f52e361]
+        - paragraph [ref=f52e364]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f52e367]
+        - list [ref=f52e370]:
+          - listitem [ref=f52e371]:
+            - link "Cookie Policy" [ref=f52e372] [cursor=pointer]:
+              - /url: /attivita/cookie-policy/
+          - listitem [ref=f52e373]:
+            - link "Privacy Policy" [ref=f52e374] [cursor=pointer]:
+              - /url: /attivita/privacy-policy/
+      - generic [ref=f52e375]:
+        - heading "Orari di apertura" [level=3] [ref=f52e378]
+        - paragraph [ref=f52e381]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f52e382]:
+        - heading "Contatti" [level=3] [ref=f52e385]
+        - link "+39 039 2022489" [ref=f52e389] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f52e390]:
+            - img [ref=f52e393]
+            - heading "+39 039 2022489" [level=3] [ref=f52e398]
+        - link "info@sorrisoesalute.it" [ref=f52e402] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f52e403]:
+            - img [ref=f52e406]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f52e415]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f52e419] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f52e420]:
+            - generic [ref=f52e423]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f52e425]
+        - paragraph [ref=f52e427]:
+          - strong [ref=f52e428]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f52e432]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f52e433]: mobile
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

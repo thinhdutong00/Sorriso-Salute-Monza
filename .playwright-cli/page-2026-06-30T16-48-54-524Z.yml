@@ -1,0 +1,193 @@
+- generic [active] [ref=f374e1]:
+  - generic [ref=f374e5]:
+    - generic [ref=f374e6]: STUDIO DENTISTICO
+    - strong [ref=f374e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f374e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f374e12]:
+    - link "default-logo" [ref=f374e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f374e20]
+    - generic [ref=f374e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f374e23] [cursor=pointer]:
+            - generic [ref=f374e24]: 
+          - generic [ref=f374e25]:
+            - list:
+              - text:  
+              - listitem [ref=f374e26]:
+                - link "Dicono di noi" [ref=f374e27] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f374e28]: Dicono di noi
+              - listitem [ref=f374e29]:
+                - link "La Struttura" [ref=f374e30] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f374e31]: La Struttura
+              - listitem [ref=f374e32]:
+                - link "Convenzioni" [ref=f374e33] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f374e34]: Convenzioni
+              - listitem [ref=f374e35]:
+                - link "Urgenze" [ref=f374e36] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f374e37]: Urgenze
+              - listitem [ref=f374e38]:
+                - link "Chiama in studio" [ref=f374e39] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f374e40]: Chiama in studio
+                  - img [ref=f374e41]
+              - listitem [ref=f374e43]:
+                - button "Menu" [ref=f374e44] [cursor=pointer]:
+                  - generic [ref=f374e49]: Menu
+            - button "X" [ref=f374e51] [cursor=pointer]
+  - generic [ref=f374e54]:
+    - generic [ref=f374e57]:
+      - heading "P r o t e s i d e n t a l e" [level=1] [ref=f374e60]:
+        - generic [ref=f374e62]:
+          - generic [ref=f374e63]: P
+          - generic [ref=f374e64]: r
+          - generic [ref=f374e65]: o
+          - generic [ref=f374e66]: t
+          - generic [ref=f374e67]: e
+          - generic [ref=f374e68]: s
+          - generic [ref=f374e69]: i
+        - generic [ref=f374e71]:
+          - generic [ref=f374e72]: d
+          - generic [ref=f374e73]: e
+          - generic [ref=f374e74]: "n"
+          - generic [ref=f374e75]: t
+          - generic [ref=f374e76]: a
+          - generic [ref=f374e77]: l
+          - generic [ref=f374e78]: e
+      - paragraph [ref=f374e82]: Ripristina denti mancanti, masticazione ed estetica con soluzioni fisse o mobili su misura.
+    - generic [ref=f374e88]:
+      - heading "L a p r o t e s i p u ò e s s e r e :" [level=2] [ref=f374e91]:
+        - generic [ref=f374e92]:
+          - generic [ref=f374e93]:
+            - generic [ref=f374e94]: L
+            - generic [ref=f374e95]: a
+          - generic [ref=f374e96]:
+            - generic [ref=f374e97]: p
+            - generic [ref=f374e98]: r
+            - generic [ref=f374e99]: o
+            - generic [ref=f374e100]: t
+            - generic [ref=f374e101]: e
+            - generic [ref=f374e102]: s
+            - generic [ref=f374e103]: i
+          - generic [ref=f374e104]:
+            - generic [ref=f374e105]: p
+            - generic [ref=f374e106]: u
+            - generic [ref=f374e107]: ò
+          - generic [ref=f374e108]:
+            - generic [ref=f374e109]: e
+            - generic [ref=f374e110]: s
+            - generic [ref=f374e111]: s
+            - generic [ref=f374e112]: e
+            - generic [ref=f374e113]: r
+            - generic [ref=f374e114]: e
+            - generic [ref=f374e115]: ":"
+      - generic [ref=f374e119]:
+        - generic [ref=f374e120]:
+          - link "Fissa " [expanded] [ref=f374e122] [cursor=pointer]:
+            - /url: "#collapse-9dcfa4d6a2a98b6b337b"
+            - generic [ref=f374e123]: Fissa
+            - generic [ref=f374e124]:
+              - text: 
+              - generic [ref=f374e126]: 
+          - generic "Fissa " [ref=f374e127]:
+            - paragraph [ref=f374e129]: In questo caso le protesi dentarie vengono fissate sulla radice o sul dente del paziente e non possono dunque essere rimosse. Gli impianti fissati sul dente assumono il nome di “corone”, mentre quelli che poggiano sui denti adiacenti sono chiamati “ponti”. Gli elementi fissati su impianti inseriti nell’osso prendono il nome di “Protesi su impianti”.
+        - link "Mobile " [ref=f374e132] [cursor=pointer]:
+          - /url: "#collapse-ae70aa86a2a98b6b337b"
+          - generic [ref=f374e133]: Mobile
+          - generic [ref=f374e134]:
+            - generic [ref=f374e136]: 
+            - text: 
+        - link "Protesi implantare " [ref=f374e139] [cursor=pointer]:
+          - /url: "#collapse-bcee0f16a2a98b6b337b"
+          - generic [ref=f374e140]: Protesi implantare
+          - generic [ref=f374e141]:
+            - generic [ref=f374e143]: 
+            - text: 
+  - generic [ref=f374e154]:
+    - generic [ref=f374e155]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f374e159]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f374e164] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f374e165]:
+          - img [ref=f374e167]
+          - generic [ref=f374e169]: Richiedi appuntamento
+    - generic [ref=f374e170]:
+      - generic [ref=f374e171]:
+        - generic [ref=f374e175]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f374e176] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f374e177] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f374e181]:
+          - listitem [ref=f374e182]:
+            - link "Facebook" [ref=f374e183] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f374e184]: 
+          - listitem [ref=f374e185]:
+            - link "Instagram" [ref=f374e186] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f374e187]: 
+          - listitem [ref=f374e188]:
+            - link "Whatsapp" [ref=f374e189] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f374e190]: 
+          - listitem [ref=f374e191]:
+            - link "Messanger" [ref=f374e192] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f374e193]: 
+      - generic [ref=f374e194]:
+        - heading "Direttore Sanitario" [level=3] [ref=f374e197]
+        - paragraph [ref=f374e200]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f374e203]
+        - list [ref=f374e206]:
+          - listitem [ref=f374e207]:
+            - link "Cookie Policy" [ref=f374e208] [cursor=pointer]:
+              - /url: /attivita/protesi-dentale/cookie-policy/
+          - listitem [ref=f374e209]:
+            - link "Privacy Policy" [ref=f374e210] [cursor=pointer]:
+              - /url: /attivita/protesi-dentale/privacy-policy/
+      - generic [ref=f374e211]:
+        - heading "Orari di apertura" [level=3] [ref=f374e214]
+        - paragraph [ref=f374e217]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f374e218]:
+        - heading "Contatti" [level=3] [ref=f374e221]
+        - link "+39 039 2022489" [ref=f374e225] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f374e226]:
+            - img [ref=f374e229]
+            - heading "+39 039 2022489" [level=3] [ref=f374e234]
+        - link "info@sorrisoesalute.it" [ref=f374e238] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f374e239]:
+            - img [ref=f374e242]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f374e251]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f374e255] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f374e256]:
+            - generic [ref=f374e259]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f374e261]
+        - paragraph [ref=f374e263]:
+          - strong [ref=f374e264]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f374e268]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f374e269]: tablet
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - generic: Servizio
+        - strong: Protesi dentale
+      - link "Richiedi una visita":
+        - /url: /richiesta-generale/?servizio=protesi-dentale

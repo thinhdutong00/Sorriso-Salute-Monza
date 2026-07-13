@@ -1,0 +1,276 @@
+- generic [active] [ref=f456e1]:
+  - generic [ref=f456e5]:
+    - generic [ref=f456e6]: STUDIO DENTISTICO
+    - strong [ref=f456e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f456e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f456e12]:
+    - link "default-logo" [ref=f456e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f456e20]
+    - generic [ref=f456e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f456e23] [cursor=pointer]:
+            - generic [ref=f456e24]: 
+          - generic [ref=f456e25]:
+            - list [ref=f456e26]:
+              - text:  
+              - listitem [ref=f456e27]:
+                - link "Dicono di noi" [ref=f456e28] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f456e29]: Dicono di noi
+              - listitem [ref=f456e30]:
+                - link "La Struttura" [ref=f456e31] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f456e32]: La Struttura
+              - listitem [ref=f456e33]:
+                - link "Convenzioni" [ref=f456e34] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f456e35]: Convenzioni
+              - listitem [ref=f456e36]:
+                - link "Urgenze" [ref=f456e37] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f456e38]: Urgenze
+              - listitem [ref=f456e39]:
+                - link "Chiama in studio" [ref=f456e40] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f456e41]: Chiama in studio
+                  - img [ref=f456e42]
+              - listitem [ref=f456e44]:
+                - button "Menu" [ref=f456e45] [cursor=pointer]:
+                  - generic [ref=f456e50]: Menu
+            - button "X" [ref=f456e52] [cursor=pointer]
+  - generic [ref=f456e55]:
+    - generic [ref=f456e58]:
+      - heading "C o n t a t t i S t u d i o D e n t i s t i c o M o n z a" [level=2] [ref=f456e61]:
+        - generic [ref=f456e63]:
+          - generic [ref=f456e64]: C
+          - generic [ref=f456e65]: o
+          - generic [ref=f456e66]: "n"
+          - generic [ref=f456e67]: t
+          - generic [ref=f456e68]: a
+          - generic [ref=f456e69]: t
+          - generic [ref=f456e70]: t
+          - generic [ref=f456e71]: i
+        - generic [ref=f456e73]:
+          - generic [ref=f456e74]: S
+          - generic [ref=f456e75]: t
+          - generic [ref=f456e76]: u
+          - generic [ref=f456e77]: d
+          - generic [ref=f456e78]: i
+          - generic [ref=f456e79]: o
+        - generic [ref=f456e81]:
+          - generic [ref=f456e82]: D
+          - generic [ref=f456e83]: e
+          - generic [ref=f456e84]: "n"
+          - generic [ref=f456e85]: t
+          - generic [ref=f456e86]: i
+          - generic [ref=f456e87]: s
+          - generic [ref=f456e88]: t
+          - generic [ref=f456e89]: i
+          - generic [ref=f456e90]: c
+          - generic [ref=f456e91]: o
+        - generic [ref=f456e93]:
+          - generic [ref=f456e94]: M
+          - generic [ref=f456e95]: o
+          - generic [ref=f456e96]: "n"
+          - generic [ref=f456e97]: z
+          - generic [ref=f456e98]: a
+      - list [ref=f456e102]:
+        - listitem [ref=f456e103]:
+          - link "Home" [ref=f456e104] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=f456e105]:
+          - img [ref=f456e107]
+        - listitem [ref=f456e109]: Contatti
+    - generic [ref=f456e111]:
+      - generic [ref=f456e114]:
+        - generic [ref=f456e117]:
+          - img [ref=f456e120]
+          - generic [ref=f456e125]:
+            - heading "Per Informazioni" [level=3] [ref=f456e126]
+            - paragraph [ref=f456e127]:
+              - 'link "Tel: 039 2022489" [ref=f456e128] [cursor=pointer]':
+                - /url: tel:392022489
+              - 'link "Solo WhatsApp: 3892490181" [ref=f456e129] [cursor=pointer]':
+                - /url: https://wa.me/3892490181
+              - 'link "Fax: 039 2022489" [ref=f456e130] [cursor=pointer]':
+                - /url: "#"
+        - generic [ref=f456e131]:
+          - generic [ref=f456e133]: "Seguici:"
+          - list [ref=f456e137]:
+            - listitem [ref=f456e138]:
+              - link "Facebook" [ref=f456e139] [cursor=pointer]:
+                - /url: https://www.facebook.com/sorrisomonza/
+                - generic [ref=f456e140]: 
+            - listitem [ref=f456e141]:
+              - link "Instagram" [ref=f456e142] [cursor=pointer]:
+                - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+                - generic [ref=f456e143]: 
+            - listitem [ref=f456e144]:
+              - link "Whatsapp" [ref=f456e145] [cursor=pointer]:
+                - /url: https://wa.me/3892490181
+                - generic [ref=f456e146]: 
+            - listitem [ref=f456e147]:
+              - link "Messenger" [ref=f456e148] [cursor=pointer]:
+                - /url: https://m.me/sorrisoesalute
+                - generic [ref=f456e149]: 
+      - heading "S i r i c e v e s u a p p u n t a m e n t o" [level=2] [ref=f456e154]:
+        - generic [ref=f456e155]:
+          - generic [ref=f456e156]:
+            - generic [ref=f456e157]: S
+            - generic [ref=f456e158]: i
+          - generic [ref=f456e159]:
+            - generic [ref=f456e160]: r
+            - generic [ref=f456e161]: i
+            - generic [ref=f456e162]: c
+            - generic [ref=f456e163]: e
+            - generic [ref=f456e164]: v
+            - generic [ref=f456e165]: e
+          - generic [ref=f456e166]:
+            - generic [ref=f456e167]: s
+            - generic [ref=f456e168]: u
+        - generic [ref=f456e170]:
+          - generic [ref=f456e171]: a
+          - generic [ref=f456e172]: p
+          - generic [ref=f456e173]: p
+          - generic [ref=f456e174]: u
+          - generic [ref=f456e175]: "n"
+          - generic [ref=f456e176]: t
+          - generic [ref=f456e177]: a
+          - generic [ref=f456e178]: m
+          - generic [ref=f456e179]: e
+          - generic [ref=f456e180]: "n"
+          - generic [ref=f456e181]: t
+          - generic [ref=f456e182]: o
+    - heading "C o m e r a g g i u n g e r e l o S t u d i o D e n t i s t i c o a M o n z a" [level=2] [ref=f456e188]:
+      - generic [ref=f456e189]:
+        - generic [ref=f456e190]:
+          - generic [ref=f456e191]: C
+          - generic [ref=f456e192]: o
+          - generic [ref=f456e193]: m
+          - generic [ref=f456e194]: e
+        - generic [ref=f456e195]:
+          - generic [ref=f456e196]: r
+          - generic [ref=f456e197]: a
+          - generic [ref=f456e198]: g
+          - generic [ref=f456e199]: g
+          - generic [ref=f456e200]: i
+          - generic [ref=f456e201]: u
+          - generic [ref=f456e202]: "n"
+          - generic [ref=f456e203]: g
+          - generic [ref=f456e204]: e
+          - generic [ref=f456e205]: r
+          - generic [ref=f456e206]: e
+      - generic [ref=f456e207]:
+        - generic [ref=f456e208]:
+          - generic [ref=f456e209]: l
+          - generic [ref=f456e210]: o
+        - generic [ref=f456e211]:
+          - generic [ref=f456e212]: S
+          - generic [ref=f456e213]: t
+          - generic [ref=f456e214]: u
+          - generic [ref=f456e215]: d
+          - generic [ref=f456e216]: i
+          - generic [ref=f456e217]: o
+      - generic [ref=f456e218]:
+        - generic [ref=f456e219]:
+          - generic [ref=f456e220]: D
+          - generic [ref=f456e221]: e
+          - generic [ref=f456e222]: "n"
+          - generic [ref=f456e223]: t
+          - generic [ref=f456e224]: i
+          - generic [ref=f456e225]: s
+          - generic [ref=f456e226]: t
+          - generic [ref=f456e227]: i
+          - generic [ref=f456e228]: c
+          - generic [ref=f456e229]: o
+        - generic [ref=f456e231]: a
+        - generic [ref=f456e232]:
+          - generic [ref=f456e233]: M
+          - generic [ref=f456e234]: o
+          - generic [ref=f456e235]: "n"
+          - generic [ref=f456e236]: z
+          - generic [ref=f456e237]: a
+  - generic [ref=f456e241]:
+    - generic [ref=f456e242]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f456e246]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f456e251] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f456e252]:
+          - img [ref=f456e254]
+          - generic [ref=f456e256]: Richiedi appuntamento
+    - generic [ref=f456e257]:
+      - generic [ref=f456e258]:
+        - generic [ref=f456e262]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f456e263] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f456e264] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f456e268]:
+          - listitem [ref=f456e269]:
+            - link "Facebook" [ref=f456e270] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f456e271]: 
+          - listitem [ref=f456e272]:
+            - link "Instagram" [ref=f456e273] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f456e274]: 
+          - listitem [ref=f456e275]:
+            - link "Whatsapp" [ref=f456e276] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f456e277]: 
+          - listitem [ref=f456e278]:
+            - link "Messanger" [ref=f456e279] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f456e280]: 
+      - generic [ref=f456e281]:
+        - heading "Direttore Sanitario" [level=3] [ref=f456e284]
+        - paragraph [ref=f456e287]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f456e290]
+        - list [ref=f456e293]:
+          - listitem [ref=f456e294]:
+            - link "Cookie Policy" [ref=f456e295] [cursor=pointer]:
+              - /url: /contatti/cookie-policy/
+          - listitem [ref=f456e296]:
+            - link "Privacy Policy" [ref=f456e297] [cursor=pointer]:
+              - /url: /contatti/privacy-policy/
+      - generic [ref=f456e298]:
+        - heading "Orari di apertura" [level=3] [ref=f456e301]
+        - paragraph [ref=f456e304]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f456e305]:
+        - heading "Contatti" [level=3] [ref=f456e308]
+        - link "+39 039 2022489" [ref=f456e312] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f456e313]:
+            - img [ref=f456e316]
+            - heading "+39 039 2022489" [level=3] [ref=f456e321]
+        - link "info@sorrisoesalute.it" [ref=f456e325] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f456e326]:
+            - img [ref=f456e329]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f456e338]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f456e342] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f456e343]:
+            - generic [ref=f456e346]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f456e348]
+        - paragraph [ref=f456e350]:
+          - strong [ref=f456e351]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f456e355]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f456e356]: mobile
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

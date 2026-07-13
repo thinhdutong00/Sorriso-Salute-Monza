@@ -1,0 +1,5 @@
+- main "Preferenze prenotazione" [ref=f902e2]:
+  - link "Chiama lo studio" [ref=f902e3] [cursor=pointer]:
+    - /url: tel:+390392022489
+  - link "Prenota online (consigliato)" [ref=f902e4] [cursor=pointer]:
+    - /url: /richiesta-generale/

@@ -1,0 +1,16 @@
+- generic [active] [ref=f1140e1]:
+  - banner [ref=f1140e2]:
+    - link "Home" [ref=f1140e4] [cursor=pointer]:
+      - /url: /
+      - img [ref=f1140e5]
+      - text: Home
+  - main [ref=f1140e7]:
+    - region "Grazie, abbiamo ricevuto la tua richiesta." [ref=f1140e8]:
+      - paragraph [ref=f1140e9]: Richiesta inviata
+      - heading "Grazie, abbiamo ricevuto la tua richiesta." [level=1] [ref=f1140e10]
+      - paragraph [ref=f1140e11]: Lo studio ti ricontatterà per confermare la prima valutazione e verificare la disponibilità dell'appuntamento indicato.
+      - generic [ref=f1140e12]:
+        - link "Torna alla home" [ref=f1140e13] [cursor=pointer]:
+          - /url: /
+        - link "Invia una nuova richiesta" [ref=f1140e14] [cursor=pointer]:
+          - /url: /richiesta-generale/

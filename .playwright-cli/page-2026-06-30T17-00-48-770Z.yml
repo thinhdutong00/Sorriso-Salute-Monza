@@ -1,0 +1,972 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - generic:
+        - generic: STUDIO DENTISTICO
+        - strong: SORRISO & SALUTE
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=e6]:
+    - link "default-logo" [ref=e11] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=e14]
+    - navigation [ref=e18]:
+      - text: 
+      - list [ref=e20]:
+        - text:  
+        - listitem [ref=e21]:
+          - link "Dicono di noi" [ref=e22] [cursor=pointer]:
+            - /url: /recensioni-studio-dentistico-monza/
+            - generic [ref=e23]: Dicono di noi
+        - listitem [ref=e24]:
+          - link "La Struttura" [ref=e25] [cursor=pointer]:
+            - /url: /struttura-studio-dentistico-monza/
+            - generic [ref=e26]: La Struttura
+        - listitem [ref=e27]:
+          - link "Convenzioni" [ref=e28] [cursor=pointer]:
+            - /url: /convenzioni-dirette-studio-dentistico-monza/
+            - generic [ref=e29]: Convenzioni
+        - listitem [ref=e30]:
+          - link "Urgenze" [ref=e31] [cursor=pointer]:
+            - /url: /urgenze/
+            - generic [ref=e32]: Urgenze
+        - listitem [ref=e33]:
+          - link "Chiama in studio" [ref=e34] [cursor=pointer]:
+            - /url: tel:+390392022489
+            - generic [ref=e35]: Chiama in studio
+            - img [ref=e36]
+        - listitem [ref=e38]:
+          - button "Menu" [ref=e39] [cursor=pointer]:
+            - generic [ref=e44]: Menu
+  - generic [ref=e47]:
+    - generic [ref=e50]:
+      - heading "U n s o r r i s o c h e s e m b r i t u o , s o l o m i g l i o r e ." [level=1] [ref=e53]:
+        - generic [ref=e54]:
+          - generic [ref=e55]:
+            - generic [ref=e56]: U
+            - generic [ref=e57]: "n"
+          - generic [ref=e58]:
+            - generic [ref=e59]: s
+            - generic [ref=e60]: o
+            - generic [ref=e61]: r
+            - generic [ref=e62]: r
+            - generic [ref=e63]: i
+            - generic [ref=e64]: s
+            - generic [ref=e65]: o
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - generic [ref=e68]: c
+            - generic [ref=e69]: h
+            - generic [ref=e70]: e
+          - generic [ref=e71]:
+            - generic [ref=e72]: s
+            - generic [ref=e73]: e
+            - generic [ref=e74]: m
+            - generic [ref=e75]: b
+            - generic [ref=e76]: r
+            - generic [ref=e77]: i
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - generic [ref=e80]: t
+            - generic [ref=e81]: u
+            - generic [ref=e82]: o
+            - generic [ref=e83]: ","
+          - generic [ref=e84]:
+            - generic [ref=e85]: s
+            - generic [ref=e86]: o
+            - generic [ref=e87]: l
+            - generic [ref=e88]: o
+          - generic [ref=e89]:
+            - generic [ref=e90]: m
+            - generic [ref=e91]: i
+            - generic [ref=e92]: g
+            - generic [ref=e93]: l
+            - generic [ref=e94]: i
+            - generic [ref=e95]: o
+            - generic [ref=e96]: r
+            - generic [ref=e97]: e
+            - generic [ref=e98]: .
+      - generic [ref=e102]:
+        - generic [ref=e105]:
+          - img [ref=e108]
+          - heading "Esperti dal 2003" [level=3] [ref=e111]
+        - generic [ref=e114]:
+          - img [ref=e117]
+          - heading "Implantologia" [level=3] [ref=e124]
+        - heading "Chirurgia orale" [level=3] [ref=e130]
+    - generic [ref=e135]:
+      - img "Trattamento odontoiatrico conservativo" [ref=e139]
+      - heading "D a o l t r e 2 0 a n n i a l s e r v i z i o d e l t u o s o r r i s o a M o n z a e B r i a n z a" [level=2] [ref=e143]:
+        - generic [ref=e144]:
+          - generic [ref=e145]:
+            - generic [ref=e146]: D
+            - generic [ref=e147]: a
+          - generic [ref=e148]:
+            - generic [ref=e149]: o
+            - generic [ref=e150]: l
+            - generic [ref=e151]: t
+            - generic [ref=e152]: r
+            - generic [ref=e153]: e
+          - generic [ref=e154]:
+            - generic [ref=e155]: "2"
+            - generic [ref=e156]: "0"
+          - generic [ref=e157]:
+            - generic [ref=e158]: a
+            - generic [ref=e159]: "n"
+            - generic [ref=e160]: "n"
+            - generic [ref=e161]: i
+        - generic [ref=e162]:
+          - generic [ref=e163]:
+            - generic [ref=e164]: a
+            - generic [ref=e165]: l
+          - generic [ref=e166]:
+            - generic [ref=e167]: s
+            - generic [ref=e168]: e
+            - generic [ref=e169]: r
+            - generic [ref=e170]: v
+            - generic [ref=e171]: i
+            - generic [ref=e172]: z
+            - generic [ref=e173]: i
+            - generic [ref=e174]: o
+          - generic [ref=e175]:
+            - generic [ref=e176]: d
+            - generic [ref=e177]: e
+            - generic [ref=e178]: l
+        - generic [ref=e179]:
+          - generic [ref=e180]:
+            - generic [ref=e181]: t
+            - generic [ref=e182]: u
+            - generic [ref=e183]: o
+          - generic [ref=e184]:
+            - generic [ref=e185]: s
+            - generic [ref=e186]: o
+            - generic [ref=e187]: r
+            - generic [ref=e188]: r
+            - generic [ref=e189]: i
+            - generic [ref=e190]: s
+            - generic [ref=e191]: o
+          - generic [ref=e193]: a
+        - generic [ref=e194]:
+          - generic [ref=e195]:
+            - generic [ref=e196]: M
+            - generic [ref=e197]: o
+            - generic [ref=e198]: "n"
+            - generic [ref=e199]: z
+            - generic [ref=e200]: a
+          - generic [ref=e202]: e
+          - generic [ref=e203]:
+            - generic [ref=e204]: B
+            - generic [ref=e205]: r
+            - generic [ref=e206]: i
+            - generic [ref=e207]: a
+            - generic [ref=e208]: "n"
+            - generic [ref=e209]: z
+            - generic [ref=e210]: a
+    - generic [ref=e213]:
+      - heading "E c c e l l e n z a O d o n t o i a t r i c a a M o n z a" [level=2] [ref=e217]:
+        - generic [ref=e219]:
+          - generic [ref=e220]: E
+          - generic [ref=e221]: c
+          - generic [ref=e222]: c
+          - generic [ref=e223]: e
+          - generic [ref=e224]: l
+          - generic [ref=e225]: l
+          - generic [ref=e226]: e
+          - generic [ref=e227]: "n"
+          - generic [ref=e228]: z
+          - generic [ref=e229]: a
+        - generic [ref=e230]:
+          - generic [ref=e231]:
+            - generic [ref=e232]: O
+            - generic [ref=e233]: d
+            - generic [ref=e234]: o
+            - generic [ref=e235]: "n"
+            - generic [ref=e236]: t
+            - generic [ref=e237]: o
+            - generic [ref=e238]: i
+            - generic [ref=e239]: a
+            - generic [ref=e240]: t
+            - generic [ref=e241]: r
+            - generic [ref=e242]: i
+            - generic [ref=e243]: c
+            - generic [ref=e244]: a
+          - generic [ref=e246]: a
+          - generic [ref=e247]:
+            - generic [ref=e248]: M
+            - generic [ref=e249]: o
+            - generic [ref=e250]: "n"
+            - generic [ref=e251]: z
+            - generic [ref=e252]: a
+      - generic [ref=e253]:
+        - img [ref=e254] [cursor=pointer]
+        - img [ref=e256] [cursor=pointer]
+        - img [ref=e258] [cursor=pointer]
+        - img [ref=e260] [cursor=pointer]
+      - generic [ref=e262]:
+        - img [ref=e263] [cursor=pointer]
+        - img [ref=e265] [cursor=pointer]
+        - img [ref=e267] [cursor=pointer]
+        - img [ref=e269] [cursor=pointer]
+      - generic [ref=e271]:
+        - img [ref=e272] [cursor=pointer]
+        - img [ref=e274] [cursor=pointer]
+        - img [ref=e276] [cursor=pointer]
+        - link "Apri il modulo quiz di orientamento sorriso" [ref=e282] [cursor=pointer]:
+          - /url: /orientamento-sorriso/
+          - img [ref=e285]
+          - generic [ref=e288]:
+            - heading "Hai già in mente un risultato che vuoi ottenere ma non sai da dove iniziare?" [level=3] [ref=e289]
+            - generic [ref=e292]:
+              - text: Clicca qui
+              - img [ref=e293]
+    - heading "I n o s t r i S e r v i z i d i F i n a n z i a m e n t o p e r s o n a l i z z a t i" [level=2] [ref=e300]:
+      - generic [ref=e301]:
+        - generic [ref=e303]: I
+        - generic [ref=e304]:
+          - generic [ref=e305]: "n"
+          - generic [ref=e306]: o
+          - generic [ref=e307]: s
+          - generic [ref=e308]: t
+          - generic [ref=e309]: r
+          - generic [ref=e310]: i
+        - generic [ref=e311]:
+          - generic [ref=e312]: S
+          - generic [ref=e313]: e
+          - generic [ref=e314]: r
+          - generic [ref=e315]: v
+          - generic [ref=e316]: i
+          - generic [ref=e317]: z
+          - generic [ref=e318]: i
+      - generic [ref=e320]:
+        - generic [ref=e321]: d
+        - generic [ref=e322]: i
+      - generic [ref=e324]:
+        - generic [ref=e325]: F
+        - generic [ref=e326]: i
+        - generic [ref=e327]: "n"
+        - generic [ref=e328]: a
+        - generic [ref=e329]: "n"
+        - generic [ref=e330]: z
+        - generic [ref=e331]: i
+        - generic [ref=e332]: a
+        - generic [ref=e333]: m
+        - generic [ref=e334]: e
+        - generic [ref=e335]: "n"
+        - generic [ref=e336]: t
+        - generic [ref=e337]: o
+      - generic [ref=e339]:
+        - generic [ref=e340]: p
+        - generic [ref=e341]: e
+        - generic [ref=e342]: r
+        - generic [ref=e343]: s
+        - generic [ref=e344]: o
+        - generic [ref=e345]: "n"
+        - generic [ref=e346]: a
+        - generic [ref=e347]: l
+        - generic [ref=e348]: i
+        - generic [ref=e349]: z
+        - generic [ref=e350]: z
+        - generic [ref=e351]: a
+        - generic [ref=e352]: t
+        - generic [ref=e353]: i
+    - heading "P r e n o t a i l t u o a p p u n t a m e n t o i n m o d o s e m p l i c e e v e l o c e" [level=2] [ref=e359]:
+      - generic [ref=e360]:
+        - generic [ref=e361]:
+          - generic [ref=e362]: P
+          - generic [ref=e363]: r
+          - generic [ref=e364]: e
+          - generic [ref=e365]: "n"
+          - generic [ref=e366]: o
+          - generic [ref=e367]: t
+          - generic [ref=e368]: a
+        - generic [ref=e369]:
+          - generic [ref=e370]: i
+          - generic [ref=e371]: l
+        - generic [ref=e372]:
+          - generic [ref=e373]: t
+          - generic [ref=e374]: u
+          - generic [ref=e375]: o
+      - generic [ref=e376]:
+        - generic [ref=e377]:
+          - generic [ref=e378]: a
+          - generic [ref=e379]: p
+          - generic [ref=e380]: p
+          - generic [ref=e381]: u
+          - generic [ref=e382]: "n"
+          - generic [ref=e383]: t
+          - generic [ref=e384]: a
+          - generic [ref=e385]: m
+          - generic [ref=e386]: e
+          - generic [ref=e387]: "n"
+          - generic [ref=e388]: t
+          - generic [ref=e389]: o
+        - generic [ref=e390]:
+          - generic [ref=e391]: i
+          - generic [ref=e392]: "n"
+      - generic [ref=e393]:
+        - generic [ref=e394]:
+          - generic [ref=e395]: m
+          - generic [ref=e396]: o
+          - generic [ref=e397]: d
+          - generic [ref=e398]: o
+        - generic [ref=e399]:
+          - generic [ref=e400]: s
+          - generic [ref=e401]: e
+          - generic [ref=e402]: m
+          - generic [ref=e403]: p
+          - generic [ref=e404]: l
+          - generic [ref=e405]: i
+          - generic [ref=e406]: c
+          - generic [ref=e407]: e
+        - generic [ref=e409]: e
+      - generic [ref=e411]:
+        - generic [ref=e412]: v
+        - generic [ref=e413]: e
+        - generic [ref=e414]: l
+        - generic [ref=e415]: o
+        - generic [ref=e416]: c
+        - generic [ref=e417]: e
+    - generic [ref=e421]:
+      - heading "C o m p e t e n z a , i n n o v a z i o n e e c u r a p e r i l t u o s o r r i s o ." [level=2] [ref=e425]:
+        - generic [ref=e427]:
+          - generic [ref=e428]: C
+          - generic [ref=e429]: o
+          - generic [ref=e430]: m
+          - generic [ref=e431]: p
+          - generic [ref=e432]: e
+          - generic [ref=e433]: t
+          - generic [ref=e434]: e
+          - generic [ref=e435]: "n"
+          - generic [ref=e436]: z
+          - generic [ref=e437]: a
+          - generic [ref=e438]: ","
+        - generic [ref=e440]:
+          - generic [ref=e441]: i
+          - generic [ref=e442]: "n"
+          - generic [ref=e443]: "n"
+          - generic [ref=e444]: o
+          - generic [ref=e445]: v
+          - generic [ref=e446]: a
+          - generic [ref=e447]: z
+          - generic [ref=e448]: i
+          - generic [ref=e449]: o
+          - generic [ref=e450]: "n"
+          - generic [ref=e451]: e
+        - generic [ref=e452]:
+          - generic [ref=e454]: e
+          - generic [ref=e455]:
+            - generic [ref=e456]: c
+            - generic [ref=e457]: u
+            - generic [ref=e458]: r
+            - generic [ref=e459]: a
+          - generic [ref=e460]:
+            - generic [ref=e461]: p
+            - generic [ref=e462]: e
+            - generic [ref=e463]: r
+        - generic [ref=e464]:
+          - generic [ref=e465]:
+            - generic [ref=e466]: i
+            - generic [ref=e467]: l
+          - generic [ref=e468]:
+            - generic [ref=e469]: t
+            - generic [ref=e470]: u
+            - generic [ref=e471]: o
+        - generic [ref=e473]:
+          - generic [ref=e474]: s
+          - generic [ref=e475]: o
+          - generic [ref=e476]: r
+          - generic [ref=e477]: r
+          - generic [ref=e478]: i
+          - generic [ref=e479]: s
+          - generic [ref=e480]: o
+          - generic [ref=e481]: .
+      - generic [ref=e482]:
+        - generic [ref=e486]:
+          - generic [ref=e487]: Anni di esperienza
+          - generic [ref=e488]:
+            - generic [ref=e489]: "0"
+            - generic [ref=e490]: +
+        - generic [ref=e494]:
+          - generic [ref=e495]: Pazienti soddisfatti
+          - generic [ref=e496]:
+            - generic [ref=e497]: "0"
+            - generic [ref=e498]: M+
+        - generic [ref=e502]:
+          - generic [ref=e503]: Trattamenti completati
+          - generic [ref=e504]:
+            - generic [ref=e505]: "0"
+            - generic [ref=e506]: +
+    - generic [ref=e508]:
+      - heading "C o s a d i c o n o d i n o i" [level=2] [ref=e512]:
+        - generic [ref=e513]:
+          - generic [ref=e514]:
+            - generic [ref=e515]: C
+            - generic [ref=e516]: o
+            - generic [ref=e517]: s
+            - generic [ref=e518]: a
+          - generic [ref=e519]:
+            - generic [ref=e520]: d
+            - generic [ref=e521]: i
+            - generic [ref=e522]: c
+            - generic [ref=e523]: o
+            - generic [ref=e524]: "n"
+            - generic [ref=e525]: o
+          - generic [ref=e526]:
+            - generic [ref=e527]: d
+            - generic [ref=e528]: i
+          - generic [ref=e529]:
+            - generic [ref=e530]: "n"
+            - generic [ref=e531]: o
+            - generic [ref=e532]: i
+      - generic [ref=e538]:
+        - generic [ref=e539]:
+          - group "15 / 17" [ref=e540]:
+            - generic [ref=e542]:
+              - img [ref=e545]
+              - paragraph [ref=e549]: Dottoressa molto precisa e accurata. Grande esperienza nelle visite e ottimi consigli per la cura. Sempre in buone mani! Grazie
+              - generic [ref=e553]:
+                - strong [ref=e554]: Samir G.
+                - text: Paziente
+          - group "16 / 17" [ref=e555]:
+            - generic [ref=e557]:
+              - img [ref=e560]
+              - paragraph [ref=e564]: Dottoressa empatica e molto disponibile. Dimostrata molta attenzione per il mio caso. Buona esperienza
+              - generic [ref=e568]:
+                - strong [ref=e569]: Giacomo I.
+                - text: Paziente
+          - group "17 / 17" [ref=e570]:
+            - generic [ref=e572]:
+              - img [ref=e575]
+              - paragraph [ref=e579]: La dottoressa è stata molto capace e comprensiva. Mi ha messo a mio agio. Non ho avuto nessun tipo di fastidio dopo la seduta. Trovo che sia molto professionale, gentile e premurosa.
+              - generic [ref=e583]:
+                - strong [ref=e584]: Samira E.
+                - text: Paziente
+          - group "1 / 17" [ref=e585]:
+            - generic [ref=e587]:
+              - img [ref=e590]
+              - paragraph [ref=e594]: Avevo molta paura dell’intervento, ma il dottore e tutto lo staff mi hanno messa subito a mio agio. L’implantologia è stata indolore e il risultato estetico è perfetto. Mi sento finalmente di nuovo a mio agio nel sorridere!
+              - generic [ref=e598]:
+                - strong [ref=e599]: Marta R.
+                - text: Paziente
+          - group "2 / 17" [ref=e600]:
+            - generic [ref=e602]:
+              - img [ref=e605]
+              - paragraph [ref=e609]: Ho scelto le mascherine trasparenti per allineare i denti senza compromettere l’estetica. Risultato eccellente e tempi rispettati. Studio serio, preciso e tecnologicamente avanzato.
+              - generic [ref=e613]:
+                - strong [ref=e614]: Roberta P.
+                - text: Paziente
+          - group "3 / 17" [ref=e615]:
+            - generic [ref=e617]:
+              - img [ref=e620]
+              - paragraph [ref=e624]: Mi rivolgo a Sorriso & Salute da anni per la pulizia e la prevenzione. Sono sempre puntuali, professionali e gentili. È bello trovare un ambiente così accogliente e curato.
+              - generic [ref=e628]:
+                - strong [ref=e629]: Giulia F.
+                - text: Paziente
+          - group "4 / 17" [ref=e630]:
+            - generic [ref=e632]:
+              - img [ref=e635]
+              - paragraph [ref=e639]: Finalmente uno studio dove ti ascoltano davvero. Trattamento preciso e indolore. Consigliato!
+              - generic [ref=e643]:
+                - strong [ref=e644]: Giacomo P.
+                - text: Paziente
+          - group "5 / 17" [ref=e645]:
+            - generic [ref=e647]:
+              - img [ref=e650]
+              - paragraph [ref=e654]: Dopo vari problemi dentali, ho finalmente ritrovato un sorriso naturale e funzionale. La professionalità del team e l’attenzione ai dettagli sono davvero impareggiabili.
+              - generic [ref=e658]:
+                - strong [ref=e659]: Jenny S.
+                - text: Paziente
+          - group "6 / 17" [ref=e660]:
+            - generic [ref=e662]:
+              - img [ref=e665]
+              - paragraph [ref=e669]: Ambiente pulito, moderno e accogliente. Trattamento perfetto e senza dolore. Bravi davvero!
+              - generic [ref=e673]:
+                - strong [ref=e674]: Monica F.
+                - text: Paziente
+          - group "7 / 17" [ref=e675]:
+            - generic [ref=e677]:
+              - img [ref=e680]
+              - paragraph [ref=e684]: Valutazione clinica molto accurata, con fotografie intraorali e scanner digitale. Grande attenzione alla diagnosi.
+              - generic [ref=e688]:
+                - strong [ref=e689]: Giuseppe G.
+                - text: Paziente
+          - group "8 / 17" [ref=e690]:
+            - generic [ref=e692]:
+              - img [ref=e695]
+              - paragraph [ref=e699]: "Molto soddisfatta dell’otturazione estetica: colore perfetto e modellazione molto precisa. Nessuna sensibilità post-trattamento."
+              - generic [ref=e703]:
+                - strong [ref=e704]: Sofia E.
+                - text: Paziente
+          - group "9 / 17" [ref=e705]:
+            - generic [ref=e707]:
+              - img [ref=e710]
+              - paragraph [ref=e714]: La dottoressa è molto competente, oltre ad essere cordiale. Durante la visita, ha saputo mettermi a mio agio.
+              - generic [ref=e718]:
+                - strong [ref=e719]: Barbara V.
+                - text: Paziente
+          - group "10 / 17" [ref=e720]:
+            - generic [ref=e722]:
+              - img [ref=e725]
+              - paragraph [ref=e729]: Pignola, precisa , attenta alle problematiche del paziente...spiega il da farsi in modo dettagliato...disponibile...
+              - generic [ref=e733]:
+                - strong [ref=e734]: Rossella B.
+                - text: Paziente
+          - group "11 / 17" [ref=e735]:
+            - generic [ref=e737]:
+              - img [ref=e740]
+              - paragraph [ref=e744]: Molto precisa ed attenta, infonde fiducia nel paziente. Dentista davvero molto professionale
+              - generic [ref=e748]:
+                - strong [ref=e749]: Giorgio B.
+                - text: Paziente
+          - group "12 / 17" [ref=e750]:
+            - generic [ref=e752]:
+              - img [ref=e755]
+              - paragraph [ref=e759]: Cordialità, preparazione professionale, capacità di spiegare e di consigliare
+              - generic [ref=e763]:
+                - strong [ref=e764]: Gabrio G.
+                - text: Paziente
+          - group "13 / 17" [ref=e765]:
+            - generic [ref=e767]:
+              - img [ref=e770]
+              - paragraph [ref=e774]: Professionalità gentilezza pazienza competenza spiegazione
+              - generic [ref=e778]:
+                - strong [ref=e779]: Paolo S.
+                - text: Paziente
+          - group "14 / 17" [ref=e780]:
+            - generic [ref=e782]:
+              - img [ref=e785]
+              - paragraph [ref=e789]: Ottima professionista. Intervento svolto con sicurezza, brevità ed anestesia molto efficace. Postumi senza particolari problemi
+              - generic [ref=e793]:
+                - strong [ref=e794]: Michael T.
+                - text: Paziente
+          - group "15 / 17" [ref=e795]:
+            - generic [ref=e797]:
+              - img [ref=e800]
+              - paragraph [ref=e804]: Dottoressa molto precisa e accurata. Grande esperienza nelle visite e ottimi consigli per la cura. Sempre in buone mani! Grazie
+              - generic [ref=e808]:
+                - strong [ref=e809]: Samir G.
+                - text: Paziente
+          - group "16 / 17" [ref=e810]:
+            - generic [ref=e812]:
+              - img [ref=e815]
+              - paragraph [ref=e819]: Dottoressa empatica e molto disponibile. Dimostrata molta attenzione per il mio caso. Buona esperienza
+              - generic [ref=e823]:
+                - strong [ref=e824]: Giacomo I.
+                - text: Paziente
+          - group "17 / 17" [ref=e825]:
+            - generic [ref=e827]:
+              - img [ref=e830]
+              - paragraph [ref=e834]: La dottoressa è stata molto capace e comprensiva. Mi ha messo a mio agio. Non ho avuto nessun tipo di fastidio dopo la seduta. Trovo che sia molto professionale, gentile e premurosa.
+              - generic [ref=e838]:
+                - strong [ref=e839]: Samira E.
+                - text: Paziente
+          - group "1 / 17" [ref=e840]:
+            - generic [ref=e842]:
+              - img [ref=e845]
+              - paragraph [ref=e849]: Avevo molta paura dell’intervento, ma il dottore e tutto lo staff mi hanno messa subito a mio agio. L’implantologia è stata indolore e il risultato estetico è perfetto. Mi sento finalmente di nuovo a mio agio nel sorridere!
+              - generic [ref=e853]:
+                - strong [ref=e854]: Marta R.
+                - text: Paziente
+          - group "2 / 17" [ref=e855]:
+            - generic [ref=e857]:
+              - img [ref=e860]
+              - paragraph [ref=e864]: Ho scelto le mascherine trasparenti per allineare i denti senza compromettere l’estetica. Risultato eccellente e tempi rispettati. Studio serio, preciso e tecnologicamente avanzato.
+              - generic [ref=e868]:
+                - strong [ref=e869]: Roberta P.
+                - text: Paziente
+          - group "3 / 17" [ref=e870]:
+            - generic [ref=e872]:
+              - img [ref=e875]
+              - paragraph [ref=e879]: Mi rivolgo a Sorriso & Salute da anni per la pulizia e la prevenzione. Sono sempre puntuali, professionali e gentili. È bello trovare un ambiente così accogliente e curato.
+              - generic [ref=e883]:
+                - strong [ref=e884]: Giulia F.
+                - text: Paziente
+        - button "Previous slide" [ref=e885] [cursor=pointer]:
+          - generic [ref=e886]: 
+        - button "Next slide" [ref=e887] [cursor=pointer]:
+          - generic [ref=e888]: 
+    - generic [ref=e890]:
+      - heading "E c c e l l e n z a e I n n o v a z i o n e n e l N o s t r o T e a m" [level=2] [ref=e894]:
+        - generic [ref=e895]:
+          - generic [ref=e896]:
+            - generic [ref=e897]: E
+            - generic [ref=e898]: c
+            - generic [ref=e899]: c
+            - generic [ref=e900]: e
+            - generic [ref=e901]: l
+            - generic [ref=e902]: l
+            - generic [ref=e903]: e
+            - generic [ref=e904]: "n"
+            - generic [ref=e905]: z
+            - generic [ref=e906]: a
+          - generic [ref=e908]: e
+        - generic [ref=e909]:
+          - generic [ref=e910]:
+            - generic [ref=e911]: I
+            - generic [ref=e912]: "n"
+            - generic [ref=e913]: "n"
+            - generic [ref=e914]: o
+            - generic [ref=e915]: v
+            - generic [ref=e916]: a
+            - generic [ref=e917]: z
+            - generic [ref=e918]: i
+            - generic [ref=e919]: o
+            - generic [ref=e920]: "n"
+            - generic [ref=e921]: e
+          - generic [ref=e922]:
+            - generic [ref=e923]: "n"
+            - generic [ref=e924]: e
+            - generic [ref=e925]: l
+        - generic [ref=e926]:
+          - generic [ref=e927]:
+            - generic [ref=e928]: "N"
+            - generic [ref=e929]: o
+            - generic [ref=e930]: s
+            - generic [ref=e931]: t
+            - generic [ref=e932]: r
+            - generic [ref=e933]: o
+          - generic [ref=e934]:
+            - generic [ref=e935]: T
+            - generic [ref=e936]: e
+            - generic [ref=e937]: a
+            - generic [ref=e938]: m
+      - generic [ref=e939]:  
+    - generic [ref=e946]:
+      - generic [ref=e947]:
+        - group "4 / 6" [ref=e948]:
+          - generic "Dott.ssa Elvira Madeo. Odontoiatra, Specialista in ortognatodonzia. Mostra dettagli al passaggio del mouse." [ref=e953]:
+            - generic:
+              - generic:
+                - generic [ref=e956]:
+                  - generic [ref=e957]: Dott.ssa Elvira Madeo
+                  - generic [ref=e958]: Odontoiatra, Specialista in ortognatodonzia
+                - generic [ref=e959]:
+                  - generic [ref=e960]: Area di attività
+                  - paragraph [ref=e961]: Si occupa nella struttura di ortodonzia, bambini e adulti
+        - group "5 / 6" [ref=e962]:
+          - generic [ref=e970]:
+            - generic [ref=e971]: Dott.ssa Dervishi Denisa
+            - generic [ref=e972]: Odontoiatra Generalista
+        - group "6 / 6" [ref=e973]:
+          - generic "Dott.ssa Cacciabue Paola. Odontoiatra Specialista in Ortodonzia. Mostra dettagli al passaggio del mouse." [ref=e978]:
+            - generic:
+              - generic:
+                - generic [ref=e981]:
+                  - generic [ref=e982]: Dott.ssa Cacciabue Paola
+                  - generic [ref=e983]: Odontoiatra Specialista in Ortodonzia
+                - generic [ref=e984]:
+                  - generic [ref=e985]: Area di attività
+                  - paragraph [ref=e986]: Si occupa nella struttura di Ortodonzia e Medicina Estetica del Viso
+                  - link "www.ortodonticapagi.com" [ref=e987] [cursor=pointer]:
+                    - /url: https://www.ortodonticapagi.com
+        - group "1 / 6" [ref=e988]:
+          - generic [ref=e996]:
+            - generic [ref=e997]: Gianni Focarelli
+            - generic [ref=e998]: Titolare e amministratore della Sorriso&Salute srl
+        - group "2 / 6" [ref=e999]:
+          - generic "Dott.ssa Moreschi Chiara. Chirurgo Orale. Mostra dettagli al passaggio del mouse." [ref=e1004]:
+            - generic:
+              - generic:
+                - generic [ref=e1007]:
+                  - generic [ref=e1008]: Dott.ssa Moreschi Chiara
+                  - generic [ref=e1009]: Chirurgo Orale
+                - generic [ref=e1010]:
+                  - generic [ref=e1011]: Area di attività
+                  - paragraph [ref=e1012]: Si occupa nella struttura di Chirurgia e Patologia Orale
+                  - link "www.chiaramoreschi.it" [ref=e1013] [cursor=pointer]:
+                    - /url: https://chiaramoreschi.it/
+        - group "3 / 6" [ref=e1014]:
+          - generic "Dott.ssa Maria Isabel Pareja Carrillo. Odontoiatra, Direttore Sanitario. Mostra dettagli al passaggio del mouse." [ref=e1019]:
+            - generic:
+              - generic:
+                - generic [ref=e1022]:
+                  - generic [ref=e1023]: Dott.ssa Maria Isabel Pareja Carrillo
+                  - generic [ref=e1024]: Odontoiatra, Direttore Sanitario
+                - generic [ref=e1025]:
+                  - generic [ref=e1026]: Area di attività
+                  - paragraph [ref=e1027]: Si occupa nella struttura di protesi e specializzata in Estetica Dentale
+        - group "4 / 6" [ref=e1028]:
+          - generic "Dott.ssa Elvira Madeo. Odontoiatra, Specialista in ortognatodonzia. Mostra dettagli al passaggio del mouse." [ref=e1033]:
+            - generic:
+              - generic:
+                - generic [ref=e1036]:
+                  - generic [ref=e1037]: Dott.ssa Elvira Madeo
+                  - generic [ref=e1038]: Odontoiatra, Specialista in ortognatodonzia
+                - generic [ref=e1039]:
+                  - generic [ref=e1040]: Area di attività
+                  - paragraph [ref=e1041]: Si occupa nella struttura di ortodonzia, bambini e adulti
+        - group "5 / 6" [ref=e1042]:
+          - generic [ref=e1050]:
+            - generic [ref=e1051]: Dott.ssa Dervishi Denisa
+            - generic [ref=e1052]: Odontoiatra Generalista
+        - group "6 / 6" [ref=e1053]:
+          - generic "Dott.ssa Cacciabue Paola. Odontoiatra Specialista in Ortodonzia. Mostra dettagli al passaggio del mouse." [ref=e1058]:
+            - generic:
+              - generic:
+                - generic [ref=e1061]:
+                  - generic [ref=e1062]: Dott.ssa Cacciabue Paola
+                  - generic [ref=e1063]: Odontoiatra Specialista in Ortodonzia
+                - generic [ref=e1064]:
+                  - generic [ref=e1065]: Area di attività
+                  - paragraph [ref=e1066]: Si occupa nella struttura di Ortodonzia e Medicina Estetica del Viso
+                  - link "www.ortodonticapagi.com" [ref=e1067] [cursor=pointer]:
+                    - /url: https://www.ortodonticapagi.com
+        - group "1 / 6" [ref=e1068]:
+          - generic [ref=e1076]:
+            - generic [ref=e1077]: Gianni Focarelli
+            - generic [ref=e1078]: Titolare e amministratore della Sorriso&Salute srl
+        - group "2 / 6" [ref=e1079]:
+          - generic "Dott.ssa Moreschi Chiara. Chirurgo Orale. Mostra dettagli al passaggio del mouse." [ref=e1084]:
+            - generic:
+              - generic:
+                - generic [ref=e1087]:
+                  - generic [ref=e1088]: Dott.ssa Moreschi Chiara
+                  - generic [ref=e1089]: Chirurgo Orale
+                - generic [ref=e1090]:
+                  - generic [ref=e1091]: Area di attività
+                  - paragraph [ref=e1092]: Si occupa nella struttura di Chirurgia e Patologia Orale
+                  - link "www.chiaramoreschi.it" [ref=e1093] [cursor=pointer]:
+                    - /url: https://chiaramoreschi.it/
+        - group "3 / 6" [ref=e1094]:
+          - generic "Dott.ssa Maria Isabel Pareja Carrillo. Odontoiatra, Direttore Sanitario. Mostra dettagli al passaggio del mouse." [ref=e1099]:
+            - generic:
+              - generic:
+                - generic [ref=e1102]:
+                  - generic [ref=e1103]: Dott.ssa Maria Isabel Pareja Carrillo
+                  - generic [ref=e1104]: Odontoiatra, Direttore Sanitario
+                - generic [ref=e1105]:
+                  - generic [ref=e1106]: Area di attività
+                  - paragraph [ref=e1107]: Si occupa nella struttura di protesi e specializzata in Estetica Dentale
+      - generic [ref=e1108]:
+        - button "Go to slide 1" [ref=e1109] [cursor=pointer]
+        - button "Go to slide 2" [ref=e1110] [cursor=pointer]
+        - button "Go to slide 3" [ref=e1111] [cursor=pointer]
+        - button "Go to slide 4" [ref=e1112] [cursor=pointer]
+        - button "Go to slide 5" [ref=e1113] [cursor=pointer]
+        - button "Go to slide 6" [ref=e1114] [cursor=pointer]
+    - generic [ref=e1116]:
+      - heading "C o n v e n z i o n i d i r e t t e" [level=2] [ref=e1120]:
+        - generic [ref=e1121]:
+          - generic [ref=e1122]:
+            - generic [ref=e1123]: C
+            - generic [ref=e1124]: o
+            - generic [ref=e1125]: "n"
+            - generic [ref=e1126]: v
+            - generic [ref=e1127]: e
+            - generic [ref=e1128]: "n"
+            - generic [ref=e1129]: z
+            - generic [ref=e1130]: i
+            - generic [ref=e1131]: o
+            - generic [ref=e1132]: "n"
+            - generic [ref=e1133]: i
+          - generic [ref=e1134]:
+            - generic [ref=e1135]: d
+            - generic [ref=e1136]: i
+            - generic [ref=e1137]: r
+            - generic [ref=e1138]: e
+            - generic [ref=e1139]: t
+            - generic [ref=e1140]: t
+            - generic [ref=e1141]: e
+      - region "Image Carousel" [ref=e1144]:
+        - generic [ref=e1145]:
+          - group "1 of 10" [ref=e1146]:
+            - figure [ref=e1147]:
+              - img "assirecre-dentista-monza" [ref=e1148]
+          - group "2 of 10" [ref=e1149]:
+            - figure [ref=e1150]:
+              - img "caspie-convenzione-dentista-monza" [ref=e1151]
+          - group "3 of 10" [ref=e1152]:
+            - figure [ref=e1153]:
+              - img "Coopsalute" [ref=e1154]
+          - group "4 of 10" [ref=e1155]:
+            - figure [ref=e1156]:
+              - img "faschim-convenzione-dentista-monza" [ref=e1157]
+          - group "5 of 10" [ref=e1158]:
+            - figure [ref=e1159]:
+              - img "fasi-convenzione-dentista-monza" [ref=e1160]
+          - group "6 of 10" [ref=e1161]:
+            - figure [ref=e1162]:
+              - img "fisde-convenzione-dentista-monza" [ref=e1163]
+          - group "7 of 10" [ref=e1164]:
+            - figure [ref=e1165]:
+              - img "mapfree-dentista-monza" [ref=e1166]
+          - group "8 of 10" [ref=e1167]:
+            - figure [ref=e1168]:
+              - img "logoHome" [ref=e1169]
+          - group "9 of 10" [ref=e1170]:
+            - figure [ref=e1171]:
+              - img "image-removebg-preview" [ref=e1172]
+          - group "10 of 10" [ref=e1173]:
+            - figure [ref=e1174]:
+              - img "health-assistance-logo" [ref=e1175]
+        - button: 
+        - button: 
+    - generic [ref=e1177]:
+      - heading "C o n v e n z i o n i i n d i r e t t e" [level=2] [ref=e1181]:
+        - generic [ref=e1182]:
+          - generic [ref=e1183]:
+            - generic [ref=e1184]: C
+            - generic [ref=e1185]: o
+            - generic [ref=e1186]: "n"
+            - generic [ref=e1187]: v
+            - generic [ref=e1188]: e
+            - generic [ref=e1189]: "n"
+            - generic [ref=e1190]: z
+            - generic [ref=e1191]: i
+            - generic [ref=e1192]: o
+            - generic [ref=e1193]: "n"
+            - generic [ref=e1194]: i
+          - generic [ref=e1195]:
+            - generic [ref=e1196]: i
+            - generic [ref=e1197]: "n"
+            - generic [ref=e1198]: d
+            - generic [ref=e1199]: i
+            - generic [ref=e1200]: r
+            - generic [ref=e1201]: e
+            - generic [ref=e1202]: t
+            - generic [ref=e1203]: t
+            - generic [ref=e1204]: e
+      - region "Image Carousel" [ref=e1207]:
+        - generic [ref=e1208]:
+          - group "1 of 7" [ref=e1209]:
+            - figure [ref=e1210]:
+              - img "Ade" [ref=e1211]
+          - group "2 of 7" [ref=e1212]:
+            - figure [ref=e1213]:
+              - img "Insiemesalute" [ref=e1214]
+          - group "3 of 7" [ref=e1215]:
+            - figure [ref=e1216]:
+              - img "Winsalute" [ref=e1217]
+          - group "4 of 7" [ref=e1218]:
+            - figure [ref=e1219]:
+              - img "ALDAI" [ref=e1220]
+          - group "5 of 7" [ref=e1221]:
+            - figure [ref=e1222]:
+              - img "Assilt" [ref=e1223]
+          - group "6 of 7" [ref=e1224]:
+            - figure [ref=e1225]:
+              - img "Odontonetwork" [ref=e1226]
+          - group "7 of 7" [ref=e1227]:
+            - figure [ref=e1228]:
+              - img "Fondo_salute" [ref=e1229]
+        - button: 
+        - button: 
+    - heading "C o n t a t t a c i p e r u n S o r r i s o M i g l i o r e" [level=2] [ref=e1235]:
+      - generic [ref=e1236]:
+        - generic [ref=e1237]:
+          - generic [ref=e1238]: C
+          - generic [ref=e1239]: o
+          - generic [ref=e1240]: "n"
+          - generic [ref=e1241]: t
+          - generic [ref=e1242]: a
+          - generic [ref=e1243]: t
+          - generic [ref=e1244]: t
+          - generic [ref=e1245]: a
+          - generic [ref=e1246]: c
+          - generic [ref=e1247]: i
+        - generic [ref=e1248]:
+          - generic [ref=e1249]: p
+          - generic [ref=e1250]: e
+          - generic [ref=e1251]: r
+        - generic [ref=e1252]:
+          - generic [ref=e1253]: u
+          - generic [ref=e1254]: "n"
+      - generic [ref=e1255]:
+        - generic [ref=e1256]:
+          - generic [ref=e1257]: S
+          - generic [ref=e1258]: o
+          - generic [ref=e1259]: r
+          - generic [ref=e1260]: r
+          - generic [ref=e1261]: i
+          - generic [ref=e1262]: s
+          - generic [ref=e1263]: o
+        - generic [ref=e1264]:
+          - generic [ref=e1265]: M
+          - generic [ref=e1266]: i
+          - generic [ref=e1267]: g
+          - generic [ref=e1268]: l
+          - generic [ref=e1269]: i
+          - generic [ref=e1270]: o
+          - generic [ref=e1271]: r
+          - generic [ref=e1272]: e
+  - generic [ref=e1277]:
+    - generic [ref=e1278]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=e1282]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=e1287] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=e1288]:
+          - img [ref=e1290]
+          - generic [ref=e1292]: Richiedi appuntamento
+    - generic [ref=e1293]:
+      - generic [ref=e1294]:
+        - generic [ref=e1298]:
+          - link "Cerchi un Dentista in Brianza?" [ref=e1299] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=e1300] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=e1304]:
+          - listitem [ref=e1305]:
+            - link "Facebook" [ref=e1306] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=e1307]: 
+          - listitem [ref=e1308]:
+            - link "Instagram" [ref=e1309] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=e1310]: 
+          - listitem [ref=e1311]:
+            - link "Whatsapp" [ref=e1312] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=e1313]: 
+          - listitem [ref=e1314]:
+            - link "Messanger" [ref=e1315] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=e1316]: 
+      - generic [ref=e1317]:
+        - heading "Direttore Sanitario" [level=3] [ref=e1320]
+        - paragraph [ref=e1323]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=e1326]
+        - list [ref=e1329]:
+          - listitem [ref=e1330]:
+            - link "Cookie Policy" [ref=e1331] [cursor=pointer]:
+              - /url: /cookie-policy/
+          - listitem [ref=e1332]:
+            - link "Privacy Policy" [ref=e1333] [cursor=pointer]:
+              - /url: /privacy-policy/
+      - generic [ref=e1334]:
+        - heading "Orari di apertura" [level=3] [ref=e1337]
+        - paragraph [ref=e1340]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=e1341]:
+        - heading "Contatti" [level=3] [ref=e1344]
+        - link "+39 039 2022489" [ref=e1348] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=e1349]:
+            - img [ref=e1352]
+            - heading "+39 039 2022489" [level=3] [ref=e1357]
+        - link "info@sorrisoesalute.it" [ref=e1361] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=e1362]:
+            - img [ref=e1365]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=e1374]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=e1378] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e1379]:
+            - generic [ref=e1382]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=e1384]
+        - paragraph [ref=e1386]:
+          - strong [ref=e1387]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=e1391]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=e1392]: desktop
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

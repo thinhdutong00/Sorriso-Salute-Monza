@@ -1,0 +1,321 @@
+---
+import "../../styles/global.css";
+import FaviconLinks from "../FaviconLinks.astro";
+import GoogleAdsTracking from "../GoogleAdsTracking.astro";
+import type { ImplantologiaPage } from "../../data/implantologiaPages";
+import { implantologiaPages } from "../../data/implantologiaPages";
+import ImplantologiaLeadForm from "./ImplantologiaLeadForm.astro";
+
+interface Props {
+  page: ImplantologiaPage;
+}
+
+const { page } = Astro.props;
+const canonical = `https://sorrisoesalutemonza.it/implantologia/${page.slug}/`;
+const relatedPages = implantologiaPages.filter((item) => item.slug !== page.slug);
+const logo = "/assets/brand/sorriso-salute-logo-360.webp";
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{page.title}</title>
+    <meta name="description" content={page.metaDescription} />
+    <meta name="theme-color" content="#0E384C" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:title" content={page.title} />
+    <meta property="og:description" content={page.metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`https://sorrisoesalutemonza.it${page.heroImage}`} />
+    <FaviconLinks />
+    <GoogleAdsTracking />
+  </head>
+  <body class="implant-landing">
+    <header class="implant-header">
+      <div class="implant-container implant-header__inner">
+        <a href="/" class="implant-logo" aria-label="Sorriso e Salute Monza - Home">
+          <img src={logo} width="360" height="87" alt="Studio Dentistico Sorriso e Salute" />
+        </a>
+        <nav aria-label="Navigazione implantologia">
+          <a href="/implantologia/">Implantologia</a>
+          <a href="#richiedi-valutazione">Richiedi una visita</a>
+          <a class="implant-header__phone" href="tel:+390392022489">039 2022489</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="implant-hero">
+        <div class="implant-container implant-hero__grid">
+          <div class="implant-hero__copy">
+            <p class="implant-kicker">Implantologia a Monza</p>
+            <h1>{page.h1}</h1>
+            <p class="implant-hero__lead">{page.heroIntro}</p>
+            <p class="implant-clinical-note">
+              La soluzione viene definita previa valutazione clinica. I risultati possono variare in base alla situazione
+              clinica e il piano di cura dipende dal singolo caso.
+            </p>
+            <div class="implant-actions">
+              <a class="implant-button implant-button--primary" href="#richiedi-valutazione">Prenota una valutazione</a>
+              <a
+                class="implant-button implant-button--whatsapp"
+                href="https://wa.me/393892490181"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-google-ads-conversion="whatsapp-implantologia"
+              >Scrivi su WhatsApp</a>
+            </div>
+            <a class="implant-phone-link" href="tel:+390392022489">Preferisci chiamare? 039 2022489</a>
+          </div>
+          <div class="implant-hero__media">
+            <img src={page.heroImage} alt={page.heroImageAlt} width="1080" height="720" />
+          </div>
+        </div>
+      </section>
+
+      <section class="implant-section implant-section--light" aria-labelledby="quando-title">
+        <div class="implant-container implant-two-column">
+          <div>
+            <p class="implant-kicker">Valutazione personalizzata</p>
+            <h2 id="quando-title">Quando può essere indicato</h2>
+            <p>
+              La visita permette di capire le opzioni disponibili e di confrontare benefici, limiti e alternative senza
+              dare per scontata l'indicazione implantare.
+            </p>
+          </div>
+          <ul class="implant-check-list">
+            {page.whenIndicated.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      <section class="implant-section" aria-labelledby="percorso-title">
+        <div class="implant-container">
+          <div class="implant-heading">
+            <p class="implant-kicker">Dalla diagnosi ai controlli</p>
+            <h2 id="percorso-title">Come funziona il percorso</h2>
+          </div>
+          <div class="implant-step-grid">
+            {page.journey.map((step, index) => (
+              <article>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="implant-section implant-section--dark" aria-labelledby="studio-title">
+        <div class="implant-container implant-two-column">
+          <div>
+            <p class="implant-kicker implant-kicker--light">Sorriso &amp; Salute Monza</p>
+            <h2 id="studio-title">Perché rivolgersi allo studio</h2>
+            <p>
+              Il percorso viene impostato con attenzione alla diagnosi, al progetto protesico e al mantenimento nel tempo.
+            </p>
+          </div>
+          <ul class="implant-reason-list">
+            {page.reasons.map((reason) => <li>{reason}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      <section class="implant-section implant-section--light" aria-labelledby="faq-title">
+        <div class="implant-container implant-faq-layout">
+          <div>
+            <p class="implant-kicker">Domande frequenti</p>
+            <h2 id="faq-title">Informazioni utili prima della visita</h2>
+          </div>
+          <div class="implant-faqs">
+            {page.faqs.map((faq, index) => (
+              <details open={index === 0}>
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="implant-section" aria-labelledby="approfondimenti-title">
+        <div class="implant-container">
+          <div class="implant-heading">
+            <p class="implant-kicker">Approfondisci</p>
+            <h2 id="approfondimenti-title">Altri percorsi di implantologia</h2>
+          </div>
+          <div class="implant-related-grid">
+            <a class="implant-related-card implant-related-card--hub" href="/implantologia/">
+              <span>Panoramica</span>
+              <strong>Hub Implantologia</strong>
+              <small>Scopri il percorso implantologico dello studio.</small>
+            </a>
+            {relatedPages.map((related) => (
+              <a class="implant-related-card" href={`/implantologia/${related.slug}/`}>
+                <span>Soluzione</span>
+                <strong>{related.cardTitle}</strong>
+                <small>{related.metaDescription}</small>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div class="implant-container">
+        <ImplantologiaLeadForm slug={page.slug} serviceInterest={page.serviceInterest} />
+      </div>
+    </main>
+
+    <footer class="implant-footer">
+      <div class="implant-container implant-footer__grid">
+        <div>
+          <img src={logo} width="360" height="87" alt="Studio Dentistico Sorriso e Salute" loading="lazy" />
+          <p>Studio Dentistico Sorriso &amp; Salute — Monza</p>
+        </div>
+        <div>
+          <strong>Contatti</strong>
+          <a href="tel:+390392022489">Telefono: 039 2022489</a>
+          <a
+            href="https://wa.me/393892490181"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-google-ads-conversion="whatsapp-implantologia"
+          >WhatsApp: 389 2490181</a>
+        </div>
+        <div>
+          <strong>Informazioni</strong>
+          <a href="/privacy-policy/">Privacy Policy</a>
+          <a href="/cookie-policy/">Cookie Policy</a>
+          <a href="/implantologia/">Implantologia</a>
+        </div>
+      </div>
+    </footer>
+
+    <style is:global>
+      :root {
+        --implant-ink: #0e384c;
+        --implant-ink-dark: #082a38;
+        --implant-teal: #147d83;
+        --implant-mint: #dff4f0;
+        --implant-paper: #f6faf9;
+        --implant-line: #d7e4e5;
+      }
+
+      body.implant-landing {
+        margin: 0;
+        background: #fff;
+        color: #173746;
+        font-family: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
+      }
+
+      body.implant-landing *, body.implant-landing *::before, body.implant-landing *::after { box-sizing: border-box; }
+      body.implant-landing a { color: inherit; }
+      .implant-container { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+
+      .implant-header {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        border-bottom: 1px solid rgba(14, 56, 76, .1);
+        background: rgba(255, 255, 255, .96);
+        backdrop-filter: blur(14px);
+      }
+      .implant-header__inner { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+      .implant-logo img { display: block; width: 210px; height: auto; }
+      .implant-header nav { display: flex; align-items: center; gap: 22px; }
+      .implant-header nav a { font-size: 14px; font-weight: 700; text-decoration: none; }
+      .implant-header__phone { padding: 11px 16px; border-radius: 999px; background: var(--implant-ink); color: #fff !important; }
+
+      .implant-hero { padding: clamp(64px, 8vw, 110px) 0; background: linear-gradient(135deg, #edf8f6 0%, #fff 58%, #edf5f6 100%); }
+      .implant-hero__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr); align-items: center; gap: clamp(40px, 7vw, 86px); }
+      .implant-kicker { margin: 0 0 12px; color: var(--implant-teal); font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+      .implant-kicker--light { color: #9ce2d7; }
+      .implant-hero h1 { max-width: 760px; margin: 0; color: var(--implant-ink); font-size: clamp(42px, 6vw, 72px); line-height: 1.02; letter-spacing: -.045em; }
+      .implant-hero__lead { max-width: 690px; margin: 26px 0 0; font-size: clamp(18px, 2.2vw, 23px); line-height: 1.55; }
+      .implant-clinical-note { max-width: 690px; margin: 18px 0 0; color: #536d78; font-size: 14px; line-height: 1.65; }
+      .implant-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+      .implant-button { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; padding: 0 22px; border-radius: 999px; font-weight: 800; text-decoration: none; }
+      .implant-button--primary { background: var(--implant-ink); color: #fff !important; }
+      .implant-button--whatsapp { border: 1px solid #17865d; background: #eaf8f1; color: #0d6f4b !important; }
+      .implant-phone-link { display: inline-block; margin-top: 18px; color: var(--implant-ink); font-weight: 800; }
+      .implant-hero__media { overflow: hidden; border-radius: 34px; background: #fff; box-shadow: 0 26px 70px rgba(8, 42, 56, .16); }
+      .implant-hero__media img { display: block; width: 100%; aspect-ratio: 1 / .84; object-fit: cover; }
+
+      .implant-section { padding: clamp(72px, 9vw, 118px) 0; }
+      .implant-section--light { background: var(--implant-paper); }
+      .implant-section--dark { background: var(--implant-ink-dark); color: #e9f5f4; }
+      .implant-section h2, .implant-lead h2 { margin: 0; color: var(--implant-ink); font-size: clamp(34px, 4.5vw, 54px); line-height: 1.08; letter-spacing: -.035em; }
+      .implant-section--dark h2 { color: #fff; }
+      .implant-section p { line-height: 1.7; }
+      .implant-two-column, .implant-faq-layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(42px, 8vw, 100px); align-items: start; }
+      .implant-check-list, .implant-reason-list { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
+      .implant-check-list li, .implant-reason-list li { position: relative; padding: 22px 24px 22px 56px; border: 1px solid var(--implant-line); border-radius: 18px; background: #fff; line-height: 1.55; }
+      .implant-check-list li::before, .implant-reason-list li::before { content: "✓"; position: absolute; left: 22px; color: var(--implant-teal); font-weight: 900; }
+      .implant-reason-list li { border-color: rgba(255, 255, 255, .18); background: rgba(255, 255, 255, .07); }
+      .implant-reason-list li::before { color: #9ce2d7; }
+      .implant-heading { max-width: 760px; margin-bottom: 42px; }
+      .implant-step-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+      .implant-step-grid article { padding: 28px; border: 1px solid var(--implant-line); border-radius: 22px; background: #fff; }
+      .implant-step-grid article > span { color: var(--implant-teal); font-size: 12px; font-weight: 900; letter-spacing: .1em; }
+      .implant-step-grid h3 { margin: 24px 0 10px; color: var(--implant-ink); font-size: 20px; }
+      .implant-step-grid p { margin: 0; color: #536d78; font-size: 15px; }
+      .implant-faqs { display: grid; gap: 12px; }
+      .implant-faqs details { border: 1px solid var(--implant-line); border-radius: 18px; background: #fff; padding: 0 22px; }
+      .implant-faqs summary { padding: 22px 0; color: var(--implant-ink); font-weight: 800; cursor: pointer; }
+      .implant-faqs p { margin: -4px 0 22px; color: #536d78; }
+      .implant-related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+      .implant-related-card { min-height: 190px; display: flex; flex-direction: column; padding: 24px; border: 1px solid var(--implant-line); border-radius: 20px; background: #fff; text-decoration: none; }
+      .implant-related-card--hub { background: var(--implant-ink); color: #fff !important; }
+      .implant-related-card span { color: var(--implant-teal); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+      .implant-related-card--hub span { color: #9ce2d7; }
+      .implant-related-card strong { margin-top: 16px; font-size: 21px; }
+      .implant-related-card small { margin-top: 10px; line-height: 1.55; opacity: .75; }
+
+      .implant-lead { display: grid; grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); gap: clamp(40px, 7vw, 90px); margin-bottom: clamp(72px, 9vw, 118px); padding: clamp(34px, 6vw, 68px); border-radius: 30px; background: var(--implant-mint); }
+      .implant-lead__intro > p:not(.implant-kicker) { line-height: 1.7; }
+      .implant-lead__contacts { display: grid; gap: 10px; margin-top: 24px; }
+      .implant-lead__contacts a { color: var(--implant-ink); font-weight: 800; }
+      .implant-lead__form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 28px; border-radius: 22px; background: #fff; box-shadow: 0 18px 50px rgba(8, 42, 56, .1); }
+      .implant-lead__form label { display: grid; gap: 7px; color: var(--implant-ink); font-size: 13px; font-weight: 800; }
+      .implant-lead__form label:nth-of-type(3), .implant-lead__form label:nth-of-type(4) { grid-column: 1 / -1; }
+      .implant-lead__form input, .implant-lead__form textarea { width: 100%; border: 1px solid #bfd1d4; border-radius: 12px; padding: 13px 14px; background: #fff; color: #173746; font: inherit; }
+      .implant-lead__form textarea { resize: vertical; }
+      .implant-lead__privacy, .implant-lead__error, .implant-lead__form button { grid-column: 1 / -1; }
+      .implant-lead__privacy { margin: 0; color: #617780; font-size: 12px; line-height: 1.5; }
+      .implant-lead__error { min-height: 20px; margin: 0; color: #a12626; font-size: 13px; }
+      .implant-lead__form button { min-height: 52px; border: 0; border-radius: 999px; background: var(--implant-ink); color: #fff; font: inherit; font-weight: 800; cursor: pointer; }
+      .implant-lead__form button:disabled { cursor: wait; opacity: .65; }
+
+      .implant-footer { padding: 48px 0; background: #061f2a; color: #dce9eb; }
+      .implant-footer__grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 36px; }
+      .implant-footer img { width: 220px; height: auto; filter: brightness(0) invert(1); }
+      .implant-footer__grid > div { display: grid; align-content: start; gap: 10px; }
+      .implant-footer a { text-decoration: none; }
+
+      @media (max-width: 900px) {
+        .implant-header nav > a:not(.implant-header__phone) { display: none; }
+        .implant-hero__grid, .implant-two-column, .implant-faq-layout, .implant-lead { grid-template-columns: 1fr; }
+        .implant-hero__media { max-width: 680px; }
+        .implant-step-grid, .implant-related-grid { grid-template-columns: 1fr 1fr; }
+      }
+
+      @media (max-width: 620px) {
+        .implant-container { width: min(100% - 28px, 1180px); }
+        .implant-header__inner { min-height: 68px; }
+        .implant-logo img { width: 165px; }
+        .implant-header__phone { padding: 10px 13px; font-size: 12px !important; }
+        .implant-hero { padding-top: 52px; }
+        .implant-actions, .implant-button { width: 100%; }
+        .implant-step-grid, .implant-related-grid, .implant-footer__grid, .implant-lead__form { grid-template-columns: 1fr; }
+        .implant-lead { padding: 28px 18px; }
+        .implant-lead__form { padding: 20px; }
+        .implant-lead__form label, .implant-lead__privacy, .implant-lead__error, .implant-lead__form button { grid-column: 1; }
+      }
+    </style>
+  </body>
+</html>

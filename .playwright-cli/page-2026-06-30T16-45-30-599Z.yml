@@ -1,0 +1,197 @@
+- generic [active] [ref=f87e1]:
+  - generic [ref=f87e5]:
+    - generic [ref=f87e6]: STUDIO DENTISTICO
+    - strong [ref=f87e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f87e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f87e12]:
+    - link "default-logo" [ref=f87e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f87e20]
+    - generic [ref=f87e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f87e23] [cursor=pointer]:
+            - generic [ref=f87e24]: 
+          - generic [ref=f87e25]:
+            - list:
+              - text:  
+              - listitem [ref=f87e26]:
+                - link "Dicono di noi" [ref=f87e27] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f87e28]: Dicono di noi
+              - listitem [ref=f87e29]:
+                - link "La Struttura" [ref=f87e30] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f87e31]: La Struttura
+              - listitem [ref=f87e32]:
+                - link "Convenzioni" [ref=f87e33] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f87e34]: Convenzioni
+              - listitem [ref=f87e35]:
+                - link "Urgenze" [ref=f87e36] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f87e37]: Urgenze
+              - listitem [ref=f87e38]:
+                - link "Chiama in studio" [ref=f87e39] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f87e40]: Chiama in studio
+                  - img [ref=f87e41]
+              - listitem [ref=f87e43]:
+                - button "Menu" [ref=f87e44] [cursor=pointer]:
+                  - generic [ref=f87e49]: Menu
+            - button "X" [ref=f87e51] [cursor=pointer]
+  - generic [ref=f87e54]:
+    - generic [ref=f87e57]:
+      - heading "C h i r u r g i a o r a l e" [level=1] [ref=f87e60]:
+        - generic [ref=f87e62]:
+          - generic [ref=f87e63]: C
+          - generic [ref=f87e64]: h
+          - generic [ref=f87e65]: i
+          - generic [ref=f87e66]: r
+          - generic [ref=f87e67]: u
+          - generic [ref=f87e68]: r
+          - generic [ref=f87e69]: g
+          - generic [ref=f87e70]: i
+          - generic [ref=f87e71]: a
+        - generic [ref=f87e73]:
+          - generic [ref=f87e74]: o
+          - generic [ref=f87e75]: r
+          - generic [ref=f87e76]: a
+          - generic [ref=f87e77]: l
+          - generic [ref=f87e78]: e
+      - paragraph [ref=f87e82]: Affronta estrazioni e piccoli interventi con un percorso pianificato, attento al comfort e al recupero.
+    - generic [ref=f87e92]:
+      - generic [ref=f87e93]:
+        - link "Chirurgia estrattiva " [expanded] [ref=f87e95] [cursor=pointer]:
+          - /url: "#collapse-9dcfa4d6a28fbd50f381"
+          - generic [ref=f87e96]: Chirurgia estrattiva
+          - generic [ref=f87e97]:
+            - text: 
+            - generic [ref=f87e99]: 
+        - generic "Chirurgia estrattiva " [ref=f87e100]:
+          - paragraph [ref=f87e102]: Estrazione di denti erotti, denti del giudizio e denti in inclusione ossea.
+      - link "Chirurgia endodontica " [ref=f87e105] [cursor=pointer]:
+        - /url: "#collapse-ae70aa86a28fbd50f381"
+        - generic [ref=f87e106]: Chirurgia endodontica
+        - generic [ref=f87e107]:
+          - generic [ref=f87e109]: 
+          - text: 
+      - link "Chirurgia di lesioni cistiche e neoformazioni del cavo orale " [ref=f87e112] [cursor=pointer]:
+        - /url: "#collapse-bcee0f16a28fbd50f381"
+        - generic [ref=f87e113]: Chirurgia di lesioni cistiche e neoformazioni del cavo orale
+        - generic [ref=f87e114]:
+          - generic [ref=f87e116]: 
+          - text: 
+      - link "Chirurgia Ortodontica " [ref=f87e119] [cursor=pointer]:
+        - /url: "#collapse-fd98bf56a28fbd50f381"
+        - generic [ref=f87e120]: Chirurgia Ortodontica
+        - generic [ref=f87e121]:
+          - generic [ref=f87e123]: 
+          - text: 
+      - link "Chirurgia preprotesica " [ref=f87e126] [cursor=pointer]:
+        - /url: "#collapse-f1020286a28fbd50f381"
+        - generic [ref=f87e127]: Chirurgia preprotesica
+        - generic [ref=f87e128]:
+          - generic [ref=f87e130]: 
+          - text: 
+      - link "Chirurgia mucogengivale " [ref=f87e133] [cursor=pointer]:
+        - /url: "#collapse-0bc65646a28fbd50f381"
+        - generic [ref=f87e134]: Chirurgia mucogengivale
+        - generic [ref=f87e135]:
+          - generic [ref=f87e137]: 
+          - text: 
+      - link "Chirurgia orale avanzata ricostruttiva e rigenerativa " [ref=f87e140] [cursor=pointer]:
+        - /url: "#collapse-d49770a6a28fbd50f381"
+        - generic [ref=f87e141]: Chirurgia orale avanzata ricostruttiva e rigenerativa
+        - generic [ref=f87e142]:
+          - generic [ref=f87e144]: 
+          - text: 
+      - link "Diagnostica lesioni del cavo orale " [ref=f87e147] [cursor=pointer]:
+        - /url: "#collapse-a00102f6a28fbd50f381"
+        - generic [ref=f87e148]: Diagnostica lesioni del cavo orale
+        - generic [ref=f87e149]:
+          - generic [ref=f87e151]: 
+          - text: 
+  - generic [ref=f87e162]:
+    - generic [ref=f87e163]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f87e167]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f87e172] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f87e173]:
+          - img [ref=f87e175]
+          - generic [ref=f87e177]: Richiedi appuntamento
+    - generic [ref=f87e178]:
+      - generic [ref=f87e179]:
+        - generic [ref=f87e183]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f87e184] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f87e185] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f87e189]:
+          - listitem [ref=f87e190]:
+            - link "Facebook" [ref=f87e191] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f87e192]: 
+          - listitem [ref=f87e193]:
+            - link "Instagram" [ref=f87e194] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f87e195]: 
+          - listitem [ref=f87e196]:
+            - link "Whatsapp" [ref=f87e197] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f87e198]: 
+          - listitem [ref=f87e199]:
+            - link "Messanger" [ref=f87e200] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f87e201]: 
+      - generic [ref=f87e202]:
+        - heading "Direttore Sanitario" [level=3] [ref=f87e205]
+        - paragraph [ref=f87e208]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f87e211]
+        - list [ref=f87e214]:
+          - listitem [ref=f87e215]:
+            - link "Cookie Policy" [ref=f87e216] [cursor=pointer]:
+              - /url: /attivita/chirurgia-orale/cookie-policy/
+          - listitem [ref=f87e217]:
+            - link "Privacy Policy" [ref=f87e218] [cursor=pointer]:
+              - /url: /attivita/chirurgia-orale/privacy-policy/
+      - generic [ref=f87e219]:
+        - heading "Orari di apertura" [level=3] [ref=f87e222]
+        - paragraph [ref=f87e225]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f87e226]:
+        - heading "Contatti" [level=3] [ref=f87e229]
+        - link "+39 039 2022489" [ref=f87e233] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f87e234]:
+            - img [ref=f87e237]
+            - heading "+39 039 2022489" [level=3] [ref=f87e242]
+        - link "info@sorrisoesalute.it" [ref=f87e246] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f87e247]:
+            - img [ref=f87e250]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f87e259]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f87e263] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f87e264]:
+            - generic [ref=f87e267]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f87e269]
+        - paragraph [ref=f87e271]:
+          - strong [ref=f87e272]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f87e276]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f87e277]: tablet
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - generic: Servizio
+        - strong: Chirurgia orale
+      - link "Richiedi una visita":
+        - /url: /richiesta-generale/?servizio=chirurgia-orale

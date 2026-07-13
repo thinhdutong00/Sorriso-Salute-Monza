@@ -1,0 +1,224 @@
+- generic [active] [ref=f730e1]:
+  - generic [ref=f730e5]:
+    - generic [ref=f730e6]: STUDIO DENTISTICO
+    - strong [ref=f730e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f730e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f730e12]:
+    - link "default-logo" [ref=f730e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f730e20]
+    - generic [ref=f730e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f730e23] [cursor=pointer]:
+            - generic [ref=f730e24]: 
+          - generic [ref=f730e25]:
+            - list [ref=f730e26]:
+              - text:  
+              - listitem [ref=f730e27]:
+                - link "Dicono di noi" [ref=f730e28] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f730e29]: Dicono di noi
+              - listitem [ref=f730e30]:
+                - link "La Struttura" [ref=f730e31] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f730e32]: La Struttura
+              - listitem [ref=f730e33]:
+                - link "Convenzioni" [ref=f730e34] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f730e35]: Convenzioni
+              - listitem [ref=f730e36]:
+                - link "Urgenze" [ref=f730e37] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f730e38]: Urgenze
+              - listitem [ref=f730e39]:
+                - link "Chiama in studio" [ref=f730e40] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f730e41]: Chiama in studio
+                  - img [ref=f730e42]
+              - listitem [ref=f730e44]:
+                - button "Menu" [ref=f730e45] [cursor=pointer]:
+                  - generic [ref=f730e50]: Menu
+            - button "X" [ref=f730e52] [cursor=pointer]
+  - generic [ref=f730e55]:
+    - generic [ref=f730e58]:
+      - heading "T a y l o r S m i t h" [level=1] [ref=f730e61]:
+        - generic [ref=f730e63]:
+          - generic [ref=f730e64]: T
+          - generic [ref=f730e65]: a
+          - generic [ref=f730e66]: "y"
+          - generic [ref=f730e67]: l
+          - generic [ref=f730e68]: o
+          - generic [ref=f730e69]: r
+        - generic [ref=f730e71]:
+          - generic [ref=f730e72]: S
+          - generic [ref=f730e73]: m
+          - generic [ref=f730e74]: i
+          - generic [ref=f730e75]: t
+          - generic [ref=f730e76]: h
+      - list [ref=f730e80]:
+        - listitem [ref=f730e81]:
+          - link "Home" [ref=f730e82] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=f730e83]:
+          - img [ref=f730e85]
+        - listitem [ref=f730e87]:
+          - link "Equipe" [ref=f730e88] [cursor=pointer]:
+            - /url: /doctors/
+        - listitem [ref=f730e89]:
+          - img [ref=f730e91]
+        - listitem [ref=f730e93]: Taylor Smith
+    - generic [ref=f730e95]:
+      - generic [ref=f730e96]:
+        - heading "M y E x p e r t i s e" [level=2] [ref=f730e100]:
+          - generic [ref=f730e101]:
+            - generic [ref=f730e102]:
+              - generic [ref=f730e103]: M
+              - generic [ref=f730e104]: "y"
+            - generic [ref=f730e105]:
+              - generic [ref=f730e106]: E
+              - generic [ref=f730e107]: x
+              - generic [ref=f730e108]: p
+              - generic [ref=f730e109]: e
+              - generic [ref=f730e110]: r
+              - generic [ref=f730e111]: t
+              - generic [ref=f730e112]: i
+              - generic [ref=f730e113]: s
+              - generic [ref=f730e114]: e
+        - generic [ref=f730e115]:
+          - generic [ref=f730e121]:
+            - generic [ref=f730e123]: Healing Touch Therapy
+            - generic [ref=f730e125]:
+              - generic [ref=f730e126]: "0"
+              - text: "%"
+          - generic [ref=f730e132]:
+            - generic [ref=f730e134]: Pain Management Clinic
+            - generic [ref=f730e136]:
+              - generic [ref=f730e137]: "0"
+              - text: "%"
+          - generic [ref=f730e143]:
+            - generic [ref=f730e145]: Testing Services
+            - generic [ref=f730e147]:
+              - generic [ref=f730e148]: "0"
+              - text: "%"
+        - generic [ref=f730e149]:
+          - heading "Feature" [level=3] [ref=f730e152]
+          - heading "K n o w a b o u t t a y l o r" [level=2] [ref=f730e155]:
+            - generic [ref=f730e156]:
+              - generic [ref=f730e157]:
+                - generic [ref=f730e158]: K
+                - generic [ref=f730e159]: "n"
+                - generic [ref=f730e160]: o
+                - generic [ref=f730e161]: w
+              - generic [ref=f730e162]:
+                - generic [ref=f730e163]: a
+                - generic [ref=f730e164]: b
+                - generic [ref=f730e165]: o
+                - generic [ref=f730e166]: u
+                - generic [ref=f730e167]: t
+            - generic [ref=f730e169]:
+              - generic [ref=f730e170]: t
+              - generic [ref=f730e171]: a
+              - generic [ref=f730e172]: "y"
+              - generic [ref=f730e173]: l
+              - generic [ref=f730e174]: o
+              - generic [ref=f730e175]: r
+      - generic [ref=f730e182]:
+        - generic [ref=f730e184]:
+          - heading "Taylor Smith" [level=2] [ref=f730e185]
+          - paragraph [ref=f730e186]: City Tour Guide
+        - list [ref=f730e188]:
+          - listitem [ref=f730e189]:
+            - link "Facebook" [ref=f730e190] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f730e191]: 
+          - listitem [ref=f730e192]:
+            - link "Twitter" [ref=f730e193] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f730e194]: 
+          - listitem [ref=f730e195]:
+            - link "Pinterest" [ref=f730e196] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f730e197]: 
+  - generic [ref=f730e201]:
+    - generic [ref=f730e202]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f730e206]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f730e211] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f730e212]:
+          - img [ref=f730e214]
+          - generic [ref=f730e216]: Richiedi appuntamento
+    - generic [ref=f730e217]:
+      - generic [ref=f730e218]:
+        - generic [ref=f730e222]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f730e223] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f730e224] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f730e228]:
+          - listitem [ref=f730e229]:
+            - link "Facebook" [ref=f730e230] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f730e231]: 
+          - listitem [ref=f730e232]:
+            - link "Instagram" [ref=f730e233] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f730e234]: 
+          - listitem [ref=f730e235]:
+            - link "Whatsapp" [ref=f730e236] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f730e237]: 
+          - listitem [ref=f730e238]:
+            - link "Messanger" [ref=f730e239] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f730e240]: 
+      - generic [ref=f730e241]:
+        - heading "Direttore Sanitario" [level=3] [ref=f730e244]
+        - paragraph [ref=f730e247]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f730e250]
+        - list [ref=f730e253]:
+          - listitem [ref=f730e254]:
+            - link "Cookie Policy" [ref=f730e255] [cursor=pointer]:
+              - /url: /doctors/taylor-smith/cookie-policy/
+          - listitem [ref=f730e256]:
+            - link "Privacy Policy" [ref=f730e257] [cursor=pointer]:
+              - /url: /doctors/taylor-smith/privacy-policy/
+      - generic [ref=f730e258]:
+        - heading "Orari di apertura" [level=3] [ref=f730e261]
+        - paragraph [ref=f730e264]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f730e265]:
+        - heading "Contatti" [level=3] [ref=f730e268]
+        - link "+39 039 2022489" [ref=f730e272] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f730e273]:
+            - img [ref=f730e276]
+            - heading "+39 039 2022489" [level=3] [ref=f730e281]
+        - link "info@sorrisoesalute.it" [ref=f730e285] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f730e286]:
+            - img [ref=f730e289]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f730e298]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f730e302] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f730e303]:
+            - generic [ref=f730e306]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f730e308]
+        - paragraph [ref=f730e310]:
+          - strong [ref=f730e311]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f730e315]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f730e316]: mobile
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

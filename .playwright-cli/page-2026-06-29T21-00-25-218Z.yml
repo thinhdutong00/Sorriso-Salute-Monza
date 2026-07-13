@@ -1,0 +1,428 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: STUDIO DENTISTICO
+    - strong [ref=e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=e12]:
+    - link "default-logo" [ref=e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=e20]
+    - navigation [ref=e24]:
+      - text: 
+      - list [ref=e26]:
+        - text:  
+        - listitem [ref=e27]:
+          - link "Dicono di noi" [ref=e28] [cursor=pointer]:
+            - /url: /recensioni-studio-dentistico-monza/
+            - generic [ref=e29]: Dicono di noi
+        - listitem [ref=e30]:
+          - link "La Struttura" [ref=e31] [cursor=pointer]:
+            - /url: /struttura-studio-dentistico-monza/
+            - generic [ref=e32]: La Struttura
+        - listitem [ref=e33]:
+          - link "Convenzioni" [ref=e34] [cursor=pointer]:
+            - /url: /convenzioni-dirette-studio-dentistico-monza/
+            - generic [ref=e35]: Convenzioni
+        - listitem [ref=e36]:
+          - link "Urgenze" [ref=e37] [cursor=pointer]:
+            - /url: /urgenze/
+            - generic [ref=e38]: Urgenze
+        - listitem [ref=e39]:
+          - link "Chiama in studio" [ref=e40] [cursor=pointer]:
+            - /url: tel:+390392022489
+            - generic [ref=e41]: Chiama in studio
+            - img [ref=e42]
+        - listitem [ref=e44]:
+          - button "Menu" [ref=e45] [cursor=pointer]:
+            - generic [ref=e50]: Menu
+  - generic [ref=e53]:
+    - heading "D i c o n o d i n o i" [level=1] [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - generic [ref=e62]: D
+          - generic [ref=e63]: i
+          - generic [ref=e64]: c
+          - generic [ref=e65]: o
+          - generic [ref=e66]: "n"
+          - generic [ref=e67]: o
+        - generic [ref=e68]:
+          - generic [ref=e69]: d
+          - generic [ref=e70]: i
+        - generic [ref=e71]:
+          - generic [ref=e72]: "n"
+          - generic [ref=e73]: o
+          - generic [ref=e74]: i
+    - generic [ref=e76]:
+      - heading "Scrivi e racconta la tua esperienza in Sorriso&Salute" [level=2] [ref=e79]
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - generic [ref=e84]: Esprimi una tua preferenza
+          - combobox "Esprimi una tua preferenza" [ref=e85]:
+            - option "Seleziona una valutazione" [selected]
+            - option "5 stelle"
+            - option "4 stelle"
+            - option "3 stelle"
+            - option "2 stelle"
+            - option "1 stella"
+        - generic [ref=e86]:
+          - generic [ref=e87]: Titolo recensione
+          - textbox "Titolo recensione" [ref=e88]:
+            - /placeholder: Inserisci un breve titolo della tua recensione
+        - generic [ref=e89]:
+          - generic [ref=e90]: Testo recensione
+          - textbox "Testo recensione" [ref=e91]:
+            - /placeholder: Parlaci della tua esperienza
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - generic [ref=e94]: Nome
+            - textbox "Nome" [ref=e95]:
+              - /placeholder: Inserisci il tuo nome
+          - generic [ref=e96]:
+            - generic [ref=e97]: Email
+            - textbox "Email" [ref=e98]:
+              - /placeholder: Inserisci la tua email
+        - generic [ref=e99]:
+          - checkbox "Questa recensione è basata sulla mia esperienza presso lo studio sorriso&salute" [ref=e100]
+          - generic [ref=e101]: Questa recensione è basata sulla mia esperienza presso lo studio sorriso&salute
+        - generic [ref=e102]:
+          - button "Inserisci recensione" [ref=e103] [cursor=pointer]
+          - status
+    - region "Recensioni pazienti" [ref=e108]:
+      - generic [ref=e109]:
+        - generic [ref=e110]:
+          - generic [ref=e111]: Dicono di noi
+          - heading "Le esperienze dei pazienti" [level=2] [ref=e112]
+        - generic [ref=e113]: 16 recensioni
+      - generic [ref=e114]:
+        - article [ref=e115]:
+          - generic [ref=e116]:
+            - generic [ref=e117]:
+              - heading "In ottime mani" [level=3] [ref=e118]
+              - img "Valutazione 5 su 5" [ref=e119]:
+                - generic [ref=e120]: \2605
+                - generic [ref=e121]: \2605
+                - generic [ref=e122]: \2605
+                - generic [ref=e123]: \2605
+                - generic [ref=e124]: \2605
+            - generic [ref=e125]: 5/5
+          - paragraph [ref=e126]: Dottoressa molto precisa e accurata. Grande esperienza nelle visite e ottimi consigli per la cura. Sempre in buone mani! Grazie
+          - generic [ref=e127]:
+            - strong [ref=e128]: Samir G.
+            - generic [ref=e129]: February 15, 2026
+            - generic [ref=e130]: Pagina 1
+        - article [ref=e131]:
+          - generic [ref=e132]:
+            - generic [ref=e133]:
+              - heading "Cordiali" [level=3] [ref=e134]
+              - img "Valutazione 4 su 5" [ref=e135]:
+                - generic [ref=e136]: \2605
+                - generic [ref=e137]: \2605
+                - generic [ref=e138]: \2605
+                - generic [ref=e139]: \2605
+                - generic [ref=e140]: \2605
+            - generic [ref=e141]: 4/5
+          - paragraph [ref=e142]: Cordialità, preparazione professionale, capacità di spiegare e di consigliare.
+          - generic [ref=e143]:
+            - strong [ref=e144]: Gabrio G.
+            - generic [ref=e145]: January 2, 2026
+            - generic [ref=e146]: Pagina 1
+        - article [ref=e147]:
+          - generic [ref=e148]:
+            - generic [ref=e149]:
+              - heading "Finalmente a mio agio" [level=3] [ref=e150]
+              - img "Valutazione 5 su 5" [ref=e151]:
+                - generic [ref=e152]: \2605
+                - generic [ref=e153]: \2605
+                - generic [ref=e154]: \2605
+                - generic [ref=e155]: \2605
+                - generic [ref=e156]: \2605
+            - generic [ref=e157]: 5/5
+          - paragraph [ref=e158]: Avevo molta paura dell’intervento, ma il dottore e tutto lo staff mi hanno messa subito a mio agio. L’implantologia è stata indolore e il risultato estetico è perfetto. Mi sento finalmente di nuovo a mio agio nel sorridere!
+          - generic [ref=e159]:
+            - strong [ref=e160]: Marta R.
+            - generic [ref=e161]: December 15, 2025
+            - generic [ref=e162]: Pagina 1
+        - article [ref=e163]:
+          - generic [ref=e164]:
+            - generic [ref=e165]:
+              - heading "Grande attenzione alla diagnosi" [level=3] [ref=e166]
+              - img "Valutazione 5 su 5" [ref=e167]:
+                - generic [ref=e168]: \2605
+                - generic [ref=e169]: \2605
+                - generic [ref=e170]: \2605
+                - generic [ref=e171]: \2605
+                - generic [ref=e172]: \2605
+            - generic [ref=e173]: 5/5
+          - paragraph [ref=e174]: Valutazione clinica molto accurata, con fotografie intraorali e scanner digitale. Grande attenzione alla diagnosi.
+          - generic [ref=e175]:
+            - strong [ref=e176]: Giuseppe G.
+            - generic [ref=e177]: November 14, 2025
+            - generic [ref=e178]: Pagina 1
+        - article [ref=e179]:
+          - generic [ref=e180]:
+            - generic [ref=e181]:
+              - heading "Tutto ottimo" [level=3] [ref=e182]
+              - img "Valutazione 4 su 5" [ref=e183]:
+                - generic [ref=e184]: \2605
+                - generic [ref=e185]: \2605
+                - generic [ref=e186]: \2605
+                - generic [ref=e187]: \2605
+                - generic [ref=e188]: \2605
+            - generic [ref=e189]: 4/5
+          - paragraph [ref=e190]: Molto precisa ed attenta, infonde fiducia nel paziente. Dentista davvero molto professionale
+          - generic [ref=e191]:
+            - strong [ref=e192]: Giorgio B.
+            - generic [ref=e193]: October 12, 2025
+            - generic [ref=e194]: Pagina 1
+        - article [ref=e195]:
+          - generic [ref=e196]:
+            - generic [ref=e197]:
+              - heading "Team professionale" [level=3] [ref=e198]
+              - img "Valutazione 5 su 5" [ref=e199]:
+                - generic [ref=e200]: \2605
+                - generic [ref=e201]: \2605
+                - generic [ref=e202]: \2605
+                - generic [ref=e203]: \2605
+                - generic [ref=e204]: \2605
+            - generic [ref=e205]: 5/5
+          - paragraph [ref=e206]: Dopo vari problemi dentali, ho finalmente ritrovato un sorriso naturale e funzionale. La professionalità del team e l’attenzione ai dettagli sono davvero impareggiabili.
+          - generic [ref=e207]:
+            - strong [ref=e208]: Jenny S.
+            - generic [ref=e209]: October 11, 2025
+            - generic [ref=e210]: Pagina 2
+        - article [ref=e211]:
+          - generic [ref=e212]:
+            - generic [ref=e213]:
+              - heading "Ambiente accogliente e curato" [level=3] [ref=e214]
+              - img "Valutazione 5 su 5" [ref=e215]:
+                - generic [ref=e216]: \2605
+                - generic [ref=e217]: \2605
+                - generic [ref=e218]: \2605
+                - generic [ref=e219]: \2605
+                - generic [ref=e220]: \2605
+            - generic [ref=e221]: 5/5
+          - paragraph [ref=e222]: Mi rivolgo a Sorriso & Salute da anni per la pulizia e la prevenzione. Sono sempre puntuali, professionali e gentili. È bello trovare un ambiente così accogliente e curato.
+          - generic [ref=e223]:
+            - strong [ref=e224]: Giulia F.
+            - generic [ref=e225]: September 12, 2025
+            - generic [ref=e226]: Pagina 2
+        - article [ref=e227]:
+          - generic [ref=e228]:
+            - generic [ref=e229]:
+              - heading "Servizio impeccabile" [level=3] [ref=e230]
+              - img "Valutazione 5 su 5" [ref=e231]:
+                - generic [ref=e232]: \2605
+                - generic [ref=e233]: \2605
+                - generic [ref=e234]: \2605
+                - generic [ref=e235]: \2605
+                - generic [ref=e236]: \2605
+            - generic [ref=e237]: 5/5
+          - paragraph [ref=e238]: Professionalità gentilezza pazienza competenza spiegazione
+          - generic [ref=e239]:
+            - strong [ref=e240]: Paolo S.
+            - generic [ref=e241]: September 8, 2025
+            - generic [ref=e242]: Pagina 2
+        - article [ref=e243]:
+          - generic [ref=e244]:
+            - generic [ref=e245]:
+              - heading "Studio serio, preciso, moderno" [level=3] [ref=e246]
+              - img "Valutazione 5 su 5" [ref=e247]:
+                - generic [ref=e248]: \2605
+                - generic [ref=e249]: \2605
+                - generic [ref=e250]: \2605
+                - generic [ref=e251]: \2605
+                - generic [ref=e252]: \2605
+            - generic [ref=e253]: 5/5
+          - paragraph [ref=e254]: Ho scelto le mascherine trasparenti per allineare i denti senza compromettere l’estetica. Risultato eccellente e tempi rispettati. Studio serio, preciso e tecnologicamente avanzato.
+          - generic [ref=e255]:
+            - strong [ref=e256]: Roberta P.
+            - generic [ref=e257]: May 31, 2025
+            - generic [ref=e258]: Pagina 2
+        - article [ref=e259]:
+          - generic [ref=e260]:
+            - generic [ref=e261]:
+              - heading "Empatia e molta attenzione" [level=3] [ref=e262]
+              - img "Valutazione 4 su 5" [ref=e263]:
+                - generic [ref=e264]: \2605
+                - generic [ref=e265]: \2605
+                - generic [ref=e266]: \2605
+                - generic [ref=e267]: \2605
+                - generic [ref=e268]: \2605
+            - generic [ref=e269]: 4/5
+          - paragraph [ref=e270]: Dottoressa empatica e molto disponibile. Dimostrata molta attenzione per il mio caso. Buona esperienza
+          - generic [ref=e271]:
+            - strong [ref=e272]: Giacomo I.
+            - generic [ref=e273]: May 22, 2025
+            - generic [ref=e274]: Pagina 2
+        - article [ref=e275]:
+          - generic [ref=e276]:
+            - generic [ref=e277]:
+              - heading "Professionalità" [level=3] [ref=e278]
+              - img "Valutazione 5 su 5" [ref=e279]:
+                - generic [ref=e280]: \2605
+                - generic [ref=e281]: \2605
+                - generic [ref=e282]: \2605
+                - generic [ref=e283]: \2605
+                - generic [ref=e284]: \2605
+            - generic [ref=e285]: 5/5
+          - paragraph [ref=e286]: Pignola, precisa, attenta alle problematiche del paziente…spiega il da farsi in modo dettagliato…disponibile…
+          - generic [ref=e287]:
+            - strong [ref=e288]: Rossella B.
+            - generic [ref=e289]: May 18, 2025
+            - generic [ref=e290]: Pagina 3
+        - article [ref=e291]:
+          - generic [ref=e292]:
+            - generic [ref=e293]:
+              - heading "Molto bravi" [level=3] [ref=e294]
+              - img "Valutazione 4 su 5" [ref=e295]:
+                - generic [ref=e296]: \2605
+                - generic [ref=e297]: \2605
+                - generic [ref=e298]: \2605
+                - generic [ref=e299]: \2605
+                - generic [ref=e300]: \2605
+            - generic [ref=e301]: 4/5
+          - paragraph [ref=e302]: Ambiente pulito, moderno e accogliente. Trattamento perfetto e senza dolore. Bravi davvero!
+          - generic [ref=e303]:
+            - strong [ref=e304]: Monica F.
+            - generic [ref=e305]: April 15, 2025
+            - generic [ref=e306]: Pagina 3
+        - article [ref=e307]:
+          - generic [ref=e308]:
+            - generic [ref=e309]:
+              - heading "Ambiente familiare" [level=3] [ref=e310]
+              - img "Valutazione 5 su 5" [ref=e311]:
+                - generic [ref=e312]: \2605
+                - generic [ref=e313]: \2605
+                - generic [ref=e314]: \2605
+                - generic [ref=e315]: \2605
+                - generic [ref=e316]: \2605
+            - generic [ref=e317]: 5/5
+          - paragraph [ref=e318]: La dottoressa è molto competente, oltre ad essere cordiale. Durante la visita, ha saputo mettermi a mio agio.
+          - generic [ref=e319]:
+            - strong [ref=e320]: Barbara V.
+            - generic [ref=e321]: February 14, 2025
+            - generic [ref=e322]: Pagina 3
+        - article [ref=e323]:
+          - generic [ref=e324]:
+            - generic [ref=e325]:
+              - heading "Ottima professionista" [level=3] [ref=e326]
+              - img "Valutazione 5 su 5" [ref=e327]:
+                - generic [ref=e328]: \2605
+                - generic [ref=e329]: \2605
+                - generic [ref=e330]: \2605
+                - generic [ref=e331]: \2605
+                - generic [ref=e332]: \2605
+            - generic [ref=e333]: 5/5
+          - paragraph [ref=e334]: Ottima professionista. Intervento svolto con sicurezza, brevità ed anestesia molto efficace. Postumi senza particolari problemi
+          - generic [ref=e335]:
+            - strong [ref=e336]: Michael T.
+            - generic [ref=e337]: August 12, 2024
+            - generic [ref=e338]: Pagina 3
+        - article [ref=e339]:
+          - generic [ref=e340]:
+            - generic [ref=e341]:
+              - heading "Consigliato" [level=3] [ref=e342]
+              - img "Valutazione 5 su 5" [ref=e343]:
+                - generic [ref=e344]: \2605
+                - generic [ref=e345]: \2605
+                - generic [ref=e346]: \2605
+                - generic [ref=e347]: \2605
+                - generic [ref=e348]: \2605
+            - generic [ref=e349]: 5/5
+          - paragraph [ref=e350]: Finalmente uno studio dove ti ascoltano davvero. Trattamento preciso e indolore. Consigliato!
+          - generic [ref=e351]:
+            - strong [ref=e352]: Giacomo P.
+            - generic [ref=e353]: July 23, 2024
+            - generic [ref=e354]: Pagina 3
+        - article [ref=e355]:
+          - generic [ref=e356]:
+            - generic [ref=e357]:
+              - heading "Molto soddisfatta" [level=3] [ref=e358]
+              - img "Valutazione 5 su 5" [ref=e359]:
+                - generic [ref=e360]: \2605
+                - generic [ref=e361]: \2605
+                - generic [ref=e362]: \2605
+                - generic [ref=e363]: \2605
+                - generic [ref=e364]: \2605
+            - generic [ref=e365]: 5/5
+          - paragraph [ref=e366]: "Molto soddisfatta dell’otturazione estetica: colore perfetto e modellazione molto precisa. Nessuna sensibilità post-trattamento."
+          - generic [ref=e367]:
+            - strong [ref=e368]: Sofia E.
+            - generic [ref=e369]: January 25, 2024
+            - generic [ref=e370]: Pagina 4
+  - generic [ref=e374]:
+    - generic [ref=e375]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=e379]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=e384] [cursor=pointer]:
+        - /url: /richiesta/
+        - generic [ref=e385]:
+          - img [ref=e387]
+          - generic [ref=e389]: Richiedi appuntamento
+    - generic [ref=e390]:
+      - generic [ref=e391]:
+        - generic [ref=e395]:
+          - link "Cerchi un Dentista in Brianza?" [ref=e396] [cursor=pointer]:
+            - /url: /richiesta/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=e397] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=e401]:
+          - listitem [ref=e402]:
+            - link "Facebook" [ref=e403] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=e404]: 
+          - listitem [ref=e405]:
+            - link "Instagram" [ref=e406] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=e407]: 
+          - listitem [ref=e408]:
+            - link "Whatsapp" [ref=e409] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=e410]: 
+          - listitem [ref=e411]:
+            - link "Messanger" [ref=e412] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=e413]: 
+      - generic [ref=e414]:
+        - heading "Direttore Sanitario" [level=3] [ref=e417]
+        - paragraph [ref=e420]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=e423]
+        - list [ref=e426]:
+          - listitem [ref=e427]:
+            - link "Cookie Policy" [ref=e428] [cursor=pointer]:
+              - /url: /recensioni-studio-dentistico-monza/cookie-policy/
+          - listitem [ref=e429]:
+            - link "Privacy Policy" [ref=e430] [cursor=pointer]:
+              - /url: /recensioni-studio-dentistico-monza/privacy-policy/
+      - generic [ref=e431]:
+        - heading "Orari di apertura" [level=3] [ref=e434]
+        - paragraph [ref=e437]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=e438]:
+        - heading "Contatti" [level=3] [ref=e441]
+        - link "+39 039 2022489" [ref=e445] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=e446]:
+            - img [ref=e449]
+            - heading "+39 039 2022489" [level=3] [ref=e454]
+        - link "info@sorrisoesalute.it" [ref=e458] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=e459]:
+            - img [ref=e462]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=e471]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=e475] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e476]:
+            - generic [ref=e479]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=e481]
+        - paragraph [ref=e483]:
+          - strong [ref=e484]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=e488]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=e489]: desktop

@@ -1,0 +1,225 @@
+- generic [active] [ref=f735e1]:
+  - generic [ref=f735e5]:
+    - generic [ref=f735e6]: STUDIO DENTISTICO
+    - strong [ref=f735e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f735e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f735e12]:
+    - link "default-logo" [ref=f735e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f735e20]
+    - generic [ref=f735e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f735e23] [cursor=pointer]:
+            - generic [ref=f735e24]: 
+          - generic [ref=f735e25]:
+            - list:
+              - text:  
+              - listitem [ref=f735e26]:
+                - link "Dicono di noi" [ref=f735e27] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f735e28]: Dicono di noi
+              - listitem [ref=f735e29]:
+                - link "La Struttura" [ref=f735e30] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f735e31]: La Struttura
+              - listitem [ref=f735e32]:
+                - link "Convenzioni" [ref=f735e33] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f735e34]: Convenzioni
+              - listitem [ref=f735e35]:
+                - link "Urgenze" [ref=f735e36] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f735e37]: Urgenze
+              - listitem [ref=f735e38]:
+                - link "Chiama in studio" [ref=f735e39] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f735e40]: Chiama in studio
+                  - img [ref=f735e41]
+              - listitem [ref=f735e43]:
+                - button "Menu" [ref=f735e44] [cursor=pointer]:
+                  - generic [ref=f735e49]: Menu
+            - button "X" [ref=f735e51] [cursor=pointer]
+  - generic [ref=f735e54]:
+    - generic [ref=f735e57]:
+      - heading "T a y l o r S m i t h" [level=1] [ref=f735e60]:
+        - generic [ref=f735e61]:
+          - generic [ref=f735e62]:
+            - generic [ref=f735e63]: T
+            - generic [ref=f735e64]: a
+            - generic [ref=f735e65]: "y"
+            - generic [ref=f735e66]: l
+            - generic [ref=f735e67]: o
+            - generic [ref=f735e68]: r
+          - generic [ref=f735e69]:
+            - generic [ref=f735e70]: S
+            - generic [ref=f735e71]: m
+            - generic [ref=f735e72]: i
+            - generic [ref=f735e73]: t
+            - generic [ref=f735e74]: h
+      - list [ref=f735e78]:
+        - listitem [ref=f735e79]:
+          - link "Home" [ref=f735e80] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=f735e81]:
+          - img [ref=f735e83]
+        - listitem [ref=f735e85]:
+          - link "Equipe" [ref=f735e86] [cursor=pointer]:
+            - /url: /doctors/
+        - listitem [ref=f735e87]:
+          - img [ref=f735e89]
+        - listitem [ref=f735e91]: Taylor Smith
+    - generic [ref=f735e93]:
+      - generic [ref=f735e94]:
+        - heading "M y E x p e r t i s e" [level=2] [ref=f735e98]:
+          - generic [ref=f735e99]:
+            - generic [ref=f735e100]:
+              - generic [ref=f735e101]: M
+              - generic [ref=f735e102]: "y"
+            - generic [ref=f735e103]:
+              - generic [ref=f735e104]: E
+              - generic [ref=f735e105]: x
+              - generic [ref=f735e106]: p
+              - generic [ref=f735e107]: e
+              - generic [ref=f735e108]: r
+              - generic [ref=f735e109]: t
+              - generic [ref=f735e110]: i
+              - generic [ref=f735e111]: s
+              - generic [ref=f735e112]: e
+        - generic [ref=f735e113]:
+          - generic [ref=f735e119]:
+            - generic [ref=f735e121]: Healing Touch Therapy
+            - generic [ref=f735e123]:
+              - generic [ref=f735e124]: "0"
+              - text: "%"
+          - generic [ref=f735e130]:
+            - generic [ref=f735e132]: Pain Management Clinic
+            - generic [ref=f735e134]:
+              - generic [ref=f735e135]: "0"
+              - text: "%"
+          - generic [ref=f735e141]:
+            - generic [ref=f735e143]: Testing Services
+            - generic [ref=f735e145]:
+              - generic [ref=f735e146]: "0"
+              - text: "%"
+        - generic [ref=f735e147]:
+          - heading "Feature" [level=3] [ref=f735e150]
+          - heading "K n o w a b o u t t a y l o r" [level=2] [ref=f735e153]:
+            - generic [ref=f735e154]:
+              - generic [ref=f735e155]:
+                - generic [ref=f735e156]: K
+                - generic [ref=f735e157]: "n"
+                - generic [ref=f735e158]: o
+                - generic [ref=f735e159]: w
+              - generic [ref=f735e160]:
+                - generic [ref=f735e161]: a
+                - generic [ref=f735e162]: b
+                - generic [ref=f735e163]: o
+                - generic [ref=f735e164]: u
+                - generic [ref=f735e165]: t
+              - generic [ref=f735e166]:
+                - generic [ref=f735e167]: t
+                - generic [ref=f735e168]: a
+                - generic [ref=f735e169]: "y"
+                - generic [ref=f735e170]: l
+                - generic [ref=f735e171]: o
+                - generic [ref=f735e172]: r
+      - generic [ref=f735e179]:
+        - generic [ref=f735e181]:
+          - heading "Taylor Smith" [level=2] [ref=f735e182]
+          - paragraph [ref=f735e183]: City Tour Guide
+        - list [ref=f735e185]:
+          - listitem [ref=f735e186]:
+            - link "Facebook" [ref=f735e187] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f735e188]: 
+          - listitem [ref=f735e189]:
+            - link "Twitter" [ref=f735e190] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f735e191]: 
+          - listitem [ref=f735e192]:
+            - link "Pinterest" [ref=f735e193] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f735e194]: 
+  - generic [ref=f735e198]:
+    - generic [ref=f735e199]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f735e203]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f735e208] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f735e209]:
+          - img [ref=f735e211]
+          - generic [ref=f735e213]: Richiedi appuntamento
+    - generic [ref=f735e214]:
+      - generic [ref=f735e215]:
+        - generic [ref=f735e219]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f735e220] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f735e221] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f735e225]:
+          - listitem [ref=f735e226]:
+            - link "Facebook" [ref=f735e227] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f735e228]: 
+          - listitem [ref=f735e229]:
+            - link "Instagram" [ref=f735e230] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f735e231]: 
+          - listitem [ref=f735e232]:
+            - link "Whatsapp" [ref=f735e233] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f735e234]: 
+          - listitem [ref=f735e235]:
+            - link "Messanger" [ref=f735e236] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f735e237]: 
+      - generic [ref=f735e238]:
+        - heading "Direttore Sanitario" [level=3] [ref=f735e241]
+        - paragraph [ref=f735e244]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f735e247]
+        - list [ref=f735e250]:
+          - listitem [ref=f735e251]:
+            - link "Cookie Policy" [ref=f735e252] [cursor=pointer]:
+              - /url: /doctors/taylor-smith/cookie-policy/
+          - listitem [ref=f735e253]:
+            - link "Privacy Policy" [ref=f735e254] [cursor=pointer]:
+              - /url: /doctors/taylor-smith/privacy-policy/
+      - generic [ref=f735e255]:
+        - heading "Orari di apertura" [level=3] [ref=f735e258]
+        - paragraph [ref=f735e261]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f735e262]:
+        - heading "Contatti" [level=3] [ref=f735e265]
+        - link "+39 039 2022489" [ref=f735e269] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f735e270]:
+            - img [ref=f735e273]
+            - heading "+39 039 2022489" [level=3] [ref=f735e278]
+        - link "info@sorrisoesalute.it" [ref=f735e282] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f735e283]:
+            - img [ref=f735e286]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f735e295]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f735e299] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f735e300]:
+            - generic [ref=f735e303]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f735e305]
+        - paragraph [ref=f735e307]:
+          - strong [ref=f735e308]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f735e312]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f735e313]: tablet
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

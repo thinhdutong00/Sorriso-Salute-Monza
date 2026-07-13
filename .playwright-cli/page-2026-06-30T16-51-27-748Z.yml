@@ -1,0 +1,182 @@
+- generic [active] [ref=f625e1]:
+  - generic [ref=f625e5]:
+    - generic [ref=f625e6]: STUDIO DENTISTICO
+    - strong [ref=f625e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f625e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f625e12]:
+    - link "default-logo" [ref=f625e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f625e20]
+    - navigation [ref=f625e24]:
+      - text: 
+      - list [ref=f625e26]:
+        - text:  
+        - listitem [ref=f625e27]:
+          - link "Dicono di noi" [ref=f625e28] [cursor=pointer]:
+            - /url: /recensioni-studio-dentistico-monza/
+            - generic [ref=f625e29]: Dicono di noi
+        - listitem [ref=f625e30]:
+          - link "La Struttura" [ref=f625e31] [cursor=pointer]:
+            - /url: /struttura-studio-dentistico-monza/
+            - generic [ref=f625e32]: La Struttura
+        - listitem [ref=f625e33]:
+          - link "Convenzioni" [ref=f625e34] [cursor=pointer]:
+            - /url: /convenzioni-dirette-studio-dentistico-monza/
+            - generic [ref=f625e35]: Convenzioni
+        - listitem [ref=f625e36]:
+          - link "Urgenze" [ref=f625e37] [cursor=pointer]:
+            - /url: /urgenze/
+            - generic [ref=f625e38]: Urgenze
+        - listitem [ref=f625e39]:
+          - link "Chiama in studio" [ref=f625e40] [cursor=pointer]:
+            - /url: tel:+390392022489
+            - generic [ref=f625e41]: Chiama in studio
+            - img [ref=f625e42]
+        - listitem [ref=f625e44]:
+          - button "Menu" [ref=f625e45] [cursor=pointer]:
+            - generic [ref=f625e50]: Menu
+  - generic [ref=f625e53]:
+    - generic [ref=f625e56]:
+      - heading "E q u i p e" [level=1] [ref=f625e59]:
+        - generic [ref=f625e61]:
+          - generic [ref=f625e62]: E
+          - generic [ref=f625e63]: q
+          - generic [ref=f625e64]: u
+          - generic [ref=f625e65]: i
+          - generic [ref=f625e66]: p
+          - generic [ref=f625e67]: e
+      - list [ref=f625e71]:
+        - listitem [ref=f625e72]:
+          - link "Home" [ref=f625e73] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=f625e74]:
+          - img [ref=f625e76]
+        - listitem [ref=f625e78]: Equipe
+    - generic [ref=f625e82]:
+      - heading "La nostra Equipe" [level=3] [ref=f625e85]
+      - heading "E c c e l l e n z a e I n n o v a z i o n e n e l N o s t r o T e a m" [level=2] [ref=f625e88]:
+        - generic [ref=f625e89]:
+          - generic [ref=f625e90]:
+            - generic [ref=f625e91]: E
+            - generic [ref=f625e92]: c
+            - generic [ref=f625e93]: c
+            - generic [ref=f625e94]: e
+            - generic [ref=f625e95]: l
+            - generic [ref=f625e96]: l
+            - generic [ref=f625e97]: e
+            - generic [ref=f625e98]: "n"
+            - generic [ref=f625e99]: z
+            - generic [ref=f625e100]: a
+          - generic [ref=f625e102]: e
+        - generic [ref=f625e103]:
+          - generic [ref=f625e104]:
+            - generic [ref=f625e105]: I
+            - generic [ref=f625e106]: "n"
+            - generic [ref=f625e107]: "n"
+            - generic [ref=f625e108]: o
+            - generic [ref=f625e109]: v
+            - generic [ref=f625e110]: a
+            - generic [ref=f625e111]: z
+            - generic [ref=f625e112]: i
+            - generic [ref=f625e113]: o
+            - generic [ref=f625e114]: "n"
+            - generic [ref=f625e115]: e
+          - generic [ref=f625e116]:
+            - generic [ref=f625e117]: "n"
+            - generic [ref=f625e118]: e
+            - generic [ref=f625e119]: l
+        - generic [ref=f625e120]:
+          - generic [ref=f625e121]:
+            - generic [ref=f625e122]: "N"
+            - generic [ref=f625e123]: o
+            - generic [ref=f625e124]: s
+            - generic [ref=f625e125]: t
+            - generic [ref=f625e126]: r
+            - generic [ref=f625e127]: o
+          - generic [ref=f625e128]:
+            - generic [ref=f625e129]: T
+            - generic [ref=f625e130]: e
+            - generic [ref=f625e131]: a
+            - generic [ref=f625e132]: m
+  - generic [ref=f625e137]:
+    - generic [ref=f625e138]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f625e142]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f625e147] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f625e148]:
+          - img [ref=f625e150]
+          - generic [ref=f625e152]: Richiedi appuntamento
+    - generic [ref=f625e153]:
+      - generic [ref=f625e154]:
+        - generic [ref=f625e158]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f625e159] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f625e160] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f625e164]:
+          - listitem [ref=f625e165]:
+            - link "Facebook" [ref=f625e166] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f625e167]: 
+          - listitem [ref=f625e168]:
+            - link "Instagram" [ref=f625e169] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f625e170]: 
+          - listitem [ref=f625e171]:
+            - link "Whatsapp" [ref=f625e172] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f625e173]: 
+          - listitem [ref=f625e174]:
+            - link "Messanger" [ref=f625e175] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f625e176]: 
+      - generic [ref=f625e177]:
+        - heading "Direttore Sanitario" [level=3] [ref=f625e180]
+        - paragraph [ref=f625e183]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f625e186]
+        - list [ref=f625e189]:
+          - listitem [ref=f625e190]:
+            - link "Cookie Policy" [ref=f625e191] [cursor=pointer]:
+              - /url: /doctors/cookie-policy/
+          - listitem [ref=f625e192]:
+            - link "Privacy Policy" [ref=f625e193] [cursor=pointer]:
+              - /url: /doctors/privacy-policy/
+      - generic [ref=f625e194]:
+        - heading "Orari di apertura" [level=3] [ref=f625e197]
+        - paragraph [ref=f625e200]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f625e201]:
+        - heading "Contatti" [level=3] [ref=f625e204]
+        - link "+39 039 2022489" [ref=f625e208] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f625e209]:
+            - img [ref=f625e212]
+            - heading "+39 039 2022489" [level=3] [ref=f625e217]
+        - link "info@sorrisoesalute.it" [ref=f625e221] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f625e222]:
+            - img [ref=f625e225]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f625e234]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f625e238] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f625e239]:
+            - generic [ref=f625e242]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f625e244]
+        - paragraph [ref=f625e246]:
+          - strong [ref=f625e247]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f625e251]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f625e252]: desktop
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

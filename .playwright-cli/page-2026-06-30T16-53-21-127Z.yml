@@ -1,0 +1,647 @@
+- generic [active] [ref=f792e1]:
+  - generic [ref=f792e5]:
+    - generic [ref=f792e6]: STUDIO DENTISTICO
+    - strong [ref=f792e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f792e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f792e12]:
+    - link "default-logo" [ref=f792e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f792e20]
+    - generic [ref=f792e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f792e23] [cursor=pointer]:
+            - generic [ref=f792e24]: 
+          - generic [ref=f792e25]:
+            - list [ref=f792e26]:
+              - text:  
+              - listitem [ref=f792e27]:
+                - link "Dicono di noi" [ref=f792e28] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f792e29]: Dicono di noi
+              - listitem [ref=f792e30]:
+                - link "La Struttura" [ref=f792e31] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f792e32]: La Struttura
+              - listitem [ref=f792e33]:
+                - link "Convenzioni" [ref=f792e34] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f792e35]: Convenzioni
+              - listitem [ref=f792e36]:
+                - link "Urgenze" [ref=f792e37] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f792e38]: Urgenze
+              - listitem [ref=f792e39]:
+                - link "Chiama in studio" [ref=f792e40] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f792e41]: Chiama in studio
+                  - img [ref=f792e42]
+              - listitem [ref=f792e44]:
+                - button "Menu" [ref=f792e45] [cursor=pointer]:
+                  - generic [ref=f792e50]: Menu
+            - button "X" [ref=f792e52] [cursor=pointer]
+  - generic [ref=f792e55]:
+    - generic [ref=f792e57]:
+      - heading "E x c e p t i o n a l d e n t a l c a r e f o r e v e r y s t a g e o f y o u r j o u r n e y" [level=1] [ref=f792e60]:
+        - generic [ref=f792e62]:
+          - generic [ref=f792e63]: E
+          - generic [ref=f792e64]: x
+          - generic [ref=f792e65]: c
+          - generic [ref=f792e66]: e
+          - generic [ref=f792e67]: p
+          - generic [ref=f792e68]: t
+          - generic [ref=f792e69]: i
+          - generic [ref=f792e70]: o
+          - generic [ref=f792e71]: "n"
+          - generic [ref=f792e72]: a
+          - generic [ref=f792e73]: l
+        - generic [ref=f792e74]:
+          - generic [ref=f792e75]:
+            - generic [ref=f792e76]: d
+            - generic [ref=f792e77]: e
+            - generic [ref=f792e78]: "n"
+            - generic [ref=f792e79]: t
+            - generic [ref=f792e80]: a
+            - generic [ref=f792e81]: l
+          - generic [ref=f792e82]:
+            - generic [ref=f792e83]: c
+            - generic [ref=f792e84]: a
+            - generic [ref=f792e85]: r
+            - generic [ref=f792e86]: e
+          - generic [ref=f792e87]:
+            - generic [ref=f792e88]: f
+            - generic [ref=f792e89]: o
+            - generic [ref=f792e90]: r
+        - generic [ref=f792e91]:
+          - generic [ref=f792e92]:
+            - generic [ref=f792e93]: e
+            - generic [ref=f792e94]: v
+            - generic [ref=f792e95]: e
+            - generic [ref=f792e96]: r
+            - generic [ref=f792e97]: "y"
+          - generic [ref=f792e98]:
+            - generic [ref=f792e99]: s
+            - generic [ref=f792e100]: t
+            - generic [ref=f792e101]: a
+            - generic [ref=f792e102]: g
+            - generic [ref=f792e103]: e
+          - generic [ref=f792e104]:
+            - generic [ref=f792e105]: o
+            - generic [ref=f792e106]: f
+        - generic [ref=f792e107]:
+          - generic [ref=f792e108]:
+            - generic [ref=f792e109]: "y"
+            - generic [ref=f792e110]: o
+            - generic [ref=f792e111]: u
+            - generic [ref=f792e112]: r
+          - generic [ref=f792e113]:
+            - generic [ref=f792e114]: j
+            - generic [ref=f792e115]: o
+            - generic [ref=f792e116]: u
+            - generic [ref=f792e117]: r
+            - generic [ref=f792e118]: "n"
+            - generic [ref=f792e119]: e
+            - generic [ref=f792e120]: "y"
+      - paragraph [ref=f792e123]: We are committed to providing top-notch dental care in a comfortable and friendly environment.
+    - generic [ref=f792e133]:
+      - link "Need Dental Services ?" [ref=f792e135] [cursor=pointer]:
+        - /url: tel:(+01)%20987%20828%20745
+        - img [ref=f792e136]
+      - generic [ref=f792e141]:
+        - heading "Need Dental Services ?" [level=3] [ref=f792e142]:
+          - link "Need Dental Services ?" [ref=f792e143] [cursor=pointer]:
+            - /url: tel:(+01)%20987%20828%20745
+        - paragraph [ref=f792e144]: "Call on : (+01) 987 828 745"
+    - generic [ref=f792e146]:
+      - generic [ref=f792e154]:
+        - img [ref=f792e156]
+        - generic [ref=f792e162]:
+          - generic [ref=f792e163]: 0 +
+          - heading "Happy Patients" [level=3] [ref=f792e164]
+      - heading "T h e e v o l u t i o n o f o u r c o m p a n y a n d t h e p e o p l e w h o m a d e I t p o s s i b l e" [level=2] [ref=f792e168]:
+        - generic [ref=f792e169]:
+          - generic [ref=f792e170]:
+            - generic [ref=f792e171]: T
+            - generic [ref=f792e172]: h
+            - generic [ref=f792e173]: e
+          - generic [ref=f792e174]:
+            - generic [ref=f792e175]: e
+            - generic [ref=f792e176]: v
+            - generic [ref=f792e177]: o
+            - generic [ref=f792e178]: l
+            - generic [ref=f792e179]: u
+            - generic [ref=f792e180]: t
+            - generic [ref=f792e181]: i
+            - generic [ref=f792e182]: o
+            - generic [ref=f792e183]: "n"
+          - generic [ref=f792e184]:
+            - generic [ref=f792e185]: o
+            - generic [ref=f792e186]: f
+        - generic [ref=f792e187]:
+          - generic [ref=f792e188]:
+            - generic [ref=f792e189]: o
+            - generic [ref=f792e190]: u
+            - generic [ref=f792e191]: r
+          - generic [ref=f792e192]:
+            - generic [ref=f792e193]: c
+            - generic [ref=f792e194]: o
+            - generic [ref=f792e195]: m
+            - generic [ref=f792e196]: p
+            - generic [ref=f792e197]: a
+            - generic [ref=f792e198]: "n"
+            - generic [ref=f792e199]: "y"
+          - generic [ref=f792e200]:
+            - generic [ref=f792e201]: a
+            - generic [ref=f792e202]: "n"
+            - generic [ref=f792e203]: d
+        - generic [ref=f792e204]:
+          - generic [ref=f792e205]:
+            - generic [ref=f792e206]: t
+            - generic [ref=f792e207]: h
+            - generic [ref=f792e208]: e
+          - generic [ref=f792e209]:
+            - generic [ref=f792e210]: p
+            - generic [ref=f792e211]: e
+            - generic [ref=f792e212]: o
+            - generic [ref=f792e213]: p
+            - generic [ref=f792e214]: l
+            - generic [ref=f792e215]: e
+          - generic [ref=f792e216]:
+            - generic [ref=f792e217]: w
+            - generic [ref=f792e218]: h
+            - generic [ref=f792e219]: o
+        - generic [ref=f792e220]:
+          - generic [ref=f792e221]:
+            - generic [ref=f792e222]: m
+            - generic [ref=f792e223]: a
+            - generic [ref=f792e224]: d
+            - generic [ref=f792e225]: e
+          - generic [ref=f792e226]:
+            - generic [ref=f792e227]: I
+            - generic [ref=f792e228]: t
+          - generic [ref=f792e229]:
+            - generic [ref=f792e230]: p
+            - generic [ref=f792e231]: o
+            - generic [ref=f792e232]: s
+            - generic [ref=f792e233]: s
+            - generic [ref=f792e234]: i
+            - generic [ref=f792e235]: b
+            - generic [ref=f792e236]: l
+            - generic [ref=f792e237]: e
+    - generic [ref=f792e240]:
+      - heading "E x p l o r e t h e s o l u t i o n s w e p r o v i d e" [level=2] [ref=f792e244]:
+        - generic [ref=f792e245]:
+          - generic [ref=f792e246]:
+            - generic [ref=f792e247]: E
+            - generic [ref=f792e248]: x
+            - generic [ref=f792e249]: p
+            - generic [ref=f792e250]: l
+            - generic [ref=f792e251]: o
+            - generic [ref=f792e252]: r
+            - generic [ref=f792e253]: e
+          - generic [ref=f792e254]:
+            - generic [ref=f792e255]: t
+            - generic [ref=f792e256]: h
+            - generic [ref=f792e257]: e
+        - generic [ref=f792e259]:
+          - generic [ref=f792e260]: s
+          - generic [ref=f792e261]: o
+          - generic [ref=f792e262]: l
+          - generic [ref=f792e263]: u
+          - generic [ref=f792e264]: t
+          - generic [ref=f792e265]: i
+          - generic [ref=f792e266]: o
+          - generic [ref=f792e267]: "n"
+          - generic [ref=f792e268]: s
+        - generic [ref=f792e269]:
+          - generic [ref=f792e270]:
+            - generic [ref=f792e271]: w
+            - generic [ref=f792e272]: e
+          - generic [ref=f792e273]:
+            - generic [ref=f792e274]: p
+            - generic [ref=f792e275]: r
+            - generic [ref=f792e276]: o
+            - generic [ref=f792e277]: v
+            - generic [ref=f792e278]: i
+            - generic [ref=f792e279]: d
+            - generic [ref=f792e280]: e
+      - generic [ref=f792e281]:
+        - img [ref=f792e282] [cursor=pointer]
+        - img [ref=f792e284] [cursor=pointer]
+        - img [ref=f792e286] [cursor=pointer]
+        - img [ref=f792e288] [cursor=pointer]
+    - heading "A S t e p b y S t e p G u i d e t o O u r D e n t a l C a r e P r o c e s s" [level=2] [ref=f792e295]:
+      - generic [ref=f792e296]:
+        - generic [ref=f792e298]: A
+        - generic [ref=f792e299]:
+          - generic [ref=f792e300]: S
+          - generic [ref=f792e301]: t
+          - generic [ref=f792e302]: e
+          - generic [ref=f792e303]: p
+        - generic [ref=f792e304]:
+          - generic [ref=f792e305]: b
+          - generic [ref=f792e306]: "y"
+        - generic [ref=f792e307]:
+          - generic [ref=f792e308]: S
+          - generic [ref=f792e309]: t
+          - generic [ref=f792e310]: e
+          - generic [ref=f792e311]: p
+        - generic [ref=f792e312]:
+          - generic [ref=f792e313]: G
+          - generic [ref=f792e314]: u
+          - generic [ref=f792e315]: i
+          - generic [ref=f792e316]: d
+          - generic [ref=f792e317]: e
+      - generic [ref=f792e318]:
+        - generic [ref=f792e319]:
+          - generic [ref=f792e320]: t
+          - generic [ref=f792e321]: o
+        - generic [ref=f792e322]:
+          - generic [ref=f792e323]: O
+          - generic [ref=f792e324]: u
+          - generic [ref=f792e325]: r
+        - generic [ref=f792e326]:
+          - generic [ref=f792e327]: D
+          - generic [ref=f792e328]: e
+          - generic [ref=f792e329]: "n"
+          - generic [ref=f792e330]: t
+          - generic [ref=f792e331]: a
+          - generic [ref=f792e332]: l
+      - generic [ref=f792e333]:
+        - generic [ref=f792e334]:
+          - generic [ref=f792e335]: C
+          - generic [ref=f792e336]: a
+          - generic [ref=f792e337]: r
+          - generic [ref=f792e338]: e
+        - generic [ref=f792e339]:
+          - generic [ref=f792e340]: P
+          - generic [ref=f792e341]: r
+          - generic [ref=f792e342]: o
+          - generic [ref=f792e343]: c
+          - generic [ref=f792e344]: e
+          - generic [ref=f792e345]: s
+          - generic [ref=f792e346]: s
+    - generic [ref=f792e350]:
+      - heading "E x c e p t i o n a l d e n t a l c a r e t a i l o r e d t o y o u r n e e d s" [level=2] [ref=f792e354]:
+        - generic [ref=f792e356]:
+          - generic [ref=f792e357]: E
+          - generic [ref=f792e358]: x
+          - generic [ref=f792e359]: c
+          - generic [ref=f792e360]: e
+          - generic [ref=f792e361]: p
+          - generic [ref=f792e362]: t
+          - generic [ref=f792e363]: i
+          - generic [ref=f792e364]: o
+          - generic [ref=f792e365]: "n"
+          - generic [ref=f792e366]: a
+          - generic [ref=f792e367]: l
+        - generic [ref=f792e368]:
+          - generic [ref=f792e369]:
+            - generic [ref=f792e370]: d
+            - generic [ref=f792e371]: e
+            - generic [ref=f792e372]: "n"
+            - generic [ref=f792e373]: t
+            - generic [ref=f792e374]: a
+            - generic [ref=f792e375]: l
+          - generic [ref=f792e376]:
+            - generic [ref=f792e377]: c
+            - generic [ref=f792e378]: a
+            - generic [ref=f792e379]: r
+            - generic [ref=f792e380]: e
+        - generic [ref=f792e381]:
+          - generic [ref=f792e382]:
+            - generic [ref=f792e383]: t
+            - generic [ref=f792e384]: a
+            - generic [ref=f792e385]: i
+            - generic [ref=f792e386]: l
+            - generic [ref=f792e387]: o
+            - generic [ref=f792e388]: r
+            - generic [ref=f792e389]: e
+            - generic [ref=f792e390]: d
+          - generic [ref=f792e391]:
+            - generic [ref=f792e392]: t
+            - generic [ref=f792e393]: o
+        - generic [ref=f792e394]:
+          - generic [ref=f792e395]:
+            - generic [ref=f792e396]: "y"
+            - generic [ref=f792e397]: o
+            - generic [ref=f792e398]: u
+            - generic [ref=f792e399]: r
+          - generic [ref=f792e400]:
+            - generic [ref=f792e401]: "n"
+            - generic [ref=f792e402]: e
+            - generic [ref=f792e403]: e
+            - generic [ref=f792e404]: d
+            - generic [ref=f792e405]: s
+      - generic [ref=f792e406]:
+        - generic [ref=f792e407]:
+          - heading "01" [level=2] [ref=f792e410]
+          - generic [ref=f792e413]:
+            - generic [ref=f792e414]: Years Of Experience
+            - generic [ref=f792e415]:
+              - generic [ref=f792e416]: "0"
+              - generic [ref=f792e417]: +
+        - generic [ref=f792e418]:
+          - heading "02" [level=2] [ref=f792e421]
+          - generic [ref=f792e424]:
+            - generic [ref=f792e425]: Happy Patients
+            - generic [ref=f792e426]:
+              - generic [ref=f792e427]: "0"
+              - generic [ref=f792e428]: M+
+        - generic [ref=f792e429]:
+          - heading "03" [level=2] [ref=f792e432]
+          - generic [ref=f792e435]:
+            - generic [ref=f792e436]: Treatment Completed
+            - generic [ref=f792e437]:
+              - generic [ref=f792e438]: "0"
+              - generic [ref=f792e439]: +
+    - generic [ref=f792e441]:
+      - heading "L i s t e n f r o m o u r h a p p y p a t i e n t s" [level=2] [ref=f792e445]:
+        - generic [ref=f792e446]:
+          - generic [ref=f792e447]:
+            - generic [ref=f792e448]: L
+            - generic [ref=f792e449]: i
+            - generic [ref=f792e450]: s
+            - generic [ref=f792e451]: t
+            - generic [ref=f792e452]: e
+            - generic [ref=f792e453]: "n"
+          - generic [ref=f792e454]:
+            - generic [ref=f792e455]: f
+            - generic [ref=f792e456]: r
+            - generic [ref=f792e457]: o
+            - generic [ref=f792e458]: m
+          - generic [ref=f792e459]:
+            - generic [ref=f792e460]: o
+            - generic [ref=f792e461]: u
+            - generic [ref=f792e462]: r
+        - generic [ref=f792e463]:
+          - generic [ref=f792e464]:
+            - generic [ref=f792e465]: h
+            - generic [ref=f792e466]: a
+            - generic [ref=f792e467]: p
+            - generic [ref=f792e468]: p
+            - generic [ref=f792e469]: "y"
+          - generic [ref=f792e470]:
+            - generic [ref=f792e471]: p
+            - generic [ref=f792e472]: a
+            - generic [ref=f792e473]: t
+            - generic [ref=f792e474]: i
+            - generic [ref=f792e475]: e
+            - generic [ref=f792e476]: "n"
+            - generic [ref=f792e477]: t
+            - generic [ref=f792e478]: s
+      - generic [ref=f792e484]:
+        - generic [ref=f792e485]:
+          - generic [ref=f792e488]:
+            - img [ref=f792e491]
+            - paragraph [ref=f792e495]: I want to say thank you to my doctor Steve! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus.” “Thank you for helping me overcome my fear of the dentist! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus.
+            - generic [ref=f792e499]:
+              - strong [ref=f792e500]: Dianne Russell
+              - text: Patient
+          - generic [ref=f792e503]:
+            - img [ref=f792e506]
+            - paragraph [ref=f792e510]: I want to say thank you to my doctor Steve! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus.” “Thank you for helping me overcome my fear of the dentist! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus.
+            - generic [ref=f792e514]:
+              - strong [ref=f792e515]: Jane Cooper
+              - text: Patient
+          - generic [ref=f792e518]:
+            - img [ref=f792e521]
+            - paragraph [ref=f792e525]: I want to say thank you to my doctor Steve! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus.” “Thank you for helping me overcome my fear of the dentist! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus.
+            - generic [ref=f792e529]:
+              - strong [ref=f792e530]: Artemisia Udinese
+              - text: Patient
+          - generic [ref=f792e533]:
+            - img [ref=f792e536]
+            - paragraph [ref=f792e540]: I want to say thank you to my doctor Steve! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus.” “Thank you for helping me overcome my fear of the dentist! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus.
+            - generic [ref=f792e544]:
+              - strong [ref=f792e545]: jenny wilson
+              - text: Patient
+        - generic [ref=f792e547] [cursor=pointer]: 
+        - generic [ref=f792e549] [cursor=pointer]: 
+    - generic [ref=f792e552]:
+      - heading "E x p e r i e n c e c o m f o r t , t e c h n o l o g y , a n d c a r e a t o u r a d v a n c e d d e n t a l f a c i l i t y" [level=2] [ref=f792e556]:
+        - generic [ref=f792e558]:
+          - generic [ref=f792e559]: E
+          - generic [ref=f792e560]: x
+          - generic [ref=f792e561]: p
+          - generic [ref=f792e562]: e
+          - generic [ref=f792e563]: r
+          - generic [ref=f792e564]: i
+          - generic [ref=f792e565]: e
+          - generic [ref=f792e566]: "n"
+          - generic [ref=f792e567]: c
+          - generic [ref=f792e568]: e
+        - generic [ref=f792e570]:
+          - generic [ref=f792e571]: c
+          - generic [ref=f792e572]: o
+          - generic [ref=f792e573]: m
+          - generic [ref=f792e574]: f
+          - generic [ref=f792e575]: o
+          - generic [ref=f792e576]: r
+          - generic [ref=f792e577]: t
+          - generic [ref=f792e578]: ","
+        - generic [ref=f792e580]:
+          - generic [ref=f792e581]: t
+          - generic [ref=f792e582]: e
+          - generic [ref=f792e583]: c
+          - generic [ref=f792e584]: h
+          - generic [ref=f792e585]: "n"
+          - generic [ref=f792e586]: o
+          - generic [ref=f792e587]: l
+          - generic [ref=f792e588]: o
+          - generic [ref=f792e589]: g
+          - generic [ref=f792e590]: "y"
+          - generic [ref=f792e591]: ","
+        - generic [ref=f792e592]:
+          - generic [ref=f792e593]:
+            - generic [ref=f792e594]: a
+            - generic [ref=f792e595]: "n"
+            - generic [ref=f792e596]: d
+          - generic [ref=f792e597]:
+            - generic [ref=f792e598]: c
+            - generic [ref=f792e599]: a
+            - generic [ref=f792e600]: r
+            - generic [ref=f792e601]: e
+          - generic [ref=f792e602]:
+            - generic [ref=f792e603]: a
+            - generic [ref=f792e604]: t
+        - generic [ref=f792e605]:
+          - generic [ref=f792e606]:
+            - generic [ref=f792e607]: o
+            - generic [ref=f792e608]: u
+            - generic [ref=f792e609]: r
+          - generic [ref=f792e610]:
+            - generic [ref=f792e611]: a
+            - generic [ref=f792e612]: d
+            - generic [ref=f792e613]: v
+            - generic [ref=f792e614]: a
+            - generic [ref=f792e615]: "n"
+            - generic [ref=f792e616]: c
+            - generic [ref=f792e617]: e
+            - generic [ref=f792e618]: d
+        - generic [ref=f792e619]:
+          - generic [ref=f792e620]:
+            - generic [ref=f792e621]: d
+            - generic [ref=f792e622]: e
+            - generic [ref=f792e623]: "n"
+            - generic [ref=f792e624]: t
+            - generic [ref=f792e625]: a
+            - generic [ref=f792e626]: l
+          - generic [ref=f792e627]:
+            - generic [ref=f792e628]: f
+            - generic [ref=f792e629]: a
+            - generic [ref=f792e630]: c
+            - generic [ref=f792e631]: i
+            - generic [ref=f792e632]: l
+            - generic [ref=f792e633]: i
+            - generic [ref=f792e634]: t
+            - generic [ref=f792e635]: "y"
+      - generic [ref=f792e642]:
+        - text: 
+        - link "video-popup" [ref=f792e643] [cursor=pointer]:
+          - /url: https://www.youtube.com/embed/Y-x0efG1seA?playlist=Y-x0efG1seA&amp;mute=0&amp;autoplay=1&amp;loop=1&amp;controls=0&amp;start=0&amp;end=
+          - generic [ref=f792e644]: 
+    - heading "E x p e r i e n c e d a n d c a r i n g d e n t a l t e a m" [level=2] [ref=f792e651]:
+      - generic [ref=f792e652]:
+        - generic [ref=f792e653]:
+          - generic [ref=f792e654]: E
+          - generic [ref=f792e655]: x
+          - generic [ref=f792e656]: p
+          - generic [ref=f792e657]: e
+          - generic [ref=f792e658]: r
+          - generic [ref=f792e659]: i
+          - generic [ref=f792e660]: e
+          - generic [ref=f792e661]: "n"
+          - generic [ref=f792e662]: c
+          - generic [ref=f792e663]: e
+          - generic [ref=f792e664]: d
+        - generic [ref=f792e665]:
+          - generic [ref=f792e666]: a
+          - generic [ref=f792e667]: "n"
+          - generic [ref=f792e668]: d
+      - generic [ref=f792e669]:
+        - generic [ref=f792e670]:
+          - generic [ref=f792e671]: c
+          - generic [ref=f792e672]: a
+          - generic [ref=f792e673]: r
+          - generic [ref=f792e674]: i
+          - generic [ref=f792e675]: "n"
+          - generic [ref=f792e676]: g
+        - generic [ref=f792e677]:
+          - generic [ref=f792e678]: d
+          - generic [ref=f792e679]: e
+          - generic [ref=f792e680]: "n"
+          - generic [ref=f792e681]: t
+          - generic [ref=f792e682]: a
+          - generic [ref=f792e683]: l
+        - generic [ref=f792e684]:
+          - generic [ref=f792e685]: t
+          - generic [ref=f792e686]: e
+          - generic [ref=f792e687]: a
+          - generic [ref=f792e688]: m
+    - heading "G e t i n t o u c h w i t h u s" [level=2] [ref=f792e695]:
+      - generic [ref=f792e696]:
+        - generic [ref=f792e697]:
+          - generic [ref=f792e698]: G
+          - generic [ref=f792e699]: e
+          - generic [ref=f792e700]: t
+        - generic [ref=f792e701]:
+          - generic [ref=f792e702]: i
+          - generic [ref=f792e703]: "n"
+        - generic [ref=f792e704]:
+          - generic [ref=f792e705]: t
+          - generic [ref=f792e706]: o
+          - generic [ref=f792e707]: u
+          - generic [ref=f792e708]: c
+          - generic [ref=f792e709]: h
+      - generic [ref=f792e710]:
+        - generic [ref=f792e711]:
+          - generic [ref=f792e712]: w
+          - generic [ref=f792e713]: i
+          - generic [ref=f792e714]: t
+          - generic [ref=f792e715]: h
+        - generic [ref=f792e716]:
+          - generic [ref=f792e717]: u
+          - generic [ref=f792e718]: s
+  - generic [ref=f792e723]:
+    - generic [ref=f792e724]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f792e728]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f792e733] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f792e734]:
+          - img [ref=f792e736]
+          - generic [ref=f792e738]: Richiedi appuntamento
+    - generic [ref=f792e739]:
+      - generic [ref=f792e740]:
+        - generic [ref=f792e744]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f792e745] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f792e746] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f792e750]:
+          - listitem [ref=f792e751]:
+            - link "Facebook" [ref=f792e752] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f792e753]: 
+          - listitem [ref=f792e754]:
+            - link "Instagram" [ref=f792e755] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f792e756]: 
+          - listitem [ref=f792e757]:
+            - link "Whatsapp" [ref=f792e758] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f792e759]: 
+          - listitem [ref=f792e760]:
+            - link "Messanger" [ref=f792e761] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f792e762]: 
+      - generic [ref=f792e763]:
+        - heading "Direttore Sanitario" [level=3] [ref=f792e766]
+        - paragraph [ref=f792e769]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f792e772]
+        - list [ref=f792e775]:
+          - listitem [ref=f792e776]:
+            - link "Cookie Policy" [ref=f792e777] [cursor=pointer]:
+              - /url: /home-image/cookie-policy/
+          - listitem [ref=f792e778]:
+            - link "Privacy Policy" [ref=f792e779] [cursor=pointer]:
+              - /url: /home-image/privacy-policy/
+      - generic [ref=f792e780]:
+        - heading "Orari di apertura" [level=3] [ref=f792e783]
+        - paragraph [ref=f792e786]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f792e787]:
+        - heading "Contatti" [level=3] [ref=f792e790]
+        - link "+39 039 2022489" [ref=f792e794] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f792e795]:
+            - img [ref=f792e798]
+            - heading "+39 039 2022489" [level=3] [ref=f792e803]
+        - link "info@sorrisoesalute.it" [ref=f792e807] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f792e808]:
+            - img [ref=f792e811]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f792e820]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f792e824] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f792e825]:
+            - generic [ref=f792e828]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f792e830]
+        - paragraph [ref=f792e832]:
+          - strong [ref=f792e833]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f792e837]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f792e838]: mobile
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

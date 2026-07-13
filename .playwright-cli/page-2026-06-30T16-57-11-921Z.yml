@@ -1,0 +1,147 @@
+- generic [active] [ref=f1035e1]:
+  - generic [ref=f1035e5]:
+    - generic [ref=f1035e6]: STUDIO DENTISTICO
+    - strong [ref=f1035e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f1035e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f1035e12]:
+    - link "default-logo" [ref=f1035e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f1035e20]
+    - generic [ref=f1035e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f1035e23] [cursor=pointer]:
+            - generic [ref=f1035e24]: 
+          - generic [ref=f1035e25]:
+            - list:
+              - text:  
+              - listitem [ref=f1035e26]:
+                - link "Dicono di noi" [ref=f1035e27] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f1035e28]: Dicono di noi
+              - listitem [ref=f1035e29]:
+                - link "La Struttura" [ref=f1035e30] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f1035e31]: La Struttura
+              - listitem [ref=f1035e32]:
+                - link "Convenzioni" [ref=f1035e33] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f1035e34]: Convenzioni
+              - listitem [ref=f1035e35]:
+                - link "Urgenze" [ref=f1035e36] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f1035e37]: Urgenze
+              - listitem [ref=f1035e38]:
+                - link "Chiama in studio" [ref=f1035e39] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f1035e40]: Chiama in studio
+                  - img [ref=f1035e41]
+              - listitem [ref=f1035e43]:
+                - button "Menu" [ref=f1035e44] [cursor=pointer]:
+                  - generic [ref=f1035e49]: Menu
+            - button "X" [ref=f1035e51] [cursor=pointer]
+  - main [ref=f1035e54]:
+    - generic [ref=f1035e59]:
+      - heading "Sample Page" [level=1] [ref=f1035e60]
+      - navigation "Breadcrumbs" [ref=f1035e61]:
+        - list [ref=f1035e62]:
+          - listitem [ref=f1035e63]:
+            - link "Home" [ref=f1035e64] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f1035e65]:
+            - text: /
+            - generic [ref=f1035e66]: Sample Page
+    - generic [ref=f1035e72]:
+      - paragraph [ref=f1035e73]: "This is an example page. It’s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:"
+      - blockquote [ref=f1035e74]:
+        - paragraph [ref=f1035e75]: Hi there! I’m a bike messenger by day, aspiring actor by night, and this is my website. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin’ caught in the rain.)
+      - paragraph [ref=f1035e76]: "…or something like this:"
+      - blockquote [ref=f1035e77]:
+        - paragraph [ref=f1035e78]: The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.
+      - paragraph [ref=f1035e79]:
+        - text: As a new WordPress user, you should go to
+        - link "your dashboard" [ref=f1035e80] [cursor=pointer]:
+          - /url: /wp-admin/
+        - text: to delete this page and create new pages for your content. Have fun!
+  - generic [ref=f1035e84]:
+    - generic [ref=f1035e85]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f1035e89]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f1035e94] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f1035e95]:
+          - img [ref=f1035e97]
+          - generic [ref=f1035e99]: Richiedi appuntamento
+    - generic [ref=f1035e100]:
+      - generic [ref=f1035e101]:
+        - generic [ref=f1035e105]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f1035e106] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f1035e107] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f1035e111]:
+          - listitem [ref=f1035e112]:
+            - link "Facebook" [ref=f1035e113] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f1035e114]: 
+          - listitem [ref=f1035e115]:
+            - link "Instagram" [ref=f1035e116] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f1035e117]: 
+          - listitem [ref=f1035e118]:
+            - link "Whatsapp" [ref=f1035e119] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f1035e120]: 
+          - listitem [ref=f1035e121]:
+            - link "Messanger" [ref=f1035e122] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f1035e123]: 
+      - generic [ref=f1035e124]:
+        - heading "Direttore Sanitario" [level=3] [ref=f1035e127]
+        - paragraph [ref=f1035e130]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f1035e133]
+        - list [ref=f1035e136]:
+          - listitem [ref=f1035e137]:
+            - link "Cookie Policy" [ref=f1035e138] [cursor=pointer]:
+              - /url: /sample-page/cookie-policy/
+          - listitem [ref=f1035e139]:
+            - link "Privacy Policy" [ref=f1035e140] [cursor=pointer]:
+              - /url: /sample-page/privacy-policy/
+      - generic [ref=f1035e141]:
+        - heading "Orari di apertura" [level=3] [ref=f1035e144]
+        - paragraph [ref=f1035e147]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f1035e148]:
+        - heading "Contatti" [level=3] [ref=f1035e151]
+        - link "+39 039 2022489" [ref=f1035e155] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f1035e156]:
+            - img [ref=f1035e159]
+            - heading "+39 039 2022489" [level=3] [ref=f1035e164]
+        - link "info@sorrisoesalute.it" [ref=f1035e168] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f1035e169]:
+            - img [ref=f1035e172]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f1035e181]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f1035e185] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f1035e186]:
+            - generic [ref=f1035e189]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f1035e191]
+        - paragraph [ref=f1035e193]:
+          - strong [ref=f1035e194]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f1035e198]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f1035e199]: tablet
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

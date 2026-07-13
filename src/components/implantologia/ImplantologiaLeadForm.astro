@@ -1,0 +1,141 @@
+---
+import ImplantologiaAttribution from "./ImplantologiaAttribution.astro";
+import ImplantologiaHiddenFields from "./ImplantologiaHiddenFields.astro";
+
+interface Props {
+  slug: string;
+  serviceInterest: string;
+  heading?: string;
+}
+
+const {
+  slug,
+  serviceInterest,
+  heading = "Richiedi una valutazione implantologica",
+} = Astro.props;
+---
+
+<section class="implant-lead" id="richiedi-valutazione" aria-labelledby={`implant-form-title-${slug}`}>
+  <div class="implant-lead__intro">
+    <p class="implant-kicker">Prima visita</p>
+    <h2 id={`implant-form-title-${slug}`}>{heading}</h2>
+    <p>
+      Compila il modulo per essere ricontattato dallo studio. La visita permette di valutare le opzioni disponibili;
+      il piano di cura dipende dal singolo caso.
+    </p>
+    <div class="implant-lead__contacts">
+      <a href="tel:+390392022489">Chiama lo studio: 039 2022489</a>
+      <a
+        href="https://wa.me/393892490181"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-google-ads-conversion="whatsapp-implantologia"
+      >Scrivi su WhatsApp</a>
+    </div>
+  </div>
+
+  <form
+    class="implant-lead__form"
+    id={`implantologia-form-${slug}`}
+    action="/api/send-lead"
+    method="post"
+    data-implantologia-form
+    novalidate
+  >
+    <ImplantologiaHiddenFields />
+
+    <label for={`nome-${slug}`}>
+      Nome e cognome
+      <input id={`nome-${slug}`} name="nomeCompleto" type="text" autocomplete="name" required />
+    </label>
+    <label for={`telefono-${slug}`}>
+      Telefono
+      <input id={`telefono-${slug}`} name="telefono" type="tel" inputmode="tel" autocomplete="tel" required />
+    </label>
+    <label for={`email-${slug}`}>
+      Email facoltativa
+      <input id={`email-${slug}`} name="email" type="email" inputmode="email" autocomplete="email" />
+    </label>
+    <label for={`messaggio-${slug}`}>
+      Messaggio facoltativo
+      <textarea id={`messaggio-${slug}`} name="messaggio" rows="4"></textarea>
+    </label>
+
+    <p class="implant-lead__privacy">
+      Inviando la richiesta dichiari di aver letto la <a href="/privacy-policy/">Privacy Policy</a>.
+    </p>
+    <p class="implant-lead__error" data-form-error aria-live="polite"></p>
+    <button type="submit">Richiedi di essere ricontattato</button>
+  </form>
+</section>
+
+<ImplantologiaAttribution serviceInterest={serviceInterest} isLanding />
+
+<script>
+  const markImplantologiaConversionPending = () => {
+    const conversionId =
+      typeof window.crypto?.randomUUID === "function"
+        ? window.crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+    try {
+      window.sessionStorage.setItem("lead_conversion_scope", "implantologia");
+      window.sessionStorage.setItem("lead_conversion_id", conversionId);
+      window.sessionStorage.setItem("lead_conversion_pending", "true");
+    } catch {
+      // L'invio del lead non deve fallire se lo storage è disabilitato.
+    }
+  };
+
+  document.querySelectorAll("form[data-implantologia-form]").forEach((form) => {
+    if (!(form instanceof HTMLFormElement) || form.dataset.submitHandlerAttached === "true") return;
+    form.dataset.submitHandlerAttached = "true";
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      const errorElement = form.querySelector("[data-form-error]");
+      const setError = (message = "") => {
+        if (errorElement) errorElement.textContent = message;
+      };
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        setError("Completa nome e telefono per inviare la richiesta.");
+        return;
+      }
+
+      if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
+      setError();
+
+      const formData = Object.fromEntries(new FormData(form).entries());
+      const payload = {
+        ...formData,
+        nome: formData.nomeCompleto || "",
+        servizio: "Valutazione implantologica",
+        paginaProvenienza: document.referrer || "",
+        paginaCorrente: window.location.href,
+      };
+
+      try {
+        const response = await fetch("/api/send-lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          const result = await response.json().catch(() => ({}));
+          throw new Error(result.error || "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+        }
+
+        markImplantologiaConversionPending();
+        window.location.href = "/thank-you-page/";
+      } catch (error) {
+        if (submitButton instanceof HTMLButtonElement) submitButton.disabled = false;
+        setError(error instanceof Error ? error.message : "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+      }
+    });
+  });
+</script>

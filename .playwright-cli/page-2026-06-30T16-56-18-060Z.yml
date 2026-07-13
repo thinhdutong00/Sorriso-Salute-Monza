@@ -1,0 +1,225 @@
+- generic [active] [ref=f993e1]:
+  - generic [ref=f993e5]:
+    - generic [ref=f993e6]: STUDIO DENTISTICO
+    - strong [ref=f993e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f993e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f993e12]:
+    - link "default-logo" [ref=f993e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f993e20]
+    - generic [ref=f993e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f993e23] [cursor=pointer]:
+            - generic [ref=f993e24]: 
+          - generic [ref=f993e25]:
+            - list:
+              - text:  
+              - listitem [ref=f993e26]:
+                - link "Dicono di noi" [ref=f993e27] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f993e28]: Dicono di noi
+              - listitem [ref=f993e29]:
+                - link "La Struttura" [ref=f993e30] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f993e31]: La Struttura
+              - listitem [ref=f993e32]:
+                - link "Convenzioni" [ref=f993e33] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f993e34]: Convenzioni
+              - listitem [ref=f993e35]:
+                - link "Urgenze" [ref=f993e36] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f993e37]: Urgenze
+              - listitem [ref=f993e38]:
+                - link "Chiama in studio" [ref=f993e39] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f993e40]: Chiama in studio
+                  - img [ref=f993e41]
+              - listitem [ref=f993e43]:
+                - button "Menu" [ref=f993e44] [cursor=pointer]:
+                  - generic [ref=f993e49]: Menu
+            - button "X" [ref=f993e51] [cursor=pointer]
+  - generic [ref=f993e54]:
+    - heading "D i c o n o d i n o i" [level=1] [ref=f993e60]:
+      - generic [ref=f993e61]:
+        - generic [ref=f993e62]:
+          - generic [ref=f993e63]: D
+          - generic [ref=f993e64]: i
+          - generic [ref=f993e65]: c
+          - generic [ref=f993e66]: o
+          - generic [ref=f993e67]: "n"
+          - generic [ref=f993e68]: o
+        - generic [ref=f993e69]:
+          - generic [ref=f993e70]: d
+          - generic [ref=f993e71]: i
+        - generic [ref=f993e72]:
+          - generic [ref=f993e73]: "n"
+          - generic [ref=f993e74]: o
+          - generic [ref=f993e75]: i
+    - generic [ref=f993e77]:
+      - heading "Scrivi e racconta la tua esperienza in Sorriso&Salute" [level=2] [ref=f993e80]
+      - generic [ref=f993e82]:
+        - paragraph
+        - generic [ref=f993e85]:
+          - generic [ref=f993e86]:
+            - generic [ref=f993e87]: Esprimi una tua preferenza
+            - combobox "Esprimi una tua preferenza" [ref=f993e88]:
+              - option "Select a Rating" [selected]
+              - option "5 Stars"
+              - option "4 Stars"
+              - option "3 Stars"
+              - option "2 Stars"
+              - option "1 Star"
+          - generic [ref=f993e89]:
+            - generic [ref=f993e90]: Titolo recensione
+            - textbox "Titolo recensione" [ref=f993e91]:
+              - /placeholder: Inserisci un breve titolo della tua recensione
+          - generic [ref=f993e92]:
+            - generic [ref=f993e93]: Testo recensione
+            - textbox "Testo recensione" [ref=f993e94]:
+              - /placeholder: Parlaci della tua esperienza
+          - generic [ref=f993e95]:
+            - generic [ref=f993e96]: Nome
+            - textbox "Nome" [ref=f993e97]:
+              - /placeholder: Inserisci il tuo nome
+          - generic [ref=f993e98]:
+            - generic [ref=f993e99]: Email
+            - textbox "Email" [ref=f993e100]:
+              - /placeholder: Inserisci la tua email
+          - generic [ref=f993e103]:
+            - generic [ref=f993e104]: Questa recensione è basata sulla mia esperienza presso lo studio sorriso&salute
+            - checkbox "Questa recensione è basata sulla mia esperienza presso lo studio sorriso&salute" [ref=f993e106] [cursor=pointer]
+          - button "Inserisci recensione" [ref=f993e110] [cursor=pointer]
+        - paragraph
+    - generic [ref=f993e114]:
+      - paragraph
+      - generic [ref=f993e116]:
+        - generic [ref=f993e117]:
+          - generic [ref=f993e118]:
+            - heading "In ottime mani" [level=4] [ref=f993e120]
+            - img "Rated 5 out of 5 stars" [ref=f993e122]
+            - generic [ref=f993e129]: February 15, 2026
+            - paragraph [ref=f993e132]: Dottoressa molto precisa e accurata. Grande esperienza nelle visite e ottimi consigli per la cura. Sempre in buone mani! Grazie
+            - generic [ref=f993e134]: Samir G.
+          - generic [ref=f993e135]:
+            - heading "Cordiali" [level=4] [ref=f993e137]
+            - img "Rated 4 out of 5 stars" [ref=f993e139]
+            - generic [ref=f993e146]: January 2, 2026
+            - paragraph [ref=f993e149]: Cordialità, preparazione professionale, capacità di spiegare e di consigliare.
+            - generic [ref=f993e151]: Gabrio G.
+          - generic [ref=f993e152]:
+            - heading "Finalmente a mio agio" [level=4] [ref=f993e154]
+            - img "Rated 5 out of 5 stars" [ref=f993e156]
+            - generic [ref=f993e163]: December 15, 2025
+            - paragraph [ref=f993e166]: Avevo molta paura dell’intervento, ma il dottore e tutto lo staff mi hanno messa subito a mio agio. L’implantologia è stata indolore e il risultato estetico è perfetto. Mi sento finalmente di nuovo a mio agio nel sorridere!
+            - generic [ref=f993e168]: Marta R.
+          - generic [ref=f993e169]:
+            - heading "Grande attenzione alla diagnosi" [level=4] [ref=f993e171]
+            - img "Rated 5 out of 5 stars" [ref=f993e173]
+            - generic [ref=f993e180]: November 14, 2025
+            - paragraph [ref=f993e183]: Valutazione clinica molto accurata, con fotografie intraorali e scanner digitale. Grande attenzione alla diagnosi.
+            - generic [ref=f993e185]: Giuseppe G.
+          - generic [ref=f993e186]:
+            - heading "Tutto ottimo" [level=4] [ref=f993e188]
+            - img "Rated 4 out of 5 stars" [ref=f993e190]
+            - generic [ref=f993e197]: October 12, 2025
+            - paragraph [ref=f993e200]: Molto precisa ed attenta, infonde fiducia nel paziente. Dentista davvero molto professionale
+            - generic [ref=f993e202]: Giorgio B.
+        - navigation [ref=f993e205]:
+          - heading "Site Reviews navigation" [level=2] [ref=f993e206]
+          - generic [ref=f993e207]:
+            - generic [ref=f993e208]:
+              - generic [ref=f993e209]: Page
+              - text: "1"
+            - link "Page 2" [ref=f993e210] [cursor=pointer]:
+              - /url: /recensioni-studio-dentistico-monza/?reviews-page=2
+              - generic [ref=f993e211]: Page
+              - text: "2"
+            - link "Page 3" [ref=f993e212] [cursor=pointer]:
+              - /url: /recensioni-studio-dentistico-monza/?reviews-page=3
+              - generic [ref=f993e213]: Page
+              - text: "3"
+            - link "Page 4" [ref=f993e214] [cursor=pointer]:
+              - /url: /recensioni-studio-dentistico-monza/?reviews-page=4
+              - generic [ref=f993e215]: Page
+              - text: "4"
+            - link "Next" [ref=f993e216] [cursor=pointer]:
+              - /url: /recensioni-studio-dentistico-monza/?reviews-page=2
+      - paragraph
+  - generic [ref=f993e220]:
+    - generic [ref=f993e221]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f993e225]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f993e230] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f993e231]:
+          - img [ref=f993e233]
+          - generic [ref=f993e235]: Richiedi appuntamento
+    - generic [ref=f993e236]:
+      - generic [ref=f993e237]:
+        - generic [ref=f993e241]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f993e242] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f993e243] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f993e247]:
+          - listitem [ref=f993e248]:
+            - link "Facebook" [ref=f993e249] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f993e250]: 
+          - listitem [ref=f993e251]:
+            - link "Instagram" [ref=f993e252] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f993e253]: 
+          - listitem [ref=f993e254]:
+            - link "Whatsapp" [ref=f993e255] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f993e256]: 
+          - listitem [ref=f993e257]:
+            - link "Messanger" [ref=f993e258] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f993e259]: 
+      - generic [ref=f993e260]:
+        - heading "Direttore Sanitario" [level=3] [ref=f993e263]
+        - paragraph [ref=f993e266]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f993e269]
+        - list [ref=f993e272]:
+          - listitem [ref=f993e273]:
+            - link "Cookie Policy" [ref=f993e274] [cursor=pointer]:
+              - /url: /recensioni-studio-dentistico-monza/cookie-policy/
+          - listitem [ref=f993e275]:
+            - link "Privacy Policy" [ref=f993e276] [cursor=pointer]:
+              - /url: /recensioni-studio-dentistico-monza/privacy-policy/
+      - generic [ref=f993e277]:
+        - heading "Orari di apertura" [level=3] [ref=f993e280]
+        - paragraph [ref=f993e283]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f993e284]:
+        - heading "Contatti" [level=3] [ref=f993e287]
+        - link "+39 039 2022489" [ref=f993e291] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f993e292]:
+            - img [ref=f993e295]
+            - heading "+39 039 2022489" [level=3] [ref=f993e300]
+        - link "info@sorrisoesalute.it" [ref=f993e304] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f993e305]:
+            - img [ref=f993e308]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f993e317]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f993e321] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f993e322]:
+            - generic [ref=f993e325]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f993e327]
+        - paragraph [ref=f993e329]:
+          - strong [ref=f993e330]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f993e334]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f993e335]: tablet

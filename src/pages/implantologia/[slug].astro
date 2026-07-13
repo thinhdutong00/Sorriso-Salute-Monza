@@ -1,0 +1,15 @@
+---
+import ImplantologiaLanding from "../../components/implantologia/ImplantologiaLanding.astro";
+import { implantologiaPages } from "../../data/implantologiaPages";
+
+export function getStaticPaths() {
+  return implantologiaPages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { page } = Astro.props;
+---
+
+<ImplantologiaLanding page={page} />

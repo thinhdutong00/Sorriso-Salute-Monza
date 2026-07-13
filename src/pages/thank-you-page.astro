@@ -19,11 +19,27 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
     <GoogleAdsTracking />
     <BrandPalette />
     <script is:inline>
-      if (typeof window.gtag === "function") {
-        window.gtag("event", "conversion", {
-          send_to: "AW-18196734570/lK03CIzcu7wcEOrE8ORD",
-        });
-      }
+      (() => {
+        try {
+          const scope = window.sessionStorage.getItem("lead_conversion_scope");
+          const conversionId = window.sessionStorage.getItem("lead_conversion_id");
+          const isPending = window.sessionStorage.getItem("lead_conversion_pending") === "true";
+          const sentKey = conversionId ? `lead_conversion_sent_${conversionId}` : "";
+          const wasSent = sentKey ? window.sessionStorage.getItem(sentKey) === "true" : true;
+
+          if (scope !== "implantologia" || !conversionId || !isPending || wasSent) return;
+          if (typeof window.gtag !== "function") return;
+
+          window.gtag("event", "conversion", {
+            send_to: "AW-18196734570/lK03CIzcu7wcEOrE8ORD",
+            transaction_id: conversionId,
+          });
+          window.sessionStorage.setItem("lead_conversion_pending", "false");
+          window.sessionStorage.setItem(sentKey, "true");
+        } catch {
+          // Nessuna conversione viene inviata senza uno stato di sessione valido.
+        }
+      })();
     </script>
     <title>Grazie | Sorriso & Salute Monza</title>
   </head>

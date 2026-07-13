@@ -1,0 +1,233 @@
+- generic [active] [ref=f933e1]:
+  - generic [ref=f933e5]:
+    - generic [ref=f933e6]: STUDIO DENTISTICO
+    - strong [ref=f933e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f933e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f933e12]:
+    - link "default-logo" [ref=f933e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f933e20]
+    - generic [ref=f933e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f933e23] [cursor=pointer]:
+            - generic [ref=f933e24]: 
+          - generic [ref=f933e25]:
+            - list:
+              - text:  
+              - listitem [ref=f933e26]:
+                - link "Dicono di noi" [ref=f933e27] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f933e28]: Dicono di noi
+              - listitem [ref=f933e29]:
+                - link "La Struttura" [ref=f933e30] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f933e31]: La Struttura
+              - listitem [ref=f933e32]:
+                - link "Convenzioni" [ref=f933e33] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f933e34]: Convenzioni
+              - listitem [ref=f933e35]:
+                - link "Urgenze" [ref=f933e36] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f933e37]: Urgenze
+              - listitem [ref=f933e38]:
+                - link "Chiama in studio" [ref=f933e39] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f933e40]: Chiama in studio
+                  - img [ref=f933e41]
+              - listitem [ref=f933e43]:
+                - button "Menu" [ref=f933e44] [cursor=pointer]:
+                  - generic [ref=f933e49]: Menu
+            - button "X" [ref=f933e51] [cursor=pointer]
+  - main [ref=f933e54]:
+    - generic [ref=f933e59]:
+      - heading "Privacy Policy" [level=1] [ref=f933e60]
+      - navigation "Breadcrumbs" [ref=f933e61]:
+        - list [ref=f933e62]:
+          - listitem [ref=f933e63]:
+            - link "Home" [ref=f933e64] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f933e65]:
+            - text: /
+            - generic [ref=f933e66]: Privacy Policy
+    - generic [ref=f933e77]:
+      - heading [level=2]
+      - heading "Privacy Policy" [level=2] [ref=f933e78]
+      - heading [level=2]
+      - paragraph [ref=f933e79]
+      - heading "Dati Personali trattati per le seguenti finalità e utilizzando i seguenti servizi:" [level=5] [ref=f933e80]
+      - generic [ref=f933e81]:
+        - heading "Contattare l’Utente" [level=5] [ref=f933e82]:
+          - strong [ref=f933e83]: Contattare l’Utente
+        - heading "Modulo di contatto" [level=5] [ref=f933e84]:
+          - strong [ref=f933e85]: Modulo di contatto
+        - paragraph [ref=f933e86]: "Dati Personali: CAP; città; Codice Fiscale; cognome; data di nascita; email; ID Utente; indirizzo; nazione; nome; numero di telefono; Partita IVA; professione; provincia; ragione sociale; sesso; settore di attività; sito web; stato; varie tipologie di Dati"
+        - heading "Mailing list o newsletter" [level=5] [ref=f933e87]:
+          - strong [ref=f933e88]: Mailing list o newsletter
+        - paragraph [ref=f933e89]: "Dati Personali: CAP; città; cognome; Cookie; data di nascita; Dati di utilizzo; email; indirizzo; nazione; nome; numero di telefono; professione; provincia; ragione sociale; sesso; sito web; stato"
+        - heading "Contatto via telefono" [level=5] [ref=f933e90]:
+          - strong [ref=f933e91]: Contatto via telefono
+        - paragraph [ref=f933e92]: "Dati Personali: numero di telefono"
+      - generic [ref=f933e93]:
+        - heading "Gestione contatti e invio di messaggi" [level=5] [ref=f933e94]:
+          - strong [ref=f933e95]: Gestione contatti e invio di messaggi
+        - paragraph [ref=f933e96]:
+          - strong [ref=f933e97]: Mailchimp
+        - paragraph [ref=f933e98]: "Dati Personali: cognome; Cookie; data di nascita; Dati di utilizzo; email; indirizzo; nazione; nome; numero di telefono; ragione sociale; sesso; username; varie tipologie di Dati"
+      - generic [ref=f933e99]:
+        - heading "Gestione della raccolta dati e dei sondaggi online" [level=5] [ref=f933e100]:
+          - strong [ref=f933e101]: Gestione della raccolta dati e dei sondaggi online
+        - paragraph [ref=f933e102]:
+          - strong [ref=f933e103]: Inserzioni per acquisizione contatti di Facebook
+        - paragraph [ref=f933e104]: "Dati Personali: CAP; città; cognome; Cookie; data di nascita; email; indirizzo; nazione; nome; numero di telefono; professione; ragione sociale; sesso; stato; stato civile"
+      - generic [ref=f933e105]:
+        - heading "Interazione con social network e piattaforme esterne" [level=5] [ref=f933e106]:
+          - strong [ref=f933e107]: Interazione con social network e piattaforme esterne
+        - paragraph [ref=f933e108]:
+          - strong [ref=f933e109]: Pulsante Mi Piace e widget sociali di Facebook
+        - paragraph [ref=f933e110]: "Dati Personali: Cookie; Dati di utilizzo"
+      - generic [ref=f933e111]:
+        - heading "Protezione dallo SPAM" [level=5] [ref=f933e112]:
+          - strong [ref=f933e113]: Protezione dallo SPAM
+        - paragraph [ref=f933e114]:
+          - strong [ref=f933e115]: Google reCAPTCHA
+        - paragraph [ref=f933e116]: "Dati Personali: Cookie; Dati di utilizzo"
+      - generic [ref=f933e117]:
+        - heading "Pubblicità" [level=5] [ref=f933e118]:
+          - strong [ref=f933e119]: Pubblicità
+        - paragraph [ref=f933e120]:
+          - strong [ref=f933e121]: Facebook Audience Network
+        - paragraph [ref=f933e122]: "Dati Personali: Cookie; Dati di utilizzo; identificatori univoci di dispositivi per la pubblicità (Google Advertiser ID o identificatore IDFA, per esempio)"
+        - paragraph [ref=f933e123]:
+          - strong [ref=f933e124]: Pubblico simile di Facebook
+        - paragraph [ref=f933e125]: "Dati Personali: Cookie; Dati di utilizzo"
+        - paragraph [ref=f933e126]:
+          - strong [ref=f933e127]: Monitoraggio conversioni di Meta ads (pixel di Meta)
+        - paragraph [ref=f933e128]: "Dati Personali: Dati di utilizzo; Strumenti di Tracciamento"
+      - generic [ref=f933e129]:
+        - heading "Remarketing e behavioral targeting" [level=5] [ref=f933e130]:
+          - strong [ref=f933e131]: Remarketing e behavioral targeting
+        - paragraph [ref=f933e132]:
+          - strong [ref=f933e133]: Facebook Remarketing
+        - paragraph [ref=f933e134]: "Dati Personali: Cookie; Dati di utilizzo"
+        - heading "Pubblico personalizzato di Facebook" [level=5] [ref=f933e135]:
+          - strong [ref=f933e136]: Pubblico personalizzato di Facebook
+        - paragraph [ref=f933e137]: "Dati Personali: Cookie; email"
+      - generic [ref=f933e138]:
+        - heading "Statistica" [level=5] [ref=f933e139]:
+          - strong [ref=f933e140]: Statistica
+        - paragraph [ref=f933e141]:
+          - strong [ref=f933e142]: Google Analytics (Universal Analytics), WordPress Stat e Google Analytics (Universal Analytics) con IP anonimizzato
+        - paragraph [ref=f933e143]: "Dati Personali: Cookie; Dati di utilizzo"
+        - paragraph [ref=f933e144]:
+          - strong [ref=f933e145]: Facebook Analytics for Apps
+        - paragraph [ref=f933e146]: "Dati Personali: Dati di utilizzo; varie tipologie di Dati secondo quanto specificato dalla privacy policy del servizio"
+      - generic [ref=f933e147]:
+        - heading "Visualizzazione di contenuti da piattaforme esterne" [level=5] [ref=f933e148]:
+          - strong [ref=f933e149]: Visualizzazione di contenuti da piattaforme esterne
+        - paragraph [ref=f933e150]:
+          - strong [ref=f933e151]: Font Awesome
+        - paragraph [ref=f933e152]: "Dati Personali: Dati di utilizzo"
+        - paragraph [ref=f933e153]:
+          - strong [ref=f933e154]: Google Fonts
+        - paragraph [ref=f933e155]: "Dati Personali: Dati di utilizzo; varie tipologie di Dati secondo quanto specificato dalla privacy policy del servizio"
+      - heading "Informazioni su come disattivare gli annunci pubblicitari basati sugli interessi" [level=5] [ref=f933e156]:
+        - strong [ref=f933e157]: Informazioni su come disattivare gli annunci pubblicitari basati sugli interessi
+      - paragraph [ref=f933e158]: Oltre a qualsiasi funzione di opt-out fornita da uno qualsiasi dei servizi elencati in questo documento, gli Utenti possono leggere di più su come disattivare gli annunci pubblicitari basati sugli interessi nell’apposita sezione della Cookie Policy.
+      - heading "Informazioni di contatto" [level=2] [ref=f933e159]
+      - generic [ref=f933e160]:
+        - heading "Titolare del Trattamento dei Dati" [level=5] [ref=f933e161]:
+          - strong [ref=f933e162]: Titolare del Trattamento dei Dati
+        - strong [ref=f933e164]: Studio Dentistico Sorriso & Salute
+        - paragraph [ref=f933e165]:
+          - text: P.iva 03845830961
+          - text: Via Gaslini,1 – 20090 – MONZA 20021
+          - link "info@sorrisoesalute.it" [ref=f933e166] [cursor=pointer]:
+            - /url: mailto:info@sorrisoesalute.it
+        - paragraph [ref=f933e167]:
+          - strong [ref=f933e168]: "Indirizzo email del Titolare:"
+          - link "info@sorrisoesalute.it" [ref=f933e169] [cursor=pointer]:
+            - /url: mailto:info@sorrisoesalute.it
+  - generic [ref=f933e173]:
+    - generic [ref=f933e174]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f933e178]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f933e183] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f933e184]:
+          - img [ref=f933e186]
+          - generic [ref=f933e188]: Richiedi appuntamento
+    - generic [ref=f933e189]:
+      - generic [ref=f933e190]:
+        - generic [ref=f933e194]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f933e195] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f933e196] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f933e200]:
+          - listitem [ref=f933e201]:
+            - link "Facebook" [ref=f933e202] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f933e203]: 
+          - listitem [ref=f933e204]:
+            - link "Instagram" [ref=f933e205] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f933e206]: 
+          - listitem [ref=f933e207]:
+            - link "Whatsapp" [ref=f933e208] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f933e209]: 
+          - listitem [ref=f933e210]:
+            - link "Messanger" [ref=f933e211] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f933e212]: 
+      - generic [ref=f933e213]:
+        - heading "Direttore Sanitario" [level=3] [ref=f933e216]
+        - paragraph [ref=f933e219]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f933e222]
+        - list [ref=f933e225]:
+          - listitem [ref=f933e226]:
+            - link "Cookie Policy" [ref=f933e227] [cursor=pointer]:
+              - /url: /privacy-policy/cookie-policy/
+          - listitem [ref=f933e228]:
+            - link "Privacy Policy" [ref=f933e229] [cursor=pointer]:
+              - /url: /privacy-policy/privacy-policy/
+      - generic [ref=f933e230]:
+        - heading "Orari di apertura" [level=3] [ref=f933e233]
+        - paragraph [ref=f933e236]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f933e237]:
+        - heading "Contatti" [level=3] [ref=f933e240]
+        - link "+39 039 2022489" [ref=f933e244] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f933e245]:
+            - img [ref=f933e248]
+            - heading "+39 039 2022489" [level=3] [ref=f933e253]
+        - link "info@sorrisoesalute.it" [ref=f933e257] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f933e258]:
+            - img [ref=f933e261]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f933e270]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f933e274] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f933e275]:
+            - generic [ref=f933e278]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f933e280]
+        - paragraph [ref=f933e282]:
+          - strong [ref=f933e283]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f933e287]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f933e288]: tablet
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

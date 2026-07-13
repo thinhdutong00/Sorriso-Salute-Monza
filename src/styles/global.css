@@ -1213,6 +1213,7 @@ body.kebab-menu-open {
   font-weight: 800;
   line-height: 1.2;
   text-align: center;
+  text-decoration: none;
   transition: transform 180ms ease, background 180ms ease;
   white-space: normal;
 }

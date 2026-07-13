@@ -1,0 +1,279 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: STUDIO DENTISTICO
+    - strong [ref=e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=e12]:
+    - link "default-logo" [ref=e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=e20]
+    - generic [ref=e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=e23] [cursor=pointer]:
+            - generic [ref=e24]: 
+          - generic [ref=e25]:
+            - list:
+              - text:  
+              - listitem [ref=e26]:
+                - link "Dicono di noi" [ref=e27] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=e28]: Dicono di noi
+              - listitem [ref=e29]:
+                - link "La Struttura" [ref=e30] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=e31]: La Struttura
+              - listitem [ref=e32]:
+                - link "Convenzioni" [ref=e33] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=e34]: Convenzioni
+              - listitem [ref=e35]:
+                - link "Urgenze" [ref=e36] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=e37]: Urgenze
+              - listitem [ref=e38]:
+                - link "Chiama in studio" [ref=e39] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=e40]: Chiama in studio
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - button "Menu" [ref=e44] [cursor=pointer]:
+                  - generic [ref=e49]: Menu
+            - button "X" [ref=e51] [cursor=pointer]
+  - generic [ref=e54]:
+    - heading "C h i s i a m o" [level=1] [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - generic [ref=e62]: C
+          - generic [ref=e63]: h
+          - generic [ref=e64]: i
+        - generic [ref=e65]:
+          - generic [ref=e66]: s
+          - generic [ref=e67]: i
+          - generic [ref=e68]: a
+          - generic [ref=e69]: m
+          - generic [ref=e70]: o
+    - generic [ref=e72]:
+      - generic [ref=e73]:
+        - img "Sala operativa dello Studio Dentistico Sorriso & Salute" [ref=e76]
+        - generic [ref=e81]:
+          - img [ref=e83]
+          - generic [ref=e89]:
+            - generic [ref=e90]: 0 M+
+            - heading "Pazienti soddisfatti" [level=3] [ref=e91]
+      - heading "S T U D I O D E N T I S T I C O A M O N Z A" [level=2] [ref=e95]:
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: S
+            - generic [ref=e99]: T
+            - generic [ref=e100]: U
+            - generic [ref=e101]: D
+            - generic [ref=e102]: I
+            - generic [ref=e103]: O
+          - generic [ref=e104]:
+            - generic [ref=e105]: D
+            - generic [ref=e106]: E
+            - generic [ref=e107]: "N"
+            - generic [ref=e108]: T
+            - generic [ref=e109]: I
+            - generic [ref=e110]: S
+            - generic [ref=e111]: T
+            - generic [ref=e112]: I
+            - generic [ref=e113]: C
+            - generic [ref=e114]: O
+          - generic [ref=e116]: A
+        - generic [ref=e118]:
+          - generic [ref=e119]: M
+          - generic [ref=e120]: O
+          - generic [ref=e121]: "N"
+          - generic [ref=e122]: Z
+          - generic [ref=e123]: A
+    - generic [ref=e127]:
+      - heading "Offriamo una serie di servizi e prestazioni a carattere innovativo ed alto contenuto tecnologico" [level=2] [ref=e131]:
+        - text: Offriamo una
+        - text: serie di servizi e
+        - text: prestazioni a
+        - text: carattere
+        - text: innovativo ed
+        - text: alto contenuto
+        - text: tecnologico
+      - generic [ref=e132]:
+        - img "Progettazione digitale di una protesi dentale" [ref=e135]
+        - generic [ref=e136]:
+          - paragraph [ref=e137]: Le attrezzature e gli impianti di cui disponiamo sono rigorosamente a norma e tra i più innovativi.
+          - paragraph [ref=e138]: I nostri pazienti sono assistiti da professionisti specializzati e costantemente aggiornati.
+    - generic [ref=e140]:
+      - heading "E c c e l l e n z a e I n n o v a z i o n e n e l N o s t r o T e a m" [level=2] [ref=e144]:
+        - generic [ref=e145]:
+          - generic [ref=e146]:
+            - generic [ref=e147]: E
+            - generic [ref=e148]: c
+            - generic [ref=e149]: c
+            - generic [ref=e150]: e
+            - generic [ref=e151]: l
+            - generic [ref=e152]: l
+            - generic [ref=e153]: e
+            - generic [ref=e154]: "n"
+            - generic [ref=e155]: z
+            - generic [ref=e156]: a
+          - generic [ref=e158]: e
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - generic [ref=e161]: I
+            - generic [ref=e162]: "n"
+            - generic [ref=e163]: "n"
+            - generic [ref=e164]: o
+            - generic [ref=e165]: v
+            - generic [ref=e166]: a
+            - generic [ref=e167]: z
+            - generic [ref=e168]: i
+            - generic [ref=e169]: o
+            - generic [ref=e170]: "n"
+            - generic [ref=e171]: e
+          - generic [ref=e172]:
+            - generic [ref=e173]: "n"
+            - generic [ref=e174]: e
+            - generic [ref=e175]: l
+        - generic [ref=e176]:
+          - generic [ref=e177]:
+            - generic [ref=e178]: "N"
+            - generic [ref=e179]: o
+            - generic [ref=e180]: s
+            - generic [ref=e181]: t
+            - generic [ref=e182]: r
+            - generic [ref=e183]: o
+          - generic [ref=e184]:
+            - generic [ref=e185]: T
+            - generic [ref=e186]: e
+            - generic [ref=e187]: a
+            - generic [ref=e188]: m
+      - generic [ref=e189]:  
+    - generic [ref=e197]:
+      - generic [ref=e206]:
+        - generic [ref=e207]: Gianni Focarelli
+        - generic [ref=e208]: Titolare e amministratore della Sorriso&Salute srl
+      - generic "Dott.ssa Moreschi Chiara. Chirurgo Orale. Mostra dettagli al passaggio del mouse." [ref=e214]:
+        - generic:
+          - generic:
+            - generic [ref=e217]:
+              - generic [ref=e218]: Dott.ssa Moreschi Chiara
+              - generic [ref=e219]: Chirurgo Orale
+            - generic [ref=e220]:
+              - generic [ref=e221]: Area di attività
+              - paragraph [ref=e222]: Si occupa nella struttura di Chirurgia e Patologia Orale
+              - link "www.chiaramoreschi.it" [ref=e223] [cursor=pointer]:
+                - /url: https://chiaramoreschi.it/
+      - generic "Dott.ssa Maria Isabel Pareja Carrillo. Odontoiatra, Direttore Sanitario. Mostra dettagli al passaggio del mouse." [ref=e229]:
+        - generic:
+          - generic:
+            - generic [ref=e232]:
+              - generic [ref=e233]: Dott.ssa Maria Isabel Pareja Carrillo
+              - generic [ref=e234]: Odontoiatra, Direttore Sanitario
+            - generic [ref=e235]:
+              - generic [ref=e236]: Area di attività
+              - paragraph [ref=e237]: Si occupa nella struttura di protesi e specializzata in Estetica Dentale
+      - generic "Dott.ssa Elvira Madeo. Odontoiatra, Specialista in ortognatodonzia. Mostra dettagli al passaggio del mouse." [ref=e243]:
+        - generic:
+          - generic:
+            - generic [ref=e246]:
+              - generic [ref=e247]: Dott.ssa Elvira Madeo
+              - generic [ref=e248]: Odontoiatra, Specialista in ortognatodonzia
+            - generic [ref=e249]:
+              - generic [ref=e250]: Area di attività
+              - paragraph [ref=e251]: Si occupa nella struttura di ortodonzia, bambini e adulti
+      - generic [ref=e260]:
+        - generic [ref=e261]: Dott.ssa Dervishi Denisa
+        - generic [ref=e262]: Odontoiatra Generalista
+      - generic "Dott.ssa Cacciabue Paola. Odontoiatra Specialista in Ortodonzia. Mostra dettagli al passaggio del mouse." [ref=e268]:
+        - generic:
+          - generic:
+            - generic [ref=e271]:
+              - generic [ref=e272]: Dott.ssa Cacciabue Paola
+              - generic [ref=e273]: Odontoiatra Specialista in Ortodonzia
+            - generic [ref=e274]:
+              - generic [ref=e275]: Area di attività
+              - paragraph [ref=e276]: Si occupa nella struttura di Ortodonzia e Medicina Estetica del Viso
+              - link "www.ortodonticapagi.com" [ref=e277] [cursor=pointer]:
+                - /url: https://www.ortodonticapagi.com
+    - generic [ref=e281]:
+      - generic [ref=e282]:
+        - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=e286]:
+          - text: Un sorriso
+          - text: che sembri tuo,
+          - text: solo migliore.
+        - link "Richiedi appuntamento" [ref=e291] [cursor=pointer]:
+          - /url: /richiesta/
+          - generic [ref=e292]:
+            - img [ref=e294]
+            - generic [ref=e296]: Richiedi appuntamento
+      - generic [ref=e297]:
+        - generic [ref=e298]:
+          - generic [ref=e302]:
+            - link "Cerchi un Dentista in Brianza?" [ref=e303] [cursor=pointer]:
+              - /url: /richiesta/
+            - link "Convenzioni Studio Dentistico Monza Dentista" [ref=e304] [cursor=pointer]:
+              - /url: /convenzioni-dirette/
+          - list [ref=e308]:
+            - listitem [ref=e309]:
+              - link "Facebook" [ref=e310] [cursor=pointer]:
+                - /url: https://www.facebook.com/sorrisomonza/
+                - generic [ref=e311]: 
+            - listitem [ref=e312]:
+              - link "Instagram" [ref=e313] [cursor=pointer]:
+                - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+                - generic [ref=e314]: 
+            - listitem [ref=e315]:
+              - link "Whatsapp" [ref=e316] [cursor=pointer]:
+                - /url: https://wa.me/3892490181
+                - generic [ref=e317]: 
+            - listitem [ref=e318]:
+              - link "Messanger" [ref=e319] [cursor=pointer]:
+                - /url: https://m.me/sorrisoesalute
+                - generic [ref=e320]: 
+        - generic [ref=e321]:
+          - heading "Direttore Sanitario" [level=3] [ref=e324]
+          - paragraph [ref=e327]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+          - heading "Info" [level=3] [ref=e330]
+          - list [ref=e333]:
+            - listitem [ref=e334]:
+              - link "Cookie Policy" [ref=e335] [cursor=pointer]:
+                - /url: /cookie-policy/
+            - listitem [ref=e336]:
+              - link "Privacy Policy" [ref=e337] [cursor=pointer]:
+                - /url: /privacy-policy/
+        - generic [ref=e338]:
+          - heading "Orari di apertura" [level=3] [ref=e341]
+          - paragraph [ref=e344]:
+            - text: La struttura sanitaria odontoiatrica
+            - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+            - text: Lun – Mar – Mer – Gio – Ven
+            - text: dalle 9.00 alle 12.30
+            - text: e dalle 14.00 alle 19.00
+        - generic [ref=e345]:
+          - heading "Contatti" [level=3] [ref=e348]
+          - link "+39 039 2022489" [ref=e352] [cursor=pointer]:
+            - /url: tel:0392022489
+            - generic [ref=e353]:
+              - img [ref=e356]
+              - heading "+39 039 2022489" [level=3] [ref=e361]
+          - link "info@sorrisoesalute.it" [ref=e365] [cursor=pointer]:
+            - /url: mailto:info@sorrisoesalute.it
+            - generic [ref=e366]:
+              - img [ref=e369]
+              - heading "info@sorrisoesalute.it" [level=3] [ref=e378]
+          - link "Via Gaslini, 1 20090 Monza (MB)" [ref=e382] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e383]:
+              - generic [ref=e386]: 
+              - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=e388]
+          - paragraph [ref=e390]:
+            - strong [ref=e391]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+      - paragraph [ref=e395]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+    - complementary "Prenotazione visita":
+      - generic:
+        - generic:
+          - strong: Richiedi una visita in meno di 2 minuti
+        - link "vai al modulo":
+          - /url: /richiesta/
+  - generic [ref=e396]: mobile

@@ -1,0 +1,89 @@
+---
+interface Props {
+  serviceInterest: string;
+  isLanding?: boolean;
+}
+
+const { serviceInterest, isLanding = false } = Astro.props;
+---
+
+<script define:vars={{ serviceInterest, isLanding }}>
+  (() => {
+    const campaignFields = [
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_id",
+      "utm_adgroup",
+      "utm_term",
+      "utm_content",
+      "utm_matchtype",
+      "utm_device",
+      "utm_network",
+      "gclid",
+      "gbraid",
+      "wbraid",
+    ];
+    const formFields = ["landing_page", "service_interest", "page_title", ...campaignFields];
+    const storageKey = (field) => `implantologia_attribution_${field}`;
+
+    const readStored = (field) => {
+      try {
+        return window.sessionStorage.getItem(storageKey(field)) || "";
+      } catch {
+        return "";
+      }
+    };
+
+    const store = (field, value) => {
+      try {
+        window.sessionStorage.setItem(storageKey(field), value);
+      } catch {
+        // Il form resta utilizzabile anche se lo storage è disabilitato.
+      }
+    };
+
+    const captureAndPopulate = () => {
+      const params = new URLSearchParams(window.location.search);
+      const hasCampaignParams = campaignFields.some((field) => params.has(field));
+
+      campaignFields.forEach((field) => {
+        if (params.has(field)) store(field, params.get(field) || "");
+      });
+
+      if (isLanding || hasCampaignParams || !readStored("landing_page")) {
+        store("landing_page", window.location.pathname);
+        store("page_title", document.title);
+      }
+
+      const queryServiceInterest = params.get("service_interest") || "";
+      if (queryServiceInterest) {
+        store("service_interest", queryServiceInterest);
+      } else if (isLanding || !readStored("service_interest")) {
+        store("service_interest", serviceInterest);
+      }
+
+      document.querySelectorAll("form[data-implantologia-form]").forEach((form) => {
+        if (!(form instanceof HTMLFormElement)) return;
+
+        formFields.forEach((field) => {
+          const input = form.elements.namedItem(field);
+          if (!(input instanceof HTMLInputElement)) return;
+
+          const fallback =
+            field === "landing_page"
+              ? window.location.pathname
+              : field === "page_title"
+                ? document.title
+                : field === "service_interest"
+                  ? serviceInterest
+                  : "";
+          input.value = readStored(field) || fallback;
+        });
+      });
+    };
+
+    captureAndPopulate();
+    document.addEventListener("astro:page-load", captureAndPopulate);
+  })();
+</script>

@@ -1,0 +1,335 @@
+- generic [active] [ref=f1090e1]:
+  - generic [ref=f1090e5]:
+    - generic [ref=f1090e6]: STUDIO DENTISTICO
+    - strong [ref=f1090e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f1090e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f1090e12]:
+    - link "default-logo" [ref=f1090e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f1090e20]
+    - generic [ref=f1090e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f1090e23] [cursor=pointer]:
+            - generic [ref=f1090e24]: 
+          - generic [ref=f1090e25]:
+            - list [ref=f1090e26]:
+              - text:  
+              - listitem [ref=f1090e27]:
+                - link "Dicono di noi" [ref=f1090e28] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f1090e29]: Dicono di noi
+              - listitem [ref=f1090e30]:
+                - link "La Struttura" [ref=f1090e31] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f1090e32]: La Struttura
+              - listitem [ref=f1090e33]:
+                - link "Convenzioni" [ref=f1090e34] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f1090e35]: Convenzioni
+              - listitem [ref=f1090e36]:
+                - link "Urgenze" [ref=f1090e37] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f1090e38]: Urgenze
+              - listitem [ref=f1090e39]:
+                - link "Chiama in studio" [ref=f1090e40] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f1090e41]: Chiama in studio
+                  - img [ref=f1090e42]
+              - listitem [ref=f1090e44]:
+                - button "Menu" [ref=f1090e45] [cursor=pointer]:
+                  - generic [ref=f1090e50]: Menu
+            - button "X" [ref=f1090e52] [cursor=pointer]
+  - generic [ref=f1090e55]:
+    - generic [ref=f1090e58]:
+      - heading "I g i e n e o r a l e e p r o f i l a s s i" [level=1] [ref=f1090e61]:
+        - generic [ref=f1090e62]:
+          - generic [ref=f1090e63]:
+            - generic [ref=f1090e64]: I
+            - generic [ref=f1090e65]: g
+            - generic [ref=f1090e66]: i
+            - generic [ref=f1090e67]: e
+            - generic [ref=f1090e68]: "n"
+            - generic [ref=f1090e69]: e
+          - generic [ref=f1090e70]:
+            - generic [ref=f1090e71]: o
+            - generic [ref=f1090e72]: r
+            - generic [ref=f1090e73]: a
+            - generic [ref=f1090e74]: l
+            - generic [ref=f1090e75]: e
+        - generic [ref=f1090e76]:
+          - generic [ref=f1090e78]: e
+          - generic [ref=f1090e79]:
+            - generic [ref=f1090e80]: p
+            - generic [ref=f1090e81]: r
+            - generic [ref=f1090e82]: o
+            - generic [ref=f1090e83]: f
+            - generic [ref=f1090e84]: i
+            - generic [ref=f1090e85]: l
+            - generic [ref=f1090e86]: a
+            - generic [ref=f1090e87]: s
+            - generic [ref=f1090e88]: s
+            - generic [ref=f1090e89]: i
+      - list [ref=f1090e93]:
+        - listitem [ref=f1090e94]:
+          - link "Home" [ref=f1090e95] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=f1090e96]:
+          - img [ref=f1090e98]
+        - listitem [ref=f1090e100]:
+          - link "Attività" [ref=f1090e101] [cursor=pointer]:
+            - /url: /attivita/
+        - listitem [ref=f1090e102]:
+          - img [ref=f1090e104]
+        - listitem [ref=f1090e106]: Igiene orale e profilassi
+    - heading "I l p a z i e n t e v e r r à d u n q u e g u i d a t o n e l l a s c o p e r t a d e l l e t e c n i c h e e n e l l a s c e l t a d e g l i s t r u m e n t i p i ù i d o n e i a m i g l i o r a r e o m a n t e n e r e i n s a l u t e l ’ i n t e r o c a v o o r a l e ." [level=2] [ref=f1090e114]:
+      - generic [ref=f1090e115]:
+        - generic [ref=f1090e116]:
+          - generic [ref=f1090e117]: I
+          - generic [ref=f1090e118]: l
+        - generic [ref=f1090e119]:
+          - generic [ref=f1090e120]: p
+          - generic [ref=f1090e121]: a
+          - generic [ref=f1090e122]: z
+          - generic [ref=f1090e123]: i
+          - generic [ref=f1090e124]: e
+          - generic [ref=f1090e125]: "n"
+          - generic [ref=f1090e126]: t
+          - generic [ref=f1090e127]: e
+        - generic [ref=f1090e128]:
+          - generic [ref=f1090e129]: v
+          - generic [ref=f1090e130]: e
+          - generic [ref=f1090e131]: r
+          - generic [ref=f1090e132]: r
+          - generic [ref=f1090e133]: à
+      - generic [ref=f1090e134]:
+        - generic [ref=f1090e135]:
+          - generic [ref=f1090e136]: d
+          - generic [ref=f1090e137]: u
+          - generic [ref=f1090e138]: "n"
+          - generic [ref=f1090e139]: q
+          - generic [ref=f1090e140]: u
+          - generic [ref=f1090e141]: e
+        - generic [ref=f1090e142]:
+          - generic [ref=f1090e143]: g
+          - generic [ref=f1090e144]: u
+          - generic [ref=f1090e145]: i
+          - generic [ref=f1090e146]: d
+          - generic [ref=f1090e147]: a
+          - generic [ref=f1090e148]: t
+          - generic [ref=f1090e149]: o
+      - generic [ref=f1090e150]:
+        - generic [ref=f1090e151]:
+          - generic [ref=f1090e152]: "n"
+          - generic [ref=f1090e153]: e
+          - generic [ref=f1090e154]: l
+          - generic [ref=f1090e155]: l
+          - generic [ref=f1090e156]: a
+        - generic [ref=f1090e157]:
+          - generic [ref=f1090e158]: s
+          - generic [ref=f1090e159]: c
+          - generic [ref=f1090e160]: o
+          - generic [ref=f1090e161]: p
+          - generic [ref=f1090e162]: e
+          - generic [ref=f1090e163]: r
+          - generic [ref=f1090e164]: t
+          - generic [ref=f1090e165]: a
+      - generic [ref=f1090e166]:
+        - generic [ref=f1090e167]:
+          - generic [ref=f1090e168]: d
+          - generic [ref=f1090e169]: e
+          - generic [ref=f1090e170]: l
+          - generic [ref=f1090e171]: l
+          - generic [ref=f1090e172]: e
+        - generic [ref=f1090e173]:
+          - generic [ref=f1090e174]: t
+          - generic [ref=f1090e175]: e
+          - generic [ref=f1090e176]: c
+          - generic [ref=f1090e177]: "n"
+          - generic [ref=f1090e178]: i
+          - generic [ref=f1090e179]: c
+          - generic [ref=f1090e180]: h
+          - generic [ref=f1090e181]: e
+        - generic [ref=f1090e183]: e
+      - generic [ref=f1090e184]:
+        - generic [ref=f1090e185]:
+          - generic [ref=f1090e186]: "n"
+          - generic [ref=f1090e187]: e
+          - generic [ref=f1090e188]: l
+          - generic [ref=f1090e189]: l
+          - generic [ref=f1090e190]: a
+        - generic [ref=f1090e191]:
+          - generic [ref=f1090e192]: s
+          - generic [ref=f1090e193]: c
+          - generic [ref=f1090e194]: e
+          - generic [ref=f1090e195]: l
+          - generic [ref=f1090e196]: t
+          - generic [ref=f1090e197]: a
+        - generic [ref=f1090e198]:
+          - generic [ref=f1090e199]: d
+          - generic [ref=f1090e200]: e
+          - generic [ref=f1090e201]: g
+          - generic [ref=f1090e202]: l
+          - generic [ref=f1090e203]: i
+      - generic [ref=f1090e204]:
+        - generic [ref=f1090e205]:
+          - generic [ref=f1090e206]: s
+          - generic [ref=f1090e207]: t
+          - generic [ref=f1090e208]: r
+          - generic [ref=f1090e209]: u
+          - generic [ref=f1090e210]: m
+          - generic [ref=f1090e211]: e
+          - generic [ref=f1090e212]: "n"
+          - generic [ref=f1090e213]: t
+          - generic [ref=f1090e214]: i
+        - generic [ref=f1090e215]:
+          - generic [ref=f1090e216]: p
+          - generic [ref=f1090e217]: i
+          - generic [ref=f1090e218]: ù
+      - generic [ref=f1090e219]:
+        - generic [ref=f1090e220]:
+          - generic [ref=f1090e221]: i
+          - generic [ref=f1090e222]: d
+          - generic [ref=f1090e223]: o
+          - generic [ref=f1090e224]: "n"
+          - generic [ref=f1090e225]: e
+          - generic [ref=f1090e226]: i
+        - generic [ref=f1090e228]: a
+        - generic [ref=f1090e229]:
+          - generic [ref=f1090e230]: m
+          - generic [ref=f1090e231]: i
+          - generic [ref=f1090e232]: g
+          - generic [ref=f1090e233]: l
+          - generic [ref=f1090e234]: i
+          - generic [ref=f1090e235]: o
+          - generic [ref=f1090e236]: r
+          - generic [ref=f1090e237]: a
+          - generic [ref=f1090e238]: r
+          - generic [ref=f1090e239]: e
+      - generic [ref=f1090e240]:
+        - generic [ref=f1090e242]: o
+        - generic [ref=f1090e243]:
+          - generic [ref=f1090e244]: m
+          - generic [ref=f1090e245]: a
+          - generic [ref=f1090e246]: "n"
+          - generic [ref=f1090e247]: t
+          - generic [ref=f1090e248]: e
+          - generic [ref=f1090e249]: "n"
+          - generic [ref=f1090e250]: e
+          - generic [ref=f1090e251]: r
+          - generic [ref=f1090e252]: e
+        - generic [ref=f1090e253]:
+          - generic [ref=f1090e254]: i
+          - generic [ref=f1090e255]: "n"
+      - generic [ref=f1090e256]:
+        - generic [ref=f1090e257]:
+          - generic [ref=f1090e258]: s
+          - generic [ref=f1090e259]: a
+          - generic [ref=f1090e260]: l
+          - generic [ref=f1090e261]: u
+          - generic [ref=f1090e262]: t
+          - generic [ref=f1090e263]: e
+        - generic [ref=f1090e264]:
+          - generic [ref=f1090e265]: l
+          - generic [ref=f1090e266]: ’
+          - generic [ref=f1090e267]: i
+          - generic [ref=f1090e268]: "n"
+          - generic [ref=f1090e269]: t
+          - generic [ref=f1090e270]: e
+          - generic [ref=f1090e271]: r
+          - generic [ref=f1090e272]: o
+      - generic [ref=f1090e273]:
+        - generic [ref=f1090e274]:
+          - generic [ref=f1090e275]: c
+          - generic [ref=f1090e276]: a
+          - generic [ref=f1090e277]: v
+          - generic [ref=f1090e278]: o
+        - generic [ref=f1090e279]:
+          - generic [ref=f1090e280]: o
+          - generic [ref=f1090e281]: r
+          - generic [ref=f1090e282]: a
+          - generic [ref=f1090e283]: l
+          - generic [ref=f1090e284]: e
+          - generic [ref=f1090e285]: .
+  - generic [ref=f1090e296]:
+    - generic [ref=f1090e297]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f1090e301]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f1090e306] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f1090e307]:
+          - img [ref=f1090e309]
+          - generic [ref=f1090e311]: Richiedi appuntamento
+    - generic [ref=f1090e312]:
+      - generic [ref=f1090e313]:
+        - generic [ref=f1090e317]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f1090e318] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f1090e319] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f1090e323]:
+          - listitem [ref=f1090e324]:
+            - link "Facebook" [ref=f1090e325] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f1090e326]: 
+          - listitem [ref=f1090e327]:
+            - link "Instagram" [ref=f1090e328] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f1090e329]: 
+          - listitem [ref=f1090e330]:
+            - link "Whatsapp" [ref=f1090e331] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f1090e332]: 
+          - listitem [ref=f1090e333]:
+            - link "Messanger" [ref=f1090e334] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f1090e335]: 
+      - generic [ref=f1090e336]:
+        - heading "Direttore Sanitario" [level=3] [ref=f1090e339]
+        - paragraph [ref=f1090e342]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f1090e345]
+        - list [ref=f1090e348]:
+          - listitem [ref=f1090e349]:
+            - link "Cookie Policy" [ref=f1090e350] [cursor=pointer]:
+              - /url: /studio-dentistico-monza-dentista/igiene-orale-e-profilassi/cookie-policy/
+          - listitem [ref=f1090e351]:
+            - link "Privacy Policy" [ref=f1090e352] [cursor=pointer]:
+              - /url: /studio-dentistico-monza-dentista/igiene-orale-e-profilassi/privacy-policy/
+      - generic [ref=f1090e353]:
+        - heading "Orari di apertura" [level=3] [ref=f1090e356]
+        - paragraph [ref=f1090e359]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f1090e360]:
+        - heading "Contatti" [level=3] [ref=f1090e363]
+        - link "+39 039 2022489" [ref=f1090e367] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f1090e368]:
+            - img [ref=f1090e371]
+            - heading "+39 039 2022489" [level=3] [ref=f1090e376]
+        - link "info@sorrisoesalute.it" [ref=f1090e380] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f1090e381]:
+            - img [ref=f1090e384]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f1090e393]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f1090e397] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f1090e398]:
+            - generic [ref=f1090e401]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f1090e403]
+        - paragraph [ref=f1090e405]:
+          - strong [ref=f1090e406]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f1090e410]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f1090e411]: mobile
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

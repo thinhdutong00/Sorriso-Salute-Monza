@@ -1,0 +1,256 @@
+- generic [active] [ref=f379e1]:
+  - generic [ref=f379e5]:
+    - generic [ref=f379e6]: STUDIO DENTISTICO
+    - strong [ref=f379e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f379e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f379e12]:
+    - link "default-logo" [ref=f379e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f379e20]
+    - navigation [ref=f379e24]:
+      - text: 
+      - list [ref=f379e26]:
+        - text:  
+        - listitem [ref=f379e27]:
+          - link "Dicono di noi" [ref=f379e28] [cursor=pointer]:
+            - /url: /recensioni-studio-dentistico-monza/
+            - generic [ref=f379e29]: Dicono di noi
+        - listitem [ref=f379e30]:
+          - link "La Struttura" [ref=f379e31] [cursor=pointer]:
+            - /url: /struttura-studio-dentistico-monza/
+            - generic [ref=f379e32]: La Struttura
+        - listitem [ref=f379e33]:
+          - link "Convenzioni" [ref=f379e34] [cursor=pointer]:
+            - /url: /convenzioni-dirette-studio-dentistico-monza/
+            - generic [ref=f379e35]: Convenzioni
+        - listitem [ref=f379e36]:
+          - link "Urgenze" [ref=f379e37] [cursor=pointer]:
+            - /url: /urgenze/
+            - generic [ref=f379e38]: Urgenze
+        - listitem [ref=f379e39]:
+          - link "Chiama in studio" [ref=f379e40] [cursor=pointer]:
+            - /url: tel:+390392022489
+            - generic [ref=f379e41]: Chiama in studio
+            - img [ref=f379e42]
+        - listitem [ref=f379e44]:
+          - button "Menu" [ref=f379e45] [cursor=pointer]:
+            - generic [ref=f379e50]: Menu
+  - generic [ref=f379e53]:
+    - generic [ref=f379e56]:
+      - heading "P r o t e s i d e n t a l e" [level=1] [ref=f379e59]:
+        - generic [ref=f379e61]:
+          - generic [ref=f379e62]: P
+          - generic [ref=f379e63]: r
+          - generic [ref=f379e64]: o
+          - generic [ref=f379e65]: t
+          - generic [ref=f379e66]: e
+          - generic [ref=f379e67]: s
+          - generic [ref=f379e68]: i
+        - generic [ref=f379e70]:
+          - generic [ref=f379e71]: d
+          - generic [ref=f379e72]: e
+          - generic [ref=f379e73]: "n"
+          - generic [ref=f379e74]: t
+          - generic [ref=f379e75]: a
+          - generic [ref=f379e76]: l
+          - generic [ref=f379e77]: e
+      - paragraph [ref=f379e81]: Ripristina denti mancanti, masticazione ed estetica con soluzioni fisse o mobili su misura.
+    - generic [ref=f379e83]:
+      - generic [ref=f379e84]:
+        - region "Image Carousel" [ref=f379e88]:
+          - generic [ref=f379e89]:
+            - group "1 of 2" [ref=f379e90]:
+              - figure [ref=f379e91]:
+                - img "models-of-teeth-on-a-jaw-2025-03-10-15-46-42-utc (1)" [ref=f379e92]
+            - group "2 of 2" [ref=f379e93]:
+              - figure [ref=f379e94]:
+                - img "Dental technician coloring dental prosthesis with a paint brush at the laboratory, close-up view. Concept of implantats producing" [ref=f379e95]
+        - generic [ref=f379e97]:
+          - heading "L a p r o t e s i p u ò e s s e r e :" [level=2] [ref=f379e100]:
+            - generic [ref=f379e101]:
+              - generic [ref=f379e102]:
+                - generic [ref=f379e103]: L
+                - generic [ref=f379e104]: a
+              - generic [ref=f379e105]:
+                - generic [ref=f379e106]: p
+                - generic [ref=f379e107]: r
+                - generic [ref=f379e108]: o
+                - generic [ref=f379e109]: t
+                - generic [ref=f379e110]: e
+                - generic [ref=f379e111]: s
+                - generic [ref=f379e112]: i
+              - generic [ref=f379e113]:
+                - generic [ref=f379e114]: p
+                - generic [ref=f379e115]: u
+                - generic [ref=f379e116]: ò
+              - generic [ref=f379e117]:
+                - generic [ref=f379e118]: e
+                - generic [ref=f379e119]: s
+                - generic [ref=f379e120]: s
+                - generic [ref=f379e121]: e
+                - generic [ref=f379e122]: r
+                - generic [ref=f379e123]: e
+                - generic [ref=f379e124]: ":"
+          - generic [ref=f379e128]:
+            - generic [ref=f379e129]:
+              - link "Fissa " [expanded] [ref=f379e131] [cursor=pointer]:
+                - /url: "#collapse-9dcfa4d6a2a98b6b337b"
+                - generic [ref=f379e132]: Fissa
+                - generic [ref=f379e133]:
+                  - text: 
+                  - generic [ref=f379e135]: 
+              - generic "Fissa " [ref=f379e136]:
+                - paragraph [ref=f379e138]: In questo caso le protesi dentarie vengono fissate sulla radice o sul dente del paziente e non possono dunque essere rimosse. Gli impianti fissati sul dente assumono il nome di “corone”, mentre quelli che poggiano sui denti adiacenti sono chiamati “ponti”. Gli elementi fissati su impianti inseriti nell’osso prendono il nome di “Protesi su impianti”.
+            - link "Mobile " [ref=f379e141] [cursor=pointer]:
+              - /url: "#collapse-ae70aa86a2a98b6b337b"
+              - generic [ref=f379e142]: Mobile
+              - generic [ref=f379e143]:
+                - generic [ref=f379e145]: 
+                - text: 
+            - link "Protesi implantare " [ref=f379e148] [cursor=pointer]:
+              - /url: "#collapse-bcee0f16a2a98b6b337b"
+              - generic [ref=f379e149]: Protesi implantare
+              - generic [ref=f379e150]:
+                - generic [ref=f379e152]: 
+                - text: 
+      - generic [ref=f379e160]:
+        - heading "Attività" [level=2] [ref=f379e163]
+        - list [ref=f379e166]:
+          - listitem [ref=f379e167]:
+            - link "Igiene orale e profilassi" [ref=f379e168] [cursor=pointer]:
+              - /url: /attivita/igiene-orale-e-profilassi/
+              - img [ref=f379e170]
+              - generic [ref=f379e172]: Igiene orale e profilassi
+          - listitem [ref=f379e173]:
+            - link "Profilassi dentale" [ref=f379e174] [cursor=pointer]:
+              - /url: /attivita/profilassi-dentale/
+              - img [ref=f379e176]
+              - generic [ref=f379e178]: Profilassi dentale
+          - listitem [ref=f379e179]:
+            - link "Conservativa" [ref=f379e180] [cursor=pointer]:
+              - /url: /attivita/conservativa/
+              - img [ref=f379e182]
+              - generic [ref=f379e184]: Conservativa
+          - listitem [ref=f379e185]:
+            - link "Estetica del sorriso" [ref=f379e186] [cursor=pointer]:
+              - /url: /attivita/estetica-del-sorriso/
+              - img [ref=f379e188]
+              - generic [ref=f379e190]: Estetica del sorriso
+          - listitem [ref=f379e191]:
+            - link "Parodontologia" [ref=f379e192] [cursor=pointer]:
+              - /url: /attivita/parodontologia/
+              - img [ref=f379e194]
+              - generic [ref=f379e196]: Parodontologia
+          - listitem [ref=f379e197]:
+            - link "Ortodonzia" [ref=f379e198] [cursor=pointer]:
+              - /url: /attivita/ortodonzia/
+              - img [ref=f379e200]
+              - generic [ref=f379e202]: Ortodonzia
+          - listitem [ref=f379e203]:
+            - link "Chirurgia orale" [ref=f379e204] [cursor=pointer]:
+              - /url: /attivita/chirurgia-orale/
+              - img [ref=f379e206]
+              - generic [ref=f379e208]: Chirurgia orale
+          - listitem [ref=f379e209]:
+            - link "Implantologia" [ref=f379e210] [cursor=pointer]:
+              - /url: /implantologia/
+              - img [ref=f379e212]
+              - generic [ref=f379e214]: Implantologia
+          - listitem [ref=f379e215]:
+            - link "Endodonzia" [ref=f379e216] [cursor=pointer]:
+              - /url: /attivita/endodonzia/
+              - img [ref=f379e218]
+              - generic [ref=f379e220]: Endodonzia
+          - listitem [ref=f379e221]:
+            - link "Gnatologia" [ref=f379e222] [cursor=pointer]:
+              - /url: /attivita/gnatologia/
+              - img [ref=f379e224]
+              - generic [ref=f379e226]: Gnatologia
+          - listitem [ref=f379e227]:
+            - link "Pedodonzia" [ref=f379e228] [cursor=pointer]:
+              - /url: /attivita/pedodonzia/
+              - img [ref=f379e230]
+              - generic [ref=f379e232]: Pedodonzia
+  - generic [ref=f379e236]:
+    - generic [ref=f379e237]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f379e241]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f379e246] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f379e247]:
+          - img [ref=f379e249]
+          - generic [ref=f379e251]: Richiedi appuntamento
+    - generic [ref=f379e252]:
+      - generic [ref=f379e253]:
+        - generic [ref=f379e257]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f379e258] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f379e259] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f379e263]:
+          - listitem [ref=f379e264]:
+            - link "Facebook" [ref=f379e265] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f379e266]: 
+          - listitem [ref=f379e267]:
+            - link "Instagram" [ref=f379e268] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f379e269]: 
+          - listitem [ref=f379e270]:
+            - link "Whatsapp" [ref=f379e271] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f379e272]: 
+          - listitem [ref=f379e273]:
+            - link "Messanger" [ref=f379e274] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f379e275]: 
+      - generic [ref=f379e276]:
+        - heading "Direttore Sanitario" [level=3] [ref=f379e279]
+        - paragraph [ref=f379e282]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f379e285]
+        - list [ref=f379e288]:
+          - listitem [ref=f379e289]:
+            - link "Cookie Policy" [ref=f379e290] [cursor=pointer]:
+              - /url: /attivita/protesi-dentale/cookie-policy/
+          - listitem [ref=f379e291]:
+            - link "Privacy Policy" [ref=f379e292] [cursor=pointer]:
+              - /url: /attivita/protesi-dentale/privacy-policy/
+      - generic [ref=f379e293]:
+        - heading "Orari di apertura" [level=3] [ref=f379e296]
+        - paragraph [ref=f379e299]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f379e300]:
+        - heading "Contatti" [level=3] [ref=f379e303]
+        - link "+39 039 2022489" [ref=f379e307] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f379e308]:
+            - img [ref=f379e311]
+            - heading "+39 039 2022489" [level=3] [ref=f379e316]
+        - link "info@sorrisoesalute.it" [ref=f379e320] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f379e321]:
+            - img [ref=f379e324]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f379e333]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f379e337] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f379e338]:
+            - generic [ref=f379e341]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f379e343]
+        - paragraph [ref=f379e345]:
+          - strong [ref=f379e346]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f379e350]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f379e351]: desktop
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - generic: Servizio
+        - strong: Protesi dentale
+      - link "Richiedi una visita":
+        - /url: /richiesta-generale/?servizio=protesi-dentale

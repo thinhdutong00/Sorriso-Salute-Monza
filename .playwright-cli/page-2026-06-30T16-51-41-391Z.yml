@@ -1,0 +1,226 @@
+- generic [active] [ref=f645e1]:
+  - generic [ref=f645e5]:
+    - generic [ref=f645e6]: STUDIO DENTISTICO
+    - strong [ref=f645e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f645e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f645e12]:
+    - link "default-logo" [ref=f645e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f645e20]
+    - generic [ref=f645e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f645e23] [cursor=pointer]:
+            - generic [ref=f645e24]: 
+          - generic [ref=f645e25]:
+            - list:
+              - text:  
+              - listitem [ref=f645e26]:
+                - link "Dicono di noi" [ref=f645e27] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f645e28]: Dicono di noi
+              - listitem [ref=f645e29]:
+                - link "La Struttura" [ref=f645e30] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f645e31]: La Struttura
+              - listitem [ref=f645e32]:
+                - link "Convenzioni" [ref=f645e33] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f645e34]: Convenzioni
+              - listitem [ref=f645e35]:
+                - link "Urgenze" [ref=f645e36] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f645e37]: Urgenze
+              - listitem [ref=f645e38]:
+                - link "Chiama in studio" [ref=f645e39] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f645e40]: Chiama in studio
+                  - img [ref=f645e41]
+              - listitem [ref=f645e43]:
+                - button "Menu" [ref=f645e44] [cursor=pointer]:
+                  - generic [ref=f645e49]: Menu
+            - button "X" [ref=f645e51] [cursor=pointer]
+  - generic [ref=f645e54]:
+    - generic [ref=f645e57]:
+      - heading "D r . R o h i n i J o e" [level=1] [ref=f645e60]:
+        - generic [ref=f645e61]:
+          - generic [ref=f645e62]:
+            - generic [ref=f645e63]: D
+            - generic [ref=f645e64]: r
+            - generic [ref=f645e65]: .
+            - generic [ref=f645e66]: R
+            - generic [ref=f645e67]: o
+            - generic [ref=f645e68]: h
+            - generic [ref=f645e69]: i
+            - generic [ref=f645e70]: "n"
+            - generic [ref=f645e71]: i
+          - generic [ref=f645e72]:
+            - generic [ref=f645e73]: J
+            - generic [ref=f645e74]: o
+            - generic [ref=f645e75]: e
+      - list [ref=f645e79]:
+        - listitem [ref=f645e80]:
+          - link "Home" [ref=f645e81] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=f645e82]:
+          - img [ref=f645e84]
+        - listitem [ref=f645e86]:
+          - link "Equipe" [ref=f645e87] [cursor=pointer]:
+            - /url: /doctors/
+        - listitem [ref=f645e88]:
+          - img [ref=f645e90]
+        - listitem [ref=f645e92]: Dr.Rohini Joe
+    - generic [ref=f645e94]:
+      - generic [ref=f645e95]:
+        - heading "M y E x p e r t i s e" [level=2] [ref=f645e99]:
+          - generic [ref=f645e100]:
+            - generic [ref=f645e101]:
+              - generic [ref=f645e102]: M
+              - generic [ref=f645e103]: "y"
+            - generic [ref=f645e104]:
+              - generic [ref=f645e105]: E
+              - generic [ref=f645e106]: x
+              - generic [ref=f645e107]: p
+              - generic [ref=f645e108]: e
+              - generic [ref=f645e109]: r
+              - generic [ref=f645e110]: t
+              - generic [ref=f645e111]: i
+              - generic [ref=f645e112]: s
+              - generic [ref=f645e113]: e
+        - generic [ref=f645e114]:
+          - generic [ref=f645e120]:
+            - generic [ref=f645e122]: Healing Touch Therapy
+            - generic [ref=f645e124]:
+              - generic [ref=f645e125]: "0"
+              - text: "%"
+          - generic [ref=f645e131]:
+            - generic [ref=f645e133]: Pain Management Clinic
+            - generic [ref=f645e135]:
+              - generic [ref=f645e136]: "0"
+              - text: "%"
+          - generic [ref=f645e142]:
+            - generic [ref=f645e144]: Testing Services
+            - generic [ref=f645e146]:
+              - generic [ref=f645e147]: "0"
+              - text: "%"
+        - generic [ref=f645e148]:
+          - heading "Feature" [level=3] [ref=f645e151]
+          - heading "K n o w a b o u t r o h i n i" [level=2] [ref=f645e154]:
+            - generic [ref=f645e155]:
+              - generic [ref=f645e156]:
+                - generic [ref=f645e157]: K
+                - generic [ref=f645e158]: "n"
+                - generic [ref=f645e159]: o
+                - generic [ref=f645e160]: w
+              - generic [ref=f645e161]:
+                - generic [ref=f645e162]: a
+                - generic [ref=f645e163]: b
+                - generic [ref=f645e164]: o
+                - generic [ref=f645e165]: u
+                - generic [ref=f645e166]: t
+              - generic [ref=f645e167]:
+                - generic [ref=f645e168]: r
+                - generic [ref=f645e169]: o
+                - generic [ref=f645e170]: h
+                - generic [ref=f645e171]: i
+                - generic [ref=f645e172]: "n"
+                - generic [ref=f645e173]: i
+      - generic [ref=f645e180]:
+        - generic [ref=f645e182]:
+          - heading "Dr.Rohini Joe" [level=2] [ref=f645e183]
+          - paragraph [ref=f645e184]: Senior Chauffeur
+        - list [ref=f645e186]:
+          - listitem [ref=f645e187]:
+            - link "Facebook" [ref=f645e188] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f645e189]: 
+          - listitem [ref=f645e190]:
+            - link "Twitter" [ref=f645e191] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f645e192]: 
+          - listitem [ref=f645e193]:
+            - link "Pinterest" [ref=f645e194] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f645e195]: 
+  - generic [ref=f645e199]:
+    - generic [ref=f645e200]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f645e204]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f645e209] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f645e210]:
+          - img [ref=f645e212]
+          - generic [ref=f645e214]: Richiedi appuntamento
+    - generic [ref=f645e215]:
+      - generic [ref=f645e216]:
+        - generic [ref=f645e220]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f645e221] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f645e222] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f645e226]:
+          - listitem [ref=f645e227]:
+            - link "Facebook" [ref=f645e228] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f645e229]: 
+          - listitem [ref=f645e230]:
+            - link "Instagram" [ref=f645e231] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f645e232]: 
+          - listitem [ref=f645e233]:
+            - link "Whatsapp" [ref=f645e234] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f645e235]: 
+          - listitem [ref=f645e236]:
+            - link "Messanger" [ref=f645e237] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f645e238]: 
+      - generic [ref=f645e239]:
+        - heading "Direttore Sanitario" [level=3] [ref=f645e242]
+        - paragraph [ref=f645e245]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f645e248]
+        - list [ref=f645e251]:
+          - listitem [ref=f645e252]:
+            - link "Cookie Policy" [ref=f645e253] [cursor=pointer]:
+              - /url: /doctors/dr-rohini-joe/cookie-policy/
+          - listitem [ref=f645e254]:
+            - link "Privacy Policy" [ref=f645e255] [cursor=pointer]:
+              - /url: /doctors/dr-rohini-joe/privacy-policy/
+      - generic [ref=f645e256]:
+        - heading "Orari di apertura" [level=3] [ref=f645e259]
+        - paragraph [ref=f645e262]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f645e263]:
+        - heading "Contatti" [level=3] [ref=f645e266]
+        - link "+39 039 2022489" [ref=f645e270] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f645e271]:
+            - img [ref=f645e274]
+            - heading "+39 039 2022489" [level=3] [ref=f645e279]
+        - link "info@sorrisoesalute.it" [ref=f645e283] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f645e284]:
+            - img [ref=f645e287]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f645e296]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f645e300] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f645e301]:
+            - generic [ref=f645e304]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f645e306]
+        - paragraph [ref=f645e308]:
+          - strong [ref=f645e309]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f645e313]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f645e314]: tablet
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

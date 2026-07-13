@@ -1,0 +1,311 @@
+- generic [active] [ref=f223e1]:
+  - banner [ref=f223e2]:
+    - link "Studio Dentistico Sorriso & Salute" [ref=f223e3] [cursor=pointer]:
+      - /url: /
+      - img "Studio Dentistico Sorriso & Salute" [ref=f223e4]
+    - button "Apri menu" [ref=f223e5] [cursor=pointer]
+  - main [ref=f223e9]:
+    - region "Implantologia dentale a Monza" [ref=f223e10]:
+      - generic [ref=f223e11]:
+        - heading "Implantologia" [level=1] [ref=f223e12]
+        - paragraph [ref=f223e13]: Sostituisci i denti mancanti con soluzioni stabili, progettate per tornare a sorridere e masticare con sicurezza.
+        - paragraph [ref=f223e14]:
+          - strong [ref=f223e15]: Dal 2003 a Monza, attraverso solo la chirurgia implantare, abbiamo aiutato oltre 10.000 persone a ritrovare la sicurezza di sorridere e il piacere di masticare senza dolore.
+    - region "In quale di queste situazioni ti trovi oggi?" [ref=f223e16]:
+      - generic [ref=f223e17]:
+        - paragraph [ref=f223e18]: AFFIDATI AI NOSTRI SPECIALISTI
+        - heading "In quale di queste situazioni ti trovi oggi?" [level=2] [ref=f223e19]
+        - paragraph [ref=f223e20]:
+          - strong [ref=f223e21]: Più di 10.000 impianti posizionati e protesi stabilizzate con successo in 23 anni di attività.
+      - generic "Situazioni implantari frequenti" [ref=f223e22]:
+        - article [ref=f223e23]:
+          - generic [ref=f223e25]:
+            - generic [ref=f223e26]: Dente mancante
+            - heading "Mi manca un solo dente" [level=3] [ref=f223e27]
+            - paragraph [ref=f223e28]: Ripristina l'estetica e la funzionalità del tuo sorriso con un impianto di eccellenza. Una soluzione fissa e invisibile che preserva la salute dei denti adiacenti, garantendo un risultato naturale nel massimo comfort clinico.
+            - button "Scopri le nostre convenzioni" [ref=f223e30] [cursor=pointer]
+        - article [ref=f223e31]:
+          - generic [ref=f223e33]:
+            - generic [ref=f223e34]: Più denti mancanti
+            - heading "Mi mancano più denti vicini" [level=3] [ref=f223e35]
+            - paragraph [ref=f223e36]: Riscopri il piacere di una masticazione sicura. I nostri ponti su impianti offrono una stabilità assoluta, superando i limiti e i disagi delle soluzioni mobili. Un percorso riabilitativo sereno, per denti forti e duraturi.
+            - button "Scopri le nostre convenzioni" [ref=f223e38] [cursor=pointer]
+        - article [ref=f223e39]:
+          - generic [ref=f223e41]:
+            - generic [ref=f223e42]: Protesi mobile instabile
+            - heading "La mia dentiera si muove" [level=3] [ref=f223e43]
+            - paragraph [ref=f223e44]: Restituisci sicurezza e stabilità alla tua quotidianità. Ancoriamo saldamente la tua protesi attraverso soluzioni implantari minimamente invasive, eliminando ogni incertezza. Per un benessere prolungato e una ritrovata libertà.
+            - button "Scopri le nostre convenzioni" [ref=f223e46] [cursor=pointer]
+        - article [ref=f223e47]:
+          - generic [ref=f223e49]:
+            - generic [ref=f223e50]: Arcata completa / molti denti mancanti
+            - heading "Ho perso molti denti o uso una dentiera" [level=3] [ref=f223e51]
+            - paragraph [ref=f223e52]: L'eccellenza implantare per una riabilitazione totale. Grazie a protocolli clinici avanzati, puoi ottenere un'arcata fissa definitiva, spesso in meno di 24 ore. Un intervento delicato per restituirti un sorriso completo e funzionale.
+            - button "Scopri le nostre convenzioni" [ref=f223e54] [cursor=pointer]
+    - generic [ref=f223e57]:
+      - paragraph [ref=f223e58]: Il Metodo Clinico
+      - heading "Come Gestiamo il Tuo Percorso" [level=2] [ref=f223e59]
+      - paragraph [ref=f223e60]: Il percorso implantare viene costruito in 4 passaggi, dalla diagnosi iniziale alla protesi finale e ai controlli nel tempo.
+      - generic [ref=f223e63]:
+        - strong [ref=f223e64]: Prima visita implantologica
+        - generic [ref=f223e65]: Diagnosi, fattibilità e alternative
+      - generic [ref=f223e66]:
+        - article [ref=f223e67]:
+          - img [ref=f223e69]
+          - generic [ref=f223e74]:
+            - heading "Valutazione e diagnosi 3D" [level=3] [ref=f223e75]
+            - paragraph [ref=f223e76]: Analisi iniziale, studio radiografico e, quando necessario, diagnosi 3D per valutare osso, posizione degli impianti e fattibilità del trattamento.
+        - article [ref=f223e77]:
+          - img [ref=f223e79]
+          - generic [ref=f223e82]:
+            - heading "Piano implantoprotesico personalizzato" [level=3] [ref=f223e83]
+            - paragraph [ref=f223e84]: Il dentista definisce se il caso può richiedere impianto singolo, ponte su impianti, protesi stabilizzata o protesi fissa su impianti.
+        - article [ref=f223e85]:
+          - img [ref=f223e87]
+          - generic [ref=f223e90]:
+            - heading "Intervento e comfort" [level=3] [ref=f223e91]
+            - paragraph [ref=f223e92]: Quando indicato, vengono usate tecniche mininvasive e strumenti per gestire ansia e comfort durante la seduta.
+        - article [ref=f223e93]:
+          - img [ref=f223e95]
+          - generic [ref=f223e98]:
+            - heading "Protesi finale e controlli" [level=3] [ref=f223e99]
+            - paragraph [ref=f223e100]: Dopo la fase implantare, viene realizzata la protesi finale e programmato il monitoraggio nel tempo.
+      - link "Prenota una Visita Ora" [ref=f223e101] [cursor=pointer]:
+        - /url: /richiesta/
+    - generic [ref=f223e102]:
+      - generic [ref=f223e103]:
+        - paragraph [ref=f223e104]: Prima della visita
+        - heading "I segnali che richiedono una valutazione implantare" [level=2] [ref=f223e105]
+        - paragraph [ref=f223e106]: Molti dei nostri pazienti vivevano questi stessi disagi prima di affidarsi a noi. Ascoltiamo le tue preoccupazioni per offrirti un percorso sereno e senza sorprese.
+      - generic "Situazioni frequenti" [ref=f223e107]:
+        - article [ref=f223e108]:
+          - generic: "01"
+          - paragraph [ref=f223e109]: Metti la mano davanti alla bocca quando ridi o parli con gli altri.
+        - article [ref=f223e110]:
+          - generic: "02"
+          - paragraph [ref=f223e111]: Rinunci alla carne o ai cibi duri al ristorante per paura che salti un dente o per il dolore.
+        - article [ref=f223e112]:
+          - generic: "03"
+          - paragraph [ref=f223e113]: Hai paura di iniziare i lavori perché temi che il prezzo finale raddoppi a sorpresa.
+        - article [ref=f223e114]:
+          - generic: "04"
+          - paragraph [ref=f223e115]: Sei terrorizzato dalla poltrona del dentista per via di un trauma passato.
+      - link "Richiedi una valutazione" [ref=f223e117] [cursor=pointer]:
+        - /url: /richiesta/
+    - generic [ref=f223e120]:
+      - generic [ref=f223e121]:
+        - paragraph [ref=f223e122]: Siamo dalla tua parte
+        - heading "Trasparenza e Tutele Cliniche" [level=2] [ref=f223e123]
+        - paragraph [ref=f223e124]: La scelta di riabilitare il sorriso richiede massima chiarezza. Abbiamo eliminato ogni incertezza clinica ed economica formulando quattro garanzie scritte a salvaguardia del paziente.
+      - generic [ref=f223e125]:
+        - article [ref=f223e126]:
+          - generic [ref=f223e127]: "01"
+          - heading "Presenza e Stabilità a Monza dal 2003" [level=3] [ref=f223e128]
+          - paragraph [ref=f223e129]: Non una catena low-cost o un franchising temporaneo. Questa storicità ti garantisce un punto di riferimento solido e sempre rintracciabile nel tempo, sia per l'esecuzione dell'intervento sia per i futuri controlli di manutenzione.
+        - article [ref=f223e130]:
+          - generic [ref=f223e131]: "02"
+          - heading "Chirurgia Affidata Esclusivamente a Specialisti" [level=3] [ref=f223e132]
+          - paragraph [ref=f223e133]: Ogni trattamento è eseguito da un'équipe dedicata alla chirurgia orale, guidata dalla Dott.ssa Moreschi e sotto la stretta direzione sanitaria della Dott.ssa Pareja Carrillo, garantendo i massimi standard di rigore clinico.
+        - article [ref=f223e134]:
+          - generic [ref=f223e135]: "03"
+          - heading "Gestione Immediata delle Urgenze in Giornata" [level=3] [ref=f223e136]
+          - paragraph [ref=f223e137]: "In caso di dubbi o fastidi nel post-operatorio, applichiamo un protocollo interno rigido: ti assicuriamo una corsia preferenziale con visita e assistenza in sede il giorno stesso della tua chiamata, senza lasciarti mai solo."
+        - article [ref=f223e138]:
+          - generic [ref=f223e139]: "04"
+          - heading "Convenzioni e pagamenti chiari" [level=3] [ref=f223e140]
+          - paragraph [ref=f223e141]:
+            - text: Verifica se la tua copertura può essere utilizzata e valuta piani di rateizzazione personalizzati con istituti partner come Compass. Consulta le
+            - button "convenzioni dirette" [ref=f223e142] [cursor=pointer]
+            - text: e le
+            - button "convenzioni indirette" [ref=f223e143] [cursor=pointer]
+      - link "Prenota visita implantologica" [ref=f223e144] [cursor=pointer]:
+        - /url: /richiesta/
+        - text: Prenota visita implantologica
+        - generic [ref=f223e145]: "->"
+    - generic [ref=f223e146]:
+      - generic [ref=f223e147]:
+        - paragraph [ref=f223e148]: Dicono di noi
+        - heading "Competenza ed affidabilità" [level=2] [ref=f223e149]
+        - paragraph [ref=f223e150]: Recensioni orientate a percorsi implantari e riabilitazioni.
+      - generic [ref=f223e151]:
+        - generic [ref=f223e153]:
+          - article [ref=f223e154]:
+            - generic [ref=f223e155]:
+              - generic [ref=f223e156]: A
+              - generic [ref=f223e157]:
+                - strong [ref=f223e158]: Anna
+                - generic [ref=f223e159]: Appuntamento verificato
+            - generic "Cinque stelle" [ref=f223e160]: ★★★★★
+            - blockquote [ref=f223e161]: “Ottima l'accoglienza e molto professionale la dottoressa e molto scrupolosa.”
+            - generic [ref=f223e162]:
+              - generic [ref=f223e163]: 25 maggio 2026
+              - generic [ref=f223e164]: Dott.ssa Denisa Dervishi
+              - generic [ref=f223e165]: protesi mobile
+          - article [ref=f223e166]:
+            - generic [ref=f223e167]:
+              - generic [ref=f223e168]: GC
+              - generic [ref=f223e169]:
+                - strong [ref=f223e170]: GM
+                - generic [ref=f223e171]: Appuntamento verificato
+            - generic "Cinque stelle" [ref=f223e172]: ★★★★★
+            - blockquote [ref=f223e173]: “Ottimo intervento. Impegno da lodare. Ottima puntualità.”
+            - generic [ref=f223e174]:
+              - generic [ref=f223e175]: 19 maggio 2026
+              - generic [ref=f223e176]: Dott.ssa Chiara Moreschi
+              - generic [ref=f223e177]: impianto dentale
+          - article [ref=f223e178]:
+            - generic [ref=f223e179]:
+              - generic [ref=f223e180]: MG
+              - generic [ref=f223e181]:
+                - strong [ref=f223e182]: M.G.
+                - generic [ref=f223e183]: Appuntamento verificato
+            - generic "Cinque stelle" [ref=f223e184]: ★★★★★
+            - blockquote [ref=f223e185]: “È un medico molto preparato, di grande esperienza, estremamente scrupoloso, con un uso del trapano deciso ma delicato.”
+            - generic [ref=f223e186]:
+              - generic [ref=f223e187]: 8 maggio 2026
+              - generic [ref=f223e188]: Dott.ssa Maria Isabel Pareja Carrillo
+              - generic [ref=f223e189]: protesi dentaria totale
+          - article [ref=f223e190]:
+            - generic [ref=f223e191]:
+              - generic [ref=f223e192]: TM
+              - generic [ref=f223e193]:
+                - strong [ref=f223e194]: T.m.
+                - generic [ref=f223e195]: Appuntamento verificato
+            - generic "Cinque stelle" [ref=f223e196]: ★★★★★
+            - blockquote [ref=f223e197]: “È sempre stata gentile con mia mamma 92 anni e visto le problematiche che ha. Grazie per la sua professionalità.”
+            - generic [ref=f223e198]:
+              - generic [ref=f223e199]: 6 maggio 2026
+              - generic [ref=f223e200]: Dott.ssa Denisa Dervishi
+              - generic [ref=f223e201]: scheletrato con ganci
+          - text: “” “” “” “” “” “” “” “” “” “” “” “” “” “” “” “” “” “” “” “” “” “” “” “” “”
+        - button "guarda altre nostre recensioni" [ref=f223e202] [cursor=pointer]
+    - generic [ref=f223e203]:
+      - generic [ref=f223e204]:
+        - generic [ref=f223e205]:
+          - paragraph [ref=f223e206]: Chi siamo
+          - heading "Il team che valuta il tuo caso" [level=2] [ref=f223e207]
+        - paragraph [ref=f223e208]: Professionisti dello Studio Dentistico Sorriso & Salute seguono diagnosi, piano clinico e controlli del percorso implantare.
+      - generic "Equipe Studio Dentistico Sorriso & Salute" [ref=f223e209]:
+        - article [ref=f223e210]:
+          - img "Dott.ssa Maria Isabel Pareja Carrillo - Odontoiatra, Direttore Sanitario" [ref=f223e211]
+          - generic [ref=f223e212]:
+            - heading "Dott.ssa Maria Isabel Pareja Carrillo" [level=3] [ref=f223e213]
+            - paragraph [ref=f223e214]: Odontoiatra, Direttore Sanitario
+        - article [ref=f223e215]:
+          - img "Dott.ssa Moreschi Chiara - Equipe chirurgica implantare" [ref=f223e216]
+          - generic [ref=f223e217]:
+            - heading "Dott.ssa Moreschi Chiara" [level=3] [ref=f223e218]
+            - paragraph [ref=f223e219]: Equipe chirurgica implantare
+        - article [ref=f223e220]:
+          - img "Dott.ssa Cacciabue Paola - Odontoiatra Specialista in Ortodonzia" [ref=f223e221]
+          - generic [ref=f223e222]:
+            - heading "Dott.ssa Cacciabue Paola" [level=3] [ref=f223e223]
+            - paragraph [ref=f223e224]: Odontoiatra Specialista in Ortodonzia
+        - article [ref=f223e225]:
+          - img "Dott.ssa Dervishi Denisa - Odontoiatra Generalista" [ref=f223e226]
+          - generic [ref=f223e227]:
+            - heading "Dott.ssa Dervishi Denisa" [level=3] [ref=f223e228]
+            - paragraph [ref=f223e229]: Odontoiatra Generalista
+        - article [ref=f223e230]:
+          - img "Gianni Focarelli - Titolare e Amministratore della Sorriso&Salute srl" [ref=f223e231]
+          - generic [ref=f223e232]:
+            - heading "Gianni Focarelli" [level=3] [ref=f223e233]
+            - paragraph [ref=f223e234]: Titolare e Amministratore della Sorriso&Salute srl
+    - generic [ref=f223e236]:
+      - generic [ref=f223e237]:
+        - paragraph [ref=f223e238]: Domande frequenti
+        - heading "Dubbi sugli impianti?" [level=2] [ref=f223e239]
+        - paragraph [ref=f223e240]: Risposte su diagnosi, tempi, costi e fattibilità del percorso implantare.
+      - generic [ref=f223e241]:
+        - group [ref=f223e242]:
+          - generic "Quando è indicato un impianto dentale?" [ref=f223e243] [cursor=pointer]:
+            - generic [ref=f223e244]: Quando è indicato un impianto dentale?
+            - generic [ref=f223e245]: +
+          - paragraph [ref=f223e246]: Un impianto può essere valutato quando manca uno o più denti e ci sono condizioni cliniche favorevoli. La decisione dipende da osso disponibile, salute gengivale, abitudini e obiettivi protesici.
+        - group [ref=f223e247]:
+          - generic "Serve una TAC o una diagnosi 3D?" [ref=f223e248] [cursor=pointer]:
+            - generic [ref=f223e249]: Serve una TAC o una diagnosi 3D?
+            - generic [ref=f223e250]: +
+        - group [ref=f223e251]:
+          - generic "Quanto dura un percorso implantare?" [ref=f223e252] [cursor=pointer]:
+            - generic [ref=f223e253]: Quanto dura un percorso implantare?
+            - generic [ref=f223e254]: +
+        - group [ref=f223e255]:
+          - generic "Posso avere denti fissi subito?" [ref=f223e256] [cursor=pointer]:
+            - generic [ref=f223e257]: Posso avere denti fissi subito?
+            - generic [ref=f223e258]: +
+        - group [ref=f223e259]:
+          - generic "Cosa succede se ho poco osso?" [ref=f223e260] [cursor=pointer]:
+            - generic [ref=f223e261]: Cosa succede se ho poco osso?
+            - generic [ref=f223e262]: +
+        - group [ref=f223e263]:
+          - generic "Quanto costa un impianto?" [ref=f223e264] [cursor=pointer]:
+            - generic [ref=f223e265]: Quanto costa un impianto?
+            - generic [ref=f223e266]: +
+        - group [ref=f223e267]:
+          - generic "Avete convenzioni dirette e indirette?" [ref=f223e268] [cursor=pointer]:
+            - generic [ref=f223e269]: Avete convenzioni dirette e indirette?
+            - generic [ref=f223e270]: +
+    - generic [ref=f223e271]:
+      - generic [ref=f223e272]:
+        - paragraph [ref=f223e273]: Inizia il tuo percorso con noi
+        - heading "Il primo passo per tornare a masticare con più sicurezza" [level=2] [ref=f223e274]
+        - paragraph [ref=f223e275]: "Raccontaci la tua situazione in pochi passaggi: denti mancanti, difficoltà nella masticazione o protesi instabile. Lo studio valuterà il tuo caso e ti indicherà la soluzione implantologica più adatta."
+      - generic [ref=f223e276]:
+        - generic [ref=f223e277]:
+          - text: Modulo unico
+          - heading "Compila la richiesta in pochi passaggi." [level=3] [ref=f223e278]
+          - paragraph [ref=f223e279]: Il percorso raccoglie problema, obiettivo, preferenza di data e recapiti, poi prepara la richiesta da inviare allo studio.
+        - link "Voglio capire se posso mettere gli impianti" [ref=f223e280] [cursor=pointer]:
+          - /url: /richiesta/
+        - paragraph [ref=f223e281]: La nostra segretaria ti contatterà entro 2 ore lavorative per confermare l'appuntamento.
+  - contentinfo [ref=f223e282]:
+    - generic [ref=f223e283]:
+      - generic [ref=f223e284]:
+        - link "Studio Dentistico Sorriso & Salute" [ref=f223e285] [cursor=pointer]:
+          - /url: /
+          - img "Studio Dentistico Sorriso & Salute" [ref=f223e286]
+        - paragraph [ref=f223e287]: Studio Dentistico Sorriso & Salute a Monza, con servizi odontoiatrici e percorsi dedicati all'implantologia.
+      - generic [ref=f223e288]:
+        - heading "Esplora" [level=3] [ref=f223e289]
+        - link "Dicono di noi" [ref=f223e290] [cursor=pointer]:
+          - /url: /recensioni-studio-dentistico-monza/
+        - link "La Struttura" [ref=f223e291] [cursor=pointer]:
+          - /url: /struttura-studio-dentistico-monza/
+        - link "Convenzioni" [ref=f223e292] [cursor=pointer]:
+          - /url: /convenzioni-dirette-studio-dentistico-monza/
+        - link "Urgenze" [ref=f223e293] [cursor=pointer]:
+          - /url: /urgenze/
+        - link "Chiama in studio" [ref=f223e294] [cursor=pointer]:
+          - /url: tel:+390392022489
+        - link "Privacy Policy" [ref=f223e295] [cursor=pointer]:
+          - /url: /privacy-policy/
+        - link "Cookie Policy" [ref=f223e296] [cursor=pointer]:
+          - /url: /cookie-policy/
+      - generic [ref=f223e297]:
+        - heading "Contatti" [level=3] [ref=f223e298]
+        - 'link "Telefono: 039 2022489" [ref=f223e299] [cursor=pointer]':
+          - /url: tel:+390392022489
+        - 'link "WhatsApp: +39 389 2490181" [ref=f223e300] [cursor=pointer]':
+          - /url: https://wa.me/393892490181
+        - 'link "Email: info@sorrisoesalute.it" [ref=f223e301] [cursor=pointer]':
+          - /url: mailto:info@sorrisoesalute.it
+        - generic [ref=f223e302]: "Sede: Via Gaslini, 1 — 20090 Monza / 20900 Monza (MB)"
+      - generic [ref=f223e303]:
+        - heading "Studio" [level=3] [ref=f223e304]
+        - generic [ref=f223e305]: Studio Dentistico Sorriso & Salute
+        - generic [ref=f223e306]: Sorriso & Salute S.r.l.
+        - generic [ref=f223e307]: "P. IVA: 03845830961"
+        - generic [ref=f223e308]: "Direttore Sanitario: Dott.ssa Maria Isabel Pareja Carrillo — Odontoiatra"
+        - generic [ref=f223e309]: "Titolare e Amministratore: Gianni Focarelli"
+        - generic [ref=f223e310]: "Orari: lunedì–venerdì, 9:00–12:30 e 14:00–19:00"
+    - generic [ref=f223e311]:
+      - generic [ref=f223e312]: Autorizzazione sanitaria n. 2014/11
+      - generic [ref=f223e313]: Pubblicità conforme art. 1 della legge di bilancio 2019 (30/12/2018 n. 145)
+  - complementary "Prenotazione visita implantologica":
+    - generic:
+      - generic:
+        - generic: Servizio
+        - strong: Implantologia
+      - link "Richiedi una visita":
+        - /url: /richiesta/

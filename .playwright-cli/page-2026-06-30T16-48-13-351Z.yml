@@ -1,0 +1,166 @@
+- generic [active] [ref=f309e1]:
+  - generic [ref=f309e5]:
+    - generic [ref=f309e6]: STUDIO DENTISTICO
+    - strong [ref=f309e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f309e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f309e12]:
+    - link "default-logo" [ref=f309e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f309e20]
+    - generic [ref=f309e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f309e23] [cursor=pointer]:
+            - generic [ref=f309e24]: 
+          - generic [ref=f309e25]:
+            - list:
+              - text:  
+              - listitem [ref=f309e26]:
+                - link "Dicono di noi" [ref=f309e27] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f309e28]: Dicono di noi
+              - listitem [ref=f309e29]:
+                - link "La Struttura" [ref=f309e30] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f309e31]: La Struttura
+              - listitem [ref=f309e32]:
+                - link "Convenzioni" [ref=f309e33] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f309e34]: Convenzioni
+              - listitem [ref=f309e35]:
+                - link "Urgenze" [ref=f309e36] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f309e37]: Urgenze
+              - listitem [ref=f309e38]:
+                - link "Chiama in studio" [ref=f309e39] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f309e40]: Chiama in studio
+                  - img [ref=f309e41]
+              - listitem [ref=f309e43]:
+                - button "Menu" [ref=f309e44] [cursor=pointer]:
+                  - generic [ref=f309e49]: Menu
+            - button "X" [ref=f309e51] [cursor=pointer]
+  - generic [ref=f309e54]:
+    - generic [ref=f309e57]:
+      - heading "P a r o d o n t o l o g i a" [level=1] [ref=f309e60]:
+        - generic [ref=f309e62]:
+          - generic [ref=f309e63]: P
+          - generic [ref=f309e64]: a
+          - generic [ref=f309e65]: r
+          - generic [ref=f309e66]: o
+          - generic [ref=f309e67]: d
+          - generic [ref=f309e68]: o
+          - generic [ref=f309e69]: "n"
+          - generic [ref=f309e70]: t
+          - generic [ref=f309e71]: o
+          - generic [ref=f309e72]: l
+          - generic [ref=f309e73]: o
+          - generic [ref=f309e74]: g
+          - generic [ref=f309e75]: i
+          - generic [ref=f309e76]: a
+      - paragraph [ref=f309e80]: Ferma i problemi gengivali, proteggi i denti e ritrova stabilità con cure mirate.
+    - generic [ref=f309e90]:
+      - generic [ref=f309e91]:
+        - link "Sintomi " [expanded] [ref=f309e93] [cursor=pointer]:
+          - /url: "#collapse-9dcfa4d6a2a1995ae3be"
+          - generic [ref=f309e94]: Sintomi
+          - generic [ref=f309e95]:
+            - text: 
+            - generic [ref=f309e97]: 
+        - generic "Sintomi " [ref=f309e98]:
+          - paragraph [ref=f309e100]: Gengive sanguinanti, rosse, ipersensibili o scostate dai denti. Alito cattivo, gusto e sapore sgradevole in bocca. I denti sono anch’essi ipersensibili, dolenti, si spostano con conseguente creazione di diastemi e la masticazione potrebbe essere soggetta a modifiche.
+      - link "Trattamento " [ref=f309e103] [cursor=pointer]:
+        - /url: "#collapse-ae70aa86a2a1995ae3be"
+        - generic [ref=f309e104]: Trattamento
+        - generic [ref=f309e105]:
+          - generic [ref=f309e107]: 
+          - text: 
+      - link "Prevenzione " [ref=f309e110] [cursor=pointer]:
+        - /url: "#collapse-bcee0f16a2a1995ae3be"
+        - generic [ref=f309e111]: Prevenzione
+        - generic [ref=f309e112]:
+          - generic [ref=f309e114]: 
+          - text: 
+  - generic [ref=f309e125]:
+    - generic [ref=f309e126]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f309e130]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f309e135] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f309e136]:
+          - img [ref=f309e138]
+          - generic [ref=f309e140]: Richiedi appuntamento
+    - generic [ref=f309e141]:
+      - generic [ref=f309e142]:
+        - generic [ref=f309e146]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f309e147] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f309e148] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f309e152]:
+          - listitem [ref=f309e153]:
+            - link "Facebook" [ref=f309e154] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f309e155]: 
+          - listitem [ref=f309e156]:
+            - link "Instagram" [ref=f309e157] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f309e158]: 
+          - listitem [ref=f309e159]:
+            - link "Whatsapp" [ref=f309e160] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f309e161]: 
+          - listitem [ref=f309e162]:
+            - link "Messanger" [ref=f309e163] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f309e164]: 
+      - generic [ref=f309e165]:
+        - heading "Direttore Sanitario" [level=3] [ref=f309e168]
+        - paragraph [ref=f309e171]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f309e174]
+        - list [ref=f309e177]:
+          - listitem [ref=f309e178]:
+            - link "Cookie Policy" [ref=f309e179] [cursor=pointer]:
+              - /url: /attivita/parodontologia/cookie-policy/
+          - listitem [ref=f309e180]:
+            - link "Privacy Policy" [ref=f309e181] [cursor=pointer]:
+              - /url: /attivita/parodontologia/privacy-policy/
+      - generic [ref=f309e182]:
+        - heading "Orari di apertura" [level=3] [ref=f309e185]
+        - paragraph [ref=f309e188]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f309e189]:
+        - heading "Contatti" [level=3] [ref=f309e192]
+        - link "+39 039 2022489" [ref=f309e196] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f309e197]:
+            - img [ref=f309e200]
+            - heading "+39 039 2022489" [level=3] [ref=f309e205]
+        - link "info@sorrisoesalute.it" [ref=f309e209] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f309e210]:
+            - img [ref=f309e213]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f309e222]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f309e226] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f309e227]:
+            - generic [ref=f309e230]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f309e232]
+        - paragraph [ref=f309e234]:
+          - strong [ref=f309e235]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f309e239]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f309e240]: tablet
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - generic: Servizio
+        - strong: Parodontologia
+      - link "Richiedi una visita":
+        - /url: /richiesta-generale/?servizio=parodontologia

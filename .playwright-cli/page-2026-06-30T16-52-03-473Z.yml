@@ -1,0 +1,223 @@
+- generic [active] [ref=f680e1]:
+  - generic [ref=f680e5]:
+    - generic [ref=f680e6]: STUDIO DENTISTICO
+    - strong [ref=f680e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f680e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f680e12]:
+    - link "default-logo" [ref=f680e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f680e20]
+    - generic [ref=f680e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f680e23] [cursor=pointer]:
+            - generic [ref=f680e24]: 
+          - generic [ref=f680e25]:
+            - list:
+              - text:  
+              - listitem [ref=f680e26]:
+                - link "Dicono di noi" [ref=f680e27] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f680e28]: Dicono di noi
+              - listitem [ref=f680e29]:
+                - link "La Struttura" [ref=f680e30] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f680e31]: La Struttura
+              - listitem [ref=f680e32]:
+                - link "Convenzioni" [ref=f680e33] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f680e34]: Convenzioni
+              - listitem [ref=f680e35]:
+                - link "Urgenze" [ref=f680e36] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f680e37]: Urgenze
+              - listitem [ref=f680e38]:
+                - link "Chiama in studio" [ref=f680e39] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f680e40]: Chiama in studio
+                  - img [ref=f680e41]
+              - listitem [ref=f680e43]:
+                - button "Menu" [ref=f680e44] [cursor=pointer]:
+                  - generic [ref=f680e49]: Menu
+            - button "X" [ref=f680e51] [cursor=pointer]
+  - generic [ref=f680e54]:
+    - generic [ref=f680e57]:
+      - heading "J a c o b J o n e s" [level=1] [ref=f680e60]:
+        - generic [ref=f680e61]:
+          - generic [ref=f680e62]:
+            - generic [ref=f680e63]: J
+            - generic [ref=f680e64]: a
+            - generic [ref=f680e65]: c
+            - generic [ref=f680e66]: o
+            - generic [ref=f680e67]: b
+          - generic [ref=f680e68]:
+            - generic [ref=f680e69]: J
+            - generic [ref=f680e70]: o
+            - generic [ref=f680e71]: "n"
+            - generic [ref=f680e72]: e
+            - generic [ref=f680e73]: s
+      - list [ref=f680e77]:
+        - listitem [ref=f680e78]:
+          - link "Home" [ref=f680e79] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=f680e80]:
+          - img [ref=f680e82]
+        - listitem [ref=f680e84]:
+          - link "Equipe" [ref=f680e85] [cursor=pointer]:
+            - /url: /doctors/
+        - listitem [ref=f680e86]:
+          - img [ref=f680e88]
+        - listitem [ref=f680e90]: Jacob Jones
+    - generic [ref=f680e92]:
+      - generic [ref=f680e93]:
+        - heading "M y E x p e r t i s e" [level=2] [ref=f680e97]:
+          - generic [ref=f680e98]:
+            - generic [ref=f680e99]:
+              - generic [ref=f680e100]: M
+              - generic [ref=f680e101]: "y"
+            - generic [ref=f680e102]:
+              - generic [ref=f680e103]: E
+              - generic [ref=f680e104]: x
+              - generic [ref=f680e105]: p
+              - generic [ref=f680e106]: e
+              - generic [ref=f680e107]: r
+              - generic [ref=f680e108]: t
+              - generic [ref=f680e109]: i
+              - generic [ref=f680e110]: s
+              - generic [ref=f680e111]: e
+        - generic [ref=f680e112]:
+          - generic [ref=f680e118]:
+            - generic [ref=f680e120]: Healing Touch Therapy
+            - generic [ref=f680e122]:
+              - generic [ref=f680e123]: "0"
+              - text: "%"
+          - generic [ref=f680e129]:
+            - generic [ref=f680e131]: Pain Management Clinic
+            - generic [ref=f680e133]:
+              - generic [ref=f680e134]: "0"
+              - text: "%"
+          - generic [ref=f680e140]:
+            - generic [ref=f680e142]: Testing Services
+            - generic [ref=f680e144]:
+              - generic [ref=f680e145]: "0"
+              - text: "%"
+        - generic [ref=f680e146]:
+          - heading "Feature" [level=3] [ref=f680e149]
+          - heading "K n o w a b o u t j a c o b" [level=2] [ref=f680e152]:
+            - generic [ref=f680e153]:
+              - generic [ref=f680e154]:
+                - generic [ref=f680e155]: K
+                - generic [ref=f680e156]: "n"
+                - generic [ref=f680e157]: o
+                - generic [ref=f680e158]: w
+              - generic [ref=f680e159]:
+                - generic [ref=f680e160]: a
+                - generic [ref=f680e161]: b
+                - generic [ref=f680e162]: o
+                - generic [ref=f680e163]: u
+                - generic [ref=f680e164]: t
+              - generic [ref=f680e165]:
+                - generic [ref=f680e166]: j
+                - generic [ref=f680e167]: a
+                - generic [ref=f680e168]: c
+                - generic [ref=f680e169]: o
+                - generic [ref=f680e170]: b
+      - generic [ref=f680e177]:
+        - generic [ref=f680e179]:
+          - heading "Jacob Jones" [level=2] [ref=f680e180]
+          - paragraph [ref=f680e181]: Dentist
+        - list [ref=f680e183]:
+          - listitem [ref=f680e184]:
+            - link "Facebook" [ref=f680e185] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f680e186]: 
+          - listitem [ref=f680e187]:
+            - link "Twitter" [ref=f680e188] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f680e189]: 
+          - listitem [ref=f680e190]:
+            - link "Pinterest" [ref=f680e191] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f680e192]: 
+  - generic [ref=f680e196]:
+    - generic [ref=f680e197]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f680e201]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f680e206] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f680e207]:
+          - img [ref=f680e209]
+          - generic [ref=f680e211]: Richiedi appuntamento
+    - generic [ref=f680e212]:
+      - generic [ref=f680e213]:
+        - generic [ref=f680e217]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f680e218] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f680e219] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f680e223]:
+          - listitem [ref=f680e224]:
+            - link "Facebook" [ref=f680e225] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f680e226]: 
+          - listitem [ref=f680e227]:
+            - link "Instagram" [ref=f680e228] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f680e229]: 
+          - listitem [ref=f680e230]:
+            - link "Whatsapp" [ref=f680e231] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f680e232]: 
+          - listitem [ref=f680e233]:
+            - link "Messanger" [ref=f680e234] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f680e235]: 
+      - generic [ref=f680e236]:
+        - heading "Direttore Sanitario" [level=3] [ref=f680e239]
+        - paragraph [ref=f680e242]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f680e245]
+        - list [ref=f680e248]:
+          - listitem [ref=f680e249]:
+            - link "Cookie Policy" [ref=f680e250] [cursor=pointer]:
+              - /url: /doctors/jacob-jones/cookie-policy/
+          - listitem [ref=f680e251]:
+            - link "Privacy Policy" [ref=f680e252] [cursor=pointer]:
+              - /url: /doctors/jacob-jones/privacy-policy/
+      - generic [ref=f680e253]:
+        - heading "Orari di apertura" [level=3] [ref=f680e256]
+        - paragraph [ref=f680e259]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f680e260]:
+        - heading "Contatti" [level=3] [ref=f680e263]
+        - link "+39 039 2022489" [ref=f680e267] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f680e268]:
+            - img [ref=f680e271]
+            - heading "+39 039 2022489" [level=3] [ref=f680e276]
+        - link "info@sorrisoesalute.it" [ref=f680e280] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f680e281]:
+            - img [ref=f680e284]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f680e293]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f680e297] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f680e298]:
+            - generic [ref=f680e301]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f680e303]
+        - paragraph [ref=f680e305]:
+          - strong [ref=f680e306]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f680e310]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f680e311]: tablet
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

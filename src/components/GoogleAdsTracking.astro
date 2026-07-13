@@ -1,38 +1,38 @@
----
-const whatsappConversionSendTo = import.meta.env.PUBLIC_GOOGLE_ADS_WHATSAPP_SEND_TO ?? "";
----
-
 <!-- Google tag (gtag.js) -->
-<script define:vars={{ whatsappConversionSendTo }}>
+<script is:inline>
   (() => {
+    const googleWindow = window;
     const googleAdsId = "AW-18196734570";
-    window.dataLayer = window.dataLayer || [];
+    const whatsappConversionSendTo = "AW-18196734570/6ovRCOS56L8cEOxE8ORD";
 
-    function gtag() {
-      window.dataLayer.push(arguments);
+    if (!googleWindow.__googleAdsTagLoaded) {
+      googleWindow.__googleAdsTagLoaded = true;
+      googleWindow.dataLayer = googleWindow.dataLayer || [];
+      googleWindow.gtag =
+        googleWindow.gtag ||
+        function gtag() {
+          googleWindow.dataLayer?.push(arguments);
+        };
+
+      googleWindow.gtag("js", new Date());
+      googleWindow.gtag("config", googleAdsId);
+      googleWindow.gtag("config", "AW-18196734570/niV2CMvlu7wCEOrE8ORD", {
+        phone_conversion_number: "039 2022489",
+      });
+
+      if (!document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${googleAdsId}"]`)) {
+        const googleTagScript = document.createElement("script");
+        googleTagScript.async = true;
+        googleTagScript.src = `https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`;
+        document.head.appendChild(googleTagScript);
+      }
     }
 
-    window.gtag = window.gtag || gtag;
-    window.gtag("js", new Date());
-    window.gtag("config", googleAdsId);
-    window.gtag("config", "AW-18196734570/niV2CMvlu7wCEOrE8ORD", {
-      phone_conversion_number: "039 2022489",
-    });
+    const attachWhatsappConversionListener = () => {
+      if (googleWindow.__whatsappConversionListenerAttached) return;
+      googleWindow.__whatsappConversionListenerAttached = true;
 
-    const loadGoogleAds = () => {
-      if (window.__googleAdsLoaded) return;
-      window.__googleAdsLoaded = true;
-      const script = document.createElement("script");
-      script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`;
-      document.head.appendChild(script);
-    };
-
-    const installWhatsappConversionTracking = () => {
-      if (window.__whatsappAdsTrackingInstalled) return;
-      window.__whatsappAdsTrackingInstalled = true;
-
-      const whatsappPatterns = ["wa.me", "api.whatsapp.com", "web.whatsapp.com"];
+      const whatsappPatterns = ["wa.me", "api.whatsapp.com", "web.whatsapp.com", "whatsapp://"];
       const isWhatsappHref = (href) => {
         const normalizedHref = href.toLowerCase();
         return whatsappPatterns.some((pattern) => normalizedHref.includes(pattern));
@@ -41,25 +41,32 @@ const whatsappConversionSendTo = import.meta.env.PUBLIC_GOOGLE_ADS_WHATSAPP_SEND
       document.addEventListener(
         "click",
         (event) => {
-          if (event.defaultPrevented) return;
+          const trackedEvent = event;
+          if (trackedEvent.defaultPrevented || trackedEvent.__whatsappGoogleAdsHandled) return;
+
           const target = event.target;
           if (!(target instanceof Element)) return;
 
           const link = target.closest("a[href]");
           if (!(link instanceof HTMLAnchorElement)) return;
           if (!isWhatsappHref(link.getAttribute("href") || "")) return;
-          if (!whatsappConversionSendTo || typeof window.gtag !== "function") return;
+          if (link.dataset.googleAdsConversion !== "whatsapp-implantologia") return;
 
-          const conversionPayload = {
-            send_to: whatsappConversionSendTo,
-          };
-          const opensNewContext = Boolean(link.target && link.target.toLowerCase() !== "_self");
+          trackedEvent.__whatsappGoogleAdsHandled = true;
+
           const isModifiedClick =
             event instanceof MouseEvent &&
             (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0);
+          const opensNewContext = Boolean(link.target && link.target.toLowerCase() !== "_self");
 
-          if (opensNewContext || isModifiedClick) {
-            window.gtag("event", "conversion", conversionPayload);
+          if (isModifiedClick || opensNewContext) {
+            if (typeof googleWindow.gtag === "function") {
+              googleWindow.gtag("event", "conversion", {
+                send_to: whatsappConversionSendTo,
+                event_callback: () => {},
+                event_timeout: 1000,
+              });
+            }
             return;
           }
 
@@ -71,49 +78,28 @@ const whatsappConversionSendTo = import.meta.env.PUBLIC_GOOGLE_ADS_WHATSAPP_SEND
             hasNavigated = true;
             window.location.href = link.href;
           };
+          const fallbackId = window.setTimeout(openWhatsapp, 1100);
+          const conversionCallback = () => {
+            window.clearTimeout(fallbackId);
+            openWhatsapp();
+          };
 
-          window.setTimeout(openWhatsapp, 900);
-          window.gtag("event", "conversion", {
-            ...conversionPayload,
-            event_callback: openWhatsapp,
-            event_timeout: 800,
+          if (typeof googleWindow.gtag !== "function") {
+            conversionCallback();
+            return;
+          }
+
+          googleWindow.gtag("event", "conversion", {
+            send_to: whatsappConversionSendTo,
+            event_callback: conversionCallback,
+            event_timeout: 1000,
           });
         },
         true,
       );
     };
 
-    const scheduleGoogleAds = () => {
-      if (window.location.pathname.includes("/thank-you-page")) {
-        loadGoogleAds();
-        return;
-      }
-
-      const loadOnInteraction = () => {
-        cleanup();
-        loadGoogleAds();
-      };
-
-      const cleanup = () => {
-        window.removeEventListener("pointerdown", loadOnInteraction);
-        window.removeEventListener("keydown", loadOnInteraction);
-        window.removeEventListener("scroll", loadOnInteraction);
-        window.removeEventListener("touchstart", loadOnInteraction);
-      };
-
-      window.addEventListener("pointerdown", loadOnInteraction, { once: true, passive: true });
-      window.addEventListener("keydown", loadOnInteraction, { once: true });
-      window.addEventListener("scroll", loadOnInteraction, { once: true, passive: true });
-      window.addEventListener("touchstart", loadOnInteraction, { once: true, passive: true });
-      window.setTimeout(loadGoogleAds, 8000);
-    };
-
-    if (document.readyState === "complete") {
-      scheduleGoogleAds();
-    } else {
-      window.addEventListener("load", scheduleGoogleAds, { once: true });
-    }
-
-    installWhatsappConversionTracking();
+    attachWhatsappConversionListener();
+    document.addEventListener("astro:page-load", attachWhatsappConversionListener);
   })();
 </script>

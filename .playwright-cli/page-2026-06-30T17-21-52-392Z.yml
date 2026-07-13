@@ -1,0 +1,24 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "Indietro" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - img [ref=e5]
+      - text: Indietro
+  - main [ref=e7]:
+    - region "Richiedi una valutazione" [ref=e8]:
+      - heading "Richiedi una valutazione" [level=1] [ref=e9]
+      - generic [ref=e10]:
+        - progressbar "Avanzamento richiesta" [ref=e11]
+        - generic [ref=e12]:
+          - paragraph [ref=e13]: Inquadramento clinico
+          - heading "Quale problema vuoi risolvere?" [level=2] [ref=e14]
+          - generic [ref=e15]:
+            - button "Mi manca un solo dente" [ref=e16] [cursor=pointer]:
+              - strong [ref=e17]: Mi manca un solo dente
+            - button "Mi mancano più denti vicini" [ref=e18] [cursor=pointer]:
+              - strong [ref=e19]: Mi mancano più denti vicini
+            - button "La mia dentiera o protesi si muove" [ref=e20] [cursor=pointer]:
+              - strong [ref=e21]: La mia dentiera o protesi si muove
+            - button "Ho perso molti denti o uso una dentiera" [ref=e22] [cursor=pointer]:
+              - strong [ref=e23]: Ho perso molti denti o uso una dentiera
+        - paragraph [ref=e24]

@@ -1,0 +1,40 @@
+- generic [active] [ref=f909e1]:
+  - banner [ref=f909e2]:
+    - link "Indietro" [ref=f909e4] [cursor=pointer]:
+      - /url: /
+      - img [ref=f909e5]
+      - text: Indietro
+  - main [ref=f909e7]:
+    - region "Richiedi una visita" [ref=f909e8]:
+      - heading "Richiedi una visita" [level=1] [ref=f909e9]
+      - generic [ref=f909e10]:
+        - progressbar "Avanzamento richiesta" [ref=f909e11]
+        - generic [ref=f909e12]:
+          - paragraph [ref=f909e13]: Trattamento
+          - heading "Per quale trattamento vuoi essere ricontattato?" [level=2] [ref=f909e14]
+          - paragraph [ref=f909e15]: "Scegli l'area più vicina alla tua esigenza: useremo questa informazione per orientare meglio la prima chiamata."
+          - generic [ref=f909e16]:
+            - button "Igiene orale e profilassi" [ref=f909e17] [cursor=pointer]:
+              - strong [ref=f909e18]: Igiene orale e profilassi
+            - button "Conservativa" [ref=f909e19] [cursor=pointer]:
+              - strong [ref=f909e20]: Conservativa
+            - button "Estetica del sorriso" [ref=f909e21] [cursor=pointer]:
+              - strong [ref=f909e22]: Estetica del sorriso
+            - button "Parodontologia" [ref=f909e23] [cursor=pointer]:
+              - strong [ref=f909e24]: Parodontologia
+            - button "Ortodonzia" [ref=f909e25] [cursor=pointer]:
+              - strong [ref=f909e26]: Ortodonzia
+            - button "Chirurgia orale" [ref=f909e27] [cursor=pointer]:
+              - strong [ref=f909e28]: Chirurgia orale
+            - button "Endodonzia" [ref=f909e29] [cursor=pointer]:
+              - strong [ref=f909e30]: Endodonzia
+            - button "Gnatologia" [ref=f909e31] [cursor=pointer]:
+              - strong [ref=f909e32]: Gnatologia
+            - button "Pedodonzia" [ref=f909e33] [cursor=pointer]:
+              - strong [ref=f909e34]: Pedodonzia
+            - button "Protesi dentale" [ref=f909e35] [cursor=pointer]:
+              - strong [ref=f909e36]: Protesi dentale
+            - button "Implantologia" [ref=f909e37] [cursor=pointer]:
+              - strong [ref=f909e38]: Implantologia
+        - paragraph [ref=f909e39]
+        - button "Continua" [ref=f909e41] [cursor=pointer]

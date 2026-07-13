@@ -1,0 +1,269 @@
+- generic [active] [ref=f770e1]:
+  - generic [ref=f770e5]:
+    - generic [ref=f770e6]: STUDIO DENTISTICO
+    - strong [ref=f770e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f770e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f770e12]:
+    - link "default-logo" [ref=f770e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f770e20]
+    - generic [ref=f770e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f770e23] [cursor=pointer]:
+            - generic [ref=f770e24]: 
+          - generic [ref=f770e25]:
+            - list:
+              - text:  
+              - listitem [ref=f770e26]:
+                - link "Dicono di noi" [ref=f770e27] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f770e28]: Dicono di noi
+              - listitem [ref=f770e29]:
+                - link "La Struttura" [ref=f770e30] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f770e31]: La Struttura
+              - listitem [ref=f770e32]:
+                - link "Convenzioni" [ref=f770e33] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f770e34]: Convenzioni
+              - listitem [ref=f770e35]:
+                - link "Urgenze" [ref=f770e36] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f770e37]: Urgenze
+              - listitem [ref=f770e38]:
+                - link "Chiama in studio" [ref=f770e39] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f770e40]: Chiama in studio
+                  - img [ref=f770e41]
+              - listitem [ref=f770e43]:
+                - button "Menu" [ref=f770e44] [cursor=pointer]:
+                  - generic [ref=f770e49]: Menu
+            - button "X" [ref=f770e51] [cursor=pointer]
+  - generic [ref=f770e54]:
+    - generic [ref=f770e57]:
+      - heading "F r e q u e n t l y A s k e d Q u e s t i o n s" [level=1] [ref=f770e60]:
+        - generic [ref=f770e62]:
+          - generic [ref=f770e63]: F
+          - generic [ref=f770e64]: r
+          - generic [ref=f770e65]: e
+          - generic [ref=f770e66]: q
+          - generic [ref=f770e67]: u
+          - generic [ref=f770e68]: e
+          - generic [ref=f770e69]: "n"
+          - generic [ref=f770e70]: t
+          - generic [ref=f770e71]: l
+          - generic [ref=f770e72]: "y"
+        - generic [ref=f770e74]:
+          - generic [ref=f770e75]: A
+          - generic [ref=f770e76]: s
+          - generic [ref=f770e77]: k
+          - generic [ref=f770e78]: e
+          - generic [ref=f770e79]: d
+        - generic [ref=f770e81]:
+          - generic [ref=f770e82]: Q
+          - generic [ref=f770e83]: u
+          - generic [ref=f770e84]: e
+          - generic [ref=f770e85]: s
+          - generic [ref=f770e86]: t
+          - generic [ref=f770e87]: i
+          - generic [ref=f770e88]: o
+          - generic [ref=f770e89]: "n"
+          - generic [ref=f770e90]: s
+      - list [ref=f770e94]:
+        - listitem [ref=f770e95]:
+          - link "Home" [ref=f770e96] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=f770e97]:
+          - img [ref=f770e99]
+        - listitem [ref=f770e101]: FAQs
+    - generic [ref=f770e103]:
+      - generic [ref=f770e104]:
+        - heading "G e n e r a l I n f o r m a t i o n" [level=2] [ref=f770e108]:
+          - generic [ref=f770e109]:
+            - generic [ref=f770e110]:
+              - generic [ref=f770e111]: G
+              - generic [ref=f770e112]: e
+              - generic [ref=f770e113]: "n"
+              - generic [ref=f770e114]: e
+              - generic [ref=f770e115]: r
+              - generic [ref=f770e116]: a
+              - generic [ref=f770e117]: l
+            - generic [ref=f770e118]:
+              - generic [ref=f770e119]: I
+              - generic [ref=f770e120]: "n"
+              - generic [ref=f770e121]: f
+              - generic [ref=f770e122]: o
+              - generic [ref=f770e123]: r
+              - generic [ref=f770e124]: m
+              - generic [ref=f770e125]: a
+              - generic [ref=f770e126]: t
+              - generic [ref=f770e127]: i
+              - generic [ref=f770e128]: o
+              - generic [ref=f770e129]: "n"
+        - heading "P r e v e n t i v e C a r e" [level=2] [ref=f770e133]:
+          - generic [ref=f770e134]:
+            - generic [ref=f770e135]:
+              - generic [ref=f770e136]: P
+              - generic [ref=f770e137]: r
+              - generic [ref=f770e138]: e
+              - generic [ref=f770e139]: v
+              - generic [ref=f770e140]: e
+              - generic [ref=f770e141]: "n"
+              - generic [ref=f770e142]: t
+              - generic [ref=f770e143]: i
+              - generic [ref=f770e144]: v
+              - generic [ref=f770e145]: e
+            - generic [ref=f770e146]:
+              - generic [ref=f770e147]: C
+              - generic [ref=f770e148]: a
+              - generic [ref=f770e149]: r
+              - generic [ref=f770e150]: e
+        - heading "C o s m e t i c D e n t i s t r y" [level=2] [ref=f770e154]:
+          - generic [ref=f770e155]:
+            - generic [ref=f770e156]:
+              - generic [ref=f770e157]: C
+              - generic [ref=f770e158]: o
+              - generic [ref=f770e159]: s
+              - generic [ref=f770e160]: m
+              - generic [ref=f770e161]: e
+              - generic [ref=f770e162]: t
+              - generic [ref=f770e163]: i
+              - generic [ref=f770e164]: c
+            - generic [ref=f770e165]:
+              - generic [ref=f770e166]: D
+              - generic [ref=f770e167]: e
+              - generic [ref=f770e168]: "n"
+              - generic [ref=f770e169]: t
+              - generic [ref=f770e170]: i
+              - generic [ref=f770e171]: s
+              - generic [ref=f770e172]: t
+              - generic [ref=f770e173]: r
+              - generic [ref=f770e174]: "y"
+        - heading "R e s t o r a t i v e D e n t i s t r y" [level=2] [ref=f770e178]:
+          - generic [ref=f770e179]:
+            - generic [ref=f770e180]:
+              - generic [ref=f770e181]: R
+              - generic [ref=f770e182]: e
+              - generic [ref=f770e183]: s
+              - generic [ref=f770e184]: t
+              - generic [ref=f770e185]: o
+              - generic [ref=f770e186]: r
+              - generic [ref=f770e187]: a
+              - generic [ref=f770e188]: t
+              - generic [ref=f770e189]: i
+              - generic [ref=f770e190]: v
+              - generic [ref=f770e191]: e
+            - generic [ref=f770e192]:
+              - generic [ref=f770e193]: D
+              - generic [ref=f770e194]: e
+              - generic [ref=f770e195]: "n"
+              - generic [ref=f770e196]: t
+              - generic [ref=f770e197]: i
+              - generic [ref=f770e198]: s
+              - generic [ref=f770e199]: t
+              - generic [ref=f770e200]: r
+              - generic [ref=f770e201]: "y"
+      - list [ref=f770e207]:
+        - listitem [ref=f770e208]:
+          - link "General Information" [ref=f770e209] [cursor=pointer]:
+            - /url: "#faq-1"
+            - img [ref=f770e211]
+            - generic [ref=f770e213]: General Information
+        - listitem [ref=f770e214]:
+          - link "Preventive Care" [ref=f770e215] [cursor=pointer]:
+            - /url: "#faq-2"
+            - img [ref=f770e217]
+            - generic [ref=f770e219]: Preventive Care
+        - listitem [ref=f770e220]:
+          - link "Cosmetic Dentistry" [ref=f770e221] [cursor=pointer]:
+            - /url: "#faq-3"
+            - img [ref=f770e223]
+            - generic [ref=f770e225]: Cosmetic Dentistry
+        - listitem [ref=f770e226]:
+          - link "Restorative Dentistry" [ref=f770e227] [cursor=pointer]:
+            - /url: "#faq-4"
+            - img [ref=f770e229]
+            - generic [ref=f770e231]: Restorative Dentistry
+  - generic [ref=f770e235]:
+    - generic [ref=f770e236]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f770e240]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f770e245] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f770e246]:
+          - img [ref=f770e248]
+          - generic [ref=f770e250]: Richiedi appuntamento
+    - generic [ref=f770e251]:
+      - generic [ref=f770e252]:
+        - generic [ref=f770e256]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f770e257] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f770e258] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f770e262]:
+          - listitem [ref=f770e263]:
+            - link "Facebook" [ref=f770e264] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f770e265]: 
+          - listitem [ref=f770e266]:
+            - link "Instagram" [ref=f770e267] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f770e268]: 
+          - listitem [ref=f770e269]:
+            - link "Whatsapp" [ref=f770e270] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f770e271]: 
+          - listitem [ref=f770e272]:
+            - link "Messanger" [ref=f770e273] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f770e274]: 
+      - generic [ref=f770e275]:
+        - heading "Direttore Sanitario" [level=3] [ref=f770e278]
+        - paragraph [ref=f770e281]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f770e284]
+        - list [ref=f770e287]:
+          - listitem [ref=f770e288]:
+            - link "Cookie Policy" [ref=f770e289] [cursor=pointer]:
+              - /url: /faqs/cookie-policy/
+          - listitem [ref=f770e290]:
+            - link "Privacy Policy" [ref=f770e291] [cursor=pointer]:
+              - /url: /faqs/privacy-policy/
+      - generic [ref=f770e292]:
+        - heading "Orari di apertura" [level=3] [ref=f770e295]
+        - paragraph [ref=f770e298]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f770e299]:
+        - heading "Contatti" [level=3] [ref=f770e302]
+        - link "+39 039 2022489" [ref=f770e306] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f770e307]:
+            - img [ref=f770e310]
+            - heading "+39 039 2022489" [level=3] [ref=f770e315]
+        - link "info@sorrisoesalute.it" [ref=f770e319] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f770e320]:
+            - img [ref=f770e323]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f770e332]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f770e336] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f770e337]:
+            - generic [ref=f770e340]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f770e342]
+        - paragraph [ref=f770e344]:
+          - strong [ref=f770e345]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f770e349]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f770e350]: tablet
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

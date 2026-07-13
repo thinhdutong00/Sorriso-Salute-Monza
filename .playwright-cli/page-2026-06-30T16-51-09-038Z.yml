@@ -1,0 +1,571 @@
+- generic [active] [ref=f595e1]:
+  - generic [ref=f595e5]:
+    - generic [ref=f595e6]: STUDIO DENTISTICO
+    - strong [ref=f595e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f595e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f595e12]:
+    - link "default-logo" [ref=f595e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f595e20]
+    - navigation [ref=f595e24]:
+      - text: 
+      - list [ref=f595e26]:
+        - text:  
+        - listitem [ref=f595e27]:
+          - link "Dicono di noi" [ref=f595e28] [cursor=pointer]:
+            - /url: /recensioni-studio-dentistico-monza/
+            - generic [ref=f595e29]: Dicono di noi
+        - listitem [ref=f595e30]:
+          - link "La Struttura" [ref=f595e31] [cursor=pointer]:
+            - /url: /struttura-studio-dentistico-monza/
+            - generic [ref=f595e32]: La Struttura
+        - listitem [ref=f595e33]:
+          - link "Convenzioni" [ref=f595e34] [cursor=pointer]:
+            - /url: /convenzioni-dirette-studio-dentistico-monza/
+            - generic [ref=f595e35]: Convenzioni
+        - listitem [ref=f595e36]:
+          - link "Urgenze" [ref=f595e37] [cursor=pointer]:
+            - /url: /urgenze/
+            - generic [ref=f595e38]: Urgenze
+        - listitem [ref=f595e39]:
+          - link "Chiama in studio" [ref=f595e40] [cursor=pointer]:
+            - /url: tel:+390392022489
+            - generic [ref=f595e41]: Chiama in studio
+            - img [ref=f595e42]
+        - listitem [ref=f595e44]:
+          - button "Menu" [ref=f595e45] [cursor=pointer]:
+            - generic [ref=f595e50]: Menu
+  - main [ref=f595e53]:
+    - generic [ref=f595e58]:
+      - heading "Cookie Policy" [level=1] [ref=f595e59]
+      - navigation "Breadcrumbs" [ref=f595e60]:
+        - list [ref=f595e61]:
+          - listitem [ref=f595e62]:
+            - link "Home" [ref=f595e63] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f595e64]:
+            - text: /
+            - generic [ref=f595e65]: Cookie Policy
+    - generic [ref=f595e66]:
+      - generic [ref=f595e71]:
+        - heading [level=2]
+        - heading "Come gestire le preferenze e prestare o revocare il consenso su questo Sito Web" [level=3] [ref=f595e72]
+        - paragraph [ref=f595e73]: Qualora l’utilizzo dei Tracker sia basato sul consenso, l’Utente può fornire o revocare tale consenso impostando o aggiornando le proprie preferenze tramite il relativo pannello delle scelte in materia di privacy disponibile su questo Sito Web.
+        - paragraph [ref=f595e74]: Per quanto riguarda Strumenti di Tracciamento di terza parte, gli Utenti possono gestire le proprie preferenze visitando il relativo link di opt out (qualora disponibile), utilizzando gli strumenti descritti nella privacy policy della terza parte o contattando quest’ultima direttamente.
+        - heading "Come controllare o eliminare Cookie e tecnologie simili tramite le impostazioni del tuo dispositivo" [level=4] [ref=f595e75]
+        - paragraph [ref=f595e76]: "Gli Utenti possono utilizzare le impostazioni del proprio browser per:"
+        - list [ref=f595e77]:
+          - listitem [ref=f595e78]: Vedere quali Cookie o altre tecnologie simili sono stati impostati sul dispositivo;
+          - listitem [ref=f595e79]: Bloccare Cookie o tecnologie simili;
+          - listitem [ref=f595e80]: Cancellare i Cookie o tecnologie simili dal browser.
+        - paragraph [ref=f595e81]: Le impostazioni del browser, tuttavia, non consentono un controllo granulare del consenso per categoria.
+        - paragraph [ref=f595e82]: "Gli Utenti possono, per esempio, trovare informazioni su come gestire i Cookie in alcuni dei browser più diffusi ai seguenti indirizzi:"
+        - list [ref=f595e83]:
+          - listitem [ref=f595e84]:
+            - link "Google Chrome" [ref=f595e85] [cursor=pointer]:
+              - /url: https://support.google.com/chrome/answer/95647?hl=it&amp;p=cpn_cookies
+          - listitem [ref=f595e86]:
+            - link "Mozilla Firefox" [ref=f595e87] [cursor=pointer]:
+              - /url: https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie
+          - listitem [ref=f595e88]:
+            - link "Apple Safari" [ref=f595e89] [cursor=pointer]:
+              - /url: https://support.apple.com/it-it/guide/safari/manage-cookies-and-website-data-sfri11471/
+          - listitem [ref=f595e90]:
+            - link "Microsoft Internet Explorer" [ref=f595e91] [cursor=pointer]:
+              - /url: http://windows.microsoft.com/it-it/windows-vista/block-or-allow-cookies
+          - listitem [ref=f595e92]:
+            - link "Microsoft Edge" [ref=f595e93] [cursor=pointer]:
+              - /url: https://support.microsoft.com/it-it/help/4027947
+          - listitem [ref=f595e94]:
+            - link "Brave" [ref=f595e95] [cursor=pointer]:
+              - /url: https://support.brave.com/hc/articles/360022806212-How-do-I-use-Shields-while-browsing
+          - listitem [ref=f595e96]:
+            - link "Opera" [ref=f595e97] [cursor=pointer]:
+              - /url: https://help.opera.com/latest/web-preferences/#cookies
+        - paragraph [ref=f595e98]: Gli Utenti possono inoltre gestire alcuni Strumenti di Tracciamento per applicazioni mobili disattivandoli tramite le apposite impostazioni del dispositivo, quali le impostazioni di pubblicità per dispositivi mobili o le impostazioni relative al tracciamento in generale (gli Utenti possono consultare le impostazioni del dispositivo per individuare quella pertinente).
+        - heading "Come disattivare la pubblicità basata sugli interessi" [level=4] [ref=f595e99]
+        - paragraph [ref=f595e100]:
+          - text: Fermo restando quanto precede, si informano gli Utenti della possibilità di avvalersi delle informazioni presenti su
+          - link "YourOnlineChoices" [ref=f595e101] [cursor=pointer]:
+            - /url: http://www.youronlinechoices.eu/
+          - text: (UE e Regno Unito),
+          - link "Network Advertising Initiative" [ref=f595e102] [cursor=pointer]:
+            - /url: https://thenai.org/about-online-advertising/
+          - text: (USA) e
+          - link "Digital Advertising Alliance" [ref=f595e103] [cursor=pointer]:
+            - /url: https://www.aboutads.info/consumers/
+          - text: (USA),
+          - link "DAAC" [ref=f595e104] [cursor=pointer]:
+            - /url: https://youradchoices.ca/understanding-online-advertising/
+          - text: (Canada),
+          - link "DDAI" [ref=f595e105] [cursor=pointer]:
+            - /url: http://www.ddai.info/optout
+          - text: (Giappone) o altri servizi analoghi. Con questi servizi è possibile gestire le preferenze di tracciamento della maggior parte degli strumenti pubblicitari. Il Titolare, pertanto, consiglia agli Utenti di utilizzare tali risorse in aggiunta alle informazioni fornite nel presente documento.
+        - paragraph [ref=f595e106]:
+          - text: La Digital Advertising Alliance mette inoltre a disposizione un’applicazione chiamata
+          - link "AppChoices" [ref=f595e107] [cursor=pointer]:
+            - /url: https://youradchoices.com/appchoices
+          - text: che aiuta gli Utenti a controllare la pubblicità comportamentale sulle applicazioni mobili.
+        - heading "Conseguenze legate al rifiuto dell’utilizzo di Strumenti di Tracciamento" [level=4] [ref=f595e108]
+        - paragraph [ref=f595e109]: Gli Utenti sono liberi di decidere se permettere o meno l’utilizzo di Strumenti di Tracciamento. Tuttavia, si noti che gli Strumenti di Tracciamento consentono a questo Sito Web di fornire agli Utenti un’esperienza migliore e funzionalità avanzate (in linea con le finalità delineate nel presente documento). Pertanto, qualora l’Utente decida di bloccare l’utilizzo di Strumenti di Tracciamento, il Titolare potrebbe non essere in grado di fornire le relative funzionalità.
+        - heading "Titolare del Trattamento dei Dati" [level=3] [ref=f595e110]
+        - paragraph [ref=f595e111]:
+          - text: Bio-integra Srls
+          - text: P.iva 14239170963
+          - text: Via 11 Febbraio, 23
+          - text: Bollate (MI) 20021
+          - text: info@bio-integra.net
+        - paragraph [ref=f595e112]:
+          - strong [ref=f595e113]: "Indirizzo email del Titolare:"
+          - text: info@bio-integra.net
+        - paragraph [ref=f595e114]: Dal momento che l’uso di Strumenti di Tracciamento di terza parte su questo Sito Web non può essere completamente controllato dal Titolare, ogni riferimento specifico a Strumenti di Tracciamento di terza parte è da considerarsi indicativo. Per ottenere informazioni complete, gli Utenti sono gentilmente invitati a consultare la privacy policy dei rispettivi servizi terzi elencati in questo documento.
+        - paragraph [ref=f595e115]: Data l’oggettiva complessità di identificazione delle tecnologie di tracciamento, gli Utenti sono invitati a contattare il Titolare qualora volessero ricevere ulteriori informazioni in merito all’utilizzo di tali tecnologie su questo Sito Web.
+      - heading "Come gestire le preferenze e prestare o revocare il consenso su questo Sito Web" [level=3] [ref=f595e117]
+      - paragraph [ref=f595e118]: Qualora l’utilizzo dei Tracker sia basato sul consenso, l’Utente può fornire o revocare tale consenso impostando o aggiornando le proprie preferenze tramite il relativo pannello delle scelte in materia di privacy disponibile su questo Sito Web.
+      - paragraph [ref=f595e119]: Per quanto riguarda Strumenti di Tracciamento di terza parte, gli Utenti possono gestire le proprie preferenze visitando il relativo link di opt out (qualora disponibile), utilizzando gli strumenti descritti nella privacy policy della terza parte o contattando quest’ultima direttamente.
+      - heading "Come controllare o eliminare Cookie e tecnologie simili tramite le impostazioni del tuo dispositivo" [level=4] [ref=f595e120]
+      - paragraph [ref=f595e121]: "Gli Utenti possono utilizzare le impostazioni del proprio browser per:"
+      - list [ref=f595e122]:
+        - listitem [ref=f595e123]: Vedere quali Cookie o altre tecnologie simili sono stati impostati sul dispositivo;
+        - listitem [ref=f595e124]: Bloccare Cookie o tecnologie simili;
+        - listitem [ref=f595e125]: Cancellare i Cookie o tecnologie simili dal browser.
+      - paragraph [ref=f595e126]: Le impostazioni del browser, tuttavia, non consentono un controllo granulare del consenso per categoria.
+      - paragraph [ref=f595e127]: "Gli Utenti possono, per esempio, trovare informazioni su come gestire i Cookie in alcuni dei browser più diffusi ai seguenti indirizzi:"
+      - list [ref=f595e128]:
+        - listitem [ref=f595e129]:
+          - link "Google Chrome" [ref=f595e130] [cursor=pointer]:
+            - /url: https://support.google.com/chrome/answer/95647?hl=it&amp;p=cpn_cookies
+        - listitem [ref=f595e131]:
+          - link "Mozilla Firefox" [ref=f595e132] [cursor=pointer]:
+            - /url: https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie
+        - listitem [ref=f595e133]:
+          - link "Apple Safari" [ref=f595e134] [cursor=pointer]:
+            - /url: https://support.apple.com/it-it/guide/safari/manage-cookies-and-website-data-sfri11471/
+        - listitem [ref=f595e135]:
+          - link "Microsoft Internet Explorer" [ref=f595e136] [cursor=pointer]:
+            - /url: http://windows.microsoft.com/it-it/windows-vista/block-or-allow-cookies
+        - listitem [ref=f595e137]:
+          - link "Microsoft Edge" [ref=f595e138] [cursor=pointer]:
+            - /url: https://support.microsoft.com/it-it/help/4027947
+        - listitem [ref=f595e139]:
+          - link "Brave" [ref=f595e140] [cursor=pointer]:
+            - /url: https://support.brave.com/hc/articles/360022806212-How-do-I-use-Shields-while-browsing
+        - listitem [ref=f595e141]:
+          - link "Opera" [ref=f595e142] [cursor=pointer]:
+            - /url: https://help.opera.com/latest/web-preferences/#cookies
+      - paragraph [ref=f595e143]: Gli Utenti possono inoltre gestire alcuni Strumenti di Tracciamento per applicazioni mobili disattivandoli tramite le apposite impostazioni del dispositivo, quali le impostazioni di pubblicità per dispositivi mobili o le impostazioni relative al tracciamento in generale (gli Utenti possono consultare le impostazioni del dispositivo per individuare quella pertinente).
+      - heading "Come disattivare la pubblicità basata sugli interessi" [level=4] [ref=f595e144]
+      - paragraph [ref=f595e145]:
+        - text: Fermo restando quanto precede, si informano gli Utenti della possibilità di avvalersi delle informazioni presenti su
+        - link "YourOnlineChoices" [ref=f595e146] [cursor=pointer]:
+          - /url: http://www.youronlinechoices.eu/
+        - text: (UE e Regno Unito),
+        - link "Network Advertising Initiative" [ref=f595e147] [cursor=pointer]:
+          - /url: https://thenai.org/about-online-advertising/
+        - text: (USA) e
+        - link "Digital Advertising Alliance" [ref=f595e148] [cursor=pointer]:
+          - /url: https://www.aboutads.info/consumers/
+        - text: (USA),
+        - link "DAAC" [ref=f595e149] [cursor=pointer]:
+          - /url: https://youradchoices.ca/understanding-online-advertising/
+        - text: (Canada),
+        - link "DDAI" [ref=f595e150] [cursor=pointer]:
+          - /url: http://www.ddai.info/optout
+        - text: (Giappone) o altri servizi analoghi. Con questi servizi è possibile gestire le preferenze di tracciamento della maggior parte degli strumenti pubblicitari. Il Titolare, pertanto, consiglia agli Utenti di utilizzare tali risorse in aggiunta alle informazioni fornite nel presente documento.
+      - paragraph [ref=f595e151]:
+        - text: La Digital Advertising Alliance mette inoltre a disposizione un’applicazione chiamata
+        - link "AppChoices" [ref=f595e152] [cursor=pointer]:
+          - /url: https://youradchoices.com/appchoices
+        - text: che aiuta gli Utenti a controllare la pubblicità comportamentale sulle applicazioni mobili.
+      - heading "Conseguenze legate al rifiuto dell’utilizzo di Strumenti di Tracciamento" [level=4] [ref=f595e153]
+      - paragraph [ref=f595e154]: Gli Utenti sono liberi di decidere se permettere o meno l’utilizzo di Strumenti di Tracciamento. Tuttavia, si noti che gli Strumenti di Tracciamento consentono a questo Sito Web di fornire agli Utenti un’esperienza migliore e funzionalità avanzate (in linea con le finalità delineate nel presente documento). Pertanto, qualora l’Utente decida di bloccare l’utilizzo di Strumenti di Tracciamento, il Titolare potrebbe non essere in grado di fornire le relative funzionalità.
+      - heading "Titolare del Trattamento dei Dati" [level=3] [ref=f595e155]
+      - paragraph [ref=f595e156]:
+        - text: Bio-integra Srls
+        - text: P.iva 14239170963
+        - text: Via 11 Febbraio, 23
+        - text: Bollate (MI) 20021
+        - text: info@bio-integra.net
+      - paragraph [ref=f595e157]:
+        - strong [ref=f595e158]: "Indirizzo email del Titolare:"
+        - text: info@bio-integra.net
+      - paragraph [ref=f595e159]: Dal momento che l’uso di Strumenti di Tracciamento di terza parte su questo Sito Web non può essere completamente controllato dal Titolare, ogni riferimento specifico a Strumenti di Tracciamento di terza parte è da considerarsi indicativo. Per ottenere informazioni complete, gli Utenti sono gentilmente invitati a consultare la privacy policy dei rispettivi servizi terzi elencati in questo documento.
+      - paragraph [ref=f595e160]: Data l’oggettiva complessità di identificazione delle tecnologie di tracciamento, gli Utenti sono invitati a contattare il Titolare qualora volessero ricevere ulteriori informazioni in merito all’utilizzo di tali tecnologie su questo Sito Web.
+    - generic [ref=f595e165]:
+      - heading [level=2]
+      - heading [level=2]
+      - heading [level=2]
+      - heading "Come gestire le preferenze e prestare o revocare il consenso su questo Sito Web" [level=3] [ref=f595e166]
+      - paragraph [ref=f595e167]: Qualora l’utilizzo dei Tracker sia basato sul consenso, l’Utente può fornire o revocare tale consenso impostando o aggiornando le proprie preferenze tramite il relativo pannello delle scelte in materia di privacy disponibile su questo Sito Web.
+      - paragraph [ref=f595e168]: Per quanto riguarda Strumenti di Tracciamento di terza parte, gli Utenti possono gestire le proprie preferenze visitando il relativo link di opt out (qualora disponibile), utilizzando gli strumenti descritti nella privacy policy della terza parte o contattando quest’ultima direttamente.
+      - heading "Come controllare o eliminare Cookie e tecnologie simili tramite le impostazioni del tuo dispositivo" [level=4] [ref=f595e169]
+      - paragraph [ref=f595e170]: "Gli Utenti possono utilizzare le impostazioni del proprio browser per:"
+      - list [ref=f595e171]:
+        - listitem [ref=f595e172]: Vedere quali Cookie o altre tecnologie simili sono stati impostati sul dispositivo;
+        - listitem [ref=f595e173]: Bloccare Cookie o tecnologie simili;
+        - listitem [ref=f595e174]: Cancellare i Cookie o tecnologie simili dal browser.
+      - paragraph [ref=f595e175]: Le impostazioni del browser, tuttavia, non consentono un controllo granulare del consenso per categoria.
+      - paragraph [ref=f595e176]: "Gli Utenti possono, per esempio, trovare informazioni su come gestire i Cookie in alcuni dei browser più diffusi ai seguenti indirizzi:"
+      - list [ref=f595e177]:
+        - listitem [ref=f595e178]:
+          - link "Google Chrome" [ref=f595e179] [cursor=pointer]:
+            - /url: https://support.google.com/chrome/answer/95647?hl=it&amp;p=cpn_cookies
+        - listitem [ref=f595e180]:
+          - link "Mozilla Firefox" [ref=f595e181] [cursor=pointer]:
+            - /url: https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie
+        - listitem [ref=f595e182]:
+          - link "Apple Safari" [ref=f595e183] [cursor=pointer]:
+            - /url: https://support.apple.com/it-it/guide/safari/manage-cookies-and-website-data-sfri11471/
+        - listitem [ref=f595e184]:
+          - link "Microsoft Internet Explorer" [ref=f595e185] [cursor=pointer]:
+            - /url: http://windows.microsoft.com/it-it/windows-vista/block-or-allow-cookies
+        - listitem [ref=f595e186]:
+          - link "Microsoft Edge" [ref=f595e187] [cursor=pointer]:
+            - /url: https://support.microsoft.com/it-it/help/4027947
+        - listitem [ref=f595e188]:
+          - link "Brave" [ref=f595e189] [cursor=pointer]:
+            - /url: https://support.brave.com/hc/articles/360022806212-How-do-I-use-Shields-while-browsing
+        - listitem [ref=f595e190]:
+          - link "Opera" [ref=f595e191] [cursor=pointer]:
+            - /url: https://help.opera.com/latest/web-preferences/#cookies
+      - paragraph [ref=f595e192]: Gli Utenti possono inoltre gestire alcuni Strumenti di Tracciamento per applicazioni mobili disattivandoli tramite le apposite impostazioni del dispositivo, quali le impostazioni di pubblicità per dispositivi mobili o le impostazioni relative al tracciamento in generale (gli Utenti possono consultare le impostazioni del dispositivo per individuare quella pertinente).
+      - heading "Come disattivare la pubblicità basata sugli interessi" [level=4] [ref=f595e193]
+      - paragraph [ref=f595e194]:
+        - text: Fermo restando quanto precede, si informano gli Utenti della possibilità di avvalersi delle informazioni presenti su
+        - link "YourOnlineChoices" [ref=f595e195] [cursor=pointer]:
+          - /url: http://www.youronlinechoices.eu/
+        - text: (UE e Regno Unito),
+        - link "Network Advertising Initiative" [ref=f595e196] [cursor=pointer]:
+          - /url: https://thenai.org/about-online-advertising/
+        - text: (USA) e
+        - link "Digital Advertising Alliance" [ref=f595e197] [cursor=pointer]:
+          - /url: https://www.aboutads.info/consumers/
+        - text: (USA),
+        - link "DAAC" [ref=f595e198] [cursor=pointer]:
+          - /url: https://youradchoices.ca/understanding-online-advertising/
+        - text: (Canada),
+        - link "DDAI" [ref=f595e199] [cursor=pointer]:
+          - /url: http://www.ddai.info/optout
+        - text: (Giappone) o altri servizi analoghi. Con questi servizi è possibile gestire le preferenze di tracciamento della maggior parte degli strumenti pubblicitari. Il Titolare, pertanto, consiglia agli Utenti di utilizzare tali risorse in aggiunta alle informazioni fornite nel presente documento.
+      - paragraph [ref=f595e200]:
+        - text: La Digital Advertising Alliance mette inoltre a disposizione un’applicazione chiamata
+        - link "AppChoices" [ref=f595e201] [cursor=pointer]:
+          - /url: https://youradchoices.com/appchoices
+        - text: che aiuta gli Utenti a controllare la pubblicità comportamentale sulle applicazioni mobili.
+      - heading "Conseguenze legate al rifiuto dell’utilizzo di Strumenti di Tracciamento" [level=4] [ref=f595e202]
+      - paragraph [ref=f595e203]: Gli Utenti sono liberi di decidere se permettere o meno l’utilizzo di Strumenti di Tracciamento. Tuttavia, si noti che gli Strumenti di Tracciamento consentono a questo Sito Web di fornire agli Utenti un’esperienza migliore e funzionalità avanzate (in linea con le finalità delineate nel presente documento). Pertanto, qualora l’Utente decida di bloccare l’utilizzo di Strumenti di Tracciamento, il Titolare potrebbe non essere in grado di fornire le relative funzionalità.
+      - heading "Titolare del Trattamento dei Dati" [level=3] [ref=f595e204]
+      - paragraph [ref=f595e205]:
+        - text: Bio-integra Srls
+        - text: P.iva 14239170963
+        - text: Via 11 Febbraio, 23
+        - text: Bollate (MI) 20021
+        - text: info@bio-integra.net
+      - paragraph [ref=f595e206]:
+        - strong [ref=f595e207]: "Indirizzo email del Titolare:"
+        - text: info@bio-integra.net
+      - paragraph [ref=f595e208]: Dal momento che l’uso di Strumenti di Tracciamento di terza parte su questo Sito Web non può essere completamente controllato dal Titolare, ogni riferimento specifico a Strumenti di Tracciamento di terza parte è da considerarsi indicativo. Per ottenere informazioni complete, gli Utenti sono gentilmente invitati a consultare la privacy policy dei rispettivi servizi terzi elencati in questo documento.
+      - paragraph [ref=f595e209]: Data l’oggettiva complessità di identificazione delle tecnologie di tracciamento, gli Utenti sono invitati a contattare il Titolare qualora volessero ricevere ulteriori informazioni in merito all’utilizzo di tali tecnologie su questo Sito Web.
+    - generic [ref=f595e211]:
+      - heading [level=2]
+      - heading "Come gestire le preferenze e prestare o revocare il consenso su questo Sito Web" [level=3] [ref=f595e212]
+      - paragraph [ref=f595e213]: Qualora l’utilizzo dei Tracker sia basato sul consenso, l’Utente può fornire o revocare tale consenso impostando o aggiornando le proprie preferenze tramite il relativo pannello delle scelte in materia di privacy disponibile su questo Sito Web.
+      - paragraph [ref=f595e214]: Per quanto riguarda Strumenti di Tracciamento di terza parte, gli Utenti possono gestire le proprie preferenze visitando il relativo link di opt out (qualora disponibile), utilizzando gli strumenti descritti nella privacy policy della terza parte o contattando quest’ultima direttamente.
+      - heading "Come controllare o eliminare Cookie e tecnologie simili tramite le impostazioni del tuo dispositivo" [level=4] [ref=f595e215]
+      - paragraph [ref=f595e216]: "Gli Utenti possono utilizzare le impostazioni del proprio browser per:"
+      - list [ref=f595e217]:
+        - listitem [ref=f595e218]: Vedere quali Cookie o altre tecnologie simili sono stati impostati sul dispositivo;
+        - listitem [ref=f595e219]: Bloccare Cookie o tecnologie simili;
+        - listitem [ref=f595e220]: Cancellare i Cookie o tecnologie simili dal browser.
+      - paragraph [ref=f595e221]: Le impostazioni del browser, tuttavia, non consentono un controllo granulare del consenso per categoria.
+      - paragraph [ref=f595e222]: "Gli Utenti possono, per esempio, trovare informazioni su come gestire i Cookie in alcuni dei browser più diffusi ai seguenti indirizzi:"
+      - list [ref=f595e223]:
+        - listitem [ref=f595e224]:
+          - link "Google Chrome" [ref=f595e225] [cursor=pointer]:
+            - /url: https://support.google.com/chrome/answer/95647?hl=it&amp;p=cpn_cookies
+        - listitem [ref=f595e226]:
+          - link "Mozilla Firefox" [ref=f595e227] [cursor=pointer]:
+            - /url: https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie
+        - listitem [ref=f595e228]:
+          - link "Apple Safari" [ref=f595e229] [cursor=pointer]:
+            - /url: https://support.apple.com/it-it/guide/safari/manage-cookies-and-website-data-sfri11471/
+        - listitem [ref=f595e230]:
+          - link "Microsoft Internet Explorer" [ref=f595e231] [cursor=pointer]:
+            - /url: http://windows.microsoft.com/it-it/windows-vista/block-or-allow-cookies
+        - listitem [ref=f595e232]:
+          - link "Microsoft Edge" [ref=f595e233] [cursor=pointer]:
+            - /url: https://support.microsoft.com/it-it/help/4027947
+        - listitem [ref=f595e234]:
+          - link "Brave" [ref=f595e235] [cursor=pointer]:
+            - /url: https://support.brave.com/hc/articles/360022806212-How-do-I-use-Shields-while-browsing
+        - listitem [ref=f595e236]:
+          - link "Opera" [ref=f595e237] [cursor=pointer]:
+            - /url: https://help.opera.com/latest/web-preferences/#cookies
+      - paragraph [ref=f595e238]: Gli Utenti possono inoltre gestire alcuni Strumenti di Tracciamento per applicazioni mobili disattivandoli tramite le apposite impostazioni del dispositivo, quali le impostazioni di pubblicità per dispositivi mobili o le impostazioni relative al tracciamento in generale (gli Utenti possono consultare le impostazioni del dispositivo per individuare quella pertinente).
+      - heading "Come disattivare la pubblicità basata sugli interessi" [level=4] [ref=f595e239]
+      - paragraph [ref=f595e240]:
+        - text: Fermo restando quanto precede, si informano gli Utenti della possibilità di avvalersi delle informazioni presenti su
+        - link "YourOnlineChoices" [ref=f595e241] [cursor=pointer]:
+          - /url: http://www.youronlinechoices.eu/
+        - text: (UE e Regno Unito),
+        - link "Network Advertising Initiative" [ref=f595e242] [cursor=pointer]:
+          - /url: https://thenai.org/about-online-advertising/
+        - text: (USA) e
+        - link "Digital Advertising Alliance" [ref=f595e243] [cursor=pointer]:
+          - /url: https://www.aboutads.info/consumers/
+        - text: (USA),
+        - link "DAAC" [ref=f595e244] [cursor=pointer]:
+          - /url: https://youradchoices.ca/understanding-online-advertising/
+        - text: (Canada),
+        - link "DDAI" [ref=f595e245] [cursor=pointer]:
+          - /url: http://www.ddai.info/optout
+        - text: (Giappone) o altri servizi analoghi. Con questi servizi è possibile gestire le preferenze di tracciamento della maggior parte degli strumenti pubblicitari. Il Titolare, pertanto, consiglia agli Utenti di utilizzare tali risorse in aggiunta alle informazioni fornite nel presente documento.
+      - paragraph [ref=f595e246]:
+        - text: La Digital Advertising Alliance mette inoltre a disposizione un’applicazione chiamata
+        - link "AppChoices" [ref=f595e247] [cursor=pointer]:
+          - /url: https://youradchoices.com/appchoices
+        - text: che aiuta gli Utenti a controllare la pubblicità comportamentale sulle applicazioni mobili.
+      - heading "Conseguenze legate al rifiuto dell’utilizzo di Strumenti di Tracciamento" [level=4] [ref=f595e248]
+      - paragraph [ref=f595e249]: Gli Utenti sono liberi di decidere se permettere o meno l’utilizzo di Strumenti di Tracciamento. Tuttavia, si noti che gli Strumenti di Tracciamento consentono a questo Sito Web di fornire agli Utenti un’esperienza migliore e funzionalità avanzate (in linea con le finalità delineate nel presente documento). Pertanto, qualora l’Utente decida di bloccare l’utilizzo di Strumenti di Tracciamento, il Titolare potrebbe non essere in grado di fornire le relative funzionalità.
+      - heading "Titolare del Trattamento dei Dati" [level=3] [ref=f595e250]
+      - paragraph [ref=f595e251]:
+        - text: Bio-integra Srls
+        - text: P.iva 14239170963
+        - text: Via 11 Febbraio, 23
+        - text: Bollate (MI) 20021
+        - text: info@bio-integra.net
+      - paragraph [ref=f595e252]:
+        - strong [ref=f595e253]: "Indirizzo email del Titolare:"
+        - text: info@bio-integra.net
+      - paragraph [ref=f595e254]: Dal momento che l’uso di Strumenti di Tracciamento di terza parte su questo Sito Web non può essere completamente controllato dal Titolare, ogni riferimento specifico a Strumenti di Tracciamento di terza parte è da considerarsi indicativo. Per ottenere informazioni complete, gli Utenti sono gentilmente invitati a consultare la privacy policy dei rispettivi servizi terzi elencati in questo documento.
+      - paragraph [ref=f595e255]: Data l’oggettiva complessità di identificazione delle tecnologie di tracciamento, gli Utenti sono invitati a contattare il Titolare qualora volessero ricevere ulteriori informazioni in merito all’utilizzo di tali tecnologie su questo Sito Web.
+    - heading [level=2]
+    - heading [level=2]
+    - heading "Come gestire le preferenze e prestare o revocare il consenso su questo Sito Web" [level=3] [ref=f595e257]
+    - paragraph [ref=f595e258]: Qualora l’utilizzo dei Tracker sia basato sul consenso, l’Utente può fornire o revocare tale consenso impostando o aggiornando le proprie preferenze tramite il relativo pannello delle scelte in materia di privacy disponibile su questo Sito Web.
+    - paragraph [ref=f595e259]: Per quanto riguarda Strumenti di Tracciamento di terza parte, gli Utenti possono gestire le proprie preferenze visitando il relativo link di opt out (qualora disponibile), utilizzando gli strumenti descritti nella privacy policy della terza parte o contattando quest’ultima direttamente.
+    - heading "Come controllare o eliminare Cookie e tecnologie simili tramite le impostazioni del tuo dispositivo" [level=4] [ref=f595e260]
+    - paragraph [ref=f595e261]: "Gli Utenti possono utilizzare le impostazioni del proprio browser per:"
+    - list [ref=f595e262]:
+      - listitem [ref=f595e263]: Vedere quali Cookie o altre tecnologie simili sono stati impostati sul dispositivo;
+      - listitem [ref=f595e264]: Bloccare Cookie o tecnologie simili;
+      - listitem [ref=f595e265]: Cancellare i Cookie o tecnologie simili dal browser.
+    - paragraph [ref=f595e266]: Le impostazioni del browser, tuttavia, non consentono un controllo granulare del consenso per categoria.
+    - paragraph [ref=f595e267]: "Gli Utenti possono, per esempio, trovare informazioni su come gestire i Cookie in alcuni dei browser più diffusi ai seguenti indirizzi:"
+    - list [ref=f595e268]:
+      - listitem [ref=f595e269]:
+        - link "Google Chrome" [ref=f595e270] [cursor=pointer]:
+          - /url: https://support.google.com/chrome/answer/95647?hl=it&amp;p=cpn_cookies
+      - listitem [ref=f595e271]:
+        - link "Mozilla Firefox" [ref=f595e272] [cursor=pointer]:
+          - /url: https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie
+      - listitem [ref=f595e273]:
+        - link "Apple Safari" [ref=f595e274] [cursor=pointer]:
+          - /url: https://support.apple.com/it-it/guide/safari/manage-cookies-and-website-data-sfri11471/
+      - listitem [ref=f595e275]:
+        - link "Microsoft Internet Explorer" [ref=f595e276] [cursor=pointer]:
+          - /url: http://windows.microsoft.com/it-it/windows-vista/block-or-allow-cookies
+      - listitem [ref=f595e277]:
+        - link "Microsoft Edge" [ref=f595e278] [cursor=pointer]:
+          - /url: https://support.microsoft.com/it-it/help/4027947
+      - listitem [ref=f595e279]:
+        - link "Brave" [ref=f595e280] [cursor=pointer]:
+          - /url: https://support.brave.com/hc/articles/360022806212-How-do-I-use-Shields-while-browsing
+      - listitem [ref=f595e281]:
+        - link "Opera" [ref=f595e282] [cursor=pointer]:
+          - /url: https://help.opera.com/latest/web-preferences/#cookies
+    - paragraph [ref=f595e283]: Gli Utenti possono inoltre gestire alcuni Strumenti di Tracciamento per applicazioni mobili disattivandoli tramite le apposite impostazioni del dispositivo, quali le impostazioni di pubblicità per dispositivi mobili o le impostazioni relative al tracciamento in generale (gli Utenti possono consultare le impostazioni del dispositivo per individuare quella pertinente).
+    - heading "Come disattivare la pubblicità basata sugli interessi" [level=4] [ref=f595e284]
+    - paragraph [ref=f595e285]:
+      - text: Fermo restando quanto precede, si informano gli Utenti della possibilità di avvalersi delle informazioni presenti su
+      - link "YourOnlineChoices" [ref=f595e286] [cursor=pointer]:
+        - /url: http://www.youronlinechoices.eu/
+      - text: (UE e Regno Unito),
+      - link "Network Advertising Initiative" [ref=f595e287] [cursor=pointer]:
+        - /url: https://thenai.org/about-online-advertising/
+      - text: (USA) e
+      - link "Digital Advertising Alliance" [ref=f595e288] [cursor=pointer]:
+        - /url: https://www.aboutads.info/consumers/
+      - text: (USA),
+      - link "DAAC" [ref=f595e289] [cursor=pointer]:
+        - /url: https://youradchoices.ca/understanding-online-advertising/
+      - text: (Canada),
+      - link "DDAI" [ref=f595e290] [cursor=pointer]:
+        - /url: http://www.ddai.info/optout
+      - text: (Giappone) o altri servizi analoghi. Con questi servizi è possibile gestire le preferenze di tracciamento della maggior parte degli strumenti pubblicitari. Il Titolare, pertanto, consiglia agli Utenti di utilizzare tali risorse in aggiunta alle informazioni fornite nel presente documento.
+    - paragraph [ref=f595e291]:
+      - text: La Digital Advertising Alliance mette inoltre a disposizione un’applicazione chiamata
+      - link "AppChoices" [ref=f595e292] [cursor=pointer]:
+        - /url: https://youradchoices.com/appchoices
+      - text: che aiuta gli Utenti a controllare la pubblicità comportamentale sulle applicazioni mobili.
+    - heading "Conseguenze legate al rifiuto dell’utilizzo di Strumenti di Tracciamento" [level=4] [ref=f595e293]
+    - paragraph [ref=f595e294]: Gli Utenti sono liberi di decidere se permettere o meno l’utilizzo di Strumenti di Tracciamento. Tuttavia, si noti che gli Strumenti di Tracciamento consentono a questo Sito Web di fornire agli Utenti un’esperienza migliore e funzionalità avanzate (in linea con le finalità delineate nel presente documento). Pertanto, qualora l’Utente decida di bloccare l’utilizzo di Strumenti di Tracciamento, il Titolare potrebbe non essere in grado di fornire le relative funzionalità.
+    - heading "Titolare del Trattamento dei Dati" [level=3] [ref=f595e295]
+    - paragraph [ref=f595e296]:
+      - text: Bio-integra Srls
+      - text: P.iva 14239170963
+      - text: Via 11 Febbraio, 23
+      - text: Bollate (MI) 20021
+      - text: info@bio-integra.net
+    - paragraph [ref=f595e297]:
+      - strong [ref=f595e298]: "Indirizzo email del Titolare:"
+      - text: info@bio-integra.net
+    - paragraph [ref=f595e299]: Dal momento che l’uso di Strumenti di Tracciamento di terza parte su questo Sito Web non può essere completamente controllato dal Titolare, ogni riferimento specifico a Strumenti di Tracciamento di terza parte è da considerarsi indicativo. Per ottenere informazioni complete, gli Utenti sono gentilmente invitati a consultare la privacy policy dei rispettivi servizi terzi elencati in questo documento.
+    - paragraph [ref=f595e300]: Data l’oggettiva complessità di identificazione delle tecnologie di tracciamento, gli Utenti sono invitati a contattare il Titolare qualora volessero ricevere ulteriori informazioni in merito all’utilizzo di tali tecnologie su questo Sito Web.
+    - generic [ref=f595e305]:
+      - heading [level=2]
+      - heading [level=2]
+      - heading [level=2]
+      - heading "Come gestire le preferenze e prestare o revocare il consenso su questo Sito Web" [level=3] [ref=f595e306]
+      - paragraph [ref=f595e307]: Qualora l’utilizzo dei Tracker sia basato sul consenso, l’Utente può fornire o revocare tale consenso impostando o aggiornando le proprie preferenze tramite il relativo pannello delle scelte in materia di privacy disponibile su questo Sito Web.
+      - paragraph [ref=f595e308]: Per quanto riguarda Strumenti di Tracciamento di terza parte, gli Utenti possono gestire le proprie preferenze visitando il relativo link di opt out (qualora disponibile), utilizzando gli strumenti descritti nella privacy policy della terza parte o contattando quest’ultima direttamente.
+      - heading "Come controllare o eliminare Cookie e tecnologie simili tramite le impostazioni del tuo dispositivo" [level=4] [ref=f595e309]
+      - paragraph [ref=f595e310]: "Gli Utenti possono utilizzare le impostazioni del proprio browser per:"
+      - list [ref=f595e311]:
+        - listitem [ref=f595e312]: Vedere quali Cookie o altre tecnologie simili sono stati impostati sul dispositivo;
+        - listitem [ref=f595e313]: Bloccare Cookie o tecnologie simili;
+        - listitem [ref=f595e314]: Cancellare i Cookie o tecnologie simili dal browser.
+      - paragraph [ref=f595e315]: Le impostazioni del browser, tuttavia, non consentono un controllo granulare del consenso per categoria.
+      - paragraph [ref=f595e316]: "Gli Utenti possono, per esempio, trovare informazioni su come gestire i Cookie in alcuni dei browser più diffusi ai seguenti indirizzi:"
+      - list [ref=f595e317]:
+        - listitem [ref=f595e318]:
+          - link "Google Chrome" [ref=f595e319] [cursor=pointer]:
+            - /url: https://support.google.com/chrome/answer/95647?hl=it&amp;p=cpn_cookies
+        - listitem [ref=f595e320]:
+          - link "Mozilla Firefox" [ref=f595e321] [cursor=pointer]:
+            - /url: https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie
+        - listitem [ref=f595e322]:
+          - link "Apple Safari" [ref=f595e323] [cursor=pointer]:
+            - /url: https://support.apple.com/it-it/guide/safari/manage-cookies-and-website-data-sfri11471/
+        - listitem [ref=f595e324]:
+          - link "Microsoft Internet Explorer" [ref=f595e325] [cursor=pointer]:
+            - /url: http://windows.microsoft.com/it-it/windows-vista/block-or-allow-cookies
+        - listitem [ref=f595e326]:
+          - link "Microsoft Edge" [ref=f595e327] [cursor=pointer]:
+            - /url: https://support.microsoft.com/it-it/help/4027947
+        - listitem [ref=f595e328]:
+          - link "Brave" [ref=f595e329] [cursor=pointer]:
+            - /url: https://support.brave.com/hc/articles/360022806212-How-do-I-use-Shields-while-browsing
+        - listitem [ref=f595e330]:
+          - link "Opera" [ref=f595e331] [cursor=pointer]:
+            - /url: https://help.opera.com/latest/web-preferences/#cookies
+      - paragraph [ref=f595e332]: Gli Utenti possono inoltre gestire alcuni Strumenti di Tracciamento per applicazioni mobili disattivandoli tramite le apposite impostazioni del dispositivo, quali le impostazioni di pubblicità per dispositivi mobili o le impostazioni relative al tracciamento in generale (gli Utenti possono consultare le impostazioni del dispositivo per individuare quella pertinente).
+      - heading "Come disattivare la pubblicità basata sugli interessi" [level=4] [ref=f595e333]
+      - paragraph [ref=f595e334]:
+        - text: Fermo restando quanto precede, si informano gli Utenti della possibilità di avvalersi delle informazioni presenti su
+        - link "YourOnlineChoices" [ref=f595e335] [cursor=pointer]:
+          - /url: http://www.youronlinechoices.eu/
+        - text: (UE e Regno Unito),
+        - link "Network Advertising Initiative" [ref=f595e336] [cursor=pointer]:
+          - /url: https://thenai.org/about-online-advertising/
+        - text: (USA) e
+        - link "Digital Advertising Alliance" [ref=f595e337] [cursor=pointer]:
+          - /url: https://www.aboutads.info/consumers/
+        - text: (USA),
+        - link "DAAC" [ref=f595e338] [cursor=pointer]:
+          - /url: https://youradchoices.ca/understanding-online-advertising/
+        - text: (Canada),
+        - link "DDAI" [ref=f595e339] [cursor=pointer]:
+          - /url: http://www.ddai.info/optout
+        - text: (Giappone) o altri servizi analoghi. Con questi servizi è possibile gestire le preferenze di tracciamento della maggior parte degli strumenti pubblicitari. Il Titolare, pertanto, consiglia agli Utenti di utilizzare tali risorse in aggiunta alle informazioni fornite nel presente documento.
+      - paragraph [ref=f595e340]:
+        - text: La Digital Advertising Alliance mette inoltre a disposizione un’applicazione chiamata
+        - link "AppChoices" [ref=f595e341] [cursor=pointer]:
+          - /url: https://youradchoices.com/appchoices
+        - text: che aiuta gli Utenti a controllare la pubblicità comportamentale sulle applicazioni mobili.
+      - heading "Conseguenze legate al rifiuto dell’utilizzo di Strumenti di Tracciamento" [level=4] [ref=f595e342]
+      - paragraph [ref=f595e343]: Gli Utenti sono liberi di decidere se permettere o meno l’utilizzo di Strumenti di Tracciamento. Tuttavia, si noti che gli Strumenti di Tracciamento consentono a questo Sito Web di fornire agli Utenti un’esperienza migliore e funzionalità avanzate (in linea con le finalità delineate nel presente documento). Pertanto, qualora l’Utente decida di bloccare l’utilizzo di Strumenti di Tracciamento, il Titolare potrebbe non essere in grado di fornire le relative funzionalità.
+      - heading "Titolare del Trattamento dei Dati" [level=3] [ref=f595e344]
+      - paragraph [ref=f595e345]:
+        - text: Bio-integra Srls
+        - text: P.iva 14239170963
+        - text: Via 11 Febbraio, 23
+        - text: Bollate (MI) 20021
+        - text: info@bio-integra.net
+      - paragraph [ref=f595e346]:
+        - strong [ref=f595e347]: "Indirizzo email del Titolare:"
+        - text: info@bio-integra.net
+      - paragraph [ref=f595e348]: Dal momento che l’uso di Strumenti di Tracciamento di terza parte su questo Sito Web non può essere completamente controllato dal Titolare, ogni riferimento specifico a Strumenti di Tracciamento di terza parte è da considerarsi indicativo. Per ottenere informazioni complete, gli Utenti sono gentilmente invitati a consultare la privacy policy dei rispettivi servizi terzi elencati in questo documento.
+      - paragraph [ref=f595e349]: Data l’oggettiva complessità di identificazione delle tecnologie di tracciamento, gli Utenti sono invitati a contattare il Titolare qualora volessero ricevere ulteriori informazioni in merito all’utilizzo di tali tecnologie su questo Sito Web.
+  - generic [ref=f595e354]:
+    - generic [ref=f595e355]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f595e359]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f595e364] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f595e365]:
+          - img [ref=f595e367]
+          - generic [ref=f595e369]: Richiedi appuntamento
+    - generic [ref=f595e370]:
+      - generic [ref=f595e371]:
+        - generic [ref=f595e375]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f595e376] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f595e377] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f595e381]:
+          - listitem [ref=f595e382]:
+            - link "Facebook" [ref=f595e383] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f595e384]: 
+          - listitem [ref=f595e385]:
+            - link "Instagram" [ref=f595e386] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f595e387]: 
+          - listitem [ref=f595e388]:
+            - link "Whatsapp" [ref=f595e389] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f595e390]: 
+          - listitem [ref=f595e391]:
+            - link "Messanger" [ref=f595e392] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f595e393]: 
+      - generic [ref=f595e394]:
+        - heading "Direttore Sanitario" [level=3] [ref=f595e397]
+        - paragraph [ref=f595e400]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f595e403]
+        - list [ref=f595e406]:
+          - listitem [ref=f595e407]:
+            - link "Cookie Policy" [ref=f595e408] [cursor=pointer]:
+              - /url: /cookie-policy/cookie-policy/
+          - listitem [ref=f595e409]:
+            - link "Privacy Policy" [ref=f595e410] [cursor=pointer]:
+              - /url: /cookie-policy/privacy-policy/
+      - generic [ref=f595e411]:
+        - heading "Orari di apertura" [level=3] [ref=f595e414]
+        - paragraph [ref=f595e417]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f595e418]:
+        - heading "Contatti" [level=3] [ref=f595e421]
+        - link "+39 039 2022489" [ref=f595e425] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f595e426]:
+            - img [ref=f595e429]
+            - heading "+39 039 2022489" [level=3] [ref=f595e434]
+        - link "info@sorrisoesalute.it" [ref=f595e438] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f595e439]:
+            - img [ref=f595e442]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f595e451]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f595e455] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f595e456]:
+            - generic [ref=f595e459]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f595e461]
+        - paragraph [ref=f595e463]:
+          - strong [ref=f595e464]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f595e468]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f595e469]: desktop
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

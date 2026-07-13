@@ -1,0 +1,224 @@
+- generic [active] [ref=f695e1]:
+  - generic [ref=f695e5]:
+    - generic [ref=f695e6]: STUDIO DENTISTICO
+    - strong [ref=f695e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f695e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f695e12]:
+    - link "default-logo" [ref=f695e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f695e20]
+    - generic [ref=f695e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f695e23] [cursor=pointer]:
+            - generic [ref=f695e24]: 
+          - generic [ref=f695e25]:
+            - list [ref=f695e26]:
+              - text:  
+              - listitem [ref=f695e27]:
+                - link "Dicono di noi" [ref=f695e28] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f695e29]: Dicono di noi
+              - listitem [ref=f695e30]:
+                - link "La Struttura" [ref=f695e31] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f695e32]: La Struttura
+              - listitem [ref=f695e33]:
+                - link "Convenzioni" [ref=f695e34] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f695e35]: Convenzioni
+              - listitem [ref=f695e36]:
+                - link "Urgenze" [ref=f695e37] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f695e38]: Urgenze
+              - listitem [ref=f695e39]:
+                - link "Chiama in studio" [ref=f695e40] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f695e41]: Chiama in studio
+                  - img [ref=f695e42]
+              - listitem [ref=f695e44]:
+                - button "Menu" [ref=f695e45] [cursor=pointer]:
+                  - generic [ref=f695e50]: Menu
+            - button "X" [ref=f695e52] [cursor=pointer]
+  - generic [ref=f695e55]:
+    - generic [ref=f695e58]:
+      - heading "J o r d a n B r o w n" [level=1] [ref=f695e61]:
+        - generic [ref=f695e63]:
+          - generic [ref=f695e64]: J
+          - generic [ref=f695e65]: o
+          - generic [ref=f695e66]: r
+          - generic [ref=f695e67]: d
+          - generic [ref=f695e68]: a
+          - generic [ref=f695e69]: "n"
+        - generic [ref=f695e71]:
+          - generic [ref=f695e72]: B
+          - generic [ref=f695e73]: r
+          - generic [ref=f695e74]: o
+          - generic [ref=f695e75]: w
+          - generic [ref=f695e76]: "n"
+      - list [ref=f695e80]:
+        - listitem [ref=f695e81]:
+          - link "Home" [ref=f695e82] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=f695e83]:
+          - img [ref=f695e85]
+        - listitem [ref=f695e87]:
+          - link "Equipe" [ref=f695e88] [cursor=pointer]:
+            - /url: /doctors/
+        - listitem [ref=f695e89]:
+          - img [ref=f695e91]
+        - listitem [ref=f695e93]: Jordan Brown
+    - generic [ref=f695e95]:
+      - generic [ref=f695e96]:
+        - heading "M y E x p e r t i s e" [level=2] [ref=f695e100]:
+          - generic [ref=f695e101]:
+            - generic [ref=f695e102]:
+              - generic [ref=f695e103]: M
+              - generic [ref=f695e104]: "y"
+            - generic [ref=f695e105]:
+              - generic [ref=f695e106]: E
+              - generic [ref=f695e107]: x
+              - generic [ref=f695e108]: p
+              - generic [ref=f695e109]: e
+              - generic [ref=f695e110]: r
+              - generic [ref=f695e111]: t
+              - generic [ref=f695e112]: i
+              - generic [ref=f695e113]: s
+              - generic [ref=f695e114]: e
+        - generic [ref=f695e115]:
+          - generic [ref=f695e121]:
+            - generic [ref=f695e123]: Healing Touch Therapy
+            - generic [ref=f695e125]:
+              - generic [ref=f695e126]: "0"
+              - text: "%"
+          - generic [ref=f695e132]:
+            - generic [ref=f695e134]: Pain Management Clinic
+            - generic [ref=f695e136]:
+              - generic [ref=f695e137]: "0"
+              - text: "%"
+          - generic [ref=f695e143]:
+            - generic [ref=f695e145]: Testing Services
+            - generic [ref=f695e147]:
+              - generic [ref=f695e148]: "0"
+              - text: "%"
+        - generic [ref=f695e149]:
+          - heading "Feature" [level=3] [ref=f695e152]
+          - heading "K n o w a b o u t j o r d a n" [level=2] [ref=f695e155]:
+            - generic [ref=f695e156]:
+              - generic [ref=f695e157]:
+                - generic [ref=f695e158]: K
+                - generic [ref=f695e159]: "n"
+                - generic [ref=f695e160]: o
+                - generic [ref=f695e161]: w
+              - generic [ref=f695e162]:
+                - generic [ref=f695e163]: a
+                - generic [ref=f695e164]: b
+                - generic [ref=f695e165]: o
+                - generic [ref=f695e166]: u
+                - generic [ref=f695e167]: t
+            - generic [ref=f695e169]:
+              - generic [ref=f695e170]: j
+              - generic [ref=f695e171]: o
+              - generic [ref=f695e172]: r
+              - generic [ref=f695e173]: d
+              - generic [ref=f695e174]: a
+              - generic [ref=f695e175]: "n"
+      - generic [ref=f695e182]:
+        - generic [ref=f695e184]:
+          - heading "Jordan Brown" [level=2] [ref=f695e185]
+          - paragraph [ref=f695e186]: Distance Driver
+        - list [ref=f695e188]:
+          - listitem [ref=f695e189]:
+            - link "Facebook" [ref=f695e190] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f695e191]: 
+          - listitem [ref=f695e192]:
+            - link "Twitter" [ref=f695e193] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f695e194]: 
+          - listitem [ref=f695e195]:
+            - link "Pinterest" [ref=f695e196] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f695e197]: 
+  - generic [ref=f695e201]:
+    - generic [ref=f695e202]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f695e206]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f695e211] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f695e212]:
+          - img [ref=f695e214]
+          - generic [ref=f695e216]: Richiedi appuntamento
+    - generic [ref=f695e217]:
+      - generic [ref=f695e218]:
+        - generic [ref=f695e222]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f695e223] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f695e224] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f695e228]:
+          - listitem [ref=f695e229]:
+            - link "Facebook" [ref=f695e230] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f695e231]: 
+          - listitem [ref=f695e232]:
+            - link "Instagram" [ref=f695e233] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f695e234]: 
+          - listitem [ref=f695e235]:
+            - link "Whatsapp" [ref=f695e236] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f695e237]: 
+          - listitem [ref=f695e238]:
+            - link "Messanger" [ref=f695e239] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f695e240]: 
+      - generic [ref=f695e241]:
+        - heading "Direttore Sanitario" [level=3] [ref=f695e244]
+        - paragraph [ref=f695e247]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f695e250]
+        - list [ref=f695e253]:
+          - listitem [ref=f695e254]:
+            - link "Cookie Policy" [ref=f695e255] [cursor=pointer]:
+              - /url: /doctors/jordan-brown/cookie-policy/
+          - listitem [ref=f695e256]:
+            - link "Privacy Policy" [ref=f695e257] [cursor=pointer]:
+              - /url: /doctors/jordan-brown/privacy-policy/
+      - generic [ref=f695e258]:
+        - heading "Orari di apertura" [level=3] [ref=f695e261]
+        - paragraph [ref=f695e264]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f695e265]:
+        - heading "Contatti" [level=3] [ref=f695e268]
+        - link "+39 039 2022489" [ref=f695e272] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f695e273]:
+            - img [ref=f695e276]
+            - heading "+39 039 2022489" [level=3] [ref=f695e281]
+        - link "info@sorrisoesalute.it" [ref=f695e285] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f695e286]:
+            - img [ref=f695e289]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f695e298]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f695e302] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f695e303]:
+            - generic [ref=f695e306]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f695e308]
+        - paragraph [ref=f695e310]:
+          - strong [ref=f695e311]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f695e315]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f695e316]: mobile
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - strong: Richiedi una visita in meno di 2 minuti
+      - link "vai al modulo":
+        - /url: /richiesta-generale/

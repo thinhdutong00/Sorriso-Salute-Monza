@@ -1,0 +1,325 @@
+- generic [active] [ref=f197e1]:
+  - generic [ref=f197e5]:
+    - generic [ref=f197e6]: STUDIO DENTISTICO
+    - strong [ref=f197e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f197e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f197e12]:
+    - link "default-logo" [ref=f197e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f197e20]
+    - generic [ref=f197e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f197e23] [cursor=pointer]:
+            - generic [ref=f197e24]: 
+          - generic [ref=f197e25]:
+            - list [ref=f197e26]:
+              - text:  
+              - listitem [ref=f197e27]:
+                - link "Dicono di noi" [ref=f197e28] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f197e29]: Dicono di noi
+              - listitem [ref=f197e30]:
+                - link "La Struttura" [ref=f197e31] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f197e32]: La Struttura
+              - listitem [ref=f197e33]:
+                - link "Convenzioni" [ref=f197e34] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f197e35]: Convenzioni
+              - listitem [ref=f197e36]:
+                - link "Urgenze" [ref=f197e37] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f197e38]: Urgenze
+              - listitem [ref=f197e39]:
+                - link "Chiama in studio" [ref=f197e40] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f197e41]: Chiama in studio
+                  - img [ref=f197e42]
+              - listitem [ref=f197e44]:
+                - button "Menu" [ref=f197e45] [cursor=pointer]:
+                  - generic [ref=f197e50]: Menu
+            - button "X" [ref=f197e52] [cursor=pointer]
+  - generic [ref=f197e55]:
+    - generic [ref=f197e58]:
+      - heading "I g i e n e o r a l e e p r o f i l a s s i" [level=1] [ref=f197e61]:
+        - generic [ref=f197e63]:
+          - generic [ref=f197e64]: I
+          - generic [ref=f197e65]: g
+          - generic [ref=f197e66]: i
+          - generic [ref=f197e67]: e
+          - generic [ref=f197e68]: "n"
+          - generic [ref=f197e69]: e
+        - generic [ref=f197e71]:
+          - generic [ref=f197e72]: o
+          - generic [ref=f197e73]: r
+          - generic [ref=f197e74]: a
+          - generic [ref=f197e75]: l
+          - generic [ref=f197e76]: e
+        - generic [ref=f197e77]:
+          - generic [ref=f197e79]: e
+          - generic [ref=f197e80]:
+            - generic [ref=f197e81]: p
+            - generic [ref=f197e82]: r
+            - generic [ref=f197e83]: o
+            - generic [ref=f197e84]: f
+            - generic [ref=f197e85]: i
+            - generic [ref=f197e86]: l
+            - generic [ref=f197e87]: a
+            - generic [ref=f197e88]: s
+            - generic [ref=f197e89]: s
+            - generic [ref=f197e90]: i
+      - paragraph [ref=f197e94]: Proteggi denti e gengive con controlli e igiene professionale pensati per prevenire problemi futuri.
+    - heading "I l p a z i e n t e v e r r à d u n q u e g u i d a t o n e l l a s c o p e r t a d e l l e t e c n i c h e e n e l l a s c e l t a d e g l i s t r u m e n t i p i ù i d o n e i a m i g l i o r a r e o m a n t e n e r e i n s a l u t e l ’ i n t e r o c a v o o r a l e ." [level=2] [ref=f197e102]:
+      - generic [ref=f197e103]:
+        - generic [ref=f197e104]:
+          - generic [ref=f197e105]: I
+          - generic [ref=f197e106]: l
+        - generic [ref=f197e107]:
+          - generic [ref=f197e108]: p
+          - generic [ref=f197e109]: a
+          - generic [ref=f197e110]: z
+          - generic [ref=f197e111]: i
+          - generic [ref=f197e112]: e
+          - generic [ref=f197e113]: "n"
+          - generic [ref=f197e114]: t
+          - generic [ref=f197e115]: e
+        - generic [ref=f197e116]:
+          - generic [ref=f197e117]: v
+          - generic [ref=f197e118]: e
+          - generic [ref=f197e119]: r
+          - generic [ref=f197e120]: r
+          - generic [ref=f197e121]: à
+      - generic [ref=f197e122]:
+        - generic [ref=f197e123]:
+          - generic [ref=f197e124]: d
+          - generic [ref=f197e125]: u
+          - generic [ref=f197e126]: "n"
+          - generic [ref=f197e127]: q
+          - generic [ref=f197e128]: u
+          - generic [ref=f197e129]: e
+        - generic [ref=f197e130]:
+          - generic [ref=f197e131]: g
+          - generic [ref=f197e132]: u
+          - generic [ref=f197e133]: i
+          - generic [ref=f197e134]: d
+          - generic [ref=f197e135]: a
+          - generic [ref=f197e136]: t
+          - generic [ref=f197e137]: o
+      - generic [ref=f197e138]:
+        - generic [ref=f197e139]:
+          - generic [ref=f197e140]: "n"
+          - generic [ref=f197e141]: e
+          - generic [ref=f197e142]: l
+          - generic [ref=f197e143]: l
+          - generic [ref=f197e144]: a
+        - generic [ref=f197e145]:
+          - generic [ref=f197e146]: s
+          - generic [ref=f197e147]: c
+          - generic [ref=f197e148]: o
+          - generic [ref=f197e149]: p
+          - generic [ref=f197e150]: e
+          - generic [ref=f197e151]: r
+          - generic [ref=f197e152]: t
+          - generic [ref=f197e153]: a
+      - generic [ref=f197e154]:
+        - generic [ref=f197e155]:
+          - generic [ref=f197e156]: d
+          - generic [ref=f197e157]: e
+          - generic [ref=f197e158]: l
+          - generic [ref=f197e159]: l
+          - generic [ref=f197e160]: e
+        - generic [ref=f197e161]:
+          - generic [ref=f197e162]: t
+          - generic [ref=f197e163]: e
+          - generic [ref=f197e164]: c
+          - generic [ref=f197e165]: "n"
+          - generic [ref=f197e166]: i
+          - generic [ref=f197e167]: c
+          - generic [ref=f197e168]: h
+          - generic [ref=f197e169]: e
+        - generic [ref=f197e171]: e
+      - generic [ref=f197e172]:
+        - generic [ref=f197e173]:
+          - generic [ref=f197e174]: "n"
+          - generic [ref=f197e175]: e
+          - generic [ref=f197e176]: l
+          - generic [ref=f197e177]: l
+          - generic [ref=f197e178]: a
+        - generic [ref=f197e179]:
+          - generic [ref=f197e180]: s
+          - generic [ref=f197e181]: c
+          - generic [ref=f197e182]: e
+          - generic [ref=f197e183]: l
+          - generic [ref=f197e184]: t
+          - generic [ref=f197e185]: a
+      - generic [ref=f197e186]:
+        - generic [ref=f197e187]:
+          - generic [ref=f197e188]: d
+          - generic [ref=f197e189]: e
+          - generic [ref=f197e190]: g
+          - generic [ref=f197e191]: l
+          - generic [ref=f197e192]: i
+        - generic [ref=f197e193]:
+          - generic [ref=f197e194]: s
+          - generic [ref=f197e195]: t
+          - generic [ref=f197e196]: r
+          - generic [ref=f197e197]: u
+          - generic [ref=f197e198]: m
+          - generic [ref=f197e199]: e
+          - generic [ref=f197e200]: "n"
+          - generic [ref=f197e201]: t
+          - generic [ref=f197e202]: i
+      - generic [ref=f197e203]:
+        - generic [ref=f197e204]:
+          - generic [ref=f197e205]: p
+          - generic [ref=f197e206]: i
+          - generic [ref=f197e207]: ù
+        - generic [ref=f197e208]:
+          - generic [ref=f197e209]: i
+          - generic [ref=f197e210]: d
+          - generic [ref=f197e211]: o
+          - generic [ref=f197e212]: "n"
+          - generic [ref=f197e213]: e
+          - generic [ref=f197e214]: i
+        - generic [ref=f197e216]: a
+      - generic [ref=f197e217]:
+        - generic [ref=f197e218]:
+          - generic [ref=f197e219]: m
+          - generic [ref=f197e220]: i
+          - generic [ref=f197e221]: g
+          - generic [ref=f197e222]: l
+          - generic [ref=f197e223]: i
+          - generic [ref=f197e224]: o
+          - generic [ref=f197e225]: r
+          - generic [ref=f197e226]: a
+          - generic [ref=f197e227]: r
+          - generic [ref=f197e228]: e
+        - generic [ref=f197e230]: o
+      - generic [ref=f197e231]:
+        - generic [ref=f197e232]:
+          - generic [ref=f197e233]: m
+          - generic [ref=f197e234]: a
+          - generic [ref=f197e235]: "n"
+          - generic [ref=f197e236]: t
+          - generic [ref=f197e237]: e
+          - generic [ref=f197e238]: "n"
+          - generic [ref=f197e239]: e
+          - generic [ref=f197e240]: r
+          - generic [ref=f197e241]: e
+        - generic [ref=f197e242]:
+          - generic [ref=f197e243]: i
+          - generic [ref=f197e244]: "n"
+      - generic [ref=f197e245]:
+        - generic [ref=f197e246]:
+          - generic [ref=f197e247]: s
+          - generic [ref=f197e248]: a
+          - generic [ref=f197e249]: l
+          - generic [ref=f197e250]: u
+          - generic [ref=f197e251]: t
+          - generic [ref=f197e252]: e
+        - generic [ref=f197e253]:
+          - generic [ref=f197e254]: l
+          - generic [ref=f197e255]: ’
+          - generic [ref=f197e256]: i
+          - generic [ref=f197e257]: "n"
+          - generic [ref=f197e258]: t
+          - generic [ref=f197e259]: e
+          - generic [ref=f197e260]: r
+          - generic [ref=f197e261]: o
+      - generic [ref=f197e262]:
+        - generic [ref=f197e263]:
+          - generic [ref=f197e264]: c
+          - generic [ref=f197e265]: a
+          - generic [ref=f197e266]: v
+          - generic [ref=f197e267]: o
+        - generic [ref=f197e268]:
+          - generic [ref=f197e269]: o
+          - generic [ref=f197e270]: r
+          - generic [ref=f197e271]: a
+          - generic [ref=f197e272]: l
+          - generic [ref=f197e273]: e
+          - generic [ref=f197e274]: .
+  - generic [ref=f197e285]:
+    - generic [ref=f197e286]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f197e290]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f197e295] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f197e296]:
+          - img [ref=f197e298]
+          - generic [ref=f197e300]: Richiedi appuntamento
+    - generic [ref=f197e301]:
+      - generic [ref=f197e302]:
+        - generic [ref=f197e306]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f197e307] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f197e308] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f197e312]:
+          - listitem [ref=f197e313]:
+            - link "Facebook" [ref=f197e314] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f197e315]: 
+          - listitem [ref=f197e316]:
+            - link "Instagram" [ref=f197e317] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f197e318]: 
+          - listitem [ref=f197e319]:
+            - link "Whatsapp" [ref=f197e320] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f197e321]: 
+          - listitem [ref=f197e322]:
+            - link "Messanger" [ref=f197e323] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f197e324]: 
+      - generic [ref=f197e325]:
+        - heading "Direttore Sanitario" [level=3] [ref=f197e328]
+        - paragraph [ref=f197e331]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f197e334]
+        - list [ref=f197e337]:
+          - listitem [ref=f197e338]:
+            - link "Cookie Policy" [ref=f197e339] [cursor=pointer]:
+              - /url: /attivita/igiene-orale-e-profilassi/cookie-policy/
+          - listitem [ref=f197e340]:
+            - link "Privacy Policy" [ref=f197e341] [cursor=pointer]:
+              - /url: /attivita/igiene-orale-e-profilassi/privacy-policy/
+      - generic [ref=f197e342]:
+        - heading "Orari di apertura" [level=3] [ref=f197e345]
+        - paragraph [ref=f197e348]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f197e349]:
+        - heading "Contatti" [level=3] [ref=f197e352]
+        - link "+39 039 2022489" [ref=f197e356] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f197e357]:
+            - img [ref=f197e360]
+            - heading "+39 039 2022489" [level=3] [ref=f197e365]
+        - link "info@sorrisoesalute.it" [ref=f197e369] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f197e370]:
+            - img [ref=f197e373]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f197e382]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f197e386] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f197e387]:
+            - generic [ref=f197e390]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f197e392]
+        - paragraph [ref=f197e394]:
+          - strong [ref=f197e395]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f197e399]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f197e400]: mobile
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - generic: Servizio
+        - strong: Igiene orale e profilassi
+      - link "Richiedi una visita":
+        - /url: /richiesta-generale/?servizio=igiene-orale-e-profilassi

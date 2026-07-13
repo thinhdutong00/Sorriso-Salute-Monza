@@ -1,0 +1,218 @@
+- generic [active] [ref=f289e1]:
+  - generic [ref=f289e5]:
+    - generic [ref=f289e6]: STUDIO DENTISTICO
+    - strong [ref=f289e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f289e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f289e12]:
+    - link "default-logo" [ref=f289e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f289e20]
+    - navigation [ref=f289e24]:
+      - text: 
+      - list [ref=f289e26]:
+        - text:  
+        - listitem [ref=f289e27]:
+          - link "Dicono di noi" [ref=f289e28] [cursor=pointer]:
+            - /url: /recensioni-studio-dentistico-monza/
+            - generic [ref=f289e29]: Dicono di noi
+        - listitem [ref=f289e30]:
+          - link "La Struttura" [ref=f289e31] [cursor=pointer]:
+            - /url: /struttura-studio-dentistico-monza/
+            - generic [ref=f289e32]: La Struttura
+        - listitem [ref=f289e33]:
+          - link "Convenzioni" [ref=f289e34] [cursor=pointer]:
+            - /url: /convenzioni-dirette-studio-dentistico-monza/
+            - generic [ref=f289e35]: Convenzioni
+        - listitem [ref=f289e36]:
+          - link "Urgenze" [ref=f289e37] [cursor=pointer]:
+            - /url: /urgenze/
+            - generic [ref=f289e38]: Urgenze
+        - listitem [ref=f289e39]:
+          - link "Chiama in studio" [ref=f289e40] [cursor=pointer]:
+            - /url: tel:+390392022489
+            - generic [ref=f289e41]: Chiama in studio
+            - img [ref=f289e42]
+        - listitem [ref=f289e44]:
+          - button "Menu" [ref=f289e45] [cursor=pointer]:
+            - generic [ref=f289e50]: Menu
+  - generic [ref=f289e53]:
+    - generic [ref=f289e56]:
+      - heading "O r t o d o n z i a" [level=1] [ref=f289e59]:
+        - generic [ref=f289e61]:
+          - generic [ref=f289e62]: O
+          - generic [ref=f289e63]: r
+          - generic [ref=f289e64]: t
+          - generic [ref=f289e65]: o
+          - generic [ref=f289e66]: d
+          - generic [ref=f289e67]: o
+          - generic [ref=f289e68]: "n"
+          - generic [ref=f289e69]: z
+          - generic [ref=f289e70]: i
+          - generic [ref=f289e71]: a
+      - paragraph [ref=f289e75]: Allinea il sorriso, migliora la masticazione e scegli soluzioni discrete adatte alla tua quotidianità.
+    - generic [ref=f289e77]:
+      - heading "O r t o d o n z i a I n v i s i b i l e" [level=2] [ref=f289e83]:
+        - generic [ref=f289e84]:
+          - generic [ref=f289e85]:
+            - generic [ref=f289e86]: O
+            - generic [ref=f289e87]: r
+            - generic [ref=f289e88]: t
+            - generic [ref=f289e89]: o
+            - generic [ref=f289e90]: d
+            - generic [ref=f289e91]: o
+            - generic [ref=f289e92]: "n"
+            - generic [ref=f289e93]: z
+            - generic [ref=f289e94]: i
+            - generic [ref=f289e95]: a
+          - generic [ref=f289e96]:
+            - generic [ref=f289e97]: I
+            - generic [ref=f289e98]: "n"
+            - generic [ref=f289e99]: v
+            - generic [ref=f289e100]: i
+            - generic [ref=f289e101]: s
+            - generic [ref=f289e102]: i
+            - generic [ref=f289e103]: b
+            - generic [ref=f289e104]: i
+            - generic [ref=f289e105]: l
+            - generic [ref=f289e106]: e
+      - generic [ref=f289e118]:
+        - heading "Attività" [level=2] [ref=f289e121]
+        - list [ref=f289e124]:
+          - listitem [ref=f289e125]:
+            - link "Igiene orale e profilassi" [ref=f289e126] [cursor=pointer]:
+              - /url: /attivita/igiene-orale-e-profilassi/
+              - img [ref=f289e128]
+              - generic [ref=f289e130]: Igiene orale e profilassi
+          - listitem [ref=f289e131]:
+            - link "Profilassi dentale" [ref=f289e132] [cursor=pointer]:
+              - /url: /attivita/profilassi-dentale/
+              - img [ref=f289e134]
+              - generic [ref=f289e136]: Profilassi dentale
+          - listitem [ref=f289e137]:
+            - link "Conservativa" [ref=f289e138] [cursor=pointer]:
+              - /url: /attivita/conservativa/
+              - img [ref=f289e140]
+              - generic [ref=f289e142]: Conservativa
+          - listitem [ref=f289e143]:
+            - link "Estetica del sorriso" [ref=f289e144] [cursor=pointer]:
+              - /url: /attivita/estetica-del-sorriso/
+              - img [ref=f289e146]
+              - generic [ref=f289e148]: Estetica del sorriso
+          - listitem [ref=f289e149]:
+            - link "Parodontologia" [ref=f289e150] [cursor=pointer]:
+              - /url: /attivita/parodontologia/
+              - img [ref=f289e152]
+              - generic [ref=f289e154]: Parodontologia
+          - listitem [ref=f289e155]:
+            - link "Ortodonzia" [ref=f289e156] [cursor=pointer]:
+              - /url: /attivita/ortodonzia/
+              - img [ref=f289e158]
+              - generic [ref=f289e160]: Ortodonzia
+          - listitem [ref=f289e161]:
+            - link "Chirurgia orale" [ref=f289e162] [cursor=pointer]:
+              - /url: /attivita/chirurgia-orale/
+              - img [ref=f289e164]
+              - generic [ref=f289e166]: Chirurgia orale
+          - listitem [ref=f289e167]:
+            - link "Implantologia" [ref=f289e168] [cursor=pointer]:
+              - /url: /implantologia/
+              - img [ref=f289e170]
+              - generic [ref=f289e172]: Implantologia
+          - listitem [ref=f289e173]:
+            - link "Endodonzia" [ref=f289e174] [cursor=pointer]:
+              - /url: /attivita/endodonzia/
+              - img [ref=f289e176]
+              - generic [ref=f289e178]: Endodonzia
+          - listitem [ref=f289e179]:
+            - link "Gnatologia" [ref=f289e180] [cursor=pointer]:
+              - /url: /attivita/gnatologia/
+              - img [ref=f289e182]
+              - generic [ref=f289e184]: Gnatologia
+          - listitem [ref=f289e185]:
+            - link "Pedodonzia" [ref=f289e186] [cursor=pointer]:
+              - /url: /attivita/pedodonzia/
+              - img [ref=f289e188]
+              - generic [ref=f289e190]: Pedodonzia
+  - generic [ref=f289e194]:
+    - generic [ref=f289e195]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f289e199]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f289e204] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f289e205]:
+          - img [ref=f289e207]
+          - generic [ref=f289e209]: Richiedi appuntamento
+    - generic [ref=f289e210]:
+      - generic [ref=f289e211]:
+        - generic [ref=f289e215]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f289e216] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f289e217] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f289e221]:
+          - listitem [ref=f289e222]:
+            - link "Facebook" [ref=f289e223] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f289e224]: 
+          - listitem [ref=f289e225]:
+            - link "Instagram" [ref=f289e226] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f289e227]: 
+          - listitem [ref=f289e228]:
+            - link "Whatsapp" [ref=f289e229] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f289e230]: 
+          - listitem [ref=f289e231]:
+            - link "Messanger" [ref=f289e232] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f289e233]: 
+      - generic [ref=f289e234]:
+        - heading "Direttore Sanitario" [level=3] [ref=f289e237]
+        - paragraph [ref=f289e240]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f289e243]
+        - list [ref=f289e246]:
+          - listitem [ref=f289e247]:
+            - link "Cookie Policy" [ref=f289e248] [cursor=pointer]:
+              - /url: /attivita/ortodonzia/cookie-policy/
+          - listitem [ref=f289e249]:
+            - link "Privacy Policy" [ref=f289e250] [cursor=pointer]:
+              - /url: /attivita/ortodonzia/privacy-policy/
+      - generic [ref=f289e251]:
+        - heading "Orari di apertura" [level=3] [ref=f289e254]
+        - paragraph [ref=f289e257]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f289e258]:
+        - heading "Contatti" [level=3] [ref=f289e261]
+        - link "+39 039 2022489" [ref=f289e265] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f289e266]:
+            - img [ref=f289e269]
+            - heading "+39 039 2022489" [level=3] [ref=f289e274]
+        - link "info@sorrisoesalute.it" [ref=f289e278] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f289e279]:
+            - img [ref=f289e282]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f289e291]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f289e295] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f289e296]:
+            - generic [ref=f289e299]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f289e301]
+        - paragraph [ref=f289e303]:
+          - strong [ref=f289e304]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f289e308]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f289e309]: desktop
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - generic: Servizio
+        - strong: Ortodonzia
+      - link "Richiedi una visita":
+        - /url: /richiesta-generale/?servizio=ortodonzia

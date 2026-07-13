@@ -1,0 +1,445 @@
+- generic [active] [ref=e1]:
+  - dialog "Questo sito web utilizza i cookie" [ref=e2]:
+    - generic [ref=e3]:
+      - link "Cookiebot di Usercentrics - si apre in una nuova scheda" [ref=e7] [cursor=pointer]:
+        - /url: https://www.cookiebot.com/it/cosa-significa-powered-by-cookiebot/?utm_source=banner_cb&utm_medium=referral&utm_content=v2
+        - img [ref=e8]
+      - tabpanel "Consenso" [ref=e35]:
+        - generic [ref=e37]:
+          - heading "Questo sito web utilizza i cookie" [level=2] [ref=e38]
+          - generic [ref=e39]:
+            - text: Questo sito utilizza cookie tecnici, analitici e di terze parti per le sue funzionalità e per analizzare il traffico e valutare e personalizzare gli annunci. Se vuoi saperne di più o negare il consenso a tutti o ad alcuni cookie clicca
+            - link "qui" [ref=e40] [cursor=pointer]:
+              - /url: https://centrodimedicina.com/cookie-policy/
+        - generic [ref=e41]:
+          - group "Selezione del consenso" [ref=e47]:
+            - generic [ref=e48]: Selezione del consenso
+            - generic [ref=e49]:
+              - generic [ref=e50]:
+                - strong [ref=e52]: Funzionali
+                - generic [ref=e53]:
+                  - checkbox "Funzionali" [checked] [disabled]
+              - generic [ref=e54]:
+                - strong [ref=e56] [cursor=pointer]: Analitici
+                - switch "Analitici" [ref=e58] [cursor=pointer]
+              - generic [ref=e59]:
+                - strong [ref=e61] [cursor=pointer]: Social Media
+                - switch "Social Media" [ref=e63] [cursor=pointer]
+              - generic [ref=e64]:
+                - strong [ref=e66] [cursor=pointer]: Marketing
+                - switch "Marketing" [ref=e68] [cursor=pointer]
+          - link "Mostra dettagli" [ref=e70] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e74]:
+        - button "Accetta tutti" [ref=e75] [cursor=pointer]
+        - button "Personalizza" [ref=e76] [cursor=pointer]
+        - button "Solo tecnici" [ref=e77] [cursor=pointer]
+      - button "Chiudi banner" [ref=e78] [cursor=pointer]:
+        - img [ref=e79]
+  - list [ref=e81]:
+    - listitem:
+      - link "Vai al contenuto principale" [ref=e82] [cursor=pointer]:
+        - /url: "#booking-form"
+    - listitem:
+      - link "Vai al menu principale" [ref=e83] [cursor=pointer]:
+        - /url: "#header"
+    - listitem:
+      - link "Vai al footer" [ref=e84] [cursor=pointer]:
+        - /url: "#footer"
+  - banner:
+    - navigation [ref=e85]:
+      - link "Centro di medicina" [ref=e86] [cursor=pointer]:
+        - /url: https://centrodimedicina.com/
+        - img "Centro di medicina" [ref=e87]
+      - list [ref=e88]:
+        - listitem [ref=e89]:
+          - button "Apri il menu" [ref=e90] [cursor=pointer]:
+            - generic [ref=e96]:
+              - generic [ref=e97]: Menu
+              - generic [ref=e98]: Chiudi
+            - text: Chiudi
+  - main [ref=e99]:
+    - generic [ref=e104]:
+      - generic [ref=e105]:
+        - heading "Centro di medicina" [level=1] [ref=e107]
+        - heading "Il network per la tua salute" [level=2] [ref=e109]:
+          - emphasis [ref=e110]: Il network per la tua salute
+      - generic [ref=e113]: Scorri
+    - generic [ref=e115]:
+      - generic [ref=e116]: Come possiamo aiutarti?
+      - generic [ref=e117]:
+        - text: Prenota o chiedi informazioni.
+        - generic [ref=e118]:
+          - text: Hai un fondo?
+          - paragraph [ref=e119]:
+            - link "Scopri le prestazioni convenzionate" [ref=e120] [cursor=pointer]:
+              - /url: https://centrodimedicina.com/convenzioni-welfare/#layout_page_accordion_text_5
+        - paragraph
+      - generic [ref=e123]:
+        - generic [ref=e124]:
+          - generic [ref=e125]: "Seleziona una prestazione:"
+          - combobox "Seleziona una prestazione:" [disabled] [ref=e126]:
+            - option "Digita il nome della prestazione" [selected]
+        - generic [ref=e127]:
+          - generic [ref=e128]: "Seleziona una sede:"
+          - combobox "Seleziona una sede:" [disabled] [ref=e129]:
+            - option "Qualsiasi sede" [selected]
+        - generic [ref=e130]:
+          - generic [ref=e131]: "Seleziona un medico:"
+          - combobox "Seleziona un medico:" [disabled] [ref=e132]:
+            - option "Qualsiasi medico" [selected]
+        - generic [ref=e133]:
+          - button "Cerca" [disabled]:
+            - text: Cerca
+            - generic:
+              - img
+        - paragraph [ref=e135]:
+          - text: Non conosci il nome della prestazione?
+          - link "Consulta l’elenco completo" [ref=e136] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/servizi-e-prestazioni/
+          - text: oppure
+          - link "Contattaci" [ref=e137] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/contatti/
+    - generic [ref=e138]:
+      - generic [ref=e141]:
+        - generic [ref=e142]: I nostri servizi più richiesti
+        - generic [ref=e143]: Centri specializzati
+      - generic [ref=e144]:
+        - generic [ref=e145]:
+          - link "Diagnostica per immagini Diagnostica per immagini Tecnologie di ultima generazione per esami diagnostici e di prevenzione accurati, a supporto di valutazioni mediche mirate." [ref=e146] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/servizi/diagnostica-per-immagini/
+            - img "Diagnostica per immagini" [ref=e149]
+            - generic [ref=e150]:
+              - generic [ref=e151]: Diagnostica per immagini
+              - generic [ref=e152]: Tecnologie di ultima generazione per esami diagnostici e di prevenzione accurati, a supporto di valutazioni mediche mirate.
+          - 'link "Chirurgia Oculistica Chirurgia Oculistica L’avanguardia della chirurgia oculistica: le migliori tecniche e professionisti per correggere i tuoi difetti visivi." [ref=e153] [cursor=pointer]':
+            - /url: https://centrodimedicina.com/centro-specializzato/chirurgia-oculistica/
+            - img "Chirurgia Oculistica" [ref=e156]
+            - generic [ref=e157]:
+              - generic [ref=e158]: Chirurgia Oculistica
+              - generic [ref=e159]: "L’avanguardia della chirurgia oculistica: le migliori tecniche e professionisti per correggere i tuoi difetti visivi."
+          - link "Chirurgia Senologica Chirurgia Senologica Ogni donna viene accompagnata durante il percorso in tutte le fasi di prevenzione, diagnosi ed eventuale cura e follow up del tumore al seno" [ref=e160] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/centro-specializzato/chirurgia-senologica
+            - img "Chirurgia Senologica" [ref=e163]
+            - generic [ref=e164]:
+              - generic [ref=e165]: Chirurgia Senologica
+              - generic [ref=e166]: Ogni donna viene accompagnata durante il percorso in tutte le fasi di prevenzione, diagnosi ed eventuale cura e follow up del tumore al seno
+          - 'link "Chirurgia Estetica Donna Chirurgia Estetica Donna Rimodella il tuo aspetto fisico: puoi correggere o rimediare imperfezioni per vederti e sentirti meglio." [ref=e167] [cursor=pointer]':
+            - /url: https://centrodimedicina.com/centro-specializzato/chirurgia-estetica-e-plastica/
+            - img "Chirurgia Estetica Donna" [ref=e170]
+            - generic [ref=e171]:
+              - generic [ref=e172]: Chirurgia Estetica Donna
+              - generic [ref=e173]: "Rimodella il tuo aspetto fisico: puoi correggere o rimediare imperfezioni per vederti e sentirti meglio."
+          - link "Fisioterapia e riabilitazione Fisioterapia e riabilitazione Un’équipe multidisciplinare composta da Fisioterapisti, Laureati in Scienze Motorie e Medici Specialisti per rispondere alle tue esigenze fisioterapiche e riabilitative." [ref=e174] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/servizi/fisioterapia-e-riabilitazione/
+            - img "Fisioterapia e riabilitazione" [ref=e177]
+            - generic [ref=e178]:
+              - generic [ref=e179]: Fisioterapia e riabilitazione
+              - generic [ref=e180]: Un’équipe multidisciplinare composta da Fisioterapisti, Laureati in Scienze Motorie e Medici Specialisti per rispondere alle tue esigenze fisioterapiche e riabilitative.
+          - link "Medicina Estetica Medicina Estetica Fai rifiorire la tua bellezza ad ogni età con le nuove tecnologie laser e i nostri trattamenti estetici non invasivi." [ref=e181] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/servizi/medicina-estetica/
+            - img "Medicina Estetica" [ref=e184]
+            - generic [ref=e185]:
+              - generic [ref=e186]: Medicina Estetica
+              - generic [ref=e187]: Fai rifiorire la tua bellezza ad ogni età con le nuove tecnologie laser e i nostri trattamenti estetici non invasivi.
+          - link "Chirurgia Estetica Uomo Chirurgia Estetica Uomo Anche l’uomo può lenire i segni del tempo ed eliminare i difetti estetici per stare bene con sé stesso e gli altri." [ref=e188] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/centro-specializzato/chirurgia-estetica-e-plastica/interventi/uomo/
+            - img "Chirurgia Estetica Uomo" [ref=e191]
+            - generic [ref=e192]:
+              - generic [ref=e193]: Chirurgia Estetica Uomo
+              - generic [ref=e194]: Anche l’uomo può lenire i segni del tempo ed eliminare i difetti estetici per stare bene con sé stesso e gli altri.
+          - link "Laboratorio Analisi Laboratorio Analisi La massima accuratezza diagnostica per esami del sangue e di laboratorio eseguiti e refertati in tempi rapidi." [ref=e195] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/servizi/laboratorio-analisi/
+            - img "Laboratorio Analisi" [ref=e198]
+            - generic [ref=e199]:
+              - generic [ref=e200]: Laboratorio Analisi
+              - generic [ref=e201]: La massima accuratezza diagnostica per esami del sangue e di laboratorio eseguiti e refertati in tempi rapidi.
+          - link "Check Up prevenzione Check Up prevenzione Un percorso completo di visite, esami strumentali e del sangue per monitorare il tuo stato di salute in poche ore." [ref=e202] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/servizi/check-up-prevenzione/
+            - img "Check Up prevenzione" [ref=e205]
+            - generic [ref=e206]:
+              - generic [ref=e207]: Check Up prevenzione
+              - generic [ref=e208]: Un percorso completo di visite, esami strumentali e del sangue per monitorare il tuo stato di salute in poche ore.
+          - link "PMA Procreazione Medicalmente Assistita PMA Procreazione Medicalmente Assistita Equipe Specializzate a supporto delle coppie che da tempo desiderano avere un figlio e diventare genitori." [ref=e209] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/centro-specializzato/procreazione-medicalmente-assistita/
+            - img "PMA Procreazione Medicalmente Assistita" [ref=e212]
+            - generic [ref=e213]:
+              - generic [ref=e214]: PMA Procreazione Medicalmente Assistita
+              - generic [ref=e215]: Equipe Specializzate a supporto delle coppie che da tempo desiderano avere un figlio e diventare genitori.
+          - link "Centro Specializzato di Chirurgia Centro di Chirurgia Sale operatorie per interventi chirurgici in tempi rapidi con i migliori professionisti." [ref=e216] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/centro-specializzato/chirurgia-eccellenza/
+            - img "Centro Specializzato di Chirurgia" [ref=e219]
+            - generic [ref=e220]:
+              - generic [ref=e221]: Centro di Chirurgia
+              - generic [ref=e222]: Sale operatorie per interventi chirurgici in tempi rapidi con i migliori professionisti.
+        - generic:
+          - button [ref=e223] [cursor=pointer]:
+            - img [ref=e225]
+          - button [ref=e227] [cursor=pointer]:
+            - img [ref=e229]
+    - generic [ref=e231]:
+      - img "Vicini a te e alle tue esigenze di salute." [ref=e234]
+      - generic [ref=e236]:
+        - paragraph [ref=e238]:
+          - strong [ref=e239]:
+            - emphasis [ref=e240]: Vicini a te
+          - text: e alle tue
+          - strong [ref=e241]: esigenze di salute
+          - emphasis [ref=e242]: .
+        - generic [ref=e245]: Scopri le nostre sedi.
+        - link "Trova la sede più vicina a te sedi" [ref=e247] [cursor=pointer]:
+          - /url: https://centrodimedicina.com/sedi/
+          - text: Trova la sede più vicina a te
+          - img [ref=e249]
+    - generic [ref=e252]:
+      - img "L’attenzione dei migliori specialisti." [ref=e256]
+      - generic [ref=e257]:
+        - paragraph [ref=e259]:
+          - strong [ref=e260]: L’attenzione
+          - text: dei migliori specialisti.
+        - generic [ref=e263]: Il nostro team di professionisti a tua disposizione.
+        - link "Visualizza la scheda del Dott. Medici" [ref=e265] [cursor=pointer]:
+          - /url: https://centrodimedicina.com/medici/
+          - text: Trova il medico o il professionista
+          - img [ref=e267]
+    - link "Tecnologia all’avanguardia per una medicina di precisione. Tecnologia all’avanguardia per una medicina di precisione. Esplora i nostri servizi" [ref=e270] [cursor=pointer]:
+      - /url: https://centrodimedicina.com/servizi-e-prestazioni/
+      - img "Tecnologia all’avanguardia per una medicina di precisione." [ref=e274]
+      - generic [ref=e275]:
+        - paragraph [ref=e277]:
+          - text: Tecnologia all’avanguardia
+          - strong [ref=e278]:
+            - text: per una
+            - emphasis [ref=e279]: medicina di precisione
+            - text: .
+        - generic [ref=e282]: Esplora i nostri servizi
+    - generic [ref=e284]:
+      - img "Medicina del lavoro, welfare sanitario e convenzioni." [ref=e288]
+      - generic [ref=e289]:
+        - paragraph [ref=e291]:
+          - text: Medicina del lavoro,
+          - strong [ref=e292]: welfare sanitario
+          - text: e
+          - strong [ref=e293]: convenzioni
+          - text: .
+        - generic [ref=e296]: Scopri i nostri servizi per i tuoi collaboratori.
+        - generic [ref=e297]:
+          - link "La prevenzione in azienda la prevenzione in azienda" [ref=e298] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/la-prevenzione-in-azienda/
+            - text: La prevenzione in azienda
+            - img [ref=e300]
+          - link "Fondi e convenzioni convenzioni welfare" [ref=e302] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/convenzioni-welfare/
+            - text: Fondi e convenzioni
+            - img [ref=e304]
+          - link "Welfare sanitario e convenzioni convenzioni welfare" [ref=e306] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/convenzioni-welfare/
+            - text: Welfare sanitario e convenzioni
+            - img [ref=e308]
+    - generic [ref=e311]:
+      - generic [ref=e312]:
+        - heading "Approfondimenti" [level=3] [ref=e313]
+        - link "Tutti gli articoli blog" [ref=e315] [cursor=pointer]:
+          - /url: https://centrodimedicina.com/blog/
+          - text: Tutti gli articoli
+          - img [ref=e317]
+      - generic [ref=e319]:
+        - 'link "vai a Villorba: genitori e adolescenti al centro dell’incontro con Osvaldo Poli" [ref=e321] [cursor=pointer]':
+          - /url: https://centrodimedicina.com/villorba-incontro-osvaldo-poli-genitori-adolescenti/
+          - 'img "Villorba: genitori e adolescenti al centro dell’incontro con Osvaldo Poli" [ref=e325]'
+          - generic [ref=e326]:
+            - generic [ref=e327]: Eventi,News & eventi,Tour della prevenzione
+            - generic [ref=e328]: "Villorba: genitori e adolescenti al centro dell’incontro con Osvaldo Poli"
+        - link "vai a “Chi ci curerà domani?” Un modello pubblico-privato integrato per garantire cura, prevenzione e accessibilità" [ref=e330] [cursor=pointer]:
+          - /url: https://centrodimedicina.com/chi-ci-curera-domani-un-modello-pubblico-privato-integrato-per-garantire-cura-prevenzione-e-accessibilita/
+          - img "“Chi ci curerà domani?” Un modello pubblico-privato integrato per garantire cura, prevenzione e accessibilità" [ref=e334]
+          - generic [ref=e335]:
+            - generic [ref=e336]: News,News & eventi
+            - generic [ref=e337]: “Chi ci curerà domani?” Un modello pubblico-privato integrato per garantire cura, prevenzione e accessibilità
+        - 'link "vai a Giornate Lignanesi di Medicina e Chirurgia della Riproduzione Umana: appuntamento il 25 e 26 maggio 2026" [ref=e339] [cursor=pointer]':
+          - /url: https://centrodimedicina.com/giornate-lignanesi-di-medicina-e-chirurgia-della-riproduzione-umana-appuntamento-il-25-e-26-maggio-2026/
+          - 'img "Giornate Lignanesi di Medicina e Chirurgia della Riproduzione Umana: appuntamento il 25 e 26 maggio 2026" [ref=e343]'
+          - generic [ref=e344]:
+            - generic [ref=e345]: News & eventi
+            - generic [ref=e346]: "Giornate Lignanesi di Medicina e Chirurgia della Riproduzione Umana: appuntamento il 25 e 26 maggio 2026"
+        - 'link "vai a Dieta personalizzata: perché i piani su misura funzionano (e le diete standard no)" [ref=e348] [cursor=pointer]':
+          - /url: https://centrodimedicina.com/dieta-personalizzata-perche-i-piani-su-misura-funzionano-e-le-diete-standard-no/
+          - 'img "Dieta personalizzata: perché i piani su misura funzionano (e le diete standard no)" [ref=e352]'
+          - generic [ref=e353]:
+            - generic [ref=e354]: Benessere fisico,Blog
+            - generic [ref=e355]: "Dieta personalizzata: perché i piani su misura funzionano (e le diete standard no)"
+        - 'link "vai a Emorroidi: quando preoccuparsi e quando si possono trattare senza chirurgia" [ref=e357] [cursor=pointer]':
+          - /url: https://centrodimedicina.com/emorroidi-quando-preoccuparsi-e-quando-si-possono-trattare-senza-chirurgia/
+          - 'img "Emorroidi: quando preoccuparsi e quando si possono trattare senza chirurgia" [ref=e361]'
+          - generic [ref=e362]:
+            - generic [ref=e363]: Benessere fisico,Blog
+            - generic [ref=e364]: "Emorroidi: quando preoccuparsi e quando si possono trattare senza chirurgia"
+        - link "vai a Fertilità e nutrizione" [ref=e366] [cursor=pointer]:
+          - /url: https://centrodimedicina.com/infiammazione-cronica-fertilita-e-nutrizione-perche-proteggere-la-salute-riproduttiva/
+          - img "Fertilità e nutrizione" [ref=e370]
+          - generic [ref=e371]:
+            - generic [ref=e372]: BLOG DELLA SALUTE
+            - generic [ref=e373]: Fertilità e nutrizione
+    - generic [ref=e375]:
+      - generic [ref=e378]:
+        - generic [ref=e379]:
+          - heading "La newsletter della salute" [level=3] [ref=e380]
+          - generic [ref=e381]: "Prevenzione, cura, sane abitudini, novità: ricevi periodicamente aggiornamenti utili alla tua salute e benessere dal network Centro di medicina."
+        - generic [ref=e383]:
+          - generic [ref=e384]:
+            - generic [ref=e385]: Inserisci la tua email
+            - textbox "Inserisci la tua email" [ref=e386]:
+              - /placeholder: Il tuo indirizzo email
+          - button "iscriviti ora" [ref=e388] [cursor=pointer]:
+            - text: iscriviti ora
+            - img [ref=e390]
+      - generic [ref=e394]:
+        - generic [ref=e395]:
+          - heading "Il network per la tua salute" [level=3] [ref=e396]
+          - generic [ref=e397]: Affidati a Centro di medicina, una rete di cliniche poliambulatoriali private e convenzionate a servizio delle tue esigenze di salute.
+          - link "conosci il nostro gruppo about" [ref=e398] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/about/
+            - text: conosci il nostro gruppo
+        - img "newsletter medicina moderna mobile" [ref=e400]
+    - generic [ref=e402]:
+      - list [ref=e403]:
+        - listitem [ref=e404]:
+          - button "Cerca e prenota" [ref=e405]
+          - list [ref=e406]:
+            - listitem [ref=e407]:
+              - link "Cerca una prestazione" [ref=e408] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/servizi-e-prestazioni/
+            - listitem [ref=e409]:
+              - link "Cerca un medico" [ref=e410] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/medici/
+            - listitem [ref=e411]:
+              - link "Cerca una sede" [ref=e412] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/sedi/
+            - listitem [ref=e413]:
+              - link "Fondi e assicurazioni" [ref=e414] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/convenzioni-welfare/
+            - listitem [ref=e415]:
+              - link "Prenota" [ref=e416] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/il-tuo-tempo/
+            - listitem [ref=e417]:
+              - link "Referti" [ref=e418] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/referti-on-line/
+                - text: Referti
+                - img [ref=e420]
+        - listitem [ref=e422]:
+          - button "Centri Specializzati" [ref=e423]
+          - list [ref=e424]:
+            - listitem [ref=e425]:
+              - link "Chirurgia Oculistica" [ref=e426] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/centro-specializzato/chirurgia-oculistica/
+            - listitem [ref=e427]:
+              - link "Chirurgia Senologica" [ref=e428] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/centro-specializzato/chirurgia-senologica/
+            - listitem [ref=e429]:
+              - link "Chirurgia Estetica e Plastica" [ref=e430] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/centro-specializzato/chirurgia-estetica-e-plastica/
+            - listitem [ref=e431]:
+              - link "Altre Chirurgie" [ref=e432] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/centro-specializzato/chirurgia-eccellenza/
+            - listitem [ref=e433]:
+              - link "Procreazione medicalmente assistita" [ref=e434] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/centro-specializzato/procreazione-medicalmente-assistita/
+            - listitem [ref=e435]:
+              - link "Diagnostica per immagini" [ref=e436] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/servizi/diagnostica-per-immagini/
+            - listitem [ref=e437]:
+              - link "Fisioterapia e riabilitazione" [ref=e438] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/servizi/fisioterapia-e-riabilitazione/
+            - listitem [ref=e439]:
+              - link "Laboratorio analisi" [ref=e440] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/servizi/laboratorio-analisi/
+            - listitem [ref=e441]:
+              - link "Medicina Estetica" [ref=e442] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/servizi/medicina-estetica/
+            - listitem [ref=e443]:
+              - link "Tutti i servizi" [ref=e444] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/servizi-e-prestazioni/
+                - text: Tutti i servizi
+                - img [ref=e446]
+        - listitem [ref=e448]:
+          - button "Servizi per le Aziende" [ref=e449]
+          - list [ref=e450]:
+            - listitem [ref=e451]:
+              - link "Medicina del lavoro" [ref=e452] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/servizi/medicina-del-lavoro/
+            - listitem [ref=e453]:
+              - link "Convenzioni per le Aziende" [ref=e454] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/convenzioni-welfare/
+        - listitem [ref=e455]:
+          - button "Il Gruppo" [ref=e456]
+          - list [ref=e457]:
+            - listitem [ref=e458]:
+              - link "Chi siamo" [ref=e459] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/chi-siamo/
+            - listitem [ref=e460]:
+              - link "Lavora con noi" [ref=e461] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/lavora-con-noi/
+            - listitem [ref=e462]:
+              - link "Blog" [ref=e463] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/blog/
+            - listitem [ref=e464]:
+              - link "News & eventi" [ref=e465] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/news-e-eventi/
+            - listitem [ref=e466]:
+              - link "Ufficio stampa" [ref=e467] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/ufficio-stampa/
+            - listitem [ref=e468]:
+              - link "Contatti" [ref=e469] [cursor=pointer]:
+                - /url: https://centrodimedicina.com/contatti/
+      - generic [ref=e470]:
+        - strong [ref=e471]: "Seguici sui nostri social:"
+        - list "Seguici sui nostri social:" [ref=e472]:
+          - listitem [ref=e473]:
+            - link "social-facebook" [ref=e474] [cursor=pointer]:
+              - /url: https://www.facebook.com/Centrodimedicina
+              - img [ref=e476]
+          - listitem [ref=e478]:
+            - link "social-instagram" [ref=e479] [cursor=pointer]:
+              - /url: https://www.instagram.com/centro_di_medicina/
+              - img [ref=e481]
+          - listitem [ref=e483]:
+            - link "social-youtube" [ref=e484] [cursor=pointer]:
+              - /url: https://www.youtube.com/channel/UC2AC3PQJHThkszogtFFukvg/feed
+              - img [ref=e486]
+          - listitem [ref=e488]:
+            - link "social-linkedin" [ref=e489] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/centro-di-medicina/
+              - img [ref=e491]
+      - generic [ref=e493]:
+        - strong [ref=e494]: "Scopri i nostri articoli:"
+        - link "vai a Blog Centro di medicina" [ref=e495] [cursor=pointer]:
+          - /url: https://centrodimedicina.com/blog/
+          - img [ref=e497]
+          - text: Blog Centro di medicina
+      - generic [ref=e498]:
+        - paragraph [ref=e500]:
+          - text: Centro di medicina S.p.A. · Viale della Repubblica, 10b . 31020 Villorba . TV
+          - text: R.I. TV · C.F./P. IVA 03438220265 | Cap. Soc. € 1.100.000,00 | REA TV-272245
+        - list [ref=e501]:
+          - link "Accessibilità" [ref=e502] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/accessibilita/
+          - link "Whistleblowing" [ref=e503] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/whistleblowing/
+          - link "Privacy" [ref=e504] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/privacy/
+          - link "Cookie Policy" [ref=e505] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/cookie-policy/
+          - link "Trasparenza" [ref=e506] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/trasparenza/
+          - link "Disclaimer" [ref=e507] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/disclaimer/
+          - link "Deleghe e consensi" [ref=e508] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/deleghe-e-consensi/
+          - link "D.lgs. 231/2001" [ref=e509] [cursor=pointer]:
+            - /url: https://centrodimedicina.com/modello-di-organizzazione-gestione-e-controllo/
+        - link "Websolute" [ref=e510] [cursor=pointer]:
+          - /url: https://www.websolute.com/
+          - img [ref=e512]
+          - text: Websolute
+  - iframe [ref=e514]:
+    

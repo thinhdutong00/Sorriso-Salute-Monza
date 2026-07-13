@@ -403,6 +403,13 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 
           try {
             await sendLead();
+            try {
+              window.sessionStorage.removeItem("lead_conversion_scope");
+              window.sessionStorage.removeItem("lead_conversion_id");
+              window.sessionStorage.removeItem("lead_conversion_pending");
+            } catch {
+              // Il redirect non dipende dalla disponibilità dello storage.
+            }
             window.location.href = "/thank-you-page/";
           } catch (error) {
             isSubmitting = false;

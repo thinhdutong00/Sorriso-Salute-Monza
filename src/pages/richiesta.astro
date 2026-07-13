@@ -3,6 +3,8 @@ import "../styles/global.css";
 import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import ImplantologiaAttribution from "../components/implantologia/ImplantologiaAttribution.astro";
+import ImplantologiaHiddenFields from "../components/implantologia/ImplantologiaHiddenFields.astro";
 ---
 
 <!doctype html>
@@ -36,7 +38,8 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
       <section class="request-shell" aria-labelledby="request-title">
         <h1 class="request-title" id="request-title">Richiedi una valutazione</h1>
 
-        <form class="request-form" id="valutazione" action="/api/send-lead" method="post" novalidate>
+        <form class="request-form" id="valutazione" action="/api/send-lead" method="post" data-implantologia-form novalidate>
+          <ImplantologiaHiddenFields />
           <div class="request-progress" role="progressbar" aria-label="Avanzamento richiesta" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"></div>
 
           <div class="request-step is-active" data-step="1">
@@ -98,6 +101,7 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
             <button class="request-btn request-btn-primary" type="submit" data-submit-step hidden>Invia la tua richiesta</button>
           </div>
         </form>
+        <ImplantologiaAttribution serviceInterest="Implantologia" />
       </section>
     </main>
 
@@ -169,6 +173,7 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
         };
 
         const buildLeadPayload = () => ({
+          ...Object.fromEntries(new FormData(form).entries()),
           nome: fields.nomeCompleto?.value || "",
           telefono: fields.telefono?.value || "",
           email: fields.email?.value || "",
@@ -180,6 +185,21 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
           dataPreferita: selectedDateLabel && selectedDate ? `${selectedDateLabel} (${selectedDate})` : selectedDateLabel || selectedDate,
           orarioPreferito: selectedSlot,
         });
+
+        const markImplantologiaConversionPending = () => {
+          const conversionId =
+            typeof window.crypto?.randomUUID === "function"
+              ? window.crypto.randomUUID()
+              : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+          try {
+            window.sessionStorage.setItem("lead_conversion_scope", "implantologia");
+            window.sessionStorage.setItem("lead_conversion_id", conversionId);
+            window.sessionStorage.setItem("lead_conversion_pending", "true");
+          } catch {
+            // Il lead è già stato inviato: il redirect deve continuare anche senza storage.
+          }
+        };
 
         const sendLead = async () => {
           const response = await fetch("/api/send-lead", {
@@ -380,6 +400,7 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 
           try {
             await sendLead();
+            markImplantologiaConversionPending();
             window.location.href = "/thank-you-page/";
           } catch (error) {
             isSubmitting = false;

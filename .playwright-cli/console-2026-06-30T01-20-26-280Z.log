@@ -1,0 +1,6 @@
+[     424ms] [LOG] PixelYourSite Free version 11.2.0.3 @ https://centrodimedicina.com/:44
+[    2475ms] [WARNING] Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading @ https://maps.googleapis.com/maps/api/js?libraries=places,geometry&output=json&key=AIzaSyBMF36jld8kXM6hNs1A80pUW6ZU8pfCEE4:2510
+[    3527ms] [WARNING] Unknown config option(s) passed active, open @ https://centrodimedicina.com/wp-content/themes/cdm-theme/static/js/script.js?ver=1103:1
+[    3531ms] [WARNING] Unknown config option(s) passed active, open @ https://centrodimedicina.com/wp-content/themes/cdm-theme/static/js/script.js?ver=1103:1
+[    3534ms] [WARNING] Unknown config option(s) passed active, open @ https://centrodimedicina.com/wp-content/themes/cdm-theme/static/js/script.js?ver=1103:1
+[    3542ms] [LOG] TuoTempo Fix: Modulo inizializzato @ https://centrodimedicina.com/wp-content/themes/cdm-theme/static/js/script.js?ver=1103:1

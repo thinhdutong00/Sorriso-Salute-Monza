@@ -1,0 +1,150 @@
+- generic [active] [ref=f137e1]:
+  - generic [ref=f137e5]:
+    - generic [ref=f137e6]: STUDIO DENTISTICO
+    - strong [ref=f137e7]: SORRISO & SALUTE
+  - link "Skip to content" [ref=f137e8] [cursor=pointer]:
+    - /url: "#content"
+  - generic [ref=f137e12]:
+    - link "default-logo" [ref=f137e17] [cursor=pointer]:
+      - /url: /
+      - img "default-logo" [ref=f137e20]
+    - generic [ref=f137e22]:
+      - generic:
+        - navigation:
+          - button "hamburger-icon" [ref=f137e23] [cursor=pointer]:
+            - generic [ref=f137e24]: 
+          - generic [ref=f137e25]:
+            - list [ref=f137e26]:
+              - text:  
+              - listitem [ref=f137e27]:
+                - link "Dicono di noi" [ref=f137e28] [cursor=pointer]:
+                  - /url: /recensioni-studio-dentistico-monza/
+                  - generic [ref=f137e29]: Dicono di noi
+              - listitem [ref=f137e30]:
+                - link "La Struttura" [ref=f137e31] [cursor=pointer]:
+                  - /url: /struttura-studio-dentistico-monza/
+                  - generic [ref=f137e32]: La Struttura
+              - listitem [ref=f137e33]:
+                - link "Convenzioni" [ref=f137e34] [cursor=pointer]:
+                  - /url: /convenzioni-dirette-studio-dentistico-monza/
+                  - generic [ref=f137e35]: Convenzioni
+              - listitem [ref=f137e36]:
+                - link "Urgenze" [ref=f137e37] [cursor=pointer]:
+                  - /url: /urgenze/
+                  - generic [ref=f137e38]: Urgenze
+              - listitem [ref=f137e39]:
+                - link "Chiama in studio" [ref=f137e40] [cursor=pointer]:
+                  - /url: tel:+390392022489
+                  - generic [ref=f137e41]: Chiama in studio
+                  - img [ref=f137e42]
+              - listitem [ref=f137e44]:
+                - button "Menu" [ref=f137e45] [cursor=pointer]:
+                  - generic [ref=f137e50]: Menu
+            - button "X" [ref=f137e52] [cursor=pointer]
+  - generic [ref=f137e58]:
+    - heading "E s t e t i c a d e l s o r r i s o" [level=1] [ref=f137e61]:
+      - generic [ref=f137e63]:
+        - generic [ref=f137e64]: E
+        - generic [ref=f137e65]: s
+        - generic [ref=f137e66]: t
+        - generic [ref=f137e67]: e
+        - generic [ref=f137e68]: t
+        - generic [ref=f137e69]: i
+        - generic [ref=f137e70]: c
+        - generic [ref=f137e71]: a
+      - generic [ref=f137e72]:
+        - generic [ref=f137e73]:
+          - generic [ref=f137e74]: d
+          - generic [ref=f137e75]: e
+          - generic [ref=f137e76]: l
+        - generic [ref=f137e77]:
+          - generic [ref=f137e78]: s
+          - generic [ref=f137e79]: o
+          - generic [ref=f137e80]: r
+          - generic [ref=f137e81]: r
+          - generic [ref=f137e82]: i
+          - generic [ref=f137e83]: s
+          - generic [ref=f137e84]: o
+    - paragraph [ref=f137e88]: Migliora colore, forma e armonia dei denti con trattamenti mirati a un sorriso naturale.
+  - generic [ref=f137e104]:
+    - generic [ref=f137e105]:
+      - heading "Un sorriso che sembri tuo, solo migliore." [level=2] [ref=f137e109]:
+        - text: Un sorriso
+        - text: che sembri tuo,
+        - text: solo migliore.
+      - link "Richiedi appuntamento" [ref=f137e114] [cursor=pointer]:
+        - /url: /richiesta-generale/
+        - generic [ref=f137e115]:
+          - img [ref=f137e117]
+          - generic [ref=f137e119]: Richiedi appuntamento
+    - generic [ref=f137e120]:
+      - generic [ref=f137e121]:
+        - generic [ref=f137e125]:
+          - link "Cerchi un Dentista in Brianza?" [ref=f137e126] [cursor=pointer]:
+            - /url: /richiesta-generale/
+          - link "Convenzioni Studio Dentistico Monza Dentista" [ref=f137e127] [cursor=pointer]:
+            - /url: /convenzioni-dirette/
+        - list [ref=f137e131]:
+          - listitem [ref=f137e132]:
+            - link "Facebook" [ref=f137e133] [cursor=pointer]:
+              - /url: https://www.facebook.com/sorrisomonza/
+              - generic [ref=f137e134]: 
+          - listitem [ref=f137e135]:
+            - link "Instagram" [ref=f137e136] [cursor=pointer]:
+              - /url: https://www.instagram.com/__studio_sorriso_e_salute__/
+              - generic [ref=f137e137]: 
+          - listitem [ref=f137e138]:
+            - link "Whatsapp" [ref=f137e139] [cursor=pointer]:
+              - /url: https://wa.me/3892490181
+              - generic [ref=f137e140]: 
+          - listitem [ref=f137e141]:
+            - link "Messanger" [ref=f137e142] [cursor=pointer]:
+              - /url: https://m.me/sorrisoesalute
+              - generic [ref=f137e143]: 
+      - generic [ref=f137e144]:
+        - heading "Direttore Sanitario" [level=3] [ref=f137e147]
+        - paragraph [ref=f137e150]: Dott.ssa Maria Isabel Pareja Carrillo – Odontoiatra
+        - heading "Info" [level=3] [ref=f137e153]
+        - list [ref=f137e156]:
+          - listitem [ref=f137e157]:
+            - link "Cookie Policy" [ref=f137e158] [cursor=pointer]:
+              - /url: /attivita/estetica-del-sorriso/cookie-policy/
+          - listitem [ref=f137e159]:
+            - link "Privacy Policy" [ref=f137e160] [cursor=pointer]:
+              - /url: /attivita/estetica-del-sorriso/privacy-policy/
+      - generic [ref=f137e161]:
+        - heading "Orari di apertura" [level=3] [ref=f137e164]
+        - paragraph [ref=f137e167]:
+          - text: La struttura sanitaria odontoiatrica
+          - text: "è aperta ai pazienti nei seguenti giorni e orari:"
+          - text: Lun – Mar – Mer – Gio – Ven
+          - text: dalle 9.00 alle 12.30
+          - text: e dalle 14.00 alle 19.00
+      - generic [ref=f137e168]:
+        - heading "Contatti" [level=3] [ref=f137e171]
+        - link "+39 039 2022489" [ref=f137e175] [cursor=pointer]:
+          - /url: tel:0392022489
+          - generic [ref=f137e176]:
+            - img [ref=f137e179]
+            - heading "+39 039 2022489" [level=3] [ref=f137e184]
+        - link "info@sorrisoesalute.it" [ref=f137e188] [cursor=pointer]:
+          - /url: mailto:info@sorrisoesalute.it
+          - generic [ref=f137e189]:
+            - img [ref=f137e192]
+            - heading "info@sorrisoesalute.it" [level=3] [ref=f137e201]
+        - link "Via Gaslini, 1 20090 Monza (MB)" [ref=f137e205] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=f137e206]:
+            - generic [ref=f137e209]: 
+            - heading "Via Gaslini, 1 20090 Monza (MB)" [level=3] [ref=f137e211]
+        - paragraph [ref=f137e213]:
+          - strong [ref=f137e214]: "Emergenza: i pazienti sono di solito visti il giorno in cui chiamano."
+    - paragraph [ref=f137e218]: © SorrisoeSalute 2025 Tutti i diritti sono riservati.
+  - generic [ref=f137e219]: mobile
+  - complementary "Prenotazione visita":
+    - generic:
+      - generic:
+        - generic: Servizio
+        - strong: Estetica del sorriso
+      - link "Richiedi una visita":
+        - /url: /richiesta-generale/?servizio=estetica-del-sorriso

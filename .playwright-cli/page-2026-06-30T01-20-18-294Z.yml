@@ -1,0 +1,30 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "Indietro" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - img [ref=e5]
+      - text: Indietro
+  - main [ref=e7]:
+    - region "Capisci da dove iniziare" [ref=e8]:
+      - paragraph [ref=e9]: Orientamento sorriso
+      - heading "Capisci da dove iniziare" [level=1] [ref=e10]
+      - paragraph [ref=e11]: "Rispondi a poche domande: ci aiuteranno a capire il tuo obiettivo e a ricontattarti con un percorso più chiaro."
+      - generic [ref=e12]:
+        - progressbar "Avanzamento quiz" [ref=e13]
+        - generic [ref=e14]:
+          - paragraph [ref=e15]: Obiettivo desiderato
+          - heading "Che risultato vorresti ottenere?" [level=2] [ref=e16]
+          - generic [ref=e17]:
+            - button "Migliorare estetica e armonia del sorriso" [ref=e18] [cursor=pointer]:
+              - strong [ref=e19]: Migliorare estetica e armonia del sorriso
+            - button "Tornare a masticare meglio" [ref=e20] [cursor=pointer]:
+              - strong [ref=e21]: Tornare a masticare meglio
+            - button "Risolvere dolore o fastidio" [ref=e22] [cursor=pointer]:
+              - strong [ref=e23]: Risolvere dolore o fastidio
+            - button "Sostituire denti mancanti" [ref=e24] [cursor=pointer]:
+              - strong [ref=e25]: Sostituire denti mancanti
+            - button "Allineare i denti" [ref=e26] [cursor=pointer]:
+              - strong [ref=e27]: Allineare i denti
+            - button "Non so da dove iniziare" [ref=e28] [cursor=pointer]:
+              - strong [ref=e29]: Non so da dove iniziare
+        - paragraph [ref=e30]
