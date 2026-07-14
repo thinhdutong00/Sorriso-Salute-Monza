@@ -4,6 +4,7 @@ import FaviconLinks from "../FaviconLinks.astro";
 import GoogleAdsTracking from "../GoogleAdsTracking.astro";
 import type { ImplantologiaPage } from "../../data/implantologiaPages";
 import { implantologiaPages } from "../../data/implantologiaPages";
+import ImplantologiaFooter from "./ImplantologiaFooter.astro";
 import ImplantologiaHeader from "./ImplantologiaHeader.astro";
 import ImplantologiaMultiStepForm from "./ImplantologiaMultiStepForm.astro";
 
@@ -14,7 +15,6 @@ interface Props {
 const { page } = Astro.props;
 const canonical = `https://sorrisoesalutemonza.it/implantologia/${page.slug}/`;
 const relatedPages = implantologiaPages.filter((item) => item.slug !== page.slug);
-const logo = "/assets/brand/sorriso-salute-logo-360.webp";
 const heroDisplayTitles = {
   "impianto-singolo": "Impianto dentale singolo",
   "denti-fissi": "Denti fissi su impianti",
@@ -175,30 +175,7 @@ const heroDisplayTitle = heroDisplayTitles[page.slug];
       </div>
     </main>
 
-    <footer class="implant-footer">
-      <div class="implant-container implant-footer__grid">
-        <div>
-          <img src={logo} width="360" height="87" alt="Studio Dentistico Sorriso e Salute" loading="lazy" />
-          <p>Studio Dentistico Sorriso &amp; Salute — Monza</p>
-        </div>
-        <div>
-          <strong>Contatti</strong>
-          <a href="tel:+390392022489">Telefono: 039 2022489</a>
-          <a
-            href="https://wa.me/393892490181"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-google-ads-conversion="whatsapp-implantologia"
-          >WhatsApp: 389 2490181</a>
-        </div>
-        <div>
-          <strong>Informazioni</strong>
-          <a href="/privacy-policy/">Privacy Policy</a>
-          <a href="/cookie-policy/">Cookie Policy</a>
-          <a href="/implantologia/">Implantologia</a>
-        </div>
-      </div>
-    </footer>
+    <ImplantologiaFooter />
 
     <style is:global>
       :root {
@@ -284,12 +261,6 @@ const heroDisplayTitle = heroDisplayTitles[page.slug];
       .implant-lead__form button { min-height: 52px; border: 0; border-radius: 999px; background: var(--implant-ink); color: #fff; font: inherit; font-weight: 800; cursor: pointer; }
       .implant-lead__form button:disabled { cursor: wait; opacity: .65; }
 
-      .implant-footer { padding: 48px 0; background: #061f2a; color: #dce9eb; }
-      .implant-footer__grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 36px; }
-      .implant-footer img { width: 220px; height: auto; filter: brightness(0) invert(1); }
-      .implant-footer__grid > div { display: grid; align-content: start; gap: 10px; }
-      .implant-footer a { text-decoration: none; }
-
       @media (min-width: 1024px) {
         .implant-hero-shell { background: #fff; }
         .implant-hero {
@@ -328,7 +299,7 @@ const heroDisplayTitle = heroDisplayTitles[page.slug];
         .implant-hero { padding-top: 52px; }
         .implant-overview { padding-bottom: 52px; }
         .implant-actions, .implant-button { width: 100%; }
-        .implant-step-grid, .implant-related-grid, .implant-footer__grid, .implant-lead__form { grid-template-columns: 1fr; }
+        .implant-step-grid, .implant-related-grid, .implant-lead__form { grid-template-columns: 1fr; }
         .implant-lead { padding: 28px 18px; }
         .implant-lead__form { padding: 20px; }
         .implant-lead__form label, .implant-lead__privacy, .implant-lead__error, .implant-lead__form button { grid-column: 1; }

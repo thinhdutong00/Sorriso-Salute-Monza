@@ -352,6 +352,20 @@ textarea {
   filter: none;
 }
 
+.site-header .implantologia-hub__logo-mark {
+  display: block;
+  aspect-ratio: 1120 / 270;
+  background: var(--clinic-teal);
+  filter: none;
+  transition: background 220ms ease;
+  -webkit-mask: url("/mirror-assets/568e7b4baac5c946.png") center / contain no-repeat;
+  mask: url("/mirror-assets/568e7b4baac5c946.png") center / contain no-repeat;
+}
+
+.site-header.is-over-hero .implantologia-hub__logo-mark {
+  background: #ffffff;
+}
+
 .brand-mark {
   position: relative;
   display: grid;
