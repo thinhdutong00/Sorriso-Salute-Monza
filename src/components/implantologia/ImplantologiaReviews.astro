@@ -1,0 +1,210 @@
+---
+const reviewsUrl =
+  "https://www.miodottore.it/strutture/sorriso-salute-studio-dentistico-sorriso-salute";
+
+const reviews = [
+  {
+    excerpt: "grande professionalità, competenza e attenzione",
+    author: "Claudia H.",
+    date: "8 luglio 2026",
+    service: "Visita odontoiatrica",
+    professional: "Dott.ssa Maria Isabel Pareja Carrillo",
+  },
+  {
+    excerpt: "Molto attenta e dettagliata nella spiegazione",
+    author: "Alessia I.",
+    date: "8 luglio 2026",
+    service: "Visita odontoiatrica",
+    professional: "Dott.ssa Denisa Dervishi",
+  },
+  {
+    excerpt: "spiegare ogni aspetto del trattamento",
+    author: "Fatou B.",
+    date: "25 giugno 2026",
+    service: "Corona dentale",
+    professional: "Dott.ssa Maria Isabel Pareja Carrillo",
+  },
+];
+---
+
+<section class="implant-section implant-reviews" id="recensioni" aria-labelledby="reviews-title">
+  <div class="implant-container">
+    <div class="implant-heading implant-heading--centered">
+      <p class="implant-kicker">Recensioni da MioDottore</p>
+      <h2 id="reviews-title">Recensioni su chiarezza, attenzione e professionalità</h2>
+      <p>
+        Queste recensioni descrivono esperienze di spiegazioni chiare, ascolto e attenzione al dettaglio presso lo
+        studio.
+      </p>
+    </div>
+
+    <div class="implant-reviews__grid">
+      {reviews.map((review) => (
+        <article class="implant-review-card">
+          <div class="implant-review-card__source">
+            <span aria-hidden="true">M</span>
+            <strong>MioDottore</strong>
+          </div>
+          <blockquote>“…{review.excerpt}…”</blockquote>
+          <footer>
+            <cite>{review.author}</cite>
+            <span>{review.service} · {review.date}</span>
+            <span class="implant-review-card__context">
+              Recensione riferita a una prestazione con {review.professional} presso Sorriso&amp;Salute.
+            </span>
+            <span class="implant-review-card__verified">Appuntamento verificato su MioDottore</span>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <div class="implant-reviews__link-wrap">
+      <a href={reviewsUrl} target="_blank" rel="noopener noreferrer">
+        Leggi tutte le recensioni su MioDottore <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .implant-reviews {
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 8% 14%, rgba(104, 194, 181, 0.2), transparent 28%),
+      var(--implant-paper);
+  }
+
+  .implant-reviews__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .implant-review-card {
+    display: flex;
+    min-height: 330px;
+    flex-direction: column;
+    margin: 0;
+    padding: clamp(24px, 3vw, 34px);
+    border: 1px solid rgba(14, 56, 76, 0.1);
+    border-radius: 28px;
+    background: #fff;
+    box-shadow: 0 18px 48px rgba(8, 42, 56, 0.08);
+  }
+
+  .implant-review-card__source {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--implant-ink);
+    font-size: 13px;
+  }
+
+  .implant-review-card__source > span {
+    display: inline-flex;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #00c3a5;
+    color: #fff;
+    font-weight: 900;
+  }
+
+  .implant-review-card blockquote {
+    margin: 34px 0 32px;
+    color: var(--implant-ink);
+    font-size: clamp(21px, 2vw, 27px);
+    font-weight: 700;
+    line-height: 1.42;
+    letter-spacing: -0.02em;
+  }
+
+  .implant-review-card footer {
+    display: grid;
+    gap: 5px;
+    margin-top: auto;
+    color: #60747d;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .implant-review-card cite {
+    color: var(--implant-ink);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 800;
+  }
+
+  .implant-review-card__context {
+    margin-top: 4px;
+    color: #71848c;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .implant-review-card__verified {
+    width: fit-content;
+    margin-top: 8px;
+    padding: 6px 9px;
+    border-radius: 999px;
+    background: #eaf8f4;
+    color: #0d6f5d;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .implant-reviews__link-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  .implant-reviews__link-wrap a {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    border: 1px solid var(--implant-line);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--implant-ink);
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .implant-reviews__link-wrap a:hover {
+    border-color: var(--implant-teal);
+  }
+
+  @media (max-width: 900px) {
+    .implant-reviews__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .implant-review-card {
+      min-height: 0;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .implant-reviews__grid {
+      gap: 14px;
+    }
+
+    .implant-review-card {
+      min-width: 0;
+    }
+
+    .implant-reviews__link-wrap a {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+</style>

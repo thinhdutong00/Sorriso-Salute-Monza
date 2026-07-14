@@ -12,7 +12,7 @@ interface Props {
 const {
   slug,
   serviceInterest,
-  heading = "Richiedi una valutazione implantologica",
+  heading = "Inquadra il problema in pochi passaggi",
 } = Astro.props;
 
 const problemOptionsBySlug: Record<ImplantologiaPage["slug"], string[]> = {
@@ -59,26 +59,16 @@ const timeSlots = [
 ];
 ---
 
-<section class="implant-lead implant-multistep" id="prenota" aria-labelledby={`implant-form-title-${slug}`}>
-  <div class="implant-lead__intro">
-    <p class="implant-kicker">Richiesta di visita</p>
+<section class="implant-multistep" id="prenota" aria-labelledby={`implant-form-title-${slug}`}>
+  <div class="implant-multistep__intro">
+    <p class="implant-kicker">Richiesta allo studio</p>
     <h2 id={`implant-form-title-${slug}`}>{heading}</h2>
     <p>
-      Indicaci la situazione e una preferenza di data e orario. Lo studio ti ricontatterà per confermare la
-      disponibilità e valutare il percorso più adatto al singolo caso.
+      Rispondi a poche domande: lo studio ti ricontatterà per confermare disponibilità e prossimi passaggi.
     </p>
     <p class="implant-multistep__clinical-note">
-      Ogni indicazione viene definita previa valutazione clinica; il piano dipende dalla situazione individuale.
+      Il piano viene definito dopo valutazione clinica e dipende dalla situazione individuale.
     </p>
-    <div class="implant-lead__contacts">
-      <a href="tel:+390392022489">Chiama lo studio: 039 2022489</a>
-      <a
-        href="https://wa.me/393892490181"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-google-ads-conversion="whatsapp-implantologia"
-      >Scrivi su WhatsApp</a>
-    </div>
   </div>
 
   <form
@@ -115,8 +105,8 @@ const timeSlots = [
       <div class="implant-multistep__step-heading">
         <span>1</span>
         <div>
-          <p>La tua richiesta</p>
-          <h3 tabindex="-1">Raccontaci cosa vuoi valutare</h3>
+          <p>Passaggio 1 di 3</p>
+          <h3 tabindex="-1">Da dove partiamo?</h3>
         </div>
       </div>
 
@@ -165,8 +155,8 @@ const timeSlots = [
       <div class="implant-multistep__step-heading">
         <span>2</span>
         <div>
-          <p>Preferenza visita</p>
-          <h3 tabindex="-1">Quando preferiresti venire in studio?</h3>
+          <p>Passaggio 2 di 3</p>
+          <h3 tabindex="-1">Quando vorresti venire in studio?</h3>
         </div>
       </div>
 
@@ -209,8 +199,8 @@ const timeSlots = [
       <div class="implant-multistep__step-heading">
         <span>3</span>
         <div>
-          <p>I tuoi contatti</p>
-          <h3 tabindex="-1">Come possiamo ricontattarti?</h3>
+          <p>Passaggio 3 di 3</p>
+          <h3 tabindex="-1">Dove possiamo ricontattarti?</h3>
         </div>
       </div>
 
@@ -251,7 +241,7 @@ const timeSlots = [
 
       <div class="implant-multistep__navigation">
         <button type="button" class="implant-multistep__back" data-form-back>Indietro</button>
-        <button type="submit" class="implant-multistep__submit">Richiedi la visita</button>
+        <button type="submit" class="implant-multistep__submit">Richiedi la valutazione</button>
       </div>
     </div>
 
@@ -502,7 +492,7 @@ const timeSlots = [
         } catch (error) {
           if (submitButton) {
             submitButton.disabled = false;
-            submitButton.textContent = "Richiedi la visita";
+            submitButton.textContent = "Richiedi la valutazione";
           }
           setError(error instanceof Error ? error.message : "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
         }
@@ -517,62 +507,177 @@ const timeSlots = [
 </script>
 
 <style>
-  .implant-multistep__clinical-note { color: #536d78; font-size: 14px; }
-  .implant-multistep__form { display: grid; gap: 24px; padding: clamp(22px, 3vw, 34px); border-radius: 22px; background: #fff; box-shadow: 0 18px 50px rgba(8, 42, 56, .1); }
-  .implant-multistep__progress { display: grid; gap: 12px; }
-  .implant-multistep__progress > div { display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #536d78; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .implant-multistep {
+    overflow: hidden;
+    border: 1px solid rgba(14, 56, 76, .1);
+    border-radius: 34px;
+    background: #fff;
+    box-shadow: 0 30px 80px rgba(8, 42, 56, .16);
+  }
+
+  .implant-multistep__intro {
+    padding: 28px 32px 0;
+  }
+
+  .implant-multistep__intro .implant-kicker {
+    margin-bottom: 8px;
+  }
+
+  .implant-multistep__intro h2 {
+    margin: 0;
+    color: var(--implant-ink);
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -.04em;
+  }
+
+  .implant-multistep__intro > p:not(.implant-kicker) {
+    margin: 12px 0 0;
+    color: #516b77;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .implant-multistep__intro .implant-multistep__clinical-note {
+    margin-top: 8px;
+    color: #71848c;
+    font-size: 11px;
+  }
+
+  .implant-multistep__form {
+    display: grid;
+    gap: 18px;
+    padding: 22px 32px 28px;
+  }
+
+  .implant-multistep__progress {
+    display: grid;
+    gap: 9px;
+    padding: 12px 14px;
+    border: 1px solid #e1e9e9;
+    border-radius: 14px;
+    background: #f8fbfa;
+  }
+
+  .implant-multistep__progress > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    color: #6a7f88;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
   .implant-multistep__progress strong { color: var(--implant-ink); }
-  .implant-multistep__progress ol { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin: 0; padding: 0; list-style: none; }
-  .implant-multistep__progress li { height: 5px; border-radius: 999px; background: #dce7e8; transition: background 180ms ease; }
+  .implant-multistep__progress ol { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .implant-multistep__progress li { height: 6px; border-radius: 999px; background: #dce7e8; transition: background 180ms ease; }
   .implant-multistep__progress li.is-active { background: var(--implant-teal); }
   .implant-multistep__step[hidden] { display: none; }
-  .implant-multistep__step { display: grid; gap: 24px; }
-  .implant-multistep__step-heading { display: flex; align-items: center; gap: 13px; }
-  .implant-multistep__step-heading > span { display: inline-flex; width: 38px; height: 38px; flex: 0 0 auto; align-items: center; justify-content: center; border-radius: 50%; background: var(--implant-mint); color: var(--implant-ink); font-size: 14px; font-weight: 900; }
-  .implant-multistep__step-heading p { margin: 0 0 3px; color: var(--implant-teal); font-size: 11px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
-  .implant-multistep__step-heading h3 { margin: 0; color: var(--implant-ink); font-size: clamp(21px, 2.6vw, 28px); line-height: 1.2; }
+  .implant-multistep__step { display: grid; gap: 18px; }
+  .implant-multistep__step-heading { display: flex; align-items: center; gap: 12px; }
+
+  .implant-multistep__step-heading > span {
+    display: inline-flex;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--implant-mint);
+    color: var(--implant-teal-deep);
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .implant-multistep__step-heading p { margin: 0 0 2px; color: var(--implant-teal); font-size: 9px; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
+  .implant-multistep__step-heading h3 { margin: 0; color: var(--implant-ink); font-size: clamp(20px, 2.3vw, 26px); line-height: 1.18; }
   .implant-multistep__step-heading h3:focus { outline: none; }
-  .implant-multistep fieldset { display: grid; gap: 12px; margin: 0; padding: 0; border: 0; }
-  .implant-multistep legend { margin-bottom: 12px; color: var(--implant-ink); font-size: 15px; font-weight: 850; }
-  .implant-multistep__options { display: grid; gap: 9px; }
-  .implant-multistep__option { position: relative; display: block; cursor: pointer; }
+  .implant-multistep fieldset { display: grid; gap: 8px; margin: 0; padding: 0; border: 0; }
+  .implant-multistep legend { margin-bottom: 8px; color: var(--implant-ink); font-size: 13px; font-weight: 800; }
+  .implant-multistep__options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .implant-multistep__option { position: relative; display: block; min-width: 0; cursor: pointer; }
+  .implant-multistep__option:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .implant-multistep__option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
-  .implant-multistep__option span { position: relative; display: flex; min-height: 48px; align-items: center; padding: 11px 42px 11px 15px; border: 1px solid #cbdadd; border-radius: 12px; background: #fff; color: #284a58; font-size: 14px; font-weight: 700; line-height: 1.4; transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease; }
-  .implant-multistep__option span::after { position: absolute; right: 15px; width: 18px; height: 18px; border: 2px solid #9eb5ba; border-radius: 50%; content: ""; }
+
+  .implant-multistep__option span {
+    position: relative;
+    display: flex;
+    min-height: 43px;
+    align-items: center;
+    padding: 8px 34px 8px 12px;
+    border: 1px solid #cfdbdd;
+    border-radius: 12px;
+    background: #fff;
+    color: #284a58;
+    font-size: 11px;
+    font-weight: 750;
+    line-height: 1.3;
+    transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+  }
+
+  .implant-multistep__option span::after { position: absolute; right: 11px; width: 16px; height: 16px; border: 2px solid #9eb5ba; border-radius: 50%; content: ""; }
   .implant-multistep__option input:checked + span { border-color: var(--implant-teal); background: #edf9f6; box-shadow: 0 0 0 1px var(--implant-teal); }
   .implant-multistep__option input:checked + span::after { border: 5px solid var(--implant-teal); }
-  .implant-multistep__option input:focus-visible + span { outline: 3px solid rgba(30, 132, 181, .32); outline-offset: 2px; }
+  .implant-multistep__option input:focus-visible + span { outline: 3px solid rgba(20, 125, 131, .25); outline-offset: 2px; }
   .implant-multistep__option input[aria-invalid="true"] + span { border-color: #a12626; }
-  .implant-multistep__guidance { margin: 0; color: #365563; line-height: 1.65; }
-  .implant-multistep__date-grid, .implant-multistep__contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .implant-multistep__guidance { margin: 0; color: #45626e; font-size: 13px; line-height: 1.6; }
+  .implant-multistep__date-grid, .implant-multistep__contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .implant-multistep__contact-grid label:last-child { grid-column: 1 / -1; }
-  .implant-multistep__date-grid label, .implant-multistep__contact-grid label { display: grid; gap: 8px; color: var(--implant-ink); font-size: 13px; font-weight: 800; }
+  .implant-multistep__date-grid label, .implant-multistep__contact-grid label { display: grid; gap: 7px; color: var(--implant-ink); font-size: 12px; font-weight: 800; }
+
   .implant-multistep input:not([type="radio"]):not([type="checkbox"]),
   .implant-multistep select,
-  .implant-multistep textarea { width: 100%; min-height: 48px; border: 1px solid #bfd1d4; border-radius: 12px; padding: 12px 14px; background: #fff; color: #173746; font: inherit; }
+  .implant-multistep textarea {
+    width: 100%;
+    min-height: 48px;
+    border: 1px solid #bfd1d4;
+    border-radius: 12px;
+    padding: 11px 13px;
+    background: #fff;
+    color: #173746;
+    font: inherit;
+  }
+
   .implant-multistep textarea { resize: vertical; }
   .implant-multistep input[aria-invalid="true"], .implant-multistep select[aria-invalid="true"] { border-color: #a12626; box-shadow: 0 0 0 2px rgba(161, 38, 38, .12); }
-  .implant-multistep input:focus-visible, .implant-multistep select:focus-visible, .implant-multistep textarea:focus-visible { outline: 3px solid rgba(30, 132, 181, .28); outline-offset: 2px; }
-  .implant-multistep__availability-note { margin: 0; padding: 14px 16px; border-left: 4px solid var(--implant-teal); border-radius: 8px; background: #eef8f7; color: #4c6873; font-size: 13px; line-height: 1.6; }
-  .implant-multistep__privacy { display: flex; align-items: flex-start; gap: 11px; color: #536d78; font-size: 12px; line-height: 1.55; cursor: pointer; }
+  .implant-multistep input:focus-visible, .implant-multistep select:focus-visible, .implant-multistep textarea:focus-visible { outline: 3px solid rgba(20, 125, 131, .22); outline-offset: 2px; }
+  .implant-multistep__availability-note { margin: 0; padding: 13px 14px; border-left: 4px solid var(--implant-teal); border-radius: 8px; background: #eef8f7; color: #4c6873; font-size: 11px; line-height: 1.55; }
+  .implant-multistep__privacy { display: flex; align-items: flex-start; gap: 10px; color: #536d78; font-size: 11px; line-height: 1.5; cursor: pointer; }
   .implant-multistep__privacy input { width: 19px; height: 19px; flex: 0 0 auto; margin-top: 1px; accent-color: var(--implant-teal); }
   .implant-multistep__privacy input[aria-invalid="true"] { outline: 2px solid #a12626; outline-offset: 2px; }
-  .implant-multistep__navigation { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .implant-multistep__navigation { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .implant-multistep__navigation--end { justify-content: flex-end; }
-  .implant-multistep__navigation button { min-height: 50px; padding: 0 22px; border-radius: 999px; font: inherit; font-weight: 850; cursor: pointer; }
+  .implant-multistep__navigation button { min-height: 48px; padding: 0 20px; border-radius: 999px; font: inherit; font-size: 13px; font-weight: 850; cursor: pointer; transition: transform 160ms ease, box-shadow 160ms ease; }
   .implant-multistep__back { border: 1px solid #bfd1d4; background: #fff; color: var(--implant-ink); }
-  .implant-multistep__next, .implant-multistep__submit { border: 0; background: var(--implant-ink); color: #fff; }
-  .implant-multistep__submit { min-width: 190px; }
+  .implant-multistep__next, .implant-multistep__submit { border: 0; background: var(--implant-ink); color: #fff; box-shadow: 0 10px 24px rgba(8, 42, 56, .16); }
+  .implant-multistep__submit { min-width: 205px; }
   .implant-multistep__navigation button:hover { transform: translateY(-1px); }
-  .implant-multistep__navigation button:focus-visible { outline: 3px solid rgba(30, 132, 181, .34); outline-offset: 3px; }
+  .implant-multistep__navigation button:focus-visible { outline: 3px solid rgba(20, 125, 131, .3); outline-offset: 3px; }
   .implant-multistep__navigation button:disabled { cursor: wait; opacity: .65; transform: none; }
-  .implant-multistep__error { min-height: 21px; margin: -8px 0 0; color: #a12626; font-size: 13px; font-weight: 700; line-height: 1.5; }
+  .implant-multistep__error { min-height: 18px; margin: -7px 0 0; color: #a12626; font-size: 11px; font-weight: 700; line-height: 1.45; }
 
   @media (max-width: 620px) {
-    .implant-multistep__form { gap: 20px; padding: 20px; }
-    .implant-multistep__date-grid, .implant-multistep__contact-grid { grid-template-columns: 1fr; }
+    .implant-multistep { border-radius: 26px; }
+    .implant-multistep__intro { padding: 24px 20px 0; }
+    .implant-multistep__form { gap: 18px; padding: 20px; }
+    .implant-multistep__options,
+    .implant-multistep__date-grid,
+    .implant-multistep__contact-grid { grid-template-columns: 1fr; }
+    .implant-multistep__option:last-child:nth-child(odd),
     .implant-multistep__contact-grid label:last-child { grid-column: 1; }
-    .implant-multistep__navigation button { flex: 1; padding: 0 15px; }
+    .implant-multistep__option span { min-height: 48px; font-size: 12px; }
+    .implant-multistep__navigation button { flex: 1; padding: 0 13px; }
     .implant-multistep__navigation--end .implant-multistep__next { flex: 1 1 100%; }
+    .implant-multistep__submit { min-width: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .implant-multistep__navigation button,
+    .implant-multistep__option span { transition: none; }
   }
 </style>
