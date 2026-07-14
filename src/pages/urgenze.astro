@@ -3,8 +3,8 @@ import "../styles/global.css";
 import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
-import MirrorFooter from "../components/MirrorFooter.astro";
 import PageLoader from "../components/PageLoader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 
 const brandLogo = "/assets/brand/sorriso-salute-logo-360.webp";
 const navItems = [
@@ -422,7 +422,7 @@ const currentPath = Astro.url.pathname;
       </section>
     </main>
 
-    <MirrorFooter />
+    <SiteFooter />
 
     <script is:inline>
       (() => {

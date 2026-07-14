@@ -2,9 +2,9 @@
 import "../../styles/global.css";
 import FaviconLinks from "../FaviconLinks.astro";
 import GoogleAdsTracking from "../GoogleAdsTracking.astro";
+import SiteFooter from "../SiteFooter.astro";
 import type { ImplantologiaPage } from "../../data/implantologiaPages";
 import { implantologiaPages } from "../../data/implantologiaPages";
-import ImplantologiaFooter from "./ImplantologiaFooter.astro";
 import ImplantologiaHeader from "./ImplantologiaHeader.astro";
 import ImplantologiaMultiStepForm from "./ImplantologiaMultiStepForm.astro";
 
@@ -175,7 +175,7 @@ const heroDisplayTitle = heroDisplayTitles[page.slug];
       </div>
     </main>
 
-    <ImplantologiaFooter />
+    <SiteFooter trackWhatsappAsImplantologia />
 
     <style is:global>
       :root {

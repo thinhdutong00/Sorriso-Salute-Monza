@@ -3,8 +3,8 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import BrandPalette from "./BrandPalette.astro";
 import GoogleAdsTracking from "./GoogleAdsTracking.astro";
-import MirrorFooter from "./MirrorFooter.astro";
 import PageLoader from "./PageLoader.astro";
+import SiteFooter from "./SiteFooter.astro";
 import manifest from "../data/mirror/manifest.json";
 import { sourceReviews } from "../data/reviews-seed";
 
@@ -1617,7 +1617,7 @@ const reviewsPageScript = `
       </div>
     </aside>
     <script is:inline set:html={removeLegacyAppointmentButtonScript} />
-    <MirrorFooter />
+    <SiteFooter />
     <script is:inline set:html={mirrorHeaderScript} />
     <script is:inline set:html={mirrorNavigationScript} />
     <script is:inline set:html={counterFallbackScript} />

@@ -1,0 +1,225 @@
+---
+interface Props {
+  trackWhatsappAsImplantologia?: boolean;
+}
+
+const { trackWhatsappAsImplantologia = false } = Astro.props;
+const brandLogo = "/assets/brand/sorriso-salute-logo-360.webp";
+const footerNavItems = [
+  { label: "Dicono di noi", href: "/recensioni-studio-dentistico-monza/" },
+  { label: "La Struttura", href: "/struttura-studio-dentistico-monza/" },
+  { label: "Convenzioni", href: "/convenzioni-dirette-studio-dentistico-monza/" },
+  { label: "Urgenze", href: "/urgenze/" },
+  { label: "Richiedi una visita", href: "/richiesta-generale/" },
+  { label: "Chiama in studio: 039 2022489", href: "tel:+390392022489" },
+];
+---
+
+<footer class="site-footer" data-site-footer>
+  <div class="footer-grid">
+    <div class="footer-column footer-intro">
+      <a class="footer-brand" href="/" aria-label="Studio Dentistico Sorriso & Salute">
+        <img
+          class="footer-brand-logo"
+          src={brandLogo}
+          alt="Studio Dentistico Sorriso & Salute"
+          width="360"
+          height="87"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+      <p>Studio Dentistico Sorriso & Salute a Monza, con servizi odontoiatrici e percorsi dedicati all'implantologia.</p>
+    </div>
+
+    <nav class="footer-column" aria-label="Esplora il sito">
+      <h2>Esplora</h2>
+      {footerNavItems.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/cookie-policy/">Cookie Policy</a>
+    </nav>
+
+    <div class="footer-column">
+      <h2>Contatti</h2>
+      <a href="tel:+390392022489">Telefono: 039 2022489</a>
+      <a
+        href="https://wa.me/393892490181"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-google-ads-conversion={trackWhatsappAsImplantologia ? "whatsapp-implantologia" : undefined}
+      >WhatsApp: +39 389 2490181</a>
+      <a href="mailto:info@sorrisoesalute.it">Email: info@sorrisoesalute.it</a>
+      <span>Sede: Via Gaslini, 1 — 20090 Monza / 20900 Monza (MB)</span>
+    </div>
+
+    <div class="footer-column">
+      <h2>Studio</h2>
+      <span>Studio Dentistico Sorriso & Salute</span>
+      <span>Sorriso & Salute S.r.l.</span>
+      <span>P. IVA: 03845830961</span>
+      <span>Direttore Sanitario: Dott.ssa Maria Isabel Pareja Carrillo — Odontoiatra</span>
+      <span>Titolare e Amministratore: Gianni Focarelli</span>
+      <span>Orari: lunedì–venerdì, 9:00–12:30 e 14:00–19:00</span>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>Autorizzazione sanitaria n. 2014/11</span>
+    <span>Pubblicità conforme art. 1 della legge di bilancio 2019 (30/12/2018 n. 145)</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    width: 100%;
+    margin: 0;
+    padding: 70px 24px 28px;
+    overflow: clip;
+    border-top: 1px solid rgba(226, 221, 214, 0.1);
+    background: #082a38;
+    color: rgba(255, 255, 255, 0.66);
+    font-family: var(--brand-font-family, Inter, system-ui, sans-serif);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  .site-footer,
+  .site-footer *,
+  .site-footer *::before,
+  .site-footer *::after {
+    box-sizing: border-box;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(140px, 0.5fr) minmax(210px, 0.82fr) minmax(240px, 0.98fr);
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    padding: 0;
+    gap: 42px;
+  }
+
+  .footer-column {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-brand {
+    display: inline-flex;
+    width: min(280px, 100%);
+    margin: 0;
+    padding: 0;
+    color: inherit !important;
+    text-decoration: none;
+  }
+
+  .footer-brand-logo {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    object-fit: contain;
+  }
+
+  .site-footer p {
+    max-width: 430px;
+    margin: 20px 0 0;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.66) !important;
+    font: inherit;
+    line-height: 1.7;
+  }
+
+  .site-footer h2 {
+    margin: 0 0 18px;
+    padding: 0;
+    color: #fff !important;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700 !important;
+    line-height: 1.2;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase;
+  }
+
+  .site-footer a,
+  .site-footer span {
+    display: block;
+    max-width: 100%;
+    margin: 12px 0 0;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.66) !important;
+    font: inherit;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .site-footer a {
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+
+  .site-footer a:hover,
+  .site-footer a:focus-visible {
+    color: #fff !important;
+  }
+
+  .site-footer a:focus-visible {
+    border-radius: 3px;
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: min(1180px, 100%);
+    margin: 56px auto 0;
+    padding: 24px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 24px;
+    font-size: 0.86rem;
+  }
+
+  .footer-bottom span {
+    max-width: 340px;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 1120px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .site-footer {
+      padding: 56px 18px 26px;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .footer-brand {
+      width: min(260px, 82vw);
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      margin-top: 42px;
+      gap: 10px;
+    }
+
+    .footer-bottom span {
+      max-width: none;
+    }
+  }
+</style>
