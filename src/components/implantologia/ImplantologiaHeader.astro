@@ -189,6 +189,7 @@ const bookingLinks = [
     implantWindow.__implantHeaderController = controller;
     const listenerOptions = { signal: controller.signal };
     const mobileMedia = window.matchMedia("(max-width: 767px)");
+    const desktopHeroMedia = window.matchMedia("(min-width: 1024px)");
     const hero = document.querySelector<HTMLElement>("#panoramica");
     const sections = Array.from(panel.querySelectorAll<HTMLElement>("[data-implant-menu-section]"));
     const sectionToggles = Array.from(panel.querySelectorAll<HTMLButtonElement>("[data-implant-menu-section-toggle]"));
@@ -203,7 +204,7 @@ const bookingLinks = [
         ? hero.getBoundingClientRect().bottom + scrollPosition
         : window.innerHeight * .72;
       const isPastHero = scrollPosition + headerHeight >= heroBottom - 8;
-      header.classList.toggle("is-over-hero", !mobileMedia.matches && !isPastHero);
+      header.classList.toggle("is-over-hero", desktopHeroMedia.matches && !isPastHero);
     };
 
     const syncSectionAccessibility = () => {
@@ -368,17 +369,6 @@ const bookingLinks = [
     will-change: transform;
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
-  }
-
-  .implant-home-header::before {
-    position: absolute;
-    inset: 0 0 auto;
-    height: calc(var(--implant-home-header-height) + var(--implant-home-header-height) + 32px);
-    background: linear-gradient(180deg, rgba(8, 42, 56, .98) 0%, rgba(14, 56, 76, .92) 52%, rgba(14, 56, 76, 0) 100%);
-    content: "";
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 220ms ease;
   }
 
   .implant-home-header.is-hidden { transform: translateY(-105%); }
@@ -643,10 +633,15 @@ const bookingLinks = [
 
   @media (min-width: 768px) {
     body.implant-landing { padding-top: 0; }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
     body.implant-landing .implant-hero {
       padding-top: calc(clamp(64px, 8vw, 110px) + var(--implant-home-header-height));
     }
+  }
 
+  @media (min-width: 1024px) {
     .implant-home-header.is-over-hero {
       border-color: transparent;
       background: transparent;
@@ -655,7 +650,6 @@ const bookingLinks = [
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
     }
-    .implant-home-header.is-over-hero::before { opacity: 1; }
     .implant-home-header.is-over-hero .implant-home-header__logo-mark { background: #fff; }
     .implant-home-header.is-over-hero .implant-home-header__nav { text-shadow: 0 1px 18px rgba(15, 23, 42, .26); }
     .implant-home-header.is-over-hero .implant-home-header__nav-link:hover,
@@ -664,7 +658,7 @@ const bookingLinks = [
     .implant-home-header.is-over-hero .implant-home-header__menu-toggle:focus-visible { color: #fff; opacity: .78; }
   }
 
-  @media (min-width: 768px) and (max-width: 1100px) {
+  @media (min-width: 1024px) and (max-width: 1100px) {
     .implant-home-header.is-over-hero .implant-home-header__menu-toggle {
       border-color: rgba(255, 255, 255, .42);
       background: rgba(255, 255, 255, .16);

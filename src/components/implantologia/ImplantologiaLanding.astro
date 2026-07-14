@@ -15,6 +15,13 @@ const { page } = Astro.props;
 const canonical = `https://sorrisoesalutemonza.it/implantologia/${page.slug}/`;
 const relatedPages = implantologiaPages.filter((item) => item.slug !== page.slug);
 const logo = "/assets/brand/sorriso-salute-logo-360.webp";
+const heroDisplayTitles = {
+  "impianto-singolo": "Impianto dentale singolo",
+  "denti-fissi": "Denti fissi su impianti",
+  "ponte-su-impianti": "Ponte su impianti",
+  "protesi-instabile": "Protesi dentale instabile",
+} satisfies Record<ImplantologiaPage["slug"], string>;
+const heroDisplayTitle = heroDisplayTitles[page.slug];
 ---
 
 <!doctype html>
@@ -39,33 +46,40 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
     <ImplantologiaHeader />
 
     <main>
-      <section class="implant-hero" id="panoramica">
-        <div class="implant-container implant-hero__grid">
-          <div class="implant-hero__copy">
+      <div class="implant-hero-shell">
+        <section class="implant-hero" id="panoramica" aria-labelledby="implant-hero-title">
+          <div class="implant-container implant-hero__title">
             <p class="implant-kicker">Implantologia a Monza</p>
-            <h1>{page.h1}</h1>
-            <p class="implant-hero__lead">{page.heroIntro}</p>
-            <p class="implant-clinical-note">
-              La soluzione viene definita previa valutazione clinica. I risultati possono variare in base alla situazione
-              clinica e il piano di cura dipende dal singolo caso.
-            </p>
-            <div class="implant-actions">
-              <a class="implant-button implant-button--primary" href="#prenota">Richiedi una visita</a>
-              <a
-                class="implant-button implant-button--whatsapp"
-                href="https://wa.me/393892490181"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-google-ads-conversion="whatsapp-implantologia"
-              >Scrivi su WhatsApp</a>
+            <h1 id="implant-hero-title">{heroDisplayTitle}</h1>
+          </div>
+        </section>
+
+        <section class="implant-overview" aria-label="Panoramica del trattamento">
+          <div class="implant-container implant-hero__grid">
+            <div class="implant-hero__copy">
+              <p class="implant-hero__lead">{page.heroIntro}</p>
+              <p class="implant-clinical-note">
+                La soluzione viene definita previa valutazione clinica. I risultati possono variare in base alla situazione
+                clinica e il piano di cura dipende dal singolo caso.
+              </p>
+              <div class="implant-actions">
+                <a class="implant-button implant-button--primary" href="#prenota">Richiedi una visita</a>
+                <a
+                  class="implant-button implant-button--whatsapp"
+                  href="https://wa.me/393892490181"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-google-ads-conversion="whatsapp-implantologia"
+                >Scrivi su WhatsApp</a>
+              </div>
+              <a class="implant-phone-link" href="tel:+390392022489">Preferisci chiamare? 039 2022489</a>
             </div>
-            <a class="implant-phone-link" href="tel:+390392022489">Preferisci chiamare? 039 2022489</a>
+            <div class="implant-hero__media">
+              <img src={page.heroImage} alt={page.heroImageAlt} width="1080" height="720" />
+            </div>
           </div>
-          <div class="implant-hero__media">
-            <img src={page.heroImage} alt={page.heroImageAlt} width="1080" height="720" />
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <section class="implant-section implant-section--light" id="quando-indicato" aria-labelledby="quando-title">
         <div class="implant-container implant-two-column">
@@ -207,12 +221,15 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
       body.implant-landing a { color: inherit; }
       .implant-container { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
 
-      .implant-hero { padding: clamp(64px, 8vw, 110px) 0; background: linear-gradient(135deg, #edf8f6 0%, #fff 58%, #edf5f6 100%); }
+      .implant-hero-shell { background: linear-gradient(135deg, #edf8f6 0%, #fff 58%, #edf5f6 100%); }
+      .implant-hero { padding: clamp(64px, 8vw, 110px) 0 0; }
+      .implant-hero__title { display: flex; flex-direction: column; align-items: flex-start; }
+      .implant-overview { padding: 26px 0 clamp(64px, 8vw, 110px); }
       .implant-hero__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr); align-items: center; gap: clamp(40px, 7vw, 86px); }
       .implant-kicker { margin: 0 0 12px; color: var(--implant-teal); font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
       .implant-kicker--light { color: #9ce2d7; }
       .implant-hero h1 { max-width: 760px; margin: 0; color: var(--implant-ink); font-size: clamp(42px, 6vw, 72px); line-height: 1.02; letter-spacing: -.045em; }
-      .implant-hero__lead { max-width: 690px; margin: 26px 0 0; font-size: clamp(18px, 2.2vw, 23px); line-height: 1.55; }
+      .implant-hero__lead { max-width: 690px; margin: 0; font-size: clamp(18px, 2.2vw, 23px); line-height: 1.55; }
       .implant-clinical-note { max-width: 690px; margin: 18px 0 0; color: #536d78; font-size: 14px; line-height: 1.65; }
       .implant-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
       .implant-button { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; padding: 0 22px; border-radius: 999px; font-weight: 800; text-decoration: none; }
@@ -273,6 +290,33 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
       .implant-footer__grid > div { display: grid; align-content: start; gap: 10px; }
       .implant-footer a { text-decoration: none; }
 
+      @media (min-width: 1024px) {
+        .implant-hero-shell { background: #fff; }
+        .implant-hero {
+          display: flex;
+          min-height: 640px;
+          align-items: center;
+          justify-content: center;
+          padding: calc(var(--implant-home-header-height) + 38px) 24px 104px;
+          background: var(--implant-ink);
+          color: #fff;
+        }
+        .implant-hero__title { align-items: center; justify-content: center; text-align: center; }
+        .implant-hero .implant-kicker { display: none; }
+        .implant-hero h1 {
+          max-width: 13ch;
+          color: #fff;
+          font-size: clamp(92px, 8.2vw, 118px);
+          font-weight: 400;
+          line-height: .95;
+          letter-spacing: 0;
+          text-align: center;
+          text-transform: uppercase;
+          text-wrap: balance;
+        }
+        .implant-overview { padding: clamp(80px, 8vw, 112px) 0; background: #fff; }
+      }
+
       @media (max-width: 900px) {
         .implant-hero__grid, .implant-two-column, .implant-faq-layout, .implant-lead { grid-template-columns: 1fr; }
         .implant-hero__media { max-width: 680px; }
@@ -282,6 +326,7 @@ const logo = "/assets/brand/sorriso-salute-logo-360.webp";
       @media (max-width: 620px) {
         .implant-container { width: min(100% - 28px, 1180px); }
         .implant-hero { padding-top: 52px; }
+        .implant-overview { padding-bottom: 52px; }
         .implant-actions, .implant-button { width: 100%; }
         .implant-step-grid, .implant-related-grid, .implant-footer__grid, .implant-lead__form { grid-template-columns: 1fr; }
         .implant-lead { padding: 28px 18px; }
