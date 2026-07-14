@@ -8,7 +8,27 @@ const primaryLinks = [
   { href: "/urgenze/", label: "Urgenze" },
 ];
 
-const treatmentLinks = [
+interface TreatmentLink {
+  href: string;
+  label: string;
+  description: string;
+}
+
+interface TreatmentGroup {
+  label: string;
+  description: string;
+  children: Array<{ href: string; label: string }>;
+}
+
+const implantologiaMenuLinks = [
+  { href: "/implantologia/", label: "Panoramica implantologia" },
+  { href: "/implantologia/impianto-singolo/", label: "Impianto dentale singolo" },
+  { href: "/implantologia/denti-fissi/", label: "Denti fissi su impianti" },
+  { href: "/implantologia/ponte-su-impianti/", label: "Ponte su impianti" },
+  { href: "/implantologia/protesi-instabile/", label: "Protesi dentale instabile" },
+];
+
+const treatmentLinks: Array<TreatmentLink | TreatmentGroup> = [
   { href: "/attivita/", label: "Tutti i trattamenti", description: "Scopri tutti i trattamenti" },
   { href: "/attivita/igiene-orale-e-profilassi/", label: "Igiene orale e profilassi", description: "Pulizia e prevenzione" },
   { href: "/attivita/protesi-dentale/", label: "Protesi dentale", description: "Sostituisce i denti mancanti" },
@@ -17,7 +37,7 @@ const treatmentLinks = [
   { href: "/attivita/parodontologia/", label: "Parodontologia", description: "Cura gengive e sostegno dei denti" },
   { href: "/attivita/ortodonzia/", label: "Ortodonzia", description: "Allinea i denti" },
   { href: "/attivita/chirurgia-orale/", label: "Chirurgia orale", description: "Estrazioni e piccoli interventi" },
-  { href: "/implantologia/", label: "Implantologia", description: "Denti fissi su impianti" },
+  { label: "Implantologia", description: "Denti fissi su impianti", children: implantologiaMenuLinks },
   { href: "/attivita/endodonzia/", label: "Endodonzia", description: "Devitalizza e salva il dente" },
   { href: "/attivita/gnatologia/", label: "Gnatologia", description: "Cura mandibola e masticazione" },
   { href: "/attivita/pedodonzia/", label: "Pedodonzia", description: "Cure dentali per bambini" },
@@ -40,6 +60,8 @@ const bookingLinks = [
   { href: "/convenzioni-dirette/", label: "Convenzioni dirette" },
   { href: "/convenzioni-indirette/", label: "Convenzioni indirette" },
 ];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <header class="implant-home-header is-over-hero" data-implant-header>
@@ -106,13 +128,39 @@ const bookingLinks = [
         </button>
       </h2>
       <div class="implant-home-menu__section-content" id="implant-menu-treatments">
-        {treatmentLinks.map((link, index) => (
-          <a class:list={[index > 0 && "implant-home-menu__treatment-link"]} href={link.href}>
-            <span class="implant-home-menu__link-copy">
-              <span>{link.label}</span>
-              <small>{link.description}</small>
-            </span>
-          </a>
+        {treatmentLinks.map((item, index) => (
+          "children" in item ? (
+            <div
+              class="implant-home-menu__implantology-group implant-home-menu__treatment-link"
+              role="group"
+              aria-labelledby="implant-menu-implantology-label"
+            >
+              <div class="implant-home-menu__treatment-parent" id="implant-menu-implantology-label">
+                <span class="implant-home-menu__link-copy">
+                  <span>{item.label}</span>
+                  <small>{item.description}</small>
+                </span>
+              </div>
+              <div class="implant-home-menu__implantology-links">
+                {item.children.map((link) => (
+                  <a
+                    href={link.href}
+                    aria-current={currentPath === link.href ? "page" : undefined}
+                    data-implantology-menu-link
+                  >
+                    <span>{link.label}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a class:list={[index > 0 && "implant-home-menu__treatment-link"]} href={item.href}>
+              <span class="implant-home-menu__link-copy">
+                <span>{item.label}</span>
+                <small>{item.description}</small>
+              </span>
+            </a>
+          )
         ))}
       </div>
     </section>
@@ -602,6 +650,28 @@ const bookingLinks = [
   .implant-home-menu__section-content a::after { bottom: 0; }
   .implant-home-menu__section-content small { display: none; }
   .implant-home-menu__link-copy { display: flex; flex-direction: column; }
+  .implant-home-menu__implantology-group { display: grid; gap: 10px; }
+  .implant-home-menu__treatment-parent {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .implant-home-menu__implantology-links {
+    display: grid;
+    gap: 8px;
+    margin-left: 4px;
+    padding-left: 16px;
+    border-left: 1px solid rgba(255, 255, 255, .28);
+  }
+  .implant-home-menu__implantology-links a {
+    padding-bottom: 4px;
+    color: rgba(255, 255, 255, .82);
+    font-size: 15px;
+  }
+  .implant-home-menu__implantology-links a[aria-current="page"] { color: #fff; font-weight: 700; }
   .implant-home-menu__cta { display: none; }
 
   @media (max-width: 1100px) and (min-width: 768px) {
@@ -754,7 +824,8 @@ const bookingLinks = [
     .implant-home-menu__section-content small { display: block; color: rgba(14, 56, 76, .68); font-size: 12px; font-weight: 400; line-height: 1.25; }
     .implant-home-menu__section--treatments .implant-home-menu__section-content { gap: 13px; }
     .implant-home-menu__section--treatments .implant-home-menu__treatment-link { gap: 4px; }
-    .implant-home-menu__section--treatments .implant-home-menu__treatment-link::before {
+    .implant-home-menu__section--treatments a.implant-home-menu__treatment-link::before,
+    .implant-home-menu__section--treatments .implant-home-menu__implantology-group::before {
       display: inline-flex;
       width: 14px;
       min-width: 14px;
@@ -768,6 +839,25 @@ const bookingLinks = [
       font-weight: 500;
       line-height: 22px;
     }
+    .implant-home-menu__section--treatments .implant-home-menu__implantology-group {
+      grid-template-columns: 14px minmax(0, 1fr);
+      column-gap: 4px;
+      row-gap: 9px;
+    }
+    .implant-home-menu__treatment-parent { color: #0e384c; }
+    .implant-home-menu__implantology-links {
+      grid-column: 2;
+      gap: 8px;
+      margin: 0;
+      padding-left: 13px;
+      border-left-color: rgba(14, 56, 76, .24);
+    }
+    .implant-home-menu__implantology-links a {
+      padding: 2px 0 4px;
+      color: rgba(14, 56, 76, .78);
+      font-size: 15px;
+    }
+    .implant-home-menu__implantology-links a[aria-current="page"] { color: #0e384c; }
     .implant-home-menu__link-copy { align-items: flex-start; gap: 2px; }
 
     .implant-home-menu__cta {
