@@ -660,6 +660,37 @@ body.kebab-menu-open {
   transition: opacity 160ms ease;
 }
 
+.kebab-menu__implantology-group {
+  display: grid;
+  gap: 10px;
+}
+
+.kebab-menu__implantology-parent {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.kebab-menu__implantology-links {
+  display: grid;
+  gap: 8px;
+  margin-left: 4px;
+  padding-left: 16px;
+  border-left: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.kebab-menu__implantology-links a {
+  padding-bottom: 4px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 15px;
+}
+
+.kebab-menu__implantology-links a[aria-current="page"] {
+  color: #ffffff;
+  font-weight: 700;
+}
+
 .kebab-menu__section a::after {
   position: absolute;
   right: 50%;
@@ -725,6 +756,74 @@ body.kebab-menu-open {
   border-radius: 24px;
   background: var(--surface-card);
   box-shadow: var(--shadow-soft);
+  max-height: calc(100dvh - 112px);
+  overflow-y: auto;
+}
+
+.mobile-nav__treatments {
+  margin: 2px 2px 8px;
+  border: 1px solid rgba(14, 56, 76, 0.14);
+  border-radius: 16px;
+}
+
+.mobile-nav__treatments summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  color: var(--clinic-ink);
+  cursor: pointer;
+  font-family: var(--nav-font-family);
+  font-weight: 700;
+  list-style: none;
+}
+
+.mobile-nav__treatments summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-nav__treatments summary::after {
+  content: "+";
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.mobile-nav__treatments[open] summary::after {
+  content: "−";
+}
+
+.mobile-nav__implantology-group {
+  padding: 0 14px 14px;
+}
+
+.mobile-nav__implantology-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--clinic-ink);
+  font-family: var(--nav-font-family);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mobile-nav__implantology-links {
+  display: grid;
+  gap: 3px;
+  padding-left: 10px;
+  border-left: 1px solid rgba(14, 56, 76, 0.22);
+}
+
+.mobile-nav .mobile-nav__implantology-links a {
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mobile-nav .mobile-nav__implantology-links a[aria-current="page"] {
+  background: rgba(14, 56, 76, 0.08);
+  font-weight: 700;
 }
 
 .mobile-nav a {
@@ -742,7 +841,7 @@ body.kebab-menu-open {
   background: var(--button-secondary);
 }
 
-.mobile-nav a:last-child {
+.mobile-nav > a:last-child {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -756,7 +855,7 @@ body.kebab-menu-open {
   text-align: center;
 }
 
-.mobile-nav a:last-child:hover {
+.mobile-nav > a:last-child:hover {
   background: var(--clinic-teal-dark);
 }
 

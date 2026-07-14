@@ -14,6 +14,14 @@ const navItems = [
   { label: "Urgenze", href: "/urgenze/" },
   { label: "Chiama in studio: 039 2022489", href: "tel:+390392022489", icon: "phone" },
 ];
+const implantologiaMenuLinks = [
+  { href: "/implantologia/", label: "Panoramica implantologia" },
+  { href: "/implantologia/impianto-singolo/", label: "Impianto dentale singolo" },
+  { href: "/implantologia/denti-fissi/", label: "Denti fissi su impianti" },
+  { href: "/implantologia/ponte-su-impianti/", label: "Ponte su impianti" },
+  { href: "/implantologia/protesi-instabile/", label: "Protesi dentale instabile" },
+];
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -234,7 +242,7 @@ const navItems = [
       }
 
       @media (max-width: 980px) {
-        .urgent-page .mobile-nav a:last-child {
+        .urgent-page .mobile-nav > a:last-child {
           display: none;
         }
       }
@@ -326,6 +334,19 @@ const navItems = [
       </button>
 
       <nav class="mobile-nav" aria-label="Menu mobile" data-mobile-nav>
+        <details class="mobile-nav__treatments">
+          <summary>Trattamenti</summary>
+          <div class="mobile-nav__implantology-group" role="group" aria-labelledby="urgent-mobile-menu-implantology-label">
+            <span class="mobile-nav__implantology-label" id="urgent-mobile-menu-implantology-label">Implantologia</span>
+            <div class="mobile-nav__implantology-links">
+              {implantologiaMenuLinks.map((link) => (
+                <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined} data-implantology-menu-link>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </details>
         {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
       </nav>
     </header>
@@ -358,7 +379,16 @@ const navItems = [
           <a href="/attivita/chirurgia-orale/">Chirurgia orale</a>
           <a href="/attivita/pedodonzia/">Pedodonzia</a>
           <a href="/attivita/gnatologia/">Gnatologia</a>
-          <a href="/implantologia/">Implantologia</a>
+          <div class="kebab-menu__implantology-group" role="group" aria-labelledby="urgent-menu-implantology-label">
+            <div class="kebab-menu__implantology-parent" id="urgent-menu-implantology-label">Implantologia</div>
+            <div class="kebab-menu__implantology-links">
+              {implantologiaMenuLinks.map((link) => (
+                <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined} data-implantology-menu-link>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
         </section>
         <section class="kebab-menu__section">
           <h2>Prenota e informazioni</h2>
