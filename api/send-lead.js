@@ -5,6 +5,44 @@ const normalizeText = (value) => {
   return value.trim();
 };
 
+const normalizeTextList = (value) => {
+  const pending = Array.isArray(value) ? [...value] : [value];
+  const normalized = [];
+
+  while (pending.length > 0) {
+    const item = pending.shift();
+
+    if (Array.isArray(item)) {
+      pending.unshift(...item);
+      continue;
+    }
+
+    const text = normalizeText(item);
+    if (!text) continue;
+
+    if (text.startsWith("[") && text.endsWith("]")) {
+      try {
+        const parsed = JSON.parse(text);
+        if (Array.isArray(parsed)) {
+          pending.unshift(...parsed);
+          continue;
+        }
+      } catch {
+        // Keep malformed JSON-like input as plain text.
+      }
+    }
+
+    normalized.push(
+      ...text
+        .split(",")
+        .map((itemValue) => itemValue.trim())
+        .filter(Boolean),
+    );
+  }
+
+  return [...new Set(normalized)].join(", ");
+};
+
 const escapeHtml = (value) =>
   normalizeText(value)
     .replaceAll("&", "&amp;")
@@ -14,6 +52,8 @@ const escapeHtml = (value) =>
     .replaceAll("'", "&#39;");
 
 const isEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+const isSingleImplantForm = (value) => normalizeText(value) === "impianto-singolo-anamnesi";
 
 const recipientsFromEnv = (value) =>
   normalizeText(value)
@@ -64,9 +104,19 @@ const buildSections = (lead) => {
       rows: compactRows([
         ["Servizio/interesse", lead.serviceInterest || lead.servizio],
         ["Situazione indicata", lead.implantologiaProblemType],
+        ["Dettagli della situazione", lead.implantologiaProblemDetail],
         ["Durata del problema", lead.implantologiaProblemDuration],
+        ["Impatto nella giornata", lead.implantologiaDailyImpact],
+        ["Obiettivo del trattamento", lead.implantologiaGoal],
+        ["Dettagli dell'obiettivo", lead.implantologiaGoalDetail],
+        ["Visita già effettuata", lead.implantologiaPreviousVisit],
+        ["Radiografia o CBCT recente", lead.implantologiaImagingAvailable],
+        ["Fascia d'età", lead.implantologiaAgeRange],
         ["Preferenza data", lead.preferredVisitDate],
+        ["Giorni preferiti", lead.preferredVisitDays],
         ["Preferenza orario", lead.preferredVisitTime],
+        ["Urgenza", lead.implantologiaUrgency],
+        ["Canale di contatto preferito", lead.preferredContactChannel],
       ]),
     },
     {
@@ -146,9 +196,21 @@ export default async function handler(req, res) {
       dataPreferita: normalizeText(body.dataPreferita),
       orarioPreferito: normalizeText(body.orarioPreferito),
       implantologiaProblemType: normalizeText(body.implantologia_problem_type),
+      implantologiaProblemDetail: normalizeText(body.implantologia_problem_detail),
       implantologiaProblemDuration: normalizeText(body.implantologia_problem_duration),
+      implantologiaDailyImpact: normalizeText(body.implantologia_daily_impact),
+      implantologiaGoal: normalizeText(body.implantologia_goal),
+      implantologiaGoalDetail: normalizeText(body.implantologia_goal_detail),
+      implantologiaPreviousVisit: normalizeText(body.implantologia_previous_visit),
+      implantologiaImagingAvailable: normalizeText(body.implantologia_imaging_available),
+      implantologiaAgeRange: normalizeText(body.implantologia_age_range),
       preferredVisitDate: normalizeText(body.preferred_visit_date),
+      preferredVisitDays: normalizeTextList(body.preferred_visit_days),
       preferredVisitTime: normalizeText(body.preferred_visit_time),
+      implantologiaUrgency: normalizeText(body.implantologia_urgency),
+      preferredContactChannel: normalizeText(body.preferred_contact_channel),
+      privacyConsent: normalizeText(body.privacy_consent),
+      formVariant: normalizeText(body.form_variant),
       landingPage: normalizeText(body.landing_page),
       serviceInterest: normalizeText(body.service_interest),
       pageTitle: normalizeText(body.page_title),
@@ -167,7 +229,61 @@ export default async function handler(req, res) {
       wbraid: normalizeText(body.wbraid),
     };
 
-    if (!lead.nome || !lead.telefono) {
+    if (isSingleImplantForm(lead.formVariant)) {
+      const preferredContactChannel = lead.preferredContactChannel.toLocaleLowerCase("it-IT");
+      const allowedContactChannels = ["telefono", "whatsapp", "email"];
+      const requiresPhone = ["telefono", "whatsapp"].includes(preferredContactChannel);
+
+      const requiredAnswers = [
+        [lead.implantologiaProblemType, "Seleziona la situazione principale"],
+        [lead.implantologiaProblemDuration, "Indica da quanto tempo hai questo problema"],
+        [lead.implantologiaDailyImpact, "Indica quanto incide il problema nella tua giornata"],
+        [lead.implantologiaGoal, "Seleziona il tuo obiettivo principale"],
+        [lead.implantologiaPreviousVisit, "Indica se hai già fatto una visita"],
+        [lead.implantologiaImagingAvailable, "Indica se hai una radiografia o una CBCT recente"],
+        [lead.implantologiaAgeRange, "Seleziona la fascia d'età"],
+        [lead.preferredVisitDays, "Seleziona almeno un giorno preferito"],
+        [lead.preferredVisitTime, "Seleziona una fascia oraria"],
+        [lead.implantologiaUrgency, "Indica se il caso è urgente"],
+      ];
+
+      const missingAnswer = requiredAnswers.find(([value]) => !value);
+      if (missingAnswer) {
+        return res.status(400).json({ error: missingAnswer[1] });
+      }
+
+      if (lead.implantologiaProblemType === "Altro" && !lead.implantologiaProblemDetail) {
+        return res.status(400).json({ error: "Descrivi brevemente la situazione" });
+      }
+
+      if (lead.implantologiaGoal === "Altro" && !lead.implantologiaGoalDetail) {
+        return res.status(400).json({ error: "Descrivi brevemente il tuo obiettivo" });
+      }
+
+      if (!lead.nome) {
+        return res.status(400).json({ error: "Il nome è obbligatorio" });
+      }
+
+      if (!allowedContactChannels.includes(preferredContactChannel)) {
+        return res.status(400).json({ error: "Seleziona un canale di contatto valido" });
+      }
+
+      if (requiresPhone && lead.telefono.replace(/\D/g, "").length < 6) {
+        return res.status(400).json({
+          error: "Inserisci un numero di telefono valido per il canale di contatto selezionato",
+        });
+      }
+
+      if (preferredContactChannel === "email" && !isEmail(lead.email)) {
+        return res.status(400).json({
+          error: "Inserisci un indirizzo email valido per il canale di contatto selezionato",
+        });
+      }
+
+      if (lead.privacyConsent !== "true") {
+        return res.status(400).json({ error: "Il consenso privacy è obbligatorio" });
+      }
+    } else if (!lead.nome || !lead.telefono) {
       return res.status(400).json({ error: "Nome e telefono sono obbligatori" });
     }
 

@@ -1,0 +1,1253 @@
+---
+import ImplantologiaAttribution from "./ImplantologiaAttribution.astro";
+import ImplantologiaHiddenFields from "./ImplantologiaHiddenFields.astro";
+
+interface Props {
+  serviceInterest: string;
+}
+
+const { serviceInterest } = Astro.props;
+
+const problemOptions = [
+  "Ho già un dente mancante",
+  "Ho un dente da estrarre",
+  "Ho un dente rotto o compromesso",
+  "Altro",
+];
+
+const durationOptions = ["Meno di 1 mese", "Da 1 a 6 mesi", "Oltre 6 mesi"];
+
+const impactOptions = [
+  "Quasi solo sull’estetica",
+  "Evito di masticare da quel lato",
+  "Ho dolore o fastidio frequente",
+];
+
+const goalOptions = [
+  "Tornare a masticare con sicurezza",
+  "Ripristinare l’estetica del sorriso",
+  "Capire se l’impianto singolo è adatto",
+  "Altro",
+];
+
+const yesNoOptions = ["Sì", "No"];
+const ageOptions = ["Sotto i 30", "31–50", "51–65", "65+"];
+const preferredDays = ["Lun", "Mar", "Mer", "Gio", "Ven"];
+const preferredTimes = ["Mattina", "Pomeriggio"];
+const contactChannels = ["Telefono", "WhatsApp", "Email"];
+---
+
+<section
+  class="single-implant-form"
+  id="prenota"
+  aria-label="Questionario per la valutazione di un impianto singolo"
+>
+  <div class="single-implant-form__glow" aria-hidden="true"></div>
+
+  <form
+    class="single-implant-form__form"
+    id="implantologia-form-impianto-singolo"
+    action="/api/send-lead"
+    method="post"
+    data-implantologia-form
+    data-single-implant-form
+    novalidate
+  >
+    <ImplantologiaHiddenFields />
+    <input type="hidden" name="form_variant" value="impianto-singolo-anamnesi" />
+
+    <div
+      class="single-implant-form__progress"
+      role="progressbar"
+      aria-label="Avanzamento del questionario"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="10"
+      data-form-progress
+    >
+      <span data-progress-fill style="width: 10%"></span>
+    </div>
+
+    <div class="single-implant-form__content">
+      <div class="single-implant-form__step" data-step-id="problem">
+        <p class="single-implant-form__kicker">Inquadramento implantologico</p>
+        <h2 tabindex="-1">Qual è la situazione principale?</h2>
+        <fieldset>
+          <legend class="sr-only">Seleziona la situazione principale</legend>
+          <div class="single-implant-form__options">
+            {problemOptions.map((option, index) => (
+              <label class="single-implant-form__option" for={`single-problem-${index}`}>
+                <input
+                  id={`single-problem-${index}`}
+                  type="radio"
+                  name="implantologia_problem_type"
+                  value={option}
+                  required
+                />
+                <span>
+                  <b>{option}</b>
+                  <i aria-hidden="true"></i>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="single-implant-form__step" data-step-id="problem-detail" hidden>
+        <p class="single-implant-form__kicker">Specifica la situazione</p>
+        <h2 tabindex="-1">Descrivi la situazione</h2>
+        <label class="single-implant-form__field" for="single-problem-detail">
+          <span class="sr-only">Descrivi la situazione</span>
+          <input
+            id="single-problem-detail"
+            name="implantologia_problem_detail"
+            type="text"
+            placeholder="Es: dente perso, mobile o fratturato…"
+            autocomplete="off"
+            required
+          />
+        </label>
+      </div>
+
+      <div class="single-implant-form__step" data-step-id="duration" hidden>
+        <p class="single-implant-form__kicker">Analisi temporale</p>
+        <h2 tabindex="-1">Da quanto tempo hai questo problema?</h2>
+        <fieldset>
+          <legend class="sr-only">Seleziona da quanto tempo è presente il problema</legend>
+          <div class="single-implant-form__options">
+            {durationOptions.map((option, index) => (
+              <label class="single-implant-form__option" for={`single-duration-${index}`}>
+                <input
+                  id={`single-duration-${index}`}
+                  type="radio"
+                  name="implantologia_problem_duration"
+                  value={option}
+                  required
+                />
+                <span>
+                  <b>{option}</b>
+                  <i aria-hidden="true"></i>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="single-implant-form__step" data-step-id="impact" hidden>
+        <p class="single-implant-form__kicker">Impatto quotidiano</p>
+        <h2 tabindex="-1">Quanto incide nella tua giornata?</h2>
+        <fieldset>
+          <legend class="sr-only">Seleziona quanto incide il problema nella tua giornata</legend>
+          <div class="single-implant-form__options">
+            {impactOptions.map((option, index) => (
+              <label class="single-implant-form__option" for={`single-impact-${index}`}>
+                <input
+                  id={`single-impact-${index}`}
+                  type="radio"
+                  name="implantologia_daily_impact"
+                  value={option}
+                  required
+                />
+                <span>
+                  <b>{option}</b>
+                  <i aria-hidden="true"></i>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="single-implant-form__step" data-step-id="goal" hidden>
+        <p class="single-implant-form__kicker">Obiettivo del trattamento</p>
+        <h2 tabindex="-1">Qual è il tuo obiettivo principale?</h2>
+        <fieldset>
+          <legend class="sr-only">Seleziona il tuo obiettivo principale</legend>
+          <div class="single-implant-form__options">
+            {goalOptions.map((option, index) => (
+              <label class="single-implant-form__option" for={`single-goal-${index}`}>
+                <input
+                  id={`single-goal-${index}`}
+                  type="radio"
+                  name="implantologia_goal"
+                  value={option}
+                  required
+                />
+                <span>
+                  <b>{option}</b>
+                  <i aria-hidden="true"></i>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="single-implant-form__step" data-step-id="goal-detail" hidden>
+        <p class="single-implant-form__kicker">Dettaglio dell’obiettivo</p>
+        <h2 tabindex="-1">Descrivi il tuo obiettivo</h2>
+        <label class="single-implant-form__field" for="single-goal-detail">
+          <span class="sr-only">Descrivi il tuo obiettivo</span>
+          <textarea
+            id="single-goal-detail"
+            name="implantologia_goal_detail"
+            rows="4"
+            placeholder="Raccontaci brevemente cosa vorresti ottenere…"
+            required
+          ></textarea>
+        </label>
+      </div>
+
+      <div class="single-implant-form__step" data-step-id="previous-visit" hidden>
+        <p class="single-implant-form__kicker">Storico trattamenti</p>
+        <h2 tabindex="-1">Hai già fatto una visita per questo dente?</h2>
+        <fieldset>
+          <legend class="sr-only">Indica se hai già fatto una visita per questo dente</legend>
+          <div class="single-implant-form__options">
+            {yesNoOptions.map((option, index) => (
+              <label class="single-implant-form__option" for={`single-previous-${index}`}>
+                <input
+                  id={`single-previous-${index}`}
+                  type="radio"
+                  name="implantologia_previous_visit"
+                  value={option}
+                  required
+                />
+                <span>
+                  <b>{option}</b>
+                  <i aria-hidden="true"></i>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="single-implant-form__step" data-step-id="imaging" hidden>
+        <p class="single-implant-form__kicker">Documentazione clinica</p>
+        <h2 tabindex="-1">Hai già una radiografia o una CBCT recente?</h2>
+        <fieldset>
+          <legend class="sr-only">Indica se hai già una radiografia o una CBCT recente</legend>
+          <div class="single-implant-form__options">
+            {yesNoOptions.map((option, index) => (
+              <label class="single-implant-form__option" for={`single-imaging-${index}`}>
+                <input
+                  id={`single-imaging-${index}`}
+                  type="radio"
+                  name="implantologia_imaging_available"
+                  value={option}
+                  required
+                />
+                <span>
+                  <b>{option}</b>
+                  <i aria-hidden="true"></i>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="single-implant-form__step" data-step-id="age" hidden>
+        <p class="single-implant-form__kicker">Profilo anagrafico</p>
+        <h2 tabindex="-1">Qual è la tua fascia d’età?</h2>
+        <fieldset>
+          <legend class="sr-only">Seleziona la tua fascia d’età</legend>
+          <div class="single-implant-form__options">
+            {ageOptions.map((option, index) => (
+              <label class="single-implant-form__option" for={`single-age-${index}`}>
+                <input
+                  id={`single-age-${index}`}
+                  type="radio"
+                  name="implantologia_age_range"
+                  value={option}
+                  required
+                />
+                <span>
+                  <b>{option}</b>
+                  <i aria-hidden="true"></i>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="single-implant-form__step" data-step-id="availability" hidden>
+        <p class="single-implant-form__kicker">Disponibilità e urgenza</p>
+        <h2 class="sr-only" tabindex="-1">Indica disponibilità e urgenza</h2>
+
+        <fieldset
+          class="single-implant-form__compact-group"
+          aria-required="true"
+          aria-describedby="single-days-requirement"
+        >
+          <legend>Giorni preferiti</legend>
+          <p id="single-days-requirement" class="sr-only">Seleziona almeno un giorno. Campo obbligatorio.</p>
+          <div class="single-implant-form__compact-options single-implant-form__compact-options--days">
+            {preferredDays.map((day, index) => (
+              <label for={`single-day-${index}`}>
+                <input id={`single-day-${index}`} type="checkbox" name="preferred_visit_days" value={day} />
+                <span>{day}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="single-implant-form__compact-group">
+          <legend>Fascia oraria</legend>
+          <div class="single-implant-form__compact-options single-implant-form__compact-options--two">
+            {preferredTimes.map((time, index) => (
+              <label for={`single-time-${index}`}>
+                <input
+                  id={`single-time-${index}`}
+                  type="radio"
+                  name="preferred_visit_time"
+                  value={time}
+                  required
+                />
+                <span>{time}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="single-implant-form__compact-group single-implant-form__compact-group--urgency">
+          <legend>È un caso urgente?</legend>
+          <div class="single-implant-form__compact-options single-implant-form__compact-options--two">
+            <label for="single-urgency-yes">
+              <input
+                id="single-urgency-yes"
+                type="radio"
+                name="implantologia_urgency"
+                value="Sì, ho dolore"
+                required
+              />
+              <span>Sì, ho dolore</span>
+            </label>
+            <label for="single-urgency-no">
+              <input
+                id="single-urgency-no"
+                type="radio"
+                name="implantologia_urgency"
+                value="No"
+                required
+              />
+              <span>No</span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="single-implant-form__step" data-step-id="contact-channel" hidden>
+        <p class="single-implant-form__kicker">Preferenza di contatto</p>
+        <h2 tabindex="-1">Come preferisci essere ricontattato?</h2>
+        <fieldset>
+          <legend class="sr-only">Seleziona il canale di ricontatto preferito</legend>
+          <div class="single-implant-form__options">
+            {contactChannels.map((option, index) => (
+              <label class="single-implant-form__option" for={`single-channel-${index}`}>
+                <input
+                  id={`single-channel-${index}`}
+                  type="radio"
+                  name="preferred_contact_channel"
+                  value={option}
+                  required
+                />
+                <span>
+                  <b>{option}</b>
+                  <i aria-hidden="true"></i>
+                </span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="single-implant-form__step" data-step-id="contacts" hidden>
+        <p class="single-implant-form__kicker">Conferma e contatti</p>
+        <h2 tabindex="-1">Ultime informazioni</h2>
+
+        <div class="single-implant-form__contact-fields">
+          <label class="single-implant-form__field" for="single-name">
+            <span class="sr-only">Nome e cognome</span>
+            <input
+              id="single-name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              placeholder="Nome e Cognome"
+              required
+            />
+          </label>
+          <label class="single-implant-form__field" for="single-phone">
+            <span class="sr-only">Telefono</span>
+            <input
+              id="single-phone"
+              name="phone"
+              type="tel"
+              inputmode="tel"
+              autocomplete="tel"
+              placeholder="Telefono"
+            />
+          </label>
+          <label class="single-implant-form__field" for="single-email">
+            <span class="sr-only">Email</span>
+            <input
+              id="single-email"
+              name="email"
+              type="email"
+              inputmode="email"
+              autocomplete="email"
+              placeholder="Email"
+            />
+          </label>
+        </div>
+
+        <label class="single-implant-form__privacy" for="single-privacy">
+          <input id="single-privacy" name="privacy_consent" type="checkbox" required />
+          <span>
+            Ho letto e accetto l’<a href="/privacy-policy/" target="_blank" rel="noopener noreferrer">informativa sulla privacy</a>.
+            I tuoi dati saranno trattati solo per gestire la richiesta di prenotazione.
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <p class="single-implant-form__error" data-form-error aria-live="assertive"></p>
+
+    <div class="single-implant-form__navigation">
+      <button
+        class="single-implant-form__back"
+        type="button"
+        data-form-back
+        aria-label="Torna al passaggio precedente"
+        hidden
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m15 18-6-6 6-6"></path>
+        </svg>
+      </button>
+      <button class="single-implant-form__continue" type="button" data-form-next disabled>Continua</button>
+      <button class="single-implant-form__submit" type="submit" data-form-submit hidden>Invia Richiesta</button>
+    </div>
+  </form>
+</section>
+
+<ImplantologiaAttribution serviceInterest={serviceInterest} isLanding />
+
+<script>
+  type StepId =
+    | "problem"
+    | "problem-detail"
+    | "duration"
+    | "impact"
+    | "goal"
+    | "goal-detail"
+    | "previous-visit"
+    | "imaging"
+    | "age"
+    | "availability"
+    | "contact-channel"
+    | "contacts";
+
+  const singleImplantStepPositions: Record<StepId, number> = {
+    problem: 1,
+    "problem-detail": 1.5,
+    duration: 2,
+    impact: 3,
+    goal: 4,
+    "goal-detail": 4.5,
+    "previous-visit": 5,
+    imaging: 6,
+    age: 7,
+    availability: 8,
+    "contact-channel": 9,
+    contacts: 10,
+  };
+
+  const markSingleImplantConversionPending = () => {
+    const conversionId =
+      typeof window.crypto?.randomUUID === "function"
+        ? window.crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+    try {
+      window.sessionStorage.setItem("lead_conversion_scope", "implantologia");
+      window.sessionStorage.setItem("lead_conversion_id", conversionId);
+      window.sessionStorage.setItem("lead_conversion_pending", "true");
+    } catch {
+      // L'invio del lead non deve fallire se lo storage è disabilitato.
+    }
+  };
+
+  const initialiseSingleImplantForm = () => {
+    document.querySelectorAll<HTMLFormElement>("form[data-single-implant-form]").forEach((form) => {
+      if (form.dataset.submitHandlerAttached === "true") return;
+      form.dataset.submitHandlerAttached = "true";
+
+      const stepElements = new Map<StepId, HTMLElement>();
+      form.querySelectorAll<HTMLElement>("[data-step-id]").forEach((step) => {
+        const stepId = step.dataset.stepId as StepId | undefined;
+        if (stepId) stepElements.set(stepId, step);
+      });
+
+      const progress = form.querySelector<HTMLElement>("[data-form-progress]");
+      const progressFill = form.querySelector<HTMLElement>("[data-progress-fill]");
+      const backButton = form.querySelector<HTMLButtonElement>("[data-form-back]");
+      const nextButton = form.querySelector<HTMLButtonElement>("[data-form-next]");
+      const submitButton = form.querySelector<HTMLButtonElement>("[data-form-submit]");
+      const errorElement = form.querySelector<HTMLElement>("[data-form-error]");
+      const phoneInput = form.elements.namedItem("phone") as HTMLInputElement | null;
+      const emailInput = form.elements.namedItem("email") as HTMLInputElement | null;
+      const problemDetailInput = form.elements.namedItem("implantologia_problem_detail") as HTMLInputElement | null;
+      const goalDetailInput = form.elements.namedItem("implantologia_goal_detail") as HTMLTextAreaElement | null;
+      let currentStep: StepId = "problem";
+      let isSubmitting = false;
+
+      const checkedValue = (name: string) => {
+        const control = form.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`);
+        return control?.value || "";
+      };
+
+      const buildFlow = (): StepId[] => {
+        const problem = checkedValue("implantologia_problem_type");
+        const goal = checkedValue("implantologia_goal");
+
+        return [
+          "problem",
+          ...(problem === "Altro" ? (["problem-detail"] as StepId[]) : []),
+          "duration",
+          "impact",
+          "goal",
+          ...(goal === "Altro" ? (["goal-detail"] as StepId[]) : []),
+          "previous-visit",
+          "imaging",
+          "age",
+          "availability",
+          "contact-channel",
+          "contacts",
+        ];
+      };
+
+      const setError = (message = "") => {
+        if (errorElement) errorElement.textContent = message;
+      };
+
+      const clearInvalidState = () => {
+        form.querySelectorAll<HTMLElement>("[aria-invalid='true']").forEach((control) => {
+          control.removeAttribute("aria-invalid");
+        });
+      };
+
+      const invalid = (message: string, element: HTMLElement | null = null) => ({
+        valid: false,
+        message,
+        element,
+      });
+
+      const valid = () => ({ valid: true, message: "", element: null as HTMLElement | null });
+
+      const validateStep = (stepId: StepId) => {
+        const step = stepElements.get(stepId) || null;
+
+        if (stepId === "problem" && !checkedValue("implantologia_problem_type")) {
+          return invalid("Seleziona la situazione principale.", step?.querySelector("input") || null);
+        }
+        if (stepId === "problem-detail" && !problemDetailInput?.value.trim()) {
+          return invalid("Descrivi brevemente la situazione.", problemDetailInput);
+        }
+        if (stepId === "duration" && !checkedValue("implantologia_problem_duration")) {
+          return invalid("Indica da quanto tempo hai questo problema.", step?.querySelector("input") || null);
+        }
+        if (stepId === "impact" && !checkedValue("implantologia_daily_impact")) {
+          return invalid("Indica quanto incide il problema nella tua giornata.", step?.querySelector("input") || null);
+        }
+        if (stepId === "goal" && !checkedValue("implantologia_goal")) {
+          return invalid("Seleziona il tuo obiettivo principale.", step?.querySelector("input") || null);
+        }
+        if (stepId === "goal-detail" && !goalDetailInput?.value.trim()) {
+          return invalid("Descrivi brevemente il tuo obiettivo.", goalDetailInput);
+        }
+        if (stepId === "previous-visit" && !checkedValue("implantologia_previous_visit")) {
+          return invalid("Indica se hai già fatto una visita.", step?.querySelector("input") || null);
+        }
+        if (stepId === "imaging" && !checkedValue("implantologia_imaging_available")) {
+          return invalid("Indica se hai già una radiografia o una CBCT recente.", step?.querySelector("input") || null);
+        }
+        if (stepId === "age" && !checkedValue("implantologia_age_range")) {
+          return invalid("Seleziona la tua fascia d’età.", step?.querySelector("input") || null);
+        }
+        if (stepId === "availability") {
+          const selectedDays = form.querySelectorAll<HTMLInputElement>('input[name="preferred_visit_days"]:checked');
+          if (selectedDays.length === 0) {
+            return invalid("Seleziona almeno un giorno preferito.", step?.querySelector('input[name="preferred_visit_days"]') || null);
+          }
+          if (!checkedValue("preferred_visit_time")) {
+            return invalid("Seleziona una fascia oraria.", step?.querySelector('input[name="preferred_visit_time"]') || null);
+          }
+          if (!checkedValue("implantologia_urgency")) {
+            return invalid("Indica se il caso è urgente.", step?.querySelector('input[name="implantologia_urgency"]') || null);
+          }
+        }
+        if (stepId === "contact-channel" && !checkedValue("preferred_contact_channel")) {
+          return invalid("Seleziona come preferisci essere ricontattato.", step?.querySelector("input") || null);
+        }
+        if (stepId === "contacts") {
+          const nameInput = form.elements.namedItem("name") as HTMLInputElement | null;
+          const privacyInput = form.elements.namedItem("privacy_consent") as HTMLInputElement | null;
+          const channel = checkedValue("preferred_contact_channel");
+
+          if (!nameInput?.value.trim() || nameInput.value.trim().length < 2) {
+            return invalid("Inserisci nome e cognome.", nameInput);
+          }
+
+          if (channel === "Email") {
+            if (!emailInput?.value.trim() || !emailInput.checkValidity()) {
+              return invalid("Inserisci un indirizzo email valido.", emailInput);
+            }
+          } else {
+            const phoneDigits = phoneInput?.value.replace(/\D/g, "") || "";
+            if (phoneDigits.length < 6) {
+              return invalid("Inserisci un numero di telefono valido.", phoneInput);
+            }
+          }
+
+          if (emailInput?.value.trim() && !emailInput.checkValidity()) {
+            return invalid("Inserisci un indirizzo email valido.", emailInput);
+          }
+          if (!privacyInput?.checked) {
+            return invalid("Accetta l’informativa sulla privacy per inviare la richiesta.", privacyInput);
+          }
+        }
+
+        return valid();
+      };
+
+      const focusInvalidElement = (element: HTMLElement | null) => {
+        if (!element) return;
+        element.setAttribute("aria-invalid", "true");
+        element.focus({ preventScroll: true });
+      };
+
+      const updateContactRequirements = () => {
+        const channel = checkedValue("preferred_contact_channel");
+        const requiresPhone = channel === "Telefono" || channel === "WhatsApp";
+        const requiresEmail = channel === "Email";
+
+        if (phoneInput) {
+          phoneInput.required = requiresPhone;
+          phoneInput.setAttribute("aria-required", String(requiresPhone));
+        }
+        if (emailInput) {
+          emailInput.required = requiresEmail;
+          emailInput.setAttribute("aria-required", String(requiresEmail));
+        }
+      };
+
+      const updateNavigationState = () => {
+        const flow = buildFlow();
+        const index = flow.indexOf(currentStep);
+        const isFinalStep = currentStep === "contacts";
+        const stepIsValid = validateStep(currentStep).valid;
+
+        if (backButton) backButton.hidden = index <= 0;
+        if (nextButton) {
+          nextButton.hidden = isFinalStep;
+          nextButton.disabled = !stepIsValid;
+        }
+        if (submitButton) {
+          submitButton.hidden = !isFinalStep;
+          submitButton.disabled = isSubmitting || !stepIsValid;
+        }
+      };
+
+      const showStep = (stepId: StepId, focusHeading = true) => {
+        currentStep = stepId;
+        stepElements.forEach((step, id) => {
+          const isActive = id === currentStep;
+          step.hidden = !isActive;
+          step.setAttribute("aria-hidden", String(!isActive));
+        });
+
+        const position = singleImplantStepPositions[currentStep];
+        const percentage = Math.round((position / 10) * 100);
+        if (progressFill) progressFill.style.width = `${percentage}%`;
+        progress?.setAttribute("aria-valuenow", String(percentage));
+        setError();
+        clearInvalidState();
+        updateContactRequirements();
+        updateNavigationState();
+
+        if (focusHeading) {
+          stepElements.get(currentStep)?.querySelector<HTMLElement>("h2")?.focus({ preventScroll: true });
+        }
+      };
+
+      form.addEventListener("change", (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLInputElement)) return;
+
+        if (target.name === "implantologia_problem_type" && target.value !== "Altro" && problemDetailInput) {
+          problemDetailInput.value = "";
+        }
+        if (target.name === "implantologia_goal" && target.value !== "Altro" && goalDetailInput) {
+          goalDetailInput.value = "";
+        }
+
+        target.removeAttribute("aria-invalid");
+        setError();
+        updateContactRequirements();
+        updateNavigationState();
+      });
+
+      form.addEventListener("input", (event) => {
+        if (event.target instanceof HTMLElement) event.target.removeAttribute("aria-invalid");
+        setError();
+        updateNavigationState();
+      });
+
+      nextButton?.addEventListener("click", () => {
+        const result = validateStep(currentStep);
+        if (!result.valid) {
+          setError(result.message);
+          focusInvalidElement(result.element);
+          return;
+        }
+
+        const flow = buildFlow();
+        const currentIndex = flow.indexOf(currentStep);
+        const nextStep = flow[currentIndex + 1];
+        if (nextStep) showStep(nextStep);
+      });
+
+      backButton?.addEventListener("click", () => {
+        const flow = buildFlow();
+        const currentIndex = flow.indexOf(currentStep);
+        const previousStep = flow[currentIndex - 1];
+        if (previousStep) showStep(previousStep);
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (isSubmitting) return;
+
+        const flow = buildFlow();
+        for (const stepId of flow) {
+          const result = validateStep(stepId);
+          if (!result.valid) {
+            showStep(stepId, false);
+            setError(result.message);
+            focusInvalidElement(result.element);
+            return;
+          }
+        }
+
+        isSubmitting = true;
+        const defaultSubmitLabel = submitButton?.textContent || "Invia Richiesta";
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Invio…";
+        }
+        setError();
+
+        const formData = new FormData(form);
+        const preferredVisitDays = formData.getAll("preferred_visit_days").map(String);
+        const payload = {
+          ...Object.fromEntries(formData.entries()),
+          preferred_visit_days: preferredVisitDays,
+          nome: formData.get("name") || "",
+          nomeCompleto: formData.get("name") || "",
+          telefono: formData.get("phone") || "",
+          messaggio: "",
+          privacy_consent: formData.get("privacy_consent") === "on" ? "true" : "",
+          servizio: "Valutazione implantologica",
+          paginaProvenienza: document.referrer || "",
+          paginaCorrente: window.location.href,
+        };
+
+        try {
+          const response = await fetch("/api/send-lead", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            const result = await response.json().catch(() => ({}));
+            throw new Error(result.error || "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+          }
+
+          markSingleImplantConversionPending();
+          window.location.href = "/thank-you-page/";
+        } catch (error) {
+          isSubmitting = false;
+          if (submitButton) {
+            submitButton.textContent = defaultSubmitLabel;
+            submitButton.disabled = false;
+          }
+          setError(error instanceof Error ? error.message : "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+          updateNavigationState();
+        }
+      });
+
+      showStep("problem", false);
+    });
+  };
+
+  initialiseSingleImplantForm();
+  document.addEventListener("astro:page-load", initialiseSingleImplantForm);
+</script>
+
+<style>
+  .single-implant-form {
+    position: relative;
+    min-height: 600px;
+    overflow: hidden;
+    border-radius: 40px;
+    background: #022166;
+    box-shadow: 0 30px 70px rgba(2, 33, 102, .28);
+    color: #fff;
+  }
+
+  .single-implant-form__glow {
+    position: absolute;
+    top: -128px;
+    right: -128px;
+    width: 256px;
+    height: 256px;
+    border-radius: 50%;
+    background: rgba(85, 180, 255, .14);
+    filter: blur(46px);
+    pointer-events: none;
+  }
+
+  .single-implant-form__form {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height: 600px;
+    flex-direction: column;
+    padding: 40px;
+  }
+
+  .single-implant-form__progress {
+    width: 100%;
+    height: 4px;
+    flex: 0 0 auto;
+    overflow: hidden;
+    margin-bottom: 32px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .1);
+  }
+
+  .single-implant-form__progress span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: #55b4ff;
+    transition: width 700ms ease;
+  }
+
+  .single-implant-form__content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+  }
+
+  .single-implant-form__step {
+    animation: single-implant-step-in 500ms ease both;
+  }
+
+  .single-implant-form__step[hidden] {
+    display: none;
+  }
+
+  .single-implant-form__kicker {
+    margin: 0 0 8px;
+    color: #55b4ff;
+    font-size: 9px;
+    font-style: italic;
+    font-weight: 800;
+    letter-spacing: .2em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .single-implant-form h2 {
+    margin: 0 0 24px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -.025em;
+    line-height: 1.33;
+  }
+
+  .single-implant-form h2:focus {
+    outline: none;
+  }
+
+  .single-implant-form fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .single-implant-form__options {
+    display: grid;
+    gap: 12px;
+  }
+
+  .single-implant-form__option {
+    position: relative;
+    display: block;
+    cursor: pointer;
+  }
+
+  .single-implant-form__option input,
+  .single-implant-form__compact-options input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .single-implant-form__option > span {
+    display: flex;
+    min-height: 56px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    border: 2px solid rgba(255, 255, 255, .1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .05);
+    color: #fff;
+    transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+  }
+
+  .single-implant-form__option b {
+    font-size: 13px;
+    font-weight: 750;
+    letter-spacing: -.02em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .single-implant-form__option i {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 50%;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 900;
+  }
+
+  .single-implant-form__option input:checked + span {
+    border-color: #55b4ff;
+    background: #55b4ff;
+    color: #022166;
+  }
+
+  .single-implant-form__option input:checked + span i {
+    border-color: #022166;
+  }
+
+  .single-implant-form__option input:checked + span i::after {
+    content: "✓";
+  }
+
+  .single-implant-form__option input:focus-visible + span,
+  .single-implant-form__compact-options input:focus-visible + span {
+    outline: 3px solid rgba(85, 180, 255, .45);
+    outline-offset: 3px;
+  }
+
+  .single-implant-form__option input[aria-invalid="true"] + span,
+  .single-implant-form__compact-options input[aria-invalid="true"] + span {
+    border-color: #ff9f9f;
+  }
+
+  .single-implant-form__field {
+    display: block;
+  }
+
+  .single-implant-form__field input,
+  .single-implant-form__field textarea {
+    width: 100%;
+    min-height: 50px;
+    border: 0;
+    border-bottom: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 0;
+    padding: 12px;
+    background: rgba(255, 255, 255, .05);
+    color: #fff;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    outline: none;
+    transition: border-color 160ms ease;
+  }
+
+  .single-implant-form__field textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .single-implant-form__field input::placeholder,
+  .single-implant-form__field textarea::placeholder {
+    color: rgba(255, 255, 255, .45);
+  }
+
+  .single-implant-form__field input:focus,
+  .single-implant-form__field textarea:focus {
+    border-bottom-color: #55b4ff;
+  }
+
+  .single-implant-form__field input[aria-invalid="true"],
+  .single-implant-form__field textarea[aria-invalid="true"] {
+    border-bottom-color: #ff9f9f;
+  }
+
+  .single-implant-form__compact-group {
+    display: grid;
+    gap: 8px;
+  }
+
+  .single-implant-form__compact-group + .single-implant-form__compact-group {
+    margin-top: 18px;
+  }
+
+  .single-implant-form__compact-group--urgency {
+    padding-top: 18px !important;
+    border-top: 1px solid rgba(255, 255, 255, .1) !important;
+  }
+
+  .single-implant-form__compact-group legend {
+    margin-bottom: 8px;
+    color: #55b4ff;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .single-implant-form__compact-options {
+    display: grid;
+    gap: 8px;
+  }
+
+  .single-implant-form__compact-options--days {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .single-implant-form__compact-options--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .single-implant-form__compact-options label {
+    position: relative;
+    display: block;
+    cursor: pointer;
+  }
+
+  .single-implant-form__compact-options span {
+    display: flex;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: 2px solid rgba(255, 255, 255, .1);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .05);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+  }
+
+  .single-implant-form__compact-options input:checked + span {
+    border-color: #55b4ff;
+    background: #55b4ff;
+    color: #022166;
+  }
+
+  .single-implant-form__contact-fields {
+    display: grid;
+    gap: 14px;
+  }
+
+  .single-implant-form__privacy {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 24px;
+    color: rgba(255, 255, 255, .58);
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 550;
+    line-height: 1.55;
+  }
+
+  .single-implant-form__privacy input {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 auto;
+    margin-top: 1px;
+    accent-color: #55b4ff;
+  }
+
+  .single-implant-form__privacy input[aria-invalid="true"] {
+    outline: 2px solid #ff9f9f;
+    outline-offset: 2px;
+  }
+
+  .single-implant-form__privacy a {
+    color: #55b4ff;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .single-implant-form__privacy a:hover {
+    text-decoration: underline;
+  }
+
+  .single-implant-form__error {
+    min-height: 18px;
+    margin: 14px 0 4px;
+    color: #ffbaba;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .single-implant-form__navigation {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 12px;
+  }
+
+  .single-implant-form__navigation button {
+    min-height: 52px;
+    border-radius: 12px;
+    font: inherit;
+    cursor: pointer;
+    transition: border-color 160ms ease, background 160ms ease, opacity 160ms ease;
+  }
+
+  .single-implant-form__back {
+    display: inline-flex;
+    width: 56px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, .1);
+    background: transparent;
+    color: #fff;
+  }
+
+  .single-implant-form__back svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+  }
+
+  .single-implant-form__continue,
+  .single-implant-form__submit {
+    flex: 1 1 auto;
+    border: 0;
+    background: #55b4ff;
+    color: #022166;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .single-implant-form__navigation button:hover:not(:disabled) {
+    border-color: #55b4ff;
+    background: #fff;
+  }
+
+  .single-implant-form__navigation button:focus-visible {
+    outline: 3px solid rgba(85, 180, 255, .45);
+    outline-offset: 3px;
+  }
+
+  .single-implant-form__navigation button:disabled {
+    cursor: not-allowed;
+    opacity: .3;
+  }
+
+  .single-implant-form__navigation button[hidden] {
+    display: none;
+  }
+
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+  }
+
+  @keyframes single-implant-step-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .single-implant-form,
+    .single-implant-form__form {
+      min-height: 600px;
+    }
+
+    .single-implant-form__form {
+      padding: 24px;
+    }
+
+    .single-implant-form__option b {
+      font-size: 12px;
+    }
+
+    .single-implant-form__progress {
+      margin-bottom: 28px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .single-implant-form__step {
+      animation: none;
+    }
+
+    .single-implant-form__progress span,
+    .single-implant-form__option > span,
+    .single-implant-form__compact-options span,
+    .single-implant-form__navigation button {
+      transition: none;
+    }
+  }
+</style>

@@ -5,6 +5,7 @@ import GoogleAdsTracking from "../GoogleAdsTracking.astro";
 import SiteFooter from "../SiteFooter.astro";
 import type { ImplantologiaPage } from "../../data/implantologiaPages";
 import { implantologiaPages } from "../../data/implantologiaPages";
+import ImpiantoSingoloAnamnesiForm from "./ImpiantoSingoloAnamnesiForm.astro";
 import ImplantologiaHeader from "./ImplantologiaHeader.astro";
 import ImplantologiaMultiStepForm from "./ImplantologiaMultiStepForm.astro";
 import ImplantologiaReviews from "./ImplantologiaReviews.astro";
@@ -113,14 +114,18 @@ const visitChecks = [
               >Scrivi su WhatsApp</a>
             </div>
             <ul class="implant-hero__assurances" aria-label="Informazioni sulla richiesta">
-              <li>Questionario in 3 passaggi</li>
+              <li>{page.slug === "impianto-singolo" ? "Questionario anamnestico guidato" : "Questionario in 3 passaggi"}</li>
               <li>Richiesta senza conferma automatica</li>
               <li>Ricontatto da parte dello studio</li>
             </ul>
           </div>
 
           <div class="implant-hero__form">
-            <ImplantologiaMultiStepForm slug={page.slug} serviceInterest={page.serviceInterest} />
+            {page.slug === "impianto-singolo" ? (
+              <ImpiantoSingoloAnamnesiForm serviceInterest={page.serviceInterest} />
+            ) : (
+              <ImplantologiaMultiStepForm slug={page.slug} serviceInterest={page.serviceInterest} />
+            )}
           </div>
         </div>
       </section>
