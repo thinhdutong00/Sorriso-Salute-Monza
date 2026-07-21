@@ -1,37 +1,148 @@
 ---
+import type { ImplantologiaPage } from "../../data/implantologiaPages";
 import ImplantologiaAttribution from "./ImplantologiaAttribution.astro";
 import ImplantologiaHiddenFields from "./ImplantologiaHiddenFields.astro";
 
+type ImplantologiaSlug = ImplantologiaPage["slug"];
+
 interface Props {
+  slug: ImplantologiaSlug;
   serviceInterest: string;
 }
 
-const { serviceInterest } = Astro.props;
+interface AnamnesiConfig {
+  ariaLabel: string;
+  formVariant: `${ImplantologiaSlug}-anamnesi`;
+  problemQuestion: string;
+  problemLegend: string;
+  problemOptions: readonly string[];
+  problemDetailPlaceholder: string;
+  impactOptions: readonly string[];
+  goalOptions: readonly string[];
+  previousVisitQuestion: string;
+  previousVisitLegend: string;
+  urgencyYes: string;
+}
 
-const problemOptions = [
-  "Ho già un dente mancante",
-  "Ho un dente da estrarre",
-  "Ho un dente rotto o compromesso",
-  "Altro",
-];
+const { slug, serviceInterest } = Astro.props;
+
+const anamnesiConfigs: Record<ImplantologiaSlug, AnamnesiConfig> = {
+  "impianto-singolo": {
+    ariaLabel: "Questionario per la valutazione di un impianto singolo",
+    formVariant: "impianto-singolo-anamnesi",
+    problemQuestion: "Qual è la situazione principale?",
+    problemLegend: "Seleziona la situazione principale",
+    problemOptions: [
+      "Ho già un dente mancante",
+      "Ho un dente da estrarre",
+      "Ho un dente rotto o compromesso",
+      "Altro",
+    ],
+    problemDetailPlaceholder: "Es: dente perso, mobile o fratturato…",
+    impactOptions: [
+      "Quasi solo sull’estetica",
+      "Evito di masticare da quel lato",
+      "Ho dolore o fastidio frequente",
+    ],
+    goalOptions: [
+      "Tornare a masticare con sicurezza",
+      "Ripristinare l’estetica del sorriso",
+      "Capire se l’impianto singolo è adatto",
+      "Altro",
+    ],
+    previousVisitQuestion: "Hai già fatto una visita per questo dente?",
+    previousVisitLegend: "Indica se hai già fatto una visita per questo dente",
+    urgencyYes: "Sì, ho dolore",
+  },
+  "denti-fissi": {
+    ariaLabel: "Questionario per la valutazione di denti fissi su impianti",
+    formVariant: "denti-fissi-anamnesi",
+    problemQuestion: "Qual è la tua situazione principale?",
+    problemLegend: "Seleziona la tua situazione principale",
+    problemOptions: [
+      "Mi mancano più denti",
+      "Ho più denti compromessi o da estrarre",
+      "Uso una protesi mobile",
+      "Altro",
+    ],
+    problemDetailPlaceholder: "Es: denti mancanti, compromessi o protesi mobile…",
+    impactOptions: [
+      "Faccio fatica a masticare alcuni cibi",
+      "La protesi o i denti residui sono poco stabili",
+      "Ho dolore o fastidio frequente",
+    ],
+    goalOptions: [
+      "Tornare a masticare con sicurezza",
+      "Avere una soluzione più stabile e fissa",
+      "Capire se i denti fissi su impianti sono adatti",
+      "Altro",
+    ],
+    previousVisitQuestion: "Hai già fatto una visita per valutare questa situazione?",
+    previousVisitLegend: "Indica se hai già fatto una visita per valutare questa situazione",
+    urgencyYes: "Sì, ho dolore",
+  },
+  "ponte-su-impianti": {
+    ariaLabel: "Questionario per la valutazione di un ponte su impianti",
+    formVariant: "ponte-su-impianti-anamnesi",
+    problemQuestion: "Qual è la situazione principale nella zona da trattare?",
+    problemLegend: "Seleziona la situazione principale nella zona da trattare",
+    problemOptions: [
+      "Mi mancano più denti vicini",
+      "Ho un ponte da controllare o sostituire",
+      "Ho denti vicini compromessi o da estrarre",
+      "Altro",
+    ],
+    problemDetailPlaceholder: "Es: denti mancanti, ponte da sostituire o zona compromessa…",
+    impactOptions: [
+      "Evito di masticare in quella zona",
+      "Lo spazio o il ponte mi condiziona quando sorrido",
+      "Ho dolore o fastidio frequente",
+    ],
+    goalOptions: [
+      "Recuperare una masticazione stabile",
+      "Ripristinare l’estetica della zona",
+      "Capire se il ponte su impianti è adatto",
+      "Altro",
+    ],
+    previousVisitQuestion: "Hai già fatto una visita per questa zona?",
+    previousVisitLegend: "Indica se hai già fatto una visita per questa zona",
+    urgencyYes: "Sì, ho dolore",
+  },
+  "protesi-instabile": {
+    ariaLabel: "Questionario per la valutazione di una protesi instabile",
+    formVariant: "protesi-instabile-anamnesi",
+    problemQuestion: "Qual è il problema principale con la protesi?",
+    problemLegend: "Seleziona il problema principale con la protesi",
+    problemOptions: [
+      "Si muove mentre mangio",
+      "Si muove quando parlo o devo usare adesivo",
+      "Crea dolore, irritazioni o piaghe",
+      "Altro",
+    ],
+    problemDetailPlaceholder: "Es: quando si muove o quale fastidio provoca…",
+    impactOptions: [
+      "Mi limita nella scelta dei cibi",
+      "Mi condiziona quando parlo o sto con gli altri",
+      "Provoca dolore o irritazioni frequenti",
+    ],
+    goalOptions: [
+      "Rendere più stabile la protesi attuale",
+      "Capire se può essere corretta o sostituita",
+      "Valutare una soluzione stabilizzata da impianti",
+      "Altro",
+    ],
+    previousVisitQuestion: "Hai già fatto controllare questa protesi?",
+    previousVisitLegend: "Indica se hai già fatto controllare questa protesi",
+    urgencyYes: "Sì, ho dolore o irritazioni",
+  },
+};
+
+const config = anamnesiConfigs[slug];
 
 const durationOptions = ["Meno di 1 mese", "Da 1 a 6 mesi", "Oltre 6 mesi"];
 
-const impactOptions = [
-  "Quasi solo sull’estetica",
-  "Evito di masticare da quel lato",
-  "Ho dolore o fastidio frequente",
-];
-
-const goalOptions = [
-  "Tornare a masticare con sicurezza",
-  "Ripristinare l’estetica del sorriso",
-  "Capire se l’impianto singolo è adatto",
-  "Altro",
-];
-
 const yesNoOptions = ["Sì", "No"];
-const ageOptions = ["Sotto i 30", "31–50", "51–65", "65+"];
+const ageOptions = ["Fino a 30 anni", "31–50 anni", "51–65 anni", "Oltre 65 anni"];
 const preferredDays = ["Lun", "Mar", "Mer", "Gio", "Ven"];
 const preferredTimes = ["Mattina", "Pomeriggio"];
 const contactChannels = ["Telefono", "WhatsApp", "Email"];
@@ -40,21 +151,23 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
 <section
   class="single-implant-form"
   id="prenota"
-  aria-label="Questionario per la valutazione di un impianto singolo"
+  aria-label={config.ariaLabel}
 >
   <div class="single-implant-form__glow" aria-hidden="true"></div>
 
   <form
     class="single-implant-form__form"
-    id="implantologia-form-impianto-singolo"
+    id={`implantologia-form-${slug}`}
     action="/api/send-lead"
     method="post"
     data-implantologia-form
-    data-single-implant-form
+    data-implantologia-anamnesi-form
+    data-canonical-service-interest={serviceInterest}
+    {...(slug === "impianto-singolo" ? { "data-single-implant-form": "" } : {})}
     novalidate
   >
     <ImplantologiaHiddenFields />
-    <input type="hidden" name="form_variant" value="impianto-singolo-anamnesi" />
+    <input type="hidden" name="form_variant" value={config.formVariant} />
 
     <div
       class="single-implant-form__progress"
@@ -71,11 +184,11 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
     <div class="single-implant-form__content">
       <div class="single-implant-form__step" data-step-id="problem">
         <p class="single-implant-form__kicker">Inquadramento implantologico</p>
-        <h2 tabindex="-1">Qual è la situazione principale?</h2>
+        <h2 tabindex="-1">{config.problemQuestion}</h2>
         <fieldset>
-          <legend class="sr-only">Seleziona la situazione principale</legend>
+          <legend class="sr-only">{config.problemLegend}</legend>
           <div class="single-implant-form__options">
-            {problemOptions.map((option, index) => (
+            {config.problemOptions.map((option, index) => (
               <label class="single-implant-form__option" for={`single-problem-${index}`}>
                 <input
                   id={`single-problem-${index}`}
@@ -103,7 +216,7 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
             id="single-problem-detail"
             name="implantologia_problem_detail"
             type="text"
-            placeholder="Es: dente perso, mobile o fratturato…"
+            placeholder={config.problemDetailPlaceholder}
             autocomplete="off"
             required
           />
@@ -141,7 +254,7 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
         <fieldset>
           <legend class="sr-only">Seleziona quanto incide il problema nella tua giornata</legend>
           <div class="single-implant-form__options">
-            {impactOptions.map((option, index) => (
+            {config.impactOptions.map((option, index) => (
               <label class="single-implant-form__option" for={`single-impact-${index}`}>
                 <input
                   id={`single-impact-${index}`}
@@ -166,7 +279,7 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
         <fieldset>
           <legend class="sr-only">Seleziona il tuo obiettivo principale</legend>
           <div class="single-implant-form__options">
-            {goalOptions.map((option, index) => (
+            {config.goalOptions.map((option, index) => (
               <label class="single-implant-form__option" for={`single-goal-${index}`}>
                 <input
                   id={`single-goal-${index}`}
@@ -202,9 +315,9 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
 
       <div class="single-implant-form__step" data-step-id="previous-visit" hidden>
         <p class="single-implant-form__kicker">Storico trattamenti</p>
-        <h2 tabindex="-1">Hai già fatto una visita per questo dente?</h2>
+        <h2 tabindex="-1">{config.previousVisitQuestion}</h2>
         <fieldset>
-          <legend class="sr-only">Indica se hai già fatto una visita per questo dente</legend>
+          <legend class="sr-only">{config.previousVisitLegend}</legend>
           <div class="single-implant-form__options">
             {yesNoOptions.map((option, index) => (
               <label class="single-implant-form__option" for={`single-previous-${index}`}>
@@ -322,10 +435,10 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
                 id="single-urgency-yes"
                 type="radio"
                 name="implantologia_urgency"
-                value="Sì, ho dolore"
+                value={config.urgencyYes}
                 required
               />
-              <span>Sì, ho dolore</span>
+              <span>{config.urgencyYes}</span>
             </label>
             <label for="single-urgency-no">
               <input
@@ -453,7 +566,7 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
     | "contact-channel"
     | "contacts";
 
-  const singleImplantStepPositions: Record<StepId, number> = {
+  const anamnesiStepPositions: Record<StepId, number> = {
     problem: 1,
     "problem-detail": 1.5,
     duration: 2,
@@ -468,7 +581,7 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
     contacts: 10,
   };
 
-  const markSingleImplantConversionPending = () => {
+  const markImplantologiaConversionPending = () => {
     const conversionId =
       typeof window.crypto?.randomUUID === "function"
         ? window.crypto.randomUUID()
@@ -483,8 +596,8 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
     }
   };
 
-  const initialiseSingleImplantForm = () => {
-    document.querySelectorAll<HTMLFormElement>("form[data-single-implant-form]").forEach((form) => {
+  const initialiseImplantologiaAnamnesiForms = () => {
+    document.querySelectorAll<HTMLFormElement>("form[data-implantologia-anamnesi-form]").forEach((form) => {
       if (form.dataset.submitHandlerAttached === "true") return;
       form.dataset.submitHandlerAttached = "true";
 
@@ -672,7 +785,7 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
           step.setAttribute("aria-hidden", String(!isActive));
         });
 
-        const position = singleImplantStepPositions[currentStep];
+        const position = anamnesiStepPositions[currentStep];
         const percentage = Math.round((position / 10) * 100);
         if (progressFill) progressFill.style.width = `${percentage}%`;
         progress?.setAttribute("aria-valuenow", String(percentage));
@@ -753,10 +866,17 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
         }
         setError();
 
+        const canonicalServiceInterest = form.dataset.canonicalServiceInterest || "";
+        const serviceInterestInput = form.elements.namedItem("service_interest");
+        if (serviceInterestInput instanceof HTMLInputElement) {
+          serviceInterestInput.value = canonicalServiceInterest;
+        }
+
         const formData = new FormData(form);
         const preferredVisitDays = formData.getAll("preferred_visit_days").map(String);
         const payload = {
           ...Object.fromEntries(formData.entries()),
+          service_interest: canonicalServiceInterest,
           preferred_visit_days: preferredVisitDays,
           nome: formData.get("name") || "",
           nomeCompleto: formData.get("name") || "",
@@ -780,7 +900,7 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
             throw new Error(result.error || "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
           }
 
-          markSingleImplantConversionPending();
+          markImplantologiaConversionPending();
           window.location.href = "/thank-you-page/";
         } catch (error) {
           isSubmitting = false;
@@ -797,8 +917,8 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
     });
   };
 
-  initialiseSingleImplantForm();
-  document.addEventListener("astro:page-load", initialiseSingleImplantForm);
+  initialiseImplantologiaAnamnesiForms();
+  document.addEventListener("astro:page-load", initialiseImplantologiaAnamnesiForms);
 </script>
 
 <style>

@@ -53,7 +53,19 @@ const escapeHtml = (value) =>
 
 const isEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
-const isSingleImplantForm = (value) => normalizeText(value) === "impianto-singolo-anamnesi";
+const sanitizeEmailSubjectPart = (value, maxLength = 120) =>
+  normalizeText(value)
+    .replace(/[\u0000-\u001f\u007f-\u009f]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, maxLength);
+
+const ANAMNESIS_FORM_VARIANTS = new Map([
+  ["impianto-singolo-anamnesi", "Impianto singolo"],
+  ["denti-fissi-anamnesi", "Denti fissi"],
+  ["ponte-su-impianti-anamnesi", "Ponte su impianti"],
+  ["protesi-instabile-anamnesi", "Protesi instabile"],
+]);
 
 const recipientsFromEnv = (value) =>
   normalizeText(value)
@@ -97,12 +109,15 @@ const buildSections = (lead) => {
   const isImplantologia =
     lead.landingPage.startsWith("/implantologia/") ||
     Boolean(lead.implantologiaProblemType || lead.implantologiaProblemDuration);
+  const isAnamnesis = Boolean(lead.formVariant);
 
   return [
     {
       title: isImplantologia ? "Richiesta implantologia" : "Richiesta",
       rows: compactRows([
-        ["Servizio/interesse", lead.serviceInterest || lead.servizio],
+        ["Variante modulo", isAnamnesis ? lead.formVariant : ""],
+        ["Trattamento richiesto", isAnamnesis ? lead.serviceInterest : ""],
+        ["Servizio/interesse", isAnamnesis ? "" : lead.serviceInterest || lead.servizio],
         ["Situazione indicata", lead.implantologiaProblemType],
         ["Dettagli della situazione", lead.implantologiaProblemDetail],
         ["Durata del problema", lead.implantologiaProblemDuration],
@@ -180,6 +195,17 @@ export default async function handler(req, res) {
 
   try {
     const body = await readRequestBody(req);
+    const hasNonEmptyFormVariant =
+      body.form_variant !== undefined &&
+      body.form_variant !== null &&
+      (typeof body.form_variant !== "string" || Boolean(body.form_variant.trim()));
+    const formVariant = normalizeText(body.form_variant);
+    const anamnesisServiceInterest = ANAMNESIS_FORM_VARIANTS.get(formVariant) || "";
+
+    if (hasNonEmptyFormVariant && !anamnesisServiceInterest) {
+      return res.status(400).json({ error: "Variante del modulo non valida" });
+    }
+
     const email = normalizeText(body.email);
     const lead = {
       nome: normalizeText(body.nome || body.nomeCompleto || body.name),
@@ -210,9 +236,9 @@ export default async function handler(req, res) {
       implantologiaUrgency: normalizeText(body.implantologia_urgency),
       preferredContactChannel: normalizeText(body.preferred_contact_channel),
       privacyConsent: normalizeText(body.privacy_consent),
-      formVariant: normalizeText(body.form_variant),
+      formVariant,
       landingPage: normalizeText(body.landing_page),
-      serviceInterest: normalizeText(body.service_interest),
+      serviceInterest: anamnesisServiceInterest || normalizeText(body.service_interest),
       pageTitle: normalizeText(body.page_title),
       utmSource: normalizeText(body.utm_source),
       utmMedium: normalizeText(body.utm_medium),
@@ -229,10 +255,19 @@ export default async function handler(req, res) {
       wbraid: normalizeText(body.wbraid),
     };
 
-    if (isSingleImplantForm(lead.formVariant)) {
+    if (anamnesisServiceInterest) {
+      if (lead.implantologiaProblemType !== "Altro") {
+        lead.implantologiaProblemDetail = "";
+      }
+      if (lead.implantologiaGoal !== "Altro") {
+        lead.implantologiaGoalDetail = "";
+      }
+
       const preferredContactChannel = lead.preferredContactChannel.toLocaleLowerCase("it-IT");
       const allowedContactChannels = ["telefono", "whatsapp", "email"];
       const requiresPhone = ["telefono", "whatsapp"].includes(preferredContactChannel);
+      const phoneDigits = lead.telefono.replace(/\D/g, "");
+      const hasValidPhone = phoneDigits.length >= 6;
 
       const requiredAnswers = [
         [lead.implantologiaProblemType, "Seleziona la situazione principale"],
@@ -260,15 +295,23 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: "Descrivi brevemente il tuo obiettivo" });
       }
 
-      if (!lead.nome) {
-        return res.status(400).json({ error: "Il nome è obbligatorio" });
+      if (lead.nome.length < 2) {
+        return res.status(400).json({ error: "Inserisci un nome valido" });
       }
 
       if (!allowedContactChannels.includes(preferredContactChannel)) {
         return res.status(400).json({ error: "Seleziona un canale di contatto valido" });
       }
 
-      if (requiresPhone && lead.telefono.replace(/\D/g, "").length < 6) {
+      if (lead.email && !isEmail(lead.email)) {
+        return res.status(400).json({ error: "Inserisci un indirizzo email valido" });
+      }
+
+      if (lead.telefono && !hasValidPhone) {
+        return res.status(400).json({ error: "Inserisci un numero di telefono valido" });
+      }
+
+      if (requiresPhone && !hasValidPhone) {
         return res.status(400).json({
           error: "Inserisci un numero di telefono valido per il canale di contatto selezionato",
         });
@@ -325,7 +368,10 @@ export default async function handler(req, res) {
     const payload = {
       from,
       to,
-      subject: `Nuova richiesta ${lead.servizio ? `- ${lead.servizio}` : "valutazione"} - ${lead.nome}`,
+      subject: `Nuova richiesta - ${sanitizeEmailSubjectPart(lead.servizio, 80) || "valutazione"} - ${sanitizeEmailSubjectPart(lead.nome) || "Richiesta"}`.slice(
+        0,
+        240,
+      ),
       html,
       text,
     };
