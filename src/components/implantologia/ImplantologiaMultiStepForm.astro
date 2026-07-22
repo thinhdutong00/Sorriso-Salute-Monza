@@ -534,14 +534,14 @@ const timeSlots = [
 
   .implant-multistep__intro > p:not(.implant-kicker) {
     margin: 12px 0 0;
-    color: #516b77;
+    color: var(--color-text-description);
     font-size: 13px;
     line-height: 1.55;
   }
 
   .implant-multistep__intro .implant-multistep__clinical-note {
     margin-top: 8px;
-    color: #71848c;
+    color: var(--color-text-description);
     font-size: 11px;
   }
 
@@ -625,7 +625,7 @@ const timeSlots = [
   .implant-multistep__option input:checked + span::after { border: 5px solid var(--implant-teal); }
   .implant-multistep__option input:focus-visible + span { outline: 3px solid rgba(20, 125, 131, .25); outline-offset: 2px; }
   .implant-multistep__option input[aria-invalid="true"] + span { border-color: #a12626; }
-  .implant-multistep__guidance { margin: 0; color: #45626e; font-size: 13px; line-height: 1.6; }
+  .implant-multistep__guidance { margin: 0; color: var(--color-text-description); font-size: 13px; line-height: 1.6; }
   .implant-multistep__date-grid, .implant-multistep__contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .implant-multistep__contact-grid label:last-child { grid-column: 1 / -1; }
   .implant-multistep__date-grid label, .implant-multistep__contact-grid label { display: grid; gap: 7px; color: var(--implant-ink); font-size: 12px; font-weight: 800; }
@@ -646,7 +646,7 @@ const timeSlots = [
   .implant-multistep textarea { resize: vertical; }
   .implant-multistep input[aria-invalid="true"], .implant-multistep select[aria-invalid="true"] { border-color: #a12626; box-shadow: 0 0 0 2px rgba(161, 38, 38, .12); }
   .implant-multistep input:focus-visible, .implant-multistep select:focus-visible, .implant-multistep textarea:focus-visible { outline: 3px solid rgba(20, 125, 131, .22); outline-offset: 2px; }
-  .implant-multistep__availability-note { margin: 0; padding: 13px 14px; border-left: 4px solid var(--implant-teal); border-radius: 8px; background: #eef8f7; color: #4c6873; font-size: 11px; line-height: 1.55; }
+  .implant-multistep__availability-note { margin: 0; padding: 13px 14px; border-left: 4px solid var(--implant-teal); border-radius: 8px; background: #eef8f7; color: var(--color-text-description); font-size: 11px; line-height: 1.55; }
   .implant-multistep__privacy { display: flex; align-items: flex-start; gap: 10px; color: #536d78; font-size: 11px; line-height: 1.5; cursor: pointer; }
   .implant-multistep__privacy input { width: 19px; height: 19px; flex: 0 0 auto; margin-top: 1px; accent-color: var(--implant-teal); }
   .implant-multistep__privacy input[aria-invalid="true"] { outline: 2px solid #a12626; outline-offset: 2px; }

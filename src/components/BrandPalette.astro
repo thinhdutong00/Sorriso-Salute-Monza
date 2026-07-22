@@ -4,6 +4,8 @@
   :root,
   .brand-palette,
   .elementor-kit-4078 {
+    --color-text-description: #334155 !important;
+    --color-text-description-inverse: #ffffff !important;
     --brand-font-family: Inter, sans-serif !important;
     --brand-nav-font-family: Inter, sans-serif !important;
     --brand-primary: #0E384C !important;
@@ -23,7 +25,7 @@
     --brand-surface: #ffffff !important;
     --brand-text: #0f172a !important;
     --brand-muted: #475569 !important;
-    --brand-description: #475569 !important;
+    --brand-description: var(--color-text-description) !important;
     --brand-border: #bfc5d2 !important;
     --brand-accent: #1e84b5 !important;
     --brand-accent-light: #ffffff !important;
@@ -45,7 +47,7 @@
     --e-global-typography-accent-line-height: 1 !important;
     --e-global-color-primary: #0E384C !important;
     --e-global-color-secondary: #ffffff !important;
-    --e-global-color-text: #475569 !important;
+    --e-global-color-text: var(--color-text-description) !important;
     --e-global-color-accent: #1e84b5 !important;
     --e-global-color-white: #ffffff !important;
     --e-global-color-divider: #bfc5d2 !important;
@@ -276,6 +278,65 @@
     font-size: 16px !important;
     font-weight: 400 !important;
     line-height: 1.5 !important;
+  }
+
+  body.brand-palette .elementor-image-box-description,
+  body.brand-palette .elementor-testimonial-content,
+  body.brand-palette .elementskit-commentor-content p,
+  body.brand-palette .ekit-accordion--content p,
+  body.brand-palette .glsr-review-content p,
+  body.brand-palette.page-id-8076 main#content p,
+  body.brand-palette.page-id-8076 main#content li:not(.trail-item) {
+    color: var(--color-text-description) !important;
+  }
+
+  body.brand-palette .text-description {
+    color: var(--color-text-description) !important;
+  }
+
+  body.brand-palette .text-description-inverse {
+    color: var(--color-text-description-inverse) !important;
+  }
+
+  body.brand-palette .text-description :where(strong, b, em):not([class]):not([style]),
+  body.brand-palette .text-description-inverse :where(strong, b, em):not([class]):not([style]),
+  body.brand-palette .elementor-widget-text-editor p > :where(strong, b, em):not([class]):not([style]),
+  body.brand-palette .elementor-icon-box-description > :where(strong, b, em):not([class]):not([style]),
+  body.brand-palette .elementskit-info-box-description > :where(strong, b, em):not([class]):not([style]),
+  body.brand-palette .elementskit-infobox .box-body > p > :where(strong, b, em):not([class]):not([style]) {
+    color: inherit !important;
+  }
+
+  /* These are labels or out-of-scope page copy and intentionally keep their previous color. */
+  body.brand-palette .thank-you-copy,
+  body.brand-palette .request-form label,
+  body.brand-palette .request-form small {
+    color: var(--brand-muted) !important;
+  }
+
+  /* Descriptive copy whose effective surface is dark, colored, or image-backed. */
+  body.brand-palette .activity-hero-description,
+  body.brand-palette .ekit-template-content-footer .elementor-widget-text-editor p,
+  body.brand-palette .ekit-template-content-footer .elementor-widget-container p,
+  body.brand-palette .ekit-template-content-footer .footer-emergency-note p,
+  body.brand-palette .ekit-template-content-footer .footer-legal-disclosure p,
+  body.brand-palette .elementor-539 .elementor-element.elementor-element-2e345e95 .elementor-widget-text-editor p,
+  body.brand-palette .elementor-539 .elementor-element.elementor-element-2e345e95 .elementor-widget-container p,
+  body.brand-palette .elementor-539 .elementor-element.elementor-element-3c04d4a2 p,
+  body.brand-palette .elementor-539 .elementor-element.elementor-element-2e345e95 .brand-objectives-right-copy p,
+  body.brand-palette .elementor-element.elementor-element-4954a511 .brand-team-card__back-copy .brand-team-card__back-text,
+  body.brand-palette .elementor-element.elementor-element-b46e7c4 .brand-team-card__back-copy .brand-team-card__back-text {
+    color: var(--color-text-description-inverse) !important;
+  }
+
+  /* A light card wins over the color of the section that contains it. */
+  body.brand-palette .v2-service-item .elementskit-infobox[data-treatment-card] .elementskit-info-box-description,
+  body.brand-palette .v2-service-item .elementskit-infobox[data-treatment-card] .box-body > p,
+  body.brand-palette .elementskit-single-testimonial-slider .elementskit-commentor-content p,
+  body.brand-palette .elementskit-card-body.ekit-accordion--content p,
+  body.brand-palette.mirror-reviews-page .glsr-review-content,
+  body.brand-palette.mirror-reviews-page .glsr-review-content p {
+    color: var(--color-text-description) !important;
   }
 
   body.brand-palette h1,
@@ -1741,7 +1802,7 @@
   body.brand-palette .elementor-element.elementor-element-4954a511 .brand-team-card__back-text,
   body.brand-palette .elementor-element.elementor-element-b46e7c4 .brand-team-card__back-text {
     margin: 0 !important;
-    color: #ffffff !important;
+    color: var(--color-text-description-inverse) !important;
     font-size: clamp(20px, 1.75vw, 28px) !important;
     font-weight: 650 !important;
     line-height: 1.16 !important;
@@ -1827,7 +1888,7 @@
 
   body.brand-palette .elementor-element.elementor-element-4954a511 .brand-team-card__back-text,
   body.brand-palette .elementor-element.elementor-element-b46e7c4 .brand-team-card__back-text {
-    color: #ffffff !important;
+    color: var(--color-text-description-inverse) !important;
     font-size: clamp(20px, 1.75vw, 28px) !important;
     font-weight: 650 !important;
     line-height: 1.16 !important;
@@ -4643,7 +4704,7 @@
   body.brand-palette:not(.home) .elementor[data-elementor-type="wp-page"] > .elementor-element:first-child:has(.elementor-widget-elementskit-breadcrumb) .activity-hero-description {
     width: min(860px, 100%) !important;
     margin: 0 auto !important;
-    color: #ffffff !important;
+    color: var(--color-text-description-inverse) !important;
     font-family: var(--brand-font-family) !important;
     font-size: 20px !important;
     font-weight: 500 !important;
@@ -5025,14 +5086,14 @@
 
   body.brand-palette .ekit-template-content-footer .footer-emergency-note p {
     margin: 0 !important;
-    color: #ffffff !important;
+    color: var(--color-text-description-inverse) !important;
     font-size: 16px !important;
     line-height: 1.45 !important;
   }
 
   body.brand-palette .ekit-template-content-footer .footer-legal-disclosure,
   body.brand-palette .ekit-template-content-footer .footer-legal-disclosure p {
-    color: #ffffff !important;
+    color: var(--color-text-description-inverse) !important;
   }
 
   body.brand-palette .ekit-template-content-footer .footer-policy-links {
@@ -5398,7 +5459,7 @@
 
   body.brand-palette .elementor-539 .elementor-element.elementor-element-3c04d4a2 p,
   body.brand-palette .elementor-539 .elementor-element.elementor-element-2e345e95 .brand-objectives-right-copy p {
-    color: #ffffff !important;
+    color: var(--color-text-description-inverse) !important;
     font-size: clamp(18px, 1.25vw, 24px) !important;
     font-weight: 400 !important;
     line-height: 1.45 !important;
@@ -5535,7 +5596,13 @@
   }
 
   body.brand-palette.mirror-reviews-page #glsr_85761207 .glsr-review-content,
-  body.brand-palette.mirror-reviews-page #glsr_85761207 .glsr-review-content p,
+  body.brand-palette.mirror-reviews-page #glsr_85761207 .glsr-review-content p {
+    color: var(--color-text-description) !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 1.8 !important;
+  }
+
   body.brand-palette.mirror-reviews-page #glsr_85761207 .glsr-review-author {
     color: #527282 !important;
     font-size: 16px !important;
@@ -6059,7 +6126,7 @@
       display: block !important;
       max-width: 34ch !important;
       margin: 18px auto 0 !important;
-      color: rgba(255, 255, 255, 0.86) !important;
+      color: var(--color-text-description-inverse) !important;
       font-family: var(--brand-font-family) !important;
       font-size: 16px !important;
       font-weight: 400 !important;

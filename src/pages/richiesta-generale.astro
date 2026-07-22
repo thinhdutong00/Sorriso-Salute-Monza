@@ -43,14 +43,14 @@ import SiteFooter from "../components/SiteFooter.astro";
           <div class="request-step is-active" data-step="1">
             <p class="quiz-kicker">Trattamento</p>
             <h2 class="quiz-title">Per quale trattamento vuoi essere ricontattato?</h2>
-            <p class="quiz-copy">Scegli l'area più vicina alla tua esigenza: useremo questa informazione per orientare meglio la prima chiamata.</p>
+            <p class="quiz-copy text-description">Scegli l'area più vicina alla tua esigenza: useremo questa informazione per orientare meglio la prima chiamata.</p>
             <div class="quiz-options" data-field="servizio"></div>
           </div>
 
           <div class="request-step" data-step="2">
             <p class="quiz-kicker">Obiettivo</p>
             <h2 class="quiz-title" data-objective-title>Cosa vuoi ottenere?</h2>
-            <p class="quiz-copy" data-service-summary></p>
+            <p class="quiz-copy text-description" data-service-summary></p>
             <div class="quiz-options" data-field="obiettivo"></div>
           </div>
 
@@ -105,6 +105,20 @@ import SiteFooter from "../components/SiteFooter.astro";
     </main>
 
     <SiteFooter />
+
+    <style is:global>
+      body.brand-palette .request-form .text-description {
+        color: var(--color-text-description) !important;
+      }
+
+      body.brand-palette .request-form .summary-box {
+        color: var(--color-text-description) !important;
+      }
+
+      body.brand-palette .request-form .summary-box strong {
+        color: var(--clinic-ink) !important;
+      }
+    </style>
 
     <script>
       (() => {
