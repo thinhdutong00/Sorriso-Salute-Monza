@@ -6,7 +6,9 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) =>
-        !page.endsWith("/attivita/implantologia/") && !page.endsWith("/prenota-una-visita/"),
+        !page.endsWith("/attivita/implantologia/") &&
+        !page.endsWith("/attivita/protesi-dentale/") &&
+        !page.endsWith("/prenota-una-visita/"),
     }),
   ],
   build: {

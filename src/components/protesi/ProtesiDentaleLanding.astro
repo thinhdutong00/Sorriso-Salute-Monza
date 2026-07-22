@@ -1,0 +1,1038 @@
+---
+import "../../styles/global.css";
+import FaviconLinks from "../FaviconLinks.astro";
+import GoogleAdsTracking from "../GoogleAdsTracking.astro";
+import SiteFooter from "../SiteFooter.astro";
+import ImplantologiaHeader from "../implantologia/ImplantologiaHeader.astro";
+import {
+  choiceFactors,
+  costFactors,
+  definitions,
+  faqs,
+  fixedOptions,
+  maintenanceItems,
+  mobileOptions,
+  pathway,
+  protesiDentaleSeo,
+  relatedLinks,
+  situations,
+} from "../../data/protesiDentale";
+
+interface Props {
+  legacyRoute?: boolean;
+}
+
+const { legacyRoute = false } = Astro.props;
+const siteUrl = "https://sorrisoesalutemonza.it";
+const canonical = `${siteUrl}${protesiDentaleSeo.canonicalPath}`;
+const heroImage = "/assets/brand/implant-solutions/implant-prosthesis.png";
+const heroImageSrcSet =
+  "/assets/brand/implant-solutions/optimized/implant-prosthesis-480.avif 480w, /assets/brand/implant-solutions/optimized/implant-prosthesis-720.avif 720w, /assets/brand/implant-solutions/optimized/implant-prosthesis-1080.avif 1080w";
+const socialImage = `${siteUrl}/assets/brand/implant-solutions/implant-prosthesis.png`;
+const ctaHref = "/richiesta/";
+
+const webPageSchema = {
+  "@type": "WebPage",
+  "@id": `${canonical}#webpage`,
+  url: canonical,
+  name: protesiDentaleSeo.title,
+  description: protesiDentaleSeo.description,
+  inLanguage: "it-IT",
+  breadcrumb: { "@id": `${canonical}#breadcrumb` },
+  mainEntity: { "@id": `${canonical}#faq` },
+};
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  "@id": `${canonical}#breadcrumb`,
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${siteUrl}/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Attività",
+      item: `${siteUrl}/attivita/`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Protesi dentale",
+      item: canonical,
+    },
+  ],
+};
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "@id": `${canonical}#faq`,
+  url: canonical,
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [webPageSchema, breadcrumbSchema, faqSchema],
+};
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{protesiDentaleSeo.title}</title>
+    <meta name="description" content={protesiDentaleSeo.description} />
+    <meta name="robots" content={legacyRoute ? "noindex, follow" : "index, follow"} />
+    <meta name="theme-color" content="#0E384C" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:title" content={protesiDentaleSeo.title} />
+    <meta property="og:description" content={protesiDentaleSeo.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:width" content="1448" />
+    <meta property="og:image:height" content="1086" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+    <FaviconLinks />
+    <GoogleAdsTracking />
+  </head>
+  <body class="implant-landing prosthetics-page" data-route-variant={legacyRoute ? "legacy" : "primary"}>
+    <ImplantologiaHeader />
+
+    <main class="prosthetics" id="contenuto-principale">
+      <section class="prosthetics__hero" id="panoramica" aria-labelledby="prosthetics-title">
+        <div class="prosthetics__container">
+          <nav class="prosthetics__breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/">Home</a></li>
+              <li><a href="/attivita/">Attività</a></li>
+              <li aria-current="page">Protesi dentale</li>
+            </ol>
+          </nav>
+
+          <div class="prosthetics__hero-grid">
+            <div class="prosthetics__hero-copy">
+              <p class="prosthetics__kicker prosthetics__kicker--light">Protesi dentale a Monza · Sorriso &amp; Salute</p>
+              <h1 id="prosthetics-title">{protesiDentaleSeo.h1}</h1>
+              <p class="prosthetics__hero-intro">
+                La protesi dentale può aiutare a recuperare forma, funzione e masticazione quando uno o più denti sono
+                compromessi o mancanti. Il progetto viene definito confrontando denti naturali, possibili supporti e
+                modalità di manutenzione.
+              </p>
+              <p class="prosthetics__clinical-note">
+                Nessuna soluzione è adatta a ogni persona: indicazioni, fasi e tempi dipendono dalla valutazione clinica individuale.
+              </p>
+              <div class="prosthetics__actions">
+                <a class="prosthetics__button prosthetics__button--accent" href={ctaHref}>
+                  Richiedi una valutazione protesica
+                </a>
+                <a class="prosthetics__button prosthetics__button--ghost" href="#situazioni">
+                  Esplora le possibilità
+                </a>
+              </div>
+            </div>
+
+            <figure class="prosthetics__hero-visual">
+              <div class="prosthetics__hero-orbit" aria-hidden="true"></div>
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset={heroImageSrcSet}
+                  sizes="(max-width: 767px) calc(100vw - 72px), (max-width: 1100px) 42vw, 510px"
+                />
+                <img
+                  src={heroImage}
+                  alt="Esempio illustrativo di una protesi sostenuta da impianti"
+                  width="1448"
+                  height="1086"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
+                />
+              </picture>
+              <figcaption>Una delle possibili forme di supporto protesico, da valutare nel singolo caso</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="prosthetics__section prosthetics__situations" id="situazioni" aria-labelledby="situations-title">
+        <div class="prosthetics__container">
+          <div class="prosthetics__section-heading">
+            <p class="prosthetics__kicker">Il punto di partenza</p>
+            <h2 id="situations-title">Qual è la tua situazione?</h2>
+            <p>
+              Lo stesso termine può descrivere esigenze molto diverse. Riconoscere la situazione aiuta a capire quali
+              domande portare alla visita, senza formulare diagnosi online.
+            </p>
+          </div>
+          <div class="prosthetics__card-grid prosthetics__card-grid--three">
+            {situations.map((item, index) => (
+              <article class="prosthetics__card prosthetics__card--numbered">
+                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="prosthetics__section prosthetics__section--paper" id="cos-e" aria-labelledby="definition-title">
+        <div class="prosthetics__container">
+          <div class="prosthetics__section-heading">
+            <p class="prosthetics__kicker">Parole da distinguere</p>
+            <h2 id="definition-title">Che cos’è una protesi dentale</h2>
+            <p>
+              La protesi sostituisce o ricostruisce la parte visibile di uno o più denti. Il supporto può essere un dente
+              naturale, un impianto o, per le soluzioni rimovibili, anche i tessuti orali e i denti residui.
+            </p>
+          </div>
+          <div class="prosthetics__definition-grid">
+            {definitions.map((item) => (
+              <article class="prosthetics__definition">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+          <aside class="prosthetics__clarification" aria-label="Chiarimento su impianto e protesi">
+            <strong>Impianto e protesi non sono sinonimi.</strong>
+            <p>L’impianto è il supporto; corona, ponte o arcata sono le parti protesiche che sostituiscono i denti visibili.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="prosthetics__section" id="protesi-fisse" aria-labelledby="fixed-title">
+        <div class="prosthetics__container">
+          <div class="prosthetics__section-heading">
+            <p class="prosthetics__kicker">Soluzioni che il paziente non rimuove</p>
+            <h2 id="fixed-title">Protesi fisse</h2>
+            <p>
+              Una soluzione fissa può utilizzare denti naturali, impianti o entrambi in progetti distinti. La scelta
+              dipende dalle condizioni cliniche e non esiste un’opzione sempre migliore delle altre.
+            </p>
+          </div>
+          <div class="prosthetics__card-grid prosthetics__card-grid--three">
+            {fixedOptions.map((item) => (
+              <article class="prosthetics__card">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="prosthetics__section prosthetics__section--dark" id="protesi-mobili" aria-labelledby="mobile-title">
+        <div class="prosthetics__container">
+          <div class="prosthetics__section-heading">
+            <p class="prosthetics__kicker prosthetics__kicker--light">Soluzioni rimovibili</p>
+            <h2 id="mobile-title">Protesi mobili</h2>
+            <p>
+              Le protesi mobili sostituiscono alcuni o tutti i denti e possono avere configurazioni diverse. Devono
+              poter essere rimosse dal paziente per la pulizia e richiedono controlli anche dopo la consegna.
+            </p>
+          </div>
+          <div class="prosthetics__card-grid prosthetics__card-grid--two">
+            {mobileOptions.map((item) => (
+              <article class="prosthetics__card prosthetics__card--dark">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+          <p class="prosthetics__emphasis">
+            Una protesi stabilizzata su impianti resta rimovibile dal paziente: la maggiore ritenzione non la trasforma in una protesi fissa.
+          </p>
+        </div>
+      </section>
+
+      <section class="prosthetics__section" id="denti-o-impianti" aria-labelledby="choice-title">
+        <div class="prosthetics__container prosthetics__split">
+          <div class="prosthetics__heading">
+            <p class="prosthetics__kicker">Preservare, sostituire, mantenere</p>
+            <h2 id="choice-title">Denti naturali o impianti?</h2>
+            <p>
+              La domanda non ha una risposta automatica. Un dente recuperabile e mantenibile va valutato diversamente
+              da un dente con prognosi sfavorevole; allo stesso modo, un impianto richiede condizioni e manutenzione adeguate.
+            </p>
+            <p>
+              La visita mette in relazione esame clinico, eventuali immagini, esigenze funzionali e possibilità di
+              igiene. Le informazioni online non possono sostituire questa valutazione.
+            </p>
+          </div>
+          <ul class="prosthetics__factor-list">
+            {choiceFactors.map((factor) => (
+              <li><span aria-hidden="true">✓</span><p>{factor}</p></li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section class="prosthetics__section prosthetics__section--paper" id="percorso" aria-labelledby="pathway-title">
+        <div class="prosthetics__container">
+          <div class="prosthetics__section-heading">
+            <p class="prosthetics__kicker">Dalla prima domanda ai controlli</p>
+            <h2 id="pathway-title">Il percorso protesico</h2>
+            <p>
+              Fasi e ordine vengono adattati alla situazione. Questo schema mostra i passaggi che possono comporre il
+              percorso, senza presupporre che siano tutti necessari in ogni caso.
+            </p>
+          </div>
+          <ol class="prosthetics__timeline">
+            {pathway.map((step, index) => (
+              <li>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section class="prosthetics__section" id="provvisoria-definitiva" aria-labelledby="temporary-title">
+        <div class="prosthetics__container">
+          <div class="prosthetics__section-heading">
+            <p class="prosthetics__kicker">Fasi con funzioni diverse</p>
+            <h2 id="temporary-title">Protesi provvisoria e definitiva</h2>
+            <p>
+              Una protesi provvisoria può essere utilizzata in determinate fasi per accompagnare guarigione,
+              adattamento o verifiche del progetto. Non coincide necessariamente con il lavoro definitivo.
+            </p>
+          </div>
+          <div class="prosthetics__comparison">
+            <article>
+              <span>Durante il percorso</span>
+              <h3>Protesi provvisoria</h3>
+              <p>
+                Ha obiettivi e durata legati alla fase in cui viene utilizzata. Può richiedere modifiche e va seguita
+                secondo le indicazioni ricevute.
+              </p>
+            </article>
+            <article>
+              <span>Al termine delle fasi previste</span>
+              <h3>Protesi definitiva</h3>
+              <p>
+                Viene realizzata per il progetto conclusivo, ma richiede comunque igiene, controlli e possibili
+                interventi di manutenzione nel tempo.
+              </p>
+            </article>
+          </div>
+          <p class="prosthetics__inline-note">
+            La possibilità di avere un provvisorio, il momento della consegna e il passaggio alla protesi definitiva dipendono dal piano individuale.
+          </p>
+        </div>
+      </section>
+
+      <section class="prosthetics__section prosthetics__section--soft" id="manutenzione" aria-labelledby="maintenance-title">
+        <div class="prosthetics__container">
+          <div class="prosthetics__section-heading">
+            <p class="prosthetics__kicker">Dopo la consegna</p>
+            <h2 id="maintenance-title">Adattamento e manutenzione</h2>
+            <p>
+              Il percorso non termina con la consegna. Igiene, controlli e comunicazione tempestiva dei cambiamenti
+              aiutano a mantenere monitorati protesi e tessuti di supporto.
+            </p>
+          </div>
+          <div class="prosthetics__card-grid prosthetics__card-grid--two">
+            {maintenanceItems.map((item) => (
+              <article class="prosthetics__card">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="prosthetics__section prosthetics__cost" id="preventivo" aria-labelledby="cost-title">
+        <div class="prosthetics__container prosthetics__split">
+          <div class="prosthetics__heading">
+            <p class="prosthetics__kicker">Un progetto prima di un importo</p>
+            <h2 id="cost-title">Che cosa determina il preventivo</h2>
+            <p>
+              Senza una valutazione non è possibile formulare un preventivo attendibile. L’importo deriva dal progetto
+              clinico e protesico e dalle fasi effettivamente necessarie.
+            </p>
+          </div>
+          <ol class="prosthetics__cost-list">
+            {costFactors.map((factor, index) => (
+              <li><span>{String(index + 1).padStart(2, "0")}</span><p>{factor}</p></li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section class="prosthetics__section prosthetics__section--paper" id="approfondimenti" aria-labelledby="related-title">
+        <div class="prosthetics__container">
+          <div class="prosthetics__section-heading">
+            <p class="prosthetics__kicker">Approfondimenti implantologici</p>
+            <h2 id="related-title">Quando la protesi utilizza impianti</h2>
+            <p>
+              Queste pagine spiegano situazioni e fasi specifiche. Consultarle non sostituisce la valutazione necessaria
+              per stabilire se gli impianti siano indicati.
+            </p>
+          </div>
+          <div class="prosthetics__related-grid">
+            {relatedLinks.map((link) => (
+              <a href={link.href}>
+                <span>
+                  <strong>{link.label}</strong>
+                  <small>{link.text}</small>
+                </span>
+                <b aria-hidden="true">→</b>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="prosthetics__section" id="faq" aria-labelledby="faq-title">
+        <div class="prosthetics__container prosthetics__faq-layout">
+          <div class="prosthetics__heading prosthetics__faq-heading">
+            <p class="prosthetics__kicker">Domande frequenti</p>
+            <h2 id="faq-title">Dubbi su protesi, supporti e tempi</h2>
+            <p>Le risposte sono generali e vanno riferite alle condizioni individuali attraverso una visita.</p>
+          </div>
+          <div class="prosthetics__faqs">
+            {faqs.map((faq, index) => (
+              <details open={index === 0}>
+                <summary>{faq.question}<span aria-hidden="true">+</span></summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <aside class="prosthetics__information-note" aria-label="Nota informativa sanitaria">
+        <div class="prosthetics__container">
+          <p>Le informazioni presenti sono di carattere generale e non sostituiscono una valutazione odontoiatrica individuale.</p>
+        </div>
+      </aside>
+
+      <section class="prosthetics__final-cta" aria-labelledby="final-cta-title">
+        <div class="prosthetics__container prosthetics__final-cta-inner">
+          <p class="prosthetics__kicker prosthetics__kicker--light">Sorriso &amp; Salute · Monza</p>
+          <h2 id="final-cta-title">Inizia da una valutazione della tua situazione</h2>
+          <p>
+            Racconta allo studio quali denti mancano, quali difficoltà incontri o quale protesi vuoi controllare. La
+            visita permetterà di confrontare possibilità, limiti, passaggi e manutenzione.
+          </p>
+          <a class="prosthetics__button prosthetics__button--accent" href={ctaHref}>
+            Richiedi una valutazione protesica
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>
+
+<style>
+  .prosthetics {
+    --prosthetics-ink: #0e384c;
+    --prosthetics-ink-dark: #082a38;
+    --prosthetics-teal: #147d83;
+    --prosthetics-mint: #dff5ef;
+    --prosthetics-paper: #f5f2ec;
+    --prosthetics-soft: #f4faf8;
+    --prosthetics-line: #dce6e5;
+    --prosthetics-body: #405562;
+    overflow: clip;
+    background: #fff;
+    color: var(--prosthetics-ink);
+    font-family: var(--brand-font-family, "Plus Jakarta Sans", Inter, sans-serif);
+  }
+
+  .prosthetics,
+  .prosthetics *,
+  .prosthetics *::before,
+  .prosthetics *::after {
+    box-sizing: border-box;
+  }
+
+  .prosthetics__container {
+    width: min(1216px, calc(100% - 48px));
+    margin-inline: auto;
+  }
+
+  .prosthetics__hero {
+    position: relative;
+    min-height: min(820px, calc(100svh - var(--implant-home-header-height)));
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 83% 18%, rgba(156, 226, 215, .24), transparent 29%),
+      linear-gradient(135deg, #082a38 0%, #0e384c 58%, #155a66 100%);
+    color: #fff;
+  }
+
+  .prosthetics__hero::before {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, .12) 1px, transparent 1px);
+    background-size: 28px 28px;
+    content: "";
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, .8), transparent 84%);
+    pointer-events: none;
+  }
+
+  .prosthetics__breadcrumb {
+    position: relative;
+    z-index: 1;
+    padding-top: calc(var(--implant-home-header-height, 86px) + clamp(18px, 2.5vw, 34px));
+  }
+
+  .prosthetics__breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    color: rgba(255, 255, 255, .68);
+    font-size: 13px;
+    list-style: none;
+  }
+
+  .prosthetics__breadcrumb li { min-width: 0; overflow-wrap: anywhere; }
+  .prosthetics__breadcrumb li:not(:last-child)::after { margin-left: 8px; content: "/"; opacity: .56; }
+  .prosthetics__breadcrumb a {
+    display: inline-flex;
+    min-height: 24px;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+  }
+  .prosthetics__breadcrumb a:hover { color: #fff; }
+
+  .prosthetics__breadcrumb a:focus-visible,
+  .prosthetics__related-grid a:focus-visible,
+  .prosthetics__faqs summary:focus-visible {
+    border-radius: 4px;
+    outline: 3px solid rgba(156, 226, 215, .72);
+    outline-offset: 3px;
+  }
+
+  .prosthetics__hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    min-height: 660px;
+    grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr);
+    align-items: center;
+    gap: clamp(48px, 7vw, 96px);
+    padding: clamp(54px, 7vw, 96px) 0 clamp(76px, 8vw, 116px);
+  }
+
+  .prosthetics__hero-copy { min-width: 0; }
+
+  .prosthetics__kicker {
+    margin: 0 0 16px;
+    color: var(--prosthetics-teal);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .prosthetics__kicker--light { color: #9ce2d7; }
+
+  .prosthetics__hero h1 {
+    max-width: 820px;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(40px, 4.7vw, 70px);
+    font-weight: 700;
+    letter-spacing: -.045em;
+    line-height: 1.01;
+    overflow-wrap: anywhere;
+  }
+
+  .prosthetics__hero-intro {
+    max-width: 720px;
+    margin: 28px 0 0;
+    color: rgba(255, 255, 255, .88);
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.68;
+  }
+
+  .prosthetics__clinical-note {
+    max-width: 680px;
+    margin: 20px 0 0;
+    padding-left: 16px;
+    border-left: 2px solid #9ce2d7;
+    color: rgba(255, 255, 255, .7);
+    font-size: 13px;
+    line-height: 1.62;
+  }
+
+  .prosthetics__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .prosthetics__button {
+    display: inline-flex;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 20px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.35;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+  }
+
+  .prosthetics__button:hover { transform: translateY(-2px); }
+  .prosthetics__button:focus-visible { outline: 3px solid rgba(101, 199, 223, .68); outline-offset: 3px; }
+  .prosthetics__button--accent { background: #9ce2d7; color: var(--prosthetics-ink-dark); box-shadow: 0 14px 34px rgba(0, 0, 0, .18); }
+  .prosthetics__button--accent:hover { background: #b8eee5; }
+  .prosthetics__button--ghost { border-color: rgba(255, 255, 255, .36); background: rgba(255, 255, 255, .08); color: #fff; }
+  .prosthetics__button--ghost:hover { background: rgba(255, 255, 255, .15); }
+
+  .prosthetics__hero-visual {
+    position: relative;
+    display: grid;
+    min-width: 0;
+    place-items: center;
+    margin: 0;
+    padding: clamp(28px, 4vw, 52px) clamp(28px, 4vw, 52px) clamp(78px, 7vw, 94px);
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 36% 64% 48% 52% / 46% 42% 58% 54%;
+    background: rgba(255, 255, 255, .09);
+    box-shadow: 0 34px 80px rgba(0, 0, 0, .22);
+    isolation: isolate;
+  }
+
+  .prosthetics__hero-orbit {
+    position: absolute;
+    inset: 8%;
+    z-index: -1;
+    border: 1px solid rgba(156, 226, 215, .3);
+    border-radius: 50%;
+  }
+
+  .prosthetics__hero-visual picture { display: block; width: min(100%, 510px); }
+
+  .prosthetics__hero-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    filter: drop-shadow(0 24px 24px rgba(0, 0, 0, .2));
+  }
+
+  .prosthetics__hero-visual figcaption {
+    position: absolute;
+    right: 22px;
+    bottom: 20px;
+    left: 22px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 14px;
+    background: rgba(8, 42, 56, .82);
+    color: rgba(255, 255, 255, .82);
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .prosthetics__section {
+    padding: clamp(76px, 8vw, 116px) 0;
+    scroll-margin-top: calc(var(--implant-home-header-height, 86px) + 20px);
+  }
+
+  .prosthetics__section--paper { background: var(--prosthetics-paper); }
+  .prosthetics__section--soft { background: var(--prosthetics-soft); }
+  .prosthetics__section--dark { background: var(--prosthetics-ink-dark); color: #fff; }
+
+  .prosthetics__section-heading {
+    max-width: 900px;
+    margin-bottom: clamp(38px, 5vw, 62px);
+  }
+
+  .prosthetics__section-heading h2,
+  .prosthetics__heading h2,
+  .prosthetics__final-cta h2 {
+    margin: 0;
+    color: inherit;
+    font-size: clamp(31px, 4vw, 54px);
+    font-weight: 700;
+    letter-spacing: -.04em;
+    line-height: 1.06;
+    overflow-wrap: anywhere;
+  }
+
+  .prosthetics__section-heading > p:last-child,
+  .prosthetics__heading > p {
+    max-width: 790px;
+    margin: 22px 0 0;
+    color: var(--prosthetics-body);
+    font-size: 17px;
+    line-height: 1.72;
+  }
+
+  .prosthetics__section--dark .prosthetics__section-heading > p:last-child { color: rgba(255, 255, 255, .72); }
+
+  .prosthetics__card-grid,
+  .prosthetics__definition-grid {
+    display: grid;
+    gap: 18px;
+  }
+
+  .prosthetics__card-grid--three,
+  .prosthetics__definition-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .prosthetics__card-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .prosthetics__card {
+    min-width: 0;
+    padding: clamp(24px, 3vw, 34px);
+    border: 1px solid var(--prosthetics-line);
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0 14px 36px rgba(8, 42, 56, .06);
+  }
+
+  .prosthetics__card--numbered > span {
+    display: inline-flex;
+    min-width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    padding-inline: 9px;
+    border-radius: 12px;
+    background: var(--prosthetics-mint);
+    color: var(--prosthetics-teal);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .prosthetics__card h3,
+  .prosthetics__definition h3 {
+    margin: 0;
+    color: inherit;
+    font-size: 19px;
+    line-height: 1.32;
+  }
+
+  .prosthetics__card p,
+  .prosthetics__definition p {
+    margin: 14px 0 0;
+    color: var(--prosthetics-body);
+    font-size: 15px;
+    line-height: 1.68;
+  }
+
+  .prosthetics__card--dark { border-color: rgba(255, 255, 255, .14); background: rgba(255, 255, 255, .07); }
+  .prosthetics__card--dark p { color: rgba(255, 255, 255, .7); }
+
+  .prosthetics__definition {
+    min-width: 0;
+    padding: 24px;
+    border-top: 3px solid var(--prosthetics-teal);
+    border-radius: 0 0 18px 18px;
+    background: #fff;
+    box-shadow: 0 12px 30px rgba(8, 42, 56, .05);
+  }
+
+  .prosthetics__clarification,
+  .prosthetics__inline-note,
+  .prosthetics__emphasis {
+    margin: 26px 0 0;
+    padding: 22px 24px;
+    border-radius: 18px;
+  }
+
+  .prosthetics__clarification { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 22px; background: var(--prosthetics-ink); color: #fff; }
+  .prosthetics__clarification strong { color: #9ce2d7; line-height: 1.55; }
+  .prosthetics__clarification p { margin: 0; color: rgba(255, 255, 255, .74); line-height: 1.65; }
+  .prosthetics__emphasis { border: 1px solid rgba(156, 226, 215, .28); background: rgba(156, 226, 215, .09); color: rgba(255, 255, 255, .82); line-height: 1.68; }
+  .prosthetics__inline-note { border-left: 4px solid var(--prosthetics-teal); background: var(--prosthetics-soft); color: var(--prosthetics-body); line-height: 1.68; }
+
+  .prosthetics__split {
+    display: grid;
+    grid-template-columns: minmax(270px, .8fr) minmax(0, 1.2fr);
+    align-items: start;
+    gap: clamp(46px, 8vw, 108px);
+  }
+
+  .prosthetics__factor-list,
+  .prosthetics__cost-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--prosthetics-line);
+    list-style: none;
+  }
+
+  .prosthetics__factor-list li,
+  .prosthetics__cost-list li {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    align-items: start;
+    gap: 16px;
+    padding: 19px 0;
+    border-bottom: 1px solid var(--prosthetics-line);
+  }
+
+  .prosthetics__factor-list span {
+    display: inline-flex;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--prosthetics-mint);
+    color: var(--prosthetics-teal);
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .prosthetics__factor-list p,
+  .prosthetics__cost-list p { margin: 4px 0 0; color: var(--prosthetics-body); line-height: 1.62; }
+  .prosthetics__cost-list span { color: var(--prosthetics-teal); font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+
+  .prosthetics__timeline {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .prosthetics__timeline li {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: 46px minmax(0, 1fr);
+    gap: 18px;
+    padding: 24px;
+    border: 1px solid rgba(14, 56, 76, .13);
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 12px 30px rgba(8, 42, 56, .05);
+  }
+
+  .prosthetics__timeline li > span {
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: var(--prosthetics-mint);
+    color: var(--prosthetics-teal);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .prosthetics__timeline h3 { margin: 0; font-size: 18px; line-height: 1.35; }
+  .prosthetics__timeline p { margin: 10px 0 0; color: var(--prosthetics-body); font-size: 14px; line-height: 1.66; }
+
+  .prosthetics__comparison {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .prosthetics__comparison article {
+    min-width: 0;
+    padding: clamp(28px, 4vw, 44px);
+    border: 1px solid var(--prosthetics-line);
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 16px 40px rgba(8, 42, 56, .06);
+  }
+
+  .prosthetics__comparison article:last-child { background: var(--prosthetics-ink); color: #fff; }
+  .prosthetics__comparison span { color: var(--prosthetics-teal); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .prosthetics__comparison article:last-child span { color: #9ce2d7; }
+  .prosthetics__comparison h3 { margin: 16px 0 0; font-size: clamp(23px, 3vw, 34px); line-height: 1.15; }
+  .prosthetics__comparison p { margin: 18px 0 0; color: var(--prosthetics-body); line-height: 1.72; }
+  .prosthetics__comparison article:last-child p { color: rgba(255, 255, 255, .72); }
+
+  .prosthetics__cost { background: linear-gradient(180deg, #fff, #f8fbfa); }
+
+  .prosthetics__related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .prosthetics__related-grid a {
+    display: flex;
+    min-width: 0;
+    min-height: 108px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 22px 24px;
+    border: 1px solid rgba(14, 56, 76, .13);
+    border-radius: 18px;
+    background: #fff;
+    color: var(--prosthetics-ink);
+    text-decoration: none;
+    transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .prosthetics__related-grid a:hover { transform: translateY(-2px); border-color: var(--prosthetics-teal); box-shadow: 0 12px 28px rgba(8, 42, 56, .07); }
+  .prosthetics__related-grid a:focus-visible { outline-color: rgba(20, 125, 131, .45); }
+  .prosthetics__related-grid a > span { display: grid; min-width: 0; gap: 7px; }
+  .prosthetics__related-grid strong { font-size: 16px; overflow-wrap: anywhere; }
+  .prosthetics__related-grid small { color: var(--prosthetics-body); font-size: 13px; line-height: 1.55; }
+  .prosthetics__related-grid b { flex: 0 0 auto; color: var(--prosthetics-teal); font-size: 20px; }
+
+  .prosthetics__faq-layout {
+    display: grid;
+    grid-template-columns: minmax(280px, .72fr) minmax(0, 1.28fr);
+    align-items: start;
+    gap: clamp(44px, 8vw, 108px);
+  }
+
+  .prosthetics__faq-heading { position: sticky; top: calc(var(--implant-home-header-height) + 30px); }
+  .prosthetics__faqs { display: grid; gap: 12px; }
+
+  .prosthetics__faqs details {
+    padding: 0 20px;
+    border: 1px solid var(--prosthetics-line);
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .prosthetics__faqs details[open] { box-shadow: 0 12px 30px rgba(8, 42, 56, .06); }
+
+  .prosthetics__faqs summary {
+    display: flex;
+    min-height: 72px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    color: var(--prosthetics-ink);
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.45;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .prosthetics__faqs summary::-webkit-details-marker { display: none; }
+  .prosthetics__faqs summary:focus-visible { outline-color: rgba(20, 125, 131, .38); }
+  .prosthetics__faqs summary span { display: inline-flex; width: 30px; height: 30px; flex: 0 0 auto; align-items: center; justify-content: center; border-radius: 50%; background: var(--prosthetics-mint); color: var(--prosthetics-teal); font-size: 18px; transition: transform 180ms ease; }
+  .prosthetics__faqs details[open] summary span { transform: rotate(45deg); }
+  .prosthetics__faqs details p { margin: -2px 44px 22px 0; color: var(--prosthetics-body); font-size: 14px; line-height: 1.7; }
+
+  .prosthetics__information-note { padding: 26px 0; border-top: 1px solid var(--prosthetics-line); background: #f9fbfa; }
+  .prosthetics__information-note p { margin: 0; color: var(--prosthetics-body); font-size: 13px; line-height: 1.65; text-align: center; }
+
+  .prosthetics__final-cta {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(76px, 8vw, 112px) 0;
+    background: linear-gradient(135deg, #082a38, #0e384c 62%, #155a66);
+    color: #fff;
+    text-align: center;
+  }
+
+  .prosthetics__final-cta::before,
+  .prosthetics__final-cta::after {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border: 1px solid rgba(156, 226, 215, .2);
+    border-radius: 50%;
+    content: "";
+  }
+
+  .prosthetics__final-cta::before { top: -220px; left: -120px; }
+  .prosthetics__final-cta::after { right: -150px; bottom: -250px; }
+  .prosthetics__final-cta-inner { position: relative; z-index: 1; }
+  .prosthetics__final-cta h2 { max-width: 850px; margin-inline: auto; }
+  .prosthetics__final-cta p:not(.prosthetics__kicker) { max-width: 740px; margin: 22px auto 0; color: rgba(255, 255, 255, .74); font-size: 17px; line-height: 1.72; }
+  .prosthetics__final-cta .prosthetics__button { margin-top: 30px; }
+
+  @media (max-width: 1023px) {
+    .prosthetics__hero-grid { min-height: 0; grid-template-columns: minmax(0, 1.04fr) minmax(290px, .8fr); gap: 36px; }
+    .prosthetics__hero h1 { font-size: clamp(38px, 5.6vw, 56px); }
+    .prosthetics__card-grid--three,
+    .prosthetics__definition-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 767px) {
+    .prosthetics__container { width: min(100% - 28px, 1216px); }
+    .prosthetics__breadcrumb { padding-top: calc(var(--implant-home-header-height, 68px) + 18px); }
+    .prosthetics__breadcrumb ol { font-size: 11px; }
+    .prosthetics__hero-grid { grid-template-columns: 1fr; gap: 34px; padding: 44px 0 68px; }
+    .prosthetics__hero h1 { font-size: clamp(35px, 10.6vw, 49px); line-height: 1.03; }
+    .prosthetics__hero-intro { margin-top: 22px; font-size: 16px; }
+    .prosthetics__actions { width: 100%; }
+    .prosthetics__button { width: 100%; min-height: 48px; padding: 12px 15px; font-size: 13px; }
+    .prosthetics__hero-visual { width: min(100%, 520px); justify-self: center; padding: 26px 26px 70px; border-radius: 28px; }
+    .prosthetics__hero-visual figcaption { right: 14px; bottom: 13px; left: 14px; }
+    .prosthetics__section { padding: 70px 0; }
+    .prosthetics__split,
+    .prosthetics__faq-layout { grid-template-columns: 1fr; gap: 38px; }
+    .prosthetics__section-heading h2,
+    .prosthetics__heading h2,
+    .prosthetics__final-cta h2 { font-size: clamp(29px, 9vw, 41px); }
+    .prosthetics__section-heading { margin-bottom: 34px; }
+    .prosthetics__section-heading > p:last-child,
+    .prosthetics__heading > p { font-size: 15px; }
+    .prosthetics__card-grid--three,
+    .prosthetics__card-grid--two,
+    .prosthetics__definition-grid,
+    .prosthetics__timeline,
+    .prosthetics__comparison,
+    .prosthetics__related-grid { grid-template-columns: 1fr; }
+    .prosthetics__clarification { grid-template-columns: 1fr; gap: 8px; }
+    .prosthetics__faq-heading { position: static; }
+    .prosthetics__faqs details { padding: 0 16px; }
+    .prosthetics__faqs details p { margin-right: 0; }
+  }
+
+  @media (max-width: 360px) {
+    .prosthetics__container { width: min(100% - 22px, 1216px); }
+    .prosthetics__hero h1 { font-size: 33px; }
+    .prosthetics__hero-visual { padding-inline: 18px; }
+    .prosthetics__card,
+    .prosthetics__definition,
+    .prosthetics__timeline li,
+    .prosthetics__related-grid a,
+    .prosthetics__comparison article { padding: 18px; }
+    .prosthetics__timeline li { grid-template-columns: 38px minmax(0, 1fr); gap: 12px; }
+    .prosthetics__timeline li > span { width: 36px; height: 36px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .prosthetics__button,
+    .prosthetics__related-grid a,
+    .prosthetics__faqs summary span { transition: none; }
+  }
+</style>

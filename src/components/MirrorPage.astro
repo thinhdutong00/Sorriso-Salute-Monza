@@ -57,8 +57,6 @@ const activityHeroDescriptions: Record<string, string> = {
     "Ferma i problemi gengivali, proteggi i denti e ritrova stabilità con cure mirate.",
   "/attivita/pedodonzia/":
     "Accompagna i bambini dal dentista con cure delicate, prevenzione e un approccio rassicurante.",
-  "/attivita/protesi-dentale/":
-    "Ripristina denti mancanti, masticazione ed estetica con soluzioni fisse o mobili su misura.",
 };
 
 const conventionPagePaths = new Set([
@@ -358,7 +356,7 @@ const applyActivityIndexItalianBody = (html: string) => {
       oldTitle: "Restorative Dentistry",
       title: "Protesi dentale",
       description: "Soluzioni protesiche fisse o mobili per ripristinare estetica e funzione masticatoria.",
-      href: "/attivita/protesi-dentale/",
+      href: "/protesi-dentale/",
     },
   ];
 
@@ -493,6 +491,11 @@ const applyGeneralRequestCtaLinks = (html: string) =>
     .replaceAll('href="/richiesta/"', 'href="/richiesta-generale/"')
     .replaceAll("href='/richiesta/'", "href='/richiesta-generale/'");
 
+const applyPrimaryProstheticsLinks = (html: string) =>
+  html
+    .replaceAll('href="/attivita/protesi-dentale/"', 'href="/protesi-dentale/"')
+    .replaceAll("href='/attivita/protesi-dentale/'", "href='/protesi-dentale/'");
+
 const removeMirroredFooter = (html: string) =>
   html.replace(/<div class="ekit-template-content-markup ekit-template-content-footer[\s\S]*?(?=<template id="tp-language")/, "");
 
@@ -502,7 +505,7 @@ const body = removeMirroredFooter(applyGeneralRequestCtaLinks(removeConventionHe
     removeAboutHeroBreadcrumb(
       applyActivityHeroDescription(
         applyBrandColorTokens(
-          applyReviewsPageBody(applyActivityIndexItalianBody(applyStudioMapEmbed(removeFormerTeamMembers(applyAboutTeamMobileHeading(applyTeamImageQuality(rawBody)))))).replaceAll(
+          applyReviewsPageBody(applyActivityIndexItalianBody(applyStudioMapEmbed(removeFormerTeamMembers(applyAboutTeamMobileHeading(applyTeamImageQuality(applyPrimaryProstheticsLinks(rawBody))))))).replaceAll(
             "Un sorriso più sano non può aspettare, <br />Prenota ora!",
             "Un sorriso<br />che sembri tuo,<br />solo migliore.",
           ).replaceAll(

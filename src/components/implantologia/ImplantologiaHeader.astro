@@ -56,6 +56,8 @@ const bookingLinks = [
 ];
 
 const currentPath = Astro.url.pathname;
+const activeTreatmentPath =
+  currentPath === "/attivita/protesi-dentale/" ? protesiDentaleMenuLink.href : currentPath;
 ---
 
 <header class="implant-home-header is-over-hero" data-implant-header>
@@ -139,7 +141,7 @@ const currentPath = Astro.url.pathname;
                 {item.children.map((link) => (
                   <a
                     href={link.href}
-                    aria-current={currentPath === link.href ? "page" : undefined}
+                    aria-current={activeTreatmentPath === link.href ? "page" : undefined}
                     data-implantology-menu-link
                   >
                     <span>{link.label}</span>
@@ -148,7 +150,11 @@ const currentPath = Astro.url.pathname;
               </div>
             </div>
           ) : (
-            <a class:list={[index > 0 && "implant-home-menu__treatment-link"]} href={item.href}>
+            <a
+              class:list={[index > 0 && "implant-home-menu__treatment-link"]}
+              href={item.href}
+              aria-current={activeTreatmentPath === item.href ? "page" : undefined}
+            >
               <span class="implant-home-menu__link-copy">
                 <span>{item.label}</span>
                 <small>{item.description}</small>
@@ -642,6 +648,8 @@ const currentPath = Astro.url.pathname;
     text-decoration: none;
   }
   .implant-home-menu__section-content a::after { bottom: 0; }
+  .implant-home-menu__section-content a[aria-current="page"] { font-weight: 700; }
+  .implant-home-menu__section-content a[aria-current="page"]::after { right: 0; left: 0; opacity: 1; }
   .implant-home-menu__section-content small { display: none; }
   .implant-home-menu__link-copy { display: flex; flex-direction: column; }
   .implant-home-menu__implantology-group { display: grid; gap: 10px; }

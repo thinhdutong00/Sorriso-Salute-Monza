@@ -129,17 +129,6 @@
       "bodyFile": "attivita__pedodonzia.body.html"
     },
     {
-      "path": "/attivita/protesi-dentale/",
-      "sourceUrl": "https://www.sorrisoesalute.it/attivita/protesi-dentale/",
-      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/protesi-dentale/",
-      "title": "Protesi dentale - Sorriso e Salute",
-      "lang": "en-US",
-      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-6711 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-6711",
-      "bodyId": "",
-      "headFile": "attivita__protesi-dentale.head.html",
-      "bodyFile": "attivita__protesi-dentale.body.html"
-    },
-    {
       "path": "/chi-siamo-studio-dentistico-monza/",
       "sourceUrl": "https://www.sorrisoesalute.it/chi-siamo-studio-dentistico-monza/",
       "finalSourceUrl": "https://www.sorrisoesalute.it/chi-siamo-studio-dentistico-monza/",
@@ -325,17 +314,6 @@
       "bodyId": "",
       "headFile": "privacy-policy.head.html",
       "bodyFile": "privacy-policy.body.html"
-    },
-    {
-      "path": "/protesi-dentale/",
-      "sourceUrl": "https://www.sorrisoesalute.it/protesi-dentale",
-      "finalSourceUrl": "https://www.sorrisoesalute.it/attivita/protesi-dentale/",
-      "title": "Protesi dentale - Sorriso e Salute",
-      "lang": "en-US",
-      "bodyClass": "wp-singular page-template page-template-elementor_header_footer page page-id-6711 page-child parent-pageid-101 wp-custom-logo wp-theme-primecare translatepress-en_US metaslider-plugin layout-2 elementor-default elementor-template-full-width elementor-kit-4078 elementor-page elementor-page-6711",
-      "bodyId": "",
-      "headFile": "protesi-dentale.head.html",
-      "bodyFile": "protesi-dentale.body.html"
     },
     {
       "path": "/recensioni-studio-dentistico-monza/",
