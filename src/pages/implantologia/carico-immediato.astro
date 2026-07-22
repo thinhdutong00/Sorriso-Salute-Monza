@@ -1,0 +1,12 @@
+---
+import ImplantologiaEditorialLanding from "../../components/implantologia/ImplantologiaEditorialLanding.astro";
+import { implantologiaEditorialPageBySlug } from "../../data/implantologiaEditorialPages";
+
+const page = implantologiaEditorialPageBySlug.get("carico-immediato");
+
+if (!page) {
+  throw new Error("Missing editorial page: carico-immediato");
+}
+---
+
+<ImplantologiaEditorialLanding page={page} />

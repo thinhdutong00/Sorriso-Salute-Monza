@@ -1,4 +1,6 @@
 ---
+import { implantologiaMenuLinks, protesiDentaleMenuLink } from "../../data/implantologiaNavigation";
+
 const logo = "/mirror-assets/568e7b4baac5c946.png";
 
 const primaryLinks = [
@@ -20,24 +22,16 @@ interface TreatmentGroup {
   children: Array<{ href: string; label: string }>;
 }
 
-const implantologiaMenuLinks = [
-  { href: "/implantologia/", label: "Panoramica implantologia" },
-  { href: "/implantologia/impianto-singolo/", label: "Impianto dentale singolo" },
-  { href: "/implantologia/denti-fissi/", label: "Denti fissi su impianti" },
-  { href: "/implantologia/ponte-su-impianti/", label: "Ponte su impianti" },
-  { href: "/implantologia/protesi-instabile/", label: "Protesi dentale instabile" },
-];
-
 const treatmentLinks: Array<TreatmentLink | TreatmentGroup> = [
   { href: "/attivita/", label: "Tutti i trattamenti", description: "Scopri tutti i trattamenti" },
   { href: "/attivita/igiene-orale-e-profilassi/", label: "Igiene orale e profilassi", description: "Pulizia e prevenzione" },
-  { href: "/attivita/protesi-dentale/", label: "Protesi dentale", description: "Sostituisce i denti mancanti" },
   { href: "/attivita/odontoiatria-conservativa/", label: "Conservativa", description: "Cura carie e denti danneggiati" },
   { href: "/attivita/estetica-del-sorriso/", label: "Estetica del sorriso", description: "Migliora forma e colore dei denti" },
   { href: "/attivita/parodontologia/", label: "Parodontologia", description: "Cura gengive e sostegno dei denti" },
   { href: "/attivita/ortodonzia/", label: "Ortodonzia", description: "Allinea i denti" },
   { href: "/attivita/chirurgia-orale/", label: "Chirurgia orale", description: "Estrazioni e piccoli interventi" },
   { label: "Implantologia", description: "Denti fissi su impianti", children: implantologiaMenuLinks },
+  { ...protesiDentaleMenuLink, description: "Sostituisce i denti mancanti" },
   { href: "/attivita/endodonzia/", label: "Endodonzia", description: "Devitalizza e salva il dente" },
   { href: "/attivita/gnatologia/", label: "Gnatologia", description: "Cura mandibola e masticazione" },
   { href: "/attivita/pedodonzia/", label: "Pedodonzia", description: "Cure dentali per bambini" },

@@ -5,6 +5,7 @@ import BrandPalette from "./BrandPalette.astro";
 import GoogleAdsTracking from "./GoogleAdsTracking.astro";
 import PageLoader from "./PageLoader.astro";
 import SiteFooter from "./SiteFooter.astro";
+import { implantologiaMenuLinks, protesiDentaleMenuLink } from "../data/implantologiaNavigation";
 import manifest from "../data/mirror/manifest.json";
 import { sourceReviews } from "../data/reviews-seed";
 
@@ -18,14 +19,6 @@ const page = manifest.pages.find((entry) => entry.path === mirrorPath);
 if (!page) {
   throw new Error(`Missing mirrored page for ${mirrorPath}`);
 }
-
-const implantologiaMenuLinks = [
-  { href: "/implantologia/", label: "Panoramica implantologia" },
-  { href: "/implantologia/impianto-singolo/", label: "Impianto dentale singolo" },
-  { href: "/implantologia/denti-fissi/", label: "Denti fissi su impianti" },
-  { href: "/implantologia/ponte-su-impianti/", label: "Ponte su impianti" },
-  { href: "/implantologia/protesi-instabile/", label: "Protesi dentale instabile" },
-];
 
 const pagesDir = path.resolve("src/data/mirror/pages");
 const [rawHead, rawBody] = await Promise.all([
@@ -1527,7 +1520,6 @@ const reviewsPageScript = `
           <div class="mirror-kebab-menu__section-content">
             <a href="/attivita/"><span>Tutti i trattamenti</span><small>Scopri tutti i trattamenti</small></a>
             <a class="mirror-kebab-menu__activity-link--icon" href="/attivita/igiene-orale-e-profilassi/"><i class="mirror-kebab-menu__link-icon fas fa-tooth" aria-hidden="true"></i><span class="mirror-kebab-menu__activity-text"><span>Igiene orale e profilassi</span><small>Pulizia e prevenzione</small></span></a>
-            <a class="mirror-kebab-menu__activity-link--icon" href="/attivita/protesi-dentale/"><i class="mirror-kebab-menu__link-icon fas fa-teeth-open" aria-hidden="true"></i><span class="mirror-kebab-menu__activity-text"><span>Protesi dentale</span><small>Sostituisce i denti mancanti</small></span></a>
             <a class="mirror-kebab-menu__activity-link--icon" href="/attivita/odontoiatria-conservativa/"><svg class="mirror-kebab-menu__link-icon mirror-kebab-menu__dental-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M7.2 3.4C5.3 4.5 4.5 7 5.1 9.2l1.7 7.1c.5 2.1 1.3 4.2 2.6 4.2 1.1 0 1.2-4.5 2.6-4.5s1.5 4.5 2.6 4.5c1.3 0 2.1-2.1 2.6-4.2l1.7-7.1c.6-2.2-.2-4.7-2.1-5.8-1.5-.9-3.1.2-4.8.2s-3.3-1.1-4.8-.2Z"></path><circle cx="15.8" cy="8.4" r="2.1" class="mirror-kebab-menu__dental-icon-detail"></circle></svg><span class="mirror-kebab-menu__activity-text"><span>Conservativa</span><small>Cura carie e denti danneggiati</small></span></a>
             <a class="mirror-kebab-menu__activity-link--icon" href="/attivita/estetica-del-sorriso/"><i class="mirror-kebab-menu__link-icon fas fa-smile-beam" aria-hidden="true"></i><span class="mirror-kebab-menu__activity-text"><span>Estetica del sorriso</span><small>Migliora forma e colore dei denti</small></span></a>
             <a class="mirror-kebab-menu__activity-link--icon" href="/attivita/parodontologia/"><svg class="mirror-kebab-menu__link-icon mirror-kebab-menu__dental-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M8.1 3.5C6.3 4.6 5.7 6.9 6.4 9l1.1 3.3h9L17.6 9c.7-2.1.1-4.4-1.7-5.5-1.2-.8-2.5.2-3.9.2s-2.7-1-3.9-.2Z"></path><path d="M3.5 13.2c2.2-1 4.3-1 6.4 0 1.4.7 2.8.7 4.2 0 2.1-1 4.2-1 6.4 0v4.3c-2.2-1-4.3-1-6.4 0-1.4.7-2.8.7-4.2 0-2.1-1-4.2-1-6.4 0v-4.3Z"></path><path d="m15.8 8.2 1.2 1.2 2.3-2.5" class="mirror-kebab-menu__dental-icon-detail"></path></svg><span class="mirror-kebab-menu__activity-text"><span>Parodontologia</span><small>Cura gengive e sostegno dei denti</small></span></a>
@@ -1553,6 +1545,7 @@ const reviewsPageScript = `
                 ))}
               </div>
             </div>
+            <a class="mirror-kebab-menu__activity-link--icon" href={protesiDentaleMenuLink.href} aria-current={page.path === protesiDentaleMenuLink.href ? "page" : undefined}><i class="mirror-kebab-menu__link-icon fas fa-teeth-open" aria-hidden="true"></i><span class="mirror-kebab-menu__activity-text"><span>{protesiDentaleMenuLink.label}</span><small>Sostituisce i denti mancanti</small></span></a>
             <a class="mirror-kebab-menu__activity-link--icon" href="/attivita/endodonzia/"><svg class="mirror-kebab-menu__link-icon mirror-kebab-menu__dental-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M7.2 3.4C5.3 4.5 4.5 7 5.1 9.2l1.7 7.1c.5 2.1 1.3 4.2 2.6 4.2 1.1 0 1.2-4.5 2.6-4.5s1.5 4.5 2.6 4.5c1.3 0 2.1-2.1 2.6-4.2l1.7-7.1c.6-2.2-.2-4.7-2.1-5.8-1.5-.9-3.1.2-4.8.2s-3.3-1.1-4.8-.2Z"></path><path d="M12 6.2v7.2m0 0-2.1 4.3m2.1-4.3 2.1 4.3" class="mirror-kebab-menu__dental-icon-detail"></path></svg><span class="mirror-kebab-menu__activity-text"><span>Endodonzia</span><small>Devitalizza e salva il dente</small></span></a>
             <a class="mirror-kebab-menu__activity-link--icon" href="/attivita/gnatologia/"><svg class="mirror-kebab-menu__link-icon mirror-kebab-menu__dental-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M5 5.2c2.2 1.7 4.5 2.5 7 2.5s4.8-.8 7-2.5M6.1 8.7c1.8 1.3 3.8 1.9 5.9 1.9s4.1-.6 5.9-1.9M5 18.8c2.2-1.7 4.5-2.5 7-2.5s4.8.8 7 2.5M6.1 15.3c1.8-1.3 3.8-1.9 5.9-1.9s4.1.6 5.9 1.9"></path><path d="m2.8 9.2 1.8 1.8 1.8-1.8m11.2 5.6 1.8-1.8 1.8 1.8" class="mirror-kebab-menu__dental-icon-detail"></path></svg><span class="mirror-kebab-menu__activity-text"><span>Gnatologia</span><small>Cura mandibola e masticazione</small></span></a>
             <a class="mirror-kebab-menu__activity-link--icon" href="/attivita/pedodonzia/"><i class="mirror-kebab-menu__link-icon fas fa-child" aria-hidden="true"></i><span class="mirror-kebab-menu__activity-text"><span>Pedodonzia</span><small>Cure dentali per bambini</small></span></a>

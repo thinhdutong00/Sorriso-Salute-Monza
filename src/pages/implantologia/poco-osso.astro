@@ -1,0 +1,12 @@
+---
+import ImplantologiaEditorialLanding from "../../components/implantologia/ImplantologiaEditorialLanding.astro";
+import { implantologiaEditorialPageBySlug } from "../../data/implantologiaEditorialPages";
+
+const page = implantologiaEditorialPageBySlug.get("poco-osso");
+
+if (!page) {
+  throw new Error("Missing editorial page: poco-osso");
+}
+---
+
+<ImplantologiaEditorialLanding page={page} />
