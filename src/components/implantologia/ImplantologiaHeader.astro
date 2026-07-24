@@ -1,5 +1,9 @@
 ---
-import { implantologiaMenuLinks, protesiDentaleMenuLink } from "../../data/implantologiaNavigation";
+import { protesiDentaleMenuLink } from "../../data/implantologiaNavigation";
+import {
+  kebabAllTreatmentsLink,
+  kebabTreatmentCategories,
+} from "../../data/kebabTreatmentNavigation";
 
 const logo = "/mirror-assets/568e7b4baac5c946.png";
 
@@ -8,33 +12,6 @@ const primaryLinks = [
   { href: "/struttura-studio-dentistico-monza/", label: "La Struttura" },
   { href: "/convenzioni-dirette-studio-dentistico-monza/", label: "Convenzioni" },
   { href: "/urgenze/", label: "Urgenze" },
-];
-
-interface TreatmentLink {
-  href: string;
-  label: string;
-  description: string;
-}
-
-interface TreatmentGroup {
-  label: string;
-  description: string;
-  children: Array<{ href: string; label: string }>;
-}
-
-const treatmentLinks: Array<TreatmentLink | TreatmentGroup> = [
-  { href: "/attivita/", label: "Tutti i trattamenti", description: "Scopri tutti i trattamenti" },
-  { href: "/attivita/igiene-orale-e-profilassi/", label: "Igiene orale e profilassi", description: "Pulizia e prevenzione" },
-  { href: "/attivita/odontoiatria-conservativa/", label: "Conservativa", description: "Cura carie e denti danneggiati" },
-  { href: "/attivita/estetica-del-sorriso/", label: "Estetica del sorriso", description: "Migliora forma e colore dei denti" },
-  { href: "/attivita/parodontologia/", label: "Parodontologia", description: "Cura gengive e sostegno dei denti" },
-  { href: "/attivita/ortodonzia/", label: "Ortodonzia", description: "Allinea i denti" },
-  { href: "/attivita/chirurgia-orale/", label: "Chirurgia orale", description: "Estrazioni e piccoli interventi" },
-  { label: "Implantologia", description: "Denti fissi su impianti", children: implantologiaMenuLinks },
-  { ...protesiDentaleMenuLink, description: "Sostituisce i denti mancanti" },
-  { href: "/attivita/endodonzia/", label: "Endodonzia", description: "Devitalizza e salva il dente" },
-  { href: "/attivita/gnatologia/", label: "Gnatologia", description: "Cura mandibola e masticazione" },
-  { href: "/attivita/pedodonzia/", label: "Pedodonzia", description: "Cure dentali per bambini" },
 ];
 
 const studioLinks = [
@@ -124,58 +101,76 @@ const activeTreatmentPath =
         </button>
       </h2>
       <div class="implant-home-menu__section-content" id="implant-menu-treatments">
-        {treatmentLinks.map((item, index) => (
-          "children" in item ? (
-            <div
-              class="implant-home-menu__implantology-group implant-home-menu__treatment-link"
-              role="group"
-              aria-labelledby="implantologia-home-menu-implantology-toggle"
-            >
-              <button
-                class="implant-home-menu__treatment-parent"
-                id="implantologia-home-menu-implantology-toggle"
-                type="button"
-                aria-expanded="false"
-                aria-controls="implantologia-home-menu-implantology-links"
-                data-implantology-submenu-toggle
-              >
-                <span class="implant-home-menu__link-copy">
-                  <span>{item.label}</span>
-                  <small>{item.description}</small>
-                </span>
-                <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-                  <path d="M6 9L12 15L18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-              </button>
-              <div
-                class="implant-home-menu__implantology-links"
-                id="implantologia-home-menu-implantology-links"
-                hidden
-              >
-                {item.children.map((link) => (
-                  <a
-                    href={link.href}
-                    aria-current={activeTreatmentPath === link.href ? "page" : undefined}
-                    data-implantology-menu-link
-                  >
-                    <span>{link.label}</span>
-                  </a>
+        <a
+          href={kebabAllTreatmentsLink.href}
+          aria-current={activeTreatmentPath === kebabAllTreatmentsLink.href ? "page" : undefined}
+        >
+          <span class="implant-home-menu__link-copy">
+            <span>{kebabAllTreatmentsLink.label}</span>
+            <small>{kebabAllTreatmentsLink.description}</small>
+          </span>
+        </a>
+        <div class="implant-home-menu__treatment-categories">
+          {kebabTreatmentCategories.map((category) => (
+            <div class="implant-home-menu__treatment-category">
+              <h3 class="implant-home-menu__treatment-category-title">{category.label}</h3>
+              <div class="implant-home-menu__treatment-category-items">
+                {category.items.map((item) => (
+                  item.kind === "implantology" ? (
+                    <div
+                      class="implant-home-menu__implantology-group implant-home-menu__treatment-link"
+                      role="group"
+                      aria-labelledby="implantologia-home-menu-implantology-toggle"
+                    >
+                      <button
+                        class="implant-home-menu__treatment-parent"
+                        id="implantologia-home-menu-implantology-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="implantologia-home-menu-implantology-links"
+                        data-implantology-submenu-toggle
+                      >
+                        <span class="implant-home-menu__link-copy">
+                          <span>{item.label}</span>
+                          <small>{item.description}</small>
+                        </span>
+                        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                          <path d="M6 9L12 15L18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                      </button>
+                      <div
+                        class="implant-home-menu__implantology-links"
+                        id="implantologia-home-menu-implantology-links"
+                        hidden
+                      >
+                        {item.children.map((link) => (
+                          <a
+                            href={link.href}
+                            aria-current={activeTreatmentPath === link.href ? "page" : undefined}
+                            data-implantology-menu-link
+                          >
+                            <span>{link.label}</span>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <a
+                      class="implant-home-menu__treatment-link"
+                      href={item.href}
+                      aria-current={activeTreatmentPath === item.href ? "page" : undefined}
+                    >
+                      <span class="implant-home-menu__link-copy">
+                        <span>{item.label}</span>
+                        <small>{item.description}</small>
+                      </span>
+                    </a>
+                  )
                 ))}
               </div>
             </div>
-          ) : (
-            <a
-              class:list={[index > 0 && "implant-home-menu__treatment-link"]}
-              href={item.href}
-              aria-current={activeTreatmentPath === item.href ? "page" : undefined}
-            >
-              <span class="implant-home-menu__link-copy">
-                <span>{item.label}</span>
-                <small>{item.description}</small>
-              </span>
-            </a>
-          )
-        ))}
+          ))}
+        </div>
       </div>
     </section>
 
@@ -634,6 +629,7 @@ const activeTreatmentPath =
     display: flex;
     min-height: 0;
     flex-direction: column;
+    overflow-x: hidden;
     overflow-y: auto;
     padding: 0 8px 18px 0;
     scrollbar-color: rgba(255, 255, 255, .72) rgba(255, 255, 255, .16);
@@ -669,7 +665,7 @@ const activeTreatmentPath =
     cursor: default;
   }
   .implant-home-menu__section-toggle svg { display: none; }
-  .implant-home-menu__section-content { display: grid; gap: 14px; }
+  .implant-home-menu__section-content { display: grid; gap: 14px; min-width: 0; }
   .implant-home-menu__section-content a {
     position: relative;
     display: inline-flex;
@@ -687,7 +683,42 @@ const activeTreatmentPath =
   .implant-home-menu__section-content a[aria-current="page"] { font-weight: 700; }
   .implant-home-menu__section-content a[aria-current="page"]::after { right: 0; left: 0; opacity: 1; }
   .implant-home-menu__section-content small { display: none; }
-  .implant-home-menu__link-copy { display: flex; flex-direction: column; }
+  .implant-home-menu__link-copy {
+    display: flex;
+    min-width: 0;
+    flex: 1 1 auto;
+    flex-direction: column;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+  .implant-home-menu__treatment-categories {
+    display: grid;
+    min-width: 0;
+    gap: 12px;
+  }
+  .implant-home-menu__treatment-category {
+    display: grid;
+    min-width: 0;
+    gap: 6px;
+  }
+  .implant-home-menu__treatment-category-title {
+    margin: 2px 0 0;
+    color: rgba(255, 255, 255, .7);
+    cursor: default;
+    font-size: 12px;
+    font-weight: 650;
+    line-height: 1.3;
+  }
+  .implant-home-menu__treatment-category-items {
+    display: grid;
+    min-width: 0;
+    gap: 10px;
+  }
+  .implant-home-menu__treatment-category-items a {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
   .implant-home-menu__implantology-group { display: grid; gap: 10px; }
   .implant-home-menu__treatment-parent {
     display: flex;
@@ -882,6 +913,13 @@ const activeTreatmentPath =
     .implant-home-menu__section-content a::after { display: none; }
     .implant-home-menu__section-content small { display: block; color: rgba(14, 56, 76, .68); font-size: 12px; font-weight: 400; line-height: 1.25; }
     .implant-home-menu__section--treatments .implant-home-menu__section-content { gap: 13px; }
+    .implant-home-menu__treatment-categories { gap: 14px; }
+    .implant-home-menu__treatment-category { gap: 7px; }
+    .implant-home-menu__treatment-category-title {
+      color: rgba(14, 56, 76, .68);
+      font-size: 12px;
+    }
+    .implant-home-menu__treatment-category-items { gap: 9px; }
     .implant-home-menu__section--treatments .implant-home-menu__treatment-link { gap: 4px; }
     .implant-home-menu__section--treatments a.implant-home-menu__treatment-link::before,
     .implant-home-menu__section--treatments .implant-home-menu__implantology-group::before {

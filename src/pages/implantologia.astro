@@ -6,6 +6,10 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import ImplantologiaAttribution from "../components/implantologia/ImplantologiaAttribution.astro";
 import { implantologiaMenuLinks, protesiDentaleMenuLink } from "../data/implantologiaNavigation";
+import {
+  kebabAllTreatmentsLink,
+  kebabTreatmentCategories,
+} from "../data/kebabTreatmentNavigation";
 
 const asset = (name: string) => `/assets/original/images/${name}`;
 const generated = (name: string) => `/assets/generated/${name}`;
@@ -612,43 +616,51 @@ const conventionGroups = [
           <a href="/contatti/">Contatti</a>
           <a href="/convenzioni-dirette-studio-dentistico-monza/">Convenzioni</a>
         </section>
-        <section class="kebab-menu__section">
-          <h2>Attività</h2>
-          <a href="/attivita/">Tutte le attività</a>
-          <a href="/attivita/igiene-orale-e-profilassi/">Igiene orale e profilassi</a>
-          <a href="/attivita/odontoiatria-conservativa/">Conservativa</a>
-          <a href="/attivita/estetica-del-sorriso/">Estetica del sorriso</a>
-          <a href="/attivita/parodontologia/">Parodontologia</a>
-          <a href="/attivita/ortodonzia/">Ortodonzia</a>
-          <a href="/attivita/chirurgia-orale/">Chirurgia orale</a>
-          <a href="/attivita/pedodonzia/">Pedodonzia</a>
-          <a href="/attivita/gnatologia/">Gnatologia</a>
-          <div class="kebab-menu__implantology-group" role="group" aria-labelledby="implantologia-hub-menu-label">
-            <button
-              class="kebab-menu__implantology-parent"
-              id="implantologia-hub-menu-label"
-              type="button"
-              aria-expanded="false"
-              aria-controls="implantologia-hub-menu-links"
-              data-kebab-implantology-toggle
-            >
-              <span>Implantologia</span>
-              <span class="kebab-menu__implantology-chevron" aria-hidden="true"></span>
-            </button>
-            <div
-              id="implantologia-hub-menu-links"
-              class="kebab-menu__implantology-links"
-              data-kebab-implantology-panel
-              hidden
-            >
-              {implantologiaMenuLinks.map((link) => (
-                <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined} data-implantology-menu-link>
-                  {link.label}
-                </a>
-              ))}
-            </div>
+        <section class="kebab-menu__section kebab-menu__section--treatments">
+          <h2>Trattamenti</h2>
+          <a href={kebabAllTreatmentsLink.href}>{kebabAllTreatmentsLink.label}</a>
+          <div class="kebab-menu__treatment-categories">
+            {kebabTreatmentCategories.map((category) => (
+              <div class="kebab-menu__treatment-category">
+                <h3 class="kebab-menu__treatment-category-title">{category.label}</h3>
+                <div class="kebab-menu__treatment-category-items">
+                  {category.items.map((item) => (
+                    item.kind === "implantology" ? (
+                      <div class="kebab-menu__implantology-group" role="group" aria-labelledby="implantologia-hub-menu-label">
+                        <button
+                          class="kebab-menu__implantology-parent"
+                          id="implantologia-hub-menu-label"
+                          type="button"
+                          aria-expanded="false"
+                          aria-controls="implantologia-hub-menu-links"
+                          data-kebab-implantology-toggle
+                        >
+                          <span class="kebab-menu__implantology-label">{item.label}</span>
+                          <span class="kebab-menu__implantology-chevron" aria-hidden="true"></span>
+                        </button>
+                        <div
+                          id="implantologia-hub-menu-links"
+                          class="kebab-menu__implantology-links"
+                          data-kebab-implantology-panel
+                          hidden
+                        >
+                          {item.children.map((link) => (
+                            <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined} data-implantology-menu-link>
+                              {link.label}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
+                        {item.label}
+                      </a>
+                    )
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
-          <a href={protesiDentaleMenuLink.href} aria-current={currentPath === protesiDentaleMenuLink.href ? "page" : undefined}>{protesiDentaleMenuLink.label}</a>
         </section>
         <section class="kebab-menu__section">
           <h2>Prenota e informazioni</h2>
