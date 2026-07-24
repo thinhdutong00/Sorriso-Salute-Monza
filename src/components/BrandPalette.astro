@@ -2278,6 +2278,14 @@
     color: inherit !important;
   }
 
+  body.brand-palette .kebab-menu__treatment-category-toggle[aria-expanded="true"],
+  body.brand-palette .kebab-menu__treatment-category-toggle[aria-expanded="true"]:hover,
+  body.brand-palette .kebab-menu__treatment-category-toggle[aria-expanded="true"]:focus-visible,
+  body.brand-palette .kebab-menu__treatment-category-toggle[aria-expanded="true"]:active {
+    background: rgba(0, 0, 0, 0.16) !important;
+    background-color: rgba(0, 0, 0, 0.16) !important;
+  }
+
   body.brand-palette .kebab-menu__treatment-category-title {
     color: inherit !important;
     font-size: 15px !important;
@@ -3190,9 +3198,9 @@
     width: 100% !important;
     min-width: 0 !important;
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 4px 8px !important;
     border: 0 !important;
-    border-radius: 0 !important;
+    border-radius: 4px !important;
     appearance: none !important;
     background: transparent !important;
     background-color: transparent !important;
@@ -3202,6 +3210,7 @@
     font: inherit !important;
     line-height: inherit !important;
     text-align: left !important;
+    transition: background-color 160ms ease !important;
     -webkit-tap-highlight-color: transparent !important;
   }
 
@@ -3222,6 +3231,14 @@
     outline: 2px solid currentColor !important;
     outline-offset: 3px !important;
     box-shadow: none !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"],
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:hover,
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:active,
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:focus-visible {
+    background: rgba(0, 0, 0, 0.16) !important;
+    background-color: rgba(0, 0, 0, 0.16) !important;
   }
 
   body.brand-palette .mirror-kebab-menu__treatment-category-toggle > span:first-child {
@@ -3988,6 +4005,14 @@
       color: var(--brand-primary) !important;
       font-size: 15px !important;
       opacity: 0.68 !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"],
+    body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:hover,
+    body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:active,
+    body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:focus-visible {
+      background: rgba(14, 56, 76, 0.1) !important;
+      background-color: rgba(14, 56, 76, 0.1) !important;
     }
 
     body.brand-palette .mirror-kebab-menu__treatment-category-items {
