@@ -112,9 +112,28 @@ const activeTreatmentPath =
         </a>
         <div class="implant-home-menu__treatment-categories">
           {kebabTreatmentCategories.map((category) => (
-            <div class="implant-home-menu__treatment-category">
-              <h3 class="implant-home-menu__treatment-category-title">{category.label}</h3>
-              <div class="implant-home-menu__treatment-category-items">
+            <div class="implant-home-menu__treatment-category" data-treatment-category>
+              <h3 class="implant-home-menu__treatment-category-title">
+                <button
+                  class="implant-home-menu__treatment-category-toggle"
+                  id={`implant-home-menu-treatment-${category.id}-toggle`}
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls={`implant-home-menu-treatment-${category.id}-panel`}
+                  data-treatment-category-toggle
+                >
+                  <span>{category.label}</span>
+                  <span class="implant-home-menu__treatment-category-chevron" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div
+                class="implant-home-menu__treatment-category-items"
+                id={`implant-home-menu-treatment-${category.id}-panel`}
+                role="group"
+                aria-labelledby={`implant-home-menu-treatment-${category.id}-toggle`}
+                data-treatment-category-panel
+                hidden
+              >
                 {category.items.map((item) => (
                   item.kind === "implantology" ? (
                     <div
@@ -262,6 +281,35 @@ const activeTreatmentPath =
     const hero = document.querySelector<HTMLElement>("#panoramica");
     const sections = Array.from(panel.querySelectorAll<HTMLElement>("[data-implant-menu-section]"));
     const sectionToggles = Array.from(panel.querySelectorAll<HTMLButtonElement>("[data-implant-menu-section-toggle]"));
+    const fineHoverMedia = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+    interface TreatmentCategoryState {
+      category: HTMLElement;
+      toggle: HTMLButtonElement;
+      categoryPanel: HTMLElement;
+      pinned: boolean;
+      suppressHover: boolean;
+      pointerInside: boolean;
+      focusWithinPanel: boolean;
+    }
+
+    const treatmentCategoryStates = Array.from(
+      panel.querySelectorAll<HTMLElement>("[data-treatment-category]"),
+    ).flatMap<TreatmentCategoryState>((category) => {
+      const categoryToggle = category.querySelector<HTMLButtonElement>("[data-treatment-category-toggle]");
+      const categoryPanel = category.querySelector<HTMLElement>("[data-treatment-category-panel]");
+      if (!categoryToggle || !categoryPanel) return [];
+
+      return [{
+        category,
+        toggle: categoryToggle,
+        categoryPanel,
+        pinned: false,
+        suppressHover: false,
+        pointerInside: false,
+        focusWithinPanel: false,
+      }];
+    });
 
     let lastFocusedElement: HTMLElement | null = null;
     let lastScrollY = window.scrollY;
@@ -296,8 +344,32 @@ const activeTreatmentPath =
       implantologySubmenuToggle.setAttribute("aria-expanded", String(isOpen));
     };
 
+    const applyTreatmentCategoryState = (state: TreatmentCategoryState) => {
+      const hoverOpen = fineHoverMedia.matches && state.pointerInside && !state.suppressHover;
+      const isOpen = state.pinned || state.focusWithinPanel || hoverOpen;
+
+      state.categoryPanel.hidden = !isOpen;
+      state.toggle.setAttribute("aria-expanded", String(isOpen));
+
+      if (!isOpen && state.categoryPanel.contains(implantologySubmenuToggle)) {
+        setImplantologySubmenuState(false);
+      }
+    };
+
+    const resetTreatmentCategories = () => {
+      treatmentCategoryStates.forEach((state) => {
+        state.pinned = false;
+        state.suppressHover = false;
+        state.pointerInside = false;
+        state.focusWithinPanel = false;
+        state.categoryPanel.hidden = true;
+        state.toggle.setAttribute("aria-expanded", "false");
+      });
+    };
+
     const setMenuState = (isOpen: boolean) => {
       setImplantologySubmenuState(false);
+      resetTreatmentCategories();
       panel.hidden = !isOpen;
       backdrop.hidden = !isOpen;
       toggle.setAttribute("aria-expanded", String(isOpen));
@@ -318,6 +390,69 @@ const activeTreatmentPath =
     implantologySubmenuToggle.addEventListener(
       "click",
       () => setImplantologySubmenuState(implantologySubmenu.hidden),
+      listenerOptions,
+    );
+
+    treatmentCategoryStates.forEach((state) => {
+      state.toggle.addEventListener(
+        "click",
+        () => {
+          if (state.pinned) {
+            state.pinned = false;
+            state.suppressHover = true;
+          } else {
+            state.pinned = true;
+            state.suppressHover = false;
+          }
+          applyTreatmentCategoryState(state);
+        },
+        listenerOptions,
+      );
+
+      state.category.addEventListener(
+        "pointerenter",
+        () => {
+          if (!fineHoverMedia.matches) return;
+          state.pointerInside = true;
+          applyTreatmentCategoryState(state);
+        },
+        listenerOptions,
+      );
+
+      state.category.addEventListener(
+        "pointerleave",
+        () => {
+          state.pointerInside = false;
+          state.suppressHover = false;
+          applyTreatmentCategoryState(state);
+        },
+        listenerOptions,
+      );
+
+      state.categoryPanel.addEventListener(
+        "focusin",
+        () => {
+          state.focusWithinPanel = true;
+          applyTreatmentCategoryState(state);
+        },
+        listenerOptions,
+      );
+
+      state.categoryPanel.addEventListener(
+        "focusout",
+        () => {
+          requestAnimationFrame(() => {
+            state.focusWithinPanel = state.categoryPanel.contains(document.activeElement);
+            applyTreatmentCategoryState(state);
+          });
+        },
+        listenerOptions,
+      );
+    });
+
+    fineHoverMedia.addEventListener(
+      "change",
+      () => treatmentCategoryStates.forEach(applyTreatmentCategoryState),
       listenerOptions,
     );
 
@@ -710,11 +845,52 @@ const activeTreatmentPath =
     font-weight: 650;
     line-height: 1.3;
   }
+  .implant-home-menu__treatment-category-toggle {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    text-align: left;
+    box-shadow: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .implant-home-menu__treatment-category-toggle:hover,
+  .implant-home-menu__treatment-category-toggle:active {
+    background: transparent;
+  }
+  .implant-home-menu__treatment-category-toggle:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+  .implant-home-menu__treatment-category-chevron {
+    flex: 0 0 auto;
+    width: 9px;
+    height: 9px;
+    margin-right: 4px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 180ms ease;
+  }
+  .implant-home-menu__treatment-category-toggle[aria-expanded="true"] .implant-home-menu__treatment-category-chevron {
+    transform: rotate(-135deg);
+  }
   .implant-home-menu__treatment-category-items {
     display: grid;
     min-width: 0;
     gap: 10px;
   }
+  .implant-home-menu__treatment-category-items[hidden] { display: none !important; }
   .implant-home-menu__treatment-category-items a {
     min-width: 0;
     white-space: normal;
@@ -756,7 +932,7 @@ const activeTreatmentPath =
   .implant-home-menu__treatment-parent[aria-expanded="true"] svg { transform: rotate(180deg); }
   .implant-home-menu__submenu-panel {
     display: grid;
-    gap: 8px;
+    gap: 0;
     margin: 4px 0 0 4px;
     padding: 10px 10px 10px 14px;
     border: 0;
@@ -764,11 +940,12 @@ const activeTreatmentPath =
     border-radius: 0 10px 10px 0;
     background: var(--clinic-teal-dark, #082a38);
   }
-  .implant-home-menu__submenu-panel[hidden] { display: none; }
+  .implant-home-menu__submenu-panel[hidden] { display: none !important; }
   .implant-home-menu__section-content .implant-home-menu__submenu-link {
     width: 100%;
-    padding: 3px 0 4px;
+    padding: 8px 0;
     border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
     border-radius: 0;
     background: transparent;
     color: rgba(255, 255, 255, .88);
@@ -780,6 +957,9 @@ const activeTreatmentPath =
   .implant-home-menu__section-content .implant-home-menu__submenu-link:focus-visible {
     background: transparent;
     color: #fff;
+  }
+  .implant-home-menu__section-content .implant-home-menu__submenu-link:last-child {
+    border-bottom: 0;
   }
   .implant-home-menu__section-content .implant-home-menu__submenu-link::after { display: none; }
   .implant-home-menu__cta { display: none; }
@@ -939,6 +1119,13 @@ const activeTreatmentPath =
       color: rgba(14, 56, 76, .68);
       font-size: 15px;
     }
+    .implant-home-menu__treatment-category-toggle:hover,
+    .implant-home-menu__treatment-category-toggle:active {
+      background: transparent;
+    }
+    .implant-home-menu__treatment-category-toggle:focus-visible {
+      outline-color: #0e384c;
+    }
     .implant-home-menu__treatment-category-items { gap: 9px; }
     .implant-home-menu__section--treatments .implant-home-menu__treatment-link { gap: 4px; }
     .implant-home-menu__section--treatments a.implant-home-menu__treatment-link::before,
@@ -973,7 +1160,7 @@ const activeTreatmentPath =
     .implant-home-menu__treatment-parent svg { width: 22px; height: 22px; flex-basis: 22px; }
     .implant-home-menu__submenu-panel {
       grid-column: 2;
-      gap: 8px;
+      gap: 0;
       margin: 4px 0 0;
       padding: 10px 10px 10px 14px;
       border-left-color: rgba(255, 255, 255, .32);
@@ -984,8 +1171,9 @@ const activeTreatmentPath =
       flex-direction: row;
       width: 100%;
       max-width: 100%;
-      padding: 3px 0 4px;
+      padding: 8px 0;
       border: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
       background: transparent;
       color: rgba(255, 255, 255, .88);
       font-size: 15px;
@@ -1037,6 +1225,7 @@ const activeTreatmentPath =
     html { scroll-behavior: auto; }
     .implant-home-header,
     .implant-home-menu__section-toggle svg,
+    .implant-home-menu__treatment-category-chevron,
     .implant-home-menu__treatment-parent svg { transition: none; }
   }
 </style>

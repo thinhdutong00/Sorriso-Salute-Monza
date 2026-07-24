@@ -378,9 +378,28 @@ const currentPath = Astro.url.pathname;
           <a href={kebabAllTreatmentsLink.href}>{kebabAllTreatmentsLink.label}</a>
           <div class="kebab-menu__treatment-categories">
             {kebabTreatmentCategories.map((category) => (
-              <div class="kebab-menu__treatment-category">
-                <h3 class="kebab-menu__treatment-category-title">{category.label}</h3>
-                <div class="kebab-menu__treatment-category-items">
+              <div class="kebab-menu__treatment-category" data-treatment-category>
+                <h3 class="kebab-menu__treatment-category-title">
+                  <button
+                    class="kebab-menu__treatment-category-toggle"
+                    id={`urgent-menu-treatment-${category.id}-toggle`}
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls={`urgent-menu-treatment-${category.id}-panel`}
+                    data-treatment-category-toggle
+                  >
+                    <span>{category.label}</span>
+                    <span class="kebab-menu__treatment-category-chevron" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div
+                  class="kebab-menu__treatment-category-items"
+                  id={`urgent-menu-treatment-${category.id}-panel`}
+                  role="group"
+                  aria-labelledby={`urgent-menu-treatment-${category.id}-toggle`}
+                  data-treatment-category-panel
+                  hidden
+                >
                   {category.items.map((item) => (
                     item.kind === "implantology" ? (
                       <div class="kebab-menu__implantology-group" role="group" aria-labelledby="urgent-menu-implantology-label">
@@ -467,6 +486,29 @@ const currentPath = Astro.url.pathname;
         const kebabBackdrop = document.querySelector("[data-kebab-backdrop]");
         const implantologyToggle = kebabPanel?.querySelector("[data-kebab-implantology-toggle]");
         const implantologyPanel = kebabPanel?.querySelector("[data-kebab-implantology-panel]");
+        const treatmentCategoryHoverMedia = window.matchMedia("(hover: hover) and (pointer: fine)");
+        const treatmentCategoryRecords = Array.from(
+          kebabPanel?.querySelectorAll("[data-treatment-category]") ?? [],
+        ).flatMap((category) => {
+          const toggle = category.querySelector("[data-treatment-category-toggle]");
+          const itemsPanel = category.querySelector("[data-treatment-category-panel]");
+
+          if (
+            !(category instanceof HTMLElement) ||
+            !(toggle instanceof HTMLButtonElement) ||
+            !(itemsPanel instanceof HTMLElement)
+          ) return [];
+
+          return [{
+            category,
+            toggle,
+            itemsPanel,
+            pinned: false,
+            hovered: false,
+            suppressHover: false,
+            focusHeld: false,
+          }];
+        });
         let lastScrollY = window.scrollY;
 
         const closeMobileMenu = () => {
@@ -481,10 +523,37 @@ const currentPath = Astro.url.pathname;
           implantologyPanel.hidden = !isOpen;
         };
 
+        const syncTreatmentCategoryState = (record) => {
+          const isHoverOpen =
+            treatmentCategoryHoverMedia.matches &&
+            record.hovered &&
+            !record.suppressHover;
+          const isOpen = record.pinned || record.focusHeld || isHoverOpen;
+
+          record.toggle.setAttribute("aria-expanded", String(isOpen));
+          record.itemsPanel.hidden = !isOpen;
+
+          if (!isOpen && implantologyToggle instanceof HTMLElement && record.category.contains(implantologyToggle)) {
+            setImplantologySubmenuState(false);
+          }
+        };
+
+        const resetTreatmentCategoryStates = () => {
+          treatmentCategoryRecords.forEach((record) => {
+            record.pinned = false;
+            record.hovered = false;
+            record.suppressHover = false;
+            record.focusHeld = false;
+            record.toggle.setAttribute("aria-expanded", "false");
+            record.itemsPanel.hidden = true;
+          });
+          setImplantologySubmenuState(false);
+        };
+
         const setKebabMenuState = (isOpen) => {
           if (!(kebabPanel instanceof HTMLElement) || !(kebabBackdrop instanceof HTMLElement)) return;
 
-          setImplantologySubmenuState(false);
+          resetTreatmentCategoryStates();
           kebabPanel.hidden = !isOpen;
           kebabBackdrop.hidden = !isOpen;
           document.body.classList.toggle("kebab-menu-open", isOpen);
@@ -534,6 +603,58 @@ const currentPath = Astro.url.pathname;
 
         window.addEventListener("scroll", updateStickyHeader, { passive: true });
         window.addEventListener("resize", updateStickyHeader);
+
+        treatmentCategoryRecords.forEach((record) => {
+          record.toggle.addEventListener("click", () => {
+            if (record.pinned) {
+              record.pinned = false;
+              record.focusHeld = false;
+              record.suppressHover = treatmentCategoryHoverMedia.matches && record.hovered;
+            } else {
+              record.pinned = true;
+              record.suppressHover = false;
+            }
+
+            syncTreatmentCategoryState(record);
+          });
+
+          record.category.addEventListener("pointerenter", () => {
+            if (!treatmentCategoryHoverMedia.matches) return;
+            record.hovered = true;
+            syncTreatmentCategoryState(record);
+          });
+
+          record.category.addEventListener("pointerleave", () => {
+            if (!treatmentCategoryHoverMedia.matches) return;
+            record.hovered = false;
+            record.suppressHover = false;
+            record.focusHeld = record.itemsPanel.contains(document.activeElement);
+            syncTreatmentCategoryState(record);
+          });
+
+          record.itemsPanel.addEventListener("focusin", () => {
+            if (record.itemsPanel.hidden) return;
+            record.focusHeld = true;
+            syncTreatmentCategoryState(record);
+          });
+
+          record.itemsPanel.addEventListener("focusout", () => {
+            requestAnimationFrame(() => {
+              record.focusHeld = record.itemsPanel.contains(document.activeElement);
+              syncTreatmentCategoryState(record);
+            });
+          });
+        });
+
+        treatmentCategoryHoverMedia.addEventListener("change", () => {
+          treatmentCategoryRecords.forEach((record) => {
+            record.hovered = false;
+            record.suppressHover = false;
+            syncTreatmentCategoryState(record);
+          });
+        });
+
+        resetTreatmentCategoryStates();
 
         mobileNav?.querySelectorAll("a").forEach((link) => {
           link.addEventListener("click", closeMobileMenu);

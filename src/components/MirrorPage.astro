@@ -812,11 +812,112 @@ const mirrorNavigationScript = `
     implantologyToggles.forEach((button) => setImplantologyState(button, false));
   };
 
-  resetImplantologyMenus();
+  const treatmentCategoryHoverMedia = window.matchMedia(
+    "(hover: hover) and (pointer: fine)",
+  );
+  const treatmentCategoryRecords = Array.from(
+    panel?.querySelectorAll("[data-treatment-category]") || [],
+  ).flatMap((category) => {
+    const toggle = category.querySelector("[data-treatment-category-toggle]");
+    const items = category.querySelector("[data-treatment-category-panel]");
+    if (!toggle || !items) return [];
+    return [{
+      category,
+      toggle,
+      items,
+      pinned: false,
+      hovered: false,
+      suppressHover: false,
+      focusHeld: false,
+    }];
+  });
+
+  const syncTreatmentCategory = (record) => {
+    const isOpen =
+      record.pinned ||
+      record.focusHeld ||
+      (
+        treatmentCategoryHoverMedia.matches &&
+        record.hovered &&
+        !record.suppressHover
+      );
+
+    record.category.classList.toggle("is-open", isOpen);
+    record.toggle.setAttribute("aria-expanded", String(isOpen));
+    record.items.hidden = !isOpen;
+
+    if (!isOpen) {
+      const nestedToggle = record.category.querySelector(
+        "[data-mirror-implantology-toggle]",
+      );
+      if (nestedToggle) setImplantologyState(nestedToggle, false);
+    }
+  };
+
+  const resetTreatmentCategories = () => {
+    treatmentCategoryRecords.forEach((record) => {
+      record.pinned = false;
+      record.hovered = false;
+      record.suppressHover = false;
+      record.focusHeld = false;
+      syncTreatmentCategory(record);
+    });
+    resetImplantologyMenus();
+  };
+
+  treatmentCategoryRecords.forEach((record) => {
+    record.toggle.addEventListener("click", () => {
+      if (record.pinned) {
+        record.pinned = false;
+        record.suppressHover = record.hovered;
+      } else {
+        record.pinned = true;
+        record.suppressHover = false;
+      }
+      syncTreatmentCategory(record);
+    });
+
+    record.category.addEventListener("pointerenter", () => {
+      if (!treatmentCategoryHoverMedia.matches) return;
+      record.hovered = true;
+      if (!record.suppressHover) syncTreatmentCategory(record);
+    });
+
+    record.category.addEventListener("pointerleave", () => {
+      record.hovered = false;
+      record.suppressHover = false;
+      syncTreatmentCategory(record);
+    });
+
+    record.category.addEventListener("focusin", (event) => {
+      if (!record.items.contains(event.target)) return;
+      record.focusHeld = true;
+      syncTreatmentCategory(record);
+    });
+
+    record.category.addEventListener("focusout", () => {
+      window.requestAnimationFrame(() => {
+        record.focusHeld = record.items.contains(document.activeElement);
+        syncTreatmentCategory(record);
+      });
+    });
+  });
+
+  if (typeof treatmentCategoryHoverMedia.addEventListener === "function") {
+    treatmentCategoryHoverMedia.addEventListener("change", () => {
+      treatmentCategoryRecords.forEach((record) => {
+        record.hovered = false;
+        record.suppressHover = false;
+        syncTreatmentCategory(record);
+      });
+    });
+  }
+
+  resetTreatmentCategories();
 
   const setMenuState = (isOpen) => {
     if (!panel || !backdrop) return;
-    resetImplantologyMenus();
+    resetTreatmentCategories();
     panel.hidden = !isOpen;
     backdrop.hidden = !isOpen;
     body.classList.toggle("mirror-menu-open", isOpen);
@@ -1557,9 +1658,28 @@ const reviewsPageScript = `
             </a>
             <div class="mirror-kebab-menu__treatment-categories">
               {kebabTreatmentCategories.map((category) => (
-                <div class="mirror-kebab-menu__treatment-category">
-                  <h3 class="mirror-kebab-menu__treatment-category-title">{category.label}</h3>
-                  <div class="mirror-kebab-menu__treatment-category-items">
+                <div class="mirror-kebab-menu__treatment-category" data-treatment-category>
+                  <h3 class="mirror-kebab-menu__treatment-category-title">
+                    <button
+                      class="mirror-kebab-menu__treatment-category-toggle"
+                      id={`mirror-menu-treatment-${category.id}-toggle`}
+                      type="button"
+                      aria-expanded="false"
+                      aria-controls={`mirror-menu-treatment-${category.id}-panel`}
+                      data-treatment-category-toggle
+                    >
+                      <span>{category.label}</span>
+                      <span class="mirror-kebab-menu__treatment-category-chevron" aria-hidden="true"></span>
+                    </button>
+                  </h3>
+                  <div
+                    class="mirror-kebab-menu__treatment-category-items"
+                    id={`mirror-menu-treatment-${category.id}-panel`}
+                    role="group"
+                    aria-labelledby={`mirror-menu-treatment-${category.id}-toggle`}
+                    data-treatment-category-panel
+                    hidden
+                  >
                     {category.items.map((item) => (
                       item.kind === "implantology" ? (
                         <div

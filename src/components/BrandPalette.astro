@@ -2258,6 +2258,10 @@
   body.brand-palette .kebab-menu__implantology-parent,
   body.brand-palette .kebab-menu__implantology-parent:hover,
   body.brand-palette .kebab-menu__implantology-parent:focus-visible,
+  body.brand-palette .kebab-menu__treatment-category-toggle,
+  body.brand-palette .kebab-menu__treatment-category-toggle:hover,
+  body.brand-palette .kebab-menu__treatment-category-toggle:focus-visible,
+  body.brand-palette .kebab-menu__treatment-category-toggle:active,
   body.brand-palette .mirror-kebab-menu__close,
   body.brand-palette .mirror-kebab-menu__close:hover,
   body.brand-palette .mirror-kebab-menu__close:focus-visible {
@@ -2265,6 +2269,13 @@
     background-color: transparent !important;
     border-color: transparent !important;
     box-shadow: none !important;
+  }
+
+  body.brand-palette .kebab-menu__treatment-category-toggle,
+  body.brand-palette .kebab-menu__treatment-category-toggle:hover,
+  body.brand-palette .kebab-menu__treatment-category-toggle:focus-visible,
+  body.brand-palette .kebab-menu__treatment-category-toggle:active {
+    color: inherit !important;
   }
 
   body.brand-palette .kebab-menu__treatment-category-title {
@@ -3171,10 +3182,77 @@
     opacity: 0.7 !important;
   }
 
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    appearance: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    font: inherit !important;
+    line-height: inherit !important;
+    text-align: left !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle:hover,
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle:active {
+    border-color: transparent !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    box-shadow: none !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle:focus-visible {
+    border-color: transparent !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    outline: 2px solid currentColor !important;
+    outline-offset: 3px !important;
+    box-shadow: none !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle > span:first-child {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__treatment-category-chevron {
+    width: 9px !important;
+    height: 9px !important;
+    margin-right: 4px !important;
+    border-right: 2px solid currentColor !important;
+    border-bottom: 2px solid currentColor !important;
+    flex: 0 0 auto !important;
+    transform: rotate(45deg) !important;
+    transition: transform 180ms ease !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"] .mirror-kebab-menu__treatment-category-chevron {
+    transform: rotate(-135deg) !important;
+  }
+
   body.brand-palette .mirror-kebab-menu__treatment-category-items {
     display: grid !important;
     min-width: 0 !important;
     gap: 10px !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__treatment-category-items[hidden] {
+    display: none !important;
   }
 
   body.brand-palette .mirror-kebab-menu__treatment-category-items a {
@@ -3242,7 +3320,7 @@
 
   body.brand-palette .mirror-kebab-menu__submenu-panel {
     display: grid !important;
-    gap: 8px !important;
+    gap: 0 !important;
     margin: 4px 0 0 4px !important;
     padding: 10px 10px 10px 14px !important;
     border: 0 !important;
@@ -3257,13 +3335,17 @@
 
   body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-link {
     width: 100% !important;
-    padding: 3px 0 4px !important;
+    padding: 8px 0 !important;
     border: 0 !important;
     border-radius: 0 !important;
     background: transparent !important;
     color: rgba(255, 255, 255, 0.88) !important;
     font-size: 15px !important;
     transition: color 160ms ease, opacity 160ms ease !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-panel > .mirror-kebab-menu__submenu-link:not(:last-of-type) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
   }
 
   body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-link[aria-current="page"] {
@@ -3982,7 +4064,7 @@
 
     body.brand-palette .mirror-kebab-menu__submenu-panel {
       grid-column: 2 !important;
-      gap: 8px !important;
+      gap: 0 !important;
       margin: 4px 0 0 !important;
       padding: 10px 10px 10px 14px !important;
       border-left-color: rgba(255, 255, 255, 0.32) !important;
@@ -3994,11 +4076,15 @@
       flex-direction: row !important;
       width: 100% !important;
       max-width: 100% !important;
-      padding: 3px 0 4px !important;
+      padding: 8px 0 !important;
       border: 0 !important;
       background: transparent !important;
       color: rgba(255, 255, 255, 0.88) !important;
       font-size: 15px !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-panel > .mirror-kebab-menu__submenu-link:not(:last-of-type) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
     }
 
     body.brand-palette .mirror-kebab-menu__submenu-link[aria-current="page"] {

@@ -712,10 +712,74 @@ body.kebab-menu-open {
   opacity: 0.7;
 }
 
+.kebab-menu__treatment-category-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  appearance: none;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+  cursor: pointer;
+  font: inherit;
+  line-height: inherit;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.kebab-menu__treatment-category-toggle:hover,
+.kebab-menu__treatment-category-toggle:active {
+  border-color: transparent;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+
+.kebab-menu__treatment-category-toggle:focus-visible {
+  border-color: transparent;
+  background: transparent;
+  color: inherit;
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.kebab-menu__treatment-category-toggle > span:first-child {
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-wrap: anywhere;
+}
+
+.kebab-menu__treatment-category-chevron {
+  width: 9px;
+  height: 9px;
+  margin-right: 4px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  flex: 0 0 auto;
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+.kebab-menu__treatment-category-toggle[aria-expanded="true"] .kebab-menu__treatment-category-chevron {
+  transform: rotate(-135deg);
+}
+
 .kebab-menu__treatment-category-items {
   display: grid;
   min-width: 0;
   gap: 10px;
+}
+
+.kebab-menu__treatment-category-items[hidden] {
+  display: none !important;
 }
 
 .kebab-menu__treatment-category-items a {
@@ -787,7 +851,7 @@ body.kebab-menu-open {
 
 .kebab-menu__submenu-panel {
   display: grid;
-  gap: 8px;
+  gap: 0;
   margin: 4px 0 0 4px;
   padding: 10px 10px 10px 14px;
   border: 0;
@@ -802,13 +866,17 @@ body.kebab-menu-open {
 
 .kebab-menu__submenu-panel > .kebab-menu__submenu-link {
   width: 100%;
-  padding: 3px 0 4px;
+  padding: 8px 0;
   border: 0;
   border-radius: 0;
   background: transparent;
   color: rgba(255, 255, 255, 0.88);
   font-size: 15px;
   transition: color 160ms ease, opacity 160ms ease;
+}
+
+.kebab-menu__submenu-panel > .kebab-menu__submenu-link:not(:last-of-type) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .kebab-menu__submenu-panel > .kebab-menu__submenu-link[aria-current="page"] {

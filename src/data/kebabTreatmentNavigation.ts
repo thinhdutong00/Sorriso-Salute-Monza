@@ -27,6 +27,14 @@ export interface KebabImplantologyGroup {
 }
 
 export interface KebabTreatmentCategory {
+  id:
+    | "prevention-gums"
+    | "tooth-recovery"
+    | "missing-teeth"
+    | "aesthetics-alignment"
+    | "oral-surgery"
+    | "jaw-chewing"
+    | "children";
   label: string;
   items: Array<KebabTreatmentLink | KebabImplantologyGroup>;
 }
@@ -67,6 +75,7 @@ export const kebabImplantologyMenuLinks = kebabImplantologyOrder.map((href) => {
 
 export const kebabTreatmentCategories: KebabTreatmentCategory[] = [
   {
+    id: "prevention-gums",
     label: "Prevenzione e gengive",
     items: [
       {
@@ -86,6 +95,7 @@ export const kebabTreatmentCategories: KebabTreatmentCategory[] = [
     ],
   },
   {
+    id: "tooth-recovery",
     label: "Cura e recupero del dente",
     items: [
       {
@@ -105,6 +115,7 @@ export const kebabTreatmentCategories: KebabTreatmentCategory[] = [
     ],
   },
   {
+    id: "missing-teeth",
     label: "Denti mancanti",
     items: [
       {
@@ -124,6 +135,7 @@ export const kebabTreatmentCategories: KebabTreatmentCategory[] = [
     ],
   },
   {
+    id: "aesthetics-alignment",
     label: "Estetica e allineamento",
     items: [
       {
@@ -143,6 +155,7 @@ export const kebabTreatmentCategories: KebabTreatmentCategory[] = [
     ],
   },
   {
+    id: "oral-surgery",
     label: "Chirurgia orale",
     items: [
       {
@@ -155,6 +168,7 @@ export const kebabTreatmentCategories: KebabTreatmentCategory[] = [
     ],
   },
   {
+    id: "jaw-chewing",
     label: "Mandibola e masticazione",
     items: [
       {
@@ -167,6 +181,7 @@ export const kebabTreatmentCategories: KebabTreatmentCategory[] = [
     ],
   },
   {
+    id: "children",
     label: "Bambini e ragazzi",
     items: [
       {
