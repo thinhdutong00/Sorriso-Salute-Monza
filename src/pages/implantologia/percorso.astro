@@ -1,12 +1,3 @@
 ---
-import ImplantologiaEditorialLanding from "../../components/implantologia/ImplantologiaEditorialLanding.astro";
-import { implantologiaEditorialPageBySlug } from "../../data/implantologiaEditorialPages";
-
-const page = implantologiaEditorialPageBySlug.get("percorso");
-
-if (!page) {
-  throw new Error("Missing editorial page: percorso");
-}
+return Astro.redirect("/implantologia/", 301);
 ---
-
-<ImplantologiaEditorialLanding page={page} />

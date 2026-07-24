@@ -239,7 +239,7 @@ export const relatedLinks: ProtesiLink[] = [
     text: "Come viene valutata la disponibilità ossea prima di formulare un piano.",
   },
   {
-    href: "/implantologia/percorso/",
+    href: "/implantologia/",
     label: "Percorso implantologico",
     text: "Le fasi dalla prima visita alla protesi e ai controlli successivi.",
   },
