@@ -695,10 +695,50 @@ body.kebab-menu-open {
 }
 
 .kebab-menu__implantology-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 8px 4px 8px 0;
+  border: 0;
+  border-radius: 3px;
+  appearance: none;
+  background: transparent;
   color: #ffffff;
+  cursor: pointer;
+  font-family: inherit;
   font-size: 17px;
   font-weight: 500;
   line-height: 1.25;
+  text-align: left;
+  transition: opacity 160ms ease;
+}
+
+.kebab-menu__implantology-parent:hover {
+  opacity: 0.82;
+}
+
+.kebab-menu__implantology-parent:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+.kebab-menu__implantology-chevron {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  margin-right: 4px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+.kebab-menu__implantology-parent[aria-expanded="true"] .kebab-menu__implantology-chevron {
+  transform: rotate(-135deg);
 }
 
 .kebab-menu__implantology-links {
@@ -707,6 +747,10 @@ body.kebab-menu-open {
   margin-left: 4px;
   padding-left: 16px;
   border-left: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.kebab-menu__implantology-links[hidden] {
+  display: none !important;
 }
 
 .kebab-menu__implantology-links a {

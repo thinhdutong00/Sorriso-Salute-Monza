@@ -2255,6 +2255,9 @@
   body.brand-palette .kebab-menu__close,
   body.brand-palette .kebab-menu__close:hover,
   body.brand-palette .kebab-menu__close:focus-visible,
+  body.brand-palette .kebab-menu__implantology-parent,
+  body.brand-palette .kebab-menu__implantology-parent:hover,
+  body.brand-palette .kebab-menu__implantology-parent:focus-visible,
   body.brand-palette .mirror-kebab-menu__close,
   body.brand-palette .mirror-kebab-menu__close:hover,
   body.brand-palette .mirror-kebab-menu__close:focus-visible {
@@ -3135,10 +3138,46 @@
   body.brand-palette .mirror-kebab-menu__implantology-parent {
     display: flex !important;
     align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    width: 100% !important;
+    min-height: 44px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 4px !important;
+    background: transparent !important;
     color: #ffffff !important;
+    font-family: inherit !important;
     font-size: 17px !important;
     font-weight: 500 !important;
     line-height: 1.25 !important;
+    text-align: left !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__implantology-parent:hover {
+    background: transparent !important;
+    color: #ffffff !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__implantology-parent:focus-visible {
+    outline: 2px solid #ffffff !important;
+    outline-offset: 3px !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__implantology-chevron {
+    display: block !important;
+    flex: 0 0 20px !important;
+    width: 20px !important;
+    height: 20px !important;
+    transition: transform 180ms ease !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__implantology-parent[aria-expanded="true"] .mirror-kebab-menu__implantology-chevron {
+    transform: rotate(180deg) !important;
   }
 
   body.brand-palette .mirror-kebab-menu__implantology-parent small {
@@ -3151,6 +3190,10 @@
     margin-left: 4px !important;
     padding-left: 16px !important;
     border-left: 1px solid rgba(255, 255, 255, 0.28) !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__implantology-links[hidden] {
+    display: none !important;
   }
 
   body.brand-palette .mirror-kebab-menu__implantology-links a {
@@ -3815,6 +3858,14 @@
     body.brand-palette .mirror-kebab-menu__implantology-parent {
       grid-column: 2 !important;
       color: var(--brand-primary) !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__implantology-parent:hover {
+      color: var(--brand-primary) !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__implantology-parent:focus-visible {
+      outline-color: var(--brand-primary) !important;
     }
 
     body.brand-palette .mirror-kebab-menu__implantology-parent small {

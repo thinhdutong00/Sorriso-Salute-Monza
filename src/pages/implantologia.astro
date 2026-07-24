@@ -623,8 +623,23 @@ const conventionGroups = [
           <a href="/attivita/pedodonzia/">Pedodonzia</a>
           <a href="/attivita/gnatologia/">Gnatologia</a>
           <div class="kebab-menu__implantology-group" role="group" aria-labelledby="implantologia-hub-menu-label">
-            <div class="kebab-menu__implantology-parent" id="implantologia-hub-menu-label">Implantologia</div>
-            <div class="kebab-menu__implantology-links">
+            <button
+              class="kebab-menu__implantology-parent"
+              id="implantologia-hub-menu-label"
+              type="button"
+              aria-expanded="false"
+              aria-controls="implantologia-hub-menu-links"
+              data-kebab-implantology-toggle
+            >
+              <span>Implantologia</span>
+              <span class="kebab-menu__implantology-chevron" aria-hidden="true"></span>
+            </button>
+            <div
+              id="implantologia-hub-menu-links"
+              class="kebab-menu__implantology-links"
+              data-kebab-implantology-panel
+              hidden
+            >
               {implantologiaMenuLinks.map((link) => (
                 <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined} data-implantology-menu-link>
                   {link.label}
@@ -1110,6 +1125,8 @@ const conventionGroups = [
       const hero = document.querySelector(".hero");
       const kebabPanel = document.querySelector("[data-kebab-menu]");
       const kebabBackdrop = document.querySelector("[data-kebab-backdrop]");
+      const implantologyToggle = kebabPanel?.querySelector("[data-kebab-implantology-toggle]");
+      const implantologyPanel = kebabPanel?.querySelector("[data-kebab-implantology-panel]");
       const stickyCta = document.querySelector("[data-activity-sticky-cta]");
       const footer = document.querySelector(".site-footer");
       const testimonialCarousel = document.querySelector("[data-testimonial-carousel]");
@@ -1125,9 +1142,17 @@ const conventionGroups = [
         mobileNav?.classList.remove("is-open");
       };
 
+      const setImplantologySubmenuState = (isOpen) => {
+        if (!(implantologyToggle instanceof HTMLButtonElement) || !(implantologyPanel instanceof HTMLElement)) return;
+
+        implantologyToggle.setAttribute("aria-expanded", String(isOpen));
+        implantologyPanel.hidden = !isOpen;
+      };
+
       const setKebabMenuState = (isOpen) => {
         if (!(kebabPanel instanceof HTMLElement) || !(kebabBackdrop instanceof HTMLElement)) return;
 
+        setImplantologySubmenuState(false);
         kebabPanel.hidden = !isOpen;
         kebabBackdrop.hidden = !isOpen;
         document.body.classList.toggle("kebab-menu-open", isOpen);
@@ -1193,6 +1218,12 @@ const conventionGroups = [
 
       kebabPanel?.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", () => setKebabMenuState(false));
+      });
+
+      implantologyToggle?.addEventListener("click", () => {
+        if (!(implantologyToggle instanceof HTMLButtonElement)) return;
+        const isOpen = implantologyToggle.getAttribute("aria-expanded") !== "true";
+        setImplantologySubmenuState(isOpen);
       });
 
       document.addEventListener("click", (event) => {

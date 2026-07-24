@@ -793,8 +793,27 @@ const mirrorNavigationScript = `
     }
   };
 
+  const implantologyToggles = Array.from(
+    panel?.querySelectorAll("[data-mirror-implantology-toggle]") || [],
+  );
+
+  const setImplantologyState = (button, isOpen) => {
+    const linksId = button.getAttribute("aria-controls");
+    const links = linksId ? document.getElementById(linksId) : null;
+    if (!links || !panel?.contains(links)) return;
+    button.setAttribute("aria-expanded", String(isOpen));
+    links.hidden = !isOpen;
+  };
+
+  const resetImplantologyMenus = () => {
+    implantologyToggles.forEach((button) => setImplantologyState(button, false));
+  };
+
+  resetImplantologyMenus();
+
   const setMenuState = (isOpen) => {
     if (!panel || !backdrop) return;
+    resetImplantologyMenus();
     panel.hidden = !isOpen;
     backdrop.hidden = !isOpen;
     body.classList.toggle("mirror-menu-open", isOpen);
@@ -835,6 +854,14 @@ const mirrorNavigationScript = `
   window.setTimeout(observeNav, 300);
 
   document.addEventListener("click", (event) => {
+    const implantologyToggle = event.target.closest("[data-mirror-implantology-toggle]");
+    if (implantologyToggle) {
+      event.preventDefault();
+      const willOpen = implantologyToggle.getAttribute("aria-expanded") !== "true";
+      setImplantologyState(implantologyToggle, willOpen);
+      return;
+    }
+
     const sectionToggle = event.target.closest("[data-mirror-menu-section-toggle]");
     if (sectionToggle && window.matchMedia("(max-width: 767px)").matches) {
       event.preventDefault();
@@ -1533,10 +1560,18 @@ const reviewsPageScript = `
               role="group"
               aria-labelledby="mirror-menu-implantology-label"
             >
-              <div class="mirror-kebab-menu__implantology-parent" id="mirror-menu-implantology-label">
+              <button
+                class="mirror-kebab-menu__implantology-parent"
+                id="mirror-menu-implantology-label"
+                type="button"
+                aria-expanded="false"
+                aria-controls="mirror-menu-implantology-links"
+                data-mirror-implantology-toggle
+              >
                 <span class="mirror-kebab-menu__activity-text"><span>Implantologia</span><small>Denti fissi su impianti</small></span>
-              </div>
-              <div class="mirror-kebab-menu__implantology-links">
+                <svg class="mirror-kebab-menu__implantology-chevron" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M6 9L12 15L18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </button>
+              <div class="mirror-kebab-menu__implantology-links" id="mirror-menu-implantology-links" hidden>
                 {implantologiaMenuLinks.map((link) => (
                   <a
                     href={link.href}

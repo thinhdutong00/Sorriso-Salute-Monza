@@ -381,8 +381,23 @@ const currentPath = Astro.url.pathname;
           <a href="/attivita/pedodonzia/">Pedodonzia</a>
           <a href="/attivita/gnatologia/">Gnatologia</a>
           <div class="kebab-menu__implantology-group" role="group" aria-labelledby="urgent-menu-implantology-label">
-            <div class="kebab-menu__implantology-parent" id="urgent-menu-implantology-label">Implantologia</div>
-            <div class="kebab-menu__implantology-links">
+            <button
+              class="kebab-menu__implantology-parent"
+              id="urgent-menu-implantology-label"
+              type="button"
+              aria-expanded="false"
+              aria-controls="urgent-menu-implantology-links"
+              data-kebab-implantology-toggle
+            >
+              <span>Implantologia</span>
+              <span class="kebab-menu__implantology-chevron" aria-hidden="true"></span>
+            </button>
+            <div
+              id="urgent-menu-implantology-links"
+              class="kebab-menu__implantology-links"
+              data-kebab-implantology-panel
+              hidden
+            >
               {implantologiaMenuLinks.map((link) => (
                 <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined} data-implantology-menu-link>
                   {link.label}
@@ -433,6 +448,8 @@ const currentPath = Astro.url.pathname;
         const mobileNav = document.querySelector("[data-mobile-nav]");
         const kebabPanel = document.querySelector("[data-kebab-menu]");
         const kebabBackdrop = document.querySelector("[data-kebab-backdrop]");
+        const implantologyToggle = kebabPanel?.querySelector("[data-kebab-implantology-toggle]");
+        const implantologyPanel = kebabPanel?.querySelector("[data-kebab-implantology-panel]");
         let lastScrollY = window.scrollY;
 
         const closeMobileMenu = () => {
@@ -440,9 +457,17 @@ const currentPath = Astro.url.pathname;
           mobileNav?.classList.remove("is-open");
         };
 
+        const setImplantologySubmenuState = (isOpen) => {
+          if (!(implantologyToggle instanceof HTMLButtonElement) || !(implantologyPanel instanceof HTMLElement)) return;
+
+          implantologyToggle.setAttribute("aria-expanded", String(isOpen));
+          implantologyPanel.hidden = !isOpen;
+        };
+
         const setKebabMenuState = (isOpen) => {
           if (!(kebabPanel instanceof HTMLElement) || !(kebabBackdrop instanceof HTMLElement)) return;
 
+          setImplantologySubmenuState(false);
           kebabPanel.hidden = !isOpen;
           kebabBackdrop.hidden = !isOpen;
           document.body.classList.toggle("kebab-menu-open", isOpen);
@@ -499,6 +524,12 @@ const currentPath = Astro.url.pathname;
 
         kebabPanel?.querySelectorAll("a").forEach((link) => {
           link.addEventListener("click", () => setKebabMenuState(false));
+        });
+
+        implantologyToggle?.addEventListener("click", () => {
+          if (!(implantologyToggle instanceof HTMLButtonElement)) return;
+          const isOpen = implantologyToggle.getAttribute("aria-expanded") !== "true";
+          setImplantologySubmenuState(isOpen);
         });
 
         document.addEventListener("click", (event) => {

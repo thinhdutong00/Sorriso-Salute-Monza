@@ -129,15 +129,29 @@ const activeTreatmentPath =
             <div
               class="implant-home-menu__implantology-group implant-home-menu__treatment-link"
               role="group"
-              aria-labelledby="implant-menu-implantology-label"
+              aria-labelledby="implantologia-home-menu-implantology-toggle"
             >
-              <div class="implant-home-menu__treatment-parent" id="implant-menu-implantology-label">
+              <button
+                class="implant-home-menu__treatment-parent"
+                id="implantologia-home-menu-implantology-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="implantologia-home-menu-implantology-links"
+                data-implantology-submenu-toggle
+              >
                 <span class="implant-home-menu__link-copy">
                   <span>{item.label}</span>
                   <small>{item.description}</small>
                 </span>
-              </div>
-              <div class="implant-home-menu__implantology-links">
+                <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                  <path d="M6 9L12 15L18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </button>
+              <div
+                class="implant-home-menu__implantology-links"
+                id="implantologia-home-menu-implantology-links"
+                hidden
+              >
                 {item.children.map((link) => (
                   <a
                     href={link.href}
@@ -227,8 +241,19 @@ const activeTreatmentPath =
     const backdrop = document.querySelector<HTMLElement>("[data-implant-menu-backdrop]");
     const toggle = document.querySelector<HTMLButtonElement>("[data-implant-menu-toggle]");
     const closeButton = document.querySelector<HTMLButtonElement>("[data-implant-menu-close]");
+    const implantologySubmenuToggle = panel?.querySelector<HTMLButtonElement>("[data-implantology-submenu-toggle]");
+    const implantologySubmenu = panel?.querySelector<HTMLElement>("#implantologia-home-menu-implantology-links");
 
-    if (!header || !panel || !backdrop || !toggle || !closeButton || header.dataset.menuReady === "true") return;
+    if (
+      !header ||
+      !panel ||
+      !backdrop ||
+      !toggle ||
+      !closeButton ||
+      !implantologySubmenuToggle ||
+      !implantologySubmenu ||
+      header.dataset.menuReady === "true"
+    ) return;
     header.dataset.menuReady = "true";
 
     const implantWindow = window as Window & { __implantHeaderController?: AbortController };
@@ -270,7 +295,13 @@ const activeTreatmentPath =
         panel.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'),
       ).filter((element) => element.getClientRects().length > 0 && element.getAttribute("aria-hidden") !== "true");
 
+    const setImplantologySubmenuState = (isOpen: boolean) => {
+      implantologySubmenu.hidden = !isOpen;
+      implantologySubmenuToggle.setAttribute("aria-expanded", String(isOpen));
+    };
+
     const setMenuState = (isOpen: boolean) => {
+      setImplantologySubmenuState(false);
       panel.hidden = !isOpen;
       backdrop.hidden = !isOpen;
       toggle.setAttribute("aria-expanded", String(isOpen));
@@ -288,6 +319,11 @@ const activeTreatmentPath =
     toggle.addEventListener("click", () => setMenuState(panel.hidden), listenerOptions);
     closeButton.addEventListener("click", () => setMenuState(false), listenerOptions);
     backdrop.addEventListener("click", () => setMenuState(false), listenerOptions);
+    implantologySubmenuToggle.addEventListener(
+      "click",
+      () => setImplantologySubmenuState(implantologySubmenu.hidden),
+      listenerOptions,
+    );
 
     panel.addEventListener(
       "click",
@@ -655,12 +691,32 @@ const activeTreatmentPath =
   .implant-home-menu__implantology-group { display: grid; gap: 10px; }
   .implant-home-menu__treatment-parent {
     display: flex;
+    width: 100%;
+    min-height: 38px;
     align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0;
+    padding: 0 0 6px;
+    border: 0;
+    border-radius: 2px;
+    background: transparent;
     color: #fff;
+    font: inherit;
     font-size: 17px;
     font-weight: 500;
     line-height: 1.25;
+    text-align: left;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
+  .implant-home-menu__treatment-parent svg {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    transition: transform 180ms ease;
+  }
+  .implant-home-menu__treatment-parent[aria-expanded="true"] svg { transform: rotate(180deg); }
   .implant-home-menu__implantology-links {
     display: grid;
     gap: 8px;
@@ -668,6 +724,7 @@ const activeTreatmentPath =
     padding-left: 16px;
     border-left: 1px solid rgba(255, 255, 255, .28);
   }
+  .implant-home-menu__implantology-links[hidden] { display: none; }
   .implant-home-menu__implantology-links a {
     padding-bottom: 4px;
     color: rgba(255, 255, 255, .82);
@@ -846,7 +903,15 @@ const activeTreatmentPath =
       column-gap: 4px;
       row-gap: 9px;
     }
-    .implant-home-menu__treatment-parent { color: #0e384c; }
+    .implant-home-menu__treatment-parent {
+      min-height: 44px;
+      padding: 2px 0 6px;
+      color: #0e384c;
+    }
+    .implant-home-menu .implant-home-menu__treatment-parent:focus-visible {
+      outline-color: #0e384c;
+    }
+    .implant-home-menu__treatment-parent svg { width: 22px; height: 22px; flex-basis: 22px; }
     .implant-home-menu__implantology-links {
       grid-column: 2;
       gap: 8px;
@@ -900,6 +965,7 @@ const activeTreatmentPath =
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .implant-home-header,
-    .implant-home-menu__section-toggle svg { transition: none; }
+    .implant-home-menu__section-toggle svg,
+    .implant-home-menu__treatment-parent svg { transition: none; }
   }
 </style>
