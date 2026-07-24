@@ -139,12 +139,13 @@ const activeTreatmentPath =
                         </svg>
                       </button>
                       <div
-                        class="implant-home-menu__implantology-links"
+                        class="implant-home-menu__implantology-links implant-home-menu__submenu-panel"
                         id="implantologia-home-menu-implantology-links"
                         hidden
                       >
                         {item.children.map((link) => (
                           <a
+                            class="implant-home-menu__submenu-link"
                             href={link.href}
                             aria-current={activeTreatmentPath === link.href ? "page" : undefined}
                             data-implantology-menu-link
@@ -719,7 +720,10 @@ const activeTreatmentPath =
     white-space: normal;
     overflow-wrap: anywhere;
   }
-  .implant-home-menu__implantology-group { display: grid; gap: 10px; }
+  .implant-home-menu__implantology-group {
+    display: grid;
+    gap: 10px;
+  }
   .implant-home-menu__treatment-parent {
     display: flex;
     width: 100%;
@@ -741,6 +745,8 @@ const activeTreatmentPath =
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
   }
+  .implant-home-menu__treatment-parent:hover { background: transparent; }
+  .implant-home-menu__treatment-parent:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
   .implant-home-menu__treatment-parent svg {
     width: 20px;
     height: 20px;
@@ -748,20 +754,34 @@ const activeTreatmentPath =
     transition: transform 180ms ease;
   }
   .implant-home-menu__treatment-parent[aria-expanded="true"] svg { transform: rotate(180deg); }
-  .implant-home-menu__implantology-links {
+  .implant-home-menu__submenu-panel {
     display: grid;
-    gap: 8px;
-    margin-left: 4px;
-    padding-left: 16px;
-    border-left: 1px solid rgba(255, 255, 255, .28);
+    gap: 6px;
+    margin-top: 4px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 10px;
+    background: var(--clinic-teal-dark, #082a38);
   }
-  .implant-home-menu__implantology-links[hidden] { display: none; }
-  .implant-home-menu__implantology-links a {
-    padding-bottom: 4px;
-    color: rgba(255, 255, 255, .82);
+  .implant-home-menu__submenu-panel[hidden] { display: none; }
+  .implant-home-menu__section-content .implant-home-menu__submenu-link {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 7px 8px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 7px;
+    background: rgba(255, 255, 255, .04);
+    color: rgba(255, 255, 255, .88);
     font-size: 15px;
+    transition: background-color 160ms ease, border-color 160ms ease;
   }
-  .implant-home-menu__implantology-links a[aria-current="page"] { color: #fff; font-weight: 700; }
+  .implant-home-menu__section-content .implant-home-menu__submenu-link[aria-current="page"] { color: #fff; font-weight: 700; }
+  .implant-home-menu__section-content .implant-home-menu__submenu-link:hover,
+  .implant-home-menu__section-content .implant-home-menu__submenu-link:focus-visible {
+    border-color: rgba(255, 255, 255, .28);
+    background: rgba(255, 255, 255, .12);
+  }
+  .implant-home-menu__section-content .implant-home-menu__submenu-link::after { display: none; }
   .implant-home-menu__cta { display: none; }
 
   @media (max-width: 1100px) and (min-width: 768px) {
@@ -946,23 +966,36 @@ const activeTreatmentPath =
       padding: 2px 0 6px;
       color: #0e384c;
     }
+    .implant-home-menu__treatment-parent:hover { background: transparent; }
     .implant-home-menu .implant-home-menu__treatment-parent:focus-visible {
       outline-color: #0e384c;
     }
     .implant-home-menu__treatment-parent svg { width: 22px; height: 22px; flex-basis: 22px; }
-    .implant-home-menu__implantology-links {
+    .implant-home-menu__submenu-panel {
       grid-column: 2;
-      gap: 8px;
-      margin: 0;
-      padding-left: 13px;
-      border-left-color: rgba(14, 56, 76, .24);
+      gap: 6px;
+      margin: 4px 0 0;
+      padding: 10px;
+      border-color: rgba(255, 255, 255, .18);
+      background: var(--clinic-teal-dark, #082a38);
     }
-    .implant-home-menu__implantology-links a {
-      padding: 2px 0 4px;
-      color: rgba(14, 56, 76, .78);
+    .implant-home-menu__section-content .implant-home-menu__submenu-link {
+      display: inline-flex;
+      flex-direction: row;
+      width: 100%;
+      max-width: 100%;
+      padding: 7px 8px;
+      border-color: rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .04);
+      color: rgba(255, 255, 255, .88);
       font-size: 15px;
     }
-    .implant-home-menu__implantology-links a[aria-current="page"] { color: #0e384c; }
+    .implant-home-menu__section-content .implant-home-menu__submenu-link[aria-current="page"] { color: #fff; }
+    .implant-home-menu__section-content .implant-home-menu__submenu-link:hover,
+    .implant-home-menu__section-content .implant-home-menu__submenu-link:focus-visible {
+      border-color: rgba(255, 255, 255, .28);
+      background: rgba(255, 255, 255, .12);
+    }
     .implant-home-menu__link-copy { align-items: flex-start; gap: 2px; }
 
     .implant-home-menu__cta {

@@ -1581,9 +1581,14 @@ const reviewsPageScript = `
                             </span>
                             <svg class="mirror-kebab-menu__implantology-chevron" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M6 9L12 15L18 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                           </button>
-                          <div class="mirror-kebab-menu__implantology-links" id="mirror-menu-implantology-links" hidden>
+                          <div
+                            class="mirror-kebab-menu__implantology-links mirror-kebab-menu__submenu-panel"
+                            id="mirror-menu-implantology-links"
+                            hidden
+                          >
                             {item.children.map((link) => (
                               <a
+                                class="mirror-kebab-menu__submenu-link"
                                 href={link.href}
                                 aria-current={page.path === link.href ? "page" : undefined}
                                 data-implantology-menu-link

@@ -3125,6 +3125,17 @@
     cursor: default !important;
   }
 
+  body.brand-palette .mirror-kebab-menu__section-toggle:hover,
+  body.brand-palette .mirror-kebab-menu__section-toggle:focus,
+  body.brand-palette .mirror-kebab-menu__section-toggle:focus-visible,
+  body.brand-palette .mirror-kebab-menu__section-toggle:active {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: inherit !important;
+    box-shadow: none !important;
+  }
+
   body.brand-palette .mirror-kebab-menu__section-toggle svg {
     display: none !important;
   }
@@ -3207,6 +3218,8 @@
   }
 
   body.brand-palette .mirror-kebab-menu__implantology-parent:focus-visible {
+    background: transparent !important;
+    background-color: transparent !important;
     outline: 2px solid #ffffff !important;
     outline-offset: 3px !important;
   }
@@ -3227,27 +3240,45 @@
     display: none !important;
   }
 
-  body.brand-palette .mirror-kebab-menu__implantology-links {
+  body.brand-palette .mirror-kebab-menu__submenu-panel {
     display: grid !important;
-    gap: 8px !important;
-    margin-left: 4px !important;
-    padding-left: 16px !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.28) !important;
+    gap: 6px !important;
+    margin-top: 4px !important;
+    padding: 10px !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 10px !important;
+    background: var(--brand-primary-dark) !important;
   }
 
-  body.brand-palette .mirror-kebab-menu__implantology-links[hidden] {
+  body.brand-palette .mirror-kebab-menu__submenu-panel[hidden] {
     display: none !important;
   }
 
-  body.brand-palette .mirror-kebab-menu__implantology-links a {
-    padding-bottom: 4px !important;
-    color: rgba(255, 255, 255, 0.82) !important;
+  body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-link {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    padding: 7px 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 7px !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: rgba(255, 255, 255, 0.88) !important;
     font-size: 15px !important;
+    transition: background-color 160ms ease, border-color 160ms ease !important;
   }
 
-  body.brand-palette .mirror-kebab-menu__implantology-links a[aria-current="page"] {
+  body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-link[aria-current="page"] {
     color: #ffffff !important;
     font-weight: 700 !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-link:hover,
+  body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-link:focus-visible {
+    border-color: rgba(255, 255, 255, 0.28) !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-link::after {
+    display: none !important;
   }
 
   body.brand-palette .mirror-kebab-menu__link-icon {
@@ -3930,10 +3961,14 @@
     }
 
     body.brand-palette .mirror-kebab-menu__implantology-parent:hover {
+      background: transparent !important;
       color: var(--brand-primary) !important;
     }
 
     body.brand-palette .mirror-kebab-menu__implantology-parent:focus-visible {
+      background: transparent !important;
+      background-color: transparent !important;
+      color: var(--brand-primary) !important;
       outline-color: var(--brand-primary) !important;
     }
 
@@ -3945,25 +3980,36 @@
       line-height: 1.25 !important;
     }
 
-    body.brand-palette .mirror-kebab-menu__implantology-links {
+    body.brand-palette .mirror-kebab-menu__submenu-panel {
       grid-column: 2 !important;
-      gap: 8px !important;
-      margin: 0 !important;
-      padding-left: 13px !important;
-      border-left-color: rgba(14, 56, 76, 0.24) !important;
+      gap: 6px !important;
+      margin: 4px 0 0 !important;
+      padding: 10px !important;
+      border-color: rgba(255, 255, 255, 0.18) !important;
+      background: var(--brand-primary-dark) !important;
     }
 
-    body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__implantology-links a {
+    body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-link {
       display: inline-flex !important;
       flex-direction: row !important;
-      padding: 2px 0 4px !important;
-      color: rgba(14, 56, 76, 0.78) !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 7px 8px !important;
+      border-color: rgba(255, 255, 255, 0.14) !important;
+      background: rgba(255, 255, 255, 0.04) !important;
+      color: rgba(255, 255, 255, 0.88) !important;
       font-size: 15px !important;
     }
 
-    body.brand-palette .mirror-kebab-menu__implantology-links a[aria-current="page"] {
-      color: var(--brand-primary) !important;
+    body.brand-palette .mirror-kebab-menu__submenu-link[aria-current="page"] {
+      color: #ffffff !important;
       font-weight: 700 !important;
+    }
+
+    body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-link:hover,
+    body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-link:focus-visible {
+      border-color: rgba(255, 255, 255, 0.28) !important;
+      background: rgba(255, 255, 255, 0.12) !important;
     }
 
     body.brand-palette .mirror-kebab-menu__activity-text {

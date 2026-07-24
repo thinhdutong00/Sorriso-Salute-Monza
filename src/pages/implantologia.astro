@@ -640,12 +640,17 @@ const conventionGroups = [
                         </button>
                         <div
                           id="implantologia-hub-menu-links"
-                          class="kebab-menu__implantology-links"
+                          class="kebab-menu__implantology-links kebab-menu__submenu-panel"
                           data-kebab-implantology-panel
                           hidden
                         >
                           {item.children.map((link) => (
-                            <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined} data-implantology-menu-link>
+                            <a
+                              class="kebab-menu__submenu-link"
+                              href={link.href}
+                              aria-current={currentPath === link.href ? "page" : undefined}
+                              data-implantology-menu-link
+                            >
                               {link.label}
                             </a>
                           ))}
