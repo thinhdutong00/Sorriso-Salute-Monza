@@ -699,7 +699,7 @@ body.kebab-menu-open {
 .kebab-menu__treatment-category {
   display: grid;
   min-width: 0;
-  gap: 6px;
+  gap: 12px;
 }
 
 .kebab-menu__treatment-category-title {

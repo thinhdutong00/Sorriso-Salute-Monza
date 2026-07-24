@@ -486,7 +486,6 @@ const currentPath = Astro.url.pathname;
         const kebabBackdrop = document.querySelector("[data-kebab-backdrop]");
         const implantologyToggle = kebabPanel?.querySelector("[data-kebab-implantology-toggle]");
         const implantologyPanel = kebabPanel?.querySelector("[data-kebab-implantology-panel]");
-        const treatmentCategoryHoverMedia = window.matchMedia("(hover: hover) and (pointer: fine)");
         const treatmentCategoryRecords = Array.from(
           kebabPanel?.querySelectorAll("[data-treatment-category]") ?? [],
         ).flatMap((category) => {
@@ -503,10 +502,6 @@ const currentPath = Astro.url.pathname;
             category,
             toggle,
             itemsPanel,
-            pinned: false,
-            hovered: false,
-            suppressHover: false,
-            focusHeld: false,
           }];
         });
         let lastScrollY = window.scrollY;
@@ -523,13 +518,7 @@ const currentPath = Astro.url.pathname;
           implantologyPanel.hidden = !isOpen;
         };
 
-        const syncTreatmentCategoryState = (record) => {
-          const isHoverOpen =
-            treatmentCategoryHoverMedia.matches &&
-            record.hovered &&
-            !record.suppressHover;
-          const isOpen = record.pinned || record.focusHeld || isHoverOpen;
-
+        const setTreatmentCategoryState = (record, isOpen) => {
           record.toggle.setAttribute("aria-expanded", String(isOpen));
           record.itemsPanel.hidden = !isOpen;
 
@@ -540,12 +529,7 @@ const currentPath = Astro.url.pathname;
 
         const resetTreatmentCategoryStates = () => {
           treatmentCategoryRecords.forEach((record) => {
-            record.pinned = false;
-            record.hovered = false;
-            record.suppressHover = false;
-            record.focusHeld = false;
-            record.toggle.setAttribute("aria-expanded", "false");
-            record.itemsPanel.hidden = true;
+            setTreatmentCategoryState(record, false);
           });
           setImplantologySubmenuState(false);
         };
@@ -606,51 +590,8 @@ const currentPath = Astro.url.pathname;
 
         treatmentCategoryRecords.forEach((record) => {
           record.toggle.addEventListener("click", () => {
-            if (record.pinned) {
-              record.pinned = false;
-              record.focusHeld = false;
-              record.suppressHover = treatmentCategoryHoverMedia.matches && record.hovered;
-            } else {
-              record.pinned = true;
-              record.suppressHover = false;
-            }
-
-            syncTreatmentCategoryState(record);
-          });
-
-          record.category.addEventListener("pointerenter", () => {
-            if (!treatmentCategoryHoverMedia.matches) return;
-            record.hovered = true;
-            syncTreatmentCategoryState(record);
-          });
-
-          record.category.addEventListener("pointerleave", () => {
-            if (!treatmentCategoryHoverMedia.matches) return;
-            record.hovered = false;
-            record.suppressHover = false;
-            record.focusHeld = record.itemsPanel.contains(document.activeElement);
-            syncTreatmentCategoryState(record);
-          });
-
-          record.itemsPanel.addEventListener("focusin", () => {
-            if (record.itemsPanel.hidden) return;
-            record.focusHeld = true;
-            syncTreatmentCategoryState(record);
-          });
-
-          record.itemsPanel.addEventListener("focusout", () => {
-            requestAnimationFrame(() => {
-              record.focusHeld = record.itemsPanel.contains(document.activeElement);
-              syncTreatmentCategoryState(record);
-            });
-          });
-        });
-
-        treatmentCategoryHoverMedia.addEventListener("change", () => {
-          treatmentCategoryRecords.forEach((record) => {
-            record.hovered = false;
-            record.suppressHover = false;
-            syncTreatmentCategoryState(record);
+            const isOpen = record.toggle.getAttribute("aria-expanded") === "true";
+            setTreatmentCategoryState(record, !isOpen);
           });
         });
 

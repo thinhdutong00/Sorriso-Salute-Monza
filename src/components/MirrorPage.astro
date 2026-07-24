@@ -812,36 +812,16 @@ const mirrorNavigationScript = `
     implantologyToggles.forEach((button) => setImplantologyState(button, false));
   };
 
-  const treatmentCategoryHoverMedia = window.matchMedia(
-    "(hover: hover) and (pointer: fine)",
-  );
   const treatmentCategoryRecords = Array.from(
     panel?.querySelectorAll("[data-treatment-category]") || [],
   ).flatMap((category) => {
     const toggle = category.querySelector("[data-treatment-category-toggle]");
     const items = category.querySelector("[data-treatment-category-panel]");
     if (!toggle || !items) return [];
-    return [{
-      category,
-      toggle,
-      items,
-      pinned: false,
-      hovered: false,
-      suppressHover: false,
-      focusHeld: false,
-    }];
+    return [{ category, toggle, items }];
   });
 
-  const syncTreatmentCategory = (record) => {
-    const isOpen =
-      record.pinned ||
-      record.focusHeld ||
-      (
-        treatmentCategoryHoverMedia.matches &&
-        record.hovered &&
-        !record.suppressHover
-      );
-
+  const setTreatmentCategoryState = (record, isOpen) => {
     record.category.classList.toggle("is-open", isOpen);
     record.toggle.setAttribute("aria-expanded", String(isOpen));
     record.items.hidden = !isOpen;
@@ -856,62 +836,17 @@ const mirrorNavigationScript = `
 
   const resetTreatmentCategories = () => {
     treatmentCategoryRecords.forEach((record) => {
-      record.pinned = false;
-      record.hovered = false;
-      record.suppressHover = false;
-      record.focusHeld = false;
-      syncTreatmentCategory(record);
+      setTreatmentCategoryState(record, false);
     });
     resetImplantologyMenus();
   };
 
   treatmentCategoryRecords.forEach((record) => {
     record.toggle.addEventListener("click", () => {
-      if (record.pinned) {
-        record.pinned = false;
-        record.suppressHover = record.hovered;
-      } else {
-        record.pinned = true;
-        record.suppressHover = false;
-      }
-      syncTreatmentCategory(record);
-    });
-
-    record.category.addEventListener("pointerenter", () => {
-      if (!treatmentCategoryHoverMedia.matches) return;
-      record.hovered = true;
-      if (!record.suppressHover) syncTreatmentCategory(record);
-    });
-
-    record.category.addEventListener("pointerleave", () => {
-      record.hovered = false;
-      record.suppressHover = false;
-      syncTreatmentCategory(record);
-    });
-
-    record.category.addEventListener("focusin", (event) => {
-      if (!record.items.contains(event.target)) return;
-      record.focusHeld = true;
-      syncTreatmentCategory(record);
-    });
-
-    record.category.addEventListener("focusout", () => {
-      window.requestAnimationFrame(() => {
-        record.focusHeld = record.items.contains(document.activeElement);
-        syncTreatmentCategory(record);
-      });
+      const willOpen = record.toggle.getAttribute("aria-expanded") !== "true";
+      setTreatmentCategoryState(record, willOpen);
     });
   });
-
-  if (typeof treatmentCategoryHoverMedia.addEventListener === "function") {
-    treatmentCategoryHoverMedia.addEventListener("change", () => {
-      treatmentCategoryRecords.forEach((record) => {
-        record.hovered = false;
-        record.suppressHover = false;
-        syncTreatmentCategory(record);
-      });
-    });
-  }
 
   resetTreatmentCategories();
 

@@ -281,33 +281,22 @@ const activeTreatmentPath =
     const hero = document.querySelector<HTMLElement>("#panoramica");
     const sections = Array.from(panel.querySelectorAll<HTMLElement>("[data-implant-menu-section]"));
     const sectionToggles = Array.from(panel.querySelectorAll<HTMLButtonElement>("[data-implant-menu-section-toggle]"));
-    const fineHoverMedia = window.matchMedia("(hover: hover) and (pointer: fine)");
 
-    interface TreatmentCategoryState {
-      category: HTMLElement;
+    interface TreatmentCategoryDisclosure {
       toggle: HTMLButtonElement;
       categoryPanel: HTMLElement;
-      pinned: boolean;
-      suppressHover: boolean;
-      pointerInside: boolean;
-      focusWithinPanel: boolean;
     }
 
     const treatmentCategoryStates = Array.from(
       panel.querySelectorAll<HTMLElement>("[data-treatment-category]"),
-    ).flatMap<TreatmentCategoryState>((category) => {
+    ).flatMap<TreatmentCategoryDisclosure>((category) => {
       const categoryToggle = category.querySelector<HTMLButtonElement>("[data-treatment-category-toggle]");
       const categoryPanel = category.querySelector<HTMLElement>("[data-treatment-category-panel]");
       if (!categoryToggle || !categoryPanel) return [];
 
       return [{
-        category,
         toggle: categoryToggle,
         categoryPanel,
-        pinned: false,
-        suppressHover: false,
-        pointerInside: false,
-        focusWithinPanel: false,
       }];
     });
 
@@ -344,10 +333,7 @@ const activeTreatmentPath =
       implantologySubmenuToggle.setAttribute("aria-expanded", String(isOpen));
     };
 
-    const applyTreatmentCategoryState = (state: TreatmentCategoryState) => {
-      const hoverOpen = fineHoverMedia.matches && state.pointerInside && !state.suppressHover;
-      const isOpen = state.pinned || state.focusWithinPanel || hoverOpen;
-
+    const setTreatmentCategoryState = (state: TreatmentCategoryDisclosure, isOpen: boolean) => {
       state.categoryPanel.hidden = !isOpen;
       state.toggle.setAttribute("aria-expanded", String(isOpen));
 
@@ -358,17 +344,12 @@ const activeTreatmentPath =
 
     const resetTreatmentCategories = () => {
       treatmentCategoryStates.forEach((state) => {
-        state.pinned = false;
-        state.suppressHover = false;
-        state.pointerInside = false;
-        state.focusWithinPanel = false;
-        state.categoryPanel.hidden = true;
-        state.toggle.setAttribute("aria-expanded", "false");
+        setTreatmentCategoryState(state, false);
       });
+      setImplantologySubmenuState(false);
     };
 
     const setMenuState = (isOpen: boolean) => {
-      setImplantologySubmenuState(false);
       resetTreatmentCategories();
       panel.hidden = !isOpen;
       backdrop.hidden = !isOpen;
@@ -397,64 +378,12 @@ const activeTreatmentPath =
       state.toggle.addEventListener(
         "click",
         () => {
-          if (state.pinned) {
-            state.pinned = false;
-            state.suppressHover = true;
-          } else {
-            state.pinned = true;
-            state.suppressHover = false;
-          }
-          applyTreatmentCategoryState(state);
-        },
-        listenerOptions,
-      );
-
-      state.category.addEventListener(
-        "pointerenter",
-        () => {
-          if (!fineHoverMedia.matches) return;
-          state.pointerInside = true;
-          applyTreatmentCategoryState(state);
-        },
-        listenerOptions,
-      );
-
-      state.category.addEventListener(
-        "pointerleave",
-        () => {
-          state.pointerInside = false;
-          state.suppressHover = false;
-          applyTreatmentCategoryState(state);
-        },
-        listenerOptions,
-      );
-
-      state.categoryPanel.addEventListener(
-        "focusin",
-        () => {
-          state.focusWithinPanel = true;
-          applyTreatmentCategoryState(state);
-        },
-        listenerOptions,
-      );
-
-      state.categoryPanel.addEventListener(
-        "focusout",
-        () => {
-          requestAnimationFrame(() => {
-            state.focusWithinPanel = state.categoryPanel.contains(document.activeElement);
-            applyTreatmentCategoryState(state);
-          });
+          const shouldOpen = state.toggle.getAttribute("aria-expanded") !== "true";
+          setTreatmentCategoryState(state, shouldOpen);
         },
         listenerOptions,
       );
     });
-
-    fineHoverMedia.addEventListener(
-      "change",
-      () => treatmentCategoryStates.forEach(applyTreatmentCategoryState),
-      listenerOptions,
-    );
 
     panel.addEventListener(
       "click",
@@ -835,7 +764,7 @@ const activeTreatmentPath =
   .implant-home-menu__treatment-category {
     display: grid;
     min-width: 0;
-    gap: 6px;
+    gap: 12px;
   }
   .implant-home-menu__treatment-category-title {
     margin: 2px 0 0;
@@ -1114,7 +1043,7 @@ const activeTreatmentPath =
     .implant-home-menu__section-content small { display: block; color: rgba(14, 56, 76, .68); font-size: 12px; font-weight: 400; line-height: 1.25; }
     .implant-home-menu__section--treatments .implant-home-menu__section-content { gap: 13px; }
     .implant-home-menu__treatment-categories { gap: 14px; }
-    .implant-home-menu__treatment-category { gap: 7px; }
+    .implant-home-menu__treatment-category { gap: 12px; }
     .implant-home-menu__treatment-category-title {
       color: rgba(14, 56, 76, .68);
       font-size: 15px;
