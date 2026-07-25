@@ -776,11 +776,12 @@ const activeTreatmentPath =
   }
   .implant-home-menu__treatment-category-toggle {
     display: flex;
-    width: 100%;
+    width: calc(100% + 10px);
     align-items: center;
     justify-content: space-between;
     gap: 12px;
     margin: 0;
+    margin-inline-start: -10px;
     padding: 6px 10px;
     border: 0;
     border-radius: 4px;
@@ -791,12 +792,21 @@ const activeTreatmentPath =
     text-align: left;
     box-shadow: none;
     cursor: pointer;
-    transition: background-color 160ms ease;
+    transition: background-color 160ms ease, color 160ms ease;
     -webkit-tap-highlight-color: transparent;
   }
-  .implant-home-menu__treatment-category-toggle:hover,
+  .implant-home-menu__treatment-category-toggle:hover {
+    background: transparent;
+    color: inherit;
+  }
   .implant-home-menu__treatment-category-toggle:active {
     background: transparent;
+    color: inherit;
+  }
+  @media (min-width: 768px) and (hover: hover) {
+    .implant-home-menu__treatment-category-toggle:hover {
+      color: #fff;
+    }
   }
   .implant-home-menu__treatment-category-toggle:focus-visible {
     outline: 2px solid #fff;
@@ -1062,6 +1072,7 @@ const activeTreatmentPath =
     .implant-home-menu__treatment-category-toggle:hover,
     .implant-home-menu__treatment-category-toggle:active {
       background: transparent;
+      color: inherit;
     }
     .implant-home-menu__treatment-category-toggle:focus-visible {
       outline-color: #0e384c;

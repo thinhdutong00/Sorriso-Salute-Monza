@@ -2272,10 +2272,19 @@
   }
 
   body.brand-palette .kebab-menu__treatment-category-toggle,
-  body.brand-palette .kebab-menu__treatment-category-toggle:hover,
   body.brand-palette .kebab-menu__treatment-category-toggle:focus-visible,
   body.brand-palette .kebab-menu__treatment-category-toggle:active {
     color: inherit !important;
+  }
+
+  body.brand-palette .kebab-menu__treatment-category-toggle:hover {
+    color: inherit !important;
+  }
+
+  @media (min-width: 768px) and (hover: hover) {
+    body.brand-palette .kebab-menu__treatment-category-toggle:hover {
+      color: #ffffff !important;
+    }
   }
 
   body.brand-palette .kebab-menu__treatment-category-toggle[aria-expanded="true"],
@@ -3197,9 +3206,10 @@
     align-items: center !important;
     justify-content: space-between !important;
     gap: 12px !important;
-    width: 100% !important;
+    width: calc(100% + 10px) !important;
     min-width: 0 !important;
     margin: 0 !important;
+    margin-inline-start: -10px !important;
     padding: 6px 10px !important;
     border: 0 !important;
     border-radius: 4px !important;
@@ -3212,17 +3222,30 @@
     font: inherit !important;
     line-height: inherit !important;
     text-align: left !important;
-    transition: background-color 160ms ease !important;
+    transition: background-color 160ms ease, color 160ms ease !important;
     -webkit-tap-highlight-color: transparent !important;
   }
 
-  body.brand-palette .mirror-kebab-menu__treatment-category-toggle:hover,
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle:hover {
+    border-color: transparent !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    box-shadow: none !important;
+  }
+
   body.brand-palette .mirror-kebab-menu__treatment-category-toggle:active {
     border-color: transparent !important;
     background: transparent !important;
     background-color: transparent !important;
     color: inherit !important;
     box-shadow: none !important;
+  }
+
+  @media (min-width: 768px) and (hover: hover) {
+    body.brand-palette .mirror-kebab-menu__treatment-category-toggle:hover {
+      color: #ffffff !important;
+    }
   }
 
   body.brand-palette .mirror-kebab-menu__treatment-category-toggle:focus-visible {

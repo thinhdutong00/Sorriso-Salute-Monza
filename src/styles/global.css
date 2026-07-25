@@ -717,9 +717,10 @@ body.kebab-menu-open {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  width: 100%;
+  width: calc(100% + 10px);
   min-width: 0;
   margin: 0;
+  margin-inline-start: -10px;
   padding: 6px 10px;
   border: 0;
   border-radius: 4px;
@@ -731,16 +732,28 @@ body.kebab-menu-open {
   font: inherit;
   line-height: inherit;
   text-align: left;
-  transition: background-color 160ms ease;
+  transition: background-color 160ms ease, color 160ms ease;
   -webkit-tap-highlight-color: transparent;
 }
 
-.kebab-menu__treatment-category-toggle:hover,
+.kebab-menu__treatment-category-toggle:hover {
+  border-color: transparent;
+  background: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+
 .kebab-menu__treatment-category-toggle:active {
   border-color: transparent;
   background: transparent;
   color: inherit;
   box-shadow: none;
+}
+
+@media (min-width: 768px) and (hover: hover) {
+  .kebab-menu__treatment-category-toggle:hover {
+    color: #ffffff;
+  }
 }
 
 .kebab-menu__treatment-category-toggle:focus-visible {
