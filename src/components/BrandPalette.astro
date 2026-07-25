@@ -2282,15 +2282,17 @@
   body.brand-palette .kebab-menu__treatment-category-toggle[aria-expanded="true"]:hover,
   body.brand-palette .kebab-menu__treatment-category-toggle[aria-expanded="true"]:focus-visible,
   body.brand-palette .kebab-menu__treatment-category-toggle[aria-expanded="true"]:active {
-    background: rgba(0, 0, 0, 0.16) !important;
-    background-color: rgba(0, 0, 0, 0.16) !important;
+    background: var(--brand-secondary) !important;
+    background-color: var(--brand-secondary) !important;
+    color: #041117 !important;
   }
 
   body.brand-palette .kebab-menu__treatment-category-title {
-    color: inherit !important;
-    font-size: 15px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 17px !important;
     font-weight: 650 !important;
     line-height: 1.3 !important;
+    opacity: 1 !important;
   }
 
   body.brand-palette .kebab-menu__close,
@@ -3182,12 +3184,12 @@
 
   body.brand-palette .mirror-kebab-menu__treatment-category-title {
     margin: 2px 0 0 !important;
-    color: #ffffff !important;
+    color: rgba(255, 255, 255, 0.7) !important;
     cursor: default !important;
-    font-size: 15px !important;
+    font-size: 17px !important;
     font-weight: 650 !important;
     line-height: 1.3 !important;
-    opacity: 0.7 !important;
+    opacity: 1 !important;
   }
 
   body.brand-palette .mirror-kebab-menu__treatment-category-toggle {
@@ -3198,7 +3200,7 @@
     width: 100% !important;
     min-width: 0 !important;
     margin: 0 !important;
-    padding: 4px 8px !important;
+    padding: 6px 10px !important;
     border: 0 !important;
     border-radius: 4px !important;
     appearance: none !important;
@@ -3237,8 +3239,13 @@
   body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:hover,
   body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:active,
   body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:focus-visible {
-    background: rgba(0, 0, 0, 0.16) !important;
-    background-color: rgba(0, 0, 0, 0.16) !important;
+    background: var(--brand-secondary) !important;
+    background-color: var(--brand-secondary) !important;
+    color: #041117 !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:focus-visible {
+    outline-color: #ffffff !important;
   }
 
   body.brand-palette .mirror-kebab-menu__treatment-category-toggle > span:first-child {
@@ -3266,14 +3273,17 @@
     display: grid !important;
     min-width: 0 !important;
     gap: 10px !important;
+    padding-inline-start: 22px !important;
   }
 
   body.brand-palette .mirror-kebab-menu__treatment-category-items[hidden] {
     display: none !important;
   }
 
-  body.brand-palette .mirror-kebab-menu__treatment-category-items a {
+  body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__treatment-category-items > a {
     min-width: 0 !important;
+    font-size: 15px !important;
+    line-height: 1.25 !important;
     overflow-wrap: anywhere !important;
     white-space: normal !important;
   }
@@ -3298,7 +3308,7 @@
     background: transparent !important;
     color: #ffffff !important;
     font-family: inherit !important;
-    font-size: 17px !important;
+    font-size: 15px !important;
     font-weight: 500 !important;
     line-height: 1.25 !important;
     text-align: left !important;
@@ -4002,17 +4012,18 @@
     }
 
     body.brand-palette .mirror-kebab-menu__treatment-category-title {
-      color: var(--brand-primary) !important;
-      font-size: 15px !important;
-      opacity: 0.68 !important;
+      color: rgba(14, 56, 76, 0.68) !important;
+      font-size: 17px !important;
+      opacity: 1 !important;
     }
 
     body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"],
     body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:hover,
     body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:active,
     body.brand-palette .mirror-kebab-menu__treatment-category-toggle[aria-expanded="true"]:focus-visible {
-      background: rgba(14, 56, 76, 0.1) !important;
-      background-color: rgba(14, 56, 76, 0.1) !important;
+      background: var(--brand-secondary) !important;
+      background-color: var(--brand-secondary) !important;
+      color: #041117 !important;
     }
 
     body.brand-palette .mirror-kebab-menu__treatment-category-items {
