@@ -3213,7 +3213,7 @@
     margin-inline-start: -10px !important;
     padding: 6px 10px !important;
     border: 0 !important;
-    border-radius: 4px !important;
+    border-radius: 8px !important;
     appearance: none !important;
     background: transparent !important;
     background-color: transparent !important;
@@ -3224,6 +3224,7 @@
     line-height: inherit !important;
     text-align: left !important;
     transition: background-color 160ms ease, color 160ms ease !important;
+    overflow: hidden !important;
     -webkit-tap-highlight-color: transparent !important;
   }
 
@@ -3329,7 +3330,7 @@
     margin: 0 !important;
     padding: 0 0 6px !important;
     border: 0 !important;
-    border-radius: 4px !important;
+    border-radius: 8px !important;
     background: transparent !important;
     color: #ffffff !important;
     font-family: inherit !important;
@@ -3401,6 +3402,18 @@
 
   body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-panel > .mirror-kebab-menu__submenu-link:not(:last-of-type) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.09) !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-panel > .mirror-kebab-menu__submenu-link:first-child {
+    border-radius: 7px 7px 0 0 !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-panel > .mirror-kebab-menu__submenu-link:last-child {
+    border-radius: 0 0 7px 7px !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-panel > .mirror-kebab-menu__submenu-link:only-child {
+    border-radius: 7px !important;
   }
 
   body.brand-palette .mirror-kebab-menu__section--activities .mirror-kebab-menu__submenu-link[aria-current="page"] {

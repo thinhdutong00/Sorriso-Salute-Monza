@@ -723,7 +723,7 @@ body.kebab-menu-open {
   margin-inline-start: -10px;
   padding: 6px 10px;
   border: 0;
-  border-radius: 4px;
+  border-radius: 8px;
   appearance: none;
   background: transparent;
   color: inherit;
@@ -733,6 +733,7 @@ body.kebab-menu-open {
   line-height: inherit;
   text-align: left;
   transition: background-color 160ms ease, color 160ms ease;
+  overflow: hidden;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -838,7 +839,7 @@ body.kebab-menu-open {
   margin: 0;
   padding: 0 4px 6px 0;
   border: 0;
-  border-radius: 3px;
+  border-radius: 8px;
   appearance: none;
   background: transparent;
   color: #ffffff;
@@ -914,6 +915,18 @@ body.kebab-menu-open {
 
 .kebab-menu__submenu-panel > .kebab-menu__submenu-link:not(:last-of-type) {
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.kebab-menu__submenu-panel > .kebab-menu__submenu-link:first-child {
+  border-radius: 7px 7px 0 0;
+}
+
+.kebab-menu__submenu-panel > .kebab-menu__submenu-link:last-child {
+  border-radius: 0 0 7px 7px;
+}
+
+.kebab-menu__submenu-panel > .kebab-menu__submenu-link:only-child {
+  border-radius: 7px;
 }
 
 .kebab-menu__submenu-panel > .kebab-menu__submenu-link[aria-current="page"] {
