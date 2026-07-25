@@ -812,6 +812,25 @@ const mirrorNavigationScript = `
     implantologyToggles.forEach((button) => setImplantologyState(button, false));
   };
 
+  const navigationDisclosureToggles = Array.from(
+    panel?.querySelectorAll("[data-mirror-navigation-disclosure-toggle]") || [],
+  );
+
+  const setNavigationDisclosureState = (button, isOpen) => {
+    const panelId = button.getAttribute("aria-controls");
+    const disclosurePanel = panelId ? document.getElementById(panelId) : null;
+    if (!disclosurePanel || !panel?.contains(disclosurePanel)) return;
+    button.setAttribute("aria-expanded", String(isOpen));
+    disclosurePanel.hidden = !isOpen;
+  };
+
+  const resetNavigationDisclosures = (scope = panel) => {
+    if (!scope) return;
+    navigationDisclosureToggles.forEach((button) => {
+      if (scope.contains(button)) setNavigationDisclosureState(button, false);
+    });
+  };
+
   const treatmentCategoryRecords = Array.from(
     panel?.querySelectorAll("[data-treatment-category]") || [],
   ).flatMap((category) => {
@@ -853,6 +872,7 @@ const mirrorNavigationScript = `
   const setMenuState = (isOpen) => {
     if (!panel || !backdrop) return;
     resetTreatmentCategories();
+    resetNavigationDisclosures();
     panel.hidden = !isOpen;
     backdrop.hidden = !isOpen;
     body.classList.toggle("mirror-menu-open", isOpen);
@@ -893,6 +913,16 @@ const mirrorNavigationScript = `
   window.setTimeout(observeNav, 300);
 
   document.addEventListener("click", (event) => {
+    const navigationDisclosureToggle = event.target.closest(
+      "[data-mirror-navigation-disclosure-toggle]",
+    );
+    if (navigationDisclosureToggle) {
+      event.preventDefault();
+      const willOpen = navigationDisclosureToggle.getAttribute("aria-expanded") !== "true";
+      setNavigationDisclosureState(navigationDisclosureToggle, willOpen);
+      return;
+    }
+
     const implantologyToggle = event.target.closest("[data-mirror-implantology-toggle]");
     if (implantologyToggle) {
       event.preventDefault();
@@ -906,6 +936,10 @@ const mirrorNavigationScript = `
       event.preventDefault();
       const willOpen = sectionToggle.getAttribute("aria-expanded") !== "true";
       setSectionState(sectionToggle, willOpen);
+      if (!willOpen) {
+        const section = sectionToggle.closest("[data-mirror-menu-section]");
+        resetNavigationDisclosures(section);
+      }
       return;
     }
 
@@ -1699,12 +1733,47 @@ const reviewsPageScript = `
           </h2>
           <div class="mirror-kebab-menu__section-content">
             <a href="/"><i class="mirror-kebab-menu__link-icon fas fa-home" aria-hidden="true"></i><span>Home</span></a>
-            <a href="/chi-siamo/"><i class="mirror-kebab-menu__link-icon fas fa-info-circle" aria-hidden="true"></i><span>Chi siamo</span></a>
-            <a href="/doctors/"><i class="mirror-kebab-menu__link-icon fas fa-users" aria-hidden="true"></i><span>Equipe</span></a>
-            <a href="/recensioni-studio-dentistico-monza/"><i class="mirror-kebab-menu__link-icon fas fa-comment-dots" aria-hidden="true"></i><span>Dicono di noi</span></a>
+            <div class="mirror-kebab-menu__navigation-disclosure">
+              <div class="mirror-kebab-menu__navigation-disclosure-row">
+                <a
+                  class="mirror-kebab-menu__navigation-disclosure-parent"
+                  id="mirror-menu-about-link"
+                  href="/chi-siamo/"
+                  aria-current={page.path === "/chi-siamo/" ? "page" : undefined}
+                >
+                  <i class="mirror-kebab-menu__link-icon fas fa-info-circle" aria-hidden="true"></i>
+                  <span>Chi siamo</span>
+                </a>
+                <button
+                  class="mirror-kebab-menu__navigation-disclosure-toggle"
+                  id="mirror-menu-about-toggle"
+                  type="button"
+                  aria-label="Apri o chiudi il sottomenu Chi siamo"
+                  aria-expanded="false"
+                  aria-controls="mirror-menu-about-panel"
+                  data-mirror-navigation-disclosure-toggle
+                >
+                  <span class="mirror-kebab-menu__navigation-disclosure-chevron" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div
+                class="mirror-kebab-menu__navigation-disclosure-panel"
+                id="mirror-menu-about-panel"
+                role="group"
+                aria-labelledby="mirror-menu-about-link"
+                data-mirror-navigation-disclosure-panel
+                hidden
+              >
+                <a href="/doctors/" aria-current={page.path === "/doctors/" ? "page" : undefined}>Equipe</a>
+                <a
+                  href="/recensioni-studio-dentistico-monza/"
+                  aria-current={page.path === "/recensioni-studio-dentistico-monza/" ? "page" : undefined}
+                >
+                  Dicono di noi
+                </a>
+              </div>
+            </div>
             <a href="/struttura-studio-dentistico-monza/"><i class="mirror-kebab-menu__link-icon fas fa-clinic-medical" aria-hidden="true"></i><span>La Struttura</span></a>
-            <a href="/contatti/"><i class="mirror-kebab-menu__link-icon fas fa-envelope" aria-hidden="true"></i><span>Contatti</span></a>
-            <a href="/convenzioni-dirette-studio-dentistico-monza/"><i class="mirror-kebab-menu__link-icon fas fa-handshake" aria-hidden="true"></i><span>Convenzioni</span></a>
           </div>
         </section>
         <section class="mirror-kebab-menu__section" data-mirror-menu-section>
@@ -1718,8 +1787,52 @@ const reviewsPageScript = `
             <a href="/urgenze/"><i class="mirror-kebab-menu__link-icon fas fa-exclamation-triangle" aria-hidden="true"></i><span>Urgenze</span></a>
             <a href="tel:+390392022489"><i class="mirror-kebab-menu__link-icon fas fa-phone-alt" aria-hidden="true"></i><span>Chiama in studio: 039 2022489</span></a>
             <a href="/richiesta-generale/"><i class="mirror-kebab-menu__link-icon fas fa-calendar-check" aria-hidden="true"></i><span>Richiedi appuntamento</span></a>
-            <a href="/convenzioni-dirette/"><i class="mirror-kebab-menu__link-icon fas fa-file-medical" aria-hidden="true"></i><span>Convenzioni dirette</span></a>
-            <a href="/convenzioni-indirette/"><i class="mirror-kebab-menu__link-icon fas fa-file-medical" aria-hidden="true"></i><span>Convenzioni indirette</span></a>
+            <a href="/contatti/"><i class="mirror-kebab-menu__link-icon fas fa-envelope" aria-hidden="true"></i><span>Contatti</span></a>
+            <div class="mirror-kebab-menu__navigation-disclosure">
+              <div class="mirror-kebab-menu__navigation-disclosure-row">
+                <a
+                  class="mirror-kebab-menu__navigation-disclosure-parent"
+                  id="mirror-menu-conventions-link"
+                  href="/convenzioni-dirette-studio-dentistico-monza/"
+                  aria-current={page.path === "/convenzioni-dirette-studio-dentistico-monza/" ? "page" : undefined}
+                >
+                  <i class="mirror-kebab-menu__link-icon fas fa-handshake" aria-hidden="true"></i>
+                  <span>Convenzioni</span>
+                </a>
+                <button
+                  class="mirror-kebab-menu__navigation-disclosure-toggle"
+                  id="mirror-menu-conventions-toggle"
+                  type="button"
+                  aria-label="Apri o chiudi il sottomenu Convenzioni"
+                  aria-expanded="false"
+                  aria-controls="mirror-menu-conventions-panel"
+                  data-mirror-navigation-disclosure-toggle
+                >
+                  <span class="mirror-kebab-menu__navigation-disclosure-chevron" aria-hidden="true"></span>
+                </button>
+              </div>
+              <div
+                class="mirror-kebab-menu__navigation-disclosure-panel"
+                id="mirror-menu-conventions-panel"
+                role="group"
+                aria-labelledby="mirror-menu-conventions-link"
+                data-mirror-navigation-disclosure-panel
+                hidden
+              >
+                <a
+                  href="/convenzioni-dirette/"
+                  aria-current={page.path === "/convenzioni-dirette/" ? "page" : undefined}
+                >
+                  Convenzioni dirette
+                </a>
+                <a
+                  href="/convenzioni-indirette/"
+                  aria-current={page.path === "/convenzioni-indirette/" ? "page" : undefined}
+                >
+                  Convenzioni indirette
+                </a>
+              </div>
+            </div>
           </div>
         </section>
       </nav>

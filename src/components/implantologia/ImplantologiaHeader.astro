@@ -16,18 +16,22 @@ const primaryLinks = [
 
 const studioLinks = [
   { href: "/", label: "Home" },
-  { href: "/chi-siamo/", label: "Chi siamo" },
+  { href: "/struttura-studio-dentistico-monza/", label: "La Struttura" },
+];
+
+const aboutLinks = [
   { href: "/doctors/", label: "Equipe" },
   { href: "/recensioni-studio-dentistico-monza/", label: "Dicono di noi" },
-  { href: "/struttura-studio-dentistico-monza/", label: "La Struttura" },
-  { href: "/contatti/", label: "Contatti" },
-  { href: "/convenzioni-dirette-studio-dentistico-monza/", label: "Convenzioni" },
 ];
 
 const bookingLinks = [
   { href: "/urgenze/", label: "Urgenze" },
   { href: "tel:+390392022489", label: "Chiama in studio: 039 2022489" },
   { href: "/richiesta-generale/", label: "Richiedi appuntamento" },
+  { href: "/contatti/", label: "Contatti" },
+];
+
+const conventionLinks = [
   { href: "/convenzioni-dirette/", label: "Convenzioni dirette" },
   { href: "/convenzioni-indirette/", label: "Convenzioni indirette" },
 ];
@@ -208,7 +212,50 @@ const activeTreatmentPath =
         </button>
       </h2>
       <div class="implant-home-menu__section-content" id="implant-menu-studio">
-        {studioLinks.map((link) => <a href={link.href}><span>{link.label}</span></a>)}
+        <a href={studioLinks[0].href}><span>{studioLinks[0].label}</span></a>
+        <div class="implant-home-menu__nav-group" data-implant-menu-nav-group>
+          <div class="implant-home-menu__nav-group-row">
+            <a
+              class="implant-home-menu__nav-group-parent"
+              id="implant-home-menu-about-link"
+              href="/chi-siamo/"
+              aria-current={currentPath === "/chi-siamo/" ? "page" : undefined}
+            >
+              <span>Chi siamo</span>
+            </a>
+            <button
+              class="implant-home-menu__nav-group-toggle"
+              type="button"
+              aria-label="Mostra le voci di Chi siamo"
+              aria-expanded="false"
+              aria-controls="implant-home-menu-about-links"
+              data-open-label="Mostra le voci di Chi siamo"
+              data-close-label="Nascondi le voci di Chi siamo"
+              data-implant-menu-nav-toggle
+            >
+              <span class="implant-home-menu__nav-group-chevron" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div
+            class="implant-home-menu__nav-submenu"
+            id="implant-home-menu-about-links"
+            role="group"
+            aria-labelledby="implant-home-menu-about-link"
+            data-implant-menu-nav-panel
+            hidden
+          >
+            {aboutLinks.map((link) => (
+              <a
+                class="implant-home-menu__nav-submenu-link"
+                href={link.href}
+                aria-current={currentPath === link.href ? "page" : undefined}
+              >
+                <span>{link.label}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+        <a href={studioLinks[1].href}><span>{studioLinks[1].label}</span></a>
       </div>
     </section>
 
@@ -227,6 +274,48 @@ const activeTreatmentPath =
       </h2>
       <div class="implant-home-menu__section-content" id="implant-menu-booking">
         {bookingLinks.map((link) => <a href={link.href}><span>{link.label}</span></a>)}
+        <div class="implant-home-menu__nav-group" data-implant-menu-nav-group>
+          <div class="implant-home-menu__nav-group-row">
+            <a
+              class="implant-home-menu__nav-group-parent"
+              id="implant-home-menu-conventions-link"
+              href="/convenzioni-dirette-studio-dentistico-monza/"
+              aria-current={currentPath === "/convenzioni-dirette-studio-dentistico-monza/" ? "page" : undefined}
+            >
+              <span>Convenzioni</span>
+            </a>
+            <button
+              class="implant-home-menu__nav-group-toggle"
+              type="button"
+              aria-label="Mostra le voci di Convenzioni"
+              aria-expanded="false"
+              aria-controls="implant-home-menu-conventions-links"
+              data-open-label="Mostra le voci di Convenzioni"
+              data-close-label="Nascondi le voci di Convenzioni"
+              data-implant-menu-nav-toggle
+            >
+              <span class="implant-home-menu__nav-group-chevron" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div
+            class="implant-home-menu__nav-submenu"
+            id="implant-home-menu-conventions-links"
+            role="group"
+            aria-labelledby="implant-home-menu-conventions-link"
+            data-implant-menu-nav-panel
+            hidden
+          >
+            {conventionLinks.map((link) => (
+              <a
+                class="implant-home-menu__nav-submenu-link"
+                href={link.href}
+                aria-current={currentPath === link.href ? "page" : undefined}
+              >
+                <span>{link.label}</span>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   </nav>
@@ -287,6 +376,12 @@ const activeTreatmentPath =
       categoryPanel: HTMLElement;
     }
 
+    interface MenuNavDisclosure {
+      group: HTMLElement;
+      toggle: HTMLButtonElement;
+      submenu: HTMLElement;
+    }
+
     const treatmentCategoryStates = Array.from(
       panel.querySelectorAll<HTMLElement>("[data-treatment-category]"),
     ).flatMap<TreatmentCategoryDisclosure>((category) => {
@@ -297,6 +392,20 @@ const activeTreatmentPath =
       return [{
         toggle: categoryToggle,
         categoryPanel,
+      }];
+    });
+
+    const menuNavDisclosureStates = Array.from(
+      panel.querySelectorAll<HTMLElement>("[data-implant-menu-nav-group]"),
+    ).flatMap<MenuNavDisclosure>((group) => {
+      const navToggle = group.querySelector<HTMLButtonElement>("[data-implant-menu-nav-toggle]");
+      const submenu = group.querySelector<HTMLElement>("[data-implant-menu-nav-panel]");
+      if (!navToggle || !submenu) return [];
+
+      return [{
+        group,
+        toggle: navToggle,
+        submenu,
       }];
     });
 
@@ -349,8 +458,29 @@ const activeTreatmentPath =
       setImplantologySubmenuState(false);
     };
 
+    const setMenuNavDisclosureState = (state: MenuNavDisclosure, isOpen: boolean) => {
+      state.group.classList.toggle("is-open", isOpen);
+      state.toggle.setAttribute("aria-expanded", String(isOpen));
+      state.toggle.setAttribute(
+        "aria-label",
+        isOpen
+          ? state.toggle.dataset.closeLabel ?? "Nascondi sottomenu"
+          : state.toggle.dataset.openLabel ?? "Mostra sottomenu",
+      );
+      state.submenu.hidden = !isOpen;
+    };
+
+    const resetMenuNavDisclosures = (scope: HTMLElement = panel) => {
+      menuNavDisclosureStates.forEach((state) => {
+        if (scope === panel || scope.contains(state.group)) {
+          setMenuNavDisclosureState(state, false);
+        }
+      });
+    };
+
     const setMenuState = (isOpen: boolean) => {
       resetTreatmentCategories();
+      resetMenuNavDisclosures();
       panel.hidden = !isOpen;
       backdrop.hidden = !isOpen;
       toggle.setAttribute("aria-expanded", String(isOpen));
@@ -385,6 +515,17 @@ const activeTreatmentPath =
       );
     });
 
+    menuNavDisclosureStates.forEach((state) => {
+      state.toggle.addEventListener(
+        "click",
+        () => {
+          const shouldOpen = state.toggle.getAttribute("aria-expanded") !== "true";
+          setMenuNavDisclosureState(state, shouldOpen);
+        },
+        listenerOptions,
+      );
+    });
+
     panel.addEventListener(
       "click",
       (event) => {
@@ -403,6 +544,7 @@ const activeTreatmentPath =
           const shouldOpen = !section.classList.contains("is-open");
           section.classList.toggle("is-open", shouldOpen);
           sectionToggle.setAttribute("aria-expanded", String(shouldOpen));
+          if (!shouldOpen) resetMenuNavDisclosures(section);
         },
         listenerOptions,
       );
@@ -756,6 +898,123 @@ const activeTreatmentPath =
     overflow-wrap: anywhere;
     white-space: normal;
   }
+  .implant-home-menu__nav-group {
+    display: grid;
+    min-width: 0;
+    gap: 8px;
+  }
+  .implant-home-menu__nav-group-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 40px;
+    min-width: 0;
+    align-items: stretch;
+    border-radius: 8px;
+    background: transparent;
+    overflow: hidden;
+    transition: background-color 160ms ease;
+  }
+  .implant-home-menu__nav-group.is-open .implant-home-menu__nav-group-row {
+    background: rgba(0, 0, 0, .12);
+  }
+  .implant-home-menu__section-content a.implant-home-menu__nav-group-parent {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    align-items: center;
+    padding: 7px 0;
+    border-radius: 8px 0 0 8px;
+    overflow-wrap: anywhere;
+  }
+  .implant-home-menu__nav-group.is-open .implant-home-menu__nav-group-parent {
+    padding-left: 10px;
+  }
+  .implant-home-menu__section-content a.implant-home-menu__nav-group-parent::after {
+    display: none;
+  }
+  .implant-home-menu__nav-group-toggle {
+    display: grid;
+    width: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    place-items: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0 8px 8px 0;
+    background: transparent;
+    color: #fff;
+    box-shadow: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 160ms ease;
+  }
+  .implant-home-menu__nav-group-toggle:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: -3px;
+  }
+  .implant-home-menu__nav-group-chevron {
+    width: 9px;
+    height: 9px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 180ms ease;
+  }
+  .implant-home-menu__nav-group-toggle[aria-expanded="true"] .implant-home-menu__nav-group-chevron {
+    transform: translateY(2px) rotate(-135deg);
+  }
+  .implant-home-menu__nav-submenu {
+    display: grid;
+    min-width: 0;
+    gap: 0;
+    padding: 2px 0;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, .18);
+    overflow: hidden;
+  }
+  .implant-home-menu__nav-submenu[hidden] {
+    display: none !important;
+  }
+  .implant-home-menu__section-content a.implant-home-menu__nav-submenu-link {
+    width: 100%;
+    max-width: none;
+    padding: 8px 12px 8px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, .09);
+    border-radius: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, .88);
+    font-size: 15px;
+    line-height: 1.3;
+    transition: background-color 160ms ease, box-shadow 160ms ease, color 160ms ease;
+  }
+  .implant-home-menu__section-content a.implant-home-menu__nav-submenu-link:first-child {
+    border-radius: 7px 7px 0 0;
+  }
+  .implant-home-menu__section-content a.implant-home-menu__nav-submenu-link:last-child {
+    border-bottom: 0;
+    border-radius: 0 0 7px 7px;
+  }
+  .implant-home-menu__section-content a.implant-home-menu__nav-submenu-link:only-child {
+    border-radius: 7px;
+  }
+  .implant-home-menu__section-content a.implant-home-menu__nav-submenu-link::after {
+    display: none;
+  }
+  .implant-home-menu__section-content a.implant-home-menu__nav-submenu-link:focus-visible {
+    background: rgba(255, 255, 255, .09);
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .55);
+    color: #fff;
+  }
+  @media (min-width: 768px) and (hover: hover) {
+    .implant-home-menu__nav-group-toggle:hover,
+    .implant-home-menu__section-content a.implant-home-menu__nav-group-parent:hover {
+      background: rgba(255, 255, 255, .05);
+    }
+    .implant-home-menu__section-content a.implant-home-menu__nav-submenu-link:hover {
+      background: rgba(255, 255, 255, .06);
+      color: #fff;
+    }
+  }
   .implant-home-menu__treatment-categories {
     display: grid;
     min-width: 0;
@@ -1082,6 +1341,59 @@ const activeTreatmentPath =
     }
     .implant-home-menu__section-content a::after { display: none; }
     .implant-home-menu__section-content small { display: block; color: rgba(14, 56, 76, .68); font-size: 12px; font-weight: 400; line-height: 1.25; }
+    .implant-home-menu__nav-group {
+      gap: 8px;
+    }
+    .implant-home-menu__nav-group-row {
+      grid-template-columns: minmax(0, 1fr) 44px;
+      min-height: 44px;
+    }
+    .implant-home-menu__nav-group.is-open .implant-home-menu__nav-group-row {
+      background: rgba(14, 56, 76, .08);
+    }
+    .implant-home-menu__section-content a.implant-home-menu__nav-group-parent {
+      width: 100%;
+      max-width: none;
+      min-height: 44px;
+      align-items: center;
+      padding: 8px 0;
+      color: #0e384c;
+    }
+    .implant-home-menu__nav-group-toggle {
+      width: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      color: #0e384c;
+    }
+    .implant-home-menu__nav-group-toggle:focus-visible {
+      outline-color: #0e384c;
+    }
+    .implant-home-menu__nav-submenu {
+      padding: 2px 0;
+      background: var(--clinic-teal-dark, #082a38);
+    }
+    .implant-home-menu__section-content a.implant-home-menu__nav-submenu-link {
+      display: inline-flex;
+      width: 100%;
+      max-width: none;
+      padding: 8px 12px 8px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, .09);
+      background: transparent;
+      color: rgba(255, 255, 255, .88);
+      font-size: 15px;
+      line-height: 1.3;
+    }
+    .implant-home-menu__section-content a.implant-home-menu__nav-submenu-link:last-child {
+      border-bottom: 0;
+    }
+    .implant-home-menu__section-content a.implant-home-menu__nav-submenu-link[aria-current="page"] {
+      color: #fff;
+    }
+    .implant-home-menu__section-content a.implant-home-menu__nav-submenu-link:focus-visible {
+      background: rgba(255, 255, 255, .09);
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .55);
+      color: #fff;
+    }
     .implant-home-menu__section--treatments .implant-home-menu__section-content { gap: 13px; }
     .implant-home-menu__treatment-categories { gap: 14px; }
     .implant-home-menu__treatment-category { gap: 12px; }
@@ -1200,11 +1512,39 @@ const activeTreatmentPath =
     .implant-home-menu__cta-button svg { flex: 0 0 22px; width: 22px; height: 22px; }
   }
 
+  @media (min-width: 768px) {
+    body.implant-menu-open .implant-home-header {
+      z-index: 10025;
+      border-color: transparent;
+      background: transparent;
+      box-shadow: none;
+      transform: translateY(0);
+      pointer-events: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+    body.implant-menu-open .implant-home-header__nav {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+    body.implant-menu-open .implant-home-header__logo {
+      z-index: 1;
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    body.implant-menu-open .implant-home-header__logo-mark {
+      background: #fff;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .implant-home-header,
     .implant-home-menu__section-toggle svg,
     .implant-home-menu__treatment-category-chevron,
-    .implant-home-menu__treatment-parent svg { transition: none; }
+    .implant-home-menu__treatment-parent svg,
+    .implant-home-menu__nav-group-chevron { transition: none; }
   }
 </style>

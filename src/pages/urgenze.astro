@@ -368,10 +368,46 @@ const currentPath = Astro.url.pathname;
       <nav class="kebab-menu__content" aria-label="Navigazione estesa">
         <section class="kebab-menu__section">
           <h2>Studio</h2>
-          <a href="/chi-siamo/">Chi siamo</a>
+          <div class="kebab-menu__link-disclosure" data-kebab-link-disclosure>
+            <div class="kebab-menu__link-disclosure-row">
+              <a
+                id="urgent-menu-about-link"
+                class="kebab-menu__link-disclosure-parent-link"
+                href="/chi-siamo/"
+                aria-current={currentPath === "/chi-siamo/" ? "page" : undefined}
+              >
+                Chi siamo
+              </a>
+              <button
+                class="kebab-menu__link-disclosure-toggle"
+                id="urgent-menu-about-toggle"
+                type="button"
+                aria-label="Voci di Chi siamo"
+                aria-expanded="false"
+                aria-controls="urgent-menu-about-links"
+                data-kebab-link-disclosure-toggle
+              >
+                <span class="kebab-menu__link-disclosure-chevron" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div
+              class="kebab-menu__link-disclosure-panel"
+              id="urgent-menu-about-links"
+              role="group"
+              aria-labelledby="urgent-menu-about-link"
+              data-kebab-link-disclosure-panel
+              hidden
+            >
+              <a href="/doctors/" aria-current={currentPath === "/doctors/" ? "page" : undefined}>Equipe</a>
+              <a
+                href="/recensioni-studio-dentistico-monza/"
+                aria-current={currentPath === "/recensioni-studio-dentistico-monza/" ? "page" : undefined}
+              >
+                Dicono di noi
+              </a>
+            </div>
+          </div>
           <a href="/struttura-studio-dentistico-monza/">La Struttura</a>
-          <a href="/contatti/">Contatti</a>
-          <a href="/convenzioni-dirette-studio-dentistico-monza/">Convenzioni</a>
         </section>
         <section class="kebab-menu__section kebab-menu__section--treatments">
           <h2>Trattamenti</h2>
@@ -448,8 +484,51 @@ const currentPath = Astro.url.pathname;
           <a href="/urgenze/">Urgenze</a>
           <a href="tel:+390392022489">Chiama in studio: 039 2022489</a>
           <a href="/richiesta-generale/">Richiedi appuntamento</a>
-          <a href="/convenzioni-dirette/">Convenzioni dirette</a>
-          <a href="/convenzioni-indirette/">Convenzioni indirette</a>
+          <a href="/contatti/" aria-current={currentPath === "/contatti/" ? "page" : undefined}>Contatti</a>
+          <div class="kebab-menu__link-disclosure" data-kebab-link-disclosure>
+            <div class="kebab-menu__link-disclosure-row">
+              <a
+                id="urgent-menu-conventions-link"
+                class="kebab-menu__link-disclosure-parent-link"
+                href="/convenzioni-dirette-studio-dentistico-monza/"
+                aria-current={currentPath === "/convenzioni-dirette-studio-dentistico-monza/" ? "page" : undefined}
+              >
+                Convenzioni
+              </a>
+              <button
+                class="kebab-menu__link-disclosure-toggle"
+                id="urgent-menu-conventions-toggle"
+                type="button"
+                aria-label="Voci di Convenzioni"
+                aria-expanded="false"
+                aria-controls="urgent-menu-conventions-links"
+                data-kebab-link-disclosure-toggle
+              >
+                <span class="kebab-menu__link-disclosure-chevron" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div
+              class="kebab-menu__link-disclosure-panel"
+              id="urgent-menu-conventions-links"
+              role="group"
+              aria-labelledby="urgent-menu-conventions-link"
+              data-kebab-link-disclosure-panel
+              hidden
+            >
+              <a
+                href="/convenzioni-dirette/"
+                aria-current={currentPath === "/convenzioni-dirette/" ? "page" : undefined}
+              >
+                Convenzioni dirette
+              </a>
+              <a
+                href="/convenzioni-indirette/"
+                aria-current={currentPath === "/convenzioni-indirette/" ? "page" : undefined}
+              >
+                Convenzioni indirette
+              </a>
+            </div>
+          </div>
         </section>
       </nav>
     </aside>
@@ -504,6 +583,22 @@ const currentPath = Astro.url.pathname;
             itemsPanel,
           }];
         });
+        const linkDisclosureRecords = Array.from(
+          kebabPanel?.querySelectorAll("[data-kebab-link-disclosure]") ?? [],
+        ).flatMap((disclosure) => {
+          const disclosureToggle = disclosure.querySelector("[data-kebab-link-disclosure-toggle]");
+          const disclosurePanel = disclosure.querySelector("[data-kebab-link-disclosure-panel]");
+
+          if (
+            !(disclosureToggle instanceof HTMLButtonElement) ||
+            !(disclosurePanel instanceof HTMLElement)
+          ) return [];
+
+          return [{
+            toggle: disclosureToggle,
+            panel: disclosurePanel,
+          }];
+        });
         let lastScrollY = window.scrollY;
 
         const closeMobileMenu = () => {
@@ -534,10 +629,22 @@ const currentPath = Astro.url.pathname;
           setImplantologySubmenuState(false);
         };
 
+        const setLinkDisclosureState = (record, isOpen) => {
+          record.toggle.setAttribute("aria-expanded", String(isOpen));
+          record.panel.hidden = !isOpen;
+        };
+
+        const resetLinkDisclosureStates = () => {
+          linkDisclosureRecords.forEach((record) => {
+            setLinkDisclosureState(record, false);
+          });
+        };
+
         const setKebabMenuState = (isOpen) => {
           if (!(kebabPanel instanceof HTMLElement) || !(kebabBackdrop instanceof HTMLElement)) return;
 
           resetTreatmentCategoryStates();
+          resetLinkDisclosureStates();
           kebabPanel.hidden = !isOpen;
           kebabBackdrop.hidden = !isOpen;
           document.body.classList.toggle("kebab-menu-open", isOpen);
@@ -595,7 +702,15 @@ const currentPath = Astro.url.pathname;
           });
         });
 
+        linkDisclosureRecords.forEach((record) => {
+          record.toggle.addEventListener("click", () => {
+            const isOpen = record.toggle.getAttribute("aria-expanded") === "true";
+            setLinkDisclosureState(record, !isOpen);
+          });
+        });
+
         resetTreatmentCategoryStates();
+        resetLinkDisclosureStates();
 
         mobileNav?.querySelectorAll("a").forEach((link) => {
           link.addEventListener("click", closeMobileMenu);
