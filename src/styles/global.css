@@ -757,7 +757,7 @@ body.kebab-menu-open {
 .kebab-menu__treatment-category-toggle[aria-expanded="true"]:active,
 .kebab-menu__treatment-category-toggle[aria-expanded="true"]:focus-visible {
   background: var(--brand-secondary, var(--clinic-blue, #1e84b5));
-  color: #041117;
+  color: #ffffff;
 }
 
 .kebab-menu__treatment-category-toggle[aria-expanded="true"]:focus-visible {
