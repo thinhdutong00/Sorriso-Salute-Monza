@@ -71,6 +71,8 @@
     --surface-soft: #ffffff !important;
     --button-secondary: rgba(191, 197, 210, 0.36) !important;
     --button-secondary-solid: #bfc5d2 !important;
+    --site-button-radius: 14px !important;
+    --site-button-wipe-duration: 220ms !important;
     --shadow-soft: 0 20px 48px rgba(14, 56, 76, 0.12) !important;
     --shadow-card: 0 12px 32px rgba(14, 56, 76, 0.10) !important;
   }
@@ -3000,7 +3002,7 @@
     padding: 0 20px !important;
     overflow: hidden !important;
     border: 1px solid var(--brand-secondary) !important;
-    border-radius: 999px !important;
+    border-radius: var(--site-button-radius) !important;
     background: var(--brand-secondary) !important;
     background-color: var(--brand-secondary) !important;
     color: #ffffff !important;
@@ -8416,6 +8418,356 @@
         text-shadow: none !important;
       }
 	  }
+
+  /* CTA standard shared by mirror pages and BrandPalette-backed native pages.
+   * Functional toggles and icon-only controls are intentionally excluded.
+   */
+  body.brand-palette :where(button) {
+    border-radius: var(--site-button-radius);
+  }
+
+  body.brand-palette :is(
+    .site-button,
+    [data-site-button],
+    .elementor-button,
+    .mirror-request-cta a,
+    .activity-sticky-cta__button,
+    .mirror-nav-booking-link,
+    .mirror-kebab-menu__cta-button,
+    .glsr button.glsr-button,
+    .header-booking-cta,
+    .button,
+    .situation-card__cta,
+    .booking-choice-button,
+    .request-btn,
+    .urgent-action,
+    .sticky-cta__button,
+    .implant-home-header__booking,
+    .implant-home-menu__cta-button
+  ) {
+    position: relative !important;
+    z-index: 0 !important;
+    isolation: isolate !important;
+    overflow: hidden !important;
+    border-radius: var(--site-button-radius) !important;
+    border-color: var(--site-button-base-border) !important;
+    background: var(--site-button-base-fill) !important;
+    background-color: var(--site-button-base-fill) !important;
+    color: var(--site-button-base-color) !important;
+    transform: none !important;
+    transition:
+      border-color var(--site-button-wipe-duration) ease,
+      color var(--site-button-wipe-duration) ease,
+      box-shadow var(--site-button-wipe-duration) ease !important;
+  }
+
+  body.brand-palette :is(
+    .site-button,
+    [data-site-button],
+    .elementor-button,
+    .mirror-request-cta a,
+    .activity-sticky-cta__button,
+    .mirror-nav-booking-link,
+    .mirror-kebab-menu__cta-button,
+    .glsr button.glsr-button,
+    .header-booking-cta,
+    .button,
+    .situation-card__cta,
+    .booking-choice-button,
+    .request-btn,
+    .urgent-action,
+    .sticky-cta__button,
+    .implant-home-header__booking,
+    .implant-home-menu__cta-button
+  )::before {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: -1 !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    border: 0 !important;
+    border-radius: inherit !important;
+    background: var(--site-button-hover-fill) !important;
+    content: "" !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
+    transform: scaleX(0) !important;
+    transform-origin: left center !important;
+    transition: transform var(--site-button-wipe-duration) ease !important;
+  }
+
+  /* Specificity guard: legacy Elementor rules use deeply nested !important
+   * selectors, so the non-matching ID keeps this final CTA contract authoritative.
+   */
+  body.brand-palette .elementor-button:not(#site-button-legacy-override)::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  body.brand-palette :is(
+    .site-button,
+    [data-site-button],
+    .elementor-button,
+    .mirror-request-cta a,
+    .activity-sticky-cta__button,
+    .mirror-nav-booking-link,
+    .mirror-kebab-menu__cta-button,
+    .glsr button.glsr-button,
+    .header-booking-cta,
+    .button,
+    .situation-card__cta,
+    .booking-choice-button,
+    .request-btn,
+    .urgent-action,
+    .sticky-cta__button,
+    .implant-home-header__booking,
+    .implant-home-menu__cta-button
+  ):not(#site-button-legacy-override):is(:hover, :focus-visible) {
+    border-color: var(--site-button-hover-border) !important;
+    background: var(--site-button-base-fill) !important;
+    background-color: var(--site-button-base-fill) !important;
+    color: var(--site-button-hover-color) !important;
+    transform: none !important;
+  }
+
+  body.brand-palette :is(
+    .site-button,
+    [data-site-button],
+    .elementor-button,
+    .mirror-request-cta a,
+    .activity-sticky-cta__button,
+    .mirror-nav-booking-link,
+    .mirror-kebab-menu__cta-button,
+    .glsr button.glsr-button,
+    .header-booking-cta,
+    .button,
+    .situation-card__cta,
+    .booking-choice-button,
+    .request-btn,
+    .urgent-action,
+    .sticky-cta__button,
+    .implant-home-header__booking,
+    .implant-home-menu__cta-button
+  ):not(#site-button-legacy-override):is(:hover, :focus-visible)::before {
+    transform: scaleX(1) !important;
+  }
+
+  body.brand-palette :is(
+    .site-button,
+    [data-site-button],
+    .elementor-button,
+    .mirror-request-cta a,
+    .activity-sticky-cta__button,
+    .mirror-nav-booking-link,
+    .mirror-kebab-menu__cta-button,
+    .glsr button.glsr-button,
+    .header-booking-cta,
+    .button,
+    .situation-card__cta,
+    .booking-choice-button,
+    .request-btn,
+    .urgent-action,
+    .sticky-cta__button,
+    .implant-home-header__booking,
+    .implant-home-menu__cta-button
+  ):is([disabled], [aria-disabled="true"])::before {
+    display: none !important;
+  }
+
+  body.brand-palette :is(.site-button, [data-site-button]) {
+    --site-button-base-fill: var(--brand-primary);
+    --site-button-base-color: #ffffff;
+    --site-button-base-border: var(--brand-primary);
+    --site-button-hover-fill: #ffffff;
+    --site-button-hover-color: var(--brand-primary);
+    --site-button-hover-border: var(--brand-primary);
+  }
+
+  body.brand-palette :is(.elementor-button, .mirror-request-cta a, .activity-sticky-cta__button) {
+    --site-button-base-fill: var(--brand-primary);
+    --site-button-base-color: #ffffff;
+    --site-button-base-border: var(--brand-primary);
+    --site-button-hover-fill: #ffffff;
+    --site-button-hover-color: var(--brand-primary);
+    --site-button-hover-border: var(--brand-primary);
+  }
+
+  body.brand-palette :is(.mirror-nav-booking-link, .header-booking-cta, .implant-home-header__booking) {
+    --site-button-base-fill: var(--brand-secondary);
+    --site-button-base-color: #ffffff;
+    --site-button-base-border: var(--brand-secondary);
+    --site-button-hover-color: var(--brand-primary);
+    --site-button-hover-border: var(--brand-primary);
+  }
+
+  body.brand-palette.mirror-header-over-hero .mirror-nav-booking-link,
+  body.brand-palette .site-header.is-over-hero .header-booking-cta,
+  body.brand-palette .implant-home-header.is-over-hero .implant-home-header__booking {
+    --site-button-base-fill: transparent;
+    --site-button-base-color: #ffffff;
+    --site-button-base-border: #ffffff;
+    --site-button-hover-fill: rgba(255, 255, 255, 0.18);
+    --site-button-hover-color: #ffffff;
+    --site-button-hover-border: #ffffff;
+  }
+
+  body.brand-palette .mirror-kebab-menu__cta-button--call,
+  body.brand-palette .implant-home-menu__cta-button--call {
+    --site-button-base-fill: transparent;
+    --site-button-base-color: var(--brand-primary);
+    --site-button-base-border: var(--brand-primary);
+    --site-button-hover-fill: var(--brand-primary);
+    --site-button-hover-color: #ffffff;
+    --site-button-hover-border: var(--brand-primary);
+  }
+
+  body.brand-palette .mirror-kebab-menu__cta-button--book,
+  body.brand-palette .implant-home-menu__cta-button--book {
+    --site-button-base-fill: var(--brand-primary);
+    --site-button-base-color: #ffffff;
+    --site-button-base-border: var(--brand-primary);
+    --site-button-hover-fill: #ffffff;
+    --site-button-hover-color: var(--brand-primary);
+    --site-button-hover-border: var(--brand-primary);
+  }
+
+  body.brand-palette .booking-choice-button:not(.booking-choice-button--primary) {
+    --site-button-base-fill: #ffffff;
+    --site-button-base-color: var(--brand-primary);
+    --site-button-base-border: var(--brand-border);
+  }
+
+  body.brand-palette .request-btn-outline {
+    --site-button-base-fill: var(--button-secondary);
+    --site-button-base-color: var(--brand-primary);
+    --site-button-base-border: var(--brand-border);
+  }
+
+  body.brand-palette.mirror-reviews-page .glsr button.glsr-button {
+    --site-button-base-fill: var(--brand-secondary);
+    --site-button-base-color: #ffffff;
+    --site-button-base-border: var(--brand-secondary);
+    --site-button-hover-fill: #ffffff;
+    --site-button-hover-color: var(--brand-primary);
+    --site-button-hover-border: var(--brand-primary);
+  }
+
+  body.brand-palette.mirror-reviews-page #glsr_5cfbac45 button.glsr-button {
+    border-radius: var(--site-button-radius) !important;
+  }
+
+  body.brand-palette.mirror-reviews-page #glsr_5cfbac45 button.glsr-button:is(:hover, :focus-visible) {
+    border-color: var(--site-button-hover-border) !important;
+    background: var(--site-button-base-fill) !important;
+    background-color: var(--site-button-base-fill) !important;
+    color: var(--site-button-hover-color) !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .mirror-hero-primary,
+  body.brand-palette.home .elementor-7051 .elementor-element.elementor-element-ba6bc03 .elementor-button {
+    --site-button-base-fill: var(--brand-secondary);
+    --site-button-base-color: #ffffff;
+    --site-button-base-border: var(--brand-secondary);
+    --site-button-hover-fill: #ffffff;
+    --site-button-hover-color: var(--brand-primary);
+    --site-button-hover-border: #ffffff;
+  }
+
+  body.brand-palette.home .elementor-7051 .mirror-hero-secondary {
+    --site-button-base-fill: rgba(255, 255, 255, 0.12);
+    --site-button-base-color: #ffffff;
+    --site-button-base-border: rgba(255, 255, 255, 0.82);
+    --site-button-hover-fill: rgba(255, 255, 255, 0.18);
+    --site-button-hover-color: #ffffff;
+    --site-button-hover-border: #ffffff;
+  }
+
+  body.brand-palette.home .elementor-7051 .elementor-element:is(
+    .elementor-element-0383f71,
+    .elementor-element-a3ad1bc,
+    .elementor-element-cbf5252
+  ) .elementor-button {
+    --site-button-base-fill: var(--booking-platform-color);
+    --site-button-base-color: #ffffff;
+    --site-button-base-border: var(--booking-platform-color);
+    --site-button-hover-fill: var(--booking-platform-hover);
+    --site-button-hover-color: #ffffff;
+    --site-button-hover-border: var(--booking-platform-hover);
+    border-radius: var(--site-button-radius) !important;
+  }
+
+  body.brand-palette .elementor-button:not(#site-button-legacy-override):is(:hover, :focus-visible) :is(
+    .elementor-button-content-wrapper,
+    .elementor-button-text,
+    .elementor-button-icon
+  ) {
+    color: var(--site-button-hover-color) !important;
+  }
+
+  body.brand-palette
+    .elementor-button:not(#site-button-legacy-override):is(:hover, :focus-visible)
+    svg
+    [stroke]:not([stroke="none"]) {
+    stroke: var(--site-button-hover-color) !important;
+  }
+
+  body.brand-palette
+    .elementor-button:not(#site-button-legacy-override):is(:hover, :focus-visible)
+    svg
+    [fill]:not([fill="none"]) {
+    fill: var(--site-button-hover-color) !important;
+  }
+
+  body.brand-palette
+    .elementor-button:not(#site-button-legacy-override):is(:hover, :focus-visible)
+    svg[fill="none"]
+    [stroke]:not([fill]) {
+    fill: none !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body.brand-palette :is(
+      .site-button,
+      [data-site-button],
+      .elementor-button,
+      .mirror-request-cta a,
+      .activity-sticky-cta__button,
+      .mirror-nav-booking-link,
+      .mirror-kebab-menu__cta-button,
+      .glsr button.glsr-button,
+      .header-booking-cta,
+      .button,
+      .situation-card__cta,
+      .booking-choice-button,
+      .request-btn,
+      .urgent-action,
+      .sticky-cta__button,
+      .implant-home-header__booking,
+      .implant-home-menu__cta-button
+    ),
+    body.brand-palette :is(
+      .site-button,
+      [data-site-button],
+      .elementor-button,
+      .mirror-request-cta a,
+      .activity-sticky-cta__button,
+      .mirror-nav-booking-link,
+      .mirror-kebab-menu__cta-button,
+      .glsr button.glsr-button,
+      .header-booking-cta,
+      .button,
+      .situation-card__cta,
+      .booking-choice-button,
+      .request-btn,
+      .urgent-action,
+      .sticky-cta__button,
+      .implant-home-header__booking,
+      .implant-home-menu__cta-button
+    )::before {
+      transition: none !important;
+    }
+  }
 </style>
 
 <script is:inline>

@@ -23,6 +23,8 @@
   --color-text-description-inverse: #ffffff;
   --button-secondary: rgba(217, 210, 201, 0.4);
   --button-secondary-solid: #efebe6;
+  --site-button-radius: 14px;
+  --site-button-wipe-duration: 220ms;
   --shadow-soft: 0 20px 48px rgba(42, 38, 35, 0.08);
   --shadow-card: 0 12px 32px rgba(42, 38, 35, 0.08);
   color-scheme: light;
@@ -4901,6 +4903,441 @@ iframe {
 
   .activity-sticky-cta__inner {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Shared CTA standard.
+ * New call-to-action links and buttons should use .site-button (or
+ * data-site-button) so the home-hero radius and header wipe are inherited.
+ * Functional controls such as menus, calendars and selectable form options
+ * intentionally stay outside this allowlist.
+ */
+:where(
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"]
+) {
+  border-radius: var(--site-button-radius);
+}
+
+:where(
+  .site-button,
+  [data-site-button],
+  .header-booking-cta,
+  .button,
+  .situation-card__cta,
+  .activity-sticky-cta__button,
+  .booking-choice-button,
+  .request-btn,
+  .urgent-action,
+  .sticky-cta__button,
+  .implant-button,
+  .implant-editorial__button,
+  .prosthetics__button,
+  .implant-reviews__link-wrap > a,
+  .implant-multistep__navigation > button,
+  .single-implant-form__continue,
+  .single-implant-form__submit,
+  .implant-lead__form > button[type="submit"],
+  .implant-home-header__booking,
+  .implant-home-menu__cta-button
+) {
+  --site-button-base-fill: var(--clinic-teal);
+  --site-button-base-color: #ffffff;
+  --site-button-base-border: var(--clinic-teal);
+  --site-button-hover-fill: #ffffff;
+  --site-button-hover-color: var(--clinic-teal);
+  --site-button-hover-border: var(--clinic-teal);
+  position: relative !important;
+  z-index: 0;
+  isolation: isolate;
+  overflow: hidden !important;
+  border-radius: var(--site-button-radius) !important;
+  border-color: var(--site-button-base-border) !important;
+  background: var(--site-button-base-fill) !important;
+  background-color: var(--site-button-base-fill) !important;
+  color: var(--site-button-base-color) !important;
+  transform: none !important;
+  transition:
+    border-color var(--site-button-wipe-duration) ease,
+    color var(--site-button-wipe-duration) ease,
+    box-shadow var(--site-button-wipe-duration) ease !important;
+}
+
+:where(.site-button, [data-site-button]) {
+  border: 1px solid var(--clinic-teal);
+  background: var(--site-button-base-fill);
+  color: #ffffff;
+}
+
+:where(
+  .site-button,
+  [data-site-button],
+  .header-booking-cta,
+  .button,
+  .situation-card__cta,
+  .activity-sticky-cta__button,
+  .booking-choice-button,
+  .request-btn,
+  .urgent-action,
+  .sticky-cta__button,
+  .implant-button,
+  .implant-editorial__button,
+  .prosthetics__button,
+  .implant-reviews__link-wrap > a,
+  .implant-multistep__navigation > button,
+  .single-implant-form__continue,
+  .single-implant-form__submit,
+  .implant-lead__form > button[type="submit"],
+  .implant-home-header__booking,
+  .implant-home-menu__cta-button
+)::before {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  border: 0 !important;
+  border-radius: inherit !important;
+  background: var(--site-button-hover-fill) !important;
+  content: "" !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+  transform: scaleX(0) !important;
+  transform-origin: left center !important;
+  transition: transform var(--site-button-wipe-duration) ease !important;
+}
+
+:where(
+  .site-button,
+  [data-site-button],
+  .header-booking-cta,
+  .button,
+  .situation-card__cta,
+  .activity-sticky-cta__button,
+  .booking-choice-button,
+  .request-btn,
+  .urgent-action,
+  .sticky-cta__button,
+  .implant-button,
+  .implant-editorial__button,
+  .prosthetics__button,
+  .implant-reviews__link-wrap > a,
+  .implant-multistep__navigation > button,
+  .single-implant-form__continue,
+  .single-implant-form__submit,
+  .implant-lead__form > button[type="submit"],
+  .implant-home-header__booking,
+  .implant-home-menu__cta-button
+):is(:hover, :focus-visible) {
+  border-color: var(--site-button-hover-border) !important;
+  background: var(--site-button-base-fill) !important;
+  background-color: var(--site-button-base-fill) !important;
+  color: var(--site-button-hover-color) !important;
+  transform: none !important;
+}
+
+:where(
+  .site-button,
+  [data-site-button],
+  .header-booking-cta,
+  .button,
+  .situation-card__cta,
+  .activity-sticky-cta__button,
+  .booking-choice-button,
+  .request-btn,
+  .urgent-action,
+  .sticky-cta__button,
+  .implant-button,
+  .implant-editorial__button,
+  .prosthetics__button,
+  .implant-reviews__link-wrap > a,
+  .implant-multistep__navigation > button,
+  .single-implant-form__continue,
+  .single-implant-form__submit,
+  .implant-lead__form > button[type="submit"],
+  .implant-home-header__booking,
+  .implant-home-menu__cta-button
+):is(:hover, :focus-visible)::before {
+  transform: scaleX(1) !important;
+}
+
+:where(
+  .site-button,
+  [data-site-button],
+  .header-booking-cta,
+  .button,
+  .situation-card__cta,
+  .activity-sticky-cta__button,
+  .booking-choice-button,
+  .request-btn,
+  .urgent-action,
+  .sticky-cta__button,
+  .implant-button,
+  .implant-editorial__button,
+  .prosthetics__button,
+  .implant-reviews__link-wrap > a,
+  .implant-multistep__navigation > button,
+  .single-implant-form__continue,
+  .single-implant-form__submit,
+  .implant-lead__form > button[type="submit"],
+  .implant-home-header__booking,
+  .implant-home-menu__cta-button
+):is([disabled], [aria-disabled="true"])::before {
+  display: none !important;
+}
+
+.header-booking-cta,
+.implant-home-header__booking {
+  --site-button-base-fill: var(--clinic-blue);
+  --site-button-base-color: #ffffff;
+  --site-button-base-border: var(--clinic-blue);
+  --site-button-hover-color: var(--clinic-teal);
+  --site-button-hover-border: var(--clinic-teal);
+}
+
+.site-header.is-over-hero .header-booking-cta,
+.implant-home-header.is-over-hero .implant-home-header__booking {
+  --site-button-base-fill: transparent;
+  --site-button-base-color: #ffffff;
+  --site-button-base-border: #ffffff;
+  --site-button-hover-fill: rgba(255, 255, 255, 0.18);
+  --site-button-hover-color: #ffffff;
+  --site-button-hover-border: #ffffff;
+}
+
+.button-primary,
+.situation-card__cta,
+.activity-sticky-cta__button,
+.request-btn-primary,
+.sticky-cta__button--primary {
+  --site-button-base-fill: var(--clinic-teal);
+  --site-button-base-color: #ffffff;
+  --site-button-base-border: var(--clinic-teal);
+  --site-button-hover-fill: #ffffff;
+  --site-button-hover-color: var(--clinic-teal);
+  --site-button-hover-border: var(--clinic-teal);
+}
+
+.button.button-dark.advantage-cta,
+.button.button-dark.mobile-advantage-cta,
+.pain-cta .button,
+.contact-card .button,
+.button.button-dark.convention-booking-cta {
+  --site-button-base-fill: var(--clinic-teal);
+  --site-button-base-color: #ffffff;
+  --site-button-base-border: var(--clinic-teal);
+  --site-button-hover-fill: #ffffff;
+  --site-button-hover-color: var(--clinic-teal);
+  --site-button-hover-border: var(--clinic-teal);
+}
+
+.button-dark,
+.button-secondary,
+.booking-choice-button:not(.booking-choice-button--primary),
+.request-btn-outline,
+.sticky-cta__button--call {
+  --site-button-base-fill: var(--button-secondary-solid);
+  --site-button-base-color: var(--clinic-ink);
+  --site-button-base-border: rgba(217, 210, 201, 0.64);
+  --site-button-hover-fill: var(--clinic-teal);
+  --site-button-hover-color: #ffffff;
+  --site-button-hover-border: var(--clinic-teal);
+}
+
+.button-secondary,
+.request-btn-outline,
+.sticky-cta__button--call {
+  --site-button-base-fill: var(--button-secondary);
+}
+
+.booking-choice-button:not(.booking-choice-button--primary) {
+  --site-button-base-color: var(--clinic-teal);
+}
+
+.booking-choice-button--primary {
+  --site-button-base-fill: var(--clinic-teal);
+  --site-button-base-color: #ffffff;
+  --site-button-base-border: var(--clinic-teal);
+  --site-button-hover-fill: #ffffff;
+  --site-button-hover-color: var(--clinic-teal);
+  --site-button-hover-border: var(--clinic-teal);
+}
+
+.urgent-action {
+  --site-button-base-fill: transparent;
+  --site-button-base-color: var(--urgent-blue, var(--clinic-teal));
+  --site-button-base-border: var(--urgent-blue, var(--clinic-teal));
+  --site-button-hover-fill: var(--urgent-blue, var(--clinic-teal));
+  --site-button-hover-color: #ffffff;
+  --site-button-hover-border: var(--urgent-blue, var(--clinic-teal));
+}
+
+.urgent-action--primary {
+  --site-button-base-fill: var(--urgent-blue, var(--clinic-teal));
+  --site-button-base-color: #ffffff;
+  --site-button-base-border: var(--urgent-blue, var(--clinic-teal));
+  --site-button-hover-fill: #ffffff;
+  --site-button-hover-color: var(--urgent-blue, var(--clinic-teal));
+  --site-button-hover-border: var(--urgent-blue, var(--clinic-teal));
+}
+
+.implant-button:is(:hover, :focus-visible),
+body.urgent-page
+  .urgent-action.urgent-action--primary:is(:hover, :focus-visible),
+body.urgent-page
+  .urgent-action:not(.urgent-action--primary):is(:hover, :focus-visible) {
+  color: var(--site-button-hover-color) !important;
+}
+
+.implant-button--primary {
+  --site-button-base-fill: var(--implant-ink, var(--clinic-teal));
+  --site-button-base-color: #ffffff;
+  --site-button-base-border: var(--implant-ink, var(--clinic-teal));
+  --site-button-hover-fill: #ffffff;
+  --site-button-hover-color: var(--implant-ink, var(--clinic-teal));
+  --site-button-hover-border: var(--implant-ink, var(--clinic-teal));
+}
+
+.implant-button--whatsapp {
+  --site-button-base-fill: #ffffff;
+  --site-button-base-color: #0d6f4b;
+  --site-button-base-border: #76bca3;
+  --site-button-hover-fill: #0d6f4b;
+  --site-button-hover-color: #ffffff;
+  --site-button-hover-border: #0d6f4b;
+}
+
+.implant-button--accent,
+.implant-editorial__button--accent,
+.prosthetics__button--accent {
+  --site-button-base-fill: #9ce2d7;
+  --site-button-base-color: var(
+    --implant-ink-dark,
+    var(--editorial-ink-dark, var(--prosthetics-ink-dark, var(--clinic-teal)))
+  );
+  --site-button-base-border: #9ce2d7;
+  --site-button-hover-fill: #ffffff;
+  --site-button-hover-color: var(
+    --implant-ink-dark,
+    var(--editorial-ink-dark, var(--prosthetics-ink-dark, var(--clinic-teal)))
+  );
+  --site-button-hover-border: #ffffff;
+}
+
+.implant-button--ghost,
+.implant-editorial__button--ghost,
+.prosthetics__button--ghost {
+  --site-button-base-fill: rgba(255, 255, 255, 0.08);
+  --site-button-base-color: #ffffff;
+  --site-button-base-border: rgba(255, 255, 255, 0.36);
+  --site-button-hover-fill: rgba(255, 255, 255, 0.18);
+  --site-button-hover-color: #ffffff;
+  --site-button-hover-border: rgba(255, 255, 255, 0.72);
+}
+
+.implant-reviews__link-wrap > a {
+  --site-button-base-fill: #ffffff;
+  --site-button-base-color: var(--implant-ink, var(--clinic-teal));
+  --site-button-base-border: var(--implant-line, rgba(14, 56, 76, 0.16));
+  --site-button-hover-fill: var(--implant-teal, var(--clinic-teal));
+  --site-button-hover-color: #ffffff;
+  --site-button-hover-border: var(--implant-teal, var(--clinic-teal));
+}
+
+.implant-multistep__back {
+  --site-button-base-fill: #ffffff;
+  --site-button-base-color: var(--implant-ink, var(--clinic-teal));
+  --site-button-base-border: #bfd1d4;
+  --site-button-hover-fill: var(--implant-ink, var(--clinic-teal));
+  --site-button-hover-color: #ffffff;
+  --site-button-hover-border: var(--implant-ink, var(--clinic-teal));
+}
+
+.implant-home-menu__cta-button--call {
+  --site-button-base-fill: transparent;
+  --site-button-base-color: var(--implant-ink, var(--clinic-teal));
+  --site-button-base-border: var(--implant-ink, var(--clinic-teal));
+  --site-button-hover-fill: var(--implant-ink, var(--clinic-teal));
+  --site-button-hover-color: #ffffff;
+  --site-button-hover-border: var(--implant-ink, var(--clinic-teal));
+}
+
+.implant-multistep__next,
+.implant-multistep__submit,
+.implant-home-menu__cta-button--book,
+.implant-lead__form > button[type="submit"] {
+  --site-button-base-fill: var(--implant-ink, var(--clinic-teal));
+  --site-button-base-color: #ffffff;
+  --site-button-base-border: var(--implant-ink, var(--clinic-teal));
+  --site-button-hover-fill: #ffffff;
+  --site-button-hover-color: var(--implant-ink, var(--clinic-teal));
+  --site-button-hover-border: var(--implant-ink, var(--clinic-teal));
+}
+
+.implant-lead__form > button[type="submit"] {
+  border: 1px solid var(--implant-ink, var(--clinic-teal)) !important;
+  background: var(--site-button-base-fill) !important;
+}
+
+.single-implant-form__continue,
+.single-implant-form__submit {
+  --site-button-base-fill: #55b4ff;
+  --site-button-base-color: #022166;
+  --site-button-base-border: #55b4ff;
+  --site-button-hover-fill: #ffffff;
+  --site-button-hover-color: #022166;
+  --site-button-hover-border: #55b4ff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(
+    .site-button,
+    [data-site-button],
+    .header-booking-cta,
+    .button,
+    .situation-card__cta,
+    .activity-sticky-cta__button,
+    .booking-choice-button,
+    .request-btn,
+    .urgent-action,
+    .sticky-cta__button,
+    .implant-button,
+    .implant-editorial__button,
+    .prosthetics__button,
+    .implant-reviews__link-wrap > a,
+    .implant-multistep__navigation > button,
+    .single-implant-form__continue,
+    .single-implant-form__submit,
+    .implant-lead__form > button[type="submit"],
+    .implant-home-header__booking,
+    .implant-home-menu__cta-button
+  ),
+  :where(
+    .site-button,
+    [data-site-button],
+    .header-booking-cta,
+    .button,
+    .situation-card__cta,
+    .activity-sticky-cta__button,
+    .booking-choice-button,
+    .request-btn,
+    .urgent-action,
+    .sticky-cta__button,
+    .implant-button,
+    .implant-editorial__button,
+    .prosthetics__button,
+    .implant-reviews__link-wrap > a,
+    .implant-multistep__navigation > button,
+    .single-implant-form__continue,
+    .single-implant-form__submit,
+    .implant-lead__form > button[type="submit"],
+    .implant-home-header__booking,
+    .implant-home-menu__cta-button
+  )::before {
+    transition: none !important;
   }
 }
 
