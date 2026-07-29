@@ -1157,6 +1157,18 @@ body.kebab-menu-open .site-header .implantologia-hub__logo-mark {
   background: currentColor;
 }
 
+@media (min-width: 981px) and (max-width: 1070px) {
+  .desktop-nav,
+  .kebab-button {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+    justify-self: end;
+  }
+}
+
 .mobile-nav {
   position: absolute;
   top: calc(100% + 10px);

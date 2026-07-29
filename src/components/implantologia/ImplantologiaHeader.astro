@@ -8,10 +8,12 @@ import {
 const logo = "/mirror-assets/568e7b4baac5c946.png";
 
 const primaryLinks = [
-  { href: "/recensioni-studio-dentistico-monza/", label: "Dicono di noi" },
-  { href: "/struttura-studio-dentistico-monza/", label: "La Struttura" },
+  { href: "/struttura-studio-dentistico-monza/", label: "La struttura" },
+  { href: "/doctors/", label: "I professionisti" },
+  { href: "/chi-siamo/", label: "Come lavoriamo" },
+  { href: "/recensioni-studio-dentistico-monza/", label: "Recensioni" },
   { href: "/convenzioni-dirette-studio-dentistico-monza/", label: "Convenzioni" },
-  { href: "/urgenze/", label: "Urgenze" },
+  { href: "/contatti/", label: "Contatti" },
 ];
 
 const studioLinks = [
@@ -50,12 +52,6 @@ const activeTreatmentPath =
 
     <nav class="implant-home-header__nav" aria-label="Navigazione principale">
       {primaryLinks.map((link) => <a class="implant-home-header__nav-link" href={link.href}>{link.label}</a>)}
-      <a class="implant-home-header__nav-link implant-home-header__phone" href="tel:+390392022489">
-        <span>Chiama in studio</span>
-        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-          <path d="M6.62 10.79a15.5 15.5 0 0 0 6.59 6.59l2.2-2.2a1.2 1.2 0 0 1 1.17-.28c1.29.43 2.64.66 4.02.66.66 0 1.2.54 1.2 1.2v3.48c0 .66-.54 1.2-1.2 1.2C10.43 21.94 2.06 13.57 2.06 3.4c0-.66.54-1.2 1.2-1.2h3.49c.66 0 1.2.54 1.2 1.2 0 1.38.22 2.73.66 4.02.13.41.03.86-.29 1.17l-2.2 2.2Z" fill="currentColor"></path>
-        </svg>
-      </a>
       <button
         class="implant-home-header__menu-toggle"
         type="button"
@@ -1193,7 +1189,7 @@ const activeTreatmentPath =
   .implant-home-menu__section-content .implant-home-menu__submenu-link::after { display: none; }
   .implant-home-menu__cta { display: none; }
 
-  @media (max-width: 1100px) and (min-width: 768px) {
+  @media (max-width: 1120px) and (min-width: 768px) {
     body.implant-landing { --implant-home-header-height: 91.625px; }
     .implant-home-header__inner { padding-top: 20px; padding-bottom: 20px; }
     .implant-home-header__nav-link { display: none; }
@@ -1247,7 +1243,7 @@ const activeTreatmentPath =
     .implant-home-header.is-over-hero .implant-home-header__menu-toggle:focus-visible { color: #fff; opacity: .78; }
   }
 
-  @media (min-width: 1024px) and (max-width: 1100px) {
+  @media (min-width: 1024px) and (max-width: 1120px) {
     .implant-home-header.is-over-hero .implant-home-header__menu-toggle {
       border-color: rgba(255, 255, 255, .42);
       background: rgba(255, 255, 255, .16);

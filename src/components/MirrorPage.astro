@@ -725,9 +725,6 @@ const mirrorNavigationScript = `
 
   const getNav = () => document.querySelector(".ekit-template-content-header .elementskit-navbar-nav");
 
-  const phoneIcon =
-    '<svg class="mirror-nav-link__icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.31-.31.76-.42 1.17-.28 1.29.43 2.64.66 4.02.66.66 0 1.2.54 1.2 1.2v3.48c0 .66-.54 1.2-1.2 1.2C10.43 21.94 2.06 13.57 2.06 3.4c0-.66.54-1.2 1.2-1.2h3.49c.66 0 1.2.54 1.2 1.2 0 1.38.22 2.73.66 4.02.13.41.03.86-.29 1.17l-2.2 2.2Z" fill="currentColor"/></svg>';
-
   const createNavLink = (className, href, label, trailingIcon = "") => {
     const item = document.createElement("li");
     item.className = "menu-item nav-item elementskit-mobile-builder-content " + className;
@@ -786,13 +783,14 @@ const mirrorNavigationScript = `
     });
 
     if (!nav.querySelector(".mirror-nav-reviews")) {
-      const reviews = createNavLink("mirror-nav-item mirror-nav-reviews", "/recensioni-studio-dentistico-monza/", "Dicono di noi");
-      const structure = createNavLink("mirror-nav-item mirror-nav-structure", "/struttura-studio-dentistico-monza/", "La Struttura");
+      const structure = createNavLink("mirror-nav-item mirror-nav-structure", "/struttura-studio-dentistico-monza/", "La struttura");
+      const professionals = createNavLink("mirror-nav-item mirror-nav-professionals", "/doctors/", "I professionisti");
+      const workflow = createNavLink("mirror-nav-item mirror-nav-workflow", "/chi-siamo/", "Come lavoriamo");
+      const reviews = createNavLink("mirror-nav-item mirror-nav-reviews", "/recensioni-studio-dentistico-monza/", "Recensioni");
       const conventions = createNavLink("mirror-nav-item mirror-nav-conventions", "/convenzioni-dirette-studio-dentistico-monza/", "Convenzioni");
-      const urgent = createNavLink("mirror-nav-item mirror-nav-urgent", "/urgenze/", "Urgenze");
-      const call = createNavLink("mirror-nav-item mirror-nav-call", "tel:+390392022489", "Chiama in studio", phoneIcon);
+      const contacts = createNavLink("mirror-nav-item mirror-nav-contacts", "/contatti/", "Contatti");
       const menu = createMenuButton();
-      nav.append(reviews, structure, conventions, urgent, call, menu);
+      nav.append(structure, professionals, workflow, reviews, conventions, contacts, menu);
     }
   };
 
