@@ -503,6 +503,87 @@ textarea {
   opacity: 1;
 }
 
+.desktop-nav .header-booking-cta {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 auto;
+  height: 40px;
+  min-height: 40px;
+  padding: 0 20px;
+  overflow: hidden;
+  border: 1px solid var(--clinic-blue);
+  border-radius: 999px;
+  background: var(--clinic-blue);
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: none;
+  transition: border-color 220ms ease, color 220ms ease;
+}
+
+.desktop-nav .header-booking-cta > span {
+  position: relative;
+  z-index: 1;
+}
+
+.desktop-nav .header-booking-cta::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: #ffffff;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms ease;
+}
+
+.desktop-nav .header-booking-cta::after {
+  display: none;
+}
+
+.desktop-nav .header-booking-cta:hover,
+.desktop-nav .header-booking-cta:focus-visible {
+  border-color: var(--clinic-teal);
+  color: var(--clinic-teal) !important;
+}
+
+.desktop-nav .header-booking-cta:hover::before,
+.desktop-nav .header-booking-cta:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.desktop-nav .header-booking-cta:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--clinic-teal);
+}
+
+.site-header.is-over-hero .desktop-nav .header-booking-cta {
+  border-color: #ffffff;
+  background: transparent;
+  color: #ffffff !important;
+  text-shadow: 0 1px 18px rgba(9, 19, 61, 0.2);
+}
+
+.site-header.is-over-hero .desktop-nav .header-booking-cta::before {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.site-header.is-over-hero .desktop-nav .header-booking-cta:hover,
+.site-header.is-over-hero .desktop-nav .header-booking-cta:focus-visible {
+  border-color: #ffffff;
+  color: #ffffff !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desktop-nav .header-booking-cta,
+  .desktop-nav .header-booking-cta::before {
+    transition: none;
+  }
+}
+
 .header-cta,
 .button {
   display: inline-flex;
@@ -536,7 +617,7 @@ textarea {
   align-items: center;
   justify-self: end;
   gap: 10px;
-  margin-left: clamp(12px, 1.2vw, 22px);
+  margin-left: clamp(16px, 1.2vw, 22px);
   height: 40px;
   padding: 0;
   border: 0;
@@ -1157,7 +1238,7 @@ body.kebab-menu-open .site-header .implantologia-hub__logo-mark {
   background: currentColor;
 }
 
-@media (min-width: 981px) and (max-width: 1070px) {
+@media (min-width: 981px) and (max-width: 1250px) {
   .desktop-nav,
   .kebab-button {
     display: none;

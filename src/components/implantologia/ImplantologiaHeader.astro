@@ -13,7 +13,6 @@ const primaryLinks = [
   { href: "/chi-siamo/", label: "Come lavoriamo" },
   { href: "/recensioni-studio-dentistico-monza/", label: "Recensioni" },
   { href: "/convenzioni-dirette-studio-dentistico-monza/", label: "Convenzioni" },
-  { href: "/contatti/", label: "Contatti" },
 ];
 
 const studioLinks = [
@@ -52,6 +51,12 @@ const activeTreatmentPath =
 
     <nav class="implant-home-header__nav" aria-label="Navigazione principale">
       {primaryLinks.map((link) => <a class="implant-home-header__nav-link" href={link.href}>{link.label}</a>)}
+      <a
+        class="implant-home-header__nav-link implant-home-header__booking"
+        href="/richiesta-generale/"
+      >
+        <span>Prenota ora</span>
+      </a>
       <button
         class="implant-home-header__menu-toggle"
         type="button"
@@ -768,12 +773,63 @@ const activeTreatmentPath =
   }
   .implant-home-header__menu-icon span { display: block; width: 20px; height: 2px; border-radius: 999px; background: currentColor; }
 
+  .implant-home-header__booking {
+    isolation: isolate;
+    flex: 0 0 auto;
+    height: 40px;
+    min-height: 40px;
+    padding: 0 20px;
+    overflow: hidden;
+    border: 1px solid var(--brand-secondary, var(--clinic-blue, #1e84b5));
+    background: var(--brand-secondary, var(--clinic-blue, #1e84b5));
+    color: #fff;
+    font-weight: 700;
+    line-height: 1;
+    text-shadow: none;
+    transition: border-color 220ms ease, color 220ms ease;
+  }
+
+  .implant-home-header__booking > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .implant-home-header__booking::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    background: #fff;
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 220ms ease;
+  }
+
+  .implant-home-header__booking::after { display: none; }
+
+  .implant-home-header__booking:hover,
+  .implant-home-header__booking:focus-visible {
+    border-color: #0e384c;
+    color: #0e384c;
+  }
+
+  .implant-home-header__booking:hover::before,
+  .implant-home-header__booking:focus-visible::before {
+    transform: scaleX(1);
+  }
+
   .implant-home-header a:focus-visible,
   .implant-home-header button:focus-visible,
   .implant-home-menu a:focus-visible,
   .implant-home-menu button:focus-visible {
     outline: 3px solid #65c7df;
     outline-offset: 3px;
+  }
+
+  .implant-home-header .implant-home-header__booking:focus-visible {
+    outline-color: #fff;
+    box-shadow: 0 0 0 6px #0e384c;
   }
 
   .implant-home-menu-backdrop[hidden],
@@ -1189,7 +1245,7 @@ const activeTreatmentPath =
   .implant-home-menu__section-content .implant-home-menu__submenu-link::after { display: none; }
   .implant-home-menu__cta { display: none; }
 
-  @media (max-width: 1120px) and (min-width: 768px) {
+  @media (max-width: 1250px) and (min-width: 768px) {
     body.implant-landing { --implant-home-header-height: 91.625px; }
     .implant-home-header__inner { padding-top: 20px; padding-bottom: 20px; }
     .implant-home-header__nav-link { display: none; }
@@ -1241,9 +1297,24 @@ const activeTreatmentPath =
     .implant-home-header.is-over-hero .implant-home-header__nav-link:focus-visible,
     .implant-home-header.is-over-hero .implant-home-header__menu-toggle:hover,
     .implant-home-header.is-over-hero .implant-home-header__menu-toggle:focus-visible { color: #fff; opacity: .78; }
+    .implant-home-header.is-over-hero .implant-home-header__booking {
+      border-color: #fff;
+      background: transparent;
+      color: #fff;
+      text-shadow: 0 1px 18px rgba(15, 23, 42, .26);
+    }
+    .implant-home-header.is-over-hero .implant-home-header__booking::before {
+      background: rgba(255, 255, 255, .18);
+    }
+    .implant-home-header.is-over-hero .implant-home-header__booking:hover,
+    .implant-home-header.is-over-hero .implant-home-header__booking:focus-visible {
+      border-color: #fff;
+      color: #fff;
+      opacity: 1;
+    }
   }
 
-  @media (min-width: 1024px) and (max-width: 1120px) {
+  @media (min-width: 1024px) and (max-width: 1250px) {
     .implant-home-header.is-over-hero .implant-home-header__menu-toggle {
       border-color: rgba(255, 255, 255, .42);
       background: rgba(255, 255, 255, .16);
@@ -1541,6 +1612,8 @@ const activeTreatmentPath =
     .implant-home-menu__section-toggle svg,
     .implant-home-menu__treatment-category-chevron,
     .implant-home-menu__treatment-parent svg,
-    .implant-home-menu__nav-group-chevron { transition: none; }
+    .implant-home-menu__nav-group-chevron,
+    .implant-home-header__booking,
+    .implant-home-header__booking::before { transition: none; }
   }
 </style>

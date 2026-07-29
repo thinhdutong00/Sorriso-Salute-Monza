@@ -24,7 +24,6 @@ const desktopNavItems = [
   { label: "Come lavoriamo", href: "/chi-siamo/" },
   { label: "Recensioni", href: "/recensioni-studio-dentistico-monza/" },
   { label: "Convenzioni", href: "/convenzioni-dirette-studio-dentistico-monza/" },
-  { label: "Contatti", href: "/contatti/" },
 ];
 const mobileNavItems = [
   { label: "Dicono di noi", href: "/recensioni-studio-dentistico-monza/" },
@@ -545,6 +544,7 @@ const conventionGroups = [
             <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>{item.label}</a>
           ))
         }
+        <a class="header-booking-cta" href="/richiesta-generale/"><span>Prenota ora</span></a>
       </nav>
 
       <button

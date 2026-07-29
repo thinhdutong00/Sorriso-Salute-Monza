@@ -725,13 +725,13 @@ const mirrorNavigationScript = `
 
   const getNav = () => document.querySelector(".ekit-template-content-header .elementskit-navbar-nav");
 
-  const createNavLink = (className, href, label, trailingIcon = "") => {
+  const createNavLink = (className, href, label, linkClassName = "") => {
     const item = document.createElement("li");
     item.className = "menu-item nav-item elementskit-mobile-builder-content " + className;
     const link = document.createElement("a");
-    link.className = "ekit-menu-nav-link mirror-nav-link";
+    link.className = "ekit-menu-nav-link mirror-nav-link" + (linkClassName ? " " + linkClassName : "");
     link.href = href;
-    link.innerHTML = "<span>" + label + "</span>" + trailingIcon;
+    link.innerHTML = "<span>" + label + "</span>";
     item.append(link);
     return item;
   };
@@ -788,9 +788,14 @@ const mirrorNavigationScript = `
       const workflow = createNavLink("mirror-nav-item mirror-nav-workflow", "/chi-siamo/", "Come lavoriamo");
       const reviews = createNavLink("mirror-nav-item mirror-nav-reviews", "/recensioni-studio-dentistico-monza/", "Recensioni");
       const conventions = createNavLink("mirror-nav-item mirror-nav-conventions", "/convenzioni-dirette-studio-dentistico-monza/", "Convenzioni");
-      const contacts = createNavLink("mirror-nav-item mirror-nav-contacts", "/contatti/", "Contatti");
+      const booking = createNavLink(
+        "mirror-nav-item mirror-nav-booking-item",
+        "/richiesta-generale/",
+        "Prenota ora",
+        "mirror-nav-booking-link",
+      );
       const menu = createMenuButton();
-      nav.append(structure, professionals, workflow, reviews, conventions, contacts, menu);
+      nav.append(structure, professionals, workflow, reviews, conventions, booking, menu);
     }
   };
 
