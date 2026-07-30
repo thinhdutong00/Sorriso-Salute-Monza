@@ -415,6 +415,11 @@ const contactsIsActive =
     backdrop-filter: none;
   }
 
+  body.home .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open) {
+    background: rgba(8, 42, 56, 0.12);
+    backdrop-filter: blur(6px);
+  }
+
   .primary-site-header.is-hidden {
     pointer-events: none;
     transform: translateY(-150%);
