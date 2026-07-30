@@ -1,0 +1,433 @@
+---
+const features = [
+  {
+    title: "Sala d’attesa e reception",
+    description:
+      "Sala d’attesa con reception e servizi igienici per i pazienti, completamente accessibili e conformi alle normative per persone con disabilità.",
+  },
+  {
+    title: "TAC CONE BEAM",
+  },
+  {
+    title: "Due riuniti odontoiatrici",
+    description:
+      "Due riuniti odontoiatrici dedicati alle prestazioni di odontoiatria generale.",
+  },
+  {
+    title: "2 Apparecchi radiografici",
+    description:
+      "Radiografie digitali direttamente alla poltrona: due strumenti sempre disponibili per controlli rapidi.",
+  },
+  {
+    title: "2 Scanner intraorali",
+    description:
+      "Un’impronta digitale tridimensionale (3D) delle arcate dentali del paziente, sostituendo il tradizionale calco in silicone.",
+  },
+  {
+    title: "2 Sistemi RVG digitali",
+    description:
+      "Due sistemi di radiografia digitale RVG per diagnosi immediate.",
+  },
+  {
+    title: "Sala adibita alla sterilizzazione",
+    description:
+      "Una sala adibita alla sterilizzazione dotata delle seguenti apparecchiature: 2 autoclavi (classe B e classe S), una vasca a ultrasuoni e un’imbustatrice. Le autoclavi in dotazione allo Studio vengono periodicamente controllate perché siano sempre efficienti e garantiscano il massimo della sicurezza non solo per i pazienti ma anche per gli operatori, medici e non.",
+    wide: true,
+  },
+  {
+    title: "Bagno e due uffici privati, spogliatoi",
+  },
+];
+
+const gallery = [
+  {
+    src: "/mirror-assets/af7ad1ca3a22f5d9.jpg",
+    alt: "Insegna interna dello Studio Dentistico Sorriso & Salute",
+  },
+  {
+    src: "/mirror-assets/18361e173886fcc5.jpg",
+    alt: "Reception dello Studio Dentistico Sorriso & Salute",
+  },
+  {
+    src: "/mirror-assets/f0a3e77a8cda42dc.jpg",
+    alt: "Sala d’attesa dello studio dentistico",
+  },
+  {
+    src: "/mirror-assets/13f0d9dfc3550acb.jpg",
+    alt: "Riunito odontoiatrico in una sala operativa",
+  },
+  {
+    src: "/mirror-assets/747dca86736ef3a2.jpg",
+    alt: "TAC Cone Beam dello studio dentistico",
+  },
+  {
+    src: "/mirror-assets/cd64f1c636dc1001.jpg",
+    alt: "Secondo riunito odontoiatrico in una sala operativa",
+  },
+];
+---
+
+<section class="about-structure" aria-labelledby="about-structure-title">
+  <div class="about-structure__inner">
+    <header class="about-structure__header">
+      <p class="about-structure__eyebrow">
+        <span aria-hidden="true"></span>
+        La nostra struttura
+      </p>
+      <h2 id="about-structure-title">Il nostro centro è dotato di</h2>
+    </header>
+
+    <div class="about-structure__grid">
+      {
+        features.map((feature, index) => (
+          <article class:list={["about-structure__card", feature.wide && "about-structure__card--wide"]}>
+            <span class="about-structure__number" aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <h3>{feature.title}</h3>
+            {feature.description && <p>{feature.description}</p>}
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="about-structure__safety">
+      <p>
+        Quotidianamente vengono sterilizzati ed imbustati tutti gli strumenti e viene utilizzato
+        materiale monouso.
+      </p>
+      <p>
+        <strong>
+          Lo Studio possiede inoltre il carrello generico per l’emergenza, e tutti i farmaci e
+          presidi obbligatori di pronto intervento.
+        </strong>
+      </p>
+      <p>
+        Lo Studio Dentistico Sorriso &amp; Salute effettua dal 2003 regolarmente i controlli annuali
+        e biennali dei diversi impianti, come previsto dalle norme vigenti.
+      </p>
+    </div>
+
+    <div class="about-structure__gallery-block">
+      <h3>Gli spazi dello studio</h3>
+      <div class="about-structure__gallery">
+        {
+          gallery.map((image) => (
+            <figure>
+              <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:inline>
+  body.brand-palette.page-id-539 .elementor-element.elementor-element-69bfb3fc {
+    --margin-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .about-structure {
+    position: relative;
+    padding: clamp(80px, 8vw, 132px) 28px clamp(88px, 9vw, 144px);
+    overflow: hidden;
+    color: var(--brand-text);
+    background:
+      radial-gradient(circle at 92% 5%, rgba(30, 132, 181, 0.16), transparent 28rem),
+      linear-gradient(180deg, #eef8fc 0%, #ffffff 46%, #eaf5fa 100%);
+  }
+
+  .about-structure::before {
+    position: absolute;
+    top: 44px;
+    right: -110px;
+    width: 260px;
+    height: 260px;
+    border: 54px solid rgba(30, 132, 181, 0.08);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+  }
+
+  .about-structure__inner {
+    position: relative;
+    z-index: 1;
+    width: min(1360px, 100%);
+    margin: 0 auto;
+  }
+
+  .about-structure__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+    gap: 32px 72px;
+    align-items: end;
+    margin-bottom: clamp(38px, 5vw, 66px);
+  }
+
+  .about-structure__eyebrow {
+    display: flex;
+    grid-column: 1 / -1;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 -12px;
+    color: var(--brand-primary);
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .about-structure__eyebrow span {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    background: var(--brand-secondary);
+  }
+
+  .about-structure__header h2 {
+    max-width: 760px;
+    margin: 0;
+    color: var(--brand-primary);
+    font-family: var(--font-family-display) !important;
+    font-size: clamp(2.7rem, 5.1vw, 5rem);
+    font-weight: 500;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .about-structure__header::after {
+    align-self: stretch;
+    min-height: 116px;
+    border-radius: 28px;
+    background:
+      linear-gradient(135deg, rgba(14, 56, 76, 0.92), rgba(30, 132, 181, 0.76)),
+      url("/assets/brand/sorriso-salute-sala-operativa.png") center / cover no-repeat;
+    box-shadow: 0 18px 42px rgba(14, 56, 76, 0.16);
+    content: "";
+  }
+
+  .about-structure__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .about-structure__card {
+    display: flex;
+    min-height: 230px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(26px, 3vw, 38px);
+    border: 1px solid rgba(14, 56, 76, 0.12);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 14px 34px rgba(14, 56, 76, 0.08);
+  }
+
+  .about-structure__card--wide {
+    grid-column: span 2;
+  }
+
+  .about-structure__number {
+    display: inline-grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    margin-bottom: auto;
+    border-radius: 13px;
+    color: var(--brand-secondary);
+    background: var(--brand-secondary-pale);
+    font-size: 0.82rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .about-structure__card h3 {
+    margin: 30px 0 0;
+    color: var(--brand-primary);
+    font-family: var(--font-family-display) !important;
+    font-size: clamp(1.35rem, 2vw, 1.72rem);
+    font-weight: 600;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .about-structure__card p {
+    max-width: 64ch;
+    margin: 14px 0 0;
+    color: var(--brand-description);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .about-structure__safety {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    margin-top: 22px;
+    overflow: hidden;
+    border-radius: 28px;
+    color: #ffffff;
+    background: var(--brand-primary);
+    box-shadow: 0 22px 48px rgba(14, 56, 76, 0.18);
+  }
+
+  .about-structure__safety p {
+    margin: 0;
+    padding: clamp(28px, 3.2vw, 44px);
+    color: inherit;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .about-structure__safety p + p {
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .about-structure__safety strong {
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .about-structure__gallery-block {
+    margin-top: clamp(58px, 7vw, 96px);
+  }
+
+  .about-structure__gallery-block > h3 {
+    margin: 0 0 26px;
+    color: var(--brand-primary);
+    font-family: var(--font-family-display) !important;
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  .about-structure__gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .about-structure__gallery figure {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 24px;
+    background: var(--brand-primary-pale);
+    box-shadow: 0 14px 34px rgba(14, 56, 76, 0.1);
+  }
+
+  .about-structure__gallery img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  @media (max-width: 1024px) {
+    .about-structure__header {
+      grid-template-columns: 1fr;
+    }
+
+    .about-structure__header::after {
+      min-height: 190px;
+    }
+
+    .about-structure__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .about-structure__card:last-child {
+      grid-column: span 2;
+    }
+
+    .about-structure__safety {
+      grid-template-columns: 1fr;
+    }
+
+    .about-structure__safety p + p {
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      border-left: 0;
+    }
+
+    .about-structure__gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 767px) {
+    .about-structure {
+      padding: 64px 20px 80px;
+    }
+
+    .about-structure::before {
+      top: 20px;
+      right: -90px;
+      width: 190px;
+      height: 190px;
+      border-width: 40px;
+    }
+
+    .about-structure__header {
+      gap: 24px;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .about-structure__eyebrow {
+      justify-content: center;
+      margin-bottom: 0;
+    }
+
+    .about-structure__header h2 {
+      font-size: clamp(2.45rem, 12vw, 3.65rem);
+      line-height: 1.02;
+    }
+
+    .about-structure__header::after {
+      min-height: 160px;
+      border-radius: 22px;
+    }
+
+    .about-structure__grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .about-structure__card,
+    .about-structure__card--wide {
+      grid-column: auto;
+      min-height: 0;
+      padding: 26px;
+      border-radius: 22px;
+    }
+
+    .about-structure__number {
+      margin-bottom: 24px;
+    }
+
+    .about-structure__card h3 {
+      margin-top: 0;
+    }
+
+    .about-structure__safety {
+      margin-top: 16px;
+      border-radius: 22px;
+    }
+
+    .about-structure__safety p {
+      padding: 26px;
+    }
+
+    .about-structure__gallery {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .about-structure__gallery figure {
+      border-radius: 20px;
+    }
+  }
+</style>

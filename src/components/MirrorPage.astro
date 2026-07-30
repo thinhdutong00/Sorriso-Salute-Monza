@@ -1,6 +1,7 @@
 ---
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import AboutStructureSection from "./AboutStructureSection.astro";
 import BrandPalette from "./BrandPalette.astro";
 import GoogleAdsTracking from "./GoogleAdsTracking.astro";
 import PageLoader from "./PageLoader.astro";
@@ -553,6 +554,13 @@ const body = removeMirroredFooter(applyGeneralRequestCtaLinks(removeConventionHe
     ),
   ),
 )));
+const aboutStructureRuntimeMarker = '<template id="tp-language"';
+const aboutStructureSplitIndex =
+  page.path === "/chi-siamo/" ? body.indexOf(aboutStructureRuntimeMarker) : -1;
+const bodyBeforeAboutStructure =
+  aboutStructureSplitIndex >= 0 ? body.slice(0, aboutStructureSplitIndex) : body;
+const bodyAfterAboutStructure =
+  aboutStructureSplitIndex >= 0 ? body.slice(aboutStructureSplitIndex) : "";
 
 const isActivityServicePage =
   page.path.startsWith("/attivita/") &&
@@ -1593,7 +1601,9 @@ const reviewsPageScript = `
   </head>
   <body class:list={[page.bodyClass, "brand-palette", "mirror-header-over-hero", hasImageHero && "mirror-hero-image", isActivityMirrorPage && "mirror-activity-page", isReviewsPage && "mirror-reviews-page"]} id={page.bodyId || undefined}>
     <PageLoader />
-    <Fragment set:html={body} />
+    <Fragment set:html={bodyBeforeAboutStructure} />
+    {page.path === "/chi-siamo/" && <AboutStructureSection />}
+    <Fragment set:html={bodyAfterAboutStructure} />
     <div class="mirror-menu-backdrop" data-mirror-menu-backdrop hidden></div>
     <aside
       id="mirror-kebab-menu"
