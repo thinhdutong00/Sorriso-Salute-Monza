@@ -351,6 +351,8 @@ const contactsIsActive =
   }
 
   .primary-site-header {
+    --primary-header-floating-top: clamp(12px, 1.1vw, 18px);
+    --primary-header-floating-inline: clamp(18px, 2.8vw, 56px);
     --primary-header-foreground: #082a38;
     --primary-header-accent: #1e84b5;
     --primary-header-control-border: var(--brand-primary, #0e384c);
@@ -370,10 +372,11 @@ const contactsIsActive =
     right: 0;
     left: 0;
     z-index: 900;
-    width: 100%;
+    width: auto;
     min-height: 92px;
     margin: 0;
     border: 0;
+    border-radius: 0;
     background: rgba(255, 255, 255, 0.96);
     box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
     color: var(--primary-header-foreground);
@@ -382,9 +385,25 @@ const contactsIsActive =
     transform: translateY(0);
     transition:
       transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      top 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      right 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      left 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      min-height 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-radius 360ms cubic-bezier(0.22, 1, 0.36, 1),
       background-color 220ms ease,
       box-shadow 220ms ease;
     will-change: transform;
+  }
+
+  .primary-site-header.is-floating {
+    top: var(--primary-header-floating-top);
+    right: var(--primary-header-floating-inline);
+    left: var(--primary-header-floating-inline);
+    min-height: 82px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 22px 54px rgba(14, 56, 76, 0.15);
+    backdrop-filter: blur(16px);
   }
 
   .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open) {
@@ -398,7 +417,7 @@ const contactsIsActive =
 
   .primary-site-header.is-hidden {
     pointer-events: none;
-    transform: translateY(-105%);
+    transform: translateY(-150%);
   }
 
   .primary-site-header *,
@@ -431,6 +450,14 @@ const contactsIsActive =
     margin: 0 auto;
     padding: 14px clamp(20px, 3.2vw, 58px);
     gap: clamp(20px, 2.2vw, 40px);
+    transition:
+      min-height 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      padding 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .primary-site-header.is-floating .primary-site-header__inner {
+    min-height: 82px;
+    padding-block: 10px;
   }
 
   .primary-site-header__brand {
@@ -901,6 +928,18 @@ const contactsIsActive =
       gap: 14px;
     }
 
+    .primary-site-header.is-floating {
+      --primary-header-floating-top: 10px;
+      --primary-header-floating-inline: 12px;
+      min-height: 72px;
+      border-radius: 16px;
+    }
+
+    .primary-site-header.is-floating .primary-site-header__inner {
+      min-height: 72px;
+      padding-block: 8px;
+    }
+
     .primary-site-header__desktop-nav {
       display: none;
     }
@@ -1210,6 +1249,11 @@ const contactsIsActive =
     let scrollFrame = 0;
 
     const updateHeaderTone = (currentY = Math.max(0, window.scrollY || window.pageYOffset || 0)) => {
+      header.classList.toggle(
+        "is-floating",
+        currentY > 0 && !header.classList.contains("is-mobile-open"),
+      );
+
       if (
         !header.classList.contains("primary-site-header--overlay") ||
         header.classList.contains("is-mobile-open")
