@@ -5241,6 +5241,30 @@ import "../styles/typography.css";
     stroke: #ffffff !important;
   }
 
+  body.brand-palette
+    .v2-service-item
+    .elementskit-infobox[data-treatment-card]:is(:hover, :focus-within)
+    :is(
+      .elementskit-info-box-title,
+      .elementskit-info-box-description,
+      .box-body > p,
+      .box-footer .elementskit-btn,
+      .box-footer .elementskit-btn *
+    ) {
+    color: #ffffff !important;
+  }
+
+  body.brand-palette
+    .v2-service-item
+    .elementskit-infobox[data-treatment-card]:is(:hover, :focus-within)
+    .box-footer
+    .elementskit-btn
+    :is(svg, svg *) {
+    color: #ffffff !important;
+    fill: none !important;
+    stroke: #ffffff !important;
+  }
+
   body.brand-palette.home .elementor-7051 .mirror-orientation-card-wrap {
     --width: calc(25% - 22.5px) !important;
     --padding-top: 0px !important;

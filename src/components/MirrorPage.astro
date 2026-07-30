@@ -1175,25 +1175,17 @@ const treatmentCardsScript = `
     const link = card.querySelector(".box-footer .elementskit-btn");
     if (!link) return;
 
-    const brandPrimary =
-      getComputedStyle(document.body).getPropertyValue("--brand-primary").trim() ||
-      getComputedStyle(document.documentElement).getPropertyValue("--brand-primary").trim() ||
-      "#0E384C";
-
     link.classList.add("treatment-card-detail-link");
     link.style.setProperty("background", "transparent", "important");
     link.style.setProperty("background-color", "transparent", "important");
     link.style.setProperty("background-image", "none", "important");
     link.style.setProperty("box-shadow", "none", "important");
-    link.style.setProperty("color", brandPrimary, "important");
     link.style.setProperty("text-decoration", "none", "important");
 
     const arrow = link.querySelector("svg");
     if (arrow) {
-      arrow.style.setProperty("color", brandPrimary, "important");
       arrow.style.setProperty("display", "block", "important");
       arrow.style.setProperty("overflow", "visible", "important");
-      arrow.style.setProperty("stroke", brandPrimary, "important");
       arrow.style.setProperty("transform", "none", "important");
       arrow.style.setProperty("visibility", "visible", "important");
     }
@@ -1201,7 +1193,6 @@ const treatmentCardsScript = `
     link.querySelectorAll("svg, svg *").forEach((node) => {
       node.style.setProperty("fill", "none", "important");
       node.style.setProperty("opacity", "1", "important");
-      node.style.setProperty("stroke", brandPrimary, "important");
       node.style.setProperty("transform", "none", "important");
       node.style.setProperty("visibility", "visible", "important");
     });
