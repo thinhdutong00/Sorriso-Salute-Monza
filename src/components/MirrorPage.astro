@@ -33,6 +33,11 @@ const replaceFirst = (source: string, search: string, replacement: string) => so
 
 const applyBrandColorTokens = (html: string) =>
   html
+    .replace(
+      /<link\b[^>]*\bid=["']elementor-gf-local-(?:onest|manrope)-css["'][^>]*>\s*/gi,
+      "",
+    )
+    .replace(/(["'])(?:Onest|Manrope)\1/gi, "Inter")
     .replace(/#1e37b7/gi, "#0E384C")
     .replace(/#172d96/gi, "#082A38")
     .replace(/#0f1f63/gi, "#082A38")

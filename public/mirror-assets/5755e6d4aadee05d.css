@@ -6,8 +6,8 @@ body{
 	--e-global-color-white						: #FFFFFF;
 	--e-global-color-divider					: #BFC5D2;
 	--e-global-color-darkdivider				: rgba(255, 255, 255, 0.18);
-	--e-global-typography-primary-font-family	: "Onest", sans-serif;
-	--e-global-typography-secondary-font-family	: "Onest", sans-serif;
-	--e-global-typography-text-font-family		: "Onest", sans-serif;
-	--e-global-typography-accent-font-family    : "Onest", sans-serif;
+	--e-global-typography-primary-font-family	: "Inter", sans-serif;
+	--e-global-typography-secondary-font-family	: "Inter", sans-serif;
+	--e-global-typography-text-font-family		: "Inter", sans-serif;
+	--e-global-typography-accent-font-family    : "Inter", sans-serif;
 }

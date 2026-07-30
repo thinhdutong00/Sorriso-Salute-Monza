@@ -1,13 +1,15 @@
-<style is:inline>
-  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+---
+import "../styles/typography.css";
+---
 
+<style is:inline>
   :root,
   .brand-palette,
   .elementor-kit-4078 {
-    --color-text-description: #334155 !important;
-    --color-text-description-inverse: #ffffff !important;
-    --brand-font-family: Inter, sans-serif !important;
-    --brand-nav-font-family: Inter, sans-serif !important;
+    --color-text-description: var(--type-color-body) !important;
+    --color-text-description-inverse: var(--type-color-inverse) !important;
+    --brand-font-family: var(--font-family-body) !important;
+    --brand-nav-font-family: var(--font-family-navigation) !important;
     --brand-primary: #0E384C !important;
     --brand-primary-dark: #082A38 !important;
     --brand-primary-light: #D9ECF4 !important;
@@ -24,7 +26,7 @@
     --brand-background: #ffffff !important;
     --brand-surface: #ffffff !important;
     --brand-text: #0f172a !important;
-    --brand-muted: #475569 !important;
+    --brand-muted: var(--type-color-muted) !important;
     --brand-description: var(--color-text-description) !important;
     --brand-border: #bfc5d2 !important;
     --brand-accent: #1e84b5 !important;
@@ -33,18 +35,19 @@
     --brand-warning: #1e84b5 !important;
     --brand-error: #1e84b5 !important;
     --brand-info: #1e84b5 !important;
-    --e-global-typography-primary-font-family: Inter !important;
-    --e-global-typography-primary-font-size: 60px !important;
-    --e-global-typography-primary-font-weight: 400 !important;
-    --e-global-typography-primary-line-height: 1 !important;
-    --e-global-typography-text-font-family: Inter !important;
-    --e-global-typography-text-font-size: 20px !important;
-    --e-global-typography-text-font-weight: 400 !important;
-    --e-global-typography-text-line-height: 1.5 !important;
-    --e-global-typography-accent-font-family: Inter !important;
-    --e-global-typography-accent-font-size: 16px !important;
-    --e-global-typography-accent-font-weight: 500 !important;
-    --e-global-typography-accent-line-height: 1 !important;
+    --e-global-typography-primary-font-family: var(--font-family-display) !important;
+    --e-global-typography-primary-font-size: var(--type-size-display) !important;
+    --e-global-typography-primary-font-weight: var(--type-weight-regular) !important;
+    --e-global-typography-primary-line-height: var(--type-line-display) !important;
+    --e-global-typography-secondary-font-family: var(--font-family-display) !important;
+    --e-global-typography-text-font-family: var(--font-family-body) !important;
+    --e-global-typography-text-font-size: var(--type-size-lead) !important;
+    --e-global-typography-text-font-weight: var(--type-weight-regular) !important;
+    --e-global-typography-text-line-height: var(--type-line-body) !important;
+    --e-global-typography-accent-font-family: var(--font-family-body) !important;
+    --e-global-typography-accent-font-size: var(--type-size-body) !important;
+    --e-global-typography-accent-font-weight: var(--type-weight-medium) !important;
+    --e-global-typography-accent-line-height: var(--type-line-display) !important;
     --e-global-color-primary: #0E384C !important;
     --e-global-color-secondary: #ffffff !important;
     --e-global-color-text: var(--color-text-description) !important;

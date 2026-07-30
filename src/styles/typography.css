@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+/*
+ * Global typography contract
+ *
+ * Inter is the only text typeface used by the site. Components should consume
+ * these tokens instead of introducing new font families or one-off values.
+ */
+:root {
+  --font-family-sans: "Inter", sans-serif;
+  --font-family-display: var(--font-family-sans);
+  --font-family-body: var(--font-family-sans);
+  --font-family-navigation: var(--font-family-sans);
+
+  --type-size-display: 3.75rem;
+  --type-size-section-title: 2.5rem;
+  --type-size-card-title: 1.25rem;
+  --type-size-lead: 1.25rem;
+  --type-size-body: 1rem;
+  --type-size-small: 0.875rem;
+  --type-size-label: 0.75rem;
+
+  --type-weight-regular: 400;
+  --type-weight-medium: 500;
+  --type-weight-semibold: 600;
+  --type-weight-bold: 700;
+  --type-weight-extrabold: 800;
+  --type-weight-black: 900;
+
+  --type-line-display: 1;
+  --type-line-heading: 1.2;
+  --type-line-body: 1.5;
+  --type-line-copy: 1.8;
+
+  --type-tracking-normal: 0;
+  --type-tracking-label: 0.12em;
+
+  --type-color-title: #0e384c;
+  --type-color-body: #334155;
+  --type-color-muted: #475569;
+  --type-color-inverse: #ffffff;
+}
+
+html,
+body {
+  font-family: var(--font-family-body);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.type-display {
+  color: var(--type-color-title);
+  font-family: var(--font-family-display);
+  font-size: clamp(2.5rem, 5vw, var(--type-size-display));
+  font-weight: var(--type-weight-regular);
+  letter-spacing: var(--type-tracking-normal);
+  line-height: var(--type-line-display);
+}
+
+.type-section-title {
+  color: var(--type-color-title);
+  font-family: var(--font-family-display);
+  font-size: clamp(2rem, 4vw, var(--type-size-section-title));
+  font-weight: var(--type-weight-bold);
+  letter-spacing: var(--type-tracking-normal);
+  line-height: var(--type-line-heading);
+}
+
+.type-body {
+  color: var(--type-color-body);
+  font-family: var(--font-family-body);
+  font-size: var(--type-size-body);
+  font-weight: var(--type-weight-regular);
+  letter-spacing: var(--type-tracking-normal);
+  line-height: var(--type-line-body);
+}
+
+.type-label {
+  color: var(--type-color-muted);
+  font-family: var(--font-family-body);
+  font-size: var(--type-size-label);
+  font-weight: var(--type-weight-bold);
+  letter-spacing: var(--type-tracking-label);
+  line-height: var(--type-line-heading);
+  text-transform: uppercase;
+}
