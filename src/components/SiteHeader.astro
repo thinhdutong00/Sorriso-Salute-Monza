@@ -357,12 +357,12 @@ const contactsIsActive =
     --primary-header-control-hover: #082a38;
     --primary-header-control-hover-border: #082a38;
     --primary-header-control-hover-color: #fff;
-    --primary-header-booking-background: #1e84b5;
-    --primary-header-booking-border: #1e84b5;
+    --primary-header-booking-background: var(--brand-secondary, #1e84b5);
+    --primary-header-booking-border: var(--brand-secondary, #1e84b5);
     --primary-header-booking-color: #fff;
     --primary-header-booking-hover-background: #fff;
-    --primary-header-booking-hover-border: #082a38;
-    --primary-header-booking-hover-color: #082a38;
+    --primary-header-booking-hover-border: var(--brand-primary, #0e384c);
+    --primary-header-booking-hover-color: var(--brand-primary, #0e384c);
     position: fixed;
     top: 0;
     right: 0;
@@ -392,12 +392,6 @@ const contactsIsActive =
     --primary-header-control-hover: rgba(255, 255, 255, 0.18);
     --primary-header-control-hover-border: #fff;
     --primary-header-control-hover-color: #fff;
-    --primary-header-booking-background: transparent;
-    --primary-header-booking-border: #fff;
-    --primary-header-booking-color: #fff;
-    --primary-header-booking-hover-background: rgba(255, 255, 255, 0.18);
-    --primary-header-booking-hover-border: #fff;
-    --primary-header-booking-hover-color: #fff;
     background: transparent;
     box-shadow: none;
     backdrop-filter: none;
@@ -1144,9 +1138,9 @@ const contactsIsActive =
     }
 
     .primary-site-header__mobile-actions a:last-child {
-      border-color: #bfe8f7;
-      background: #bfe8f7;
-      color: #082a38 !important;
+      border-color: var(--brand-secondary, #1e84b5);
+      background: var(--brand-secondary, #1e84b5);
+      color: #fff !important;
     }
 
     .primary-site-header__mobile-actions a:hover,
