@@ -511,6 +511,21 @@ const applyStructureAnchorLinks = (html: string) =>
       "href='/chi-siamo/#struttura'",
     );
 
+const applyTeamAnchorLinks = (html: string) =>
+  html.replace(
+    /<a\b([^>]*\bhref=)(["'])\/doctors\/\2([^>]*)>\s*(?:Equipe|I professionisti)\s*<\/a>/gi,
+    '<a$1$2/chi-siamo/#team$2$3>Il nostro team</a>',
+  );
+
+const applyAboutTeamAnchor = (html: string) => {
+  if (page.path !== "/chi-siamo/") return html;
+
+  return html.replace(
+    '<div class="elementor-element elementor-element-ddac3c4 ',
+    '<div id="team" class="elementor-element elementor-element-ddac3c4 ',
+  );
+};
+
 const applyPrimaryProstheticsLinks = (html: string) =>
   html
     .replaceAll('href="/attivita/protesi-dentale/"', 'href="/protesi-dentale/"')
@@ -520,7 +535,7 @@ const removeMirroredFooter = (html: string) =>
   html.replace(/<div class="ekit-template-content-markup ekit-template-content-footer[\s\S]*?(?=<template id="tp-language")/, "");
 
 const head = applyAboutHeadImage(applyBrandColorTokens(applyActivityIndexItalianHead(rawHead)));
-const body = removeMirroredFooter(applyStructureAnchorLinks(applyGeneralRequestCtaLinks(removeConventionHeroBreadcrumb(
+const body = removeMirroredFooter(applyAboutTeamAnchor(applyTeamAnchorLinks(applyStructureAnchorLinks(applyGeneralRequestCtaLinks(removeConventionHeroBreadcrumb(
   removeReviewsHeroBreadcrumb(
     removeAboutHeroBreadcrumb(
       applyActivityHeroDescription(
@@ -564,7 +579,7 @@ const body = removeMirroredFooter(applyStructureAnchorLinks(applyGeneralRequestC
       ),
     ),
   ),
-))));
+))))));
 const aboutStructureRuntimeMarker = '<template id="tp-language"';
 const aboutStructureSplitIndex =
   page.path === "/chi-siamo/" ? body.indexOf(aboutStructureRuntimeMarker) : -1;
@@ -580,6 +595,10 @@ const isActivityServicePage =
 const isActivityMirrorPage = page.path === "/attivita/" || isActivityServicePage;
 
 const aboutTeamMobileStyles = `
+body.brand-palette.page-id-539 #team {
+  scroll-margin-top: 110px;
+}
+
 @media (max-width: 767px) {
   body.brand-palette.page-id-539 .about-team-eyebrow .elementor-heading-title {
     position: relative !important;
@@ -808,7 +827,7 @@ const mirrorNavigationScript = `
 
     if (!nav.querySelector(".mirror-nav-reviews")) {
       const structure = createNavLink("mirror-nav-item mirror-nav-structure", "/chi-siamo/#struttura", "La struttura");
-      const professionals = createNavLink("mirror-nav-item mirror-nav-professionals", "/doctors/", "I professionisti");
+      const team = createNavLink("mirror-nav-item mirror-nav-team", "/chi-siamo/#team", "Il nostro team");
       const workflow = createNavLink("mirror-nav-item mirror-nav-workflow", "/chi-siamo/", "Come lavoriamo");
       const reviews = createNavLink("mirror-nav-item mirror-nav-reviews", "/recensioni-studio-dentistico-monza/", "Recensioni");
       const conventions = createNavLink("mirror-nav-item mirror-nav-conventions", "/convenzioni-dirette-studio-dentistico-monza/", "Convenzioni");
@@ -819,7 +838,7 @@ const mirrorNavigationScript = `
         "mirror-nav-booking-link",
       );
       const menu = createMenuButton();
-      nav.append(structure, professionals, workflow, reviews, conventions, booking, menu);
+      nav.append(structure, team, workflow, reviews, conventions, booking, menu);
     }
   };
 
@@ -1784,7 +1803,7 @@ const reviewsPageScript = `
                 data-mirror-navigation-disclosure-panel
                 hidden
               >
-                <a href="/doctors/" aria-current={page.path === "/doctors/" ? "page" : undefined}>Equipe</a>
+                <a href="/chi-siamo/#team">Il nostro team</a>
                 <a
                   href="/recensioni-studio-dentistico-monza/"
                   aria-current={page.path === "/recensioni-studio-dentistico-monza/" ? "page" : undefined}

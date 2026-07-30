@@ -14,7 +14,7 @@ import {
 const brandLogo = "/assets/brand/sorriso-salute-logo-360.webp";
 const desktopNavItems = [
   { label: "La struttura", href: "/chi-siamo/#struttura" },
-  { label: "I professionisti", href: "/doctors/" },
+  { label: "Il nostro team", href: "/chi-siamo/#team" },
   { label: "Come lavoriamo", href: "/chi-siamo/" },
   { label: "Recensioni", href: "/recensioni-studio-dentistico-monza/" },
   { label: "Convenzioni", href: "/convenzioni-dirette-studio-dentistico-monza/" },
@@ -394,7 +394,7 @@ const currentPath = Astro.url.pathname;
               data-kebab-link-disclosure-panel
               hidden
             >
-              <a href="/doctors/" aria-current={currentPath === "/doctors/" ? "page" : undefined}>Equipe</a>
+              <a href="/chi-siamo/#team">Il nostro team</a>
               <a
                 href="/recensioni-studio-dentistico-monza/"
                 aria-current={currentPath === "/recensioni-studio-dentistico-monza/" ? "page" : undefined}
