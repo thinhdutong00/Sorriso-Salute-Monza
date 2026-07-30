@@ -2931,8 +2931,38 @@ import "../styles/typography.css";
     line-height: 32px !important;
   }
 
-  body.brand-palette .ekit-template-content-header .elementskit-navbar-nav > li > a::after,
-  body.brand-palette .ekit-template-content-header .mirror-menu-toggle::after {
+  body.brand-palette
+    .ekit-template-content-header
+    .elementskit-navbar-nav
+    > li:not(.mirror-nav-booking-item)
+    > a,
+  body.brand-palette .ekit-template-content-header .mirror-menu-toggle {
+    transform: scale(1) !important;
+    transform-origin: center !important;
+    transition: transform 180ms ease, color 220ms ease, opacity 220ms ease !important;
+  }
+
+  body.brand-palette
+    .ekit-template-content-header
+    .elementskit-navbar-nav
+    > li:not(.mirror-nav-booking-item)
+    > a:hover,
+  body.brand-palette
+    .ekit-template-content-header
+    .elementskit-navbar-nav
+    > li:not(.mirror-nav-booking-item)
+    > a:focus-visible,
+  body.brand-palette
+    .ekit-template-content-header
+    .elementskit-navbar-nav
+    > li:not(.mirror-nav-booking-item):hover
+    > a,
+  body.brand-palette .ekit-template-content-header .mirror-menu-toggle:hover,
+  body.brand-palette .ekit-template-content-header .mirror-menu-toggle:focus-visible {
+    transform: scale(1.045) !important;
+  }
+
+  body.brand-palette .ekit-template-content-header .elementskit-navbar-nav > li > a::after {
     position: absolute !important;
     right: 50% !important;
     bottom: 4px !important;
@@ -2947,12 +2977,15 @@ import "../styles/typography.css";
 
   body.brand-palette .ekit-template-content-header .elementskit-navbar-nav > li > a:hover::after,
   body.brand-palette .ekit-template-content-header .elementskit-navbar-nav > li > a:focus-visible::after,
-  body.brand-palette .ekit-template-content-header .elementskit-navbar-nav > li:hover > a::after,
-  body.brand-palette .ekit-template-content-header .mirror-menu-toggle:hover::after,
-  body.brand-palette .ekit-template-content-header .mirror-menu-toggle:focus-visible::after {
+  body.brand-palette .ekit-template-content-header .elementskit-navbar-nav > li:hover > a::after {
     right: 0 !important;
     left: 0 !important;
     opacity: 1 !important;
+  }
+
+  body.brand-palette .ekit-template-content-header .mirror-menu-toggle::after {
+    display: none !important;
+    content: none !important;
   }
 
   body.brand-palette .ekit-template-content-header .mirror-menu-toggle__icon {
@@ -3183,6 +3216,12 @@ import "../styles/typography.css";
   }
 
   @media (prefers-reduced-motion: reduce) {
+    body.brand-palette
+      .ekit-template-content-header
+      .elementskit-navbar-nav
+      > li:not(.mirror-nav-booking-item)
+      > a,
+    body.brand-palette .ekit-template-content-header .mirror-menu-toggle,
     body.brand-palette .ekit-template-content-header .mirror-nav-booking-link,
     body.brand-palette .ekit-template-content-header .mirror-nav-booking-link::before {
       transition: none !important;

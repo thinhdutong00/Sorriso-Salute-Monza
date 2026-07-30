@@ -462,6 +462,9 @@ textarea {
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 180ms ease, color 220ms ease;
   white-space: nowrap;
 }
 
@@ -488,8 +491,10 @@ textarea {
   transition: left 220ms ease, right 220ms ease, opacity 220ms ease;
 }
 
-.desktop-nav a:hover {
+.desktop-nav a:not(.header-booking-cta):hover,
+.desktop-nav a:not(.header-booking-cta):focus-visible {
   color: var(--clinic-teal);
+  transform: scale(1.045);
 }
 
 .site-header.is-over-hero .desktop-nav a {
@@ -583,6 +588,7 @@ textarea {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .desktop-nav a:not(.header-booking-cta),
   .desktop-nav .header-booking-cta,
   .desktop-nav .header-booking-cta::before {
     transition: none;

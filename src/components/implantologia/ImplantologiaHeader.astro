@@ -728,7 +728,6 @@ const activeTreatmentPath =
   .implant-home-header__menu-toggle { cursor: pointer; }
 
   .implant-home-header__nav-link::after,
-  .implant-home-header__menu-toggle::after,
   .implant-home-menu__section-content a::after {
     position: absolute;
     right: 50%;
@@ -744,13 +743,30 @@ const activeTreatmentPath =
 
   .implant-home-header__nav-link:hover::after,
   .implant-home-header__nav-link:focus-visible::after,
-  .implant-home-header__menu-toggle:hover::after,
-  .implant-home-header__menu-toggle:focus-visible::after,
   .implant-home-menu__section-content a:hover::after,
   .implant-home-menu__section-content a:focus-visible::after {
     right: 0;
     left: 0;
     opacity: 1;
+  }
+
+  .implant-home-header__nav-link:not(.implant-home-header__booking),
+  .implant-home-header__menu-toggle {
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 180ms ease, color 220ms ease, opacity 220ms ease;
+  }
+
+  .implant-home-header__nav-link:not(.implant-home-header__booking):hover,
+  .implant-home-header__nav-link:not(.implant-home-header__booking):focus-visible,
+  .implant-home-header__menu-toggle:hover,
+  .implant-home-header__menu-toggle:focus-visible {
+    transform: scale(1.045);
+  }
+
+  .implant-home-header__menu-toggle::after {
+    display: none;
+    content: none;
   }
 
   .implant-home-header__phone svg {
@@ -1609,6 +1625,8 @@ const activeTreatmentPath =
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .implant-home-header,
+    .implant-home-header__nav-link:not(.implant-home-header__booking),
+    .implant-home-header__menu-toggle,
     .implant-home-menu__section-toggle svg,
     .implant-home-menu__treatment-category-chevron,
     .implant-home-menu__treatment-parent svg,
