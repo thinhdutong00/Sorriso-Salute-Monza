@@ -3222,6 +3222,7 @@ import "../styles/typography.css";
       > li:not(.mirror-nav-booking-item)
       > a,
     body.brand-palette .ekit-template-content-header .mirror-menu-toggle,
+    body.brand-palette .mirror-kebab-menu__section a,
     body.brand-palette .ekit-template-content-header .mirror-nav-booking-link,
     body.brand-palette .ekit-template-content-header .mirror-nav-booking-link::before {
       transition: none !important;
@@ -3751,6 +3752,8 @@ import "../styles/typography.css";
     font-weight: 500 !important;
     line-height: 1.25 !important;
     text-decoration: none !important;
+    transform: scale(1) !important;
+    transform-origin: left center !important;
     transition: opacity 160ms ease, transform 160ms ease !important;
   }
 
@@ -3771,7 +3774,11 @@ import "../styles/typography.css";
   body.brand-palette .mirror-kebab-menu__section a:focus-visible {
     color: #ffffff !important;
     opacity: 1 !important;
-    transform: none !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__section a:not(.mirror-kebab-menu__submenu-link):hover,
+  body.brand-palette .mirror-kebab-menu__section a:not(.mirror-kebab-menu__submenu-link):focus-visible {
+    transform: scale(1.045) !important;
   }
 
   body.brand-palette .mirror-kebab-menu__section a:hover::after,

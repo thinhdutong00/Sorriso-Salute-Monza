@@ -589,6 +589,8 @@ textarea {
 
 @media (prefers-reduced-motion: reduce) {
   .desktop-nav a:not(.header-booking-cta),
+  .kebab-button,
+  .kebab-menu__section a,
   .desktop-nav .header-booking-cta,
   .desktop-nav .header-booking-cta::before {
     transition: none;
@@ -638,12 +640,16 @@ textarea {
   font-size: 1rem;
   font-weight: 600;
   line-height: 1;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 180ms ease, color 220ms ease;
   white-space: nowrap;
 }
 
 .kebab-button:hover,
 .kebab-button:focus-visible {
   color: var(--clinic-teal);
+  transform: scale(1.045);
 }
 
 .site-header.is-over-hero .kebab-button {
@@ -808,7 +814,9 @@ body.kebab-menu-open .site-header .implantologia-hub__logo-mark {
   font-weight: 500;
   line-height: 1.25;
   text-decoration: none;
-  transition: opacity 160ms ease;
+  transform: scale(1);
+  transform-origin: left center;
+  transition: opacity 160ms ease, transform 180ms ease;
 }
 
 .kebab-menu__link-disclosure {
@@ -1195,6 +1203,11 @@ body.kebab-menu-open .site-header .implantologia-hub__logo-mark {
 .kebab-menu__section a:focus-visible {
   color: #ffffff;
   opacity: 1;
+}
+
+.kebab-menu__section a:not(.kebab-menu__submenu-link):hover,
+.kebab-menu__section a:not(.kebab-menu__submenu-link):focus-visible {
+  transform: scale(1.045);
 }
 
 .kebab-menu__submenu-panel > .kebab-menu__submenu-link:focus-visible {

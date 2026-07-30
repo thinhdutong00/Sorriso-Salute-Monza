@@ -953,6 +953,15 @@ const activeTreatmentPath =
     font-weight: 500;
     line-height: 1.25;
     text-decoration: none;
+    transform: scale(1);
+    transform-origin: left center;
+    transition: transform 180ms ease;
+  }
+  .implant-home-menu__section-content
+    a:not(.implant-home-menu__nav-group-parent):not(.implant-home-menu__nav-submenu-link):hover,
+  .implant-home-menu__section-content
+    a:not(.implant-home-menu__nav-group-parent):not(.implant-home-menu__nav-submenu-link):focus-visible {
+    transform: scale(1.045);
   }
   .implant-home-menu__section-content a::after { bottom: 0; }
   .implant-home-menu__section-content a[aria-current="page"] { font-weight: 700; }
@@ -1627,6 +1636,7 @@ const activeTreatmentPath =
     .implant-home-header,
     .implant-home-header__nav-link:not(.implant-home-header__booking),
     .implant-home-header__menu-toggle,
+    .implant-home-menu__section-content a,
     .implant-home-menu__section-toggle svg,
     .implant-home-menu__treatment-category-chevron,
     .implant-home-menu__treatment-parent svg,
