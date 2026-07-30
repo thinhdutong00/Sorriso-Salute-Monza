@@ -1,7 +1,10 @@
 # Sistema tipografico
 
-Il sito usa una sola famiglia per tutti i testi: **Inter**. I font delle icone
-sono infrastruttura grafica e non devono essere usati per contenuti testuali.
+Il sito usa una sola famiglia per tutti i testi: **Inter**. È incorporato nel
+bundle come font variabile locale tramite `@fontsource-variable/inter`, così il
+rendering non dipende da Google Fonts o da font installati sul dispositivo.
+I font delle icone sono infrastruttura grafica e non devono essere usati per
+contenuti testuali.
 
 La fonte di verità è `src/styles/typography.css`. Le nuove pagine e le modifiche
 alle pagine esistenti devono riutilizzare i token definiti lì, evitando nuove
@@ -34,3 +37,5 @@ Su fondi scuri il colore testuale di riferimento è `#FFFFFF`.
   massimo il token semantico corrispondente.
 - Non introdurre altre famiglie di testo. `sans-serif` è ammesso soltanto come
   fallback tecnico di Inter.
+- Non aggiungere link o `@import` verso servizi font esterni: Inter deve restare
+  self-hosted e verificabile tramite `document.fonts`.

@@ -10,6 +10,10 @@ import "../styles/typography.css";
     --color-text-description-inverse: var(--type-color-inverse) !important;
     --brand-font-family: var(--font-family-body) !important;
     --brand-nav-font-family: var(--font-family-navigation) !important;
+    --bs-body-font-family: var(--font-family-body) !important;
+    --bs-btn-font-family: var(--font-family-body) !important;
+    --bs-font-monospace: var(--font-family-body) !important;
+    --bs-font-sans-serif: var(--font-family-body) !important;
     --brand-primary: #0E384C !important;
     --brand-primary-dark: #082A38 !important;
     --brand-primary-light: #D9ECF4 !important;
@@ -106,6 +110,26 @@ import "../styles/typography.css";
   body.brand-palette h4,
   body.brand-palette h5,
   body.brand-palette h6,
+  body.brand-palette div,
+  body.brand-palette section,
+  body.brand-palette article,
+  body.brand-palette aside,
+  body.brand-palette header,
+  body.brand-palette footer,
+  body.brand-palette nav,
+  body.brand-palette main,
+  body.brand-palette form,
+  body.brand-palette fieldset,
+  body.brand-palette legend,
+  body.brand-palette summary,
+  body.brand-palette details,
+  body.brand-palette figcaption,
+  body.brand-palette pre,
+  body.brand-palette code,
+  body.brand-palette kbd,
+  body.brand-palette samp,
+  body.brand-palette option,
+  body.brand-palette optgroup,
   body.brand-palette p,
   body.brand-palette a,
   body.brand-palette span,
@@ -122,6 +146,39 @@ import "../styles/typography.css";
   body.brand-palette th {
     font-family: var(--brand-font-family) !important;
     letter-spacing: 0 !important;
+  }
+
+  /*
+   * Third-party mirror widgets ship their own prose stacks (Roboto, system
+   * fonts, Playfair, Archivo, Helvetica and monospace variants). Keep their
+   * text and generated labels on the same Inter contract while leaving icon
+   * fonts such as Font Awesome, eicons, elementskit and swiper untouched.
+   */
+  body.brand-palette .ekit-wid-con .ekit-feed-wrapper,
+  body.brand-palette .ekit-wid-con .ekit-diff-toggle,
+  body.brand-palette .ekit-wid-con .ekit-review-wrapper,
+  body.brand-palette .ekit-wid-con .ekit-review-overview--title h4 span,
+  body.brand-palette .ekit-wid-con .ekit-heading__shadow-text,
+  body.brand-palette .ekit-wid-con .elementskit-section-title em,
+  body.brand-palette .trp-language-item-name,
+  body.brand-palette .mfp-close.ekit-popup-close,
+  body.brand-palette .tooltip,
+  body.brand-palette .popover,
+  body.brand-palette .glsr-debug pre,
+  body.brand-palette .glsr-default form.glsr-form .glsr-field-error,
+  body.brand-palette .mejs-container,
+  body.brand-palette .mejs-container *,
+  body.brand-palette .font-monospace {
+    font-family: var(--brand-font-family) !important;
+  }
+
+  body.brand-palette .ekit-wid-con .ekit-diff-off::after,
+  body.brand-palette .glsr-modal button.glsr-modal__close::before,
+  body.brand-palette table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child::before,
+  body.brand-palette table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child::before,
+  body.brand-palette table.dataTable.dtr-column > tbody > tr > td.control::before,
+  body.brand-palette table.dataTable.dtr-column > tbody > tr > th.control::before {
+    font-family: var(--brand-font-family) !important;
   }
 
   body.brand-palette a {
