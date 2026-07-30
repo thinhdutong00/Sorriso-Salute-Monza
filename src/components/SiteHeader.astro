@@ -1209,36 +1209,6 @@ const contactsIsActive =
     let lastScrollY = Math.max(0, window.scrollY || window.pageYOffset || 0);
     let scrollFrame = 0;
 
-    const getHero = () => {
-      const main = document.querySelector<HTMLElement>("main#main-content");
-
-      if (document.body.classList.contains("home")) {
-        return (
-          document.querySelector<HTMLElement>(
-            ".elementor-7051 .elementor-element.elementor-element-5c1edef1",
-          ) ??
-          main?.querySelector<HTMLElement>(".elementor-element:first-child") ??
-          main?.firstElementChild
-        );
-      }
-
-      return (
-        main?.querySelector<HTMLElement>(
-          "#panoramica, .information-hero, .implant-editorial__hero, .implant-hero, .prosthetics__hero, .hero",
-        ) ??
-        main?.querySelector<HTMLElement>(
-          '.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child:has(.elementor-widget-elementskit-breadcrumb)',
-        ) ??
-        main?.querySelector<HTMLElement>(".elementor-widget-elementskit-breadcrumb")?.closest<HTMLElement>(
-          ".elementor-element",
-        ) ??
-        main?.querySelector<HTMLElement>(
-          '.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child',
-        ) ??
-        main?.firstElementChild
-      );
-    };
-
     const updateHeaderTone = (currentY = Math.max(0, window.scrollY || window.pageYOffset || 0)) => {
       if (
         !header.classList.contains("primary-site-header--overlay") ||
@@ -1248,12 +1218,7 @@ const contactsIsActive =
         return;
       }
 
-      const hero = getHero();
-      const headerHeight = header.getBoundingClientRect().height || 92;
-      const heroBottom = hero
-        ? hero.getBoundingClientRect().bottom + currentY
-        : window.innerHeight * 0.72;
-      header.classList.toggle("is-scrolled", currentY + headerHeight >= heroBottom - 8);
+      header.classList.toggle("is-scrolled", currentY > 0);
     };
 
     const headerInteractionIsOpen = () =>
