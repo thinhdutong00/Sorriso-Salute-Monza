@@ -33,6 +33,28 @@ const [rawHead, rawBody] = await Promise.all([
 
 const replaceFirst = (source: string, search: string, replacement: string) => source.replace(search, replacement);
 
+const removeDivElementByDataId = (html: string, dataId: string) => {
+  const markerIndex = html.indexOf(`data-id="${dataId}"`);
+  if (markerIndex < 0) return html;
+
+  const elementStart = html.lastIndexOf("<div", markerIndex);
+  if (elementStart < 0) return html;
+
+  const divTagPattern = /<\/?div\b[^>]*>/gi;
+  divTagPattern.lastIndex = elementStart;
+  let depth = 0;
+
+  for (let match = divTagPattern.exec(html); match; match = divTagPattern.exec(html)) {
+    depth += match[0].startsWith("</") ? -1 : 1;
+
+    if (depth === 0) {
+      return html.slice(0, elementStart) + html.slice(divTagPattern.lastIndex);
+    }
+  }
+
+  return html;
+};
+
 const applyBrandColorTokens = (html: string) =>
   html
     .replace(
@@ -47,8 +69,6 @@ const applyBrandColorTokens = (html: string) =>
     .replace(/rgba\(\s*15\s*,\s*31\s*,\s*99\s*,/gi, "rgba(8, 42, 56,");
 
 const activityHeroDescriptions: Record<string, string> = {
-  "/attivita/":
-    "Scopri trattamenti chiari e personalizzati per prevenire, curare e valorizzare il tuo sorriso.",
   "/attivita/chirurgia-orale/":
     "Affronta estrazioni e piccoli interventi con un percorso pianificato, attento al comfort e al recupero.",
   "/attivita/endodonzia/":
@@ -90,6 +110,10 @@ const escapeHtml = (value: string) =>
     .replaceAll("'", "&#39;");
 
 const applyActivityHeroDescription = (html: string) => {
+  if (page.path === "/attivita/") {
+    return removeDivElementByDataId(html, "fd5b281");
+  }
+
   const description = activityHeroDescriptions[page.path];
   if (!description) return html;
 
@@ -291,9 +315,11 @@ const applyActivityIndexItalianHead = (html: string) => {
   if (page.path !== "/attivita/") return html;
 
   return html
+    .replaceAll("Attività - Sorriso e Salute", "Trattamenti - Sorriso e Salute")
+    .replace('"name":"Attività"}', '"name":"Trattamenti"}')
     .replace(
       'content="Services Home Dental Care We are excited to meet you and provide the best dental [&hellip;]"',
-      'content="Scopri le attività odontoiatriche dello Studio Dentistico Sorriso & Salute a Monza."',
+      'content="Scopri i trattamenti odontoiatrici dello Studio Dentistico Sorriso & Salute a Monza."',
     )
     .replaceAll('"inLanguage":"en-US"', '"inLanguage":"it-IT"')
     .replace('hreflang="en-US"', 'hreflang="it-IT"')
@@ -373,7 +399,7 @@ const applyActivityIndexItalianBody = (html: string) => {
   let next = html
     .replace(
       '<h1 class="elementor-heading-title elementor-size-default">Services</h1>',
-      '<h1 class="elementor-heading-title elementor-size-default">Attività</h1>',
+      '<h1 class="elementor-heading-title elementor-size-default">Trattamenti</h1>',
     )
     .replace("Personalized Care For Patient", "Cure personalizzate")
     .replace(
@@ -442,6 +468,15 @@ const applyActivityIndexItalianBody = (html: string) => {
   }
 
   return next.replaceAll("Learn More", "Nel dettaglio");
+};
+
+const removeActivityIndexLowerSections = (html: string) => {
+  if (page.path !== "/attivita/") return html;
+
+  return ["e368457", "2e1f918"].reduce(
+    (next, dataId) => removeDivElementByDataId(next, dataId),
+    html,
+  );
 };
 
 const applyTeamImageQuality = (html: string) =>
@@ -592,7 +627,7 @@ const transformedBody = removeMirroredFooter(applyAboutTeamAnchor(applyTeamAncho
     removeAboutHeroBreadcrumb(
       applyActivityHeroDescription(
         applyBrandColorTokens(
-          applyReviewsPageBody(applyActivityIndexItalianBody(applyStudioMapEmbed(removeFormerTeamMembers(applyAboutTeamMobileHeading(applyTeamImageQuality(applyPrimaryProstheticsLinks(rawBody))))))).replaceAll(
+          applyReviewsPageBody(removeActivityIndexLowerSections(applyActivityIndexItalianBody(applyStudioMapEmbed(removeFormerTeamMembers(applyAboutTeamMobileHeading(applyTeamImageQuality(applyPrimaryProstheticsLinks(rawBody)))))))).replaceAll(
             "Un sorriso più sano non può aspettare, <br />Prenota ora!",
             "Un sorriso<br />che sembri tuo,<br />solo migliore.",
           ).replaceAll(
