@@ -4,6 +4,7 @@ import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
 ---
 
 <!doctype html>
@@ -22,7 +23,8 @@ import SiteFooter from "../components/SiteFooter.astro";
     <title>Prenota la tua visita | Sorriso & Salute Monza</title>
   </head>
   <body class="booking-choice-body brand-palette">
-    <main class="booking-choice-shell" aria-label="Preferenze prenotazione">
+    <SiteHeader />
+    <main class="booking-choice-shell" id="main-content" tabindex="-1" aria-label="Preferenze prenotazione">
       <a class="booking-choice-button" href="tel:+390392022489">Chiama lo studio: 039 2022489</a>
       <a class="booking-choice-button booking-choice-button--primary" href="/richiesta-generale/">Prenota online (consigliato)</a>
     </main>

@@ -5,6 +5,7 @@ import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 import PageLoader from "../components/PageLoader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
 import { implantologiaMenuLinks, protesiDentaleMenuLink } from "../data/implantologiaNavigation";
 import {
   kebabAllTreatmentsLink,
@@ -290,8 +291,11 @@ const currentPath = Astro.url.pathname;
   </head>
   <body class="urgent-page brand-palette">
     <PageLoader />
+    <SiteHeader />
 
-    <header class="site-header" data-header>
+    {false && (
+      <Fragment>
+        <header class="site-header" data-header hidden aria-hidden="true">
       <a class="brand" href="/" aria-label="Studio Dentistico Sorriso & Salute">
         <img class="brand-logo" src={brandLogo} alt="Studio Dentistico Sorriso & Salute" width="360" height="87" decoding="async" />
       </a>
@@ -527,9 +531,11 @@ const currentPath = Astro.url.pathname;
           </div>
         </section>
       </nav>
-    </aside>
+        </aside>
+      </Fragment>
+    )}
 
-    <main class="urgent-main">
+    <main class="urgent-main" id="main-content" tabindex="-1">
       <section class="urgent-hero" aria-labelledby="urgent-title">
         <div class="urgent-hero__inner">
           <p class="urgent-kicker">Urgenze odontoiatriche</p>

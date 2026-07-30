@@ -4,6 +4,7 @@ import FaviconLinks from "../components/FaviconLinks.astro";
 import PageLoader from "../components/PageLoader.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
 import ImplantologiaAttribution from "../components/implantologia/ImplantologiaAttribution.astro";
 import { implantologiaMenuLinks, protesiDentaleMenuLink } from "../data/implantologiaNavigation";
 import {
@@ -532,8 +533,11 @@ const conventionGroups = [
   <body class="has-sticky-cta">
     <PageLoader />
     <ImplantologiaAttribution serviceInterest="Implantologia" isLanding />
+    <SiteHeader overlay />
 
-    <header class="site-header is-over-hero" data-header>
+    {false && (
+      <Fragment>
+        <header class="site-header is-over-hero" data-header hidden aria-hidden="true">
       <a class="brand" href="/" aria-label="Studio Dentistico Sorriso & Salute">
         <span class="brand-logo implantologia-hub__logo-mark" aria-hidden="true"></span>
       </a>
@@ -770,9 +774,11 @@ const conventionGroups = [
           </div>
         </section>
       </nav>
-    </aside>
+        </aside>
+      </Fragment>
+    )}
 
-    <main id="home">
+    <main id="main-content" tabindex="-1">
       <section class="hero" aria-label="Percorso implantologico a Monza">
         <div class="hero-content">
           <h1>

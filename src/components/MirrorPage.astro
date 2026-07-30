@@ -6,6 +6,7 @@ import BrandPalette from "./BrandPalette.astro";
 import GoogleAdsTracking from "./GoogleAdsTracking.astro";
 import PageLoader from "./PageLoader.astro";
 import SiteFooter from "./SiteFooter.astro";
+import SiteHeader from "./SiteHeader.astro";
 import {
   kebabAllTreatmentsLink,
   kebabTreatmentCategories,
@@ -534,8 +535,59 @@ const applyPrimaryProstheticsLinks = (html: string) =>
 const removeMirroredFooter = (html: string) =>
   html.replace(/<div class="ekit-template-content-markup ekit-template-content-footer[\s\S]*?(?=<template id="tp-language")/, "");
 
+const removeMirroredHeader = (html: string) => {
+  const headerStart = html.indexOf(
+    '<div class="ekit-template-content-markup ekit-template-content-header',
+  );
+  if (headerStart < 0) return html;
+
+  const pageStart = html.indexOf('<div data-elementor-type="wp-page"', headerStart);
+  const samplePageStart = html.indexOf('<main id="content"', headerStart);
+  const contentStarts = [pageStart, samplePageStart].filter((index) => index >= 0);
+  if (contentStarts.length === 0) return html;
+
+  const contentStart = Math.min(...contentStarts);
+  const rawSkipLinkStart = html.lastIndexOf('<a class="skip-link', headerStart);
+  const removalStart = rawSkipLinkStart >= 0 ? rawSkipLinkStart : headerStart;
+
+  return html.slice(0, removalStart) + html.slice(contentStart);
+};
+
+const applyNavigationAnchors = (html: string) => {
+  let anchoredHtml = html;
+
+  if (page.path === "/chi-siamo/") {
+    anchoredHtml = anchoredHtml.replace(
+      '<div class="elementor-element elementor-element-2e345e95 ',
+      '<div id="come-lavoriamo" class="elementor-element elementor-element-2e345e95 ',
+    );
+  }
+
+  if (page.path === "/contatti/") {
+    anchoredHtml = anchoredHtml.replace(
+      '<div class="elementor-element elementor-element-76c73ed ',
+      '<div id="dove-siamo" class="elementor-element elementor-element-76c73ed ',
+    );
+  }
+
+  return anchoredHtml;
+};
+
+const normalizeInternalLinks = (html: string) =>
+  html
+    .replaceAll(
+      'href="/attivita/profilassi-dentale/"',
+      'href="/attivita/igiene-orale-e-profilassi/"',
+    )
+    .replaceAll(
+      'href="/attivita/conservativa/"',
+      'href="/attivita/odontoiatria-conservativa/"',
+    )
+    .replaceAll('href="/compass/"', 'href="https://www.compass.it/"')
+    .replaceAll('href="/wp-admin/"', 'href="/"');
+
 const head = applyAboutHeadImage(applyBrandColorTokens(applyActivityIndexItalianHead(rawHead)));
-const body = removeMirroredFooter(applyAboutTeamAnchor(applyTeamAnchorLinks(applyStructureAnchorLinks(applyGeneralRequestCtaLinks(removeConventionHeroBreadcrumb(
+const transformedBody = removeMirroredFooter(applyAboutTeamAnchor(applyTeamAnchorLinks(applyStructureAnchorLinks(applyGeneralRequestCtaLinks(removeConventionHeroBreadcrumb(
   removeReviewsHeroBreadcrumb(
     removeAboutHeroBreadcrumb(
       applyActivityHeroDescription(
@@ -580,6 +632,9 @@ const body = removeMirroredFooter(applyAboutTeamAnchor(applyTeamAnchorLinks(appl
     ),
   ),
 ))))));
+const body = normalizeInternalLinks(
+  applyNavigationAnchors(removeMirroredHeader(transformedBody)),
+);
 const aboutStructureRuntimeMarker = '<template id="tp-language"';
 const aboutStructureSplitIndex =
   page.path === "/chi-siamo/" ? body.indexOf(aboutStructureRuntimeMarker) : -1;
@@ -1629,20 +1684,25 @@ const reviewsPageScript = `
     <BrandPalette />
     {isAboutPage && <style is:inline set:html={aboutTeamMobileStyles} />}
   </head>
-  <body class:list={[page.bodyClass, "brand-palette", "mirror-header-over-hero", hasImageHero && "mirror-hero-image", isActivityMirrorPage && "mirror-activity-page", isReviewsPage && "mirror-reviews-page"]} id={page.bodyId || undefined}>
+  <body class:list={[page.bodyClass, "brand-palette", hasImageHero && "mirror-hero-image", isActivityMirrorPage && "mirror-activity-page", isReviewsPage && "mirror-reviews-page"]} id={page.bodyId || undefined}>
     <PageLoader />
-    <Fragment set:html={bodyBeforeAboutStructure} />
-    {page.path === "/chi-siamo/" && <AboutStructureSection />}
-    <Fragment set:html={bodyAfterAboutStructure} />
-    <div class="mirror-menu-backdrop" data-mirror-menu-backdrop hidden></div>
-    <aside
-      id="mirror-kebab-menu"
-      class="mirror-kebab-menu"
-      data-mirror-kebab-menu
-      tabindex="-1"
-      aria-label="Menu principale"
-      hidden
-    >
+    <SiteHeader overlay={hasImageHero} />
+    <div id="main-content" tabindex="-1">
+      <Fragment set:html={bodyBeforeAboutStructure} />
+      {page.path === "/chi-siamo/" && <AboutStructureSection />}
+      <Fragment set:html={bodyAfterAboutStructure} />
+    </div>
+    {false && (
+      <Fragment>
+        <div class="mirror-menu-backdrop" data-mirror-menu-backdrop hidden></div>
+        <aside
+          id="mirror-kebab-menu"
+          class="mirror-kebab-menu"
+          data-mirror-kebab-menu
+          tabindex="-1"
+          aria-label="Menu principale"
+          hidden
+        >
       <div class="mirror-kebab-menu__header">
         <a class="mirror-kebab-menu__logo" href="/" aria-label="Studio Dentistico Sorriso e Salute - Home">
           <span class="mirror-kebab-menu__logo-mark" aria-hidden="true"></span>
@@ -1899,11 +1959,11 @@ const reviewsPageScript = `
           <span>Prenota ora</span>
         </a>
       </div>
-    </aside>
+        </aside>
+      </Fragment>
+    )}
     <script is:inline set:html={removeLegacyAppointmentButtonScript} />
     <SiteFooter />
-    <script is:inline set:html={mirrorHeaderScript} />
-    <script is:inline set:html={mirrorNavigationScript} />
     <script is:inline set:html={counterFallbackScript} />
     <script is:inline set:html={treatmentCardsScript} />
     {isReviewsPage && <script is:inline set:html={reviewsPageScript} />}

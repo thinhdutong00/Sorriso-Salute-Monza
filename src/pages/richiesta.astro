@@ -4,6 +4,7 @@ import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
 import ImplantologiaAttribution from "../components/implantologia/ImplantologiaAttribution.astro";
 import ImplantologiaHiddenFields from "../components/implantologia/ImplantologiaHiddenFields.astro";
 ---
@@ -24,18 +25,9 @@ import ImplantologiaHiddenFields from "../components/implantologia/Implantologia
     <title>Richiedi una valutazione | Sorriso & Salute Monza</title>
   </head>
   <body class="request-body brand-palette">
-    <header class="request-topbar">
-      <div class="request-topbar-inner">
-        <a class="request-back-link" href="/" data-back-link>
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M15.5 4.5 8 12l7.5 7.5" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-          Indietro
-        </a>
-      </div>
-    </header>
+    <SiteHeader />
 
-    <main>
+    <main id="main-content" tabindex="-1">
       <section class="request-shell" aria-labelledby="request-title">
         <h1 class="request-title" id="request-title">Richiedi una valutazione</h1>
 
@@ -238,7 +230,7 @@ import ImplantologiaHiddenFields from "../components/implantologia/Implantologia
           return slots;
         };
 
-        const showStep = (step) => {
+        const showStep = (step, shouldScroll = true) => {
           currentStep = step;
           steps.forEach((item) => item.classList.toggle("is-active", Number(item.dataset.step) === step));
           progress?.style.setProperty("--progress", `${(step / totalSteps) * 100}%`);
@@ -246,9 +238,11 @@ import ImplantologiaHiddenFields from "../components/implantologia/Implantologia
           if (actions instanceof HTMLElement) actions.hidden = step !== totalSteps;
           if (submitBtn instanceof HTMLButtonElement) submitBtn.hidden = step !== totalSteps;
           setError();
-          requestAnimationFrame(() => {
-            form.scrollIntoView({ behavior: "smooth", block: "start" });
-          });
+          if (shouldScroll) {
+            requestAnimationFrame(() => {
+              form.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+          }
         };
 
         const validateStep = () => {
@@ -418,9 +412,9 @@ import ImplantologiaHiddenFields from "../components/implantologia/Implantologia
         if (presetProblem) {
           quiz.problema = presetProblem;
           markQuizChoice("problema", presetProblem);
-          showStep(2);
+          showStep(2, false);
         } else {
-          showStep(1);
+          showStep(1, false);
         }
       })();
     </script>

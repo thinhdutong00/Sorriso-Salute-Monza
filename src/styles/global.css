@@ -2990,7 +2990,7 @@ body.modal-open {
   min-height: 100dvh;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: calc(var(--primary-site-header-height, 92px) + 24px) 24px 24px;
   background:
     radial-gradient(circle at 14% 8%, rgba(14, 56, 76, 0.16), transparent 30%),
     linear-gradient(180deg, #ffffff, var(--surface-warm));
@@ -3469,6 +3469,10 @@ body.modal-open {
   background: var(--surface-warm);
 }
 
+.request-body > main {
+  padding-top: var(--primary-site-header-height, 92px);
+}
+
 .request-topbar {
   display: flex;
   min-height: 122px;
@@ -3507,6 +3511,7 @@ body.modal-open {
 
 .request-form {
   padding: clamp(24px, 4vw, 38px);
+  scroll-margin-top: calc(var(--primary-site-header-height, 92px) + 24px);
   border: 1px solid rgba(226, 221, 214, 0.9);
   border-radius: 22px;
   background: var(--surface-card);

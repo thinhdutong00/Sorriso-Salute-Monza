@@ -1,0 +1,170 @@
+---
+import "../styles/global.css";
+import "../styles/information-page.css";
+import FaviconLinks from "../components/FaviconLinks.astro";
+import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import PageLoader from "../components/PageLoader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+
+const visitSteps = [
+  {
+    number: "01",
+    title: "Ascolto e raccolta delle informazioni",
+    text: "Partiamo dal motivo della visita, dalla tua storia clinica e da ciò che desideri chiarire o migliorare.",
+  },
+  {
+    number: "02",
+    title: "Valutazione clinica",
+    text: "Il professionista esamina denti, gengive e funzione. Se necessario, indica gli approfondimenti diagnostici utili.",
+  },
+  {
+    number: "03",
+    title: "Spiegazione e alternative",
+    text: "Condividiamo ciò che è emerso, le possibili opzioni e le priorità, con spazio per domande e dubbi.",
+  },
+  {
+    number: "04",
+    title: "Piano e prossimi passaggi",
+    text: "Quando indicato, definiamo una sequenza di cura, tempi orientativi e controlli da programmare.",
+  },
+];
+
+const visitTypes = [
+  {
+    label: "Prima visita",
+    title: "Quando vuoi fare il punto sulla salute della bocca",
+    text: "È il momento dedicato a comprendere la situazione generale e impostare eventuali approfondimenti o cure.",
+    href: "/richiesta-generale/",
+    cta: "Richiedi la prima visita",
+  },
+  {
+    label: "Prevenzione",
+    title: "Controllo e igiene professionale",
+    text: "Per monitorare denti e gengive e valutare con il team la frequenza più adatta dei richiami.",
+    href: "/attivita/igiene-orale-e-profilassi/",
+    cta: "Scopri la prevenzione",
+  },
+  {
+    label: "Urgenza",
+    title: "Quando il problema non può aspettare",
+    text: "In caso di dolore, gonfiore, trauma o protesi danneggiata, chiama lo studio e descrivi subito il problema.",
+    href: "/urgenze/",
+    cta: "Indicazioni per le urgenze",
+  },
+];
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Come si svolge una visita presso lo Studio Dentistico Sorriso & Salute di Monza: ascolto, valutazione, spiegazione e prossimi passaggi."
+    />
+    <meta name="theme-color" content="#0E384C" />
+    <link rel="canonical" href="https://sorrisoesalutemonza.it/modalita-della-visita/" />
+    <title>Modalità della visita | Sorriso & Salute Monza</title>
+    <FaviconLinks />
+    <GoogleAdsTracking />
+  </head>
+  <body class="information-page">
+    <PageLoader />
+    <SiteHeader />
+
+    <main id="main-content" tabindex="-1">
+      <section class="information-hero" aria-labelledby="visit-title">
+        <div class="information-hero__inner">
+          <p class="information-eyebrow">Modalità della visita</p>
+          <h1 id="visit-title">Una visita chiara, dall’ascolto ai prossimi passi</h1>
+          <p class="information-hero__lead">
+            Ogni percorso parte da una valutazione personale. Ti spieghiamo cosa aspettarti, quali informazioni
+            possono essere utili e come vengono condivise le possibili opzioni di cura.
+          </p>
+          <div class="information-actions">
+            <a class="information-button" href="/richiesta-generale/">Richiedi una visita</a>
+            <a class="information-button information-button--secondary" href="tel:+390392022489">
+              Chiama 039 2022489
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="information-section information-section--mist" aria-labelledby="steps-title">
+        <div class="information-section__inner">
+          <div class="information-section__heading">
+            <h2 id="steps-title">Come si svolge</h2>
+            <p>
+              Le fasi possono cambiare in base al motivo dell’appuntamento. Questa sequenza descrive il percorso
+              abituale di una prima valutazione.
+            </p>
+          </div>
+          <div class="information-step-grid">
+            {
+              visitSteps.map((step) => (
+                <article class="information-step">
+                  <span class="information-step__number">{step.number}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="information-section information-section--white" aria-labelledby="visit-types-title">
+        <div class="information-section__inner">
+          <div class="information-section__heading">
+            <h2 id="visit-types-title">Scegli da dove iniziare</h2>
+            <p>
+              Se non sai quale appuntamento richiedere, descrivi il problema nel modulo: lo studio ti ricontatterà
+              per orientarti e confermare la disponibilità.
+            </p>
+          </div>
+          <div class="information-card-grid">
+            {
+              visitTypes.map((visit) => (
+                <article class="information-card">
+                  <span class="information-card__label">{visit.label}</span>
+                  <h3>{visit.title}</h3>
+                  <p>{visit.text}</p>
+                  <a href={visit.href}>{visit.cta}</a>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="information-section information-section--mist" aria-labelledby="bring-title">
+        <div class="information-section__inner information-two-column">
+          <h2 id="bring-title">Cosa portare con te</h2>
+          <ul class="information-list">
+            <li>Un elenco aggiornato dei farmaci che assumi e delle condizioni mediche rilevanti.</li>
+            <li>Eventuali esami o radiografie recenti in tuo possesso.</li>
+            <li>Informazioni su allergie, precedenti interventi o terapie odontoiatriche.</li>
+            <li>Le domande che vuoi affrontare durante l’incontro.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="information-cta" aria-labelledby="visit-cta-title">
+        <div class="information-cta__inner">
+          <div>
+            <h2 id="visit-cta-title">Raccontaci di cosa hai bisogno</h2>
+            <p>
+              La richiesta online non conferma automaticamente l’appuntamento: lo studio ti ricontatterà per
+              concordare giorno, orario e modalità della visita.
+            </p>
+          </div>
+          <a class="information-button" href="/richiesta-generale/">Vai al modulo</a>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>

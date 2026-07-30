@@ -4,6 +4,7 @@ import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
 ---
 
 <!doctype html>
@@ -45,18 +46,9 @@ import SiteFooter from "../components/SiteFooter.astro";
     <title>Grazie | Sorriso & Salute Monza</title>
   </head>
   <body class="request-body brand-palette">
-    <header class="request-topbar">
-      <div class="request-topbar-inner">
-        <a class="request-back-link" href="/">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M15.5 4.5 8 12l7.5 7.5" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-          Home
-        </a>
-      </div>
-    </header>
+    <SiteHeader />
 
-    <main>
+    <main id="main-content" tabindex="-1">
       <section class="request-shell thank-you-shell" aria-labelledby="thank-you-title">
         <p class="quiz-kicker">Richiesta inviata</p>
         <h1 class="request-title" id="thank-you-title">Grazie, abbiamo ricevuto la tua richiesta.</h1>

@@ -1,0 +1,1196 @@
+---
+import { kebabTreatmentCategories } from "../data/kebabTreatmentNavigation";
+
+interface Props {
+  overlay?: boolean;
+}
+
+const { overlay = false } = Astro.props;
+const currentPath = Astro.url.pathname;
+const logo = "/assets/brand/sorriso-salute-logo-360.webp";
+
+const informationLinks = [
+  { href: "/chi-siamo/", label: "Chi siamo" },
+  { href: "/chi-siamo/#come-lavoriamo", label: "Come lavoriamo" },
+  { href: "/chi-siamo/#struttura", label: "La struttura" },
+  { href: "/chi-siamo/#team", label: "Il nostro team" },
+  { href: "/recensioni-studio-dentistico-monza/", label: "Recensioni" },
+  { href: "/convenzioni-dirette-studio-dentistico-monza/", label: "Convenzioni" },
+];
+
+const contactLinks = [
+  { href: "/contatti/", label: "Contatti" },
+  { href: "/contatti/#dove-siamo", label: "Dove siamo" },
+  { href: "/urgenze/", label: "Urgenze" },
+  { href: "/lavora-con-noi/", label: "Lavora con noi" },
+  { href: "/richiesta-generale/", label: "Prenota una visita" },
+];
+
+const treatmentGroups = kebabTreatmentCategories.map((category) => ({
+  id: category.id,
+  label: category.label,
+  links: category.items.flatMap((item) =>
+    item.kind === "implantology"
+      ? item.children
+      : [{ href: item.href, label: item.label }],
+  ),
+}));
+
+const informationIsActive =
+  currentPath.startsWith("/chi-siamo") ||
+  currentPath.startsWith("/recensioni-") ||
+  currentPath.startsWith("/convenzioni-");
+const treatmentsIsActive =
+  currentPath.startsWith("/attivita/") ||
+  currentPath.startsWith("/implantologia/") ||
+  currentPath === "/protesi-dentale/";
+const visitIsActive = currentPath === "/modalita-della-visita/";
+const contactsIsActive =
+  currentPath === "/contatti/" ||
+  currentPath === "/urgenze/" ||
+  currentPath === "/lavora-con-noi/" ||
+  currentPath === "/richiesta-generale/";
+---
+
+<a class="primary-site-skip-link" href="#main-content">Vai al contenuto</a>
+
+<header
+  class:list={[
+    "primary-site-header",
+    overlay && "primary-site-header--overlay",
+  ]}
+  data-primary-site-header
+>
+  <div class="primary-site-header__inner">
+    <a class="primary-site-header__brand" href="/" aria-label="Studio Dentistico Sorriso & Salute — Home">
+      <img
+        src={logo}
+        alt="Studio Dentistico Sorriso & Salute"
+        width="360"
+        height="87"
+        decoding="async"
+      />
+    </a>
+
+    <nav class="primary-site-header__desktop-nav" aria-label="Navigazione principale">
+      <div
+        class:list={[
+          "primary-site-header__item",
+          informationIsActive && "is-current",
+        ]}
+        data-header-dropdown
+      >
+        <div class="primary-site-header__item-trigger">
+          <a href="/chi-siamo/" aria-current={currentPath === "/chi-siamo/" ? "page" : undefined}>
+            Informazioni
+          </a>
+          <button
+            type="button"
+            aria-label="Apri il menu Informazioni"
+            aria-expanded="false"
+            aria-controls="header-information-menu"
+            data-header-dropdown-toggle
+          >
+            <span class="primary-site-header__chevron" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div
+          class="primary-site-header__dropdown primary-site-header__dropdown--simple"
+          id="header-information-menu"
+          data-header-dropdown-panel
+        >
+          <p class="primary-site-header__dropdown-eyebrow">Informazioni sullo studio</p>
+          {
+            informationLinks.map((link) => (
+              <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div
+        class:list={[
+          "primary-site-header__item",
+          "primary-site-header__item--treatments",
+          treatmentsIsActive && "is-current",
+        ]}
+        data-header-dropdown
+      >
+        <div class="primary-site-header__item-trigger">
+          <a href="/attivita/" aria-current={currentPath === "/attivita/" ? "page" : undefined}>
+            Trattamenti
+          </a>
+          <button
+            type="button"
+            aria-label="Apri il menu Trattamenti"
+            aria-expanded="false"
+            aria-controls="header-treatments-menu"
+            data-header-dropdown-toggle
+          >
+            <span class="primary-site-header__chevron" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div
+          class="primary-site-header__dropdown primary-site-header__dropdown--treatments"
+          id="header-treatments-menu"
+          data-header-dropdown-panel
+        >
+          <div class="primary-site-header__treatment-list">
+            <a class="primary-site-header__all-treatments" href="/attivita/">
+              <span>Tutti i trattamenti</span>
+              <small>Panoramica dei servizi</small>
+            </a>
+            {
+              treatmentGroups.map((group) => (
+                <div class="primary-site-header__treatment-group" data-treatment-flyout>
+                  <button
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls={`header-treatment-${group.id}`}
+                    data-treatment-flyout-toggle
+                  >
+                    <span>{group.label}</span>
+                    <span class="primary-site-header__flyout-arrow" aria-hidden="true"></span>
+                  </button>
+                  <div
+                    class="primary-site-header__treatment-flyout"
+                    id={`header-treatment-${group.id}`}
+                    data-treatment-flyout-panel
+                  >
+                    <p>{group.label}</p>
+                    {
+                      group.links.map((link) => (
+                        <a
+                          href={link.href}
+                          aria-current={currentPath === link.href ? "page" : undefined}
+                        >
+                          {link.label}
+                        </a>
+                      ))
+                    }
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <a
+        class:list={[
+          "primary-site-header__direct-link",
+          visitIsActive && "is-current",
+        ]}
+        href="/modalita-della-visita/"
+        aria-current={visitIsActive ? "page" : undefined}
+      >
+        Modalità della visita
+      </a>
+
+      <div
+        class:list={[
+          "primary-site-header__item",
+          contactsIsActive && "is-current",
+        ]}
+        data-header-dropdown
+      >
+        <div class="primary-site-header__item-trigger">
+          <a href="/contatti/" aria-current={currentPath === "/contatti/" ? "page" : undefined}>
+            Contatti
+          </a>
+          <button
+            type="button"
+            aria-label="Apri il menu Contatti"
+            aria-expanded="false"
+            aria-controls="header-contacts-menu"
+            data-header-dropdown-toggle
+          >
+            <span class="primary-site-header__chevron" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div
+          class="primary-site-header__dropdown primary-site-header__dropdown--simple primary-site-header__dropdown--right"
+          id="header-contacts-menu"
+          data-header-dropdown-panel
+        >
+          <p class="primary-site-header__dropdown-eyebrow">Contatti e appuntamenti</p>
+          {
+            contactLinks.map((link) => (
+              <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </nav>
+
+    <div class="primary-site-header__actions" aria-label="Contatti rapidi">
+      <a
+        class="primary-site-header__phone"
+        href="tel:+390392022489"
+        aria-label="Chiama lo studio al numero 039 2022489"
+      >
+        <span class="primary-site-header__phone-icon" aria-hidden="true">☎</span>
+        <span class="primary-site-header__phone-label">039 2022489</span>
+      </a>
+      <a class="primary-site-header__booking" href="/richiesta-generale/">
+        Prenota una visita
+      </a>
+      <button
+        class="primary-site-header__mobile-toggle"
+        type="button"
+        aria-label="Apri il menu di navigazione"
+        aria-expanded="false"
+        aria-controls="primary-site-mobile-menu"
+        data-header-mobile-toggle
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="primary-site-header__mobile-menu"
+    id="primary-site-mobile-menu"
+    data-header-mobile-menu
+    hidden
+  >
+    <nav aria-label="Navigazione mobile">
+      <details>
+        <summary>Informazioni</summary>
+        <div class="primary-site-header__mobile-links">
+          {
+            informationLinks.map((link) => (
+              <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </details>
+
+      <details>
+        <summary>Trattamenti</summary>
+        <div class="primary-site-header__mobile-links">
+          <a href="/attivita/">Tutti i trattamenti</a>
+          {
+            treatmentGroups.map((group) => (
+              <details class="primary-site-header__mobile-treatment">
+                <summary>{group.label}</summary>
+                <div>
+                  {
+                    group.links.map((link) => (
+                      <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
+                        {link.label}
+                      </a>
+                    ))
+                  }
+                </div>
+              </details>
+            ))
+          }
+        </div>
+      </details>
+
+      <a href="/modalita-della-visita/" aria-current={visitIsActive ? "page" : undefined}>
+        Modalità della visita
+      </a>
+
+      <details>
+        <summary>Contatti</summary>
+        <div class="primary-site-header__mobile-links">
+          {
+            contactLinks.map((link) => (
+              <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </details>
+    </nav>
+
+    <div class="primary-site-header__mobile-actions">
+      <a href="tel:+390392022489">Chiama 039 2022489</a>
+      <a href="/richiesta-generale/">Prenota una visita</a>
+    </div>
+  </div>
+</header>
+
+<style is:global>
+  :root {
+    --primary-site-header-height: 92px;
+    --implant-home-header-height: 92px;
+  }
+
+  :is(#come-lavoriamo, #struttura, #team, #dove-siamo) {
+    scroll-margin-top: calc(var(--primary-site-header-height) + 24px);
+  }
+
+  .primary-site-skip-link {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 10001;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: #fff;
+    color: #082a38 !important;
+    font: 700 0.9rem/1 var(--font-family-navigation, Inter, sans-serif);
+    transform: translateY(-180%);
+    transition: transform 160ms ease;
+  }
+
+  .primary-site-skip-link:focus {
+    transform: translateY(0);
+  }
+
+  .primary-site-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 900;
+    width: 100%;
+    min-height: 92px;
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(8, 42, 56, 0.97);
+    box-shadow: 0 16px 38px rgba(8, 42, 56, 0.16);
+    color: #fff;
+    font-family: var(--font-family-navigation, Inter, sans-serif);
+    transition:
+      background-color 180ms ease,
+      box-shadow 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open) {
+    border-color: transparent;
+    background: linear-gradient(180deg, rgba(5, 31, 43, 0.76), rgba(5, 31, 43, 0));
+    box-shadow: none;
+  }
+
+  .primary-site-header *,
+  .primary-site-header *::before,
+  .primary-site-header *::after {
+    box-sizing: border-box;
+  }
+
+  .primary-site-header a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  body.brand-palette .primary-site-header button,
+  .primary-site-header button {
+    margin: 0;
+    border: 0;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: inherit;
+    font: inherit;
+  }
+
+  .primary-site-header__inner {
+    display: grid;
+    grid-template-columns: minmax(190px, 252px) minmax(480px, 1fr) auto;
+    align-items: center;
+    width: min(1840px, 100%);
+    min-height: 92px;
+    margin: 0 auto;
+    padding: 14px clamp(20px, 3.2vw, 58px);
+    gap: clamp(20px, 2.2vw, 40px);
+  }
+
+  .primary-site-header__brand {
+    display: inline-flex;
+    width: min(252px, 100%);
+    min-width: 0;
+  }
+
+  .primary-site-header__brand img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .primary-site-header__desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    gap: clamp(18px, 1.7vw, 34px);
+  }
+
+  .primary-site-header__item,
+  .primary-site-header__direct-link {
+    position: relative;
+    flex: 0 0 auto;
+  }
+
+  .primary-site-header__direct-link,
+  .primary-site-header__item-trigger > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: clamp(0.78rem, 0.78vw, 0.92rem);
+    font-weight: 760;
+    letter-spacing: 0.055em;
+    line-height: 1.1;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 160ms ease;
+  }
+
+  .primary-site-header__item-trigger {
+    display: flex;
+    align-items: center;
+  }
+
+  .primary-site-header__item-trigger > button {
+    display: grid;
+    width: 30px;
+    height: 44px;
+    padding: 0 0 0 8px;
+    cursor: pointer;
+    place-items: center;
+  }
+
+  .primary-site-header__chevron {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-right: 1.8px solid currentColor;
+    border-bottom: 1.8px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 160ms ease;
+  }
+
+  .primary-site-header__item.is-open .primary-site-header__chevron,
+  .primary-site-header__item:hover .primary-site-header__chevron {
+    transform: translateY(2px) rotate(225deg);
+  }
+
+  .primary-site-header__item:hover .primary-site-header__item-trigger > a,
+  .primary-site-header__item:focus-within .primary-site-header__item-trigger > a,
+  .primary-site-header__direct-link:hover,
+  .primary-site-header__direct-link:focus-visible,
+  .primary-site-header__item.is-current .primary-site-header__item-trigger > a,
+  .primary-site-header__direct-link.is-current {
+    color: #bfe8f7 !important;
+  }
+
+  .primary-site-header__item-trigger > a::after,
+  .primary-site-header__direct-link::after {
+    position: absolute;
+    right: 0;
+    bottom: 3px;
+    left: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: #bfe8f7;
+    content: "";
+    opacity: 0;
+    transform: scaleX(0.35);
+    transition:
+      opacity 160ms ease,
+      transform 160ms ease;
+  }
+
+  .primary-site-header__item.is-current .primary-site-header__item-trigger > a::after,
+  .primary-site-header__direct-link.is-current::after,
+  .primary-site-header__item:hover .primary-site-header__item-trigger > a::after,
+  .primary-site-header__item:focus-within .primary-site-header__item-trigger > a::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  .primary-site-header__dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    z-index: 5;
+    visibility: hidden;
+    padding: 18px;
+    border: 1px solid rgba(14, 56, 76, 0.1);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 26px 70px rgba(8, 42, 56, 0.24);
+    color: #082a38;
+    opacity: 0;
+    transform: translate(-50%, -8px);
+    transition:
+      opacity 150ms ease,
+      transform 150ms ease,
+      visibility 150ms ease;
+  }
+
+  .primary-site-header__item:hover > .primary-site-header__dropdown,
+  .primary-site-header__item.is-open > .primary-site-header__dropdown {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .primary-site-header__dropdown::before {
+    position: absolute;
+    top: -12px;
+    right: 0;
+    left: 0;
+    height: 14px;
+    content: "";
+  }
+
+  .primary-site-header__dropdown--simple {
+    display: grid;
+    width: 286px;
+    gap: 4px;
+  }
+
+  .primary-site-header__dropdown--right {
+    right: 0;
+    left: auto;
+    transform: translate(0, -8px);
+  }
+
+  .primary-site-header__item:hover > .primary-site-header__dropdown--right,
+  .primary-site-header__item.is-open > .primary-site-header__dropdown--right {
+    transform: translate(0, 0);
+  }
+
+  .primary-site-header__dropdown-eyebrow {
+    margin: 0 0 8px;
+    padding: 0 10px 10px;
+    border-bottom: 1px solid #e2edf2;
+    color: #5c7380;
+    font-size: 0.68rem;
+    font-weight: 780;
+    letter-spacing: 0.1em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .primary-site-header__dropdown--simple > a,
+  .primary-site-header__treatment-flyout > a {
+    display: flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 9px 11px;
+    border-radius: 10px;
+    color: #0e384c !important;
+    font-size: 0.88rem;
+    font-weight: 680;
+    line-height: 1.25;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease,
+      transform 150ms ease;
+  }
+
+  .primary-site-header__dropdown--simple > a:hover,
+  .primary-site-header__dropdown--simple > a:focus-visible,
+  .primary-site-header__dropdown--simple > a[aria-current="page"],
+  .primary-site-header__treatment-flyout > a:hover,
+  .primary-site-header__treatment-flyout > a:focus-visible,
+  .primary-site-header__treatment-flyout > a[aria-current="page"] {
+    background: #edf7fb;
+    color: #1e84b5 !important;
+    transform: translateX(3px);
+  }
+
+  .primary-site-header__dropdown--treatments {
+    width: 330px;
+    padding: 12px;
+  }
+
+  .primary-site-header__treatment-list {
+    display: grid;
+    gap: 2px;
+  }
+
+  .primary-site-header__all-treatments {
+    display: grid;
+    min-height: 58px;
+    margin-bottom: 5px;
+    padding: 10px 13px;
+    border-radius: 12px;
+    background: #eaf5fa;
+    color: #0e384c !important;
+    line-height: 1.2;
+  }
+
+  .primary-site-header__all-treatments span {
+    font-size: 0.9rem;
+    font-weight: 780;
+  }
+
+  .primary-site-header__all-treatments small {
+    margin-top: 3px;
+    color: #5c7380;
+    font-size: 0.72rem;
+    font-weight: 560;
+  }
+
+  .primary-site-header__treatment-group {
+    position: relative;
+  }
+
+  body.brand-palette .primary-site-header .primary-site-header__treatment-group > button,
+  .primary-site-header__treatment-group > button {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    width: 100%;
+    min-height: 46px;
+    padding: 9px 12px;
+    border-radius: 11px;
+    color: #0e384c !important;
+    cursor: pointer;
+    gap: 12px;
+    text-align: left;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .primary-site-header__treatment-group > button > span:first-child {
+    font-size: 0.83rem;
+    font-weight: 720;
+    line-height: 1.25;
+  }
+
+  .primary-site-header__flyout-arrow {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-top: 1.7px solid currentColor;
+    border-right: 1.7px solid currentColor;
+    transform: rotate(45deg);
+  }
+
+  body.brand-palette .primary-site-header .primary-site-header__treatment-group:hover > button,
+  body.brand-palette .primary-site-header .primary-site-header__treatment-group:focus-within > button,
+  body.brand-palette .primary-site-header .primary-site-header__treatment-group.is-open > button,
+  .primary-site-header__treatment-group:hover > button,
+  .primary-site-header__treatment-group:focus-within > button,
+  .primary-site-header__treatment-group.is-open > button {
+    background: #edf7fb !important;
+    color: #1e84b5 !important;
+  }
+
+  .primary-site-header__treatment-flyout {
+    position: absolute;
+    top: -12px;
+    left: calc(100% + 14px);
+    visibility: hidden;
+    display: grid;
+    width: 360px;
+    max-height: min(72vh, 610px);
+    padding: 18px;
+    overflow-y: auto;
+    border: 1px solid rgba(14, 56, 76, 0.1);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 26px 70px rgba(8, 42, 56, 0.24);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition:
+      opacity 150ms ease,
+      transform 150ms ease,
+      visibility 150ms ease;
+  }
+
+  .primary-site-header__treatment-flyout::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -16px;
+    width: 18px;
+    content: "";
+  }
+
+  .primary-site-header__treatment-group:hover > .primary-site-header__treatment-flyout,
+  .primary-site-header__treatment-group.is-open > .primary-site-header__treatment-flyout {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .primary-site-header__treatment-flyout > p {
+    margin: 0 0 8px;
+    padding: 2px 10px 12px;
+    border-bottom: 1px solid #e2edf2;
+    color: #0e384c;
+    font-size: 0.75rem;
+    font-weight: 820;
+    letter-spacing: 0.075em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .primary-site-header__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .primary-site-header__phone,
+  .primary-site-header__booking {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    border-radius: 999px;
+    font-size: 0.86rem;
+    font-weight: 780;
+    line-height: 1;
+    white-space: nowrap;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .primary-site-header__phone {
+    min-width: 154px;
+    padding: 0 18px;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    color: #fff !important;
+    gap: 8px;
+  }
+
+  .primary-site-header__phone-icon {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .primary-site-header__booking {
+    min-width: 164px;
+    padding: 0 20px;
+    border: 1px solid #bfe8f7;
+    background: #bfe8f7;
+    color: #082a38 !important;
+  }
+
+  .primary-site-header__phone:hover,
+  .primary-site-header__phone:focus-visible,
+  .primary-site-header__booking:hover,
+  .primary-site-header__booking:focus-visible {
+    transform: translateY(-2px);
+  }
+
+  .primary-site-header__phone:hover,
+  .primary-site-header__phone:focus-visible {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .primary-site-header__booking:hover,
+  .primary-site-header__booking:focus-visible {
+    border-color: #fff;
+    background: #fff;
+  }
+
+  .primary-site-header :is(a, button):focus-visible {
+    outline: 3px solid #bfe8f7;
+    outline-offset: 3px;
+  }
+
+  .primary-site-header__mobile-toggle,
+  .primary-site-header__mobile-menu {
+    display: none;
+  }
+
+  @media (max-width: 1239px) {
+    :root {
+      --primary-site-header-height: 78px;
+      --implant-home-header-height: 78px;
+    }
+
+    .primary-site-header {
+      min-height: 78px;
+    }
+
+    .primary-site-header__inner {
+      grid-template-columns: minmax(126px, 190px) 1fr;
+      min-height: 78px;
+      padding: 11px 16px;
+      gap: 14px;
+    }
+
+    .primary-site-header__desktop-nav {
+      display: none;
+    }
+
+    .primary-site-header__actions {
+      gap: 8px;
+    }
+
+    .primary-site-header__phone {
+      width: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0;
+    }
+
+    .primary-site-header__phone-label {
+      display: none;
+    }
+
+    .primary-site-header__booking {
+      min-width: 118px;
+      min-height: 44px;
+      padding: 0 15px;
+      font-size: 0.78rem;
+    }
+
+    .primary-site-header__mobile-toggle {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      border-radius: 999px;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .primary-site-header__mobile-toggle > span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition:
+        opacity 160ms ease,
+        transform 160ms ease;
+    }
+
+    .primary-site-header__mobile-toggle[aria-expanded="true"] > span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .primary-site-header__mobile-toggle[aria-expanded="true"] > span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .primary-site-header__mobile-toggle[aria-expanded="true"] > span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .primary-site-header__mobile-menu {
+      position: fixed;
+      top: 78px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      display: block;
+      padding: 18px 18px 28px;
+      overflow-y: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      background: #082a38;
+      color: #fff;
+      overscroll-behavior: contain;
+    }
+
+    .primary-site-header__mobile-menu[hidden] {
+      display: none;
+    }
+
+    .primary-site-header__mobile-menu nav {
+      display: grid;
+      width: min(680px, 100%);
+      margin: 0 auto;
+      gap: 8px;
+    }
+
+    .primary-site-header__mobile-menu nav > a,
+    .primary-site-header__mobile-menu summary {
+      display: flex;
+      align-items: center;
+      min-height: 52px;
+      margin: 0;
+      padding: 13px 14px;
+      border-radius: 11px;
+      color: #fff !important;
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 760;
+      letter-spacing: 0.035em;
+      line-height: 1.2;
+      list-style: none;
+      text-transform: uppercase;
+    }
+
+    .primary-site-header__mobile-menu summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .primary-site-header__mobile-menu summary::after {
+      width: 8px;
+      height: 8px;
+      margin-left: auto;
+      border-right: 1.8px solid currentColor;
+      border-bottom: 1.8px solid currentColor;
+      content: "";
+      transform: translateY(-2px) rotate(45deg);
+      transition: transform 150ms ease;
+    }
+
+    .primary-site-header__mobile-menu details[open] > summary::after {
+      transform: translateY(2px) rotate(225deg);
+    }
+
+    .primary-site-header__mobile-menu nav > a:hover,
+    .primary-site-header__mobile-menu nav > a:focus-visible,
+    .primary-site-header__mobile-menu summary:hover,
+    .primary-site-header__mobile-menu summary:focus-visible,
+    .primary-site-header__mobile-menu [aria-current="page"] {
+      background: rgba(191, 232, 247, 0.12);
+      color: #bfe8f7 !important;
+    }
+
+    .primary-site-header__mobile-links {
+      display: grid;
+      margin: 2px 0 8px;
+      padding: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      gap: 3px;
+    }
+
+    .primary-site-header__mobile-links > a,
+    .primary-site-header__mobile-treatment a {
+      display: flex;
+      align-items: center;
+      min-height: 46px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      color: rgba(255, 255, 255, 0.86) !important;
+      font-size: 0.88rem;
+      font-weight: 620;
+      line-height: 1.3;
+    }
+
+    .primary-site-header__mobile-links > a:hover,
+    .primary-site-header__mobile-links > a:focus-visible,
+    .primary-site-header__mobile-treatment a:hover,
+    .primary-site-header__mobile-treatment a:focus-visible {
+      background: rgba(191, 232, 247, 0.1);
+      color: #bfe8f7 !important;
+    }
+
+    .primary-site-header__mobile-treatment {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .primary-site-header__mobile-treatment:first-of-type {
+      border-top: 0;
+    }
+
+    .primary-site-header__mobile-treatment > summary {
+      min-height: 48px;
+      padding: 10px 8px;
+      font-size: 0.82rem;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .primary-site-header__mobile-treatment > div {
+      display: grid;
+      padding: 0 0 8px 12px;
+      gap: 2px;
+    }
+
+    .primary-site-header__mobile-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: min(680px, 100%);
+      margin: 18px auto 0;
+      gap: 10px;
+    }
+
+    .primary-site-header__mobile-actions a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 999px;
+      color: #fff !important;
+      font-size: 0.82rem;
+      font-weight: 760;
+      text-align: center;
+    }
+
+    .primary-site-header__mobile-actions a:last-child {
+      border-color: #bfe8f7;
+      background: #bfe8f7;
+      color: #082a38 !important;
+    }
+
+    body.primary-site-menu-open {
+      overflow: hidden;
+    }
+  }
+
+  @media (max-width: 470px) {
+    .primary-site-header__inner {
+      grid-template-columns: minmax(112px, 150px) 1fr;
+      padding-inline: 12px;
+      gap: 8px;
+    }
+
+    .primary-site-header__actions {
+      gap: 6px;
+    }
+
+    .primary-site-header__booking {
+      min-width: 90px;
+      padding-inline: 11px;
+      font-size: 0.72rem;
+    }
+
+    .primary-site-header__mobile-actions {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .primary-site-header,
+    .primary-site-header *,
+    .primary-site-header *::before,
+    .primary-site-header *::after {
+      scroll-behavior: auto !important;
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  const initialisePrimarySiteHeader = () => {
+    const header = document.querySelector<HTMLElement>("[data-primary-site-header]");
+    if (!header || header.dataset.ready === "true") return;
+    header.dataset.ready = "true";
+
+    const dropdowns = Array.from(header.querySelectorAll<HTMLElement>("[data-header-dropdown]"));
+    const mobileToggle = header.querySelector<HTMLButtonElement>("[data-header-mobile-toggle]");
+    const mobileMenu = header.querySelector<HTMLElement>("[data-header-mobile-menu]");
+    const desktopMedia = window.matchMedia("(min-width: 1240px)");
+    let lastDesktopToggle: HTMLButtonElement | null = null;
+
+    const closeDesktopDropdowns = (restoreFocus = false) => {
+      dropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("is-open");
+        dropdown
+          .querySelector<HTMLButtonElement>("[data-header-dropdown-toggle]")
+          ?.setAttribute("aria-expanded", "false");
+        dropdown.querySelectorAll<HTMLElement>("[data-treatment-flyout]").forEach((flyout) => {
+          flyout.classList.remove("is-open");
+          flyout
+            .querySelector<HTMLButtonElement>("[data-treatment-flyout-toggle]")
+            ?.setAttribute("aria-expanded", "false");
+        });
+      });
+      if (restoreFocus) lastDesktopToggle?.focus();
+    };
+
+    dropdowns.forEach((dropdown) => {
+      const toggle = dropdown.querySelector<HTMLButtonElement>("[data-header-dropdown-toggle]");
+      toggle?.addEventListener("click", (event) => {
+        event.preventDefault();
+        const willOpen = !dropdown.classList.contains("is-open");
+        closeDesktopDropdowns();
+        dropdown.classList.toggle("is-open", willOpen);
+        toggle.setAttribute("aria-expanded", String(willOpen));
+        if (willOpen) lastDesktopToggle = toggle;
+      });
+
+      dropdown.querySelectorAll<HTMLElement>("[data-treatment-flyout]").forEach((flyout) => {
+        const flyoutToggle = flyout.querySelector<HTMLButtonElement>("[data-treatment-flyout-toggle]");
+        flyoutToggle?.addEventListener("click", (event) => {
+          event.preventDefault();
+          const willOpen = !flyout.classList.contains("is-open");
+          dropdown.querySelectorAll<HTMLElement>("[data-treatment-flyout]").forEach((otherFlyout) => {
+            otherFlyout.classList.remove("is-open");
+            otherFlyout
+              .querySelector<HTMLButtonElement>("[data-treatment-flyout-toggle]")
+              ?.setAttribute("aria-expanded", "false");
+          });
+          flyout.classList.toggle("is-open", willOpen);
+          flyoutToggle.setAttribute("aria-expanded", String(willOpen));
+        });
+      });
+    });
+
+    const setMobileMenu = (isOpen: boolean) => {
+      if (!mobileToggle || !mobileMenu) return;
+      mobileToggle.setAttribute("aria-expanded", String(isOpen));
+      mobileToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Chiudi il menu di navigazione" : "Apri il menu di navigazione",
+      );
+      mobileMenu.hidden = !isOpen;
+      header.classList.toggle("is-mobile-open", isOpen);
+      document.body.classList.toggle("primary-site-menu-open", isOpen);
+      if (isOpen) {
+        closeDesktopDropdowns();
+        mobileMenu.querySelector<HTMLElement>("summary, a")?.focus({ preventScroll: true });
+      }
+    };
+
+    mobileToggle?.addEventListener("click", () => {
+      setMobileMenu(mobileToggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    mobileMenu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMobileMenu(false));
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Node) || header.contains(event.target)) return;
+      closeDesktopDropdowns();
+      setMobileMenu(false);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      const mobileWasOpen = mobileToggle?.getAttribute("aria-expanded") === "true";
+      closeDesktopDropdowns(true);
+      setMobileMenu(false);
+      if (mobileWasOpen) mobileToggle?.focus();
+    });
+
+    desktopMedia.addEventListener("change", ({ matches }) => {
+      if (matches) setMobileMenu(false);
+      else closeDesktopDropdowns();
+    });
+
+    const updateHeaderTone = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 24);
+    };
+
+    updateHeaderTone();
+    window.addEventListener("scroll", updateHeaderTone, { passive: true });
+  };
+
+  initialisePrimarySiteHeader();
+  document.addEventListener("astro:page-load", initialisePrimarySiteHeader);
+</script>

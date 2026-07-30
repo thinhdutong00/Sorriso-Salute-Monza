@@ -1,0 +1,127 @@
+---
+import "../styles/global.css";
+import "../styles/information-page.css";
+import FaviconLinks from "../components/FaviconLinks.astro";
+import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import PageLoader from "../components/PageLoader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+
+const profiles = [
+  {
+    label: "Area clinica",
+    title: "Odontoiatri e igienisti dentali",
+    text: "Professionisti attenti alla qualità clinica, alla comunicazione con il paziente e al lavoro in équipe.",
+  },
+  {
+    label: "Assistenza",
+    title: "Assistenti di studio odontoiatrico",
+    text: "Persone organizzate e collaborative, orientate alla sicurezza, alla precisione e all’accoglienza.",
+  },
+  {
+    label: "Organizzazione",
+    title: "Segreteria e front office",
+    text: "Figure capaci di gestire appuntamenti e comunicazioni con chiarezza, cura e affidabilità.",
+  },
+];
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Invia una candidatura spontanea allo Studio Dentistico Sorriso & Salute di Monza."
+    />
+    <meta name="theme-color" content="#0E384C" />
+    <link rel="canonical" href="https://sorrisoesalutemonza.it/lavora-con-noi/" />
+    <title>Lavora con noi | Sorriso & Salute Monza</title>
+    <FaviconLinks />
+    <GoogleAdsTracking />
+  </head>
+  <body class="information-page">
+    <PageLoader />
+    <SiteHeader />
+
+    <main id="main-content" tabindex="-1">
+      <section class="information-hero" aria-labelledby="careers-title">
+        <div class="information-hero__inner">
+          <p class="information-eyebrow">Lavora con noi</p>
+          <h1 id="careers-title">Cresci insieme al nostro studio</h1>
+          <p class="information-hero__lead">
+            Valutiamo candidature spontanee di professionisti e collaboratori che condividono attenzione per il
+            paziente, precisione e lavoro di squadra.
+          </p>
+          <div class="information-actions">
+            <a
+              class="information-button"
+              href="mailto:info@sorrisoesalute.it?subject=Candidatura%20spontanea%20-%20Sorriso%20%26%20Salute"
+            >
+              Invia la candidatura
+            </a>
+            <a class="information-button information-button--secondary" href="/chi-siamo/#team">
+              Conosci il team
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="information-section information-section--white" aria-labelledby="profiles-title">
+        <div class="information-section__inner">
+          <div class="information-section__heading">
+            <h2 id="profiles-title">Le professionalità che incontriamo</h2>
+            <p>
+              Anche quando non ci sono posizioni aperte, conserviamo le candidature più in linea con il metodo e
+              con le esigenze dello studio.
+            </p>
+          </div>
+          <div class="information-card-grid">
+            {
+              profiles.map((profile) => (
+                <article class="information-card">
+                  <span class="information-card__label">{profile.label}</span>
+                  <h3>{profile.title}</h3>
+                  <p>{profile.text}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="information-section information-section--mist" aria-labelledby="application-title">
+        <div class="information-section__inner information-two-column">
+          <h2 id="application-title">Come candidarti</h2>
+          <ul class="information-list">
+            <li>Invia il curriculum aggiornato a info@sorrisoesalute.it.</li>
+            <li>Indica nell’oggetto il ruolo o l’area professionale di interesse.</li>
+            <li>Raccontaci brevemente disponibilità, esperienza e motivazione.</li>
+            <li>Autorizza il trattamento dei dati personali ai fini della selezione.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="information-cta" aria-labelledby="careers-cta-title">
+        <div class="information-cta__inner">
+          <div>
+            <h2 id="careers-cta-title">Presentati al nostro team</h2>
+            <p>
+              Le candidature vengono valutate in relazione alle necessità organizzative e cliniche del momento.
+              Sarai ricontattato se il tuo profilo sarà coerente con una ricerca attiva.
+            </p>
+          </div>
+          <a
+            class="information-button"
+            href="mailto:info@sorrisoesalute.it?subject=Candidatura%20spontanea%20-%20Sorriso%20%26%20Salute"
+          >
+            Scrivi allo studio
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>
