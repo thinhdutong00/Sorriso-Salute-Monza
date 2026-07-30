@@ -3280,6 +3280,8 @@ import "../styles/typography.css";
       > a,
     body.brand-palette .ekit-template-content-header .mirror-menu-toggle,
     body.brand-palette .mirror-kebab-menu__section a,
+    body.brand-palette .mirror-kebab-menu__treatment-category-toggle > span:first-child,
+    body.brand-palette .mirror-kebab-menu__treatment-category-toggle > span:first-child::after,
     body.brand-palette .ekit-template-content-header .mirror-nav-booking-link,
     body.brand-palette .ekit-template-content-header .mirror-nav-booking-link::before {
       transition: none !important;
@@ -3602,9 +3604,40 @@ import "../styles/typography.css";
   }
 
   body.brand-palette .mirror-kebab-menu__treatment-category-toggle > span:first-child {
+    position: relative !important;
+    display: inline-block !important;
     min-width: 0 !important;
-    flex: 1 1 auto !important;
+    flex: 0 1 auto !important;
+    margin-right: auto !important;
     overflow-wrap: anywhere !important;
+    transform: scale(1) !important;
+    transform-origin: left center !important;
+    transition: transform 180ms ease !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle > span:first-child::after {
+    position: absolute !important;
+    right: 50% !important;
+    bottom: -3px !important;
+    left: 50% !important;
+    height: 2px !important;
+    border-radius: 999px !important;
+    background: currentColor !important;
+    content: "" !important;
+    opacity: 0 !important;
+    transition: left 220ms ease, right 220ms ease, opacity 220ms ease !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle:hover > span:first-child,
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle:focus-visible > span:first-child {
+    transform: scale(1.045) !important;
+  }
+
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle:hover > span:first-child::after,
+  body.brand-palette .mirror-kebab-menu__treatment-category-toggle:focus-visible > span:first-child::after {
+    right: 0 !important;
+    left: 0 !important;
+    opacity: 1 !important;
   }
 
   body.brand-palette .mirror-kebab-menu__treatment-category-chevron {

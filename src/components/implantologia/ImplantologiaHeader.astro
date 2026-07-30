@@ -1157,6 +1157,39 @@ const activeTreatmentPath =
     color: #fff;
     padding-inline-start: 16px;
   }
+  .implant-home-menu__treatment-category-toggle > span:first-child {
+    position: relative;
+    display: inline-block;
+    min-width: 0;
+    flex: 0 1 auto;
+    margin-right: auto;
+    overflow-wrap: anywhere;
+    transform: scale(1);
+    transform-origin: left center;
+    transition: transform 180ms ease;
+  }
+  .implant-home-menu__treatment-category-toggle > span:first-child::after {
+    position: absolute;
+    right: 50%;
+    bottom: -3px;
+    left: 50%;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    content: "";
+    opacity: 0;
+    transition: left 220ms ease, right 220ms ease, opacity 220ms ease;
+  }
+  .implant-home-menu__treatment-category-toggle:hover > span:first-child,
+  .implant-home-menu__treatment-category-toggle:focus-visible > span:first-child {
+    transform: scale(1.045);
+  }
+  .implant-home-menu__treatment-category-toggle:hover > span:first-child::after,
+  .implant-home-menu__treatment-category-toggle:focus-visible > span:first-child::after {
+    right: 0;
+    left: 0;
+    opacity: 1;
+  }
   .implant-home-menu__treatment-category-chevron {
     flex: 0 0 auto;
     width: 9px;
@@ -1637,6 +1670,8 @@ const activeTreatmentPath =
     .implant-home-header__nav-link:not(.implant-home-header__booking),
     .implant-home-header__menu-toggle,
     .implant-home-menu__section-content a,
+    .implant-home-menu__treatment-category-toggle > span:first-child,
+    .implant-home-menu__treatment-category-toggle > span:first-child::after,
     .implant-home-menu__section-toggle svg,
     .implant-home-menu__treatment-category-chevron,
     .implant-home-menu__treatment-parent svg,

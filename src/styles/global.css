@@ -591,6 +591,8 @@ textarea {
   .desktop-nav a:not(.header-booking-cta),
   .kebab-button,
   .kebab-menu__section a,
+  .kebab-menu__treatment-category-toggle > span:first-child,
+  .kebab-menu__treatment-category-toggle > span:first-child::after,
   .desktop-nav .header-booking-cta,
   .desktop-nav .header-booking-cta::before {
     transition: none;
@@ -1032,9 +1034,40 @@ body.kebab-menu-open .site-header .implantologia-hub__logo-mark {
 }
 
 .kebab-menu__treatment-category-toggle > span:first-child {
+  position: relative;
+  display: inline-block;
   min-width: 0;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
+  margin-right: auto;
   overflow-wrap: anywhere;
+  transform: scale(1);
+  transform-origin: left center;
+  transition: transform 180ms ease;
+}
+
+.kebab-menu__treatment-category-toggle > span:first-child::after {
+  position: absolute;
+  right: 50%;
+  bottom: -3px;
+  left: 50%;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  content: "";
+  opacity: 0;
+  transition: left 220ms ease, right 220ms ease, opacity 220ms ease;
+}
+
+.kebab-menu__treatment-category-toggle:hover > span:first-child,
+.kebab-menu__treatment-category-toggle:focus-visible > span:first-child {
+  transform: scale(1.045);
+}
+
+.kebab-menu__treatment-category-toggle:hover > span:first-child::after,
+.kebab-menu__treatment-category-toggle:focus-visible > span:first-child::after {
+  right: 0;
+  left: 0;
+  opacity: 1;
 }
 
 .kebab-menu__treatment-category-chevron {
