@@ -1121,8 +1121,9 @@ body.kebab-menu-open .site-header .implantologia-hub__logo-mark {
   justify-content: center;
   color: currentColor;
   content: "·";
+  -webkit-text-stroke: 0.6px currentColor;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 900;
   line-height: 1.25;
 }
 
