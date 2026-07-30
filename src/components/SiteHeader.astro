@@ -354,13 +354,15 @@ const contactsIsActive =
     --primary-header-foreground: #082a38;
     --primary-header-accent: #1e84b5;
     --primary-header-control-border: rgba(14, 56, 76, 0.3);
-    --primary-header-control-hover: rgba(14, 56, 76, 0.08);
+    --primary-header-control-hover: #082a38;
+    --primary-header-control-hover-border: #082a38;
+    --primary-header-control-hover-color: #fff;
     --primary-header-booking-background: #1e84b5;
     --primary-header-booking-border: #1e84b5;
     --primary-header-booking-color: #fff;
-    --primary-header-booking-hover-background: #082a38;
+    --primary-header-booking-hover-background: #fff;
     --primary-header-booking-hover-border: #082a38;
-    --primary-header-booking-hover-color: #fff;
+    --primary-header-booking-hover-color: #082a38;
     position: fixed;
     top: 0;
     right: 0;
@@ -387,7 +389,9 @@ const contactsIsActive =
     --primary-header-foreground: #fff;
     --primary-header-accent: #bfe8f7;
     --primary-header-control-border: rgba(255, 255, 255, 0.42);
-    --primary-header-control-hover: rgba(255, 255, 255, 0.12);
+    --primary-header-control-hover: rgba(255, 255, 255, 0.18);
+    --primary-header-control-hover-border: #fff;
+    --primary-header-control-hover-color: #fff;
     --primary-header-booking-background: transparent;
     --primary-header-booking-border: #fff;
     --primary-header-booking-color: #fff;
@@ -780,28 +784,35 @@ const contactsIsActive =
 
   .primary-site-header__phone,
   .primary-site-header__booking {
+    position: relative;
+    z-index: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-height: 48px;
-    border-radius: 999px;
+    overflow: hidden;
+    border-radius: var(--site-button-radius, 14px);
     font-size: 0.86rem;
     font-weight: 780;
+    isolation: isolate;
     line-height: 1;
     white-space: nowrap;
     transition:
-      background-color 160ms ease,
-      border-color 160ms ease,
-      color 160ms ease,
-      transform 160ms ease;
+      border-color var(--site-button-wipe-duration, 220ms) ease,
+      color var(--site-button-wipe-duration, 220ms) ease,
+      box-shadow var(--site-button-wipe-duration, 220ms) ease;
   }
 
   .primary-site-header__phone {
     min-width: 154px;
     padding: 0 18px;
     border: 1px solid var(--primary-header-control-border);
-    color: var(--primary-header-foreground) !important;
+    background: transparent;
     gap: 8px;
+  }
+
+  .primary-site-header .primary-site-header__phone {
+    color: var(--primary-header-foreground) !important;
   }
 
   .primary-site-header__phone-icon {
@@ -814,26 +825,59 @@ const contactsIsActive =
     padding: 0 20px;
     border: 1px solid var(--primary-header-booking-border);
     background: var(--primary-header-booking-background);
+  }
+
+  .primary-site-header .primary-site-header__booking {
     color: var(--primary-header-booking-color) !important;
+  }
+
+  .primary-site-header__phone::before,
+  .primary-site-header__booking::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    display: block;
+    border-radius: inherit;
+    content: "";
+    pointer-events: none;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--site-button-wipe-duration, 220ms) ease;
+  }
+
+  .primary-site-header__phone::before {
+    background: var(--primary-header-control-hover);
+  }
+
+  .primary-site-header__booking::before {
+    background: var(--primary-header-booking-hover-background);
   }
 
   .primary-site-header__phone:hover,
   .primary-site-header__phone:focus-visible,
   .primary-site-header__booking:hover,
   .primary-site-header__booking:focus-visible {
-    transform: translateY(-2px);
+    transform: none;
   }
 
-  .primary-site-header__phone:hover,
-  .primary-site-header__phone:focus-visible {
-    border-color: var(--primary-header-foreground);
-    background: var(--primary-header-control-hover);
+  .primary-site-header__phone:hover::before,
+  .primary-site-header__phone:focus-visible::before,
+  .primary-site-header__booking:hover::before,
+  .primary-site-header__booking:focus-visible::before {
+    transform: scaleX(1);
   }
 
-  .primary-site-header__booking:hover,
-  .primary-site-header__booking:focus-visible {
+  .primary-site-header .primary-site-header__phone:hover,
+  .primary-site-header .primary-site-header__phone:focus-visible {
+    border-color: var(--primary-header-control-hover-border);
+    background: transparent;
+    color: var(--primary-header-control-hover-color) !important;
+  }
+
+  .primary-site-header .primary-site-header__booking:hover,
+  .primary-site-header .primary-site-header__booking:focus-visible {
     border-color: var(--primary-header-booking-hover-border);
-    background: var(--primary-header-booking-hover-background);
+    background: var(--primary-header-booking-background);
     color: var(--primary-header-booking-hover-color) !important;
   }
 
@@ -1063,23 +1107,57 @@ const contactsIsActive =
     }
 
     .primary-site-header__mobile-actions a {
+      --mobile-header-action-hover-background: #fff;
+      --mobile-header-action-hover-border: #fff;
+      --mobile-header-action-hover-color: #082a38;
+      position: relative;
+      z-index: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 50px;
       padding: 10px 14px;
+      overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 999px;
+      border-radius: var(--site-button-radius, 14px);
       color: #fff !important;
       font-size: 0.82rem;
       font-weight: 760;
+      isolation: isolate;
       text-align: center;
+      transition:
+        border-color var(--site-button-wipe-duration, 220ms) ease,
+        color var(--site-button-wipe-duration, 220ms) ease;
+    }
+
+    .primary-site-header__mobile-actions a::before {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: var(--mobile-header-action-hover-background);
+      content: "";
+      pointer-events: none;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform var(--site-button-wipe-duration, 220ms) ease;
     }
 
     .primary-site-header__mobile-actions a:last-child {
       border-color: #bfe8f7;
       background: #bfe8f7;
       color: #082a38 !important;
+    }
+
+    .primary-site-header__mobile-actions a:hover,
+    .primary-site-header__mobile-actions a:focus-visible {
+      border-color: var(--mobile-header-action-hover-border);
+      color: var(--mobile-header-action-hover-color) !important;
+    }
+
+    .primary-site-header__mobile-actions a:hover::before,
+    .primary-site-header__mobile-actions a:focus-visible::before {
+      transform: scaleX(1);
     }
 
     body.primary-site-menu-open {
