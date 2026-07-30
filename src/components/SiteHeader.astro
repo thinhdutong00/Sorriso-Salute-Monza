@@ -546,7 +546,10 @@ const contactsIsActive =
   .primary-site-header__item:hover .primary-site-header__item-trigger > a,
   .primary-site-header__item:focus-within .primary-site-header__item-trigger > a,
   .primary-site-header__direct-link:hover,
-  .primary-site-header__direct-link:focus-visible,
+  .primary-site-header__direct-link:focus-visible {
+    color: var(--primary-header-foreground) !important;
+  }
+
   .primary-site-header__item.is-current .primary-site-header__item-trigger > a,
   .primary-site-header__direct-link.is-current {
     color: var(--primary-header-accent) !important;
@@ -560,7 +563,7 @@ const contactsIsActive =
     left: 0;
     height: 2px;
     border-radius: 999px;
-    background: var(--primary-header-accent);
+    background: currentColor;
     content: "";
     opacity: 0;
     transform: scaleX(0.35);
@@ -572,7 +575,9 @@ const contactsIsActive =
   .primary-site-header__item.is-current .primary-site-header__item-trigger > a::after,
   .primary-site-header__direct-link.is-current::after,
   .primary-site-header__item:hover .primary-site-header__item-trigger > a::after,
-  .primary-site-header__item:focus-within .primary-site-header__item-trigger > a::after {
+  .primary-site-header__item:focus-within .primary-site-header__item-trigger > a::after,
+  .primary-site-header__direct-link:hover::after,
+  .primary-site-header__direct-link:focus-visible::after {
     opacity: 1;
     transform: scaleX(1);
   }
