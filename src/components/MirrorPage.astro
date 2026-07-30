@@ -111,7 +111,7 @@ const escapeHtml = (value: string) =>
 
 const applyActivityHeroDescription = (html: string) => {
   if (page.path === "/attivita/") {
-    return removeDivElementByDataId(html, "fd5b281");
+    return html.replace(/<ol class="ekit-breadcrumb">[\s\S]*?<\/ol>/, "");
   }
 
   const description = activityHeroDescriptions[page.path];
