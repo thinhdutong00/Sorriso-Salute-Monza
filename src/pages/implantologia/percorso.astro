@@ -1,3 +1,28 @@
 ---
-return Astro.redirect("/implantologia/", 301);
+import "../../styles/typography.css";
+
+const destination = "/implantologia/";
 ---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    <meta name="robots" content="noindex" />
+    <link
+      rel="canonical"
+      href="https://sorrisoesalutemonza.it/implantologia/"
+    />
+    <title>Reindirizzamento al percorso implantologico</title>
+  </head>
+  <body>
+    <p>
+      Reindirizzamento al
+      <a href={destination}>percorso implantologico</a>.
+    </p>
+    <script is:inline>
+      window.location.replace("/implantologia/");
+    </script>
+  </body>
+</html>

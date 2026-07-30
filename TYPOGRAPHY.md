@@ -1,10 +1,11 @@
 # Sistema tipografico
 
-Il sito usa una sola famiglia per tutti i testi: **Inter**. È incorporato nel
-bundle come font variabile locale tramite `@fontsource-variable/inter`, così il
-rendering non dipende da Google Fonts o da font installati sul dispositivo.
-I font delle icone sono infrastruttura grafica e non devono essere usati per
-contenuti testuali.
+Il sito usa una sola famiglia per tutti i testi: **Inter**. I file variabili
+completi normale e corsivo sono pubblicati direttamente da
+`public/assets/fonts` e registrati con il nome esatto `Inter`, così il rendering
+non dipende da Google Fonts, dal bundler, da font installati sul dispositivo o
+da fallback per i simboli presenti nelle pagine. I font delle icone sono
+infrastruttura grafica e non devono essere usati per contenuti testuali.
 
 La fonte di verità è `src/styles/typography.css`. Le nuove pagine e le modifiche
 alle pagine esistenti devono riutilizzare i token definiti lì, evitando nuove
