@@ -500,6 +500,17 @@ const applyGeneralRequestCtaLinks = (html: string) =>
     .replaceAll('href="/richiesta/"', 'href="/richiesta-generale/"')
     .replaceAll("href='/richiesta/'", "href='/richiesta-generale/'");
 
+const applyStructureAnchorLinks = (html: string) =>
+  html
+    .replaceAll(
+      'href="/struttura-studio-dentistico-monza/"',
+      'href="/chi-siamo/#struttura"',
+    )
+    .replaceAll(
+      "href='/struttura-studio-dentistico-monza/'",
+      "href='/chi-siamo/#struttura'",
+    );
+
 const applyPrimaryProstheticsLinks = (html: string) =>
   html
     .replaceAll('href="/attivita/protesi-dentale/"', 'href="/protesi-dentale/"')
@@ -509,7 +520,7 @@ const removeMirroredFooter = (html: string) =>
   html.replace(/<div class="ekit-template-content-markup ekit-template-content-footer[\s\S]*?(?=<template id="tp-language")/, "");
 
 const head = applyAboutHeadImage(applyBrandColorTokens(applyActivityIndexItalianHead(rawHead)));
-const body = removeMirroredFooter(applyGeneralRequestCtaLinks(removeConventionHeroBreadcrumb(
+const body = removeMirroredFooter(applyStructureAnchorLinks(applyGeneralRequestCtaLinks(removeConventionHeroBreadcrumb(
   removeReviewsHeroBreadcrumb(
     removeAboutHeroBreadcrumb(
       applyActivityHeroDescription(
@@ -553,7 +564,7 @@ const body = removeMirroredFooter(applyGeneralRequestCtaLinks(removeConventionHe
       ),
     ),
   ),
-)));
+))));
 const aboutStructureRuntimeMarker = '<template id="tp-language"';
 const aboutStructureSplitIndex =
   page.path === "/chi-siamo/" ? body.indexOf(aboutStructureRuntimeMarker) : -1;
@@ -796,7 +807,7 @@ const mirrorNavigationScript = `
     });
 
     if (!nav.querySelector(".mirror-nav-reviews")) {
-      const structure = createNavLink("mirror-nav-item mirror-nav-structure", "/struttura-studio-dentistico-monza/", "La struttura");
+      const structure = createNavLink("mirror-nav-item mirror-nav-structure", "/chi-siamo/#struttura", "La struttura");
       const professionals = createNavLink("mirror-nav-item mirror-nav-professionals", "/doctors/", "I professionisti");
       const workflow = createNavLink("mirror-nav-item mirror-nav-workflow", "/chi-siamo/", "Come lavoriamo");
       const reviews = createNavLink("mirror-nav-item mirror-nav-reviews", "/recensioni-studio-dentistico-monza/", "Recensioni");
@@ -1782,7 +1793,7 @@ const reviewsPageScript = `
                 </a>
               </div>
             </div>
-            <a href="/struttura-studio-dentistico-monza/"><i class="mirror-kebab-menu__link-icon fas fa-clinic-medical" aria-hidden="true"></i><span>La Struttura</span></a>
+            <a href="/chi-siamo/#struttura"><i class="mirror-kebab-menu__link-icon fas fa-clinic-medical" aria-hidden="true"></i><span>La Struttura</span></a>
           </div>
         </section>
         <section class="mirror-kebab-menu__section" data-mirror-menu-section>
