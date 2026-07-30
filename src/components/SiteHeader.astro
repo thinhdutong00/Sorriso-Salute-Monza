@@ -351,6 +351,16 @@ const contactsIsActive =
   }
 
   .primary-site-header {
+    --primary-header-foreground: #082a38;
+    --primary-header-accent: #1e84b5;
+    --primary-header-control-border: rgba(14, 56, 76, 0.3);
+    --primary-header-control-hover: rgba(14, 56, 76, 0.08);
+    --primary-header-booking-background: #1e84b5;
+    --primary-header-booking-border: #1e84b5;
+    --primary-header-booking-color: #fff;
+    --primary-header-booking-hover-background: #082a38;
+    --primary-header-booking-hover-border: #082a38;
+    --primary-header-booking-hover-color: #fff;
     position: fixed;
     top: 0;
     right: 0;
@@ -359,21 +369,39 @@ const contactsIsActive =
     width: 100%;
     min-height: 92px;
     margin: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(8, 42, 56, 0.97);
-    box-shadow: 0 16px 38px rgba(8, 42, 56, 0.16);
-    color: #fff;
+    border: 0;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+    color: var(--primary-header-foreground);
     font-family: var(--font-family-navigation, Inter, sans-serif);
+    backdrop-filter: blur(14px);
+    transform: translateY(0);
     transition:
-      background-color 180ms ease,
-      box-shadow 180ms ease,
-      border-color 180ms ease;
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 220ms ease,
+      box-shadow 220ms ease;
+    will-change: transform;
   }
 
   .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open) {
-    border-color: transparent;
-    background: linear-gradient(180deg, rgba(5, 31, 43, 0.76), rgba(5, 31, 43, 0));
+    --primary-header-foreground: #fff;
+    --primary-header-accent: #bfe8f7;
+    --primary-header-control-border: rgba(255, 255, 255, 0.42);
+    --primary-header-control-hover: rgba(255, 255, 255, 0.12);
+    --primary-header-booking-background: transparent;
+    --primary-header-booking-border: #fff;
+    --primary-header-booking-color: #fff;
+    --primary-header-booking-hover-background: rgba(255, 255, 255, 0.18);
+    --primary-header-booking-hover-border: #fff;
+    --primary-header-booking-hover-color: #fff;
+    background: transparent;
     box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .primary-site-header.is-hidden {
+    pointer-events: none;
+    transform: translateY(-105%);
   }
 
   .primary-site-header *,
@@ -419,6 +447,12 @@ const contactsIsActive =
     width: 100%;
     height: auto;
     object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(15%) sepia(39%) saturate(943%) hue-rotate(164deg) brightness(93%) contrast(94%);
+    transition: filter 220ms ease;
+  }
+
+  .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open) .primary-site-header__brand img {
+    filter: none;
   }
 
   .primary-site-header__desktop-nav {
@@ -441,7 +475,7 @@ const contactsIsActive =
     align-items: center;
     min-height: 44px;
     padding: 0;
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: var(--primary-header-foreground) !important;
     font-size: clamp(0.78rem, 0.78vw, 0.92rem);
     font-weight: 760;
     letter-spacing: 0.055em;
@@ -486,7 +520,7 @@ const contactsIsActive =
   .primary-site-header__direct-link:focus-visible,
   .primary-site-header__item.is-current .primary-site-header__item-trigger > a,
   .primary-site-header__direct-link.is-current {
-    color: #bfe8f7 !important;
+    color: var(--primary-header-accent) !important;
   }
 
   .primary-site-header__item-trigger > a::after,
@@ -497,7 +531,7 @@ const contactsIsActive =
     left: 0;
     height: 2px;
     border-radius: 999px;
-    background: #bfe8f7;
+    background: var(--primary-header-accent);
     content: "";
     opacity: 0;
     transform: scaleX(0.35);
@@ -765,8 +799,8 @@ const contactsIsActive =
   .primary-site-header__phone {
     min-width: 154px;
     padding: 0 18px;
-    border: 1px solid rgba(255, 255, 255, 0.42);
-    color: #fff !important;
+    border: 1px solid var(--primary-header-control-border);
+    color: var(--primary-header-foreground) !important;
     gap: 8px;
   }
 
@@ -778,9 +812,9 @@ const contactsIsActive =
   .primary-site-header__booking {
     min-width: 164px;
     padding: 0 20px;
-    border: 1px solid #bfe8f7;
-    background: #bfe8f7;
-    color: #082a38 !important;
+    border: 1px solid var(--primary-header-booking-border);
+    background: var(--primary-header-booking-background);
+    color: var(--primary-header-booking-color) !important;
   }
 
   .primary-site-header__phone:hover,
@@ -792,18 +826,19 @@ const contactsIsActive =
 
   .primary-site-header__phone:hover,
   .primary-site-header__phone:focus-visible {
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary-header-foreground);
+    background: var(--primary-header-control-hover);
   }
 
   .primary-site-header__booking:hover,
   .primary-site-header__booking:focus-visible {
-    border-color: #fff;
-    background: #fff;
+    border-color: var(--primary-header-booking-hover-border);
+    background: var(--primary-header-booking-hover-background);
+    color: var(--primary-header-booking-hover-color) !important;
   }
 
   .primary-site-header :is(a, button):focus-visible {
-    outline: 3px solid #bfe8f7;
+    outline: 3px solid var(--primary-header-accent);
     outline-offset: 3px;
   }
 
@@ -863,7 +898,7 @@ const contactsIsActive =
       width: 44px;
       height: 44px;
       padding: 0;
-      border: 1px solid rgba(255, 255, 255, 0.38);
+      border: 1px solid var(--primary-header-control-border);
       border-radius: 999px;
       cursor: pointer;
       gap: 4px;
@@ -893,16 +928,17 @@ const contactsIsActive =
     }
 
     .primary-site-header__mobile-menu {
-      position: fixed;
-      top: 78px;
+      position: absolute;
+      top: 100%;
       right: 0;
-      bottom: 0;
+      bottom: auto;
       left: 0;
-      z-index: -1;
+      z-index: 1;
       display: block;
+      height: calc(100dvh - var(--primary-site-header-height));
       padding: 18px 18px 28px;
       overflow-y: auto;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 0;
       background: #082a38;
       color: #fff;
       overscroll-behavior: contain;
@@ -1095,6 +1131,87 @@ const contactsIsActive =
     const mobileMenu = header.querySelector<HTMLElement>("[data-header-mobile-menu]");
     const desktopMedia = window.matchMedia("(min-width: 1240px)");
     let lastDesktopToggle: HTMLButtonElement | null = null;
+    let lastScrollY = Math.max(0, window.scrollY || window.pageYOffset || 0);
+    let scrollFrame = 0;
+
+    const getHero = () => {
+      const main = document.querySelector<HTMLElement>("main#main-content");
+
+      if (document.body.classList.contains("home")) {
+        return (
+          document.querySelector<HTMLElement>(
+            ".elementor-7051 .elementor-element.elementor-element-5c1edef1",
+          ) ??
+          main?.querySelector<HTMLElement>(".elementor-element:first-child") ??
+          main?.firstElementChild
+        );
+      }
+
+      return (
+        main?.querySelector<HTMLElement>(
+          "#panoramica, .information-hero, .implant-editorial__hero, .implant-hero, .prosthetics__hero, .hero",
+        ) ??
+        main?.querySelector<HTMLElement>(
+          '.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child:has(.elementor-widget-elementskit-breadcrumb)',
+        ) ??
+        main?.querySelector<HTMLElement>(".elementor-widget-elementskit-breadcrumb")?.closest<HTMLElement>(
+          ".elementor-element",
+        ) ??
+        main?.querySelector<HTMLElement>(
+          '.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child',
+        ) ??
+        main?.firstElementChild
+      );
+    };
+
+    const updateHeaderTone = (currentY = Math.max(0, window.scrollY || window.pageYOffset || 0)) => {
+      if (
+        !header.classList.contains("primary-site-header--overlay") ||
+        header.classList.contains("is-mobile-open")
+      ) {
+        header.classList.add("is-scrolled");
+        return;
+      }
+
+      const hero = getHero();
+      const headerHeight = header.getBoundingClientRect().height || 92;
+      const heroBottom = hero
+        ? hero.getBoundingClientRect().bottom + currentY
+        : window.innerHeight * 0.72;
+      header.classList.toggle("is-scrolled", currentY + headerHeight >= heroBottom - 8);
+    };
+
+    const headerInteractionIsOpen = () =>
+      header.classList.contains("is-mobile-open") ||
+      dropdowns.some(
+        (dropdown) =>
+          dropdown.classList.contains("is-open") ||
+          dropdown.matches(":hover") ||
+          dropdown.matches(":focus-within"),
+      );
+
+    const updateHeader = () => {
+      const currentY = Math.max(0, window.scrollY || window.pageYOffset || 0);
+      const headerHeight = header.getBoundingClientRect().height || 92;
+      const scrollingDown = currentY > lastScrollY + 6;
+      const scrollingUp = currentY < lastScrollY - 6;
+
+      updateHeaderTone(currentY);
+
+      if (headerInteractionIsOpen() || currentY <= 12 || scrollingUp) {
+        header.classList.remove("is-hidden");
+      } else if (scrollingDown && currentY > headerHeight + 28) {
+        header.classList.add("is-hidden");
+      }
+
+      lastScrollY = currentY;
+      scrollFrame = 0;
+    };
+
+    const requestHeaderUpdate = () => {
+      if (scrollFrame) return;
+      scrollFrame = window.requestAnimationFrame(updateHeader);
+    };
 
     const closeDesktopDropdowns = (restoreFocus = false) => {
       dropdowns.forEach((dropdown) => {
@@ -1120,7 +1237,10 @@ const contactsIsActive =
         closeDesktopDropdowns();
         dropdown.classList.toggle("is-open", willOpen);
         toggle.setAttribute("aria-expanded", String(willOpen));
-        if (willOpen) lastDesktopToggle = toggle;
+        if (willOpen) {
+          lastDesktopToggle = toggle;
+          header.classList.remove("is-hidden");
+        }
       });
 
       dropdown.querySelectorAll<HTMLElement>("[data-treatment-flyout]").forEach((flyout) => {
@@ -1151,9 +1271,11 @@ const contactsIsActive =
       header.classList.toggle("is-mobile-open", isOpen);
       document.body.classList.toggle("primary-site-menu-open", isOpen);
       if (isOpen) {
+        header.classList.remove("is-hidden");
         closeDesktopDropdowns();
         mobileMenu.querySelector<HTMLElement>("summary, a")?.focus({ preventScroll: true });
       }
+      updateHeaderTone();
     };
 
     mobileToggle?.addEventListener("click", () => {
@@ -1181,14 +1303,13 @@ const contactsIsActive =
     desktopMedia.addEventListener("change", ({ matches }) => {
       if (matches) setMobileMenu(false);
       else closeDesktopDropdowns();
+      requestHeaderUpdate();
     });
 
-    const updateHeaderTone = () => {
-      header.classList.toggle("is-scrolled", window.scrollY > 24);
-    };
-
-    updateHeaderTone();
-    window.addEventListener("scroll", updateHeaderTone, { passive: true });
+    updateHeader();
+    window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
+    window.addEventListener("resize", requestHeaderUpdate);
+    window.addEventListener("load", updateHeader);
   };
 
   initialisePrimarySiteHeader();
