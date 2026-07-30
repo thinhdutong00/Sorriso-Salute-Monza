@@ -353,10 +353,12 @@ const contactsIsActive =
   .primary-site-header {
     --primary-header-foreground: #082a38;
     --primary-header-accent: #1e84b5;
-    --primary-header-control-border: rgba(14, 56, 76, 0.3);
-    --primary-header-control-hover: #082a38;
-    --primary-header-control-hover-border: #082a38;
+    --primary-header-control-border: var(--brand-primary, #0e384c);
+    --primary-header-control-hover: var(--brand-primary, #0e384c);
+    --primary-header-control-hover-border: var(--brand-primary, #0e384c);
     --primary-header-control-hover-color: #fff;
+    --primary-header-phone-background: #fff;
+    --primary-header-phone-color: var(--brand-primary, #0e384c);
     --primary-header-booking-background: var(--brand-secondary, #1e84b5);
     --primary-header-booking-border: var(--brand-secondary, #1e84b5);
     --primary-header-booking-color: #fff;
@@ -388,10 +390,7 @@ const contactsIsActive =
   .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open) {
     --primary-header-foreground: #fff;
     --primary-header-accent: #bfe8f7;
-    --primary-header-control-border: rgba(255, 255, 255, 0.42);
-    --primary-header-control-hover: rgba(255, 255, 255, 0.18);
-    --primary-header-control-hover-border: #fff;
-    --primary-header-control-hover-color: #fff;
+    --primary-header-control-border: #fff;
     background: transparent;
     box-shadow: none;
     backdrop-filter: none;
@@ -801,12 +800,12 @@ const contactsIsActive =
     min-width: 154px;
     padding: 0 18px;
     border: 1px solid var(--primary-header-control-border);
-    background: transparent;
+    background: var(--primary-header-phone-background);
     gap: 8px;
   }
 
   .primary-site-header .primary-site-header__phone {
-    color: var(--primary-header-foreground) !important;
+    color: var(--primary-header-phone-color) !important;
   }
 
   .primary-site-header__phone-icon {
@@ -864,7 +863,7 @@ const contactsIsActive =
   .primary-site-header .primary-site-header__phone:hover,
   .primary-site-header .primary-site-header__phone:focus-visible {
     border-color: var(--primary-header-control-hover-border);
-    background: transparent;
+    background: var(--primary-header-phone-background);
     color: var(--primary-header-control-hover-color) !important;
   }
 
@@ -1101,9 +1100,9 @@ const contactsIsActive =
     }
 
     .primary-site-header__mobile-actions a {
-      --mobile-header-action-hover-background: #fff;
-      --mobile-header-action-hover-border: #fff;
-      --mobile-header-action-hover-color: #082a38;
+      --mobile-header-action-hover-background: var(--brand-primary, #0e384c);
+      --mobile-header-action-hover-border: var(--brand-primary, #0e384c);
+      --mobile-header-action-hover-color: #fff;
       position: relative;
       z-index: 0;
       display: flex;
@@ -1112,9 +1111,10 @@ const contactsIsActive =
       min-height: 50px;
       padding: 10px 14px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      border: 1px solid #fff;
       border-radius: var(--site-button-radius, 14px);
-      color: #fff !important;
+      background: #fff;
+      color: var(--brand-primary, #0e384c) !important;
       font-size: 0.82rem;
       font-weight: 760;
       isolation: isolate;
@@ -1138,6 +1138,9 @@ const contactsIsActive =
     }
 
     .primary-site-header__mobile-actions a:last-child {
+      --mobile-header-action-hover-background: #fff;
+      --mobile-header-action-hover-border: var(--brand-primary, #0e384c);
+      --mobile-header-action-hover-color: var(--brand-primary, #0e384c);
       border-color: var(--brand-secondary, #1e84b5);
       background: var(--brand-secondary, #1e84b5);
       color: #fff !important;
