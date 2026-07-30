@@ -1217,12 +1217,33 @@ const activeTreatmentPath =
     white-space: normal;
     overflow-wrap: anywhere;
   }
+  .implant-home-menu__section--treatments .implant-home-menu__treatment-link {
+    gap: 4px;
+  }
+  .implant-home-menu__section--treatments a.implant-home-menu__treatment-link::before,
+  .implant-home-menu__section--treatments .implant-home-menu__implantology-group::before {
+    display: inline-flex;
+    width: 14px;
+    min-width: 14px;
+    height: 22px;
+    flex: 0 0 14px;
+    align-items: center;
+    justify-content: center;
+    color: currentColor;
+    content: "·";
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+  }
   .implant-home-menu__implantology-group {
     display: grid;
-    gap: 10px;
+    grid-template-columns: 14px minmax(0, 1fr);
+    column-gap: 4px;
+    row-gap: 10px;
   }
   .implant-home-menu__treatment-parent {
     display: flex;
+    grid-column: 2;
     width: 100%;
     min-height: 0;
     align-items: center;
@@ -1244,6 +1265,37 @@ const activeTreatmentPath =
   }
   .implant-home-menu__treatment-parent:hover { background: transparent; }
   .implant-home-menu__treatment-parent:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .implant-home-menu__treatment-parent .implant-home-menu__link-copy > span:first-child {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    align-self: flex-start;
+    transform: scale(1);
+    transform-origin: left center;
+    transition: transform 180ms ease;
+  }
+  .implant-home-menu__treatment-parent .implant-home-menu__link-copy > span:first-child::after {
+    position: absolute;
+    right: 50%;
+    bottom: -3px;
+    left: 50%;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    content: "";
+    opacity: 0;
+    transition: left 220ms ease, right 220ms ease, opacity 220ms ease;
+  }
+  .implant-home-menu__treatment-parent:hover .implant-home-menu__link-copy > span:first-child,
+  .implant-home-menu__treatment-parent:focus-visible .implant-home-menu__link-copy > span:first-child {
+    transform: scale(1.045);
+  }
+  .implant-home-menu__treatment-parent:hover .implant-home-menu__link-copy > span:first-child::after,
+  .implant-home-menu__treatment-parent:focus-visible .implant-home-menu__link-copy > span:first-child::after {
+    right: 0;
+    left: 0;
+    opacity: 1;
+  }
   .implant-home-menu__treatment-parent svg {
     width: 20px;
     height: 20px;
@@ -1253,6 +1305,7 @@ const activeTreatmentPath =
   .implant-home-menu__treatment-parent[aria-expanded="true"] svg { transform: rotate(180deg); }
   .implant-home-menu__submenu-panel {
     display: grid;
+    grid-column: 1 / -1;
     gap: 0;
     margin: 2px 0 2px -32px;
     padding: 2px 0;
@@ -1275,6 +1328,15 @@ const activeTreatmentPath =
     font-size: 15px;
     line-height: 1.3;
     transition: background-color 160ms ease, box-shadow 160ms ease, color 160ms ease, opacity 160ms ease;
+  }
+  .implant-home-menu__section-content .implant-home-menu__submenu-link::before {
+    display: inline-flex;
+    width: 10px;
+    flex: 0 0 10px;
+    justify-content: center;
+    margin-right: 6px;
+    color: currentColor;
+    content: "-";
   }
   .implant-home-menu__section-content .implant-home-menu__submenu-link[aria-current="page"] { color: #fff; font-weight: 700; }
   .implant-home-menu__section-content .implant-home-menu__submenu-link:first-child {
@@ -1553,7 +1615,7 @@ const activeTreatmentPath =
       align-items: center;
       justify-content: center;
       color: #0e384c;
-      content: "-";
+      content: "·";
       font-size: 18px;
       font-weight: 500;
       line-height: 22px;
@@ -1672,6 +1734,8 @@ const activeTreatmentPath =
     .implant-home-menu__section-content a,
     .implant-home-menu__treatment-category-toggle > span:first-child,
     .implant-home-menu__treatment-category-toggle > span:first-child::after,
+    .implant-home-menu__treatment-parent .implant-home-menu__link-copy > span:first-child,
+    .implant-home-menu__treatment-parent .implant-home-menu__link-copy > span:first-child::after,
     .implant-home-menu__section-toggle svg,
     .implant-home-menu__treatment-category-chevron,
     .implant-home-menu__treatment-parent svg,
