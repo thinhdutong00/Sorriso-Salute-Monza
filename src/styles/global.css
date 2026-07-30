@@ -1116,15 +1116,13 @@ body.kebab-menu-open .site-header .implantologia-hub__logo-mark {
   display: inline-flex;
   width: 14px;
   min-width: 14px;
+  height: 22px;
   flex: 0 0 14px;
   align-items: center;
   justify-content: center;
+  background: radial-gradient(circle, currentColor 0 3.5px, transparent 3.75px);
   color: currentColor;
-  content: "·";
-  -webkit-text-stroke: 0.6px currentColor;
-  font-size: 18px;
-  font-weight: 900;
-  line-height: 1.25;
+  content: "";
 }
 
 .kebab-menu__treatment-category-items .kebab-menu__implantology-parent {
