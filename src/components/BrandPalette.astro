@@ -135,6 +135,86 @@
     display: none !important;
   }
 
+  /* Equipe page: use the branded secondary color for the tooth mark and keep
+   * every portrait aligned on one consistent, taller image row.
+   */
+  body.brand-palette.page-id-4148
+    .elementor-4148
+    .elementor-element.elementor-element-fbc2b59.section-title
+    .elementor-heading-title {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding-left: 0 !important;
+    color: var(--brand-secondary) !important;
+  }
+
+  body.brand-palette.page-id-4148
+    .elementor-4148
+    .elementor-element.elementor-element-fbc2b59.section-title
+    .elementor-heading-title::before {
+    position: static !important;
+    display: block !important;
+    flex: 0 0 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+    background: var(--brand-secondary) !important;
+    background-color: var(--brand-secondary) !important;
+    background-image: none !important;
+    content: "" !important;
+    transform: none !important;
+    -webkit-mask: url("/mirror-assets/2829794763d559b4.svg") center / contain no-repeat !important;
+    mask: url("/mirror-assets/2829794763d559b4.svg") center / contain no-repeat !important;
+  }
+
+  body.brand-palette.page-id-4148
+    .elementor-4148
+    .elementor-element.elementor-element-6a0a333 {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    align-items: start !important;
+    gap: clamp(20px, 1.8vw, 30px) !important;
+  }
+
+  body.brand-palette.page-id-4148
+    .elementor-4148
+    .elementor-element.elementor-element-6a0a333
+    > .v2-team-member-item {
+    width: 100% !important;
+    min-width: 0 !important;
+    align-self: start !important;
+    --width: 100% !important;
+  }
+
+  body.brand-palette.page-id-4148
+    .elementor-4148
+    .elementor-element.elementor-element-6a0a333
+    .v2-team-image
+    img {
+    display: block !important;
+    width: 100% !important;
+    aspect-ratio: 2 / 3 !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+  }
+
+  @media (max-width: 1024px) {
+    body.brand-palette.page-id-4148
+      .elementor-4148
+      .elementor-element.elementor-element-6a0a333 {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    body.brand-palette.page-id-4148
+      .elementor-4148
+      .elementor-element.elementor-element-6a0a333 {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+  }
+
   body.brand-palette .btn-scroll-centrato {
     display: none !important;
   }
