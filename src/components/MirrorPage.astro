@@ -1463,13 +1463,21 @@ const treatmentCardsScript = `
       '<div class="elementor-element elementor-element-orientation-quiz-widget v2-service-item ekit-equal-height-disable elementor-widget elementor-widget-elementskit-icon-box" data-element_type="widget" data-e-type="widget" data-widget_type="elementskit-icon-box.default">',
       '<div class="elementor-widget-container">',
       '<div class="ekit-wid-con">',
-      '<a class="elementskit-infobox text-left text-left icon-top-align elementor-animation- gradient-active hover_from_bottom" data-treatment-card="orientation" href="/orientamento-sorriso/" aria-label="Raccontaci il problema">',
+      '<a class="elementskit-infobox text-left text-left icon-top-align elementor-animation- gradient-active hover_from_bottom treatment-card-whole-link" data-treatment-card="orientation" href="/orientamento-sorriso/" aria-label="Raccontaci il problema">',
       '<div class="elementskit-box-header elementor-animation-">',
       '<div class="elementskit-info-box-icon">' + icons.guidance + '</div>',
       '</div>',
       '<div class="box-body">',
-      '<h3 class="elementskit-info-box-title">NON SAI QUALE TRATTAMENTO TI SERVE? PARTI DA CIÒ CHE SENTI</h3>',
-      '<p>Raccontaci cosa ti preoccupa. Ti aiuteremo a comprendere il problema e a capire da dove iniziare.</p>',
+      '<div class="treatment-card-copy-stage">',
+      '<div class="treatment-card-summary-slot">',
+      '<div class="treatment-card-summary">',
+      '<h3 class="elementskit-info-box-title">Non sai quale trattamento ti serve? Parti da ciò che senti</h3>',
+      '</div>',
+      '</div>',
+      '<div class="treatment-card-description-slot">',
+      '<p class="elementskit-info-box-description treatment-card-long-description">Raccontaci cosa ti preoccupa. Ti aiuteremo a comprendere il problema e a capire da dove iniziare.</p>',
+      '</div>',
+      '</div>',
       '<div class="box-footer disable_hover_button">',
       '<div class="btn-wraper">',
       '<span class="elementskit-btn whitespace--normal">',
@@ -1518,7 +1526,12 @@ const treatmentCardsScript = `
         iconBox.dataset.treatmentIcon = config.slug;
       }
 
-      if (!card.querySelector(".treatment-card-media")) {
+      const isHomeTreatmentCard = document.body.classList.contains("home") && card.closest(".elementor-7051");
+      const existingMedia = card.querySelector(".treatment-card-media");
+
+      if (isHomeTreatmentCard) {
+        existingMedia?.remove();
+      } else if (!existingMedia) {
         const media = document.createElement("div");
         media.className = "treatment-card-media";
 

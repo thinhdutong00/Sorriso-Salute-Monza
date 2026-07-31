@@ -5540,6 +5540,15 @@ import "../styles/typography.css";
     .elementor-7051
     .v2-service-item
     .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"])
+    .elementskit-box-header {
+    margin: 0 !important;
+    padding: 28px 30px 0 !important;
+  }
+
+  body.brand-palette.home
+    .elementor-7051
+    .v2-service-item
+    .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"])
     .box-body {
     flex: 0 0 auto !important;
   }
@@ -5559,7 +5568,7 @@ import "../styles/typography.css";
   body.brand-palette.home
     .elementor-7051
     .v2-service-item
-    .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"])
+    .elementskit-infobox[data-treatment-card]
     :is(.treatment-card-summary-slot, .treatment-card-description-slot) {
     display: grid !important;
     min-width: 0 !important;
@@ -5572,7 +5581,7 @@ import "../styles/typography.css";
   body.brand-palette.home
     .elementor-7051
     .v2-service-item
-    .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"])
+    .elementskit-infobox[data-treatment-card]
     .treatment-card-summary-slot {
     grid-template-rows: 1fr !important;
     opacity: 1 !important;
@@ -5583,7 +5592,7 @@ import "../styles/typography.css";
   body.brand-palette.home
     .elementor-7051
     .v2-service-item
-    .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"])
+    .elementskit-infobox[data-treatment-card]
     .treatment-card-description-slot {
     grid-template-rows: 0fr !important;
     opacity: 0 !important;
@@ -5593,7 +5602,7 @@ import "../styles/typography.css";
   body.brand-palette.home
     .elementor-7051
     .v2-service-item
-    .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"])
+    .elementskit-infobox[data-treatment-card]
     :is(.treatment-card-summary, .treatment-card-long-description) {
     min-height: 0 !important;
     overflow: hidden !important;
@@ -5602,7 +5611,7 @@ import "../styles/typography.css";
   body.brand-palette.home
     .elementor-7051
     .v2-service-item
-    .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"])
+    .elementskit-infobox[data-treatment-card]
     .treatment-card-summary
     .elementskit-info-box-title {
     margin-bottom: 0 !important;
@@ -5612,6 +5621,28 @@ import "../styles/typography.css";
     .elementor-7051
     .v2-service-item
     .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"])
+    .treatment-card-summary
+    .treatment-card-clinical-label {
+    font-size: clamp(23px, 1.45vw, 28px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.025em !important;
+    text-transform: none !important;
+  }
+
+  body.brand-palette.home
+    .elementor-7051
+    .v2-service-item
+    .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"])
+    .treatment-card-summary
+    .elementskit-info-box-title {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+  }
+
+  body.brand-palette.home
+    .elementor-7051
+    .v2-service-item
+    .elementskit-infobox[data-treatment-card]
     .treatment-card-long-description {
     margin: 0 !important;
     pointer-events: none !important;
@@ -5620,7 +5651,7 @@ import "../styles/typography.css";
   body.brand-palette.home
     .elementor-7051
     .v2-service-item
-    .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"]):is(:hover, :focus-within)
+    .elementskit-infobox[data-treatment-card]:is(:hover, :focus-within)
     .treatment-card-summary-slot {
     grid-template-rows: 0fr !important;
     opacity: 0 !important;
@@ -5631,7 +5662,7 @@ import "../styles/typography.css";
   body.brand-palette.home
     .elementor-7051
     .v2-service-item
-    .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"]):is(:hover, :focus-within)
+    .elementskit-infobox[data-treatment-card]:is(:hover, :focus-within)
     .treatment-card-description-slot {
     grid-template-rows: 1fr !important;
     opacity: 1 !important;
@@ -5642,7 +5673,7 @@ import "../styles/typography.css";
   body.brand-palette.home
     .elementor-7051
     .v2-service-item
-    .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"]):is(:hover, :focus-within)
+    .elementskit-infobox[data-treatment-card]:is(:hover, :focus-within)
     .treatment-card-long-description {
     pointer-events: auto !important;
   }
@@ -5858,7 +5889,7 @@ import "../styles/typography.css";
     --padding-bottom: 0px !important;
     --padding-left: 0px !important;
     display: flex !important;
-    align-self: stretch !important;
+    align-self: flex-start !important;
     flex: 0 0 var(--width) !important;
     width: var(--width) !important;
     max-width: var(--width) !important;
@@ -5867,11 +5898,11 @@ import "../styles/typography.css";
   }
 
   body.brand-palette.home .elementor-7051 .v2-service-item .elementskit-infobox[data-treatment-card="orientation"] {
-    justify-content: space-between !important;
-    min-height: 545px !important;
+    justify-content: flex-start !important;
+    min-height: 0 !important;
     width: 100% !important;
-    height: 100% !important;
-    padding: 34px 30px 30px !important;
+    height: auto !important;
+    padding: 28px 30px 30px !important;
     cursor: pointer !important;
     text-decoration: none !important;
     background:
@@ -5915,15 +5946,27 @@ import "../styles/typography.css";
 
   body.brand-palette.home .elementor-7051 .v2-service-item .elementskit-infobox[data-treatment-card="orientation"] .box-body {
     display: flex !important;
-    flex: 1 1 auto !important;
+    flex: 0 0 auto !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
+    justify-content: flex-start !important;
     padding: 0 !important;
+  }
+
+  body.brand-palette.home
+    .elementor-7051
+    .v2-service-item
+    .elementskit-infobox[data-treatment-card="orientation"]
+    .treatment-card-copy-stage {
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 0 18px !important;
   }
 
   body.brand-palette.home .elementor-7051 .v2-service-item .elementskit-infobox[data-treatment-card="orientation"] .elementskit-info-box-title {
     max-width: none !important;
-    margin: 0 0 18px !important;
+    margin: 0 !important;
     color: inherit !important;
     font-size: clamp(21px, 1.25vw, 25px) !important;
     font-weight: 650 !important;
@@ -5931,15 +5974,40 @@ import "../styles/typography.css";
     text-transform: none !important;
   }
 
-  body.brand-palette.home .elementor-7051 .v2-service-item .elementskit-infobox[data-treatment-card="orientation"] .box-body > p {
-    margin: 0 0 28px !important;
+  body.brand-palette.home .elementor-7051 .v2-service-item .elementskit-infobox[data-treatment-card="orientation"] .treatment-card-long-description {
+    margin: 0 !important;
     color: var(--color-text-description) !important;
     font-size: 16px !important;
     line-height: 1.5 !important;
   }
 
-  body.brand-palette.home .elementor-7051 .v2-service-item .elementskit-infobox[data-treatment-card="orientation"]:is(:hover, :focus-within) .box-body > p {
+  body.brand-palette.home .elementor-7051 .v2-service-item .elementskit-infobox[data-treatment-card="orientation"]:is(:hover, :focus-within) .treatment-card-long-description {
     color: #ffffff !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .v2-service-item .elementskit-infobox[data-treatment-card="orientation"] .box-footer {
+    margin-top: 0 !important;
+  }
+
+  @media (min-width: 768px) {
+    body.brand-palette.home
+      .elementor-7051
+      .elementor-element-1058fb0
+      .v2-service-item
+      .elementskit-infobox[data-treatment-card] {
+      box-sizing: border-box !important;
+      height: 360px !important;
+      min-height: 360px !important;
+    }
+
+    body.brand-palette.home
+      .elementor-7051
+      .elementor-element-1058fb0
+      .v2-service-item
+      .elementskit-infobox[data-treatment-card]:is(:hover, :focus-within) {
+      height: auto !important;
+      min-height: 360px !important;
+    }
   }
 
   body.brand-palette.home .elementor-7051 .v2-service-item .elementskit-infobox[data-treatment-card="orientation"] .box-footer .elementskit-btn,
@@ -6031,8 +6099,18 @@ import "../styles/typography.css";
       padding: 20px 24px 26px !important;
     }
 
+    body.brand-palette.home
+      .elementor-7051
+      .v2-service-item
+      .elementskit-infobox[data-treatment-card]:not([data-treatment-card="orientation"])
+      .elementskit-box-header {
+      margin: 0 !important;
+      padding: 24px 24px 0 !important;
+    }
+
     body.brand-palette.home .elementor-7051 .v2-service-item .elementskit-infobox[data-treatment-card="orientation"] {
-      min-height: 420px !important;
+      min-height: 0 !important;
+      height: auto !important;
       padding: 26px 24px !important;
     }
 
