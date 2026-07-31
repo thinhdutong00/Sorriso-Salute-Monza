@@ -1,15 +1,15 @@
 # Sistema tipografico
 
-Il sito usa una sola famiglia per tutti i testi: **Inter**. I file variabili
-completi normale e corsivo sono pubblicati direttamente da
-`public/assets/fonts` e registrati con il nome esatto `Inter`, così il rendering
-non dipende da Google Fonts, dal bundler, da font installati sul dispositivo o
-da fallback per i simboli presenti nelle pagine. I font delle icone sono
+L’intero sito usa lo stesso stack tipografico del progetto Fisioterapia
+Malavasi: `ui-sans-serif`, `system-ui`, `-apple-system`,
+`BlinkMacSystemFont`, `"Segoe UI"`, `Arial`, `"Helvetica Neue"`,
+`sans-serif`. Su Chrome/macOS questo corrisponde al carattere di sistema Apple
+San Francisco/SF Pro visibile negli screenshot. I font delle icone sono
 infrastruttura grafica e non devono essere usati per contenuti testuali.
 
-La fonte di verità è `src/styles/typography.css`. Le nuove pagine e le modifiche
-alle pagine esistenti devono riutilizzare i token definiti lì, evitando nuove
-famiglie o valori tipografici isolati.
+Lo stack e la scala generale sono definiti in `src/styles/typography.css`;
+l’override visuale delle pagine interne è centralizzato in
+`src/styles/internal-pages.css`.
 
 ## Scala di riferimento
 
@@ -29,7 +29,7 @@ Su fondi scuri il colore testuale di riferimento è `#FFFFFF`.
 ## Regole d’uso
 
 - Usare `--font-family-body`, `--font-family-display` o
-  `--font-family-navigation`; tutti risolvono a Inter.
+  `--font-family-navigation`: tutti risolvono allo stack Malavasi.
 - Usare i token `--type-size-*`, `--type-weight-*`, `--type-line-*`,
   `--type-tracking-*` e `--type-color-*`.
 - Per nuovi blocchi riutilizzabili sono disponibili le classi
@@ -37,6 +37,6 @@ Su fondi scuri il colore testuale di riferimento è `#FFFFFF`.
 - Le variazioni responsive possono usare `clamp()`, mantenendo come limite
   massimo il token semantico corrispondente.
 - Non introdurre altre famiglie di testo. `sans-serif` è ammesso soltanto come
-  fallback tecnico di Inter.
-- Non aggiungere link o `@import` verso servizi font esterni: Inter deve restare
-  self-hosted e verificabile tramite `document.fonts`.
+  fallback tecnico.
+- Non aggiungere link o `@import` verso servizi font esterni: lo stack Malavasi
+  usa i caratteri di sistema.

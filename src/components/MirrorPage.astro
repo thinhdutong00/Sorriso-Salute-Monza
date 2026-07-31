@@ -4,9 +4,11 @@ import path from "node:path";
 import AboutStructureSection from "./AboutStructureSection.astro";
 import BrandPalette from "./BrandPalette.astro";
 import GoogleAdsTracking from "./GoogleAdsTracking.astro";
+import InternalPageHero from "./InternalPageHero.astro";
 import PageLoader from "./PageLoader.astro";
 import SiteFooter from "./SiteFooter.astro";
 import SiteHeader from "./SiteHeader.astro";
+import { getInternalPageHero } from "../data/internalPageHeroes";
 import {
   kebabAllTreatmentsLink,
   kebabTreatmentCategories,
@@ -55,13 +57,31 @@ const removeDivElementByDataId = (html: string, dataId: string) => {
   return html;
 };
 
+const removeDivElementAt = (html: string, elementStart: number) => {
+  if (elementStart < 0) return html;
+
+  const divTagPattern = /<\/?div\b[^>]*>/gi;
+  divTagPattern.lastIndex = elementStart;
+  let depth = 0;
+
+  for (let match = divTagPattern.exec(html); match; match = divTagPattern.exec(html)) {
+    depth += match[0].startsWith("</") ? -1 : 1;
+
+    if (depth === 0) {
+      return html.slice(0, elementStart) + html.slice(divTagPattern.lastIndex);
+    }
+  }
+
+  return html;
+};
+
 const applyBrandColorTokens = (html: string) =>
   html
     .replace(
       /<link\b[^>]*\bid=["']elementor-gf-local-(?:onest|manrope)-css["'][^>]*>\s*/gi,
       "",
     )
-    .replace(/(["'])(?:Onest|Manrope)\1/gi, "Inter")
+    .replace(/(["'])(?:Onest|Manrope)\1/gi, "system-ui")
     .replace(/#1e37b7/gi, "#0E384C")
     .replace(/#172d96/gi, "#082A38")
     .replace(/#0f1f63/gi, "#082A38")
@@ -100,6 +120,34 @@ const isReviewsPage = page.path === "/recensioni-studio-dentistico-monza/";
 const imageHeroPagePaths = new Set(["/", "/home-image/", "/home-slider/", "/home-video/", "/implantologia/"]);
 const hasImageHero = imageHeroPagePaths.has(page.path);
 const isAboutPage = aboutBreadcrumbPagePaths.has(page.path);
+const isInternalPage = page.path !== "/";
+const internalHero = isInternalPage
+  ? getInternalPageHero(page.path, page.title)
+  : null;
+
+const legacyHeaderPagePaths = new Set([
+  "/cookie-policy/",
+  "/privacy-policy/",
+  "/sample-page/",
+]);
+
+const removeLegacyInternalHero = (html: string) => {
+  if (!isInternalPage) return html;
+
+  if (legacyHeaderPagePaths.has(page.path)) {
+    return removeDivElementAt(html, html.indexOf('<div class="page-header">'));
+  }
+
+  const pageRootMatch = /<div\b[^>]*data-elementor-type=["']wp-page["'][^>]*>/i.exec(html);
+  if (!pageRootMatch || pageRootMatch.index < 0) return html;
+
+  const firstSectionStart = html.indexOf(
+    "<div",
+    pageRootMatch.index + pageRootMatch[0].length,
+  );
+
+  return removeDivElementAt(html, firstSectionStart);
+};
 
 const escapeHtml = (value: string) =>
   value
@@ -668,7 +716,7 @@ const transformedBody = removeMirroredFooter(applyAboutTeamAnchor(applyTeamAncho
   ),
 ))))));
 const body = normalizeInternalLinks(
-  applyNavigationAnchors(removeMirroredHeader(transformedBody)),
+  applyNavigationAnchors(removeLegacyInternalHero(removeMirroredHeader(transformedBody))),
 );
 const aboutStructureRuntimeMarker = '<template id="tp-language"';
 const aboutStructureSplitIndex =
@@ -725,9 +773,11 @@ body.brand-palette.page-id-539 #team {
 `;
 
 const serviceTitleMatch = body.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
-const serviceTitle = serviceTitleMatch
-  ? serviceTitleMatch[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
-  : page.title.split("|")[0].trim();
+const serviceTitle = internalHero
+  ? `${internalHero.titlePrimary} ${internalHero.titleAccent}`.trim()
+  : serviceTitleMatch
+    ? serviceTitleMatch[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim()
+    : page.title.split("|")[0].trim();
 const stickyCtaText = isActivityServicePage
   ? serviceTitle
   : "Richiedi una visita in meno di 2 minuti";
@@ -754,6 +804,7 @@ const activityStickyScript = `
     }
 
     return (
+      document.querySelector(".internal-page-hero") ||
       document.querySelector('.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child:has(.elementor-widget-elementskit-breadcrumb)') ||
       document.querySelector(".elementor-widget-elementskit-breadcrumb")?.closest(".elementor-element") ||
       document.querySelector('.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child')
@@ -801,6 +852,7 @@ const mirrorHeaderScript = `
     }
 
     return (
+      document.querySelector(".internal-page-hero") ||
       document.querySelector('.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child:has(.elementor-widget-elementskit-breadcrumb)') ||
       document.querySelector(".elementor-widget-elementskit-breadcrumb")?.closest(".elementor-element") ||
       document.querySelector('.elementor[data-elementor-type="wp-page"] > .elementor-element:first-child')
@@ -1719,10 +1771,23 @@ const reviewsPageScript = `
     <BrandPalette />
     {isAboutPage && <style is:inline set:html={aboutTeamMobileStyles} />}
   </head>
-  <body class:list={[page.bodyClass, "brand-palette", hasImageHero && "mirror-hero-image", isActivityMirrorPage && "mirror-activity-page", isReviewsPage && "mirror-reviews-page"]} id={page.bodyId || undefined}>
+  <body class:list={[page.bodyClass, "brand-palette", isInternalPage && "internal-page mirror-internal-page", hasImageHero && "mirror-hero-image", isActivityMirrorPage && "mirror-activity-page", isReviewsPage && "mirror-reviews-page"]} id={page.bodyId || undefined}>
     <PageLoader />
-    <SiteHeader overlay={hasImageHero} />
+    <SiteHeader overlay={page.path === "/"} />
     <div id="main-content" tabindex="-1">
+      {
+        internalHero && (
+          <InternalPageHero
+            id="mirror-internal-page-title"
+            eyebrow={internalHero.eyebrow}
+            titlePrimary={internalHero.titlePrimary}
+            titleAccent={internalHero.titleAccent}
+            lead={internalHero.lead}
+            breadcrumbs={internalHero.breadcrumbs}
+            panel={internalHero.panel}
+          />
+        )
+      }
       <Fragment set:html={bodyBeforeAboutStructure} />
       {page.path === "/chi-siamo/" && <AboutStructureSection />}
       <Fragment set:html={bodyAfterAboutStructure} />

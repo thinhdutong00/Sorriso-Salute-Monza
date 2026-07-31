@@ -3,6 +3,7 @@ import "../styles/global.css";
 import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import InternalPageHero from "../components/InternalPageHero.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 ---
@@ -22,11 +23,28 @@ import SiteHeader from "../components/SiteHeader.astro";
     <BrandPalette />
     <title>Prenota la tua visita | Sorriso & Salute Monza</title>
   </head>
-  <body class="booking-choice-body brand-palette">
+  <body class="booking-choice-body brand-palette internal-page">
     <SiteHeader />
-    <main class="booking-choice-shell" id="main-content" tabindex="-1" aria-label="Preferenze prenotazione">
-      <a class="booking-choice-button" href="tel:+390392022489">Chiama lo studio: 039 2022489</a>
-      <a class="booking-choice-button booking-choice-button--primary" href="/richiesta-generale/">Prenota online (consigliato)</a>
+    <main id="main-content" tabindex="-1">
+      <InternalPageHero
+        id="booking-choice-title"
+        eyebrow="Prenotazione"
+        titlePrimary="Scegli come contattarci."
+        titleAccent="Inizia da qui."
+        lead="Puoi chiamare direttamente lo studio oppure inviare online la tua richiesta di visita."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Prenotazione" },
+        ]}
+        compact
+      >
+        <div slot="actions" class="internal-page-hero__actions">
+          <a class="internal-page-hero__button internal-page-hero__button--secondary" href="tel:+390392022489">
+            Chiama lo studio: 039 2022489
+          </a>
+          <a class="internal-page-hero__button" href="/richiesta-generale/">Prenota online</a>
+        </div>
+      </InternalPageHero>
     </main>
     <SiteFooter />
   </body>

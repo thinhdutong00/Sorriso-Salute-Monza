@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import "../styles/internal-pages.css";
 import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
@@ -16,67 +17,125 @@ import SiteHeader from "../components/SiteHeader.astro";
       name="description"
       content="Richiedi una visita allo Studio Dentistico Sorriso & Salute di Monza scegliendo il trattamento più adatto."
     />
-    <meta name="theme-color" content="#0E384C" />
+    <meta name="theme-color" content="#1E84B5" />
     <FaviconLinks />
     <GoogleAdsTracking />
     <BrandPalette />
     <title>Richiedi una visita | Sorriso & Salute Monza</title>
   </head>
-  <body class="request-body brand-palette">
-    <SiteHeader />
+  <body class="request-body brand-palette internal-page">
+    <SiteHeader overlay />
 
     <main id="main-content" tabindex="-1">
-      <section class="request-shell" aria-labelledby="request-title">
-        <h1 class="request-title" id="request-title">Richiedi una visita</h1>
+      <section class="request-questionnaire" aria-labelledby="request-title">
+        <div class="request-questionnaire__container">
+          <form
+            class="request-form"
+            id="richiesta-generale"
+            action="/api/send-lead"
+            method="post"
+            aria-label="Modulo per richiedere una visita"
+            autocomplete="on"
+            novalidate
+          >
+          <div class="request-progress" role="progressbar" aria-label="Avanzamento richiesta" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"></div>
 
-        <form class="request-form" id="richiesta-generale" action="/api/send-lead" method="post" novalidate>
-          <div class="request-progress" role="progressbar" aria-label="Avanzamento richiesta" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"></div>
+          <header class="request-questionnaire__heading">
+            <p class="request-questionnaire__eyebrow" data-step-eyebrow>Scegli il trattamento</p>
+            <h1 id="request-title">
+              <span>Anamnesi</span>
+            </h1>
+          </header>
 
           <div class="request-step is-active" data-step="1">
-            <p class="quiz-kicker">Trattamento</p>
-            <h2 class="quiz-title">Per quale trattamento vuoi essere ricontattato?</h2>
-            <p class="quiz-copy text-description">Scegli l'area più vicina alla tua esigenza: useremo questa informazione per orientare meglio la prima chiamata.</p>
-            <div class="quiz-options" data-field="servizio"></div>
+            <h2 class="quiz-title">Quale situazione descrive meglio il tuo caso?</h2>
+            <div
+              class="quiz-options request-service-menu"
+              data-field="servizio"
+              role="group"
+              aria-label="Scegli la tua esigenza"
+            ></div>
           </div>
 
           <div class="request-step" data-step="2">
-            <p class="quiz-kicker">Obiettivo</p>
-            <h2 class="quiz-title" data-objective-title>Cosa vuoi ottenere?</h2>
-            <p class="quiz-copy text-description" data-service-summary></p>
-            <div class="quiz-options" data-field="obiettivo"></div>
+            <h2 class="quiz-title">Da quanto tempo hai questo problema?</h2>
+            <div
+              class="quiz-options"
+              data-field="durataProblema"
+              role="group"
+              aria-label="Seleziona da quanto tempo è presente il problema"
+            ></div>
           </div>
 
           <div class="request-step" data-step="3">
-            <p class="quiz-kicker">Priorità</p>
-            <h2 class="quiz-title">Quanto è urgente e come preferisci essere contattato?</h2>
-            <div class="quiz-options" data-field="urgenza">
-              <button class="choice-btn" type="button" data-value="Appena possibile"><strong>Appena possibile</strong><small>Vorrei essere richiamato rapidamente.</small></button>
-              <button class="choice-btn" type="button" data-value="Nei prossimi giorni"><strong>Nei prossimi giorni</strong><small>Non è urgente, ma voglio organizzarmi.</small></button>
-              <button class="choice-btn" type="button" data-value="Sto solo valutando"><strong>Sto solo valutando</strong><small>Mi serve prima capire opzioni e costi.</small></button>
-            </div>
-            <div class="quiz-options" data-field="preferenzaContatto">
-              <button class="choice-btn" type="button" data-value="Telefono"><strong>Telefono</strong></button>
-              <button class="choice-btn" type="button" data-value="WhatsApp"><strong>WhatsApp</strong></button>
-              <button class="choice-btn" type="button" data-value="Email"><strong>Email</strong></button>
+            <h2 class="quiz-title">Indica la tua fascia d’età</h2>
+            <div
+              class="quiz-options"
+              data-field="fasciaEta"
+              role="group"
+              aria-label="Seleziona la tua fascia d’età"
+            ></div>
+          </div>
+
+          <div class="request-step request-step--availability" data-step="4">
+            <h2 class="quiz-title">Quando preferisci venire?</h2>
+            <div class="request-preferences">
+              <fieldset class="request-preference-group">
+                <legend>Giorni preferiti</legend>
+                <div
+                  class="request-preference-options request-preference-options--days"
+                  data-field="giorniPreferiti"
+                  data-multiple="true"
+                >
+                  <button class="request-preference-btn" type="button" data-value="Lunedì" aria-pressed="false">Lun</button>
+                  <button class="request-preference-btn" type="button" data-value="Martedì" aria-pressed="false">Mar</button>
+                  <button class="request-preference-btn" type="button" data-value="Mercoledì" aria-pressed="false">Mer</button>
+                  <button class="request-preference-btn" type="button" data-value="Giovedì" aria-pressed="false">Gio</button>
+                  <button class="request-preference-btn" type="button" data-value="Venerdì" aria-pressed="false">Ven</button>
+                  <button class="request-preference-btn" type="button" data-value="Sabato" aria-pressed="false">Sab</button>
+                </div>
+              </fieldset>
+
+              <fieldset class="request-preference-group">
+                <legend>Fascia oraria</legend>
+                <div
+                  class="request-preference-options request-preference-options--time"
+                  data-field="fasciaOraria"
+                >
+                  <button class="request-preference-btn" type="button" data-value="Mattina" aria-pressed="false">Mattina</button>
+                  <button class="request-preference-btn" type="button" data-value="Pomeriggio" aria-pressed="false">Pomeriggio</button>
+                  <button class="request-preference-btn" type="button" data-value="Sera" aria-pressed="false">Sera</button>
+                </div>
+              </fieldset>
+
+              <fieldset class="request-preference-group">
+                <legend>Disponibilità urgente?</legend>
+                <div
+                  class="request-preference-options request-preference-options--urgent"
+                  data-field="disponibilitaUrgente"
+                >
+                  <button class="request-preference-btn" type="button" data-value="Sì" aria-pressed="false">Sì</button>
+                  <button class="request-preference-btn" type="button" data-value="No" aria-pressed="false">No</button>
+                </div>
+              </fieldset>
             </div>
           </div>
 
-          <div class="request-step" data-step="4">
-            <p class="quiz-kicker">Dati di contatto</p>
+          <div class="request-step" data-step="5">
             <h2 class="quiz-title">Lascia i tuoi recapiti</h2>
             <div class="summary-box" data-summary-box></div>
             <div class="field-grid">
               <label for="nomeCompleto">
                 Nome e cognome
-                <input id="nomeCompleto" name="nomeCompleto" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" required />
+                <input id="nomeCompleto" name="nomeCompleto" type="text" autocomplete="section-visit name" autocapitalize="words" enterkeyhint="next" required />
               </label>
               <label for="telefono">
                 Telefono
-                <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="next" required />
+                <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="section-visit tel" enterkeyhint="next" required />
               </label>
               <label for="email">
                 Email
-                <input id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" />
+                <input id="email" name="email" type="email" inputmode="email" autocomplete="section-visit email" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" />
               </label>
             </div>
             <label>
@@ -89,26 +148,581 @@ import SiteHeader from "../components/SiteHeader.astro";
 
           <div class="request-actions">
             <button class="request-btn request-btn-outline" type="button" data-prev-step hidden>Indietro</button>
-            <button class="request-btn request-btn-primary" type="button" data-next-step>Continua</button>
+            <button class="request-btn request-btn-primary" type="button" data-next-step disabled>Continua</button>
             <button class="request-btn request-btn-primary" type="submit" data-submit-step hidden>Invia la tua richiesta</button>
           </div>
-        </form>
+          </form>
+        </div>
       </section>
     </main>
 
     <SiteFooter />
 
     <style is:global>
-      body.brand-palette .request-form .text-description {
-        color: var(--color-text-description) !important;
+      body.request-body.brand-palette {
+        min-height: 100vh;
+        background: var(--brand-secondary, #1e84b5) !important;
+        color: #fff !important;
       }
 
-      body.brand-palette .request-form .summary-box {
-        color: var(--color-text-description) !important;
+      body.request-body
+        .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open) {
+        --primary-header-foreground: #fff;
+        --primary-header-accent: rgba(255, 255, 255, 0.78);
+        --primary-header-control-border: rgba(255, 255, 255, 0.52);
+        --primary-header-control-hover: rgba(255, 255, 255, 0.14);
+        --primary-header-control-hover-border: #fff;
+        --primary-header-control-hover-color: #fff;
+        --primary-header-phone-background: rgba(255, 255, 255, 0.08);
+        --primary-header-phone-color: #fff;
+        --primary-header-booking-background: #fff;
+        --primary-header-booking-border: #fff;
+        --primary-header-booking-color: var(--brand-secondary, #1e84b5);
+        --primary-header-booking-hover-background: transparent;
+        --primary-header-booking-hover-border: #fff;
+        --primary-header-booking-hover-color: #fff;
+        background: transparent !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
       }
 
-      body.brand-palette .request-form .summary-box strong {
-        color: var(--clinic-ink) !important;
+      body.request-body
+        .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open)
+        .primary-site-header__brand
+        img {
+        filter: none !important;
+      }
+
+      body.request-body
+        .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open)
+        .primary-site-header__booking:is(:hover, :focus-visible) {
+        border-color: #fff !important;
+        background: transparent !important;
+        color: #fff !important;
+      }
+
+      body.request-body
+        .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open)
+        .primary-site-header__booking:is(:hover, :focus-visible)::before {
+        background: transparent !important;
+      }
+
+      body.request-body.brand-palette footer.site-footer {
+        border-top-color: rgba(255, 255, 255, 0.14) !important;
+        background: var(--brand-secondary, #1e84b5) !important;
+      }
+
+      body.request-body .request-questionnaire {
+        min-height: 100svh;
+        padding: clamp(132px, 10vw, 172px) 24px clamp(96px, 9vw, 138px);
+        background: var(--brand-secondary, #1e84b5);
+      }
+
+      body.request-body .request-questionnaire__container {
+        width: min(1020px, 100%);
+        margin: 0 auto;
+      }
+
+      body.request-body.internal-page .request-form {
+        display: grid;
+        width: 100%;
+        min-height: 0;
+        padding: 0;
+        border: 0 !important;
+        border-radius: 0;
+        background: transparent !important;
+        box-shadow: none !important;
+        color: #fff !important;
+        gap: 0;
+      }
+
+      body.request-body .request-progress {
+        height: 4px;
+        margin: 0 0 clamp(46px, 4vw, 60px);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.2) !important;
+      }
+
+      body.request-body .request-progress::before {
+        background: #fff !important;
+      }
+
+      body.request-body .request-questionnaire__heading {
+        display: grid;
+        margin: 0 0 clamp(62px, 8vw, 96px);
+        gap: 20px;
+      }
+
+      body.request-body .request-questionnaire__eyebrow {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.68) !important;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.24em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      body.request-body .request-questionnaire__heading h1 {
+        display: grid;
+        width: fit-content;
+        max-width: 9ch;
+        margin: 0;
+        color: #fff !important;
+        font-size: clamp(4.4rem, 9.5vw, 7.6rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 0.86;
+      }
+
+      body.request-body .request-step.is-active {
+        display: grid;
+        min-height: 0;
+        align-content: start;
+        gap: 18px;
+      }
+
+      body.request-body .quiz-title {
+        max-width: 30ch;
+        margin: 0;
+        color: #fff !important;
+        font-size: clamp(1.7rem, 3.2vw, 2.35rem) !important;
+        font-weight: 700 !important;
+        line-height: 1.08 !important;
+        text-transform: none !important;
+      }
+
+      body.request-body .request-service-menu {
+        max-height: min(62svh, 640px);
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        padding: 2px 10px 2px 2px;
+        scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+        scrollbar-gutter: stable;
+        scrollbar-width: thin;
+      }
+
+      body.request-body .request-service-menu::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      body.request-body .request-service-menu::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      body.request-body .request-service-menu::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.45);
+      }
+
+      body.request-body .quiz-options {
+        gap: 14px;
+      }
+
+      body.request-body .request-step.is-active > .quiz-options {
+        margin-top: 10px;
+      }
+
+      body.request-body .request-step--availability.is-active {
+        gap: 18px;
+      }
+
+      body.request-body .request-preferences {
+        display: grid;
+        margin-top: 10px;
+        gap: 30px;
+      }
+
+      body.request-body .request-preference-group {
+        display: grid;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        gap: 0;
+      }
+
+      body.request-body .request-preference-group legend {
+        margin: 0;
+        padding: 0;
+        color: #fff !important;
+        font-size: clamp(1rem, 1.4vw, 1.15rem);
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      body.request-body .request-preference-options {
+        display: grid;
+        margin-top: 16px;
+        gap: 10px;
+      }
+
+      body.request-body .request-preference-options--days {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      body.request-body .request-preference-options--time {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      body.request-body .request-preference-options--urgent {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      body.request-body.brand-palette
+        .request-form
+        .request-preference-btn {
+        min-height: 62px;
+        padding: 0.85rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.055) !important;
+        box-shadow: none !important;
+        color: #fff !important;
+        cursor: pointer;
+        font-weight: 700;
+        transform: none !important;
+        transition:
+          border-color 180ms ease,
+          background-color 180ms ease,
+          color 180ms ease;
+      }
+
+      body.request-body.brand-palette
+        .request-form
+        .request-preference-btn:is(:hover, :focus-visible) {
+        border-color: rgba(255, 255, 255, 0.78) !important;
+        background: rgba(255, 255, 255, 0.09) !important;
+        box-shadow: none !important;
+        color: #fff !important;
+      }
+
+      body.request-body.brand-palette
+        .request-form
+        .request-preference-btn[aria-pressed="true"],
+      body.request-body.brand-palette
+        .request-form
+        .request-preference-btn[aria-pressed="true"]:is(
+          :hover,
+          :focus-visible
+        ) {
+        border-color: #fff !important;
+        background: #fff !important;
+        box-shadow: none !important;
+        color: var(--brand-secondary, #1e84b5) !important;
+      }
+
+      @media (min-width: 981px) {
+        body.request-body
+          .request-step[data-step="1"]
+          .request-service-menu {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      body.request-body.brand-palette .request-form .choice-btn,
+      body.request-body.brand-palette .request-form .choice-btn:hover,
+      body.request-body.brand-palette .request-form .choice-btn:focus-visible,
+      body.request-body.brand-palette
+        .request-form
+        .choice-btn[aria-pressed="true"] {
+        min-height: 82px;
+        padding: 1rem 4.5rem 1rem 1.55rem;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.055) !important;
+        box-shadow: none !important;
+        color: #fff !important;
+        transform: none !important;
+      }
+
+      body.request-body.brand-palette .request-form .choice-btn:hover,
+      body.request-body.brand-palette .request-form .choice-btn:focus-visible {
+        border-color: rgba(255, 255, 255, 0.74) !important;
+        background: rgba(255, 255, 255, 0.09) !important;
+      }
+
+      body.request-body.brand-palette
+        .request-form
+        .choice-btn[aria-pressed="true"] {
+        border-color: #fff !important;
+        background: rgba(255, 255, 255, 0.14) !important;
+      }
+
+      body.request-body .choice-btn strong {
+        color: #fff !important;
+        font-size: clamp(1rem, 1.55vw, 1.14rem);
+        font-weight: 700;
+        line-height: 1.25;
+      }
+
+      body.request-body.brand-palette .request-form .choice-btn small {
+        margin-top: 0.35rem;
+        color: rgba(255, 255, 255, 0.66) !important;
+        font-size: 0.88rem !important;
+        font-weight: 400;
+        line-height: 1.4;
+      }
+
+      body.request-body.brand-palette .request-form .choice-btn::before {
+        right: 1.35rem;
+        width: 26px;
+        height: 26px;
+        border: 2px solid rgba(255, 255, 255, 0.44) !important;
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+
+      body.request-body.brand-palette
+        .request-form
+        .choice-btn:hover::before,
+      body.request-body.brand-palette
+        .request-form
+        .choice-btn:focus-visible::before,
+      body.request-body.brand-palette
+        .request-form
+        .choice-btn[aria-pressed="true"]::before {
+        border-color: #fff !important;
+        background: #fff !important;
+        box-shadow: none !important;
+      }
+
+      body.request-body.brand-palette .request-form .choice-btn::after {
+        right: calc(1.35rem + 8px);
+        width: 10px;
+        height: 10px;
+        background: var(--brand-secondary, #1e84b5) !important;
+        box-shadow: none !important;
+      }
+
+      body.request-body.brand-palette .request-form label {
+        color: #fff !important;
+        font-size: 0.95rem !important;
+      }
+
+      body.request-body.brand-palette .request-form input,
+      body.request-body.brand-palette .request-form textarea {
+        border-color: rgba(255, 255, 255, 0.34) !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        color: #fff !important;
+      }
+
+      body.request-body.brand-palette .request-form input::placeholder,
+      body.request-body.brand-palette .request-form textarea::placeholder {
+        color: rgba(255, 255, 255, 0.56) !important;
+      }
+
+      body.request-body.brand-palette .request-form input:focus,
+      body.request-body.brand-palette .request-form textarea:focus,
+      body.request-body.brand-palette .request-form button:focus-visible {
+        border-color: #fff !important;
+        outline-color: rgba(255, 255, 255, 0.52) !important;
+      }
+
+      body.request-body.brand-palette .request-form .summary-box {
+        border-color: rgba(255, 255, 255, 0.28) !important;
+        background: rgba(255, 255, 255, 0.07) !important;
+        color: rgba(255, 255, 255, 0.72) !important;
+      }
+
+      body.request-body.brand-palette .request-form .summary-box strong {
+        color: #fff !important;
+      }
+
+      body.request-body .summary-line {
+        border-bottom-color: rgba(255, 255, 255, 0.16);
+      }
+
+      body.request-body.brand-palette .form-error {
+        color: #fff !important;
+      }
+
+      body.request-body .request-actions {
+        display: flex;
+        width: 100%;
+        margin-top: clamp(42px, 6vw, 68px);
+        gap: 14px;
+      }
+
+      body.request-body .request-actions .request-btn {
+        min-height: 70px;
+        border-radius: 999px !important;
+        box-shadow: none !important;
+        transform: none !important;
+      }
+
+      body.request-body.brand-palette
+        .request-actions
+        .request-btn-primary:not(#site-button-legacy-override) {
+        --site-button-base-fill: #fff;
+        --site-button-base-color: var(--brand-secondary, #1e84b5);
+        --site-button-base-border: #fff;
+        --site-button-hover-fill: #fff;
+        --site-button-hover-color: #fff;
+        --site-button-hover-border: #fff;
+        flex: 1 1 auto;
+        border-color: #fff !important;
+        background: transparent !important;
+        color: var(--brand-secondary, #1e84b5) !important;
+        box-shadow: none !important;
+      }
+
+      body.request-body.brand-palette
+        .request-actions
+        .request-btn-primary:not(#site-button-legacy-override)::before {
+        display: block !important;
+        background: #fff !important;
+        transform: scaleX(1) !important;
+        transform-origin: left center !important;
+      }
+
+      body.request-body.brand-palette
+        .request-actions
+        .request-btn-primary:not(#site-button-legacy-override):is(
+          :hover,
+          :focus-visible
+        ):not(:disabled) {
+        --site-button-base-fill: transparent;
+        --site-button-hover-fill: #fff;
+        --site-button-hover-color: #fff;
+        --site-button-hover-border: #fff;
+        border-color: #fff !important;
+        background: transparent !important;
+        color: #fff !important;
+      }
+
+      body.request-body.brand-palette
+        .request-actions
+        .request-btn-primary:not(#site-button-legacy-override):is(
+          :hover,
+          :focus-visible
+        ):not(:disabled)::before {
+        background: #fff !important;
+        transform: scaleX(0) !important;
+        transform-origin: right center !important;
+      }
+
+      body.request-body.brand-palette
+        .request-actions
+        .request-btn-primary:not(#site-button-legacy-override):disabled {
+        --site-button-base-fill: rgba(255, 255, 255, 0.34);
+        --site-button-base-color: rgba(30, 132, 181, 0.72);
+        --site-button-base-border: transparent;
+        cursor: not-allowed;
+        border-color: transparent !important;
+        background: rgba(255, 255, 255, 0.34) !important;
+        color: rgba(30, 132, 181, 0.72) !important;
+        opacity: 1;
+      }
+
+      body.request-body.brand-palette
+        .request-actions
+        .request-btn-primary:not(#site-button-legacy-override):disabled::before {
+        display: none !important;
+      }
+
+      body.request-body.brand-palette
+        .request-actions
+        .request-btn-outline:not(#site-button-legacy-override) {
+        --site-button-base-fill: transparent;
+        --site-button-base-color: #fff;
+        --site-button-base-border: rgba(255, 255, 255, 0.64);
+        --site-button-hover-fill: #fff;
+        --site-button-hover-color: var(--brand-secondary, #1e84b5);
+        --site-button-hover-border: #fff;
+        flex: 0 0 96px;
+        border-color: rgba(255, 255, 255, 0.64) !important;
+        background: transparent !important;
+        color: #fff !important;
+      }
+
+      body.request-body.brand-palette
+        .request-actions
+        .request-btn-outline:not(#site-button-legacy-override):is(
+          :hover,
+          :focus-visible
+        ) {
+        border-color: #fff !important;
+        background: transparent !important;
+        color: var(--brand-secondary, #1e84b5) !important;
+      }
+
+      @media (max-width: 900px) {
+        body.request-body .request-preference-options--days {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 680px) {
+        body.request-body .request-questionnaire {
+          padding: 116px 18px 84px;
+        }
+
+        body.request-body .request-progress {
+          margin-bottom: 44px;
+        }
+
+        body.request-body .request-questionnaire__heading {
+          margin-bottom: 54px;
+          gap: 16px;
+        }
+
+        body.request-body .request-questionnaire__heading h1 {
+          font-size: clamp(3.6rem, 19vw, 5.2rem);
+        }
+
+        body.request-body .request-service-menu {
+          max-height: min(58svh, 520px);
+          padding-right: 7px;
+        }
+
+        body.request-body .request-preferences {
+          gap: 24px;
+        }
+
+        body.request-body .request-preference-options {
+          margin-top: 14px;
+        }
+
+        body.request-body .request-preference-options--days {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        body.request-body .request-preference-options--time {
+          grid-template-columns: 1fr;
+        }
+
+        body.request-body.brand-palette
+          .request-form
+          .request-preference-btn {
+          min-height: 56px;
+          padding: 0.75rem 0.65rem;
+        }
+
+        body.request-body.brand-palette .request-form .choice-btn,
+        body.request-body.brand-palette .request-form .choice-btn:hover,
+        body.request-body.brand-palette .request-form .choice-btn:focus-visible,
+        body.request-body.brand-palette
+          .request-form
+          .choice-btn[aria-pressed="true"] {
+          min-height: 72px;
+          padding: 0.88rem 3.7rem 0.88rem 1rem;
+          border-radius: 14px;
+        }
+
+        body.request-body .request-actions {
+          margin-top: 38px;
+        }
+
+        body.request-body .request-actions .request-btn {
+          min-height: 60px;
+        }
+
+        body.request-body.brand-palette
+          .request-actions
+          .request-btn-outline:not(#site-button-legacy-override) {
+          flex-basis: 82px;
+        }
       }
     </style>
 
@@ -125,90 +739,41 @@ import SiteHeader from "../components/SiteHeader.astro";
         if (!(form instanceof HTMLFormElement)) return;
 
         const serviceOptions = [
-          { slug: "igiene-orale-e-profilassi", label: "Igiene orale e profilassi", group: "igiene" },
-          { slug: "odontoiatria-conservativa", label: "Conservativa", group: "conservativa" },
-          { slug: "estetica-del-sorriso", label: "Estetica del sorriso", group: "estetica" },
-          { slug: "parodontologia", label: "Parodontologia", group: "parodontologia" },
-          { slug: "ortodonzia", label: "Ortodonzia", group: "ortodonzia" },
-          { slug: "chirurgia-orale", label: "Chirurgia orale", group: "chirurgia" },
-          { slug: "endodonzia", label: "Endodonzia", group: "conservativa" },
-          { slug: "gnatologia", label: "Gnatologia", group: "ortodonzia" },
-          { slug: "pedodonzia", label: "Pedodonzia", group: "pedodonzia" },
-          { slug: "protesi-dentale", label: "Protesi dentale", group: "protesi" },
-          { slug: "implantologia", label: "Implantologia", group: "implantologia" },
+          { slug: "igiene-orale-e-profilassi", label: "Igiene orale e profilassi", displayLabel: "Pulizia dei denti e prevenzione", group: "igiene" },
+          { slug: "odontoiatria-conservativa", label: "Conservativa", displayLabel: "Carie, sensibilità o dente rotto", group: "conservativa" },
+          { slug: "estetica-del-sorriso", label: "Estetica del sorriso", displayLabel: "Denti più bianchi e sorriso più armonioso", group: "estetica" },
+          { slug: "parodontologia", label: "Parodontologia", displayLabel: "Gengive che sanguinano o denti che si muovono", group: "parodontologia" },
+          { slug: "ortodonzia", label: "Ortodonzia", displayLabel: "Denti da allineare o apparecchio", group: "ortodonzia" },
+          { slug: "chirurgia-orale", label: "Chirurgia orale", displayLabel: "Dente da togliere o dente del giudizio", group: "chirurgia" },
+          { slug: "endodonzia", label: "Endodonzia", displayLabel: "Mal di denti o dolore che non passa", group: "conservativa" },
+          { slug: "gnatologia", label: "Gnatologia", displayLabel: "Dolore alla mandibola o denti serrati", group: "ortodonzia" },
+          { slug: "pedodonzia", label: "Pedodonzia", displayLabel: "Visita e cure per bambini", group: "pedodonzia" },
+          { slug: "protesi-dentale", label: "Protesi dentale", displayLabel: "Dentiera, ponte o corona da sistemare", group: "protesi" },
+          { slug: "implantologia", label: "Implantologia", displayLabel: "Uno o più denti mancanti", group: "implantologia" },
         ];
 
-        const objectivesByGroup = {
-          igiene: [
-            "Prevenzione e controllo periodico",
-            "Pulizia professionale",
-            "Gengive che sanguinano",
-            "Macchie, tartaro o alito cattivo",
-          ],
-          conservativa: [
-            "Ho dolore o sensibilità",
-            "Ho una carie o un dente rotto",
-            "Vorrei salvare un dente",
-            "Voglio fare un controllo",
-          ],
-          estetica: [
-            "Sbiancamento dentale",
-            "Faccette o correzione forma denti",
-            "Sorriso più armonico",
-            "Capire quali opzioni ho",
-          ],
-          parodontologia: [
-            "Gengive che sanguinano",
-            "Gengive ritirate",
-            "Denti che si muovono",
-            "Prevenire un peggioramento",
-          ],
-          ortodonzia: [
-            "Allineare i denti",
-            "Valutare bite o dolori mandibolari",
-            "Apparecchio invisibile",
-            "Valutazione per bambino o adulto",
-          ],
-          chirurgia: [
-            "Estrazione dentale",
-            "Dente del giudizio",
-            "Lesione, cisti o gonfiore",
-            "Vorrei una valutazione",
-          ],
-          pedodonzia: [
-            "Prima visita per un bambino",
-            "Dolore o carie",
-            "Prevenzione e sigillature",
-            "Trauma dentale",
-          ],
-          protesi: [
-            "Sostituire denti mancanti",
-            "Protesi instabile",
-            "Rifare una protesi",
-            "Masticare meglio",
-          ],
-          implantologia: [
-            "Mi manca un solo dente",
-            "Mi mancano più denti vicini",
-            "La mia dentiera o protesi si muove",
-            "Ho perso molti denti o uso una dentiera",
-          ],
-        };
+        const durationOptions = [
+          "Da pochi giorni",
+          "Da settimane",
+          "Da mesi / anni",
+        ];
+        const ageRangeOptions = ["18–25", "26–35", "36–50", "50+"];
 
         const params = new URLSearchParams(window.location.search);
         const presetService = params.get("servizio") || "";
         const selectedService = serviceOptions.find((item) => item.slug === presetService);
         const hasPresetService = Boolean(selectedService);
-        const totalSteps = hasPresetService ? 3 : 4;
+        const totalSteps = hasPresetService ? 4 : 5;
         const steps = [...form.querySelectorAll(".request-step")];
         const progress = form.querySelector(".request-progress");
         const nextBtn = form.querySelector("[data-next-step]");
         const prevBtn = form.querySelector("[data-prev-step]");
         const submitBtn = form.querySelector("[data-submit-step]");
+        const stepEyebrow = form.querySelector("[data-step-eyebrow]");
         const formError = form.querySelector("[data-form-error]");
         const serviceGroup = form.querySelector('[data-field="servizio"]');
-        const objectiveGroup = form.querySelector('[data-field="obiettivo"]');
-        const serviceSummary = form.querySelector("[data-service-summary]");
+        const durationGroup = form.querySelector('[data-field="durataProblema"]');
+        const ageRangeGroup = form.querySelector('[data-field="fasciaEta"]');
         const summaryBox = form.querySelector("[data-summary-box]");
         const fields = {
           nomeCompleto: form.querySelector('[name="nomeCompleto"]'),
@@ -218,14 +783,24 @@ import SiteHeader from "../components/SiteHeader.astro";
         };
         const quiz = {
           servizio: selectedService?.label || "",
+          servizioDisplay: selectedService?.displayLabel || selectedService?.label || "",
           servizioSlug: selectedService?.slug || "",
           servizioGroup: selectedService?.group || "",
-          obiettivo: "",
-          urgenza: "",
-          preferenzaContatto: "",
+          durataProblema: "",
+          fasciaEta: "",
+          giorniPreferiti: [],
+          fasciaOraria: "",
+          disponibilitaUrgente: "",
         };
         let currentStep = hasPresetService ? 2 : 1;
         let isSubmitting = false;
+        const stepEyebrowLabels = {
+          1: "Scegli il trattamento",
+          2: "Durata del problema",
+          3: "Fascia d’età",
+          4: "Indica le tue preferenze",
+          5: "Inserisci i tuoi dati",
+        };
 
         const setError = (message = "") => {
           if (formError) formError.textContent = message;
@@ -241,11 +816,27 @@ import SiteHeader from "../components/SiteHeader.astro";
 
         const effectiveStepIndex = (step) => (hasPresetService ? step - 1 : step);
 
+        const updateNavigationState = () => {
+          if (!(nextBtn instanceof HTMLButtonElement)) return;
+
+          const stepIsComplete =
+            (currentStep === 1 && Boolean(quiz.servizio)) ||
+            (currentStep === 2 && Boolean(quiz.durataProblema)) ||
+            (currentStep === 3 && Boolean(quiz.fasciaEta)) ||
+            (currentStep === 4 &&
+              quiz.giorniPreferiti.length > 0 &&
+              Boolean(quiz.fasciaOraria) &&
+              Boolean(quiz.disponibilitaUrgente));
+
+          nextBtn.disabled = currentStep < 5 && !stepIsComplete;
+        };
+
         const renderChoiceButtons = (container, options, field) => {
           if (!container) return;
           container.innerHTML = "";
           options.forEach((option) => {
             const value = typeof option === "string" ? option : option.label;
+            const displayValue = typeof option === "string" ? option : option.displayLabel || option.label;
             const slug = typeof option === "string" ? "" : option.slug;
             const group = typeof option === "string" ? "" : option.group;
             const button = document.createElement("button");
@@ -255,41 +846,32 @@ import SiteHeader from "../components/SiteHeader.astro";
             if (slug) button.dataset.slug = slug;
             if (group) button.dataset.group = group;
             button.setAttribute("aria-pressed", "false");
-            button.innerHTML = `<strong>${escapeHtml(value)}</strong>`;
+            button.innerHTML = `<strong>${escapeHtml(displayValue)}</strong>`;
             button.addEventListener("click", () => {
               quiz[field] = value;
               if (field === "servizio") {
+                quiz.servizioDisplay = displayValue;
                 quiz.servizioSlug = slug;
                 quiz.servizioGroup = group;
-                quiz.obiettivo = "";
-                renderObjectives();
               }
               container.querySelectorAll(".choice-btn").forEach((item) => item.setAttribute("aria-pressed", "false"));
               button.setAttribute("aria-pressed", "true");
               setError();
-              window.setTimeout(() => showStep(Math.min(4, currentStep + 1)), 140);
+              updateNavigationState();
             });
             container.append(button);
           });
         };
 
-        const renderObjectives = () => {
-          const objectives = objectivesByGroup[quiz.servizioGroup] || objectivesByGroup.conservativa;
-          renderChoiceButtons(objectiveGroup, objectives, "obiettivo");
-          if (serviceSummary) {
-            serviceSummary.textContent = quiz.servizio
-              ? `Hai scelto: ${quiz.servizio}. Ti facciamo solo una domanda mirata per capire meglio la tua esigenza.`
-              : "Ti facciamo solo una domanda mirata per capire meglio la tua esigenza.";
-          }
-        };
-
         const buildSummary = () => {
           if (!summaryBox) return;
           summaryBox.innerHTML = [
-            ["Trattamento", quiz.servizio],
-            ["Obiettivo", quiz.obiettivo],
-            ["Urgenza", quiz.urgenza],
-            ["Contatto preferito", quiz.preferenzaContatto],
+            ["Esigenza", quiz.servizioDisplay || quiz.servizio],
+            ["Durata del problema", quiz.durataProblema],
+            ["Fascia d’età", quiz.fasciaEta],
+            ["Giorni preferiti", quiz.giorniPreferiti.join(", ")],
+            ["Fascia oraria", quiz.fasciaOraria],
+            ["Disponibilità urgente", quiz.disponibilitaUrgente],
           ]
             .filter(([, value]) => value)
             .map(([label, value]) => `<span class="summary-line"><strong>${escapeHtml(label)}</strong>${escapeHtml(value)}</span>`)
@@ -306,15 +888,19 @@ import SiteHeader from "../components/SiteHeader.astro";
         const showStep = (step, shouldScroll = true) => {
           currentStep = step;
           steps.forEach((item) => item.classList.toggle("is-active", Number(item.dataset.step) === step));
+          if (stepEyebrow) {
+            stepEyebrow.textContent = stepEyebrowLabels[step] || "";
+          }
           const stepIndex = effectiveStepIndex(step);
           progress?.style.setProperty("--progress", `${(stepIndex / totalSteps) * 100}%`);
           progress?.setAttribute("aria-valuemax", String(totalSteps));
           progress?.setAttribute("aria-valuenow", String(stepIndex));
           if (prevBtn instanceof HTMLButtonElement) prevBtn.hidden = stepIndex <= 1;
-          if (nextBtn instanceof HTMLButtonElement) nextBtn.hidden = step === 4;
-          if (submitBtn instanceof HTMLButtonElement) submitBtn.hidden = step !== 4;
-          if (step === 4) buildSummary();
+          if (nextBtn instanceof HTMLButtonElement) nextBtn.hidden = step === 5;
+          if (submitBtn instanceof HTMLButtonElement) submitBtn.hidden = step !== 5;
+          if (step === 5) buildSummary();
           setError();
+          updateNavigationState();
           if (shouldScroll) {
             requestAnimationFrame(() => form.scrollIntoView({ behavior: "smooth", block: "start" }));
           }
@@ -322,18 +908,30 @@ import SiteHeader from "../components/SiteHeader.astro";
 
         const validateStep = () => {
           if (currentStep === 1 && !quiz.servizio) {
-            setError("Seleziona un trattamento per continuare.");
+            setError("Seleziona la situazione più vicina alla tua esigenza.");
             return false;
           }
-          if (currentStep === 2 && !quiz.obiettivo) {
-            setError("Seleziona l'obiettivo principale.");
+          if (currentStep === 2 && !quiz.durataProblema) {
+            setError("Indica da quanto tempo hai questo problema.");
             return false;
           }
-          if (currentStep === 3 && (!quiz.urgenza || !quiz.preferenzaContatto)) {
-            setError("Seleziona urgenza e preferenza di contatto.");
+          if (currentStep === 3 && !quiz.fasciaEta) {
+            setError("Seleziona la tua fascia d’età.");
             return false;
           }
-          if (currentStep === 4) {
+          if (currentStep === 4 && quiz.giorniPreferiti.length === 0) {
+            setError("Seleziona almeno un giorno preferito.");
+            return false;
+          }
+          if (currentStep === 4 && !quiz.fasciaOraria) {
+            setError("Seleziona una fascia oraria.");
+            return false;
+          }
+          if (currentStep === 4 && !quiz.disponibilitaUrgente) {
+            setError("Indica se hai disponibilità urgente.");
+            return false;
+          }
+          if (currentStep === 5) {
             const required = [fields.nomeCompleto, fields.telefono].filter((field) => field instanceof HTMLInputElement);
             const invalid = required.find((field) => !field.checkValidity());
             if (invalid) {
@@ -358,9 +956,11 @@ import SiteHeader from "../components/SiteHeader.astro";
           messaggio: fields.messaggio?.value || "",
           paginaProvenienza: document.referrer || "",
           paginaCorrente: window.location.href,
-          obiettivo: quiz.obiettivo,
-          urgenza: quiz.urgenza,
-          preferenzaContatto: quiz.preferenzaContatto,
+          durataProblema: quiz.durataProblema,
+          fasciaEta: quiz.fasciaEta,
+          preferred_visit_days: quiz.giorniPreferiti,
+          preferred_visit_time: quiz.fasciaOraria,
+          urgenza: `Disponibilità urgente: ${quiz.disponibilitaUrgente}`,
         });
 
         const sendLead = async () => {
@@ -376,28 +976,50 @@ import SiteHeader from "../components/SiteHeader.astro";
         };
 
         renderChoiceButtons(serviceGroup, serviceOptions, "servizio");
-        renderObjectives();
+        renderChoiceButtons(durationGroup, durationOptions, "durataProblema");
+        renderChoiceButtons(ageRangeGroup, ageRangeOptions, "fasciaEta");
         if (hasPresetService) {
           steps.find((step) => Number(step.dataset.step) === 1)?.setAttribute("hidden", "");
           markChoice("servizio", quiz.servizio);
         }
 
-        form.querySelectorAll('.quiz-options[data-field="urgenza"], .quiz-options[data-field="preferenzaContatto"]').forEach((group) => {
+        form.querySelectorAll(".request-preference-options").forEach((group) => {
           const field = group.dataset.field;
-          group.querySelectorAll(".choice-btn").forEach((button) => {
+          const isMultiple = group.dataset.multiple === "true";
+
+          group.querySelectorAll(".request-preference-btn").forEach((button) => {
             button.setAttribute("aria-pressed", "false");
             button.addEventListener("click", () => {
               if (!field) return;
-              quiz[field] = button.dataset.value || "";
-              group.querySelectorAll(".choice-btn").forEach((item) => item.setAttribute("aria-pressed", "false"));
-              button.setAttribute("aria-pressed", "true");
+              const value = button.dataset.value || "";
+
+              if (field === "giorniPreferiti" && isMultiple) {
+                quiz.giorniPreferiti = quiz.giorniPreferiti.includes(value)
+                  ? quiz.giorniPreferiti.filter((item) => item !== value)
+                  : [...quiz.giorniPreferiti, value];
+                button.setAttribute(
+                  "aria-pressed",
+                  String(quiz.giorniPreferiti.includes(value)),
+                );
+              } else {
+                if (field === "fasciaOraria") quiz.fasciaOraria = value;
+                if (field === "disponibilitaUrgente") {
+                  quiz.disponibilitaUrgente = value;
+                }
+                group
+                  .querySelectorAll(".request-preference-btn")
+                  .forEach((item) => item.setAttribute("aria-pressed", "false"));
+                button.setAttribute("aria-pressed", "true");
+              }
+
               setError();
+              updateNavigationState();
             });
           });
         });
 
         nextBtn?.addEventListener("click", () => {
-          if (validateStep()) showStep(Math.min(4, currentStep + 1));
+          if (validateStep()) showStep(Math.min(5, currentStep + 1));
         });
 
         prevBtn?.addEventListener("click", () => {

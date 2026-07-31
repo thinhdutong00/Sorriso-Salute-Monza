@@ -3,6 +3,7 @@ import "../styles/global.css";
 import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import InternalPageHero from "../components/InternalPageHero.astro";
 import PageLoader from "../components/PageLoader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
@@ -289,7 +290,7 @@ const currentPath = Astro.url.pathname;
       }
     </style>
   </head>
-  <body class="urgent-page brand-palette">
+  <body class="urgent-page brand-palette internal-page">
     <PageLoader />
     <SiteHeader />
 
@@ -536,24 +537,24 @@ const currentPath = Astro.url.pathname;
     )}
 
     <main class="urgent-main" id="main-content" tabindex="-1">
-      <section class="urgent-hero" aria-labelledby="urgent-title">
-        <div class="urgent-hero__inner">
-          <p class="urgent-kicker">Urgenze odontoiatriche</p>
-          <h1 id="urgent-title" class="urgent-title">Siamo qui <br /> quando serve</h1>
-          <p class="urgent-lead text-description">
-            Emergenza: i pazienti sono di solito visti il giorno in cui chiamano. Contatta lo studio per
-            descrivere il problema e ricevere le indicazioni più adatte.
-          </p>
-          <p class="urgent-support text-description">
-            Per dolore improvviso, trauma, gonfiore o protesi danneggiata, ti aiutiamo a capire il passo corretto
-            e a fissare una valutazione nel minor tempo possibile.
-          </p>
-          <div class="urgent-actions">
-            <a class="urgent-action urgent-action--primary" href="tel:+390392022489">Chiama in studio: 039 2022489</a>
-            <a class="urgent-action" href="/richiesta-generale/">Richiedi appuntamento</a>
-          </div>
+      <InternalPageHero
+        id="urgent-title"
+        eyebrow="Urgenze odontoiatriche"
+        titlePrimary="Dolore o urgenza?"
+        titleAccent="Ti aiutiamo a capire cosa fare."
+        lead="Per dolore improvviso, trauma, gonfiore o protesi danneggiata, chiama lo studio e descrivi il problema: ti daremo le indicazioni più adatte e valuteremo la disponibilità nel minor tempo possibile."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Urgenze odontoiatriche" },
+        ]}
+      >
+        <div slot="actions" class="internal-page-hero__actions">
+          <a class="internal-page-hero__button" href="tel:+390392022489">Chiama in studio: 039 2022489</a>
+          <a class="internal-page-hero__button internal-page-hero__button--secondary" href="/richiesta-generale/">
+            Richiedi appuntamento
+          </a>
         </div>
-      </section>
+      </InternalPageHero>
     </main>
 
     <SiteFooter />

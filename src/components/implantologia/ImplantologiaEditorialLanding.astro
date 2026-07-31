@@ -55,6 +55,27 @@ const structuredData = {
   "@graph": [breadcrumbSchema, faqSchema],
 };
 const ctaHref = "/richiesta/";
+const editorialHeroTitles: Record<
+  ImplantologiaEditorialPage["slug"],
+  { primary: string; accent: string; label: string }
+> = {
+  "carico-immediato": {
+    primary: "Denti provvisori in tempi brevi?",
+    accent: "Solo quando le condizioni lo permettono.",
+    label: "Carico immediato",
+  },
+  "poco-osso": {
+    primary: "Ti hanno detto che hai poco osso?",
+    accent: "Valutiamo le opzioni possibili.",
+    label: "Poco osso",
+  },
+  "manutenzione-impianti": {
+    primary: "Controlli e igiene.",
+    accent: "Proteggi impianti, tessuti e protesi.",
+    label: "Manutenzione",
+  },
+};
+const editorialHeroTitle = editorialHeroTitles[page.slug];
 ---
 
 <!doctype html>
@@ -76,25 +97,28 @@ const ctaHref = "/richiesta/";
     <FaviconLinks />
     <GoogleAdsTracking />
   </head>
-  <body class="implant-landing implant-editorial-page">
+  <body class="implant-landing implant-editorial-page internal-page">
     <ImplantologiaAttribution serviceInterest={page.serviceInterest} isLanding />
     <ImplantologiaHeader />
 
     <main class="implant-editorial" id="main-content" tabindex="-1">
       <section class="implant-editorial__hero" id="panoramica" aria-labelledby="implant-editorial-title">
         <div class="implant-editorial__container">
-          <nav class="implant-editorial__breadcrumb" aria-label="Breadcrumb">
+          <nav class="implant-editorial__breadcrumb" aria-label="Percorso di navigazione">
             <ol>
               <li><a href="/">Home</a></li>
               <li><a href="/implantologia/">Percorso implantologico</a></li>
-              <li aria-current="page">{page.h1}</li>
+              <li aria-current="page">{editorialHeroTitle.label}</li>
             </ol>
           </nav>
 
           <div class="implant-editorial__hero-grid">
             <div class="implant-editorial__hero-copy">
-              <p class="implant-editorial__kicker implant-editorial__kicker--light">Implantologia a Monza · Sorriso &amp; Salute</p>
-              <h1 id="implant-editorial-title">{page.h1}</h1>
+              <p class="implant-editorial__kicker">Implantologia a Monza · Sorriso &amp; Salute</p>
+              <h1 id="implant-editorial-title">
+                <span>{editorialHeroTitle.primary}</span>
+                <span>{editorialHeroTitle.accent}</span>
+              </h1>
               <p class="implant-editorial__hero-intro">{page.heroIntro}</p>
               <p class="implant-editorial__clinical-note">
                 La soluzione viene definita dopo la visita: indicazioni, tempi e modalità variano in base al caso.
@@ -370,8 +394,8 @@ const ctaHref = "/richiesta/";
   .implant-editorial {
     --editorial-ink: #0e384c;
     --editorial-ink-dark: #082a38;
-    --editorial-teal: #147d83;
-    --editorial-mint: #dff5ef;
+    --editorial-teal: #1e84b5;
+    --editorial-mint: #d7eef8;
     --editorial-paper: #f5f2ec;
     --editorial-line: #dce6e5;
     --editorial-body: #405562;
@@ -398,16 +422,17 @@ const ctaHref = "/richiesta/";
     min-height: min(800px, calc(100svh - var(--implant-home-header-height)));
     overflow: hidden;
     background:
-      radial-gradient(circle at 82% 18%, rgba(156, 226, 215, .24), transparent 28%),
-      linear-gradient(135deg, #082a38 0%, #0e384c 58%, #155a66 100%);
-    color: #fff;
+      radial-gradient(circle at 82% 18%, rgba(30, 132, 181, .14), transparent 30%),
+      radial-gradient(circle at 5% 90%, rgba(217, 236, 244, .44), transparent 28%),
+      #f8fafc;
+    color: var(--editorial-ink);
   }
 
   .implant-editorial__hero::before {
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(255, 255, 255, .12) 1px, transparent 1px);
-    background-size: 28px 28px;
+    background-image: radial-gradient(rgba(14, 56, 76, .055) 1px, transparent 1px);
+    background-size: 30px 30px;
     content: "";
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, .8), transparent 82%);
     pointer-events: none;
@@ -425,16 +450,17 @@ const ctaHref = "/richiesta/";
     gap: 8px;
     margin: 0;
     padding: 0;
-    color: rgba(255, 255, 255, .68);
+    color: #475569;
     font-size: 13px;
     list-style: none;
   }
 
   .implant-editorial__breadcrumb li { min-width: 0; overflow-wrap: anywhere; }
-  .implant-editorial__breadcrumb li:not(:last-child)::after { margin-left: 8px; content: "/"; opacity: .56; }
+  .implant-editorial__breadcrumb li:not(:last-child)::after { margin-left: 8px; content: "›"; opacity: .56; }
   .implant-editorial__breadcrumb a { color: inherit; text-decoration: none; }
-  .implant-editorial__breadcrumb a:hover { color: #fff; }
-  .implant-editorial__breadcrumb a:focus-visible { border-radius: 3px; outline: 2px solid #9ce2d7; outline-offset: 3px; }
+  .implant-editorial__breadcrumb a:hover { color: var(--editorial-teal); }
+  .implant-editorial__breadcrumb li:last-child { color: var(--editorial-ink); font-weight: 750; }
+  .implant-editorial__breadcrumb a:focus-visible { border-radius: 3px; outline: 2px solid var(--editorial-teal); outline-offset: 3px; }
 
   .implant-editorial__hero-grid {
     position: relative;
@@ -459,23 +485,26 @@ const ctaHref = "/richiesta/";
     text-transform: uppercase;
   }
 
-  .implant-editorial__kicker--light { color: #9ce2d7; }
+  .implant-editorial__kicker--light { color: #d7eef8; }
 
   .implant-editorial__hero h1 {
     max-width: 820px;
     margin: 0;
-    color: #fff;
-    font-size: clamp(40px, 5.1vw, 76px);
-    font-weight: 700;
-    letter-spacing: -.045em;
-    line-height: .99;
+    color: var(--editorial-ink);
+    font-size: clamp(48px, 5.8vw, 88px);
+    font-weight: 750;
+    letter-spacing: -.05em;
+    line-height: .95;
     overflow-wrap: anywhere;
   }
+
+  .implant-editorial__hero h1 span { display: block; }
+  .implant-editorial__hero h1 span:last-child { margin-top: .08em; color: var(--editorial-teal); }
 
   .implant-editorial__hero-intro {
     max-width: 720px;
     margin: 28px 0 0;
-    color: rgba(255, 255, 255, .88);
+    color: var(--editorial-body);
     font-size: clamp(17px, 1.45vw, 21px);
     line-height: 1.68;
   }
@@ -484,8 +513,8 @@ const ctaHref = "/richiesta/";
     max-width: 680px;
     margin: 20px 0 0;
     padding-left: 16px;
-    border-left: 2px solid #9ce2d7;
-    color: rgba(255, 255, 255, .68);
+    border-left: 2px solid var(--editorial-teal);
+    color: #475569;
     font-size: 13px;
     line-height: 1.6;
   }
@@ -517,10 +546,10 @@ const ctaHref = "/richiesta/";
 
   .implant-editorial__button:hover { transform: translateY(-2px); }
   .implant-editorial__button:focus-visible { outline: 3px solid rgba(101, 199, 223, .68); outline-offset: 3px; }
-  .implant-editorial__button--accent { background: #9ce2d7; color: var(--editorial-ink-dark); box-shadow: 0 14px 34px rgba(0, 0, 0, .18); }
-  .implant-editorial__button--accent:hover { background: #b8eee5; }
-  .implant-editorial__button--ghost { border-color: rgba(255, 255, 255, .36); background: rgba(255, 255, 255, .08); color: #fff; }
-  .implant-editorial__button--ghost:hover { background: rgba(255, 255, 255, .15); }
+  .implant-editorial__button--accent { background: var(--editorial-ink); color: #fff; box-shadow: 0 14px 34px rgba(8, 42, 56, .18); }
+  .implant-editorial__button--accent:hover { background: var(--editorial-teal); }
+  .implant-editorial__button--ghost { border-color: rgba(14, 56, 76, .2); background: #fff; color: var(--editorial-ink); }
+  .implant-editorial__button--ghost:hover { border-color: var(--editorial-teal); background: var(--editorial-teal); color: #fff; }
 
   .implant-editorial__hero-visual {
     position: relative;
@@ -529,10 +558,10 @@ const ctaHref = "/richiesta/";
     place-items: center;
     margin: 0;
     padding: clamp(28px, 4vw, 54px);
-    border: 1px solid rgba(255, 255, 255, .18);
-    border-radius: 40% 60% 48% 52% / 46% 42% 58% 54%;
-    background: rgba(255, 255, 255, .09);
-    box-shadow: 0 34px 80px rgba(0, 0, 0, .22);
+    border: 1px solid rgba(14, 56, 76, .1);
+    border-radius: 36px;
+    background: #fff;
+    box-shadow: 0 34px 80px rgba(8, 42, 56, .12);
     isolation: isolate;
   }
 
@@ -540,7 +569,7 @@ const ctaHref = "/richiesta/";
     position: absolute;
     inset: 8%;
     z-index: -1;
-    border: 1px solid rgba(156, 226, 215, .3);
+    border: 1px solid rgba(30, 132, 181, .22);
     border-radius: 50%;
   }
 
@@ -555,7 +584,7 @@ const ctaHref = "/richiesta/";
     height: auto;
     max-height: 430px;
     object-fit: contain;
-    filter: drop-shadow(0 24px 24px rgba(0, 0, 0, .22));
+    filter: drop-shadow(0 24px 24px rgba(8, 42, 56, .16));
   }
 
   .implant-editorial__hero-visual figcaption {
@@ -564,10 +593,10 @@ const ctaHref = "/richiesta/";
     bottom: 20px;
     left: 22px;
     padding: 10px 14px;
-    border: 1px solid rgba(255, 255, 255, .15);
+    border: 1px solid rgba(14, 56, 76, .08);
     border-radius: 14px;
-    background: rgba(8, 42, 56, .78);
-    color: rgba(255, 255, 255, .82);
+    background: rgba(255, 255, 255, .9);
+    color: #334155;
     font-size: 11px;
     line-height: 1.5;
     text-align: center;

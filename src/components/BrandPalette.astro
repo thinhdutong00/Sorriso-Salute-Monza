@@ -152,7 +152,7 @@ import "../styles/typography.css";
   /*
    * Third-party mirror widgets ship their own prose stacks (Roboto, system
    * fonts, Playfair, Archivo, Helvetica and monospace variants). Keep their
-   * text and generated labels on the same Inter contract while leaving icon
+   * text and generated labels on the same Malavasi font contract while leaving icon
    * fonts such as Font Awesome, eicons, elementskit and swiper untouched.
    */
   body.brand-palette .ekit-wid-con .ekit-feed-wrapper,
@@ -6036,6 +6036,25 @@ import "../styles/typography.css";
     color: #ffffff !important;
   }
 
+  body.brand-palette
+    .request-actions
+    .request-btn-primary:is(:hover, :focus-visible) {
+    --site-button-base-fill: transparent;
+    --site-button-hover-fill: transparent;
+    --site-button-hover-color: var(--brand-primary);
+    --site-button-hover-border: var(--brand-primary);
+    background: transparent !important;
+    border-color: var(--brand-primary) !important;
+    color: var(--brand-primary) !important;
+    box-shadow: none !important;
+  }
+
+  body.brand-palette
+    .request-actions
+    .request-btn-primary:is(:hover, :focus-visible)::before {
+    background: transparent !important;
+  }
+
   body.brand-palette .request-form input,
   body.brand-palette .request-form textarea {
     border-color: var(--brand-border) !important;
@@ -9277,6 +9296,52 @@ import "../styles/typography.css";
     )::before {
       transition: none !important;
     }
+  }
+
+  /*
+   * Home typography aligned with Fisioterapia Malavasi.
+   *
+   * The mirrored Elementor styles above intentionally reset every heading to
+   * weight 400 and tracking 0. That neutralised the Malavasi treatment even
+   * though the correct system font stack was already inherited. Restore the
+   * source site's 700-weight, tight-tracking heading rhythm on the Home only.
+   */
+  body.brand-palette.home #main-content :where(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .elementor-heading-title,
+    .elementor-icon-box-title,
+    .elementor-icon-box-title a
+  ) {
+    font-family: var(--font-family-display) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.025em !important;
+  }
+
+  body.brand-palette.home #main-content :where(
+    h1,
+    h1.elementor-heading-title,
+    .elementor-widget-heading h1.elementor-heading-title
+  ) {
+    letter-spacing: -0.045em !important;
+  }
+
+  body.brand-palette.home #main-content :where(
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .elementor-heading-title,
+    .elementor-icon-box-title
+  ) * {
+    font-family: inherit !important;
+    letter-spacing: inherit !important;
   }
 </style>
 

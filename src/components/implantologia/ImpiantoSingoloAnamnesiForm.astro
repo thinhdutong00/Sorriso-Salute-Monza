@@ -145,7 +145,6 @@ const yesNoOptions = ["Sì", "No"];
 const ageOptions = ["Fino a 30 anni", "31–50 anni", "51–65 anni", "Oltre 65 anni"];
 const preferredDays = ["Lun", "Mar", "Mer", "Gio", "Ven"];
 const preferredTimes = ["Mattina", "Pomeriggio"];
-const contactChannels = ["Telefono", "WhatsApp", "Email"];
 ---
 
 <section
@@ -175,10 +174,10 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
       aria-label="Avanzamento del questionario"
       aria-valuemin="0"
       aria-valuemax="100"
-      aria-valuenow="10"
+      aria-valuenow="11"
       data-form-progress
     >
-      <span data-progress-fill style="width: 10%"></span>
+      <span data-progress-fill style="width: 11%"></span>
     </div>
 
     <div class="single-implant-form__content">
@@ -454,31 +453,6 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
         </fieldset>
       </div>
 
-      <div class="single-implant-form__step" data-step-id="contact-channel" hidden>
-        <p class="single-implant-form__kicker">Preferenza di contatto</p>
-        <h2 tabindex="-1">Come preferisci essere ricontattato?</h2>
-        <fieldset>
-          <legend class="sr-only">Seleziona il canale di ricontatto preferito</legend>
-          <div class="single-implant-form__options">
-            {contactChannels.map((option, index) => (
-              <label class="single-implant-form__option" for={`single-channel-${index}`}>
-                <input
-                  id={`single-channel-${index}`}
-                  type="radio"
-                  name="preferred_contact_channel"
-                  value={option}
-                  required
-                />
-                <span>
-                  <b>{option}</b>
-                  <i aria-hidden="true"></i>
-                </span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-      </div>
-
       <div class="single-implant-form__step" data-step-id="contacts" hidden>
         <p class="single-implant-form__kicker">Conferma e contatti</p>
         <h2 tabindex="-1">Ultime informazioni</h2>
@@ -504,6 +478,7 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
               inputmode="tel"
               autocomplete="tel"
               placeholder="Telefono"
+              required
             />
           </label>
           <label class="single-implant-form__field" for="single-email">
@@ -563,7 +538,6 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
     | "imaging"
     | "age"
     | "availability"
-    | "contact-channel"
     | "contacts";
 
   const anamnesiStepPositions: Record<StepId, number> = {
@@ -577,8 +551,7 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
     imaging: 6,
     age: 7,
     availability: 8,
-    "contact-channel": 9,
-    contacts: 10,
+    contacts: 9,
   };
 
   const markImplantologiaConversionPending = () => {
@@ -640,7 +613,6 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
           "imaging",
           "age",
           "availability",
-          "contact-channel",
           "contacts",
         ];
       };
@@ -705,27 +677,17 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
             return invalid("Indica se il caso è urgente.", step?.querySelector('input[name="implantologia_urgency"]') || null);
           }
         }
-        if (stepId === "contact-channel" && !checkedValue("preferred_contact_channel")) {
-          return invalid("Seleziona come preferisci essere ricontattato.", step?.querySelector("input") || null);
-        }
         if (stepId === "contacts") {
           const nameInput = form.elements.namedItem("name") as HTMLInputElement | null;
           const privacyInput = form.elements.namedItem("privacy_consent") as HTMLInputElement | null;
-          const channel = checkedValue("preferred_contact_channel");
 
           if (!nameInput?.value.trim() || nameInput.value.trim().length < 2) {
             return invalid("Inserisci nome e cognome.", nameInput);
           }
 
-          if (channel === "Email") {
-            if (!emailInput?.value.trim() || !emailInput.checkValidity()) {
-              return invalid("Inserisci un indirizzo email valido.", emailInput);
-            }
-          } else {
-            const phoneDigits = phoneInput?.value.replace(/\D/g, "") || "";
-            if (phoneDigits.length < 6) {
-              return invalid("Inserisci un numero di telefono valido.", phoneInput);
-            }
+          const phoneDigits = phoneInput?.value.replace(/\D/g, "") || "";
+          if (phoneDigits.length < 6) {
+            return invalid("Inserisci un numero di telefono valido.", phoneInput);
           }
 
           if (emailInput?.value.trim() && !emailInput.checkValidity()) {
@@ -743,21 +705,6 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
         if (!element) return;
         element.setAttribute("aria-invalid", "true");
         element.focus({ preventScroll: true });
-      };
-
-      const updateContactRequirements = () => {
-        const channel = checkedValue("preferred_contact_channel");
-        const requiresPhone = channel === "Telefono" || channel === "WhatsApp";
-        const requiresEmail = channel === "Email";
-
-        if (phoneInput) {
-          phoneInput.required = requiresPhone;
-          phoneInput.setAttribute("aria-required", String(requiresPhone));
-        }
-        if (emailInput) {
-          emailInput.required = requiresEmail;
-          emailInput.setAttribute("aria-required", String(requiresEmail));
-        }
       };
 
       const updateNavigationState = () => {
@@ -786,12 +733,11 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
         });
 
         const position = anamnesiStepPositions[currentStep];
-        const percentage = Math.round((position / 10) * 100);
+        const percentage = Math.round((position / 9) * 100);
         if (progressFill) progressFill.style.width = `${percentage}%`;
         progress?.setAttribute("aria-valuenow", String(percentage));
         setError();
         clearInvalidState();
-        updateContactRequirements();
         updateNavigationState();
 
         if (focusHeading) {
@@ -812,7 +758,6 @@ const contactChannels = ["Telefono", "WhatsApp", "Email"];
 
         target.removeAttribute("aria-invalid");
         setError();
-        updateContactRequirements();
         updateNavigationState();
       });
 

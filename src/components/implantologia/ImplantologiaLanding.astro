@@ -85,42 +85,53 @@ const visitChecks = [
     <FaviconLinks />
     <GoogleAdsTracking />
   </head>
-  <body class="implant-landing">
+  <body class="implant-landing internal-page">
     <ImplantologiaHeader />
 
     <main id="main-content" tabindex="-1">
       <section class="implant-hero" id="panoramica" aria-labelledby="implant-hero-title">
-        <div class="implant-container implant-hero__grid">
-          <div class="implant-hero__copy">
-            <p class="implant-kicker">Implantologia a Monza · Sorriso &amp; Salute</p>
-            <h1 id="implant-hero-title">
-              <span>{page.heroTitleFirst}</span>
-              <span>{page.heroTitleAccent}</span>
-            </h1>
-            <p class="implant-hero__lead">{page.heroIntro}</p>
-            <p class="implant-clinical-note">
-              Il piano viene definito dopo valutazione clinica. Le soluzioni possibili dipendono dalla situazione del
-              singolo paziente.
-            </p>
-            <div class="implant-actions">
-              <a class="implant-button implant-button--primary" href="#prenota">Inizia la valutazione</a>
-              <a
-                class="implant-button implant-button--whatsapp"
-                href="https://wa.me/393892490181"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-google-ads-conversion="whatsapp-implantologia"
-              >Scrivi su WhatsApp</a>
-            </div>
-            <ul class="implant-hero__assurances" aria-label="Informazioni sulla richiesta">
-              <li>Questionario anamnestico guidato</li>
-              <li>Richiesta senza conferma automatica</li>
-              <li>Ricontatto da parte dello studio</li>
-            </ul>
-          </div>
+        <div class="implant-container">
+          <nav class="implant-hero__breadcrumb" aria-label="Percorso di navigazione">
+            <ol>
+              <li><a href="/">Home</a></li>
+              <li><a href="/attivita/">Trattamenti</a></li>
+              <li><a href="/implantologia/">Implantologia</a></li>
+              <li aria-current="page">{page.cardTitle}</li>
+            </ol>
+          </nav>
 
-          <div class="implant-hero__form">
-            <ImplantologiaAnamnesiForm slug={page.slug} serviceInterest={page.serviceInterest} />
+          <div class="implant-hero__grid">
+            <div class="implant-hero__copy">
+              <p class="implant-kicker">Implantologia a Monza · Sorriso &amp; Salute</p>
+              <h1 id="implant-hero-title">
+                <span>{page.heroTitleFirst}</span>
+                <span>{page.heroTitleAccent}</span>
+              </h1>
+              <p class="implant-hero__lead">{page.heroIntro}</p>
+              <p class="implant-clinical-note">
+                Il piano viene definito dopo valutazione clinica. Le soluzioni possibili dipendono dalla situazione del
+                singolo paziente.
+              </p>
+              <div class="implant-actions">
+                <a class="implant-button implant-button--primary" href="#prenota">Inizia la valutazione</a>
+                <a
+                  class="implant-button implant-button--whatsapp"
+                  href="https://wa.me/393892490181"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-google-ads-conversion="whatsapp-implantologia"
+                >Scrivi su WhatsApp</a>
+              </div>
+              <ul class="implant-hero__assurances" aria-label="Informazioni sulla richiesta">
+                <li>Questionario anamnestico guidato</li>
+                <li>Richiesta senza conferma automatica</li>
+                <li>Ricontatto da parte dello studio</li>
+              </ul>
+            </div>
+
+            <div class="implant-hero__form">
+              <ImplantologiaAnamnesiForm slug={page.slug} serviceInterest={page.serviceInterest} />
+            </div>
           </div>
         </div>
       </section>
@@ -338,11 +349,11 @@ const visitChecks = [
       :root {
         --implant-ink: #0e384c;
         --implant-ink-dark: #082a38;
-        --implant-teal: #147d83;
-        --implant-teal-deep: #0d676d;
-        --implant-mint: #dff4f0;
-        --implant-paper: #f5f9f8;
-        --implant-line: #d6e2e2;
+        --implant-teal: #1e84b5;
+        --implant-teal-deep: #14668d;
+        --implant-mint: #d7eef8;
+        --implant-paper: #f8fafc;
+        --implant-line: #d9e5ea;
         --implant-body: #375765;
       }
 
@@ -378,12 +389,12 @@ const visitChecks = [
 
       .implant-hero {
         position: relative;
-        padding: clamp(74px, 7vw, 112px) 0 clamp(78px, 7vw, 112px);
+        padding: clamp(110px, 10vw, 146px) 0 clamp(78px, 7vw, 112px);
         overflow: hidden;
         background:
-          radial-gradient(circle at 86% 16%, rgba(47, 151, 148, .18), transparent 28%),
-          radial-gradient(circle at 6% 88%, rgba(152, 219, 207, .25), transparent 25%),
-          linear-gradient(135deg, #f1f9f7 0%, #fff 55%, #eef5f5 100%);
+          radial-gradient(circle at 86% 16%, rgba(30, 132, 181, .14), transparent 28%),
+          radial-gradient(circle at 6% 88%, rgba(217, 236, 244, .42), transparent 25%),
+          linear-gradient(135deg, #f8fafc 0%, #fff 55%, #eef8fc 100%);
       }
 
       .implant-hero::before {
@@ -392,9 +403,53 @@ const visitChecks = [
         right: -120px;
         width: 360px;
         height: 360px;
-        border: 1px solid rgba(20, 125, 131, .13);
+        border: 1px solid rgba(30, 132, 181, .13);
         border-radius: 50%;
         content: "";
+      }
+
+      .implant-hero__breadcrumb {
+        position: relative;
+        z-index: 1;
+        margin-bottom: clamp(42px, 5vw, 66px);
+      }
+
+      .implant-hero__breadcrumb ol {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        gap: 9px;
+        color: #475569;
+        font-size: 13px;
+        list-style: none;
+      }
+
+      .implant-hero__breadcrumb li {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .implant-hero__breadcrumb li:not(:last-child)::after {
+        color: rgba(14, 56, 76, .5);
+        content: "›";
+      }
+
+      .implant-hero__breadcrumb a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .implant-hero__breadcrumb a:hover,
+      .implant-hero__breadcrumb a:focus-visible {
+        color: var(--implant-teal);
+      }
+
+      .implant-hero__breadcrumb li:last-child {
+        color: var(--implant-ink);
+        font-weight: 750;
       }
 
       .implant-hero__grid {
@@ -412,10 +467,10 @@ const visitChecks = [
         max-width: 10.8ch;
         margin: 0;
         color: var(--implant-ink);
-        font-size: clamp(52px, 5.35vw, 78px);
-        font-weight: 800;
-        line-height: .99;
-        letter-spacing: -.055em;
+        font-size: clamp(52px, 5.8vw, 88px);
+        font-weight: 750;
+        line-height: .95;
+        letter-spacing: -.05em;
         text-wrap: balance;
       }
 
@@ -693,7 +748,9 @@ const visitChecks = [
 
       @media (max-width: 620px) {
         .implant-container { width: min(100% - 28px, 1216px); }
-        .implant-hero { padding-top: 24px; padding-bottom: 54px; }
+        .implant-hero { padding-top: 96px; padding-bottom: 54px; }
+        .implant-hero__breadcrumb { margin-bottom: 36px; overflow-x: auto; }
+        .implant-hero__breadcrumb ol { flex-wrap: nowrap; width: max-content; font-size: 11px; white-space: nowrap; }
         .implant-hero__grid { gap: 22px; }
         .implant-hero h1 {
           max-width: none;

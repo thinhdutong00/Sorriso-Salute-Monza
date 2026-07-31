@@ -3,6 +3,7 @@ import "../styles/global.css";
 import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import InternalPageHero from "../components/InternalPageHero.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import ImplantologiaAttribution from "../components/implantologia/ImplantologiaAttribution.astro";
@@ -24,13 +25,25 @@ import ImplantologiaHiddenFields from "../components/implantologia/Implantologia
     <BrandPalette />
     <title>Richiedi una valutazione | Sorriso & Salute Monza</title>
   </head>
-  <body class="request-body brand-palette">
+  <body class="request-body brand-palette internal-page">
     <SiteHeader />
 
     <main id="main-content" tabindex="-1">
-      <section class="request-shell" aria-labelledby="request-title">
-        <h1 class="request-title" id="request-title">Richiedi una valutazione</h1>
+      <InternalPageHero
+        id="request-title"
+        eyebrow="Valutazione implantologica"
+        titlePrimary="Raccontaci la tua situazione."
+        titleAccent="Inizia dalla valutazione."
+        lead="Rispondi a poche domande: lo studio userà le informazioni per ricontattarti e organizzare il primo approfondimento."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Implantologia", href: "/implantologia/" },
+          { label: "Richiedi una valutazione" },
+        ]}
+        compact
+      />
 
+      <section class="request-shell" aria-label="Modulo di valutazione implantologica">
         <form class="request-form" id="valutazione" action="/api/send-lead" method="post" data-implantologia-form novalidate>
           <ImplantologiaHiddenFields />
           <div class="request-progress" role="progressbar" aria-label="Avanzamento richiesta" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"></div>

@@ -61,8 +61,8 @@ export const implantologiaPages: ImplantologiaPage[] = [
       "Valutazione implantologica per sostituire un singolo dente mancante a Monza. Prenota una consulenza presso lo studio Sorriso&Salute.",
     cardTitle: "Impianto singolo",
     serviceInterest: "Impianto singolo",
-    heroTitleFirst: "Impianto dentale singolo",
-    heroTitleAccent: "a Monza",
+    heroTitleFirst: "Ti manca un dente?",
+    heroTitleAccent: "Valutiamo una soluzione stabile.",
     heroIntro:
       "Se hai perso un dente o devi sostituirne uno compromesso, una visita permette di capire se l’impianto singolo può essere indicato per il tuo caso.",
     heroImage: "/assets/brand/implant-solutions/optimized/implant-single-1080.avif",
@@ -119,8 +119,8 @@ export const implantologiaPages: ImplantologiaPage[] = [
       "Soluzioni implantologiche per denti fissi su impianti a Monza, previa valutazione clinica. Prenota una consulenza presso Sorriso&Salute.",
     cardTitle: "Denti fissi",
     serviceInterest: "Denti fissi",
-    heroTitleFirst: "Denti fissi su impianti",
-    heroTitleAccent: "a Monza",
+    heroTitleFirst: "Più denti mancanti?",
+    heroTitleAccent: "Valutiamo una soluzione fissa.",
     heroIntro:
       "Se più denti mancanti o una protesi mobile limitano comfort e sicurezza, possiamo valutare insieme le soluzioni implantologiche disponibili.",
     heroImage: "/assets/brand/implant-solutions/optimized/full-arch-1080.avif",
@@ -177,8 +177,8 @@ export const implantologiaPages: ImplantologiaPage[] = [
       "Valutazione per ponte fisso su impianti dentali a Monza. Scopri il percorso implantologico più adatto al tuo caso.",
     cardTitle: "Ponte su impianti",
     serviceInterest: "Ponte su impianti",
-    heroTitleFirst: "Ponte su impianti dentali",
-    heroTitleAccent: "a Monza",
+    heroTitleFirst: "Mancano più denti vicini?",
+    heroTitleAccent: "Valutiamo un ponte su impianti.",
     heroIntro:
       "Quando mancano più denti vicini, il ponte su impianti può essere una strada da valutare per recuperare stabilità e funzione.",
     heroImage: "/assets/brand/implant-solutions/optimized/multiple-teeth-1080.avif",
@@ -235,8 +235,8 @@ export const implantologiaPages: ImplantologiaPage[] = [
       "La protesi mobile si muove o crea disagio? Prenota una valutazione implantologica a Monza per capire le soluzioni disponibili.",
     cardTitle: "Protesi instabile",
     serviceInterest: "Protesi instabile",
-    heroTitleFirst: "Protesi dentale instabile?",
-    heroTitleAccent: "Valutazione implantologica a Monza",
+    heroTitleFirst: "La protesi si muove?",
+    heroTitleAccent: "Scopri come migliorarne la stabilità.",
     heroIntro:
       "Se la protesi mobile si muove mentre mangi o parli, il primo passo è capire cosa la rende instabile e quali opzioni possono aiutarti.",
     heroImage: "/assets/brand/implant-solutions/optimized/implant-prosthesis-1080.avif",

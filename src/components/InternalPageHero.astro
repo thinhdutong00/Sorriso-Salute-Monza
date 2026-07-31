@@ -1,0 +1,91 @@
+---
+import "../styles/internal-pages.css";
+import type {
+  InternalHeroBreadcrumb,
+  InternalHeroPanel,
+} from "../data/internalPageHeroes";
+
+interface Props {
+  id?: string;
+  eyebrow: string;
+  titlePrimary: string;
+  titleAccent: string;
+  lead: string;
+  breadcrumbs: InternalHeroBreadcrumb[];
+  panel?: InternalHeroPanel;
+  compact?: boolean;
+}
+
+const {
+  id = "internal-page-title",
+  eyebrow,
+  titlePrimary,
+  titleAccent,
+  lead,
+  breadcrumbs,
+  panel,
+  compact = false,
+} = Astro.props;
+---
+
+<section
+  class:list={[
+    "internal-page-hero",
+    panel && "internal-page-hero--with-panel",
+    compact && "internal-page-hero--compact",
+  ]}
+  aria-labelledby={id}
+>
+  <div class="internal-page-hero__container">
+    <nav class="internal-page-hero__breadcrumb" aria-label="Percorso di navigazione">
+      <ol>
+        {
+          breadcrumbs.map((crumb, index) => (
+            <li aria-current={index === breadcrumbs.length - 1 ? "page" : undefined}>
+              {crumb.href && index !== breadcrumbs.length - 1 ? (
+                <a href={crumb.href}>{crumb.label}</a>
+              ) : (
+                <span>{crumb.label}</span>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+
+    <div class="internal-page-hero__grid">
+      <div class="internal-page-hero__copy">
+        <p class="internal-page-hero__eyebrow">{eyebrow}</p>
+        <h1 id={id}>
+          <span class="internal-page-hero__title-primary">{titlePrimary}</span>
+          <span class="internal-page-hero__title-accent">{titleAccent}</span>
+        </h1>
+        <p class="internal-page-hero__lead">{lead}</p>
+        <slot name="actions" />
+      </div>
+
+      {
+        panel && (
+          <aside class="internal-page-hero__panel" aria-label={panel.title}>
+            <div class="internal-page-hero__panel-line" aria-hidden="true">
+              <span></span>
+            </div>
+            <p class="internal-page-hero__panel-label">{panel.label}</p>
+            <h2>{panel.title}</h2>
+            <ol>
+              {panel.items.map((item, index) => (
+                <li>
+                  <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{item}</strong>
+                </li>
+              ))}
+            </ol>
+            <a href={panel.ctaHref}>{panel.ctaLabel}</a>
+          </aside>
+        )
+      }
+
+      <slot name="aside" />
+    </div>
+  </div>
+</section>

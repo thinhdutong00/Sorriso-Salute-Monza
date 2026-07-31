@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import FaviconLinks from "../components/FaviconLinks.astro";
+import InternalPageHero from "../components/InternalPageHero.astro";
 import PageLoader from "../components/PageLoader.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 import SiteFooter from "../components/SiteFooter.astro";
@@ -530,10 +531,10 @@ const conventionGroups = [
     <GoogleAdsTracking />
     <title>Percorso implantologico a Monza | Sorriso &amp; Salute</title>
   </head>
-  <body class="has-sticky-cta">
+  <body class="has-sticky-cta internal-page implantologia-hub-page">
     <PageLoader />
     <ImplantologiaAttribution serviceInterest="Implantologia" isLanding />
-    <SiteHeader overlay />
+    <SiteHeader />
 
     {false && (
       <Fragment>
@@ -779,22 +780,36 @@ const conventionGroups = [
     )}
 
     <main id="main-content" tabindex="-1">
-      <section class="hero" aria-label="Percorso implantologico a Monza">
-        <div class="hero-content">
-          <h1>
-            Percorso implantologico
-          </h1>
-          <p class="hero-breadcrumb hero-service-description">
-            Sostituisci i denti mancanti con soluzioni stabili, progettate per tornare a sorridere e masticare con sicurezza.
-          </p>
-          <p class="hero-lead hero-lead-desktop">
-            <strong>Dal 2003 a Monza, attraverso solo la chirurgia implantare, abbiamo aiutato oltre 10.000 persone a ritrovare la sicurezza di sorridere e il piacere di masticare senza dolore.</strong> Che ti manchi un solo dente o un'intera arcata, progettiamo la soluzione implantare su misura per restituirti il comfort che stai cercando.
-          </p>
-          <p class="hero-lead hero-lead-mobile">
-            <strong>Dal 2003 a Monza, attraverso solo la chirurgia implantare, abbiamo aiutato oltre 10.000 persone a ritrovare la sicurezza di sorridere e il piacere di masticare senza dolore.</strong>
-          </p>
+      <InternalPageHero
+        id="implantologia-title"
+        eyebrow="Soluzioni per i denti mancanti"
+        titlePrimary="Denti mancanti?"
+        titleAccent="Valutiamo una soluzione stabile per te."
+        lead="Se ti manca un dente, più denti o una protesi mobile crea disagio, una valutazione permette di confrontare le soluzioni implantologiche compatibili con il tuo caso."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Trattamenti", href: "/attivita/" },
+          { label: "Implantologia" },
+        ]}
+        panel={{
+          label: "Il percorso implantologico",
+          title: "Dalla situazione di oggi a un piano verificabile",
+          items: [
+            "Valutazione clinica e diagnostica",
+            "Confronto tra soluzioni e alternative",
+            "Tempi, fasi e controlli spiegati con chiarezza",
+          ],
+          ctaLabel: "Inizia la valutazione",
+          ctaHref: "/richiesta/",
+        }}
+      >
+        <div slot="actions" class="internal-page-hero__actions">
+          <a class="internal-page-hero__button" href="/richiesta/">Richiedi una valutazione</a>
+          <a class="internal-page-hero__button internal-page-hero__button--secondary" href="#situazioni-oggi-title">
+            Scopri le soluzioni
+          </a>
         </div>
-      </section>
+      </InternalPageHero>
 
       <section class="section section-white situations-section scroll-reveal" aria-labelledby="situazioni-oggi-title" data-scroll-reveal>
         <div class="section-heading centered">
@@ -1240,7 +1255,7 @@ const conventionGroups = [
       const header = document.querySelector("[data-header]");
       const menuButton = document.querySelector("[data-menu-button]");
       const mobileNav = document.querySelector("[data-mobile-nav]");
-      const hero = document.querySelector(".hero");
+      const hero = document.querySelector(".internal-page-hero, .hero");
       const kebabPanel = document.querySelector("[data-kebab-menu]");
       const kebabBackdrop = document.querySelector("[data-kebab-backdrop]");
       const implantologyToggle = kebabPanel?.querySelector("[data-kebab-implantology-toggle]");

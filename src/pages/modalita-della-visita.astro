@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/information-page.css";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import InternalPageHero from "../components/InternalPageHero.astro";
 import PageLoader from "../components/PageLoader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
@@ -70,27 +71,29 @@ const visitTypes = [
     <FaviconLinks />
     <GoogleAdsTracking />
   </head>
-  <body class="information-page">
+  <body class="information-page internal-page">
     <PageLoader />
-    <SiteHeader overlay />
+    <SiteHeader />
 
     <main id="main-content" tabindex="-1">
-      <section class="information-hero" aria-labelledby="visit-title">
-        <div class="information-hero__inner">
-          <p class="information-eyebrow">Modalità della visita</p>
-          <h1 id="visit-title">Una visita chiara, dall’ascolto ai prossimi passi</h1>
-          <p class="information-hero__lead">
-            Ogni percorso parte da una valutazione personale. Ti spieghiamo cosa aspettarti, quali informazioni
-            possono essere utili e come vengono condivise le possibili opzioni di cura.
-          </p>
-          <div class="information-actions">
-            <a class="information-button" href="/richiesta-generale/">Richiedi una visita</a>
-            <a class="information-button information-button--secondary" href="tel:+390392022489">
-              Chiama 039 2022489
-            </a>
-          </div>
+      <InternalPageHero
+        id="visit-title"
+        eyebrow="Modalità della visita"
+        titlePrimary="Una visita chiara."
+        titleAccent="Dall’ascolto ai prossimi passi."
+        lead="Ogni percorso parte da una valutazione personale. Ti spieghiamo cosa aspettarti, quali informazioni possono essere utili e come vengono condivise le possibili opzioni di cura."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Modalità della visita" },
+        ]}
+      >
+        <div slot="actions" class="information-actions">
+          <a class="information-button" href="/richiesta-generale/">Richiedi una visita</a>
+          <a class="information-button information-button--secondary" href="tel:+390392022489">
+            Chiama 039 2022489
+          </a>
         </div>
-      </section>
+      </InternalPageHero>
 
       <section class="information-section information-section--mist" aria-labelledby="steps-title">
         <div class="information-section__inner">

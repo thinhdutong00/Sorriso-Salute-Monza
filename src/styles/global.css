@@ -1,4 +1,5 @@
 @import "./typography.css";
+@import "./internal-pages.css";
 
 :root {
   --nav-font-family: var(--font-family-navigation);
@@ -1728,6 +1729,20 @@ body.kebab-menu-open .site-header .implantologia-hub__logo-mark {
 
 .section-muted {
   background: var(--surface-warm);
+}
+
+/* Keep the implantology hub visually continuous after its light hero. */
+body.implantologia-hub-page,
+body.implantologia-hub-page #main-content,
+body.implantologia-hub-page #main-content > .section,
+body.implantologia-hub-page #main-content > .contact-section {
+  background: #f8fafc;
+}
+
+body.implantologia-hub-page #main-content > .situations-section::before,
+body.implantologia-hub-page #main-content > .pain-section::before,
+body.implantologia-hub-page #main-content > .team-section::before {
+  background: none;
 }
 
 .section-heading {
@@ -5425,12 +5440,43 @@ body.urgent-page
 
 .single-implant-form__continue,
 .single-implant-form__submit {
-  --site-button-base-fill: #55b4ff;
-  --site-button-base-color: #022166;
-  --site-button-base-border: #55b4ff;
-  --site-button-hover-fill: #ffffff;
-  --site-button-hover-color: #022166;
-  --site-button-hover-border: #55b4ff;
+  --site-button-base-fill: var(--brand-primary, var(--clinic-teal, #0e384c));
+  --site-button-base-color: #ffffff;
+  --site-button-base-border: var(--brand-primary, var(--clinic-teal, #0e384c));
+  --site-button-hover-fill: transparent;
+  --site-button-hover-color: var(--brand-primary, var(--clinic-teal, #0e384c));
+  --site-button-hover-border: var(--brand-primary, var(--clinic-teal, #0e384c));
+}
+
+:where(
+  .implant-multistep__next,
+  .implant-multistep__submit,
+  .single-implant-form__continue,
+  .single-implant-form__submit
+) {
+  border: 1px solid var(--site-button-base-border) !important;
+}
+
+:where(
+  .implant-multistep__next,
+  .implant-multistep__submit,
+  .single-implant-form__continue,
+  .single-implant-form__submit
+):is(:hover, :focus-visible) {
+  border-color: var(--brand-primary, var(--clinic-teal, #0e384c)) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--brand-primary, var(--clinic-teal, #0e384c)) !important;
+  box-shadow: none !important;
+}
+
+:where(
+  .implant-multistep__next,
+  .implant-multistep__submit,
+  .single-implant-form__continue,
+  .single-implant-form__submit
+):is(:hover, :focus-visible)::before {
+  background: transparent !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

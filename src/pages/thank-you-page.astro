@@ -3,6 +3,7 @@ import "../styles/global.css";
 import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import InternalPageHero from "../components/InternalPageHero.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 ---
@@ -45,22 +46,29 @@ import SiteHeader from "../components/SiteHeader.astro";
     </script>
     <title>Grazie | Sorriso & Salute Monza</title>
   </head>
-  <body class="request-body brand-palette">
+  <body class="request-body brand-palette internal-page">
     <SiteHeader />
 
     <main id="main-content" tabindex="-1">
-      <section class="request-shell thank-you-shell" aria-labelledby="thank-you-title">
-        <p class="quiz-kicker">Richiesta inviata</p>
-        <h1 class="request-title" id="thank-you-title">Grazie, abbiamo ricevuto la tua richiesta.</h1>
-        <p class="thank-you-copy">
-          Lo studio ti ricontatterà per confermare la prima valutazione e verificare la disponibilità
-          dell'appuntamento indicato.
-        </p>
-        <div class="thank-you-actions">
-          <a class="request-btn request-btn-primary" href="/">Torna alla home</a>
-          <a class="request-btn request-btn-outline" href="/richiesta-generale/">Invia una nuova richiesta</a>
+      <InternalPageHero
+        id="thank-you-title"
+        eyebrow="Richiesta inviata"
+        titlePrimary="Richiesta ricevuta."
+        titleAccent="Ti ricontatteremo per confermare."
+        lead="Lo studio ti ricontatterà per confermare la prima valutazione e verificare la disponibilità dell’appuntamento indicato."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Richiesta inviata" },
+        ]}
+        compact
+      >
+        <div slot="actions" class="internal-page-hero__actions">
+          <a class="internal-page-hero__button" href="/">Torna alla home</a>
+          <a class="internal-page-hero__button internal-page-hero__button--secondary" href="/richiesta-generale/">
+            Invia una nuova richiesta
+          </a>
         </div>
-      </section>
+      </InternalPageHero>
     </main>
     <SiteFooter />
   </body>

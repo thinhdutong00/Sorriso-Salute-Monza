@@ -3,6 +3,7 @@ import "../styles/global.css";
 import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import InternalPageHero from "../components/InternalPageHero.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 ---
@@ -22,17 +23,24 @@ import SiteHeader from "../components/SiteHeader.astro";
     <BrandPalette />
     <title>Orientamento sorriso | Sorriso & Salute Monza</title>
   </head>
-  <body class="request-body brand-palette orientation-body">
+  <body class="request-body brand-palette orientation-body internal-page">
     <SiteHeader />
 
     <main id="main-content" tabindex="-1">
-      <section class="request-shell orientation-shell" aria-labelledby="orientation-title">
-        <p class="quiz-kicker">Orientamento sorriso</p>
-        <h1 class="request-title orientation-title" id="orientation-title">Capisci da dove iniziare</h1>
-        <p class="orientation-copy text-description">
-          Rispondi a poche domande: ci aiuteranno a capire il tuo obiettivo e a ricontattarti con un percorso più chiaro.
-        </p>
+      <InternalPageHero
+        id="orientation-title"
+        eyebrow="Orientamento sorriso"
+        titlePrimary="Capisci da dove"
+        titleAccent="iniziare."
+        lead="Rispondi a poche domande: ci aiuteranno a capire il tuo obiettivo e a ricontattarti con un percorso più chiaro."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Orientamento sorriso" },
+        ]}
+        compact
+      />
 
+      <section class="request-shell orientation-shell" aria-label="Questionario di orientamento sorriso">
         <form class="request-form orientation-form" id="orientamento-sorriso" action="/api/send-lead" method="post" novalidate>
           <div class="request-progress" role="progressbar" aria-label="Avanzamento quiz" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"></div>
 

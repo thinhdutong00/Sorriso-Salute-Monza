@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/information-page.css";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import InternalPageHero from "../components/InternalPageHero.astro";
 import PageLoader from "../components/PageLoader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
@@ -41,32 +42,34 @@ const profiles = [
     <FaviconLinks />
     <GoogleAdsTracking />
   </head>
-  <body class="information-page">
+  <body class="information-page internal-page">
     <PageLoader />
-    <SiteHeader overlay />
+    <SiteHeader />
 
     <main id="main-content" tabindex="-1">
-      <section class="information-hero" aria-labelledby="careers-title">
-        <div class="information-hero__inner">
-          <p class="information-eyebrow">Lavora con noi</p>
-          <h1 id="careers-title">Cresci insieme al nostro studio</h1>
-          <p class="information-hero__lead">
-            Valutiamo candidature spontanee di professionisti e collaboratori che condividono attenzione per il
-            paziente, precisione e lavoro di squadra.
-          </p>
-          <div class="information-actions">
-            <a
-              class="information-button"
-              href="mailto:info@sorrisoesalute.it?subject=Candidatura%20spontanea%20-%20Sorriso%20%26%20Salute"
-            >
-              Invia la candidatura
-            </a>
-            <a class="information-button information-button--secondary" href="/chi-siamo/#team">
-              Conosci il team
-            </a>
-          </div>
+      <InternalPageHero
+        id="careers-title"
+        eyebrow="Lavora con noi"
+        titlePrimary="Porta il tuo talento."
+        titleAccent="Cresci con il nostro team."
+        lead="Valutiamo candidature spontanee di professionisti e collaboratori che condividono attenzione per il paziente, precisione e lavoro di squadra."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Lavora con noi" },
+        ]}
+      >
+        <div slot="actions" class="information-actions">
+          <a
+            class="information-button"
+            href="mailto:info@sorrisoesalute.it?subject=Candidatura%20spontanea%20-%20Sorriso%20%26%20Salute"
+          >
+            Invia la candidatura
+          </a>
+          <a class="information-button information-button--secondary" href="/chi-siamo/#team">
+            Conosci il team
+          </a>
         </div>
-      </section>
+      </InternalPageHero>
 
       <section class="information-section information-section--white" aria-labelledby="profiles-title">
         <div class="information-section__inner">
