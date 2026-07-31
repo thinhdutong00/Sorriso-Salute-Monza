@@ -1311,7 +1311,7 @@ const treatmentCardsScript = `
     },
     {
       slug: "surgery",
-      titles: ["Affronta estrazioni e interventi con un piano chiaro", "Chirurgia Orale", "Chirurgia orale", "Emergency Dental Care"],
+      titles: ["Estrazioni e interventi con un piano chiaro", "Chirurgia Orale", "Chirurgia orale", "Emergency Dental Care"],
       image: "/assets/brand/chirurgia-orale-equipe.jpg",
       alt: "Equipe odontoiatrica durante un intervento di chirurgia orale",
       icon: icons.surgery,
@@ -1376,6 +1376,81 @@ const treatmentCardsScript = `
       node.style.setProperty("transform", "none", "important");
       node.style.setProperty("visibility", "visible", "important");
     });
+  };
+
+  const prepareTreatmentCardCopy = (card) => {
+    if (!document.body.classList.contains("home")) return;
+    if (!card.closest(".elementor-7051")) return;
+
+    const boxBody = card.querySelector(".box-body");
+    if (!boxBody || boxBody.querySelector(":scope > .treatment-card-copy-stage")) return;
+
+    const clinicalLabel = boxBody.querySelector(":scope > .treatment-card-clinical-label");
+    const title = boxBody.querySelector(":scope > .elementskit-info-box-title");
+    const description = boxBody.querySelector(":scope > p");
+    if (!clinicalLabel || !title || !description) return;
+
+    const stage = document.createElement("div");
+    stage.className = "treatment-card-copy-stage";
+
+    const summarySlot = document.createElement("div");
+    summarySlot.className = "treatment-card-summary-slot";
+
+    const summary = document.createElement("div");
+    summary.className = "treatment-card-summary";
+
+    const descriptionSlot = document.createElement("div");
+    descriptionSlot.className = "treatment-card-description-slot";
+
+    description.classList.add("elementskit-info-box-description", "treatment-card-long-description");
+    boxBody.insertBefore(stage, clinicalLabel);
+    summary.append(clinicalLabel, title);
+    summarySlot.append(summary);
+    descriptionSlot.append(description);
+    stage.append(summarySlot, descriptionSlot);
+  };
+
+  const makeTreatmentCardFullyClickable = (card) => {
+    if (!document.body.classList.contains("home")) return card;
+    if (!card.closest(".elementor-7051")) return card;
+
+    if (card.matches("a")) {
+      card.classList.add("treatment-card-whole-link");
+      return card;
+    }
+
+    const detailLink = card.querySelector(".box-footer a.elementskit-btn");
+    const href = detailLink?.getAttribute("href");
+    if (!detailLink || !href) return card;
+
+    const visualCta = document.createElement("span");
+    visualCta.className = detailLink.className;
+    if (detailLink.hasAttribute("style")) {
+      visualCta.setAttribute("style", detailLink.getAttribute("style") || "");
+    }
+    while (detailLink.firstChild) visualCta.append(detailLink.firstChild);
+    detailLink.replaceWith(visualCta);
+
+    const fullLink = document.createElement("a");
+    Array.from(card.attributes).forEach((attribute) => {
+      fullLink.setAttribute(attribute.name, attribute.value);
+    });
+    fullLink.setAttribute("href", href);
+    ["target", "rel", "download"].forEach((attribute) => {
+      if (detailLink.hasAttribute(attribute)) {
+        fullLink.setAttribute(attribute, detailLink.getAttribute(attribute) || "");
+      }
+    });
+    fullLink.classList.add("treatment-card-whole-link");
+
+    const cardTitle = card.querySelector(".elementskit-info-box-title")?.textContent
+      ?.replace(/\\s+/g, " ")
+      .trim();
+    if (cardTitle) fullLink.setAttribute("aria-label", cardTitle + ". Scopri il percorso");
+
+    while (card.firstChild) fullLink.append(card.firstChild);
+    card.replaceWith(fullLink);
+    return fullLink;
   };
 
   const buildOrientationCard = () => {
@@ -1457,7 +1532,9 @@ const treatmentCardsScript = `
         card.prepend(media);
       }
 
+      prepareTreatmentCardCopy(card);
       normalizeDetailLink(card);
+      makeTreatmentCardFullyClickable(card);
     });
 
     addOrientationCard();
