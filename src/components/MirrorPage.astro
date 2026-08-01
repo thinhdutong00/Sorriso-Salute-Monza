@@ -4,6 +4,7 @@ import path from "node:path";
 import AboutStructureSection from "./AboutStructureSection.astro";
 import BrandPalette from "./BrandPalette.astro";
 import GoogleAdsTracking from "./GoogleAdsTracking.astro";
+import HomeCarePathSection from "./HomeCarePathSection.astro";
 import InternalPageHero from "./InternalPageHero.astro";
 import PageLoader from "./PageLoader.astro";
 import SiteFooter from "./SiteFooter.astro";
@@ -73,6 +74,26 @@ const removeDivElementAt = (html: string, elementStart: number) => {
   }
 
   return html;
+};
+
+const findDivElementEndByDataId = (html: string, dataId: string) => {
+  const markerIndex = html.indexOf(`data-id="${dataId}"`);
+  if (markerIndex < 0) return -1;
+
+  const elementStart = html.lastIndexOf("<div", markerIndex);
+  if (elementStart < 0) return -1;
+
+  const divTagPattern = /<\/?div\b[^>]*>/gi;
+  divTagPattern.lastIndex = elementStart;
+  let depth = 0;
+
+  for (let match = divTagPattern.exec(html); match; match = divTagPattern.exec(html)) {
+    depth += match[0].startsWith("</") ? -1 : 1;
+
+    if (depth === 0) return divTagPattern.lastIndex;
+  }
+
+  return -1;
 };
 
 const applyBrandColorTokens = (html: string) =>
@@ -715,9 +736,29 @@ const transformedBody = removeMirroredFooter(applyAboutTeamAnchor(applyTeamAncho
     ),
   ),
 ))))));
+const homepageSectionsMovedToDedicatedPages = ["653d69fd", "422c1ea", "9cf3cbc", "8806ad1"];
+const bodyWithoutMovedHomepageSections =
+  page.path === "/"
+    ? homepageSectionsMovedToDedicatedPages.reduce(
+        (next, dataId) => removeDivElementByDataId(next, dataId),
+        transformedBody,
+      )
+    : transformedBody;
+const bodyWithoutHomepageOverlay =
+  page.path === "/"
+    ? removeDivElementByDataId(bodyWithoutMovedHomepageSections, "c1d0e73")
+    : bodyWithoutMovedHomepageSections;
 const body = normalizeInternalLinks(
-  applyNavigationAnchors(removeLegacyInternalHero(removeMirroredHeader(transformedBody))),
+  applyNavigationAnchors(
+    removeLegacyInternalHero(removeMirroredHeader(bodyWithoutHomepageOverlay)),
+  ),
 );
+const homeCarePathSplitIndex =
+  page.path === "/" ? findDivElementEndByDataId(body, "e8411f6") : -1;
+const bodyBeforeHomeCarePath =
+  homeCarePathSplitIndex >= 0 ? body.slice(0, homeCarePathSplitIndex) : body;
+const bodyAfterHomeCarePath =
+  homeCarePathSplitIndex >= 0 ? body.slice(homeCarePathSplitIndex) : "";
 const aboutStructureRuntimeMarker = '<template id="tp-language"';
 const aboutStructureSplitIndex =
   page.path === "/chi-siamo/" ? body.indexOf(aboutStructureRuntimeMarker) : -1;
@@ -1879,9 +1920,21 @@ const reviewsPageScript = `
           />
         )
       }
-      <Fragment set:html={bodyBeforeAboutStructure} />
-      {page.path === "/chi-siamo/" && <AboutStructureSection />}
-      <Fragment set:html={bodyAfterAboutStructure} />
+      {
+        page.path === "/" ? (
+          <>
+            <Fragment set:html={bodyBeforeHomeCarePath} />
+            <HomeCarePathSection />
+            <Fragment set:html={bodyAfterHomeCarePath} />
+          </>
+        ) : (
+          <>
+            <Fragment set:html={bodyBeforeAboutStructure} />
+            {page.path === "/chi-siamo/" && <AboutStructureSection />}
+            <Fragment set:html={bodyAfterAboutStructure} />
+          </>
+        )
+      }
     </div>
     {false && (
       <Fragment>

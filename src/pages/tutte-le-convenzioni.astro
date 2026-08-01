@@ -1,0 +1,38 @@
+---
+import "../styles/global.css";
+import BrandPalette from "../components/BrandPalette.astro";
+import ConventionsOverviewSections from "../components/ConventionsOverviewSections.astro";
+import FaviconLinks from "../components/FaviconLinks.astro";
+import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import PageLoader from "../components/PageLoader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Scopri finanziamenti, convenzioni dirette e convenzioni indirette disponibili presso lo Studio Dentistico Sorriso & Salute di Monza."
+    />
+    <meta name="theme-color" content="#0E384C" />
+    <link rel="canonical" href="https://sorrisoesalutemonza.it/tutte-le-convenzioni/" />
+    <title>Tutte le convenzioni | Sorriso & Salute Monza</title>
+    <FaviconLinks />
+    <GoogleAdsTracking />
+    <BrandPalette />
+  </head>
+  <body class="conventions-overview-page brand-palette internal-page">
+    <PageLoader />
+    <SiteHeader />
+
+    <main id="main-content" tabindex="-1">
+      <ConventionsOverviewSections />
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>

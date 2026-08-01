@@ -1,0 +1,38 @@
+---
+import "../styles/global.css";
+import BookingPlatformsSection from "../components/BookingPlatformsSection.astro";
+import BrandPalette from "../components/BrandPalette.astro";
+import FaviconLinks from "../components/FaviconLinks.astro";
+import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
+import PageLoader from "../components/PageLoader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Prenota una visita allo Studio Dentistico Sorriso & Salute di Monza tramite Cup Solidale, Elty o MioDottore."
+    />
+    <meta name="theme-color" content="#0E384C" />
+    <link rel="canonical" href="https://sorrisoesalutemonza.it/le-nostre-piattaforme-di-prenotazione/" />
+    <title>Le nostre piattaforme di prenotazione | Sorriso & Salute Monza</title>
+    <FaviconLinks />
+    <GoogleAdsTracking />
+    <BrandPalette />
+  </head>
+  <body class="booking-platforms-page brand-palette internal-page">
+    <PageLoader />
+    <SiteHeader />
+
+    <main id="main-content" tabindex="-1">
+      <BookingPlatformsSection />
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>

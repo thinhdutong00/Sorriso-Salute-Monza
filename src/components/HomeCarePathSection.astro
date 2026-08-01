@@ -1,0 +1,318 @@
+---
+const steps = [
+  {
+    icon: "fas fa-route",
+    title: "Un percorso costruito su di te",
+    description:
+      "Non partiamo dal trattamento, ma dal problema che vuoi risolvere e dal risultato che desideri ottenere.",
+  },
+  {
+    icon: "fas fa-comments",
+    title: "Ogni scelta viene spiegata",
+    description:
+      "Ti aiutiamo a comprendere cosa sta succedendo, quali possibilità esistono e perché una soluzione può essere più adatta di un’altra.",
+  },
+  {
+    icon: "fas fa-calendar-check",
+    title: "Ti seguiamo anche nel tempo",
+    description:
+      "Controlli, prevenzione e mantenimento aiutano a proteggere la salute della bocca e il risultato raggiunto.",
+  },
+];
+---
+
+<section class="home-care-path" aria-labelledby="home-care-path-title">
+  <div class="home-care-path__inner">
+    <header class="home-care-path__header">
+      <p class="home-care-path__eyebrow">Il nostro approccio</p>
+      <h2 id="home-care-path-title">
+        Il tuo percorso <span>di cura</span>
+      </h2>
+      <p class="home-care-path__intro">
+        Tre principi che guidano ogni fase, dalla prima valutazione al mantenimento nel tempo.
+      </p>
+    </header>
+
+    <div class="home-care-path__cards">
+      {
+        steps.map((step, index) => (
+          <article class="home-care-path__card">
+            <div class="home-care-path__card-top">
+              <span class="home-care-path__number" aria-hidden="true">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span class="home-care-path__icon" aria-hidden="true">
+                <i class={step.icon}></i>
+              </span>
+            </div>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-care-path,
+  .home-care-path *,
+  .home-care-path *::before,
+  .home-care-path *::after {
+    box-sizing: border-box;
+  }
+
+  .home-care-path {
+    position: relative;
+    width: 100%;
+    padding: clamp(88px, 8vw, 132px) clamp(18px, 4vw, 56px) clamp(92px, 9vw, 144px);
+    overflow: hidden;
+    color: var(--brand-primary, #0e384c);
+    background: #ffffff;
+    font-family: var(--brand-font-family, var(--font-family-body));
+  }
+
+  .home-care-path::before {
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    width: min(680px, 70vw);
+    height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(30, 132, 181, 0.09), rgba(30, 132, 181, 0) 68%);
+    content: "";
+    pointer-events: none;
+    transform: translateX(-50%);
+  }
+
+  .home-care-path__inner {
+    position: relative;
+    z-index: 1;
+    width: min(1440px, 100%);
+    margin: 0 auto;
+  }
+
+  .home-care-path__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 980px;
+    margin: 0 auto clamp(52px, 6vw, 82px);
+    text-align: center;
+  }
+
+  .home-care-path__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    margin: 0 0 24px;
+    padding: 6px 18px;
+    border: 1px solid rgba(14, 56, 76, 0.14);
+    border-radius: 999px;
+    color: var(--brand-primary, #0e384c);
+    background: #ffffff;
+    box-shadow: 0 8px 22px rgba(14, 56, 76, 0.05);
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .home-care-path h2 {
+    max-width: 940px;
+    margin: 0;
+    color: var(--brand-primary, #0e384c);
+    font-family: var(--font-family-display, var(--brand-font-family)) !important;
+    font-size: clamp(48px, 5.3vw, 82px);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    text-align: center;
+    text-transform: none;
+    text-wrap: balance;
+  }
+
+  .home-care-path h2 span {
+    color: var(--brand-secondary, #1e84b5);
+  }
+
+  .home-care-path__intro {
+    max-width: 760px;
+    margin: 28px auto 0;
+    color: var(--color-text-description, #334155);
+    font-size: clamp(17px, 1.35vw, 21px);
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .home-care-path__cards {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(18px, 2.4vw, 34px);
+  }
+
+  .home-care-path__cards::before {
+    position: absolute;
+    top: 50%;
+    right: 4%;
+    left: 4%;
+    z-index: 0;
+    height: 1px;
+    background: rgba(14, 56, 76, 0.12);
+    content: "";
+    pointer-events: none;
+  }
+
+  .home-care-path__card {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height: 330px;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(30px, 3vw, 44px);
+    border: 1px solid rgba(14, 56, 76, 0.08);
+    border-radius: clamp(30px, 3vw, 48px);
+    background: #f7f9fc;
+    box-shadow: 0 14px 38px rgba(14, 56, 76, 0.05);
+    text-align: center;
+  }
+
+  .home-care-path__card-top {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 38px;
+  }
+
+  .home-care-path__number {
+    color: #5a6677;
+    font-family: var(--font-family-display, var(--brand-font-family)) !important;
+    font-size: clamp(42px, 4vw, 58px);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  .home-care-path__icon {
+    display: grid;
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+    place-items: center;
+    border-radius: 16px;
+    color: #ffffff;
+    background: var(--brand-primary, #0e384c);
+    box-shadow: 0 10px 20px rgba(14, 56, 76, 0.2);
+  }
+
+  .home-care-path__icon i {
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .home-care-path__card h3 {
+    margin: 0;
+    color: var(--brand-primary, #0e384c);
+    font-family: var(--font-family-display, var(--brand-font-family)) !important;
+    font-size: clamp(22px, 1.75vw, 29px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    text-transform: none;
+    text-wrap: balance;
+  }
+
+  .home-care-path__card p {
+    max-width: 36ch;
+    margin: 18px auto 0;
+    color: #435066;
+    font-size: clamp(15px, 1.05vw, 17px);
+    font-style: italic;
+    font-weight: 550;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  @media (max-width: 960px) {
+    .home-care-path__cards {
+      grid-template-columns: 1fr;
+      width: min(680px, 100%);
+      margin: 0 auto;
+    }
+
+    .home-care-path__cards::before {
+      top: 5%;
+      right: auto;
+      bottom: 5%;
+      left: 50%;
+      width: 1px;
+      height: auto;
+    }
+
+    .home-care-path__card {
+      min-height: 280px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .home-care-path {
+      padding: 72px 18px 80px;
+    }
+
+    .home-care-path__header {
+      margin-bottom: 42px;
+    }
+
+    .home-care-path__eyebrow {
+      margin-bottom: 20px;
+      padding-inline: 14px;
+      font-size: 10px;
+    }
+
+    .home-care-path h2 {
+      font-size: clamp(38px, 12vw, 50px);
+      line-height: 1.02;
+    }
+
+    .home-care-path__intro {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    .home-care-path__card {
+      min-height: 0;
+      padding: 26px 24px 30px;
+      border-radius: 28px;
+    }
+
+    .home-care-path__card-top {
+      margin-bottom: 28px;
+    }
+
+    .home-care-path__number {
+      font-size: 42px;
+    }
+
+    .home-care-path__icon {
+      width: 52px;
+      height: 52px;
+      flex-basis: 52px;
+      border-radius: 15px;
+    }
+
+    .home-care-path__card h3 {
+      font-size: 23px;
+    }
+
+    .home-care-path__card p {
+      font-size: 15px;
+    }
+  }
+</style>

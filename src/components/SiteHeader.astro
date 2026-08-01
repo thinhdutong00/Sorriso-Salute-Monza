@@ -15,7 +15,7 @@ const informationLinks = [
   { href: "/chi-siamo/#struttura", label: "La struttura" },
   { href: "/chi-siamo/#team", label: "Il nostro team" },
   { href: "/recensioni-studio-dentistico-monza/", label: "Recensioni" },
-  { href: "/convenzioni-dirette-studio-dentistico-monza/", label: "Convenzioni" },
+  { href: "/tutte-le-convenzioni/", label: "Convenzioni" },
 ];
 
 const contactLinks = [
@@ -23,7 +23,10 @@ const contactLinks = [
   { href: "/contatti/#dove-siamo", label: "Dove siamo" },
   { href: "/urgenze/", label: "Urgenze" },
   { href: "/lavora-con-noi/", label: "Lavora con noi" },
-  { href: "/richiesta-generale/", label: "Prenota una visita" },
+  {
+    href: "/le-nostre-piattaforme-di-prenotazione/",
+    label: "Prenota una visita",
+  },
 ];
 
 const treatmentGroups = kebabTreatmentCategories.map((category) => ({
@@ -39,7 +42,8 @@ const treatmentGroups = kebabTreatmentCategories.map((category) => ({
 const informationIsActive =
   currentPath.startsWith("/chi-siamo") ||
   currentPath.startsWith("/recensioni-") ||
-  currentPath.startsWith("/convenzioni-");
+  currentPath.startsWith("/convenzioni-") ||
+  currentPath === "/tutte-le-convenzioni/";
 const treatmentsIsActive =
   currentPath.startsWith("/attivita/") ||
   currentPath.startsWith("/implantologia/") ||
@@ -49,7 +53,8 @@ const contactsIsActive =
   currentPath === "/contatti/" ||
   currentPath === "/urgenze/" ||
   currentPath === "/lavora-con-noi/" ||
-  currentPath === "/richiesta-generale/";
+  currentPath === "/richiesta-generale/" ||
+  currentPath === "/le-nostre-piattaforme-di-prenotazione/";
 ---
 
 <a class="primary-site-skip-link" href="#main-content">Vai al contenuto</a>

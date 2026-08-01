@@ -1,0 +1,318 @@
+---
+const bookingPlatforms = [
+  {
+    name: "Cup Solidale",
+    href: "https://www.cupsolidale.it/sede/67111a8aa0d350c4078b4568?rwg_token=ACgRB3cqPNQB3hT3Gx0pGRXJn56v8nzqScW3elhK8NL-xTGkwXL3zLHrKODTNh2KZAm0XWOZGA0XcTyznu1dDUlBH69rtSuaRw%3D%3D",
+    className: "booking-platforms__card--cup-solidale",
+  },
+  {
+    name: "Elty",
+    href: "https://elty.it/centri-medici/sorriso-salute-monza?rwg_token=ACgRB3fhwouTh71AhDb5usvFkp-3qlZ0P2cQsvu8Hz_7IyYJ9kGj66GpFY4LOZy8lIro9XrJMg2Y61hCsvLOX9k0wdgpdAWoow%3D%3D",
+    className: "booking-platforms__card--elty",
+  },
+  {
+    name: "MioDottore",
+    href: "https://www.miodottore.it/strutture/sorriso-salute-studio-dentistico-sorriso-salute?utm_source=widget-clinic-27695&utm_medium=link&widget=1&fid=27695&saasonly=true",
+    className: "booking-platforms__card--miodottore",
+  },
+];
+---
+
+<section class="booking-platforms" aria-labelledby="booking-platforms-title">
+  <div class="booking-platforms__inner">
+    <div class="booking-platforms__cards" aria-label="Piattaforme di prenotazione disponibili">
+      {
+        bookingPlatforms.map((platform) => (
+          <a
+            class:list={["booking-platforms__card", platform.className]}
+            href={platform.href}
+            aria-label={`Prenota un appuntamento con ${platform.name}`}
+          >
+            <span>Appuntamento con {platform.name}</span>
+            <svg aria-hidden="true" viewBox="0 0 16 14" width="20" height="18" fill="none">
+              <path
+                d="M1 7h14m0 0L9 1m6 6-6 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="booking-platforms__content">
+      <p class="booking-platforms__eyebrow">Le nostre piattaforme di prenotazione</p>
+      <h1 id="booking-platforms-title">Prenota il tuo appuntamento in modo semplice e veloce</h1>
+      <p class="booking-platforms__description">
+        Gestiamo le prenotazioni anche attraverso piattaforme esterne sicure e certificate, che ti permettono di
+        scegliere data e ora in base alle tue esigenze. Clicca sul servizio che preferisci per fissare rapidamente
+        una visita o richiedere un consulto.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .booking-platforms,
+  .booking-platforms *,
+  .booking-platforms *::before,
+  .booking-platforms *::after {
+    box-sizing: border-box;
+  }
+
+  .booking-platforms {
+    width: 100%;
+    padding:
+      clamp(158px, 12vw, 196px)
+      clamp(18px, 3vw, 48px)
+      clamp(80px, 7vw, 120px);
+    background: #ffffff;
+    color: var(--brand-primary, #0e384c);
+    font-family: var(--brand-font-family, var(--font-family-body));
+  }
+
+  .booking-platforms__inner {
+    display: grid;
+    grid-template-columns: minmax(420px, 0.94fr) minmax(0, 1.06fr);
+    align-items: center;
+    width: min(1500px, 100%);
+    margin: 0 auto;
+    gap: clamp(52px, 6vw, 110px);
+  }
+
+  .booking-platforms__cards {
+    display: grid;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    max-width: 720px;
+    aspect-ratio: 1 / 1;
+    gap: clamp(16px, 2vw, 28px);
+  }
+
+  .booking-platforms__card {
+    --booking-platform-color: var(--brand-primary, #0e384c);
+    --booking-platform-hover: var(--brand-secondary, #1e84b5);
+    --booking-platform-shadow: rgba(14, 56, 76, 0.2);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 0;
+    padding: 0 clamp(24px, 3vw, 48px);
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid var(--booking-platform-color);
+    border-radius: var(--site-button-radius, 14px);
+    background: var(--booking-platform-color);
+    box-shadow: 0 14px 30px var(--booking-platform-shadow);
+    color: #ffffff !important;
+    font-size: clamp(18px, 1.35vw, 22px);
+    font-weight: 400;
+    line-height: 1.18;
+    text-align: left;
+    text-decoration: none;
+  }
+
+  .booking-platforms__card--cup-solidale {
+    --booking-platform-color: #43b968;
+    --booking-platform-hover: #68cd86;
+    --booking-platform-shadow: rgba(67, 185, 104, 0.24);
+  }
+
+  .booking-platforms__card--elty {
+    --booking-platform-color: #139a90;
+    --booking-platform-hover: #25b7ab;
+    --booking-platform-shadow: rgba(19, 154, 144, 0.24);
+  }
+
+  .booking-platforms__card--miodottore {
+    --booking-platform-color: #0f5fa8;
+    --booking-platform-hover: #247dcc;
+    --booking-platform-shadow: rgba(15, 95, 168, 0.24);
+  }
+
+  .booking-platforms__card::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    width: 180%;
+    height: 420%;
+    border-radius: 999px;
+    background: var(--booking-platform-hover);
+    content: "";
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+    transform-origin: center;
+    transition:
+      transform 0.48s cubic-bezier(0.2, 0.85, 0.2, 1),
+      opacity 0.28s ease;
+  }
+
+  .booking-platforms__card:is(:hover, :focus-visible)::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .booking-platforms__card:is(:hover, :focus-visible) {
+    border-color: var(--booking-platform-hover);
+    color: #ffffff !important;
+  }
+
+  .booking-platforms__card:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: -7px;
+  }
+
+  .booking-platforms__card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .booking-platforms__card span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .booking-platforms__card svg {
+    flex: 0 0 auto;
+    margin-left: 18px;
+    color: #ffffff;
+    transition: transform 180ms ease;
+  }
+
+  .booking-platforms__card:is(:hover, :focus-visible) svg {
+    transform: translateX(4px);
+  }
+
+  .booking-platforms__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 660px;
+    padding: 0;
+  }
+
+  .booking-platforms__eyebrow {
+    position: relative;
+    margin: 0 0 26px;
+    padding-left: 28px;
+    color: var(--brand-secondary, #1e84b5);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+  }
+
+  .booking-platforms__eyebrow::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    background: var(--brand-secondary, #1e84b5);
+    content: "";
+    transform: translateY(-50%);
+    -webkit-mask: url("/mirror-assets/2829794763d559b4.svg") left center / contain no-repeat;
+    mask: url("/mirror-assets/2829794763d559b4.svg") left center / contain no-repeat;
+  }
+
+  .booking-platforms__content h1 {
+    max-width: 660px;
+    margin: 0 0 24px;
+    color: var(--brand-secondary, #1e84b5);
+    font-family: var(--font-family-display, var(--brand-font-family));
+    font-size: clamp(48px, 4vw, 60px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  .booking-platforms__description {
+    max-width: 640px;
+    margin: 0;
+    color: var(--color-text-description, #334155);
+    font-size: clamp(18px, 1.35vw, 22px);
+    font-weight: 400;
+    line-height: 1.52;
+  }
+
+  @media (max-width: 1024px) {
+    .booking-platforms {
+      padding-top: clamp(138px, 17vw, 170px);
+    }
+
+    .booking-platforms__inner {
+      grid-template-columns: 1fr;
+      gap: 34px;
+    }
+
+    .booking-platforms__content {
+      order: 1;
+      max-width: 100%;
+    }
+
+    .booking-platforms__cards {
+      order: 2;
+      max-width: 100%;
+      aspect-ratio: auto;
+      grid-template-rows: repeat(3, minmax(112px, auto));
+    }
+
+    .booking-platforms__content h1,
+    .booking-platforms__description {
+      max-width: 760px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .booking-platforms {
+      padding: 124px 18px 70px;
+    }
+
+    .booking-platforms__eyebrow {
+      margin-bottom: 20px;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .booking-platforms__content h1 {
+      margin-bottom: 20px;
+      font-size: clamp(31px, 9vw, 40px);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      text-wrap: pretty;
+    }
+
+    .booking-platforms__description {
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    .booking-platforms__cards {
+      grid-template-rows: repeat(3, minmax(88px, auto));
+      gap: 14px;
+    }
+
+    .booking-platforms__card {
+      min-height: 88px;
+      padding: 0 22px;
+      font-size: 17px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .booking-platforms__card::before,
+    .booking-platforms__card svg {
+      transition: none;
+    }
+  }
+</style>
