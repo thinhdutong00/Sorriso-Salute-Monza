@@ -96,6 +96,34 @@ const findDivElementEndByDataId = (html: string, dataId: string) => {
   return -1;
 };
 
+const findDivElementRangeByDataId = (html: string, dataId: string) => {
+  const markerIndex = html.indexOf(`data-id="${dataId}"`);
+  if (markerIndex < 0) return null;
+
+  const start = html.lastIndexOf("<div", markerIndex);
+  const end = findDivElementEndByDataId(html, dataId);
+  return start >= 0 && end > start ? { start, end } : null;
+};
+
+const swapDivElementsByDataId = (html: string, firstId: string, secondId: string) => {
+  const first = findDivElementRangeByDataId(html, firstId);
+  const second = findDivElementRangeByDataId(html, secondId);
+  if (!first || !second) return html;
+
+  const earlier = first.start < second.start ? first : second;
+  const later = first.start < second.start ? second : first;
+  const earlierBlock = html.slice(earlier.start, earlier.end);
+  const laterBlock = html.slice(later.start, later.end);
+
+  return (
+    html.slice(0, earlier.start) +
+    laterBlock +
+    html.slice(earlier.end, later.start) +
+    earlierBlock +
+    html.slice(later.end)
+  );
+};
+
 const applyBrandColorTokens = (html: string) =>
   html
     .replace(
@@ -748,9 +776,13 @@ const bodyWithoutHomepageOverlay =
   page.path === "/"
     ? removeDivElementByDataId(bodyWithoutMovedHomepageSections, "c1d0e73")
     : bodyWithoutMovedHomepageSections;
+const bodyWithHomepageSectionOrder =
+  page.path === "/"
+    ? swapDivElementsByDataId(bodyWithoutHomepageOverlay, "b8b334b", "1058fb0")
+    : bodyWithoutHomepageOverlay;
 const body = normalizeInternalLinks(
   applyNavigationAnchors(
-    removeLegacyInternalHero(removeMirroredHeader(bodyWithoutHomepageOverlay)),
+    removeLegacyInternalHero(removeMirroredHeader(bodyWithHomepageSectionOrder)),
   ),
 );
 const homeCarePathSplitIndex =

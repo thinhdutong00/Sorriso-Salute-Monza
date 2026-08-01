@@ -19,6 +19,14 @@ const bookingPlatforms = [
 ---
 
 <section class="booking-platforms" aria-labelledby="booking-platforms-title">
+  <nav class="booking-platforms__breadcrumb" aria-label="Percorso di navigazione">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/contatti/">Contatti</a></li>
+      <li aria-current="page"><span>Prenota una visita</span></li>
+    </ol>
+  </nav>
+
   <div class="booking-platforms__inner">
     <div class="booking-platforms__cards" aria-label="Piattaforme di prenotazione disponibili">
       {
@@ -72,6 +80,57 @@ const bookingPlatforms = [
     background: #ffffff;
     color: var(--brand-primary, #0e384c);
     font-family: var(--brand-font-family, var(--font-family-body));
+  }
+
+  .booking-platforms__breadcrumb {
+    width: min(1500px, 100%);
+    margin: 0 auto clamp(48px, 4.5vw, 68px);
+  }
+
+  .booking-platforms__breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--color-text-description, #64748b);
+    font-size: 15px;
+    line-height: 1.4;
+    gap: 10px;
+  }
+
+  .booking-platforms__breadcrumb li {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+    gap: 10px;
+  }
+
+  .booking-platforms__breadcrumb li:not(:last-child)::after {
+    color: color-mix(in srgb, var(--color-text-description, #64748b) 58%, transparent);
+    content: "\203A";
+  }
+
+  .booking-platforms__breadcrumb a {
+    color: inherit !important;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+
+  .booking-platforms__breadcrumb a:is(:hover, :focus-visible),
+  .booking-platforms__breadcrumb li[aria-current="page"] {
+    color: var(--brand-primary, #0e384c);
+  }
+
+  .booking-platforms__breadcrumb li[aria-current="page"] {
+    font-weight: 700;
+  }
+
+  .booking-platforms__breadcrumb a:focus-visible {
+    border-radius: 3px;
+    outline: 2px solid var(--brand-secondary, #1e84b5);
+    outline-offset: 3px;
   }
 
   .booking-platforms__inner {
@@ -282,6 +341,19 @@ const bookingPlatforms = [
       margin-bottom: 20px;
       font-size: 12px;
       line-height: 1.35;
+    }
+
+    .booking-platforms__breadcrumb {
+      margin-bottom: 38px;
+    }
+
+    .booking-platforms__breadcrumb ol {
+      font-size: 14px;
+      gap: 8px;
+    }
+
+    .booking-platforms__breadcrumb li {
+      gap: 8px;
     }
 
     .booking-platforms__content h1 {

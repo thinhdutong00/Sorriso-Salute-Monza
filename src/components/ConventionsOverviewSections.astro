@@ -54,6 +54,14 @@ const conventionGroups = [
 ---
 
 <section class="financing-overview" aria-labelledby="financing-overview-title">
+  <nav class="financing-overview__breadcrumb" aria-label="Percorso di navigazione">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/chi-siamo/">Informazioni</a></li>
+      <li aria-current="page"><span>Convenzioni</span></li>
+    </ol>
+  </nav>
+
   <div class="financing-overview__inner">
     <div class="financing-overview__content">
       <p class="financing-overview__eyebrow">Le nostre finanziarie</p>
@@ -144,12 +152,64 @@ const conventionGroups = [
   }
 
   .financing-overview {
+    --financing-overview-top-gap: clamp(48px, 5vw, 76px);
     padding:
-      clamp(158px, 12vw, 196px)
+      calc(var(--primary-site-header-height, 98px) + var(--financing-overview-top-gap))
       clamp(18px, 3vw, 48px)
       clamp(80px, 7vw, 120px);
-    background: #ffffff;
-    color: var(--brand-primary, #0e384c);
+    background: var(--brand-primary, #0e384c);
+    color: #ffffff;
+  }
+
+  .financing-overview__breadcrumb {
+    width: min(1500px, 100%);
+    margin: 0 auto clamp(48px, 4.5vw, 68px);
+  }
+
+  .financing-overview__breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 15px;
+    line-height: 1.4;
+    gap: 10px;
+  }
+
+  .financing-overview__breadcrumb li {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+    gap: 10px;
+  }
+
+  .financing-overview__breadcrumb li:not(:last-child)::after {
+    color: rgba(255, 255, 255, 0.52);
+    content: "›";
+  }
+
+  .financing-overview__breadcrumb a {
+    color: inherit !important;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+
+  .financing-overview__breadcrumb a:is(:hover, :focus-visible),
+  .financing-overview__breadcrumb li[aria-current="page"] {
+    color: #ffffff;
+  }
+
+  .financing-overview__breadcrumb li[aria-current="page"] {
+    font-weight: 700;
+  }
+
+  .financing-overview__breadcrumb a:focus-visible {
+    border-radius: 3px;
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
   }
 
   .financing-overview__inner {
@@ -173,7 +233,7 @@ const conventionGroups = [
     position: relative;
     margin: 0 0 26px;
     padding-left: 28px;
-    color: var(--brand-secondary, #1e84b5);
+    color: #ffffff !important;
     font-size: 14px;
     font-weight: 700;
     line-height: 1.2;
@@ -187,7 +247,7 @@ const conventionGroups = [
     left: 0;
     width: 18px;
     height: 18px;
-    background: var(--brand-secondary, #1e84b5);
+    background: #ffffff;
     content: "";
     transform: translateY(-50%);
     -webkit-mask: url("/mirror-assets/2829794763d559b4.svg") center / contain no-repeat;
@@ -197,19 +257,20 @@ const conventionGroups = [
   .financing-overview h1 {
     max-width: 660px;
     margin: 0 0 24px;
-    color: var(--brand-secondary, #1e84b5);
-    font-family: var(--font-family-display, var(--brand-font-family));
+    color: #ffffff !important;
+    font-family: var(--font-family-display, var(--brand-font-family)) !important;
     font-size: clamp(48px, 4vw, 60px);
-    font-weight: 700;
+    font-weight: 700 !important;
     line-height: 1.08;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.035em !important;
+    text-transform: none !important;
     text-wrap: balance;
   }
 
   .financing-overview__description {
     max-width: 640px;
     margin: 0;
-    color: var(--color-text-description, #334155);
+    color: #ffffff !important;
     font-size: clamp(18px, 1.35vw, 22px);
     font-weight: 400;
     line-height: 1.52;
@@ -389,7 +450,7 @@ const conventionGroups = [
 
   @media (max-width: 1024px) {
     .financing-overview {
-      padding-top: clamp(138px, 17vw, 170px);
+      --financing-overview-top-gap: clamp(42px, 6vw, 58px);
     }
 
     .financing-overview__inner {
@@ -410,8 +471,24 @@ const conventionGroups = [
 
   @media (max-width: 767px) {
     .financing-overview {
-      padding: 124px 18px 70px;
-      background: var(--brand-primary, #0e384c);
+      --financing-overview-top-gap: 28px;
+      padding:
+        calc(var(--primary-site-header-height, 84px) + var(--financing-overview-top-gap))
+        18px
+        70px;
+    }
+
+    .financing-overview__breadcrumb {
+      margin-bottom: 42px;
+    }
+
+    .financing-overview__breadcrumb ol {
+      font-size: 13px;
+      gap: 8px;
+    }
+
+    .financing-overview__breadcrumb li {
+      gap: 8px;
     }
 
     .financing-overview__eyebrow,
