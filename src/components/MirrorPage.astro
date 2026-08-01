@@ -785,12 +785,20 @@ const body = normalizeInternalLinks(
     removeLegacyInternalHero(removeMirroredHeader(bodyWithHomepageSectionOrder)),
   ),
 );
-const homeCarePathSplitIndex =
-  page.path === "/" ? findDivElementEndByDataId(body, "e8411f6") : -1;
+const bodyWithoutHomepageClaritySection =
+  page.path === "/" ? removeDivElementByDataId(body, "e8411f6") : body;
+const homeCarePathInsertIndex =
+  page.path === "/"
+    ? findDivElementEndByDataId(bodyWithoutHomepageClaritySection, "69bfb3fc")
+    : -1;
 const bodyBeforeHomeCarePath =
-  homeCarePathSplitIndex >= 0 ? body.slice(0, homeCarePathSplitIndex) : body;
+  homeCarePathInsertIndex >= 0
+    ? bodyWithoutHomepageClaritySection.slice(0, homeCarePathInsertIndex)
+    : bodyWithoutHomepageClaritySection;
 const bodyAfterHomeCarePath =
-  homeCarePathSplitIndex >= 0 ? body.slice(homeCarePathSplitIndex) : "";
+  homeCarePathInsertIndex >= 0
+    ? bodyWithoutHomepageClaritySection.slice(homeCarePathInsertIndex)
+    : "";
 const aboutStructureRuntimeMarker = '<template id="tp-language"';
 const aboutStructureSplitIndex =
   page.path === "/chi-siamo/" ? body.indexOf(aboutStructureRuntimeMarker) : -1;
