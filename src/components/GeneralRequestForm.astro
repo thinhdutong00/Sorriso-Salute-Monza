@@ -1,0 +1,1455 @@
+---
+import {
+  generalRequestServiceOptions,
+  treatmentFormPresets,
+} from "../data/categoryTreatments";
+import {
+  generalRequestFallbackSecondStepProfileId,
+  generalRequestSecondStepProfiles,
+  generalRequestServiceSecondStepProfiles,
+  generalRequestTreatmentSecondStepOverrides,
+} from "../data/generalRequestSecondStep";
+
+export type Props = {
+  /** Slug tecnico del servizio, come definito in categoryTreatments.ts. */
+  presetService?: string;
+  /** ID completo del trattamento (`categoria--trattamento`). */
+  presetTreatment?: string;
+  /** Default 1 per le props; lo step 2 richiede un servizio preselezionato valido. */
+  initialStep?: 1 | 2;
+  /** Pagina di origine esplicita, usata al posto del referrer nel payload. */
+  sourcePage?: string;
+  /** Adatta contenitore e gerarchia del titolo all'inserimento in un'altra pagina. */
+  embedded?: boolean;
+};
+
+const {
+  presetService,
+  presetTreatment,
+  initialStep,
+  sourcePage,
+  embedded = false,
+} = Astro.props;
+
+const normalizedPresetService = presetService?.trim() || "";
+const normalizedPresetTreatment = presetTreatment?.trim() || "";
+const normalizedSourcePage = sourcePage?.trim() || "";
+const hasPresetProps = Boolean(
+  normalizedPresetService || normalizedPresetTreatment,
+);
+const hasExplicitInitialStep = initialStep === 1 || initialStep === 2;
+const requestedInitialStep = initialStep === 2 ? 2 : 1;
+const instanceId = `general-request-${globalThis.crypto.randomUUID()}`;
+const formId = `${instanceId}-form`;
+const titleId = `${instanceId}-title`;
+const nameId = `${instanceId}-name`;
+const phoneId = `${instanceId}-phone`;
+const emailId = `${instanceId}-email`;
+const HeadingTag = embedded ? "h2" : "h1";
+const StepHeadingTag = embedded ? "h3" : "h2";
+
+const serviceOptions = generalRequestServiceOptions.map((option) => ({
+  slug: option.slug,
+  label: option.label,
+  displayLabel: option.displayLabel,
+  group: option.group,
+}));
+const treatmentPresets = Object.values(treatmentFormPresets).map((preset) => ({
+  treatmentId: preset.treatmentId,
+  categoryId: preset.categoryId,
+  serviceSlug: preset.serviceSlug,
+  specificTreatmentValue: preset.specificTreatmentValue,
+}));
+const invalidSecondStepTreatmentIds = Object.keys(
+  generalRequestTreatmentSecondStepOverrides,
+).filter((treatmentId) => !treatmentFormPresets[treatmentId]);
+
+if (invalidSecondStepTreatmentIds.length > 0) {
+  throw new Error(
+    `Configurazione step 2 non valida. Trattamenti sconosciuti: ${invalidSecondStepTreatmentIds.join(", ")}`,
+  );
+}
+
+const secondStepProfiles = generalRequestSecondStepProfiles;
+const serviceSecondStepProfileIds = generalRequestServiceSecondStepProfiles;
+const treatmentSecondStepProfileIds = generalRequestTreatmentSecondStepOverrides;
+const fallbackSecondStepProfileId = generalRequestFallbackSecondStepProfileId;
+---
+
+<section
+  class:list={[
+    "request-questionnaire",
+    "general-request-form",
+    { "general-request-form--embedded": embedded },
+  ]}
+  aria-labelledby={titleId}
+  data-general-request-form={instanceId}
+  data-embedded={String(embedded)}
+>
+  <div class="request-questionnaire__container">
+    <form
+      class="request-form"
+      id={formId}
+      action="/api/send-lead"
+      method="post"
+      aria-label="Modulo per richiedere una visita"
+      autocomplete="on"
+      novalidate
+    >
+      <div
+        class="request-progress"
+        role="progressbar"
+        aria-label="Avanzamento richiesta"
+        aria-valuemin="1"
+        aria-valuemax="5"
+        aria-valuenow="1"
+      ></div>
+
+      <header class="request-questionnaire__heading">
+        <p class="request-questionnaire__eyebrow" data-step-eyebrow>
+          Scegli il trattamento
+        </p>
+        <HeadingTag id={titleId}>
+          <span>Anamnesi</span>
+        </HeadingTag>
+      </header>
+
+      <div class="request-step is-active" data-step="1">
+        <StepHeadingTag class="quiz-title">
+          Per quale trattamento stai richiedendo la visita?
+        </StepHeadingTag>
+        <div
+          class="quiz-options request-service-menu"
+          data-field="servizio"
+          role="group"
+          aria-label="Scegli la tua esigenza"
+        ></div>
+      </div>
+
+      <div class="request-step" data-step="2">
+        <StepHeadingTag class="quiz-title" data-second-step-title>
+          Da quanto tempo hai questo problema?
+        </StepHeadingTag>
+        <div
+          class="quiz-options"
+          data-field="rispostaAnamnestica"
+          data-second-step-options
+          role="group"
+          aria-label="Seleziona da quanto tempo è presente il problema"
+        ></div>
+      </div>
+
+      <div class="request-step" data-step="3">
+        <StepHeadingTag class="quiz-title">
+          Indica la tua fascia d’età
+        </StepHeadingTag>
+        <div
+          class="quiz-options"
+          data-field="fasciaEta"
+          role="group"
+          aria-label="Seleziona la tua fascia d’età"
+        ></div>
+      </div>
+
+      <div class="request-step request-step--availability" data-step="4">
+        <StepHeadingTag class="quiz-title">
+          Quando preferisci venire?
+        </StepHeadingTag>
+        <div class="request-preferences">
+          <fieldset class="request-preference-group">
+            <legend>Giorni preferiti</legend>
+            <div
+              class="request-preference-options request-preference-options--days"
+              data-field="giorniPreferiti"
+              data-multiple="true"
+            >
+              <button class="request-preference-btn" type="button" data-value="Lunedì" aria-pressed="false">Lun</button>
+              <button class="request-preference-btn" type="button" data-value="Martedì" aria-pressed="false">Mar</button>
+              <button class="request-preference-btn" type="button" data-value="Mercoledì" aria-pressed="false">Mer</button>
+              <button class="request-preference-btn" type="button" data-value="Giovedì" aria-pressed="false">Gio</button>
+              <button class="request-preference-btn" type="button" data-value="Venerdì" aria-pressed="false">Ven</button>
+              <button class="request-preference-btn" type="button" data-value="Sabato" aria-pressed="false">Sab</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="request-preference-group">
+            <legend>Fascia oraria</legend>
+            <div
+              class="request-preference-options request-preference-options--time"
+              data-field="fasciaOraria"
+            >
+              <button class="request-preference-btn" type="button" data-value="Mattina" aria-pressed="false">Mattina</button>
+              <button class="request-preference-btn" type="button" data-value="Pomeriggio" aria-pressed="false">Pomeriggio</button>
+              <button class="request-preference-btn" type="button" data-value="Sera" aria-pressed="false">Sera</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="request-preference-group">
+            <legend>Disponibilità urgente?</legend>
+            <div
+              class="request-preference-options request-preference-options--urgent"
+              data-field="disponibilitaUrgente"
+            >
+              <button class="request-preference-btn" type="button" data-value="Sì" aria-pressed="false">Sì</button>
+              <button class="request-preference-btn" type="button" data-value="No" aria-pressed="false">No</button>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="request-step" data-step="5">
+        <StepHeadingTag class="quiz-title">
+          Lascia i tuoi recapiti
+        </StepHeadingTag>
+        <div class="summary-box" data-summary-box></div>
+        <div class="field-grid">
+          <label for={nameId}>
+            Nome e cognome
+            <input
+              id={nameId}
+              name="nomeCompleto"
+              type="text"
+              autocomplete="section-visit name"
+              autocapitalize="words"
+              enterkeyhint="next"
+              required
+            />
+          </label>
+          <label for={phoneId}>
+            Telefono
+            <input
+              id={phoneId}
+              name="telefono"
+              type="tel"
+              inputmode="tel"
+              autocomplete="section-visit tel"
+              enterkeyhint="next"
+              required
+            />
+          </label>
+          <label for={emailId}>
+            Email
+            <input
+              id={emailId}
+              name="email"
+              type="email"
+              inputmode="email"
+              autocomplete="section-visit email"
+              autocapitalize="none"
+              autocorrect="off"
+              spellcheck="false"
+              enterkeyhint="next"
+            />
+          </label>
+        </div>
+        <label>
+          Note/Messaggio (facoltativo)
+          <textarea
+            name="messaggio"
+            placeholder="Aggiungi dettagli utili o sintomi particolari"
+          ></textarea>
+        </label>
+      </div>
+
+      <p class="form-error" data-form-error aria-live="polite"></p>
+
+      <div class="request-actions">
+        <button
+          class="request-btn request-btn-outline"
+          type="button"
+          data-prev-step
+          hidden
+        >
+          Indietro
+        </button>
+        <button
+          class="request-btn request-btn-primary"
+          type="button"
+          data-next-step
+          disabled
+        >
+          Continua
+        </button>
+        <button
+          class="request-btn request-btn-primary"
+          type="submit"
+          data-submit-step
+          hidden
+        >
+          Invia la tua richiesta
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style is:global>
+      body .general-request-form[data-general-request-form] {
+        min-height: 100svh;
+        padding: clamp(132px, 10vw, 172px) 24px clamp(96px, 9vw, 138px);
+        background: var(--brand-secondary, #1e84b5);
+        color: #fff;
+      }
+
+      body .general-request-form[data-general-request-form],
+      body .general-request-form[data-general-request-form] *,
+      body .general-request-form[data-general-request-form] *::before,
+      body .general-request-form[data-general-request-form] *::after {
+        box-sizing: border-box;
+      }
+
+      body .general-request-form[data-general-request-form].general-request-form--embedded {
+        min-height: 0;
+        padding: clamp(56px, 7vw, 88px) clamp(20px, 4vw, 48px);
+      }
+
+      body .general-request-form[data-general-request-form] .request-questionnaire__container {
+        width: min(1020px, 100%);
+        margin: 0 auto;
+      }
+
+      body .general-request-form[data-general-request-form] .request-form {
+        display: grid;
+        width: 100%;
+        min-height: 0;
+        padding: 0;
+        scroll-margin-top: calc(var(--primary-site-header-height, 92px) + 24px);
+        border: 0 !important;
+        border-radius: 0;
+        background: transparent !important;
+        box-shadow: none !important;
+        color: #fff !important;
+        gap: 0;
+      }
+
+      body .general-request-form[data-general-request-form] .request-progress {
+        --progress: 16.666%;
+        position: relative;
+        height: 4px;
+        margin: 0 0 clamp(46px, 4vw, 60px);
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.2) !important;
+      }
+
+      body .general-request-form[data-general-request-form] .request-progress::before {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: var(--progress);
+        border-radius: inherit;
+        background: #fff !important;
+        content: "";
+        transition: width 240ms ease;
+      }
+
+      body .general-request-form[data-general-request-form] .request-questionnaire__heading {
+        display: grid;
+        margin: 0 0 clamp(62px, 8vw, 96px);
+        gap: 20px;
+      }
+
+      body .general-request-form[data-general-request-form] .request-questionnaire__eyebrow {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.68) !important;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.24em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      body .general-request-form[data-general-request-form] .request-questionnaire__heading :is(h1, h2) {
+        display: grid;
+        width: fit-content;
+        max-width: 9ch;
+        margin: 0;
+        color: #fff !important;
+        font-size: clamp(4.4rem, 9.5vw, 7.6rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 0.86;
+      }
+
+      body .general-request-form[data-general-request-form] .request-step {
+        display: none;
+      }
+
+      body .general-request-form[data-general-request-form] .request-step.is-active {
+        display: grid;
+        min-height: 0;
+        align-content: start;
+        gap: 18px;
+        animation: general-request-step-enter 220ms ease both;
+      }
+
+      @keyframes general-request-step-enter {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      body .general-request-form[data-general-request-form] .quiz-title {
+        max-width: 30ch;
+        margin: 0;
+        color: #fff !important;
+        font-size: clamp(1.7rem, 3.2vw, 2.35rem) !important;
+        font-weight: 700 !important;
+        line-height: 1.08 !important;
+        text-transform: none !important;
+      }
+
+      body .general-request-form[data-general-request-form] .request-service-menu {
+        max-height: min(62svh, 640px);
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        padding: 2px 10px 2px 2px;
+        scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+        scrollbar-gutter: stable;
+        scrollbar-width: thin;
+      }
+
+      body .general-request-form[data-general-request-form] .request-service-menu::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      body .general-request-form[data-general-request-form] .request-service-menu::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      body .general-request-form[data-general-request-form] .request-service-menu::-webkit-scrollbar-thumb {
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.45);
+      }
+
+      body .general-request-form[data-general-request-form] .quiz-options {
+        display: grid;
+        gap: 14px;
+      }
+
+      body .general-request-form[data-general-request-form] .request-step.is-active > .quiz-options {
+        margin-top: 10px;
+      }
+
+      body .general-request-form[data-general-request-form] .request-step--availability.is-active {
+        gap: 18px;
+      }
+
+      body .general-request-form[data-general-request-form] .request-preferences {
+        display: grid;
+        margin-top: 10px;
+        gap: 30px;
+      }
+
+      body .general-request-form[data-general-request-form] .request-preference-group {
+        display: grid;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        gap: 0;
+      }
+
+      body .general-request-form[data-general-request-form] .request-preference-group legend {
+        margin: 0;
+        padding: 0;
+        color: #fff !important;
+        font-size: clamp(1rem, 1.4vw, 1.15rem);
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      body .general-request-form[data-general-request-form] .request-preference-options {
+        display: grid;
+        margin-top: 16px;
+        gap: 10px;
+      }
+
+      body .general-request-form[data-general-request-form] .request-preference-options--days {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      body .general-request-form[data-general-request-form] .request-preference-options--time {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      body .general-request-form[data-general-request-form] .request-preference-options--urgent {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      body .general-request-form[data-general-request-form] .choice-btn {
+        position: relative;
+        display: grid;
+        align-items: center;
+        width: 100%;
+        cursor: pointer;
+        font: inherit;
+        text-align: left;
+        transition:
+          border-color 160ms ease,
+          background-color 160ms ease;
+      }
+
+      body .general-request-form[data-general-request-form] .choice-btn::before,
+      body .general-request-form[data-general-request-form] .choice-btn::after {
+        position: absolute;
+        top: 50%;
+        border-radius: 999px;
+        content: "";
+        transform: translateY(-50%);
+        transition:
+          border-color 160ms ease,
+          background-color 160ms ease,
+          opacity 160ms ease,
+          transform 160ms ease;
+      }
+
+      body .general-request-form[data-general-request-form] .choice-btn::after {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.55);
+      }
+
+      body .general-request-form[data-general-request-form]
+        .choice-btn[aria-pressed="true"]::after {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .request-preference-btn {
+        min-height: 62px;
+        padding: 0.85rem 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.055) !important;
+        box-shadow: none !important;
+        color: #fff !important;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 700;
+        transform: none !important;
+        transition:
+          border-color 180ms ease,
+          background-color 180ms ease,
+          color 180ms ease;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .request-preference-btn:is(:hover, :focus-visible) {
+        border-color: rgba(255, 255, 255, 0.78) !important;
+        background: rgba(255, 255, 255, 0.09) !important;
+        box-shadow: none !important;
+        color: #fff !important;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .request-preference-btn[aria-pressed="true"],
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .request-preference-btn[aria-pressed="true"]:is(
+          :hover,
+          :focus-visible
+        ) {
+        border-color: #fff !important;
+        background: #fff !important;
+        box-shadow: none !important;
+        color: var(--brand-secondary, #1e84b5) !important;
+      }
+
+      @media (min-width: 981px) {
+        body .general-request-form[data-general-request-form]
+          .request-step[data-step="1"]
+          .request-service-menu {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      body .general-request-form[data-general-request-form] .request-form .choice-btn,
+      body .general-request-form[data-general-request-form] .request-form .choice-btn:hover,
+      body .general-request-form[data-general-request-form] .request-form .choice-btn:focus-visible,
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .choice-btn[aria-pressed="true"] {
+        min-height: 82px;
+        padding: 1rem 4.5rem 1rem 1.55rem;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.055) !important;
+        box-shadow: none !important;
+        color: #fff !important;
+        transform: none !important;
+      }
+
+      body .general-request-form[data-general-request-form] .request-form .choice-btn:hover,
+      body .general-request-form[data-general-request-form] .request-form .choice-btn:focus-visible {
+        border-color: rgba(255, 255, 255, 0.74) !important;
+        background: rgba(255, 255, 255, 0.09) !important;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .choice-btn[aria-pressed="true"] {
+        border-color: #fff !important;
+        background: rgba(255, 255, 255, 0.14) !important;
+      }
+
+      body .general-request-form[data-general-request-form] .choice-btn strong {
+        display: block;
+        min-width: 0;
+        overflow-wrap: anywhere;
+        color: #fff !important;
+        font-size: clamp(1rem, 1.55vw, 1.14rem);
+        font-weight: 700;
+        line-height: 1.25;
+      }
+
+      body .general-request-form[data-general-request-form] .request-form .choice-btn small {
+        margin-top: 0.35rem;
+        color: rgba(255, 255, 255, 0.66) !important;
+        font-size: 0.88rem !important;
+        font-weight: 400;
+        line-height: 1.4;
+      }
+
+      body .general-request-form[data-general-request-form] .request-form .choice-btn::before {
+        right: 1.35rem;
+        width: 26px;
+        height: 26px;
+        border: 2px solid rgba(255, 255, 255, 0.44) !important;
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .choice-btn:hover::before,
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .choice-btn:focus-visible::before,
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .choice-btn[aria-pressed="true"]::before {
+        border-color: #fff !important;
+        background: #fff !important;
+        box-shadow: none !important;
+      }
+
+      body .general-request-form[data-general-request-form] .request-form .choice-btn::after {
+        right: calc(1.35rem + 8px);
+        width: 10px;
+        height: 10px;
+        background: var(--brand-secondary, #1e84b5) !important;
+        box-shadow: none !important;
+      }
+
+      body .general-request-form[data-general-request-form] .field-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.82rem;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .field-grid
+        label:first-child {
+        grid-column: 1 / -1;
+      }
+
+      body .general-request-form[data-general-request-form] .request-form label {
+        display: grid;
+        gap: 0.35rem;
+        color: #fff !important;
+        font-size: 0.95rem !important;
+        font-weight: 800;
+      }
+
+      body .general-request-form[data-general-request-form] .request-form input,
+      body .general-request-form[data-general-request-form] .request-form textarea {
+        width: 100%;
+        min-height: 50px;
+        padding: 0.78rem 0.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.34) !important;
+        border-color: rgba(255, 255, 255, 0.34) !important;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.08) !important;
+        color: #fff !important;
+        font: inherit;
+      }
+
+      body .general-request-form[data-general-request-form] .request-form textarea {
+        min-height: 116px;
+        resize: vertical;
+      }
+
+      body .general-request-form[data-general-request-form] .request-form input::placeholder,
+      body .general-request-form[data-general-request-form] .request-form textarea::placeholder {
+        color: rgba(255, 255, 255, 0.56) !important;
+      }
+
+      body .general-request-form[data-general-request-form] .request-form input:focus,
+      body .general-request-form[data-general-request-form] .request-form textarea:focus,
+      body .general-request-form[data-general-request-form] .request-form button:focus-visible {
+        border-color: #fff !important;
+        outline: 3px solid rgba(255, 255, 255, 0.52) !important;
+        outline-color: rgba(255, 255, 255, 0.52) !important;
+        outline-offset: 2px;
+      }
+
+      body .general-request-form[data-general-request-form] .request-form .summary-box {
+        display: grid;
+        gap: 0.48rem;
+        padding: 0.95rem;
+        border: 1px solid rgba(255, 255, 255, 0.28) !important;
+        border-color: rgba(255, 255, 255, 0.28) !important;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.07) !important;
+        color: rgba(255, 255, 255, 0.72) !important;
+        font-weight: 700;
+      }
+
+      body .general-request-form[data-general-request-form] .request-form .summary-box strong {
+        color: #fff !important;
+      }
+
+      body .general-request-form[data-general-request-form] .summary-line {
+        display: grid;
+        gap: 0.08rem;
+        padding-bottom: 0.58rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+        border-bottom-color: rgba(255, 255, 255, 0.16);
+      }
+
+      body .general-request-form[data-general-request-form]
+        .summary-line:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+
+      body .general-request-form[data-general-request-form] .form-error {
+        min-height: 23px;
+        margin: -0.08rem 0 0;
+        color: #fff !important;
+        font-size: 0.95rem;
+        font-weight: 800;
+      }
+
+      body .general-request-form[data-general-request-form] .request-btn {
+        position: relative;
+        z-index: 0;
+        display: flex;
+        isolation: isolate;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-width: 0;
+        padding: 0.88rem 1.08rem;
+        overflow: hidden;
+        border: 1px solid transparent;
+        background: transparent;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 800;
+        line-height: 1;
+        text-align: center;
+        text-decoration: none;
+        transition:
+          border-color 180ms ease,
+          color 180ms ease,
+          background-color 180ms ease;
+      }
+
+      body .general-request-form[data-general-request-form] .request-btn::before {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        display: block;
+        border-radius: inherit;
+        background: #fff;
+        content: "";
+        pointer-events: none;
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 180ms ease;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-btn[hidden] {
+        display: none;
+      }
+
+      body .general-request-form[data-general-request-form] .request-actions {
+        display: flex;
+        width: 100%;
+        margin-top: clamp(42px, 6vw, 68px);
+        gap: 14px;
+      }
+
+      body .general-request-form[data-general-request-form] .request-actions .request-btn {
+        min-height: 70px;
+        border-radius: 999px !important;
+        box-shadow: none !important;
+        transform: none !important;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-actions
+        .request-btn-primary:not(#site-button-legacy-override) {
+        --site-button-base-fill: #fff;
+        --site-button-base-color: var(--brand-secondary, #1e84b5);
+        --site-button-base-border: #fff;
+        --site-button-hover-fill: #fff;
+        --site-button-hover-color: #fff;
+        --site-button-hover-border: #fff;
+        flex: 1 1 auto;
+        border-color: #fff !important;
+        background: transparent !important;
+        color: var(--brand-secondary, #1e84b5) !important;
+        box-shadow: none !important;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-actions
+        .request-btn-primary:not(#site-button-legacy-override)::before {
+        display: block !important;
+        background: #fff !important;
+        transform: scaleX(1) !important;
+        transform-origin: left center !important;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-actions
+        .request-btn-primary:not(#site-button-legacy-override):is(
+          :hover,
+          :focus-visible
+        ):not(:disabled) {
+        --site-button-base-fill: transparent;
+        --site-button-hover-fill: #fff;
+        --site-button-hover-color: #fff;
+        --site-button-hover-border: #fff;
+        border-color: #fff !important;
+        background: transparent !important;
+        color: #fff !important;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-actions
+        .request-btn-primary:not(#site-button-legacy-override):is(
+          :hover,
+          :focus-visible
+        ):not(:disabled)::before {
+        background: #fff !important;
+        transform: scaleX(0) !important;
+        transform-origin: right center !important;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-actions
+        .request-btn-primary:not(#site-button-legacy-override):disabled {
+        --site-button-base-fill: rgba(255, 255, 255, 0.34);
+        --site-button-base-color: rgba(30, 132, 181, 0.72);
+        --site-button-base-border: transparent;
+        cursor: not-allowed;
+        border-color: transparent !important;
+        background: rgba(255, 255, 255, 0.34) !important;
+        color: rgba(30, 132, 181, 0.72) !important;
+        opacity: 1;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-actions
+        .request-btn-primary:not(#site-button-legacy-override):disabled::before {
+        display: none !important;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-actions
+        .request-btn-outline:not(#site-button-legacy-override) {
+        --site-button-base-fill: transparent;
+        --site-button-base-color: #fff;
+        --site-button-base-border: rgba(255, 255, 255, 0.64);
+        --site-button-hover-fill: #fff;
+        --site-button-hover-color: var(--brand-secondary, #1e84b5);
+        --site-button-hover-border: #fff;
+        flex: 0 0 96px;
+        border-color: rgba(255, 255, 255, 0.64) !important;
+        background: transparent !important;
+        color: #fff !important;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-actions
+        .request-btn-outline:not(#site-button-legacy-override):is(
+          :hover,
+          :focus-visible
+        ) {
+        border-color: #fff !important;
+        background: transparent !important;
+        color: var(--brand-secondary, #1e84b5) !important;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-actions
+        .request-btn-outline:not(#site-button-legacy-override):is(
+          :hover,
+          :focus-visible
+        )::before {
+        transform: scaleX(1);
+      }
+
+      @media (max-width: 900px) {
+        body .general-request-form[data-general-request-form] .request-preference-options--days {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 680px) {
+        body .general-request-form[data-general-request-form] {
+          padding: 116px 18px 84px;
+        }
+
+        body .general-request-form[data-general-request-form].general-request-form--embedded {
+          padding: 48px 18px;
+        }
+
+        body .general-request-form[data-general-request-form] .request-progress {
+          margin-bottom: 44px;
+        }
+
+        body .general-request-form[data-general-request-form] .request-questionnaire__heading {
+          margin-bottom: 54px;
+          gap: 16px;
+        }
+
+        body .general-request-form[data-general-request-form] .request-questionnaire__heading :is(h1, h2) {
+          font-size: clamp(3.6rem, 19vw, 5.2rem);
+        }
+
+        body .general-request-form[data-general-request-form] .request-service-menu {
+          max-height: min(58svh, 520px);
+          padding-right: 7px;
+        }
+
+        body .general-request-form[data-general-request-form] .request-preferences {
+          gap: 24px;
+        }
+
+        body .general-request-form[data-general-request-form] .field-grid {
+          grid-template-columns: 1fr;
+          gap: 0.72rem;
+        }
+
+        body .general-request-form[data-general-request-form] .request-preference-options {
+          margin-top: 14px;
+        }
+
+        body .general-request-form[data-general-request-form] .request-preference-options--days {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        body .general-request-form[data-general-request-form] .request-preference-options--time {
+          grid-template-columns: 1fr;
+        }
+
+        body .general-request-form[data-general-request-form]
+          .request-form
+          .request-preference-btn {
+          min-height: 56px;
+          padding: 0.75rem 0.65rem;
+        }
+
+        body .general-request-form[data-general-request-form] .request-form .choice-btn,
+        body .general-request-form[data-general-request-form] .request-form .choice-btn:hover,
+        body .general-request-form[data-general-request-form] .request-form .choice-btn:focus-visible,
+        body .general-request-form[data-general-request-form]
+          .request-form
+          .choice-btn[aria-pressed="true"] {
+          min-height: 72px;
+          padding: 0.88rem 3.7rem 0.88rem 1rem;
+          border-radius: 14px;
+        }
+
+        body .general-request-form[data-general-request-form] .request-actions {
+          margin-top: 38px;
+        }
+
+        body .general-request-form[data-general-request-form] .request-actions .request-btn {
+          min-height: 60px;
+        }
+
+        body .general-request-form[data-general-request-form]
+          .request-actions
+          .request-btn-outline:not(#site-button-legacy-override) {
+          flex-basis: 82px;
+        }
+      }
+
+      @media (max-width: 430px) {
+        body .general-request-form[data-general-request-form] .request-actions {
+          flex-direction: column;
+        }
+
+        body .general-request-form[data-general-request-form]
+          .request-actions
+          .request-btn-outline:not(#site-button-legacy-override) {
+          flex-basis: auto;
+        }
+      }
+    </style>
+
+    <script
+      define:vars={{
+        serviceOptions,
+        treatmentPresets,
+        secondStepProfiles,
+        serviceSecondStepProfileIds,
+        treatmentSecondStepProfileIds,
+        fallbackSecondStepProfileId,
+        normalizedPresetService,
+        normalizedPresetTreatment,
+        normalizedSourcePage,
+        hasPresetProps,
+        hasExplicitInitialStep,
+        requestedInitialStep,
+        instanceId,
+      }}
+    >
+      (() => {
+        const root = document.querySelector(
+          `[data-general-request-form="${instanceId}"]`,
+        );
+        const form = root?.querySelector("form.request-form");
+        if (!(form instanceof HTMLFormElement)) return;
+
+        const ageRangeOptions = ["18–25", "26–35", "36–50", "50+"];
+
+        const params = new URLSearchParams(window.location.search);
+        const requestedServiceSlug = hasPresetProps
+          ? normalizedPresetService
+          : params.get("servizio") || "";
+        const requestedTreatmentId = hasPresetProps
+          ? normalizedPresetTreatment
+          : params.get("trattamento") || "";
+        const requestedService = serviceOptions.find(
+          (item) => item.slug === requestedServiceSlug,
+        );
+        const requestedTreatment = treatmentPresets.find(
+          (item) => item.treatmentId === requestedTreatmentId,
+        );
+        const treatmentService = requestedTreatment
+          ? serviceOptions.find(
+              (item) => item.slug === requestedTreatment.serviceSlug,
+            )
+          : undefined;
+        const resolvedTreatment =
+          requestedTreatment &&
+          treatmentService &&
+          (!requestedService ||
+            requestedTreatment.serviceSlug === requestedService.slug)
+            ? requestedTreatment
+            : undefined;
+        const resolvedService =
+          requestedService ||
+          (resolvedTreatment ? treatmentService : undefined);
+        const servicePropIsValid =
+          !normalizedPresetService || Boolean(requestedService);
+        const treatmentPropIsValid =
+          !normalizedPresetTreatment || Boolean(requestedTreatment);
+        const propPairIsCoherent =
+          !requestedService ||
+          !requestedTreatment ||
+          requestedTreatment.serviceSlug === requestedService.slug;
+        const propsPreselectionIsValid =
+          !hasPresetProps ||
+          (servicePropIsValid &&
+            treatmentPropIsValid &&
+            propPairIsCoherent &&
+            Boolean(resolvedService));
+        const selectedTreatment = propsPreselectionIsValid
+          ? resolvedTreatment
+          : undefined;
+        const selectedService = propsPreselectionIsValid
+          ? resolvedService
+          : undefined;
+        const resolveSecondStepProfile = (serviceSlug = "", treatmentId = "") => {
+          const profileId =
+            (treatmentId && treatmentSecondStepProfileIds[treatmentId]) ||
+            serviceSecondStepProfileIds[serviceSlug] ||
+            fallbackSecondStepProfileId;
+
+          return (
+            secondStepProfiles[profileId] ||
+            secondStepProfiles[fallbackSecondStepProfileId]
+          );
+        };
+        const initialSecondStepProfile = resolveSecondStepProfile(
+          selectedService?.slug,
+          selectedTreatment?.treatmentId,
+        );
+        const shouldSkipServiceStep =
+          Boolean(selectedService) &&
+          (hasPresetProps
+            ? propsPreselectionIsValid &&
+              hasExplicitInitialStep &&
+              requestedInitialStep === 2
+            : hasExplicitInitialStep
+              ? requestedInitialStep === 2
+              : true);
+        const totalSteps = shouldSkipServiceStep ? 4 : 5;
+        const steps = [...form.querySelectorAll(".request-step")];
+        const progress = form.querySelector(".request-progress");
+        const nextBtn = form.querySelector("[data-next-step]");
+        const prevBtn = form.querySelector("[data-prev-step]");
+        const submitBtn = form.querySelector("[data-submit-step]");
+        const stepEyebrow = form.querySelector("[data-step-eyebrow]");
+        const formError = form.querySelector("[data-form-error]");
+        const serviceGroup = form.querySelector('[data-field="servizio"]');
+        const secondStepGroup = form.querySelector("[data-second-step-options]");
+        const secondStepTitle = form.querySelector("[data-second-step-title]");
+        const ageRangeGroup = form.querySelector('[data-field="fasciaEta"]');
+        const summaryBox = form.querySelector("[data-summary-box]");
+        const fields = {
+          nomeCompleto: form.querySelector('[name="nomeCompleto"]'),
+          telefono: form.querySelector('[name="telefono"]'),
+          email: form.querySelector('[name="email"]'),
+          messaggio: form.querySelector('[name="messaggio"]'),
+        };
+        const quiz = {
+          servizio: selectedService?.label || "",
+          servizioDisplay: selectedService?.displayLabel || selectedService?.label || "",
+          servizioSlug: selectedService?.slug || "",
+          servizioGroup: selectedService?.group || "",
+          trattamentoId: selectedTreatment?.treatmentId || "",
+          trattamentoSpecifico:
+            selectedTreatment?.specificTreatmentValue || "",
+          profiloAnamnestico: initialSecondStepProfile.id,
+          domandaAnamnestica: initialSecondStepProfile.question,
+          rispostaAnamnestica: "",
+          etichettaRiepilogoAnamnestico:
+            initialSecondStepProfile.summaryLabel,
+          validazioneAnamnestica:
+            initialSecondStepProfile.validationMessage,
+          anamnesiRappresentaDurata: initialSecondStepProfile.isDuration,
+          fasciaEta: "",
+          giorniPreferiti: [],
+          fasciaOraria: "",
+          disponibilitaUrgente: "",
+        };
+        let currentStep = shouldSkipServiceStep ? 2 : 1;
+        let isSubmitting = false;
+        const stepEyebrowLabels = {
+          1: "Scegli il trattamento",
+          3: "Fascia d’età",
+          4: "Indica le tue preferenze",
+          5: "Inserisci i tuoi dati",
+        };
+
+        const setError = (message = "") => {
+          if (formError) formError.textContent = message;
+        };
+
+        const escapeHtml = (value) =>
+          String(value || "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#39;");
+
+        const effectiveStepIndex = (step) =>
+          shouldSkipServiceStep ? step - 1 : step;
+
+        const updateNavigationState = () => {
+          if (!(nextBtn instanceof HTMLButtonElement)) return;
+
+          const stepIsComplete =
+            (currentStep === 1 && Boolean(quiz.servizio)) ||
+            (currentStep === 2 && Boolean(quiz.rispostaAnamnestica)) ||
+            (currentStep === 3 && Boolean(quiz.fasciaEta)) ||
+            (currentStep === 4 &&
+              quiz.giorniPreferiti.length > 0 &&
+              Boolean(quiz.fasciaOraria) &&
+              Boolean(quiz.disponibilitaUrgente));
+
+          nextBtn.disabled = currentStep < 5 && !stepIsComplete;
+        };
+
+        const renderChoiceButtons = (container, options, field) => {
+          if (!container) return;
+          container.innerHTML = "";
+          options.forEach((option) => {
+            const value = typeof option === "string" ? option : option.label;
+            const displayValue = typeof option === "string" ? option : option.displayLabel || option.label;
+            const slug = typeof option === "string" ? "" : option.slug;
+            const group = typeof option === "string" ? "" : option.group;
+            const button = document.createElement("button");
+            button.className = "choice-btn";
+            button.type = "button";
+            button.dataset.value = value;
+            if (slug) button.dataset.slug = slug;
+            if (group) button.dataset.group = group;
+            button.setAttribute("aria-pressed", "false");
+            button.innerHTML = `<strong>${escapeHtml(displayValue)}</strong>`;
+            button.addEventListener("click", () => {
+              quiz[field] = value;
+              if (field === "servizio") {
+                const serviceChanged = quiz.servizioSlug !== slug;
+                quiz.servizioDisplay = displayValue;
+                quiz.servizioSlug = slug;
+                quiz.servizioGroup = group;
+                if (serviceChanged) {
+                  quiz.trattamentoId = "";
+                  quiz.trattamentoSpecifico = "";
+                  configureSecondStep(
+                    resolveSecondStepProfile(slug),
+                    true,
+                  );
+                }
+              }
+              container.querySelectorAll(".choice-btn").forEach((item) => item.setAttribute("aria-pressed", "false"));
+              button.setAttribute("aria-pressed", "true");
+              setError();
+              updateNavigationState();
+            });
+            container.append(button);
+          });
+        };
+
+        const configureSecondStep = (profile, resetAnswer = false) => {
+          if (!profile) return;
+
+          quiz.profiloAnamnestico = profile.id;
+          quiz.domandaAnamnestica = profile.question;
+          quiz.etichettaRiepilogoAnamnestico = profile.summaryLabel;
+          quiz.validazioneAnamnestica = profile.validationMessage;
+          quiz.anamnesiRappresentaDurata = Boolean(profile.isDuration);
+          if (resetAnswer) quiz.rispostaAnamnestica = "";
+
+          if (secondStepTitle) secondStepTitle.textContent = profile.question;
+          secondStepGroup?.setAttribute("aria-label", profile.ariaLabel);
+          renderChoiceButtons(
+            secondStepGroup,
+            profile.options,
+            "rispostaAnamnestica",
+          );
+          if (quiz.rispostaAnamnestica) {
+            markChoice("rispostaAnamnestica", quiz.rispostaAnamnestica);
+          }
+          if (currentStep === 2 && stepEyebrow) {
+            stepEyebrow.textContent = profile.eyebrow;
+          }
+        };
+
+        const buildSummary = () => {
+          if (!summaryBox) return;
+          summaryBox.innerHTML = [
+            ["Esigenza", quiz.servizioDisplay || quiz.servizio],
+            ["Trattamento", quiz.trattamentoSpecifico],
+            [
+              quiz.etichettaRiepilogoAnamnestico,
+              quiz.rispostaAnamnestica,
+            ],
+            ["Fascia d’età", quiz.fasciaEta],
+            ["Giorni preferiti", quiz.giorniPreferiti.join(", ")],
+            ["Fascia oraria", quiz.fasciaOraria],
+            ["Disponibilità urgente", quiz.disponibilitaUrgente],
+          ]
+            .filter(([, value]) => value)
+            .map(([label, value]) => `<span class="summary-line"><strong>${escapeHtml(label)}</strong>${escapeHtml(value)}</span>`)
+            .join("");
+        };
+
+        const markChoice = (field, value) => {
+          const group = form.querySelector(`.quiz-options[data-field="${field}"]`);
+          group?.querySelectorAll(".choice-btn").forEach((button) => {
+            button.setAttribute("aria-pressed", button.dataset.value === value ? "true" : "false");
+          });
+        };
+
+        const showStep = (step, shouldScroll = true) => {
+          currentStep = step;
+          steps.forEach((item) => item.classList.toggle("is-active", Number(item.dataset.step) === step));
+          if (stepEyebrow) {
+            stepEyebrow.textContent =
+              step === 2
+                ? secondStepProfiles[quiz.profiloAnamnestico]?.eyebrow || ""
+                : stepEyebrowLabels[step] || "";
+          }
+          const stepIndex = effectiveStepIndex(step);
+          progress?.style.setProperty("--progress", `${(stepIndex / totalSteps) * 100}%`);
+          progress?.setAttribute("aria-valuemax", String(totalSteps));
+          progress?.setAttribute("aria-valuenow", String(stepIndex));
+          if (prevBtn instanceof HTMLButtonElement) prevBtn.hidden = stepIndex <= 1;
+          if (nextBtn instanceof HTMLButtonElement) nextBtn.hidden = step === 5;
+          if (submitBtn instanceof HTMLButtonElement) submitBtn.hidden = step !== 5;
+          if (step === 5) buildSummary();
+          setError();
+          updateNavigationState();
+          if (shouldScroll) {
+            requestAnimationFrame(() => form.scrollIntoView({ behavior: "smooth", block: "start" }));
+          }
+        };
+
+        const validateStep = () => {
+          if (currentStep === 1 && !quiz.servizio) {
+            setError("Seleziona la situazione più vicina alla tua esigenza.");
+            return false;
+          }
+          if (currentStep === 2 && !quiz.rispostaAnamnestica) {
+            setError(quiz.validazioneAnamnestica);
+            return false;
+          }
+          if (currentStep === 3 && !quiz.fasciaEta) {
+            setError("Seleziona la tua fascia d’età.");
+            return false;
+          }
+          if (currentStep === 4 && quiz.giorniPreferiti.length === 0) {
+            setError("Seleziona almeno un giorno preferito.");
+            return false;
+          }
+          if (currentStep === 4 && !quiz.fasciaOraria) {
+            setError("Seleziona una fascia oraria.");
+            return false;
+          }
+          if (currentStep === 4 && !quiz.disponibilitaUrgente) {
+            setError("Indica se hai disponibilità urgente.");
+            return false;
+          }
+          if (currentStep === 5) {
+            const required = [fields.nomeCompleto, fields.telefono].filter((field) => field instanceof HTMLInputElement);
+            const invalid = required.find((field) => !field.checkValidity());
+            if (invalid) {
+              invalid.reportValidity();
+              setError("Completa nome e telefono per inviare la richiesta.");
+              return false;
+            }
+            if (fields.email instanceof HTMLInputElement && fields.email.value && !fields.email.checkValidity()) {
+              fields.email.reportValidity();
+              setError("Inserisci un indirizzo email valido oppure lascia il campo vuoto.");
+              return false;
+            }
+          }
+          return true;
+        };
+
+        const buildLeadPayload = () => ({
+          nome: fields.nomeCompleto?.value || "",
+          telefono: fields.telefono?.value || "",
+          email: fields.email?.value || "",
+          servizio: quiz.servizio || "Richiesta generale",
+          trattamentoSpecifico: quiz.trattamentoSpecifico,
+          messaggio: fields.messaggio?.value || "",
+          paginaProvenienza: normalizedSourcePage || document.referrer || "",
+          paginaCorrente: window.location.href,
+          domandaAnamnestica: quiz.domandaAnamnestica,
+          rispostaAnamnestica: quiz.rispostaAnamnestica,
+          durataProblema: quiz.anamnesiRappresentaDurata
+            ? quiz.rispostaAnamnestica
+            : "",
+          fasciaEta: quiz.fasciaEta,
+          preferred_visit_days: quiz.giorniPreferiti,
+          preferred_visit_time: quiz.fasciaOraria,
+          urgenza: `Disponibilità urgente: ${quiz.disponibilitaUrgente}`,
+        });
+
+        const sendLead = async () => {
+          const response = await fetch("/api/send-lead", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(buildLeadPayload()),
+          });
+
+          if (response.ok) return;
+          const result = await response.json().catch(() => ({}));
+          throw new Error(result.error || "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+        };
+
+        renderChoiceButtons(serviceGroup, serviceOptions, "servizio");
+        configureSecondStep(initialSecondStepProfile);
+        renderChoiceButtons(ageRangeGroup, ageRangeOptions, "fasciaEta");
+        if (selectedService) {
+          markChoice("servizio", quiz.servizio);
+        }
+        if (shouldSkipServiceStep) {
+          steps.find((step) => Number(step.dataset.step) === 1)?.setAttribute("hidden", "");
+        }
+
+        form.querySelectorAll(".request-preference-options").forEach((group) => {
+          const field = group.dataset.field;
+          const isMultiple = group.dataset.multiple === "true";
+
+          group.querySelectorAll(".request-preference-btn").forEach((button) => {
+            button.setAttribute("aria-pressed", "false");
+            button.addEventListener("click", () => {
+              if (!field) return;
+              const value = button.dataset.value || "";
+
+              if (field === "giorniPreferiti" && isMultiple) {
+                quiz.giorniPreferiti = quiz.giorniPreferiti.includes(value)
+                  ? quiz.giorniPreferiti.filter((item) => item !== value)
+                  : [...quiz.giorniPreferiti, value];
+                button.setAttribute(
+                  "aria-pressed",
+                  String(quiz.giorniPreferiti.includes(value)),
+                );
+              } else {
+                if (field === "fasciaOraria") quiz.fasciaOraria = value;
+                if (field === "disponibilitaUrgente") {
+                  quiz.disponibilitaUrgente = value;
+                }
+                group
+                  .querySelectorAll(".request-preference-btn")
+                  .forEach((item) => item.setAttribute("aria-pressed", "false"));
+                button.setAttribute("aria-pressed", "true");
+              }
+
+              setError();
+              updateNavigationState();
+            });
+          });
+        });
+
+        nextBtn?.addEventListener("click", () => {
+          if (validateStep()) showStep(Math.min(5, currentStep + 1));
+        });
+
+        prevBtn?.addEventListener("click", () => {
+          const previous = Math.max(
+            shouldSkipServiceStep ? 2 : 1,
+            currentStep - 1,
+          );
+          if (previous !== currentStep) showStep(previous);
+        });
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          if (!validateStep() || isSubmitting) return;
+          isSubmitting = true;
+          if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = true;
+
+          try {
+            await sendLead();
+            try {
+              window.sessionStorage.removeItem("lead_conversion_scope");
+              window.sessionStorage.removeItem("lead_conversion_id");
+              window.sessionStorage.removeItem("lead_conversion_pending");
+            } catch {
+              // Il redirect non dipende dalla disponibilità dello storage.
+            }
+            window.location.href = "/thank-you-page/";
+          } catch (error) {
+            isSubmitting = false;
+            if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = false;
+            setError(error instanceof Error ? error.message : "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+          }
+        });
+
+        showStep(currentStep, false);
+      })();
+    </script>
