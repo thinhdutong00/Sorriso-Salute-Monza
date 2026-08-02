@@ -1,7 +1,7 @@
 ---
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import AboutStructureSection from "./AboutStructureSection.astro";
+import AboutTreatmentAreasSection from "./AboutTreatmentAreasSection.astro";
 import BrandPalette from "./BrandPalette.astro";
 import GoogleAdsTracking from "./GoogleAdsTracking.astro";
 import HomeCarePathSection from "./HomeCarePathSection.astro";
@@ -799,14 +799,16 @@ const bodyAfterHomeCarePath =
   homeCarePathInsertIndex >= 0
     ? bodyWithoutHomepageClaritySection.slice(homeCarePathInsertIndex)
     : "";
-const aboutStructureRuntimeMarker = '<template id="tp-language"';
-const aboutStructureSplitIndex =
-  page.path === "/chi-siamo/" ? body.indexOf(aboutStructureRuntimeMarker) : -1;
-const bodyBeforeAboutStructure =
-  aboutStructureSplitIndex >= 0 ? body.slice(0, aboutStructureSplitIndex) : body;
-const bodyAfterAboutStructure =
-  aboutStructureSplitIndex >= 0 ? body.slice(aboutStructureSplitIndex) : "";
-
+const bodyWithoutReplacedAboutSections =
+  page.path === "/chi-siamo/"
+    ? ["2e345e95", "ddac3c4", "69bfb3fc"].reduce(
+        (next, dataId) => removeDivElementByDataId(next, dataId),
+        body,
+      )
+    : body;
+const bodyWithoutLegacyAboutTreatmentSection = isAboutPage
+  ? removeDivElementByDataId(bodyWithoutReplacedAboutSections, "ce5d034")
+  : bodyWithoutReplacedAboutSections;
 const isActivityServicePage =
   page.path.startsWith("/attivita/") &&
   page.path !== "/attivita/" &&
@@ -1951,12 +1953,15 @@ const reviewsPageScript = `
         internalHero && (
           <InternalPageHero
             id="mirror-internal-page-title"
+            sectionId={page.path === "/chi-siamo/" ? "team" : undefined}
             eyebrow={internalHero.eyebrow}
             titlePrimary={internalHero.titlePrimary}
             titleAccent={internalHero.titleAccent}
             lead={internalHero.lead}
             breadcrumbs={internalHero.breadcrumbs}
             panel={internalHero.panel}
+            quote={internalHero.quote}
+            carousel={internalHero.carousel}
           />
         )
       }
@@ -1969,9 +1974,13 @@ const reviewsPageScript = `
           </>
         ) : (
           <>
-            <Fragment set:html={bodyBeforeAboutStructure} />
-            {page.path === "/chi-siamo/" && <AboutStructureSection />}
-            <Fragment set:html={bodyAfterAboutStructure} />
+            {isAboutPage && <AboutTreatmentAreasSection />}
+            {
+              page.path === "/chi-siamo/" && (
+                <HomeCarePathSection variant="brand" sectionId="come-lavoriamo" />
+              )
+            }
+            <Fragment set:html={bodyWithoutLegacyAboutTreatmentSection} />
           </>
         )
       }

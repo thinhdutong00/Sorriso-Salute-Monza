@@ -1,0 +1,445 @@
+---
+const treatmentAreas = [
+  {
+    title: "Prevenzione e salute orale",
+    description: "Per mantenere denti e gengive sani.",
+    items: [
+      "Igiene orale",
+      "Controlli",
+      "Prevenzione",
+      "Parodontologia",
+      "Cura delle gengive",
+    ],
+    href: "/attivita/igiene-orale-e-profilassi/",
+  },
+  {
+    title: "Cura e recupero dei denti",
+    description: "Per conservare i denti naturali quando sono danneggiati.",
+    items: [
+      "Carie e otturazioni",
+      "Ricostruzioni",
+      "Devitalizzazioni",
+      "Endodonzia",
+      "Recupero dei denti compromessi",
+    ],
+    href: "/attivita/odontoiatria-conservativa/",
+  },
+  {
+    title: "Implantologia e protesi",
+    description:
+      "Per sostituire uno o più denti mancanti e tornare a mangiare e sorridere con sicurezza.",
+    items: [
+      "Impianti dentali",
+      "Denti fissi",
+      "Impianto singolo",
+      "Ponte su impianti",
+      "Protesi fisse e mobili",
+      "Carico immediato",
+      "Poco osso",
+      "Manutenzione degli impianti",
+    ],
+    href: "/implantologia/",
+  },
+  {
+    title: "Estetica e ortodonzia",
+    description: "Per migliorare forma, colore e posizione dei denti.",
+    items: [
+      "Estetica del sorriso",
+      "Sbiancamento",
+      "Faccette",
+      "Ortodonzia",
+      "Apparecchi",
+      "Allineatori trasparenti",
+    ],
+    href: "/attivita/estetica-del-sorriso/",
+  },
+  {
+    title: "Chirurgia e funzione",
+    description:
+      "Per problemi che riguardano interventi, masticazione e articolazione mandibolare.",
+    items: [
+      "Chirurgia orale",
+      "Estrazioni",
+      "Denti del giudizio",
+      "Gnatologia",
+      "Bruxismo",
+      "Bite",
+      "Disturbi della mandibola",
+    ],
+    href: "/attivita/chirurgia-orale/",
+  },
+  {
+    title: "Odontoiatria per bambini",
+    description: "Per accompagnare la salute orale durante la crescita.",
+    items: [
+      "Pedodonzia",
+      "Prevenzione pediatrica",
+      "Cura dei denti da latte",
+      "Controllo della crescita",
+      "Ortodonzia nei bambini e ragazzi",
+    ],
+    href: "/attivita/pedodonzia/",
+  },
+];
+---
+
+<section class="about-treatment-areas" aria-labelledby="about-treatment-areas-title">
+  <div class="about-treatment-areas__inner">
+    <header class="about-treatment-areas__header">
+      <p class="about-treatment-areas__eyebrow">
+        <span aria-hidden="true"></span>
+        Avanguardia e innovazione
+      </p>
+      <h2 id="about-treatment-areas-title">
+        <span>L’approccio clinico</span>
+        <strong>al tuo benessere.</strong>
+      </h2>
+    </header>
+
+    <div class="about-treatment-areas__grid">
+      {
+        treatmentAreas.map((area) => (
+          <article class="about-treatment-card">
+            <div class="about-treatment-card__content">
+              <h3>{area.title}</h3>
+              <p>{area.description}</p>
+              <ul>
+                {area.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <a href={area.href} aria-label={`Esplora l’area ${area.title}`}>
+              <span>Esplora l’area</span>
+              <svg aria-hidden="true" viewBox="0 0 18 18" width="18" height="18">
+                <path d="M3 9h11M10 5l4 4-4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+              </svg>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    <a class="about-treatment-areas__all" href="/attivita/">
+      <span>Guarda tutti i trattamenti</span>
+      <svg aria-hidden="true" viewBox="0 0 18 18" width="18" height="18">
+        <path d="M3 9h11M10 5l4 4-4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style is:inline>
+  .about-treatment-areas {
+    position: relative;
+    scroll-margin-top: 110px;
+    padding: clamp(88px, 9vw, 148px) 28px clamp(96px, 10vw, 160px);
+    overflow: hidden;
+    color: var(--brand-text);
+    background:
+      radial-gradient(circle at 87% 13%, rgba(30, 132, 181, 0.09), transparent 29rem),
+      radial-gradient(circle at 9% 87%, rgba(14, 56, 76, 0.055), transparent 27rem),
+      #f5f8fb;
+  }
+
+  .about-treatment-areas::before {
+    position: absolute;
+    top: 50px;
+    right: -155px;
+    width: 390px;
+    height: 390px;
+    border: 1px solid rgba(30, 132, 181, 0.08);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+  }
+
+  .about-treatment-areas__inner {
+    position: relative;
+    z-index: 1;
+    width: min(1320px, 100%);
+    margin: 0 auto;
+  }
+
+  .about-treatment-areas__header {
+    margin-bottom: clamp(50px, 6vw, 80px);
+  }
+
+  .about-treatment-areas__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 30px;
+    color: var(--brand-secondary);
+    font-size: 0.84rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .about-treatment-areas__eyebrow span {
+    width: 54px;
+    height: 1px;
+    flex: 0 0 54px;
+    background: var(--brand-secondary);
+  }
+
+  .about-treatment-areas__header h2 {
+    max-width: 840px;
+    margin: 0;
+    font-family: var(--font-family-display) !important;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+
+  .about-treatment-areas__header h2 span,
+  .about-treatment-areas__header h2 strong {
+    display: block;
+  }
+
+  .about-treatment-areas__header h2 span {
+    color: var(--brand-primary);
+  }
+
+  .about-treatment-areas__header h2 strong {
+    margin-top: 0.12em;
+    color: var(--brand-secondary);
+    font: inherit;
+  }
+
+  .about-treatment-areas__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .about-treatment-card {
+    display: flex;
+    min-width: 0;
+    min-height: 510px;
+    flex-direction: column;
+    padding: clamp(30px, 3vw, 46px);
+    border: 1px solid rgba(14, 56, 76, 0.08);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 18px 42px rgba(14, 56, 76, 0.055);
+    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+  }
+
+  .about-treatment-card:hover,
+  .about-treatment-card:focus-within {
+    border-color: rgba(30, 132, 181, 0.28);
+    box-shadow: 0 24px 52px rgba(14, 56, 76, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .about-treatment-card__content {
+    flex: 1 1 auto;
+  }
+
+  .about-treatment-card h3 {
+    max-width: 16ch;
+    margin: 0;
+    color: var(--brand-primary);
+    font-family: var(--font-family-display) !important;
+    font-size: clamp(1.45rem, 2vw, 1.9rem);
+    font-weight: 650;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  .about-treatment-card p {
+    min-height: 4.8em;
+    margin: 22px 0 0;
+    color: var(--brand-description);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .about-treatment-card ul {
+    display: grid;
+    gap: 8px;
+    margin: 24px 0 30px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .about-treatment-card li {
+    position: relative;
+    margin: 0;
+    padding-left: 18px;
+    color: var(--brand-primary);
+    font-size: 0.94rem;
+    font-weight: 550;
+    line-height: 1.35;
+  }
+
+  .about-treatment-card li::before {
+    position: absolute;
+    top: 0.55em;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--brand-secondary);
+    content: "";
+  }
+
+  .about-treatment-card > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(14, 56, 76, 0.11);
+    color: var(--brand-primary);
+    font-size: 0.76rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .about-treatment-card > a svg,
+  .about-treatment-areas__all svg {
+    flex: 0 0 18px;
+    transition: transform 180ms ease;
+  }
+
+  .about-treatment-card > a:hover svg,
+  .about-treatment-card > a:focus-visible svg,
+  .about-treatment-areas__all:hover svg,
+  .about-treatment-areas__all:focus-visible svg {
+    transform: translateX(4px);
+  }
+
+  .about-treatment-card > a:focus-visible,
+  .about-treatment-areas__all:focus-visible {
+    outline: 3px solid var(--brand-secondary-soft);
+    outline-offset: 5px;
+  }
+
+  .about-treatment-areas__all {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    min-height: 64px;
+    margin: clamp(46px, 5vw, 70px) auto 0;
+    padding: 0 34px;
+    border: 1px solid rgba(14, 56, 76, 0.2);
+    border-radius: 16px;
+    color: var(--brand-primary);
+    background: rgba(255, 255, 255, 0.62);
+    font-size: 0.76rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease;
+  }
+
+  .about-treatment-areas__all:hover {
+    border-color: var(--brand-primary);
+    color: #ffffff;
+    background: var(--brand-primary);
+  }
+
+  @media (max-width: 1100px) {
+    .about-treatment-areas__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .about-treatment-card {
+      min-height: 480px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .about-treatment-areas {
+      padding: 70px 20px 92px;
+    }
+
+    .about-treatment-areas::before {
+      top: 10px;
+      right: -130px;
+      width: 270px;
+      height: 270px;
+    }
+
+    .about-treatment-areas__header {
+      margin-bottom: 38px;
+    }
+
+    .about-treatment-areas__eyebrow {
+      gap: 10px;
+      margin-bottom: 22px;
+      font-size: 0.7rem;
+      letter-spacing: 0.17em;
+    }
+
+    .about-treatment-areas__eyebrow span {
+      width: 30px;
+      flex-basis: 30px;
+    }
+
+    .about-treatment-areas__header h2 {
+      font-size: clamp(2.8rem, 13.2vw, 4rem);
+      line-height: 1;
+    }
+
+    .about-treatment-areas__grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .about-treatment-card {
+      min-height: 0;
+      padding: 28px 26px;
+      border-radius: 20px;
+    }
+
+    .about-treatment-card h3 {
+      max-width: none;
+      font-size: 1.55rem;
+    }
+
+    .about-treatment-card p {
+      min-height: 0;
+      margin-top: 16px;
+      font-size: 0.96rem;
+    }
+
+    .about-treatment-card ul {
+      margin: 22px 0 28px;
+    }
+
+    .about-treatment-areas__all {
+      width: 100%;
+      min-height: 60px;
+      margin-top: 34px;
+      padding: 0 22px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-treatment-card,
+    .about-treatment-card > a svg,
+    .about-treatment-areas__all,
+    .about-treatment-areas__all svg {
+      transition: none;
+    }
+  }
+</style>

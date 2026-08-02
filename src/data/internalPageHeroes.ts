@@ -11,6 +11,18 @@ export interface InternalHeroPanel {
   ctaHref: string;
 }
 
+export interface InternalHeroCarouselItem {
+  name: string;
+  role: string;
+  image: string;
+}
+
+export interface InternalHeroCarousel {
+  label: string;
+  items: InternalHeroCarouselItem[];
+  interval?: number;
+}
+
 export interface InternalPageHeroContent {
   eyebrow: string;
   titlePrimary: string;
@@ -18,6 +30,8 @@ export interface InternalPageHeroContent {
   lead: string;
   breadcrumbs: InternalHeroBreadcrumb[];
   panel?: InternalHeroPanel;
+  quote?: string;
+  carousel?: InternalHeroCarousel;
 }
 
 const homeCrumb: InternalHeroBreadcrumb = { label: "Home", href: "/" };
@@ -49,6 +63,50 @@ const treatmentHero = (
   breadcrumbs: [homeCrumb, treatmentsCrumb, { label: currentLabel }],
   panel: treatmentPanel(panelItems),
 });
+
+const aboutHeroCarousel: InternalHeroCarousel = {
+  label: "Il team dello Studio Dentistico Sorriso & Salute",
+  interval: 4800,
+  items: [
+    {
+      name: "Gianni Focarelli",
+      role: "Titolare e Amministratore della Sorriso&Salute srl",
+      image: "/assets/brand/team/staff-gianni-focarelli.webp",
+    },
+    {
+      name: "Dott.ssa Moreschi Chiara",
+      role: "Chirurgo orale",
+      image: "/assets/brand/team/staff-chiara-moreschi.webp",
+    },
+    {
+      name: "Dott.ssa Maria Isabel Pareja Carrillo",
+      role: "Odontoiatra e Direttore Sanitario",
+      image: "/assets/brand/team/staff-maria-pareja.webp",
+    },
+    {
+      name: "Dott.ssa Cacciabue Paola",
+      role: "Odontoiatra specialista in Ortodonzia",
+      image: "/assets/brand/team/staff-paola-cacciabue.webp",
+    },
+    {
+      name: "Dott.ssa Dervishi Denisa",
+      role: "Odontoiatra generalista",
+      image: "/assets/brand/team/staff-denisa-dervishi.webp",
+    },
+  ],
+};
+
+const aboutHero: InternalPageHeroContent = {
+  eyebrow: "Quelli che ti aiuteranno ad avere",
+  titlePrimary: "Un sorriso che racconta chi sei davvero,",
+  titleAccent: "senza parole.",
+  lead:
+    "Competenze diverse lavorano insieme per offrirti valutazioni chiare, continuità nel percorso e attenzione alla persona.",
+  quote:
+    "Il nostro compito non è solo eliminare un fastidio, ti restituiamo il piacere di mangiare, la sicurezza di parlare e la libertà di sorridere.",
+  breadcrumbs: [homeCrumb, { label: "Chi siamo" }],
+  carousel: aboutHeroCarousel,
+};
 
 const internalPageHeroes: Record<string, InternalPageHeroContent> = {
   "/attivita/": {
@@ -147,22 +205,8 @@ const internalPageHeroes: Record<string, InternalPageHeroContent> = {
     "Prevenzione, cure delicate e comunicazione adatta all’età aiutano i più piccoli a vivere la visita con maggiore serenità.",
     ["Approccio rassicurante", "Prevenzione fin da piccoli", "Indicazioni semplici per la famiglia"],
   ),
-  "/chi-siamo/": {
-    eyebrow: "Persone prima di tutto",
-    titlePrimary: "Un’équipe che ascolta.",
-    titleAccent: "Cure costruite intorno a te.",
-    lead:
-      "Competenze diverse lavorano insieme per offrirti valutazioni chiare, continuità nel percorso e attenzione alla persona.",
-    breadcrumbs: [homeCrumb, { label: "Chi siamo" }],
-  },
-  "/chi-siamo-studio-dentistico-monza/": {
-    eyebrow: "Persone prima di tutto",
-    titlePrimary: "Un’équipe che ascolta.",
-    titleAccent: "Cure costruite intorno a te.",
-    lead:
-      "Competenze diverse lavorano insieme per offrirti valutazioni chiare, continuità nel percorso e attenzione alla persona.",
-    breadcrumbs: [homeCrumb, { label: "Chi siamo" }],
-  },
+  "/chi-siamo/": aboutHero,
+  "/chi-siamo-studio-dentistico-monza/": aboutHero,
   "/struttura-studio-dentistico-monza/": {
     eyebrow: "Lo studio a Monza",
     titlePrimary: "Tecnologia e accoglienza.",

@@ -1,4 +1,11 @@
 ---
+interface Props {
+  variant?: "light" | "brand";
+  sectionId?: string;
+}
+
+const { variant = "light", sectionId } = Astro.props;
+
 const steps = [
   {
     icon: "fas fa-route",
@@ -21,12 +28,16 @@ const steps = [
 ];
 ---
 
-<section class="home-care-path" aria-labelledby="home-care-path-title">
+<section
+  id={sectionId}
+  class:list={["home-care-path", variant === "brand" && "home-care-path--brand"]}
+  aria-labelledby="home-care-path-title"
+>
   <div class="home-care-path__inner">
     <header class="home-care-path__header">
       <p class="home-care-path__eyebrow">Il nostro approccio</p>
       <h2 id="home-care-path-title">
-        Il tuo percorso <span>di cura</span>
+        Un percorso <span>disegnato su di te</span>
       </h2>
       <p class="home-care-path__intro">
         Tre principi che guidano ogni fase, dalla prima valutazione al mantenimento nel tempo.
@@ -85,6 +96,21 @@ const steps = [
     transform: translateX(-50%);
   }
 
+  .home-care-path.home-care-path--brand {
+    color: #ffffff !important;
+    background:
+      radial-gradient(circle at 50% -12%, rgba(30, 132, 181, 0.28), transparent 36rem),
+      var(--brand-primary, #0e384c) !important;
+    background-color: var(--brand-primary, #0e384c) !important;
+  }
+
+  .home-care-path.home-care-path--brand::before {
+    top: -210px;
+    width: min(840px, 80vw);
+    height: 430px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0) 69%);
+  }
+
   .home-care-path__inner {
     position: relative;
     z-index: 1;
@@ -119,6 +145,13 @@ const steps = [
     text-transform: uppercase;
   }
 
+  .home-care-path.home-care-path--brand .home-care-path__eyebrow {
+    border-color: rgba(255, 255, 255, 0.22);
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 10px 28px rgba(8, 42, 56, 0.2);
+  }
+
   .home-care-path h2 {
     max-width: 940px;
     margin: 0;
@@ -137,6 +170,14 @@ const steps = [
     color: var(--brand-secondary, #1e84b5);
   }
 
+  .home-care-path.home-care-path--brand h2 {
+    color: #ffffff !important;
+  }
+
+  .home-care-path.home-care-path--brand h2 span {
+    color: #8bd7f6 !important;
+  }
+
   .home-care-path__intro {
     max-width: 760px;
     margin: 28px auto 0;
@@ -147,6 +188,10 @@ const steps = [
     line-height: 1.5;
     text-align: center;
     text-wrap: balance;
+  }
+
+  .home-care-path.home-care-path--brand .home-care-path__intro {
+    color: rgba(255, 255, 255, 0.82) !important;
   }
 
   .home-care-path__cards {
@@ -168,6 +213,10 @@ const steps = [
     pointer-events: none;
   }
 
+  .home-care-path.home-care-path--brand .home-care-path__cards::before {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
   .home-care-path__card {
     position: relative;
     z-index: 1;
@@ -181,6 +230,13 @@ const steps = [
     background: #f7f9fc;
     box-shadow: 0 14px 38px rgba(14, 56, 76, 0.05);
     text-align: center;
+  }
+
+  .home-care-path.home-care-path--brand .home-care-path__card {
+    border-color: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.97) !important;
+    background-color: rgba(255, 255, 255, 0.97) !important;
+    box-shadow: 0 22px 48px rgba(8, 42, 56, 0.24);
   }
 
   .home-care-path__card-top {
@@ -208,7 +264,8 @@ const steps = [
     place-items: center;
     border-radius: 16px;
     color: #ffffff;
-    background: var(--brand-primary, #0e384c);
+    background: var(--brand-secondary, #1e84b5) !important;
+    background-color: var(--brand-secondary, #1e84b5) !important;
     box-shadow: 0 10px 20px rgba(14, 56, 76, 0.2);
   }
 
