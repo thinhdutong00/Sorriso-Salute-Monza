@@ -1,9 +1,11 @@
 ---
 import "../../styles/global.css";
+import CategoryTreatmentsSection from "../CategoryTreatmentsSection.astro";
 import FaviconLinks from "../FaviconLinks.astro";
 import GoogleAdsTracking from "../GoogleAdsTracking.astro";
 import SiteFooter from "../SiteFooter.astro";
 import ImplantologiaHeader from "../implantologia/ImplantologiaHeader.astro";
+import { getCategoryTreatments } from "../../data/categoryTreatments";
 import {
   choiceFactors,
   costFactors,
@@ -30,6 +32,7 @@ const heroImageSrcSet =
   "/assets/brand/implant-solutions/optimized/implant-prosthesis-480.avif 480w, /assets/brand/implant-solutions/optimized/implant-prosthesis-720.avif 720w, /assets/brand/implant-solutions/optimized/implant-prosthesis-1080.avif 1080w";
 const socialImage = `${siteUrl}/assets/brand/implant-solutions/implant-prosthesis.png`;
 const ctaHref = "/richiesta/";
+const categoryTreatments = getCategoryTreatments("/protesi-dentale/");
 
 const webPageSchema = {
   "@type": "WebPage",
@@ -125,10 +128,10 @@ const structuredData = {
 
           <div class="prosthetics__hero-grid">
             <div class="prosthetics__hero-copy">
-              <p class="prosthetics__kicker">Protesi dentale a Monza · Sorriso &amp; Salute</p>
+              <p class="prosthetics__kicker">Protesi dentale</p>
               <h1 id="prosthetics-title">
-                <span>Denti compromessi o mancanti?</span>
-                <span>Valutiamo come recuperare forma e funzione.</span>
+                <span>Ritrovare sorriso</span>
+                <span>e masticazione</span>
               </h1>
               <p class="prosthetics__hero-intro">
                 La protesi dentale può aiutare a recuperare forma, funzione e masticazione quando uno o più denti sono
@@ -171,6 +174,8 @@ const structuredData = {
           </div>
         </div>
       </section>
+
+      {categoryTreatments && <CategoryTreatmentsSection {...categoryTreatments} />}
 
       <section class="prosthetics__section prosthetics__situations" id="situazioni" aria-labelledby="situations-title">
         <div class="prosthetics__container">

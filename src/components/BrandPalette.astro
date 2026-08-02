@@ -10497,6 +10497,29 @@ import "../styles/typography.css";
       border-radius: 22px !important;
     }
   }
+
+  /* Keep the information and contact icons visually static on hover/focus. */
+  body.brand-palette.home .elementor-7051 .v2-cta-contact-item .elementor-icon,
+  body.brand-palette.home .elementor-7051 .v2-cta-contact-item:hover .elementor-icon,
+  body.brand-palette.home .elementor-7051 .v2-cta-contact-item:focus-within .elementor-icon,
+  body.brand-palette.home .elementor-7051 .brand-contact-split .v2-contect-info .elementor-icon,
+  body.brand-palette.home .elementor-7051 .brand-contact-split .v2-contect-info:hover .elementor-icon,
+  body.brand-palette.home .elementor-7051 .brand-contact-split .v2-contect-info:focus-within .elementor-icon {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  body.brand-palette.home .elementor-7051 .v2-cta-contact-item .elementor-icon::before,
+  body.brand-palette.home .elementor-7051 .v2-cta-contact-item:hover .elementor-icon::before,
+  body.brand-palette.home .elementor-7051 .v2-cta-contact-item:focus-within .elementor-icon::before,
+  body.brand-palette.home .elementor-7051 .brand-contact-split .v2-contect-info .elementor-icon::before,
+  body.brand-palette.home .elementor-7051 .brand-contact-split .v2-contect-info:hover .elementor-icon::before,
+  body.brand-palette.home .elementor-7051 .brand-contact-split .v2-contect-info:focus-within .elementor-icon::before {
+    display: none !important;
+    content: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
 </style>
 
 <script is:inline>

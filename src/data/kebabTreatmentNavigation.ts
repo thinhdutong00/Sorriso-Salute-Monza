@@ -39,6 +39,94 @@ export interface KebabTreatmentCategory {
   items: Array<KebabTreatmentLink | KebabImplantologyGroup>;
 }
 
+export interface PrimaryTreatmentMenuLink {
+  href: string;
+  label: string;
+  technicalLabel: string;
+  image: string;
+  imageAlt: string;
+}
+
+export const primaryTreatmentMenuLinks: PrimaryTreatmentMenuLink[] = [
+  {
+    href: "/attivita/igiene-orale-e-profilassi/",
+    label: "Denti puliti e protetti",
+    technicalLabel: "Igiene orale e profilassi",
+    image: "/assets/brand/igiene-orale-manipolo-v4.jpg",
+    imageAlt: "Manipolo professionale per l'igiene e la pulizia dentale",
+  },
+  {
+    href: "/attivita/odontoiatria-conservativa/",
+    label: "Curare e ricostruire i denti",
+    technicalLabel: "Odontoiatria conservativa",
+    image: "/mirror-assets/936aa37f5650fe50.jpg",
+    imageAlt: "Restauro conservativo del dente",
+  },
+  {
+    href: "/attivita/endodonzia/",
+    label: "Salvare il dente dall’interno",
+    technicalLabel: "Endodonzia",
+    image: "/assets/brand/endodonzia-root-canal.png",
+    imageAlt: "Trattamento endodontico canalare",
+  },
+  {
+    href: "/attivita/parodontologia/",
+    label: "Gengive sane e denti stabili",
+    technicalLabel: "Parodontologia",
+    image: "/mirror-assets/598a95ac622e41af.jpg",
+    imageAlt: "Valutazione parodontale",
+  },
+  {
+    href: "/protesi-dentale/",
+    label: "Ritrovare sorriso e masticazione",
+    technicalLabel: "Protesi dentale",
+    image: "/assets/brand/dental-cad-monitor.png",
+    imageAlt: "Progettazione digitale di una protesi dentale",
+  },
+  {
+    href: "/implantologia/",
+    label: "Sostituire i denti mancanti",
+    technicalLabel: "Implantologia",
+    image: "/assets/brand/implantologia-dental-implant.png",
+    imageAlt: "Impianto dentale in titanio",
+  },
+  {
+    href: "/attivita/estetica-del-sorriso/",
+    label: "Un sorriso più armonioso",
+    technicalLabel: "Estetica del sorriso",
+    image: "/assets/generated/esthetic-smile-natural.jpg",
+    imageAlt: "Valutazione estetica del sorriso allo specchio",
+  },
+  {
+    href: "/attivita/ortodonzia/",
+    label: "Denti allineati e morso equilibrato",
+    technicalLabel: "Ortodonzia",
+    image: "/assets/brand/ortodonzia-allineatore.jpg",
+    imageAlt: "Allineatore trasparente per trattamento ortodontico",
+  },
+  {
+    href: "/attivita/gnatologia/",
+    label: "Comfort nella mandibola e nella masticazione",
+    technicalLabel: "Gnatologia",
+    image: "/assets/brand/gnatologia-modelli-arcate-v3.jpg",
+    imageAlt: "Modelli delle arcate dentali per analizzare il morso",
+  },
+  {
+    href: "/attivita/chirurgia-orale/",
+    label: "Interventi mirati per la salute della bocca",
+    technicalLabel: "Chirurgia orale",
+    image: "/assets/brand/chirurgia-orale-equipe.jpg",
+    imageAlt: "Equipe odontoiatrica durante un intervento di chirurgia orale",
+  },
+  {
+    href: "/attivita/pedodonzia/",
+    label: "Proteggere il sorriso dei bambini",
+    technicalLabel: "Pedodonzia",
+    image: "/mirror-assets/0b18b64a0ee4eb07.jpg",
+    imageAlt: "Odontoiatria dedicata ai bambini",
+  },
+];
+
 export const kebabAllTreatmentsLink = {
   href: "/attivita/",
   label: "Tutti i trattamenti",

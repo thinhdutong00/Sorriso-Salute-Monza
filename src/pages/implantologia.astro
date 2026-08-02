@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import CategoryTreatmentsSection from "../components/CategoryTreatmentsSection.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import InternalPageHero from "../components/InternalPageHero.astro";
 import PageLoader from "../components/PageLoader.astro";
@@ -7,6 +8,7 @@ import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import ImplantologiaAttribution from "../components/implantologia/ImplantologiaAttribution.astro";
+import { getCategoryTreatments } from "../data/categoryTreatments";
 import { implantologiaMenuLinks, protesiDentaleMenuLink } from "../data/implantologiaNavigation";
 import {
   kebabAllTreatmentsLink,
@@ -35,6 +37,7 @@ const mobileNavItems = [
   { label: "Chiama in studio: 039 2022489", href: "tel:+390392022489", icon: "phone" },
 ];
 const currentPath = Astro.url.pathname;
+const categoryTreatments = getCategoryTreatments("/implantologia/");
 
 const advantages = [
   {
@@ -86,50 +89,105 @@ const steps = [
   },
 ];
 
-const patientSituations = [
+const implantologyPathCards = [
   {
-    slug: "dente-mancante",
-    label: "Dente mancante",
-    title: "Mi manca un solo dente",
-    text: "Una valutazione permette di capire se un impianto con corona può sostituire il dente mancante senza coinvolgere i denti adiacenti.",
-    solution: "Impianto singolo + corona",
-    cta: "Valuta impianto singolo",
+    label: "Impianto singolo",
+    title: "Sostituire un solo dente",
+    text: "Una valutazione chiarisce se un impianto con corona è indicato e quali alternative esistono per il dente mancante.",
+    cta: "Approfondisci",
     image: "/assets/brand/implant-solutions/implant-single.png",
-    optimizedImage: "/assets/brand/implant-solutions/optimized/implant-single",
+    sourceType: "image/avif",
+    srcset:
+      "/assets/brand/implant-solutions/optimized/implant-single-480.avif 480w, /assets/brand/implant-solutions/optimized/implant-single-720.avif 720w, /assets/brand/implant-solutions/optimized/implant-single-1080.avif 1080w",
     href: "/implantologia/impianto-singolo/",
   },
   {
-    slug: "piu-denti-mancanti",
-    label: "Più denti mancanti",
-    title: "Mi mancano più denti vicini",
-    text: "Quando mancano più denti vicini, la visita permette di valutare un ponte fisso sostenuto da impianti e le possibili alternative.",
-    solution: "Ponte su impianti",
-    cta: "Valuta ponte su impianti",
+    label: "Ponte su impianti",
+    title: "Sostituire più denti",
+    text: "Quando mancano più denti vicini, valuta un ponte fisso sostenuto da impianti e le alternative compatibili con il caso.",
+    cta: "Approfondisci",
     image: "/assets/brand/implant-solutions/multiple-teeth.png",
-    optimizedImage: "/assets/brand/implant-solutions/optimized/multiple-teeth",
+    sourceType: "image/avif",
+    srcset:
+      "/assets/brand/implant-solutions/optimized/multiple-teeth-480.avif 480w, /assets/brand/implant-solutions/optimized/multiple-teeth-720.avif 720w, /assets/brand/implant-solutions/optimized/multiple-teeth-1080.avif 1080w",
     href: "/implantologia/ponte-su-impianti/",
   },
   {
-    slug: "protesi-mobile-instabile",
-    label: "Protesi mobile instabile",
-    title: "La mia dentiera si muove",
-    text: "Se la protesi mobile si muove, si possono confrontare adattamento, nuova protesi e possibili soluzioni di stabilizzazione implantare.",
-    solution: "Protesi mobile stabilizzata o protesi su impianti",
-    cta: "Scopri la protesi stabilizzata",
+    label: "Denti fissi",
+    title: "Ritrovare denti fissi",
+    text: "Confronta le soluzioni fisse su impianti quando mancano più denti o una protesi mobile limita comfort e sicurezza.",
+    cta: "Approfondisci",
+    image: "/assets/brand/implant-solutions/full-arch.png",
+    sourceType: "image/avif",
+    srcset:
+      "/assets/brand/implant-solutions/optimized/full-arch-480.avif 480w, /assets/brand/implant-solutions/optimized/full-arch-720.avif 720w, /assets/brand/implant-solutions/optimized/full-arch-1080.avif 1080w",
+    href: "/implantologia/denti-fissi/",
+  },
+  {
+    label: "Protesi mobile",
+    title: "Stabilizzare una protesi mobile",
+    text: "Capisci perché la protesi si muove e confronta correzione, sostituzione o stabilizzazione, quando indicata.",
+    cta: "Approfondisci",
     image: "/assets/brand/implant-solutions/implant-prosthesis.png",
-    optimizedImage: "/assets/brand/implant-solutions/optimized/implant-prosthesis",
+    sourceType: "image/avif",
+    srcset:
+      "/assets/brand/implant-solutions/optimized/implant-prosthesis-480.avif 480w, /assets/brand/implant-solutions/optimized/implant-prosthesis-720.avif 720w, /assets/brand/implant-solutions/optimized/implant-prosthesis-1080.avif 1080w",
     href: "/implantologia/protesi-instabile/",
   },
   {
-    slug: "arcata-completa",
-    label: "Arcata completa / molti denti mancanti",
-    title: "Ho perso molti denti o uso una dentiera",
-    text: "Per la perdita di molti denti è possibile valutare una riabilitazione fissa su impianti, previa diagnosi e pianificazione clinica.",
-    solution: "Protesi fissa su impianti / denti fissi",
-    cta: "Scopri l'arcata fissa",
-    image: "/assets/brand/implant-solutions/full-arch.png",
-    optimizedImage: "/assets/brand/implant-solutions/optimized/full-arch",
-    href: "/implantologia/denti-fissi/",
+    label: "Protesi dentale",
+    title: "Protesi dentali e impianti",
+    text: "Una panoramica su corone, ponti e protesi fisse o rimovibili, sostenute da denti naturali o impianti.",
+    cta: "Approfondisci",
+    image: "/assets/brand/implant-solutions/implant-prosthesis.png",
+    sourceType: "image/avif",
+    srcset:
+      "/assets/brand/implant-solutions/optimized/implant-prosthesis-480.avif 480w, /assets/brand/implant-solutions/optimized/implant-prosthesis-720.avif 720w, /assets/brand/implant-solutions/optimized/implant-prosthesis-1080.avif 1080w",
+    href: "/protesi-dentale/",
+  },
+  {
+    label: "Tempi del trattamento",
+    title: "Carico immediato",
+    text: "Scopri quando può essere collegata agli impianti una protesi provvisoria nella fase iniziale, se le condizioni lo permettono.",
+    cta: "Approfondisci",
+    image: "/assets/brand/implant-solutions/implant-single.png",
+    sourceType: "image/avif",
+    srcset:
+      "/assets/brand/implant-solutions/optimized/implant-single-480.avif 480w, /assets/brand/implant-solutions/optimized/implant-single-720.avif 720w, /assets/brand/implant-solutions/optimized/implant-single-1080.avif 1080w",
+    href: "/implantologia/carico-immediato/",
+  },
+  {
+    label: "Osso e tessuti",
+    title: "Soluzioni in caso di poco osso",
+    text: "Come vengono valutati osso, anatomia e progetto protesico prima di considerare impianti, rigenerazione o alternative.",
+    cta: "Approfondisci",
+    image: "/assets/brand/implant-solutions/bone-regeneration.png",
+    sourceType: "image/jpeg",
+    srcset:
+      "/assets/brand/implantologia-editorial/optimized/bone-regeneration-480.jpg 480w, /assets/brand/implantologia-editorial/optimized/bone-regeneration-720.jpg 720w, /assets/brand/implantologia-editorial/optimized/bone-regeneration-1080.jpg 1080w",
+    href: "/implantologia/poco-osso/",
+  },
+  {
+    label: "Dalla visita ai controlli",
+    title: "Il percorso implantologico",
+    text: "Dalla valutazione clinica al piano implantoprotesico, fino alla protesi finale e ai controlli nel tempo.",
+    cta: "Approfondisci",
+    image: "/assets/brand/sorriso-salute-sala-operativa.png",
+    sourceType: "image/jpeg",
+    srcset:
+      "/assets/brand/implantologia-editorial/optimized/sala-operativa-480.jpg 480w, /assets/brand/implantologia-editorial/optimized/sala-operativa-720.jpg 720w, /assets/brand/implantologia-editorial/optimized/sala-operativa-1080.jpg 1080w",
+    href: "/implantologia/percorso/",
+  },
+  {
+    label: "Controlli nel tempo",
+    title: "Mantenere gli impianti nel tempo",
+    text: "Igiene, controlli e manutenzione di tessuti, impianti, componenti e protesi nel tempo.",
+    cta: "Approfondisci",
+    image: "/assets/brand/implant-solutions/implant-prosthesis.png",
+    sourceType: "image/avif",
+    srcset:
+      "/assets/brand/implant-solutions/optimized/implant-prosthesis-480.avif 480w, /assets/brand/implant-solutions/optimized/implant-prosthesis-720.avif 720w, /assets/brand/implant-solutions/optimized/implant-prosthesis-1080.avif 1080w",
+    href: "/implantologia/manutenzione-impianti/",
   },
 ];
 
@@ -782,9 +840,9 @@ const conventionGroups = [
     <main id="main-content" tabindex="-1">
       <InternalPageHero
         id="implantologia-title"
-        eyebrow="Soluzioni per i denti mancanti"
-        titlePrimary="Denti mancanti?"
-        titleAccent="Valutiamo una soluzione stabile per te."
+        eyebrow="Implantologia"
+        titlePrimary="Sostituire i denti"
+        titleAccent="mancanti"
         lead="Se ti manca un dente, più denti o una protesi mobile crea disagio, una valutazione permette di confrontare le soluzioni implantologiche compatibili con il tuo caso."
         breadcrumbs={[
           { label: "Home", href: "/" },
@@ -811,23 +869,25 @@ const conventionGroups = [
         </div>
       </InternalPageHero>
 
+      {categoryTreatments && <CategoryTreatmentsSection {...categoryTreatments} />}
+
       <section class="section section-white situations-section scroll-reveal" aria-labelledby="situazioni-oggi-title" data-scroll-reveal>
         <div class="section-heading centered">
-          <p class="eyebrow teal">AFFIDATI AI NOSTRI SPECIALISTI</p>
-          <h2 id="situazioni-oggi-title">In quale di queste situazioni ti trovi oggi?</h2>
+          <p class="eyebrow teal">PERCORSI DI IMPLANTOLOGIA</p>
+          <h2 id="situazioni-oggi-title">Scegli l’approfondimento più utile per te</h2>
           <p>
-            <strong>Più di 10.000 impianti posizionati e protesi stabilizzate con successo in 23 anni di attività.</strong>
+            Ogni pagina parte da un’esigenza diversa e spiega quali aspetti verranno valutati prima di definire il percorso.
           </p>
         </div>
 
-        <div class="situations-grid" aria-label="Situazioni implantari frequenti">
-          {patientSituations.map((situation) => (
+        <div class="situations-grid" aria-label="Percorsi e approfondimenti di implantologia">
+          {implantologyPathCards.map((situation) => (
             <article class="situation-card card-reveal" data-card-reveal>
               <picture>
                 <source
-                  srcset={`${situation.optimizedImage}-480.avif 480w, ${situation.optimizedImage}-720.avif 720w, ${situation.optimizedImage}-1080.avif 1080w`}
+                  srcset={situation.srcset}
                   sizes="(max-width: 680px) calc(100vw - 38px), (max-width: 1120px) calc((min(100vw - 48px, 760px) - 18px) / 2), calc((min(100vw - 48px, 1420px) - 72px) / 4)"
-                  type="image/avif"
+                  type={situation.sourceType}
                 />
                 <img src={situation.image} alt="" width="640" height="420" loading="lazy" decoding="async" />
               </picture>

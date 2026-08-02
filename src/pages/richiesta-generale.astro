@@ -6,6 +6,43 @@ import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
+import {
+  generalRequestServiceOptions,
+  treatmentFormPresets,
+} from "../data/categoryTreatments";
+import {
+  generalRequestFallbackSecondStepProfileId,
+  generalRequestSecondStepProfiles,
+  generalRequestServiceSecondStepProfiles,
+  generalRequestTreatmentSecondStepOverrides,
+} from "../data/generalRequestSecondStep";
+
+const serviceOptions = generalRequestServiceOptions.map((option) => ({
+  slug: option.slug,
+  label: option.label,
+  displayLabel: option.displayLabel,
+  group: option.group,
+}));
+const treatmentPresets = Object.values(treatmentFormPresets).map((preset) => ({
+  treatmentId: preset.treatmentId,
+  categoryId: preset.categoryId,
+  serviceSlug: preset.serviceSlug,
+  specificTreatmentValue: preset.specificTreatmentValue,
+}));
+const invalidSecondStepTreatmentIds = Object.keys(
+  generalRequestTreatmentSecondStepOverrides,
+).filter((treatmentId) => !treatmentFormPresets[treatmentId]);
+
+if (invalidSecondStepTreatmentIds.length > 0) {
+  throw new Error(
+    `Configurazione step 2 non valida. Trattamenti sconosciuti: ${invalidSecondStepTreatmentIds.join(", ")}`,
+  );
+}
+
+const secondStepProfiles = generalRequestSecondStepProfiles;
+const serviceSecondStepProfileIds = generalRequestServiceSecondStepProfiles;
+const treatmentSecondStepProfileIds = generalRequestTreatmentSecondStepOverrides;
+const fallbackSecondStepProfileId = generalRequestFallbackSecondStepProfileId;
 ---
 
 <!doctype html>
@@ -48,7 +85,7 @@ import SiteHeader from "../components/SiteHeader.astro";
           </header>
 
           <div class="request-step is-active" data-step="1">
-            <h2 class="quiz-title">Quale situazione descrive meglio il tuo caso?</h2>
+            <h2 class="quiz-title">Per quale trattamento stai richiedendo la visita?</h2>
             <div
               class="quiz-options request-service-menu"
               data-field="servizio"
@@ -58,10 +95,11 @@ import SiteHeader from "../components/SiteHeader.astro";
           </div>
 
           <div class="request-step" data-step="2">
-            <h2 class="quiz-title">Da quanto tempo hai questo problema?</h2>
+            <h2 class="quiz-title" data-second-step-title>Da quanto tempo hai questo problema?</h2>
             <div
               class="quiz-options"
-              data-field="durataProblema"
+              data-field="rispostaAnamnestica"
+              data-second-step-options
               role="group"
               aria-label="Seleziona da quanto tempo è presente il problema"
             ></div>
@@ -726,7 +764,16 @@ import SiteHeader from "../components/SiteHeader.astro";
       }
     </style>
 
-    <script>
+    <script
+      define:vars={{
+        serviceOptions,
+        treatmentPresets,
+        secondStepProfiles,
+        serviceSecondStepProfileIds,
+        treatmentSecondStepProfileIds,
+        fallbackSecondStepProfileId,
+      }}
+    >
       (() => {
         const backLink = document.querySelector("[data-back-link]");
         backLink?.addEventListener("click", (event) => {
@@ -738,30 +785,47 @@ import SiteHeader from "../components/SiteHeader.astro";
         const form = document.querySelector("#richiesta-generale");
         if (!(form instanceof HTMLFormElement)) return;
 
-        const serviceOptions = [
-          { slug: "igiene-orale-e-profilassi", label: "Igiene orale e profilassi", displayLabel: "Pulizia dei denti e prevenzione", group: "igiene" },
-          { slug: "odontoiatria-conservativa", label: "Conservativa", displayLabel: "Carie, sensibilità o dente rotto", group: "conservativa" },
-          { slug: "estetica-del-sorriso", label: "Estetica del sorriso", displayLabel: "Denti più bianchi e sorriso più armonioso", group: "estetica" },
-          { slug: "parodontologia", label: "Parodontologia", displayLabel: "Gengive che sanguinano o denti che si muovono", group: "parodontologia" },
-          { slug: "ortodonzia", label: "Ortodonzia", displayLabel: "Denti da allineare o apparecchio", group: "ortodonzia" },
-          { slug: "chirurgia-orale", label: "Chirurgia orale", displayLabel: "Dente da togliere o dente del giudizio", group: "chirurgia" },
-          { slug: "endodonzia", label: "Endodonzia", displayLabel: "Mal di denti o dolore che non passa", group: "conservativa" },
-          { slug: "gnatologia", label: "Gnatologia", displayLabel: "Dolore alla mandibola o denti serrati", group: "ortodonzia" },
-          { slug: "pedodonzia", label: "Pedodonzia", displayLabel: "Visita e cure per bambini", group: "pedodonzia" },
-          { slug: "protesi-dentale", label: "Protesi dentale", displayLabel: "Dentiera, ponte o corona da sistemare", group: "protesi" },
-          { slug: "implantologia", label: "Implantologia", displayLabel: "Uno o più denti mancanti", group: "implantologia" },
-        ];
-
-        const durationOptions = [
-          "Da pochi giorni",
-          "Da settimane",
-          "Da mesi / anni",
-        ];
         const ageRangeOptions = ["18–25", "26–35", "36–50", "50+"];
 
         const params = new URLSearchParams(window.location.search);
-        const presetService = params.get("servizio") || "";
-        const selectedService = serviceOptions.find((item) => item.slug === presetService);
+        const presetServiceSlug = params.get("servizio") || "";
+        const presetTreatmentId = params.get("trattamento") || "";
+        const serviceFromUrl = serviceOptions.find(
+          (item) => item.slug === presetServiceSlug,
+        );
+        const treatmentFromUrl = treatmentPresets.find(
+          (item) => item.treatmentId === presetTreatmentId,
+        );
+        const treatmentService = treatmentFromUrl
+          ? serviceOptions.find(
+              (item) => item.slug === treatmentFromUrl.serviceSlug,
+            )
+          : undefined;
+        const selectedTreatment =
+          treatmentFromUrl &&
+          treatmentService &&
+          (!serviceFromUrl ||
+            treatmentFromUrl.serviceSlug === serviceFromUrl.slug)
+            ? treatmentFromUrl
+            : undefined;
+        const selectedService =
+          serviceFromUrl ||
+          (selectedTreatment ? treatmentService : undefined);
+        const resolveSecondStepProfile = (serviceSlug = "", treatmentId = "") => {
+          const profileId =
+            (treatmentId && treatmentSecondStepProfileIds[treatmentId]) ||
+            serviceSecondStepProfileIds[serviceSlug] ||
+            fallbackSecondStepProfileId;
+
+          return (
+            secondStepProfiles[profileId] ||
+            secondStepProfiles[fallbackSecondStepProfileId]
+          );
+        };
+        const initialSecondStepProfile = resolveSecondStepProfile(
+          selectedService?.slug,
+          selectedTreatment?.treatmentId,
+        );
         const hasPresetService = Boolean(selectedService);
         const totalSteps = hasPresetService ? 4 : 5;
         const steps = [...form.querySelectorAll(".request-step")];
@@ -772,7 +836,8 @@ import SiteHeader from "../components/SiteHeader.astro";
         const stepEyebrow = form.querySelector("[data-step-eyebrow]");
         const formError = form.querySelector("[data-form-error]");
         const serviceGroup = form.querySelector('[data-field="servizio"]');
-        const durationGroup = form.querySelector('[data-field="durataProblema"]');
+        const secondStepGroup = form.querySelector("[data-second-step-options]");
+        const secondStepTitle = form.querySelector("[data-second-step-title]");
         const ageRangeGroup = form.querySelector('[data-field="fasciaEta"]');
         const summaryBox = form.querySelector("[data-summary-box]");
         const fields = {
@@ -786,7 +851,17 @@ import SiteHeader from "../components/SiteHeader.astro";
           servizioDisplay: selectedService?.displayLabel || selectedService?.label || "",
           servizioSlug: selectedService?.slug || "",
           servizioGroup: selectedService?.group || "",
-          durataProblema: "",
+          trattamentoId: selectedTreatment?.treatmentId || "",
+          trattamentoSpecifico:
+            selectedTreatment?.specificTreatmentValue || "",
+          profiloAnamnestico: initialSecondStepProfile.id,
+          domandaAnamnestica: initialSecondStepProfile.question,
+          rispostaAnamnestica: "",
+          etichettaRiepilogoAnamnestico:
+            initialSecondStepProfile.summaryLabel,
+          validazioneAnamnestica:
+            initialSecondStepProfile.validationMessage,
+          anamnesiRappresentaDurata: initialSecondStepProfile.isDuration,
           fasciaEta: "",
           giorniPreferiti: [],
           fasciaOraria: "",
@@ -796,7 +871,6 @@ import SiteHeader from "../components/SiteHeader.astro";
         let isSubmitting = false;
         const stepEyebrowLabels = {
           1: "Scegli il trattamento",
-          2: "Durata del problema",
           3: "Fascia d’età",
           4: "Indica le tue preferenze",
           5: "Inserisci i tuoi dati",
@@ -821,7 +895,7 @@ import SiteHeader from "../components/SiteHeader.astro";
 
           const stepIsComplete =
             (currentStep === 1 && Boolean(quiz.servizio)) ||
-            (currentStep === 2 && Boolean(quiz.durataProblema)) ||
+            (currentStep === 2 && Boolean(quiz.rispostaAnamnestica)) ||
             (currentStep === 3 && Boolean(quiz.fasciaEta)) ||
             (currentStep === 4 &&
               quiz.giorniPreferiti.length > 0 &&
@@ -853,6 +927,12 @@ import SiteHeader from "../components/SiteHeader.astro";
                 quiz.servizioDisplay = displayValue;
                 quiz.servizioSlug = slug;
                 quiz.servizioGroup = group;
+                quiz.trattamentoId = "";
+                quiz.trattamentoSpecifico = "";
+                configureSecondStep(
+                  resolveSecondStepProfile(slug),
+                  true,
+                );
               }
               container.querySelectorAll(".choice-btn").forEach((item) => item.setAttribute("aria-pressed", "false"));
               button.setAttribute("aria-pressed", "true");
@@ -863,11 +943,40 @@ import SiteHeader from "../components/SiteHeader.astro";
           });
         };
 
+        const configureSecondStep = (profile, resetAnswer = false) => {
+          if (!profile) return;
+
+          quiz.profiloAnamnestico = profile.id;
+          quiz.domandaAnamnestica = profile.question;
+          quiz.etichettaRiepilogoAnamnestico = profile.summaryLabel;
+          quiz.validazioneAnamnestica = profile.validationMessage;
+          quiz.anamnesiRappresentaDurata = Boolean(profile.isDuration);
+          if (resetAnswer) quiz.rispostaAnamnestica = "";
+
+          if (secondStepTitle) secondStepTitle.textContent = profile.question;
+          secondStepGroup?.setAttribute("aria-label", profile.ariaLabel);
+          renderChoiceButtons(
+            secondStepGroup,
+            profile.options,
+            "rispostaAnamnestica",
+          );
+          if (quiz.rispostaAnamnestica) {
+            markChoice("rispostaAnamnestica", quiz.rispostaAnamnestica);
+          }
+          if (currentStep === 2 && stepEyebrow) {
+            stepEyebrow.textContent = profile.eyebrow;
+          }
+        };
+
         const buildSummary = () => {
           if (!summaryBox) return;
           summaryBox.innerHTML = [
             ["Esigenza", quiz.servizioDisplay || quiz.servizio],
-            ["Durata del problema", quiz.durataProblema],
+            ["Trattamento", quiz.trattamentoSpecifico],
+            [
+              quiz.etichettaRiepilogoAnamnestico,
+              quiz.rispostaAnamnestica,
+            ],
             ["Fascia d’età", quiz.fasciaEta],
             ["Giorni preferiti", quiz.giorniPreferiti.join(", ")],
             ["Fascia oraria", quiz.fasciaOraria],
@@ -889,7 +998,10 @@ import SiteHeader from "../components/SiteHeader.astro";
           currentStep = step;
           steps.forEach((item) => item.classList.toggle("is-active", Number(item.dataset.step) === step));
           if (stepEyebrow) {
-            stepEyebrow.textContent = stepEyebrowLabels[step] || "";
+            stepEyebrow.textContent =
+              step === 2
+                ? secondStepProfiles[quiz.profiloAnamnestico]?.eyebrow || ""
+                : stepEyebrowLabels[step] || "";
           }
           const stepIndex = effectiveStepIndex(step);
           progress?.style.setProperty("--progress", `${(stepIndex / totalSteps) * 100}%`);
@@ -911,8 +1023,8 @@ import SiteHeader from "../components/SiteHeader.astro";
             setError("Seleziona la situazione più vicina alla tua esigenza.");
             return false;
           }
-          if (currentStep === 2 && !quiz.durataProblema) {
-            setError("Indica da quanto tempo hai questo problema.");
+          if (currentStep === 2 && !quiz.rispostaAnamnestica) {
+            setError(quiz.validazioneAnamnestica);
             return false;
           }
           if (currentStep === 3 && !quiz.fasciaEta) {
@@ -953,10 +1065,15 @@ import SiteHeader from "../components/SiteHeader.astro";
           telefono: fields.telefono?.value || "",
           email: fields.email?.value || "",
           servizio: quiz.servizio || "Richiesta generale",
+          trattamentoSpecifico: quiz.trattamentoSpecifico,
           messaggio: fields.messaggio?.value || "",
           paginaProvenienza: document.referrer || "",
           paginaCorrente: window.location.href,
-          durataProblema: quiz.durataProblema,
+          domandaAnamnestica: quiz.domandaAnamnestica,
+          rispostaAnamnestica: quiz.rispostaAnamnestica,
+          durataProblema: quiz.anamnesiRappresentaDurata
+            ? quiz.rispostaAnamnestica
+            : "",
           fasciaEta: quiz.fasciaEta,
           preferred_visit_days: quiz.giorniPreferiti,
           preferred_visit_time: quiz.fasciaOraria,
@@ -976,7 +1093,7 @@ import SiteHeader from "../components/SiteHeader.astro";
         };
 
         renderChoiceButtons(serviceGroup, serviceOptions, "servizio");
-        renderChoiceButtons(durationGroup, durationOptions, "durataProblema");
+        configureSecondStep(initialSecondStepProfile);
         renderChoiceButtons(ageRangeGroup, ageRangeOptions, "fasciaEta");
         if (hasPresetService) {
           steps.find((step) => Number(step.dataset.step) === 1)?.setAttribute("hidden", "");

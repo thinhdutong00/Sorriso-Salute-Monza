@@ -1,5 +1,5 @@
 ---
-import { kebabTreatmentCategories } from "../data/kebabTreatmentNavigation";
+import { primaryTreatmentMenuLinks } from "../data/kebabTreatmentNavigation";
 
 interface Props {
   overlay?: boolean;
@@ -8,6 +8,10 @@ interface Props {
 const { overlay = false } = Astro.props;
 const currentPath = Astro.url.pathname;
 const logo = "/assets/brand/sorriso-salute-logo-360.webp";
+const allTreatmentsPreview = {
+  image: "/assets/brand/sorriso-salute-sala-operativa.png",
+  imageAlt: "Sala operativa dello Studio Dentistico Sorriso & Salute",
+};
 
 const informationLinks = [
   { href: "/chi-siamo/", label: "Chi siamo" },
@@ -26,16 +30,6 @@ const contactLinks = [
     label: "Prenota una visita",
   },
 ];
-
-const treatmentGroups = kebabTreatmentCategories.map((category) => ({
-  id: category.id,
-  label: category.label,
-  links: category.items.flatMap((item) =>
-    item.kind === "implantology"
-      ? item.children
-      : [{ href: item.href, label: item.label }],
-  ),
-}));
 
 const informationIsActive =
   currentPath.startsWith("/chi-siamo") ||
@@ -140,43 +134,45 @@ const contactsIsActive =
           id="header-treatments-menu"
           data-header-dropdown-panel
         >
-          <div class="primary-site-header__treatment-list">
-            <a class="primary-site-header__all-treatments" href="/attivita/">
-              <span>Tutti i trattamenti</span>
-              <small>Panoramica dei servizi</small>
-            </a>
-            {
-              treatmentGroups.map((group) => (
-                <div class="primary-site-header__treatment-group" data-treatment-flyout>
-                  <button
-                    type="button"
-                    aria-expanded="false"
-                    aria-controls={`header-treatment-${group.id}`}
-                    data-treatment-flyout-toggle
+          <div class="primary-site-header__treatments-layout">
+            <div class="primary-site-header__treatment-list">
+              <a
+                class="primary-site-header__all-treatments"
+                href="/attivita/"
+                data-treatment-preview-trigger
+                data-preview-image={allTreatmentsPreview.image}
+                data-preview-alt={allTreatmentsPreview.imageAlt}
+              >
+                <span>Tutti i trattamenti</span>
+                <small>Panoramica dei servizi</small>
+              </a>
+              {
+                primaryTreatmentMenuLinks.map((link) => (
+                  <a
+                    class="primary-site-header__treatment-link"
+                    href={link.href}
+                    aria-current={currentPath === link.href ? "page" : undefined}
+                    data-treatment-preview-trigger
+                    data-preview-image={link.image}
+                    data-preview-alt={link.imageAlt}
                   >
-                    <span>{group.label}</span>
-                    <span class="primary-site-header__flyout-arrow" aria-hidden="true"></span>
-                  </button>
-                  <div
-                    class="primary-site-header__treatment-flyout"
-                    id={`header-treatment-${group.id}`}
-                    data-treatment-flyout-panel
-                  >
-                    <p>{group.label}</p>
-                    {
-                      group.links.map((link) => (
-                        <a
-                          href={link.href}
-                          aria-current={currentPath === link.href ? "page" : undefined}
-                        >
-                          {link.label}
-                        </a>
-                      ))
-                    }
-                  </div>
-                </div>
-              ))
-            }
+                    <span>{link.technicalLabel}</span>
+                    <small>{link.label}</small>
+                  </a>
+                ))
+              }
+            </div>
+
+            <figure class="primary-site-header__treatment-preview" data-treatment-preview>
+              <img
+                src={allTreatmentsPreview.image}
+                alt={allTreatmentsPreview.imageAlt}
+                width="720"
+                height="720"
+                decoding="async"
+                data-treatment-preview-image
+              />
+            </figure>
           </div>
         </div>
       </div>
@@ -282,19 +278,15 @@ const contactsIsActive =
         <div class="primary-site-header__mobile-links">
           <a href="/attivita/">Tutti i trattamenti</a>
           {
-            treatmentGroups.map((group) => (
-              <details class="primary-site-header__mobile-treatment">
-                <summary>{group.label}</summary>
-                <div>
-                  {
-                    group.links.map((link) => (
-                      <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
-                        {link.label}
-                      </a>
-                    ))
-                  }
-                </div>
-              </details>
+            primaryTreatmentMenuLinks.map((link) => (
+              <a
+                class="primary-site-header__mobile-treatment-link"
+                href={link.href}
+                aria-current={currentPath === link.href ? "page" : undefined}
+              >
+                <span>{link.technicalLabel}</span>
+                <small>{link.label}</small>
+              </a>
             ))
           }
         </div>
@@ -652,8 +644,7 @@ const contactsIsActive =
     text-transform: uppercase;
   }
 
-  .primary-site-header__dropdown--simple > a,
-  .primary-site-header__treatment-flyout > a {
+  .primary-site-header__dropdown--simple > a {
     display: flex;
     align-items: center;
     min-height: 42px;
@@ -671,23 +662,31 @@ const contactsIsActive =
 
   .primary-site-header__dropdown--simple > a:hover,
   .primary-site-header__dropdown--simple > a:focus-visible,
-  .primary-site-header__dropdown--simple > a[aria-current="page"],
-  .primary-site-header__treatment-flyout > a:hover,
-  .primary-site-header__treatment-flyout > a:focus-visible,
-  .primary-site-header__treatment-flyout > a[aria-current="page"] {
+  .primary-site-header__dropdown--simple > a[aria-current="page"] {
     background: #edf7fb;
     color: #1e84b5 !important;
     transform: translateX(3px);
   }
 
   .primary-site-header__dropdown--treatments {
-    width: 330px;
+    width: min(980px, calc(100vw - 48px));
     padding: 12px;
+  }
+
+  .primary-site-header__treatments-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(250px, 0.88fr);
+    min-height: 330px;
+    gap: 12px;
   }
 
   .primary-site-header__treatment-list {
     display: grid;
-    gap: 2px;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(6, minmax(52px, auto));
+    column-gap: 8px;
+    row-gap: 2px;
   }
 
   .primary-site-header__all-treatments {
@@ -713,101 +712,108 @@ const contactsIsActive =
     font-weight: 560;
   }
 
-  .primary-site-header__treatment-group {
-    position: relative;
-  }
-
-  body.brand-palette .primary-site-header .primary-site-header__treatment-group > button,
-  .primary-site-header__treatment-group > button {
+  body.brand-palette .primary-site-header .primary-site-header__treatment-link,
+  .primary-site-header__treatment-link {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    width: 100%;
-    min-height: 46px;
-    padding: 9px 12px;
+    min-height: 52px;
+    padding: 7px 12px;
     border-radius: 11px;
     color: #0e384c !important;
-    cursor: pointer;
-    gap: 12px;
+    gap: 2px;
     text-align: left;
     transition:
       background-color 150ms ease,
       color 150ms ease;
   }
 
-  .primary-site-header__treatment-group > button > span:first-child {
-    font-size: 0.83rem;
-    font-weight: 720;
+  .primary-site-header__treatment-link > span {
+    font-size: 0.88rem;
+    font-weight: 680;
     line-height: 1.25;
   }
 
-  .primary-site-header__flyout-arrow {
-    display: block;
-    width: 7px;
-    height: 7px;
-    border-top: 1.7px solid currentColor;
-    border-right: 1.7px solid currentColor;
-    transform: rotate(45deg);
-  }
-
-  body.brand-palette .primary-site-header .primary-site-header__treatment-group:hover > button,
-  body.brand-palette .primary-site-header .primary-site-header__treatment-group:focus-within > button,
-  body.brand-palette .primary-site-header .primary-site-header__treatment-group.is-open > button,
-  .primary-site-header__treatment-group:hover > button,
-  .primary-site-header__treatment-group:focus-within > button,
-  .primary-site-header__treatment-group.is-open > button {
-    background: #edf7fb !important;
-    color: #1e84b5 !important;
-  }
-
-  .primary-site-header__treatment-flyout {
-    position: absolute;
-    top: -12px;
-    left: calc(100% + 14px);
-    visibility: hidden;
-    display: grid;
-    width: 360px;
-    max-height: min(72vh, 610px);
-    padding: 18px;
-    overflow-y: auto;
-    border: 1px solid rgba(14, 56, 76, 0.1);
-    border-radius: 18px;
-    background: #fff;
-    box-shadow: 0 26px 70px rgba(8, 42, 56, 0.24);
+  .primary-site-header__treatment-link > small {
+    min-height: 0.78rem;
+    color: #5c7380;
+    font-size: 0.66rem;
+    font-weight: 620;
+    line-height: 1.18;
     opacity: 0;
-    transform: translateX(-8px);
+    transform: translateY(-2px);
+    visibility: hidden;
     transition:
+      color 150ms ease,
       opacity 150ms ease,
       transform 150ms ease,
       visibility 150ms ease;
   }
 
-  .primary-site-header__treatment-flyout::before {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -16px;
-    width: 18px;
-    content: "";
+  body.brand-palette .primary-site-header .primary-site-header__treatment-link:hover,
+  body.brand-palette .primary-site-header .primary-site-header__treatment-link:focus-visible,
+  body.brand-palette .primary-site-header .primary-site-header__treatment-link[aria-current="page"],
+  .primary-site-header__treatment-link:hover,
+  .primary-site-header__treatment-link:focus-visible,
+  .primary-site-header__treatment-link[aria-current="page"] {
+    background: #edf7fb !important;
+    color: #1e84b5 !important;
   }
 
-  .primary-site-header__treatment-group:hover > .primary-site-header__treatment-flyout,
-  .primary-site-header__treatment-group.is-open > .primary-site-header__treatment-flyout {
+  .primary-site-header__treatment-link:hover > small,
+  .primary-site-header__treatment-link:focus-visible > small {
     visibility: visible;
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 
-  .primary-site-header__treatment-flyout > p {
-    margin: 0 0 8px;
-    padding: 2px 10px 12px;
-    border-bottom: 1px solid #e2edf2;
-    color: #0e384c;
-    font-size: 0.75rem;
-    font-weight: 820;
-    letter-spacing: 0.075em;
-    line-height: 1.3;
-    text-transform: uppercase;
+  .primary-site-header__treatment-link:hover > small,
+  .primary-site-header__treatment-link:focus-visible > small {
+    color: #14668d;
+  }
+
+  .primary-site-header__treatment-preview {
+    position: relative;
+    min-width: 0;
+    min-height: 330px;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #dcecf3;
+    isolation: isolate;
+  }
+
+  .primary-site-header__treatment-preview::after {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, transparent 58%, rgba(8, 42, 56, 0.14));
+    content: "";
+    pointer-events: none;
+  }
+
+  .primary-site-header__treatment-preview img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 330px;
+    object-fit: cover;
+    opacity: 1;
+    transform: scale(1.001);
+    transition:
+      opacity 130ms ease,
+      transform 260ms ease;
+  }
+
+  .primary-site-header__treatment-preview.is-changing img {
+    opacity: 0.2;
+    transform: scale(1.018);
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .primary-site-header__treatment-link > small {
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+    }
   }
 
   .primary-site-header__actions {
@@ -1102,8 +1108,7 @@ const contactsIsActive =
       gap: 3px;
     }
 
-    .primary-site-header__mobile-links > a,
-    .primary-site-header__mobile-treatment a {
+    .primary-site-header__mobile-links > a {
       display: flex;
       align-items: center;
       min-height: 46px;
@@ -1116,33 +1121,29 @@ const contactsIsActive =
     }
 
     .primary-site-header__mobile-links > a:hover,
-    .primary-site-header__mobile-links > a:focus-visible,
-    .primary-site-header__mobile-treatment a:hover,
-    .primary-site-header__mobile-treatment a:focus-visible {
+    .primary-site-header__mobile-links > a:focus-visible {
       background: rgba(191, 232, 247, 0.1);
       color: #bfe8f7 !important;
     }
 
-    .primary-site-header__mobile-treatment {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .primary-site-header__mobile-treatment:first-of-type {
-      border-top: 0;
-    }
-
-    .primary-site-header__mobile-treatment > summary {
-      min-height: 48px;
-      padding: 10px 8px;
-      font-size: 0.82rem;
-      letter-spacing: 0;
-      text-transform: none;
-    }
-
-    .primary-site-header__mobile-treatment > div {
-      display: grid;
-      padding: 0 0 8px 12px;
+    .primary-site-header__mobile-treatment-link {
+      display: grid !important;
+      align-items: start !important;
       gap: 2px;
+    }
+
+    .primary-site-header__mobile-treatment-link > span {
+      font-size: 0.88rem;
+      line-height: 1.3;
+    }
+
+    .primary-site-header__mobile-treatment-link > small {
+      visibility: visible;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 0.7rem;
+      font-weight: 560;
+      line-height: 1.2;
+      opacity: 1;
     }
 
     .primary-site-header__mobile-actions {
@@ -1259,9 +1260,56 @@ const contactsIsActive =
     const mobileToggle = header.querySelector<HTMLButtonElement>("[data-header-mobile-toggle]");
     const mobileMenu = header.querySelector<HTMLElement>("[data-header-mobile-menu]");
     const desktopMedia = window.matchMedia("(min-width: 1240px)");
+    const treatmentPreview = header.querySelector<HTMLElement>("[data-treatment-preview]");
+    const treatmentPreviewImage = treatmentPreview?.querySelector<HTMLImageElement>(
+      "[data-treatment-preview-image]",
+    );
+    const treatmentPreviewTriggers = Array.from(
+      header.querySelectorAll<HTMLElement>("[data-treatment-preview-trigger]"),
+    );
     let lastDesktopToggle: HTMLButtonElement | null = null;
     let lastScrollY = Math.max(0, window.scrollY || window.pageYOffset || 0);
     let scrollFrame = 0;
+    let treatmentPreviewRequest = 0;
+    let treatmentPreviewTimer = 0;
+
+    const showTreatmentPreview = (trigger: HTMLElement) => {
+      if (!desktopMedia.matches || !treatmentPreview || !treatmentPreviewImage) return;
+
+      const nextSource = trigger.dataset.previewImage;
+      const nextAlt = trigger.dataset.previewAlt || "";
+      if (!nextSource) return;
+
+      const requestId = ++treatmentPreviewRequest;
+      window.clearTimeout(treatmentPreviewTimer);
+      if (treatmentPreviewImage.getAttribute("src") === nextSource) {
+        treatmentPreview.classList.remove("is-changing");
+        return;
+      }
+
+      const preloadedImage = new Image();
+      preloadedImage.decoding = "async";
+      preloadedImage.src = nextSource;
+
+      const commitPreview = () => {
+        if (requestId !== treatmentPreviewRequest) return;
+        treatmentPreview.classList.add("is-changing");
+        treatmentPreviewTimer = window.setTimeout(() => {
+          if (requestId !== treatmentPreviewRequest) return;
+          treatmentPreviewImage.src = nextSource;
+          treatmentPreviewImage.alt = nextAlt;
+          window.requestAnimationFrame(() => treatmentPreview.classList.remove("is-changing"));
+        }, 90);
+      };
+
+      if (preloadedImage.complete) commitPreview();
+      else preloadedImage.addEventListener("load", commitPreview, { once: true });
+    };
+
+    treatmentPreviewTriggers.forEach((trigger) => {
+      trigger.addEventListener("pointerenter", () => showTreatmentPreview(trigger));
+      trigger.addEventListener("focus", () => showTreatmentPreview(trigger));
+    });
 
     const updateHeaderTone = (currentY = Math.max(0, window.scrollY || window.pageYOffset || 0)) => {
       header.classList.toggle(
