@@ -1,0 +1,1172 @@
+---
+const visitPhases = [
+  {
+    number: "01",
+    label: "Fase 01",
+    title: "Ascolto e anamnesi",
+    text: "Motivo della visita, storia clinica, esigenze e obiettivi.",
+    tone: "blue",
+  },
+  {
+    number: "02",
+    label: "Fase 02",
+    title: "Valutazione clinica",
+    text: "Esame di denti, gengive, tessuti e funzione; approfondimenti solo se indicati.",
+    tone: "lilac",
+  },
+  {
+    number: "03",
+    label: "Fase 03",
+    title: "Spiegazione e piano",
+    text: "Risultati, alternative, priorità, tempi orientativi e prossimi passaggi.",
+    tone: "mint",
+  },
+];
+
+const intakeItems = [
+  {
+    title: "Motivo della visita",
+    text: "Il problema, da quanto tempo è presente, i fastidi e ciò che desideri chiarire o migliorare.",
+  },
+  {
+    title: "Salute generale",
+    text: "Condizioni mediche, farmaci assunti, allergie e informazioni rilevanti per la visita.",
+  },
+  {
+    title: "Storia odontoiatrica",
+    text: "Cure precedenti, esperienze già vissute ed eventuali radiografie o esami recenti.",
+  },
+  {
+    title: "Domande e priorità",
+    text: "Dubbi, aspettative e aspetti che per te è importante affrontare durante l’incontro.",
+  },
+];
+
+const clinicalChecks = [
+  "Denti e restauri",
+  "Gengive e tessuti orali",
+  "Igiene e accumuli",
+  "Masticazione e funzione",
+  "Protesi o dispositivi presenti",
+  "Esami diagnostici, se indicati",
+];
+
+const startingPoints = [
+  {
+    label: "Prima visita",
+    text: "Per fare il punto sulla salute della bocca.",
+    href: "/richiesta-generale/",
+  },
+  {
+    label: "Prevenzione",
+    text: "Per controlli e igiene professionale.",
+    href: "/attivita/igiene-orale-e-profilassi/",
+  },
+  {
+    label: "Urgenza",
+    text: "Quando dolore o gonfiore non possono aspettare.",
+    href: "/urgenze/",
+  },
+];
+---
+
+<div class="visit-method">
+  <section class="visit-method__hero" aria-labelledby="visit-method-title">
+    <div class="visit-method__orb visit-method__orb--one" aria-hidden="true"></div>
+    <div class="visit-method__orb visit-method__orb--two" aria-hidden="true"></div>
+
+    <div class="visit-method__container">
+      <nav class="visit-method__breadcrumb" aria-label="Percorso di navigazione">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/modalita-della-visita/">Modalità della visita</a></li>
+          <li aria-current="page">Visita in studio</li>
+        </ol>
+      </nav>
+
+      <header class="visit-method__hero-heading">
+        <p class="visit-method__kicker"><span aria-hidden="true"></span>In studio</p>
+        <h1 id="visit-method-title">
+          Visita odontoiatrica.
+          <span>Chiara e personalizzata.</span>
+        </h1>
+      </header>
+
+      <div class="visit-method__premise">
+        <header class="visit-method__side-heading">
+          <p>L’approccio alla persona</p>
+          <h2>Premessa.</h2>
+        </header>
+
+        <article class="visit-method__surface visit-method__premise-card">
+          <p class="visit-method__premise-lead">
+            Il primo passo è ascoltare ciò che ti preoccupa e raccogliere le informazioni utili, per affrontare
+            ogni decisione con chiarezza e serenità.
+          </p>
+          <p>
+            Prima di proporre una cura valutiamo la salute della bocca nel suo insieme. Ti spieghiamo con parole
+            semplici ciò che emerge, le possibili soluzioni, le priorità e i tempi, lasciando spazio alle tue
+            domande.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="visit-method__overview" aria-labelledby="visit-overview-title">
+    <div class="visit-method__container visit-method__split">
+      <header class="visit-method__side-heading visit-method__side-heading--sticky">
+        <p>Il percorso di visita</p>
+        <h2 id="visit-overview-title">La prima visita.</h2>
+        <span class="visit-method__pill">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 12a8 8 0 1 0 16 0 8 8 0 1 0-16 0Zm8-4v4l2.7 1.8" />
+          </svg>
+          Percorso personalizzato
+        </span>
+      </header>
+
+      <div class="visit-method__phase-list">
+        {
+          visitPhases.map((phase, index) => (
+            <article class:list={["visit-method__phase", `visit-method__phase--${phase.tone}`]}>
+              <span class="visit-method__phase-icon" aria-hidden="true">
+                {index === 0 ? (
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 5h6M9 3h6v4H9zM7 5H5v16h14V5h-2M8 11h8M8 15h6" />
+                  </svg>
+                ) : index === 1 ? (
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="10.5" cy="10.5" r="5.5" />
+                    <path d="m15 15 5 5M8.5 10.5h4M10.5 8.5v4" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24">
+                    <path d="M5 4h14v16H5zM8 9l1.5 1.5L12 8M8 15h8" />
+                  </svg>
+                )}
+              </span>
+              <div>
+                <span class="visit-method__phase-label">{phase.label}</span>
+                <h3>{phase.title}</h3>
+                <p>{phase.text}</p>
+              </div>
+              <strong aria-hidden="true">{phase.number}</strong>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="visit-method__step" aria-labelledby="visit-step-one-title">
+    <div class="visit-method__container visit-method__split">
+      <header class="visit-method__side-heading visit-method__side-heading--step">
+        <p>Ascolto e anamnesi</p>
+        <h2 id="visit-step-one-title">Step 1:<br />Primo colloquio.</h2>
+        <span>La visita inizia dalla persona: comprendere il motivo dell’appuntamento aiuta a orientare la valutazione.</span>
+      </header>
+
+      <article class="visit-method__surface visit-method__detail-card">
+        <p class="visit-method__detail-intro">
+          Il primo colloquio serve a raccogliere le informazioni importanti per comprendere la tua situazione e
+          impostare una valutazione coerente con ciò che desideri affrontare.
+        </p>
+        <ol class="visit-method__numbered-list">
+          {
+            intakeItems.map((item, index) => (
+              <li>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+        <aside class="visit-method__note">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 3h10v18H7zM9 7h6M9 11h6M9 15h4" />
+          </svg>
+          <p>
+            <strong>Se li hai, portali con te.</strong>
+            Un elenco aggiornato dei farmaci e radiografie o esami recenti possono essere utili.
+          </p>
+        </aside>
+      </article>
+    </div>
+  </section>
+
+  <section class="visit-method__step visit-method__step--mist" aria-labelledby="visit-step-two-title">
+    <div class="visit-method__container visit-method__split">
+      <header class="visit-method__side-heading visit-method__side-heading--step">
+        <p>Valutazione clinica</p>
+        <h2 id="visit-step-two-title">Step 2:<br />Esame della bocca.</h2>
+        <span>
+          La valutazione considera la salute orale nel suo insieme. Gli approfondimenti vengono indicati solo
+          quando utili.
+        </span>
+      </header>
+
+      <article class="visit-method__surface visit-method__detail-card">
+        <p class="visit-method__detail-intro">
+          Il professionista esamina la situazione in relazione al motivo della visita. In base al caso, la
+          valutazione può includere:
+        </p>
+        <ul class="visit-method__check-grid">
+          {clinicalChecks.map((check) => <li>{check}</li>)}
+        </ul>
+
+        <aside class="visit-method__outcome">
+          <span>Esito della valutazione</span>
+          <p>
+            Condividiamo ciò che è emerso e se servono ulteriori accertamenti. Solo a quel punto vengono definite
+            opzioni, priorità e prossimi passaggi.
+          </p>
+          <strong>Pianificazione del percorso condivisa</strong>
+        </aside>
+      </article>
+    </div>
+  </section>
+
+  <section class="visit-method__step" aria-labelledby="visit-step-three-title">
+    <div class="visit-method__container visit-method__split">
+      <header class="visit-method__side-heading visit-method__side-heading--step">
+        <p>Spiegazione e piano</p>
+        <h2 id="visit-step-three-title">Step 3:<br />Scelte e prossimi passi.</h2>
+        <span>
+          Le informazioni cliniche diventano un percorso comprensibile, proporzionato alla situazione personale.
+        </span>
+      </header>
+
+      <article class="visit-method__surface visit-method__detail-card">
+        <p class="visit-method__detail-intro">
+          Ti spieghiamo in modo semplice ciò che è emerso e confrontiamo le possibili opzioni, quando presenti.
+        </p>
+
+        <div class="visit-method__explanation-list">
+          <section class="visit-method__explanation visit-method__explanation--mint">
+            <span aria-hidden="true">●</span>
+            <div>
+              <h3>Spiegazione e alternative</h3>
+              <p>
+                Cosa si può fare, perché una soluzione può essere indicata e quali alternative possono essere
+                valutate.
+              </p>
+            </div>
+          </section>
+          <section class="visit-method__explanation visit-method__explanation--blue">
+            <span aria-hidden="true">●</span>
+            <div>
+              <h3>Priorità, fasi e tempi orientativi</h3>
+              <p>
+                Quando è indicato un percorso, definiamo la sequenza delle cure e i controlli da programmare.
+              </p>
+            </div>
+          </section>
+        </div>
+
+        <div class="visit-method__recommendation">
+          <span class="visit-method__recommendation-icon" aria-hidden="true">↗</span>
+          <div>
+            <h3>Indicazioni personalizzate</h3>
+            <p>
+              Ricevi le indicazioni utili per il periodo tra gli appuntamenti e per il mantenimento nel tempo.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="visit-method__starting" aria-labelledby="visit-starting-title">
+    <div class="visit-method__container">
+      <header>
+        <p class="visit-method__kicker"><span aria-hidden="true"></span>Orientamento</p>
+        <h2 id="visit-starting-title">Scegli da dove iniziare.</h2>
+        <p>
+          Se non sai quale appuntamento richiedere, raccontaci il problema: ti ricontatteremo per orientarti.
+        </p>
+      </header>
+      <nav aria-label="Tipi di appuntamento">
+        {
+          startingPoints.map((item) => (
+            <a href={item.href}>
+              <span>
+                <strong>{item.label}</strong>
+                <small>{item.text}</small>
+              </span>
+              <span aria-hidden="true">→</span>
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </section>
+
+  <section class="visit-method__cta" aria-labelledby="visit-method-cta-title">
+    <div class="visit-method__container">
+      <div class="visit-method__cta-card">
+        <svg class="visit-method__cta-mark" viewBox="0 0 220 260" fill="none" aria-hidden="true">
+          <path d="M110 20C77 20 55 5 31 27 5 51 15 94 30 128c14 34 19 105 45 109 23 4 17-70 35-70s12 74 35 70c26-4 31-75 45-109 15-34 25-77-1-101-24-22-46-7-79-7Z" />
+        </svg>
+        <div>
+          <p>Studio Dentistico Sorriso &amp; Salute</p>
+          <h2 id="visit-method-cta-title">Comincia da una visita chiara.</h2>
+          <span>
+            Raccontaci cosa vuoi chiarire o migliorare. Lo studio ti ricontatterà per concordare giorno, orario e
+            modalità della visita.
+          </span>
+          <small>La richiesta online non conferma automaticamente l’appuntamento.</small>
+        </div>
+        <div class="visit-method__cta-actions">
+          <a class="visit-method__button visit-method__button--primary" href="/richiesta-generale/">
+            Richiedi una visita
+          </a>
+          <a class="visit-method__button visit-method__button--secondary" href="tel:+390392022489">
+            Chiama lo studio
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  :global(body.visit-method-page) {
+    min-height: 100vh;
+    background: #f5f8fb;
+    color: #0e384c;
+  }
+
+  :global(body.visit-method-page main) {
+    overflow: hidden;
+  }
+
+  .visit-method,
+  .visit-method *,
+  .visit-method *::before,
+  .visit-method *::after {
+    box-sizing: border-box;
+  }
+
+  .visit-method {
+    --visit-primary: #0e384c;
+    --visit-primary-dark: #082a38;
+    --visit-blue: #1e84b5;
+    --visit-blue-soft: #dff3ff;
+    --visit-lilac: #f0e3ff;
+    --visit-mint: #dcf8e7;
+    --visit-text: #415469;
+    --visit-line: #dde7ed;
+    background: #f7f9fc;
+    color: var(--visit-primary);
+    font-family: var(--font-family-body);
+  }
+
+  .visit-method__container {
+    position: relative;
+    z-index: 1;
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+  }
+
+  .visit-method__hero {
+    position: relative;
+    padding: clamp(34px, 4vw, 64px) 0 clamp(96px, 10vw, 150px);
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 8% 86%, rgba(30, 132, 181, 0.1), transparent 25rem),
+      radial-gradient(circle at 88% 10%, rgba(191, 232, 247, 0.2), transparent 29rem),
+      #f7f9fc;
+  }
+
+  .visit-method__orb {
+    position: absolute;
+    border: 1px solid rgba(30, 132, 181, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .visit-method__orb--one {
+    top: -260px;
+    right: -190px;
+    width: 620px;
+    height: 620px;
+  }
+
+  .visit-method__orb--two {
+    bottom: -350px;
+    left: -290px;
+    width: 720px;
+    height: 720px;
+  }
+
+  .visit-method__breadcrumb {
+    margin-bottom: clamp(64px, 8vw, 112px);
+    color: #64748b;
+    font-size: 0.78rem;
+    font-weight: 620;
+  }
+
+  .visit-method__breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 9px;
+  }
+
+  .visit-method__breadcrumb li:not(:last-child)::after {
+    margin-left: 9px;
+    color: #a1afba;
+    content: "›";
+  }
+
+  .visit-method__breadcrumb a:hover,
+  .visit-method__breadcrumb a:focus-visible {
+    color: var(--visit-blue);
+  }
+
+  .visit-method__kicker,
+  .visit-method__side-heading > p {
+    display: flex;
+    align-items: center;
+    margin: 0 0 24px;
+    color: var(--visit-blue);
+    font-size: 0.69rem;
+    font-weight: 850;
+    letter-spacing: 0.24em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .visit-method__kicker span {
+    width: 42px;
+    height: 1px;
+    margin-right: 16px;
+    background: currentColor;
+  }
+
+  .visit-method__hero-heading h1 {
+    max-width: 1080px;
+    margin: 0;
+    color: var(--visit-primary) !important;
+    font-size: clamp(3.1rem, 6.4vw, 6.7rem);
+    font-weight: 720;
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+    text-wrap: balance;
+  }
+
+  .visit-method__hero-heading h1 span {
+    display: block;
+    color: var(--visit-blue);
+  }
+
+  .visit-method__premise,
+  .visit-method__split {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.68fr) minmax(0, 1.32fr);
+    gap: clamp(48px, 8vw, 126px);
+  }
+
+  .visit-method__premise {
+    align-items: start;
+    margin-top: clamp(94px, 12vw, 180px);
+  }
+
+  .visit-method__side-heading h2 {
+    margin: 0;
+    color: var(--visit-primary) !important;
+    font-size: clamp(2rem, 3.6vw, 3.45rem);
+    font-weight: 720;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .visit-method__surface {
+    border: 1px solid rgba(14, 56, 76, 0.1);
+    border-radius: 28px;
+    background: #fff;
+    box-shadow: 0 22px 58px rgba(14, 56, 76, 0.06);
+  }
+
+  .visit-method__premise-card {
+    padding: clamp(30px, 4vw, 58px);
+  }
+
+  .visit-method__premise-card p {
+    margin: 0;
+    color: var(--visit-text);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .visit-method__premise-card .visit-method__premise-lead {
+    margin-bottom: 28px;
+    color: #52657a;
+    font-size: clamp(1.18rem, 2vw, 1.58rem);
+    font-weight: 520;
+    line-height: 1.55;
+  }
+
+  .visit-method__overview,
+  .visit-method__step {
+    padding: clamp(90px, 10vw, 152px) 0;
+  }
+
+  .visit-method__overview {
+    background: #fff;
+  }
+
+  .visit-method__split {
+    align-items: start;
+  }
+
+  .visit-method__side-heading--sticky {
+    position: sticky;
+    top: 132px;
+  }
+
+  .visit-method__pill {
+    display: inline-flex;
+    min-height: 38px;
+    align-items: center;
+    margin-top: 28px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--visit-primary);
+    color: #fff;
+    font-size: 0.76rem;
+    font-weight: 750;
+    gap: 8px;
+  }
+
+  .visit-method__pill svg {
+    width: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .visit-method__phase-list {
+    display: grid;
+    gap: 22px;
+  }
+
+  .visit-method__phase {
+    position: relative;
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr) auto;
+    min-height: 122px;
+    align-items: center;
+    padding: 25px 28px;
+    border-radius: 22px;
+    overflow: hidden;
+    gap: 20px;
+  }
+
+  .visit-method__phase--blue {
+    background: var(--visit-blue-soft);
+  }
+
+  .visit-method__phase--lilac {
+    background: var(--visit-lilac);
+  }
+
+  .visit-method__phase--mint {
+    background: var(--visit-mint);
+  }
+
+  .visit-method__phase-icon {
+    display: grid;
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--visit-primary);
+    place-items: center;
+  }
+
+  .visit-method__phase-icon svg {
+    width: 25px;
+    height: 25px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .visit-method__phase-label {
+    display: block;
+    margin-bottom: 3px;
+    color: #52657a;
+    font-size: 0.63rem;
+    font-weight: 830;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .visit-method__phase h3,
+  .visit-method__detail-card h3 {
+    margin: 0;
+    color: var(--visit-primary) !important;
+    font-size: 1.08rem;
+    font-weight: 780;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  .visit-method__phase p {
+    margin: 5px 0 0;
+    color: var(--visit-text);
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .visit-method__phase > strong {
+    color: rgba(14, 56, 76, 0.13);
+    font-size: 3.2rem;
+    font-weight: 850;
+    letter-spacing: -0.06em;
+  }
+
+  .visit-method__step {
+    background: #f7f9fc;
+  }
+
+  .visit-method__step--mist {
+    background: #f0f6fa;
+  }
+
+  .visit-method__side-heading--step > span {
+    display: block;
+    max-width: 305px;
+    margin-top: 25px;
+    color: var(--visit-text);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .visit-method__detail-card {
+    padding: clamp(30px, 4.2vw, 60px);
+  }
+
+  .visit-method__detail-intro {
+    max-width: 680px;
+    margin: 0 0 42px;
+    color: #5e7082;
+    font-size: clamp(1rem, 1.45vw, 1.16rem);
+    line-height: 1.65;
+  }
+
+  .visit-method__numbered-list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 0;
+  }
+
+  .visit-method__numbered-list li {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    padding: 20px 0;
+    border-top: 1px solid var(--visit-line);
+    gap: 16px;
+  }
+
+  .visit-method__numbered-list li > span {
+    color: var(--visit-blue);
+    font-size: 0.78rem;
+    font-weight: 850;
+    letter-spacing: 0.09em;
+  }
+
+  .visit-method__numbered-list p,
+  .visit-method__recommendation p,
+  .visit-method__explanation p {
+    margin: 6px 0 0;
+    color: var(--visit-text);
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  .visit-method__note {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    align-items: start;
+    margin-top: 28px;
+    padding: 20px;
+    border-radius: 16px;
+    background: #eef8fd;
+    gap: 15px;
+  }
+
+  .visit-method__note svg {
+    width: 42px;
+    height: 42px;
+    padding: 10px;
+    border-radius: 12px;
+    background: #fff;
+    fill: none;
+    stroke: var(--visit-blue);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .visit-method__note p {
+    margin: 0;
+    color: var(--visit-text);
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+
+  .visit-method__note strong {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--visit-primary);
+  }
+
+  .visit-method__check-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 12px;
+  }
+
+  .visit-method__check-grid li {
+    position: relative;
+    min-height: 48px;
+    padding: 15px 18px 15px 34px;
+    border-radius: 12px;
+    background: #f7f9fc;
+    color: var(--visit-primary);
+    font-size: 0.74rem;
+    font-weight: 780;
+    letter-spacing: 0.025em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .visit-method__check-grid li::before {
+    position: absolute;
+    top: 21px;
+    left: 17px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--visit-blue);
+    content: "";
+  }
+
+  .visit-method__outcome {
+    margin-top: 30px;
+    padding: 26px;
+    border-radius: 18px;
+    background: var(--visit-lilac);
+  }
+
+  .visit-method__outcome > span,
+  .visit-method__outcome > strong {
+    display: block;
+    font-size: 0.63rem;
+    font-weight: 850;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .visit-method__outcome > span {
+    color: #7251a7;
+  }
+
+  .visit-method__outcome p {
+    margin: 14px 0 24px;
+    color: #4d4d6d;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .visit-method__outcome > strong {
+    padding-top: 18px;
+    border-top: 1px solid rgba(114, 81, 167, 0.15);
+    color: var(--visit-primary);
+  }
+
+  .visit-method__explanation-list {
+    display: grid;
+    gap: 16px;
+  }
+
+  .visit-method__explanation {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    padding: 26px;
+    border-radius: 18px;
+    gap: 12px;
+  }
+
+  .visit-method__explanation--mint {
+    background: var(--visit-mint);
+  }
+
+  .visit-method__explanation--blue {
+    background: var(--visit-blue-soft);
+  }
+
+  .visit-method__explanation > span {
+    color: var(--visit-blue);
+    font-size: 0.75rem;
+  }
+
+  .visit-method__recommendation {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    align-items: start;
+    margin-top: 30px;
+    padding-top: 28px;
+    border-top: 1px solid var(--visit-line);
+    gap: 16px;
+  }
+
+  .visit-method__recommendation-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    background: var(--visit-primary);
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 750;
+    place-items: center;
+  }
+
+  .visit-method__starting {
+    padding: clamp(80px, 9vw, 130px) 0;
+    background: #fff;
+  }
+
+  .visit-method__starting > .visit-method__container {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+    align-items: end;
+    gap: clamp(44px, 7vw, 104px);
+  }
+
+  .visit-method__starting header h2 {
+    margin: 0;
+    color: var(--visit-primary) !important;
+    font-size: clamp(2.35rem, 4.6vw, 4.7rem);
+    font-weight: 720;
+    letter-spacing: -0.055em;
+    line-height: 0.94;
+  }
+
+  .visit-method__starting header > p:last-child {
+    margin: 25px 0 0;
+    color: var(--visit-text);
+    line-height: 1.65;
+  }
+
+  .visit-method__starting nav {
+    display: grid;
+    gap: 12px;
+  }
+
+  .visit-method__starting nav a {
+    display: flex;
+    min-height: 86px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 22px;
+    border: 1px solid var(--visit-line);
+    border-radius: 17px;
+    background: #f9fbfd;
+    color: var(--visit-primary);
+    transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+  }
+
+  .visit-method__starting nav a:hover,
+  .visit-method__starting nav a:focus-visible {
+    border-color: #9fd5ec;
+    background: #eef8fd;
+    transform: translateX(4px);
+  }
+
+  .visit-method__starting nav a > span:first-child {
+    display: grid;
+    gap: 4px;
+  }
+
+  .visit-method__starting nav strong {
+    font-size: 1rem;
+  }
+
+  .visit-method__starting nav small {
+    color: var(--visit-text);
+    font-size: 0.79rem;
+  }
+
+  .visit-method__starting nav a > span:last-child {
+    color: var(--visit-blue);
+    font-size: 1.35rem;
+  }
+
+  .visit-method__cta {
+    padding: clamp(80px, 9vw, 132px) 0;
+    background: #f7f9fc;
+  }
+
+  .visit-method__cta-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    min-height: 390px;
+    align-items: end;
+    padding: clamp(42px, 6vw, 76px);
+    border-radius: 38px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 88% 20%, rgba(30, 132, 181, 0.32), transparent 23rem),
+      #0d347b;
+    box-shadow: 0 28px 68px rgba(8, 42, 56, 0.22);
+    color: #fff;
+    gap: 42px;
+  }
+
+  .visit-method__cta-card > div {
+    position: relative;
+    z-index: 1;
+  }
+
+  .visit-method__cta-card p {
+    margin: 0 0 20px;
+    color: #86d6fb;
+    font-size: 0.68rem;
+    font-weight: 850;
+    letter-spacing: 0.19em;
+    text-transform: uppercase;
+  }
+
+  .visit-method__cta-card h2 {
+    max-width: 720px;
+    margin: 0;
+    color: #fff !important;
+    font-size: clamp(2.6rem, 5vw, 5.4rem);
+    font-weight: 720;
+    letter-spacing: -0.055em;
+    line-height: 0.92;
+    text-wrap: balance;
+  }
+
+  .visit-method__cta-card div > span {
+    display: block;
+    max-width: 680px;
+    margin-top: 24px;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .visit-method__cta-card small {
+    display: block;
+    margin-top: 13px;
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 0.76rem;
+  }
+
+  .visit-method__cta-mark {
+    position: absolute;
+    top: -44px;
+    right: 26px;
+    width: 270px;
+    height: auto;
+    opacity: 0.08;
+    stroke: #fff;
+    stroke-width: 15;
+  }
+
+  .visit-method__cta-actions {
+    display: flex;
+    flex-direction: column;
+    min-width: 220px;
+    gap: 12px;
+  }
+
+  .visit-method__button {
+    display: inline-flex;
+    min-height: 54px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    border: 1px solid transparent;
+    border-radius: 13px;
+    font-size: 0.78rem;
+    font-weight: 820;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  }
+
+  .visit-method__button--primary {
+    background: #48bafb;
+    color: #082a38;
+  }
+
+  .visit-method__button--secondary {
+    border-color: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+
+  .visit-method__button:hover,
+  .visit-method__button:focus-visible {
+    border-color: #fff;
+    background: #fff;
+    color: var(--visit-primary);
+    transform: translateY(-2px);
+  }
+
+  .visit-method a:focus-visible {
+    outline: 3px solid #54c4f6;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 900px) {
+    .visit-method__premise,
+    .visit-method__split,
+    .visit-method__starting > .visit-method__container,
+    .visit-method__cta-card {
+      grid-template-columns: 1fr;
+    }
+
+    .visit-method__side-heading--sticky {
+      position: static;
+    }
+
+    .visit-method__side-heading--step > span {
+      max-width: 620px;
+    }
+
+    .visit-method__cta-card {
+      align-items: start;
+    }
+
+    .visit-method__cta-actions {
+      min-width: 0;
+      flex-direction: row;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .visit-method__container {
+      width: min(100% - 32px, 1180px);
+    }
+
+    .visit-method__hero {
+      padding-top: 24px;
+      padding-bottom: 88px;
+    }
+
+    .visit-method__breadcrumb {
+      margin-bottom: 54px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .visit-method__hero-heading h1 {
+      font-size: clamp(2.75rem, 13vw, 4.1rem);
+      line-height: 0.94;
+    }
+
+    .visit-method__premise {
+      margin-top: 78px;
+      gap: 30px;
+    }
+
+    .visit-method__overview,
+    .visit-method__step,
+    .visit-method__starting,
+    .visit-method__cta {
+      padding-block: 76px;
+    }
+
+    .visit-method__split,
+    .visit-method__starting > .visit-method__container {
+      gap: 38px;
+    }
+
+    .visit-method__phase {
+      grid-template-columns: 48px minmax(0, 1fr);
+      padding: 21px;
+      gap: 15px;
+    }
+
+    .visit-method__phase-icon {
+      width: 48px;
+      height: 48px;
+    }
+
+    .visit-method__phase > strong {
+      display: none;
+    }
+
+    .visit-method__detail-card,
+    .visit-method__premise-card {
+      padding: 25px 22px;
+      border-radius: 22px;
+    }
+
+    .visit-method__check-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .visit-method__explanation {
+      padding: 21px;
+    }
+
+    .visit-method__starting nav a {
+      min-height: 96px;
+    }
+
+    .visit-method__cta-card {
+      min-height: 0;
+      padding: 36px 24px;
+      border-radius: 27px;
+    }
+
+    .visit-method__cta-actions {
+      flex-direction: column;
+    }
+
+    .visit-method__button {
+      width: 100%;
+    }
+
+    .visit-method__cta-mark {
+      top: 20px;
+      right: -70px;
+      width: 220px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .visit-method *,
+    .visit-method *::before,
+    .visit-method *::after {
+      scroll-behavior: auto !important;
+      transition: none !important;
+    }
+  }
+</style>

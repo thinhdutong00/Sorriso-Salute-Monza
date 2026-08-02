@@ -1,0 +1,385 @@
+---
+const studioMapEmbedUrl =
+  "https://maps.google.com/maps?q=Studio%20Dentistico%20Sorriso%20%26%20Salute%20Via%20Gaslini%201%2020090%20Monza&t=m&z=16&output=embed&iwloc=near";
+---
+
+<section class="home-contact" id="dove-siamo" aria-labelledby="home-contact-title">
+  <div class="home-contact__information">
+    <div class="home-contact__copy">
+      <p class="home-contact__eyebrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7.2 3.4C5.3 4.5 4.5 7 5.1 9.2l1.7 7.1c.5 2.1 1.3 4.2 2.6 4.2 1.1 0 1.2-4.5 2.6-4.5s1.5 4.5 2.6 4.5c1.3 0 2.1-2.1 2.6-4.2l1.7-7.1c.6-2.2-.2-4.7-2.1-5.8-1.5-.9-3.1.2-4.8.2s-3.3-1.1-4.8-.2Z"></path>
+        </svg>
+        <span>Contattaci</span>
+      </p>
+
+      <h1 id="home-contact-title">
+        Il primo passo verso<br />il sorriso che desideri
+      </h1>
+
+      <p class="home-contact__description">
+        Lo <strong>Studio Dentistico Sorriso e Salute Monza</strong> ti ricontatta entro 2 ore
+        per capire insieme da dove partire e accompagnarti verso la soluzione più adatta.
+      </p>
+    </div>
+
+    <address class="home-contact__cards" aria-label="Recapiti dello studio">
+      <a class="home-contact__card home-contact__card--primary" href="tel:+390392022489">
+        <span class="home-contact__card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1.2 1.2 0 0 1 1.2-.3c1.3.4 2.6.7 4 .7.7 0 1.2.5 1.2 1.2v3.5c0 .7-.5 1.2-1.2 1.2C10.4 21.9 2.1 13.6 2.1 3.4c0-.7.5-1.2 1.2-1.2h3.5c.7 0 1.2.5 1.2 1.2 0 1.4.2 2.7.7 4 .1.4 0 .9-.3 1.2l-2.2 2.2Z"></path>
+          </svg>
+        </span>
+        <span class="home-contact__card-copy">
+          <strong>Telefono: 039 2022489</strong>
+          <span>039 2022489</span>
+        </span>
+      </a>
+
+      <a
+        class="home-contact__card"
+        href="https://www.google.com/maps/search/?api=1&query=Via+Gaslini+1+20090+Monza"
+        aria-label="Apri l’indirizzo dello studio su Google Maps"
+      >
+        <span class="home-contact__card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2.5a7.5 7.5 0 0 0-7.5 7.5c0 5.6 7.5 12 7.5 12s7.5-6.4 7.5-12A7.5 7.5 0 0 0 12 2.5Zm0 10.2A2.7 2.7 0 1 1 12 7a2.7 2.7 0 0 1 0 5.7Z"></path>
+          </svg>
+        </span>
+        <span class="home-contact__card-copy">
+          <strong>Indirizzo</strong>
+          <span>Via Gaslini, 1 20090 Monza (MB)</span>
+        </span>
+      </a>
+
+      <a class="home-contact__card" href="mailto:info@sorrisoesalute.it">
+        <span class="home-contact__card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M3.5 5h17A1.5 1.5 0 0 1 22 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 17.5v-11A1.5 1.5 0 0 1 3.5 5Z"></path>
+            <path d="m3 6 9 7 9-7"></path>
+          </svg>
+        </span>
+        <span class="home-contact__card-copy">
+          <strong>Email</strong>
+          <span>info@sorrisoesalute.it</span>
+        </span>
+      </a>
+    </address>
+  </div>
+
+  <div class="home-contact__map">
+    <iframe
+      loading="lazy"
+      src={studioMapEmbedUrl}
+      title="Studio Dentistico Sorriso & Salute - Via Gaslini 1, Monza"
+      aria-label="Mappa Google dello Studio Dentistico Sorriso & Salute, Via Gaslini 1 a Monza"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+    ></iframe>
+  </div>
+</section>
+
+<style>
+  .home-contact {
+    display: grid;
+    min-height: max(760px, calc(100svh - var(--primary-site-header-height, 98px)));
+    grid-template-columns: minmax(430px, 42%) minmax(0, 58%);
+    margin-top: var(--primary-site-header-height, 98px);
+    overflow: hidden;
+    background: #f8fbfd;
+    color: var(--brand-primary, #0e384c);
+  }
+
+  .home-contact__information {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(64px, 6vw, 104px) clamp(46px, 4.7vw, 88px);
+    background: #fff;
+  }
+
+  .home-contact__copy {
+    display: grid;
+    justify-items: start;
+    gap: 24px;
+  }
+
+  .home-contact__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    gap: 11px;
+    color: var(--brand-secondary, #1e84b5);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.13em !important;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .home-contact__eyebrow svg {
+    width: 23px;
+    height: 23px;
+    flex: 0 0 23px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .home-contact h1 {
+    max-width: 650px;
+    margin: 0;
+    color: var(--brand-secondary, #1e84b5) !important;
+    font-family: var(--font-family-display, var(--brand-font-family, system-ui)) !important;
+    font-size: clamp(3.5rem, 4.35vw, 5.15rem) !important;
+    font-weight: 550 !important;
+    letter-spacing: -0.055em !important;
+    line-height: 0.98 !important;
+    text-wrap: balance;
+  }
+
+  .home-contact__description {
+    max-width: 650px;
+    margin: 0;
+    color: var(--brand-description, #334155);
+    font-size: clamp(1.02rem, 1.25vw, 1.15rem);
+    font-weight: 430;
+    line-height: 1.58;
+  }
+
+  .home-contact__description strong {
+    color: var(--brand-primary, #0e384c);
+    font-weight: 760;
+  }
+
+  .home-contact__cards {
+    display: grid;
+    margin: clamp(30px, 3vw, 42px) 0 0;
+    gap: 14px;
+    font-style: normal;
+  }
+
+  .home-contact__card {
+    display: flex;
+    min-height: 92px;
+    align-items: center;
+    padding: 17px 20px;
+    gap: 16px;
+    border: 1px solid #dce6ef;
+    border-radius: 24px;
+    background: #fff;
+    color: var(--brand-primary, #0e384c) !important;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(14, 56, 76, 0.06);
+    transition: border-color 170ms ease, box-shadow 170ms ease, transform 170ms ease;
+  }
+
+  .home-contact__card:hover,
+  .home-contact__card:focus-visible {
+    border-color: rgba(30, 132, 181, 0.7);
+    color: var(--brand-primary, #0e384c) !important;
+    box-shadow: 0 14px 32px rgba(14, 56, 76, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .home-contact__card--primary {
+    border-color: var(--brand-primary, #0e384c);
+    background: var(--brand-primary, #0e384c);
+    color: #fff !important;
+    box-shadow: 0 16px 32px rgba(14, 56, 76, 0.2);
+  }
+
+  .home-contact__card--primary:hover,
+  .home-contact__card--primary:focus-visible {
+    border-color: var(--brand-primary-dark, #082a38);
+    background: var(--brand-primary-dark, #082a38);
+    color: #fff !important;
+  }
+
+  .home-contact__card-icon {
+    display: grid;
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    place-items: center;
+    border-radius: 16px;
+    background: var(--brand-secondary, #1e84b5);
+    color: #fff;
+  }
+
+  .home-contact__card-icon svg {
+    width: 25px;
+    height: 25px;
+    fill: currentColor;
+    stroke: none;
+  }
+
+  .home-contact__card:last-child .home-contact__card-icon svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .home-contact__card-copy {
+    display: grid;
+    min-width: 0;
+    gap: 5px;
+  }
+
+  .home-contact__card-copy strong {
+    color: inherit;
+    font-size: 1.05rem;
+    font-weight: 760;
+    line-height: 1.25;
+  }
+
+  .home-contact__card-copy > span {
+    color: var(--brand-muted, #64748b);
+    font-size: 0.92rem;
+    font-weight: 520;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .home-contact__card--primary .home-contact__card-copy > span {
+    color: rgba(255, 255, 255, 0.76);
+  }
+
+  .home-contact__map,
+  .home-contact__map iframe {
+    width: 100%;
+    min-width: 0;
+    min-height: 100%;
+  }
+
+  .home-contact__map {
+    overflow: hidden;
+    background: #e5edf1;
+  }
+
+  .home-contact__map iframe {
+    display: block;
+    height: 100%;
+    border: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .home-contact {
+      min-height: 0;
+      grid-template-columns: 1fr;
+      padding: 72px 28px;
+      gap: 34px;
+    }
+
+    .home-contact__information {
+      padding: 0;
+      background: transparent;
+    }
+
+    .home-contact h1 {
+      max-width: 760px;
+      font-size: clamp(2.8rem, 6vw, 4rem) !important;
+      line-height: 1.02 !important;
+    }
+
+    .home-contact__description {
+      max-width: 760px;
+    }
+
+    .home-contact__cards {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .home-contact__card {
+      min-height: 150px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .home-contact__map {
+      min-height: 460px;
+      border-radius: 28px;
+    }
+
+    .home-contact__map iframe {
+      min-height: 460px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .home-contact {
+      padding: 52px 20px 66px;
+      gap: 28px;
+    }
+
+    .home-contact__copy {
+      gap: 18px;
+    }
+
+    .home-contact__eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em !important;
+    }
+
+    .home-contact h1 {
+      font-size: clamp(2.35rem, 10.5vw, 2.85rem) !important;
+      line-height: 1.04 !important;
+    }
+
+    .home-contact__description {
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .home-contact__cards {
+      grid-template-columns: 1fr;
+      margin-top: 28px;
+      gap: 12px;
+    }
+
+    .home-contact__card {
+      min-height: 92px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 16px;
+      gap: 14px;
+      border-radius: 20px;
+    }
+
+    .home-contact__card-icon {
+      width: 52px;
+      height: 52px;
+      flex-basis: 52px;
+    }
+
+    .home-contact__card-copy strong {
+      font-size: 1rem;
+    }
+
+    .home-contact__card-copy > span {
+      font-size: 0.86rem;
+    }
+
+    .home-contact__map,
+    .home-contact__map iframe {
+      min-height: 360px;
+    }
+
+    .home-contact__map {
+      border-radius: 22px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-contact__card {
+      transition: none;
+    }
+  }
+</style>

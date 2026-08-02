@@ -67,6 +67,31 @@ const ANAMNESIS_FORM_VARIANTS = new Map([
   ["protesi-instabile-anamnesi", "Protesi instabile"],
 ]);
 
+const EMERGENCY_PATIENT_TYPES = new Set([
+  "Nuovo paziente",
+  "Urgenza dopo un trattamento dello studio",
+]);
+
+const EMERGENCY_PROBLEM_TYPES = new Set([
+  "Dolore forte o improvviso",
+  "Gonfiore o sospetta infezione",
+  "Dente rotto o trauma",
+  "Otturazione, corona o protesi danneggiata",
+  "Sanguinamento o fastidio alle gengive",
+  "Altro problema urgente",
+]);
+
+const EMERGENCY_TREATMENT_TYPES = new Set([
+  "Otturazione o ricostruzione",
+  "Devitalizzazione",
+  "Estrazione o chirurgia orale",
+  "Impianto dentale",
+  "Corona, ponte o protesi",
+  "Igiene o trattamento gengivale",
+  "Ortodonzia o apparecchio",
+  "Altro trattamento",
+]);
+
 const recipientsFromEnv = (value) =>
   normalizeText(value)
     .split(",")
@@ -110,11 +135,23 @@ const buildSections = (lead) => {
     lead.landingPage.startsWith("/implantologia/") ||
     Boolean(lead.implantologiaProblemType || lead.implantologiaProblemDuration);
   const isAnamnesis = Boolean(lead.formVariant);
+  const isEmergency =
+    lead.landingPage.startsWith("/urgenze") ||
+    lead.servizio === "Urgenza odontoiatrica" ||
+    Boolean(lead.emergencyPatientType);
 
   return [
     {
-      title: isImplantologia ? "Richiesta implantologia" : "Richiesta",
+      title: isEmergency
+        ? "Richiesta urgenza odontoiatrica"
+        : isImplantologia
+          ? "Richiesta implantologia"
+          : "Richiesta",
       rows: compactRows([
+        ["Tipo di paziente", lead.emergencyPatientType],
+        ["Problema urgente", lead.emergencyProblemType],
+        ["Trattamento precedente", lead.emergencyTreatmentType],
+        ["Dettagli dell'urgenza", lead.emergencyDetails],
         ["Variante modulo", isAnamnesis ? lead.formVariant : ""],
         ["Trattamento richiesto", isAnamnesis ? lead.serviceInterest : ""],
         ["Servizio/interesse", isAnamnesis ? "" : lead.serviceInterest || lead.servizio],
@@ -239,6 +276,10 @@ export default async function handler(req, res) {
       preferredVisitTime: normalizeText(body.preferred_visit_time),
       implantologiaUrgency: normalizeText(body.implantologia_urgency),
       preferredContactChannel: normalizeText(body.preferred_contact_channel),
+      emergencyPatientType: normalizeText(body.emergency_patient_type),
+      emergencyProblemType: normalizeText(body.emergency_problem_type),
+      emergencyTreatmentType: normalizeText(body.emergency_treatment_type),
+      emergencyDetails: normalizeText(body.emergency_details),
       privacyConsent: normalizeText(body.privacy_consent),
       formVariant,
       landingPage: normalizeText(body.landing_page),
@@ -258,6 +299,11 @@ export default async function handler(req, res) {
       gbraid: normalizeText(body.gbraid),
       wbraid: normalizeText(body.wbraid),
     };
+
+    const isEmergency =
+      lead.landingPage.startsWith("/urgenze") ||
+      lead.servizio === "Urgenza odontoiatrica" ||
+      Boolean(lead.emergencyPatientType);
 
     if (anamnesisServiceInterest) {
       if (lead.implantologiaProblemType !== "Altro") {
@@ -325,6 +371,47 @@ export default async function handler(req, res) {
         return res.status(400).json({
           error: "Inserisci un indirizzo email valido per il canale di contatto selezionato",
         });
+      }
+
+      if (lead.privacyConsent !== "true") {
+        return res.status(400).json({ error: "Il consenso privacy è obbligatorio" });
+      }
+    } else if (isEmergency) {
+      if (!EMERGENCY_PATIENT_TYPES.has(lead.emergencyPatientType)) {
+        return res.status(400).json({ error: "Seleziona il tipo di richiesta urgente" });
+      }
+
+      const isPostTreatment = lead.emergencyPatientType === "Urgenza dopo un trattamento dello studio";
+      if (isPostTreatment) {
+        lead.emergencyProblemType = "";
+        if (!EMERGENCY_TREATMENT_TYPES.has(lead.emergencyTreatmentType)) {
+          return res.status(400).json({ error: "Seleziona il trattamento effettuato nello studio" });
+        }
+      } else {
+        lead.emergencyTreatmentType = "";
+        if (!EMERGENCY_PROBLEM_TYPES.has(lead.emergencyProblemType)) {
+          return res.status(400).json({ error: "Seleziona il tipo di problema urgente" });
+        }
+      }
+
+      if (!lead.preferredVisitDays) {
+        return res.status(400).json({ error: "Seleziona almeno un giorno preferito" });
+      }
+
+      if (!lead.preferredVisitTime) {
+        return res.status(400).json({ error: "Seleziona una fascia oraria" });
+      }
+
+      if (lead.nome.length < 2) {
+        return res.status(400).json({ error: "Inserisci un nome valido" });
+      }
+
+      if (lead.telefono.replace(/\D/g, "").length < 6) {
+        return res.status(400).json({ error: "Inserisci un numero di telefono valido" });
+      }
+
+      if (lead.email && !isEmail(lead.email)) {
+        return res.status(400).json({ error: "Inserisci un indirizzo email valido" });
       }
 
       if (lead.privacyConsent !== "true") {

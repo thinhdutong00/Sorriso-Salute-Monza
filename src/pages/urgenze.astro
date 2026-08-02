@@ -7,6 +7,7 @@ import InternalPageHero from "../components/InternalPageHero.astro";
 import PageLoader from "../components/PageLoader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
+import UrgentMultiStepForm from "../components/UrgentMultiStepForm.astro";
 import { implantologiaMenuLinks, protesiDentaleMenuLink } from "../data/implantologiaNavigation";
 import {
   kebabAllTreatmentsLink,
@@ -143,6 +144,25 @@ const currentPath = Astro.url.pathname;
         background: var(--urgent-sky);
       }
 
+      .urgent-page .urgent-form-aside {
+        min-width: 0;
+        scroll-margin-top: 132px;
+      }
+
+      .urgent-page .internal-page-hero__container {
+        width: min(1460px, calc(100% - clamp(36px, 6vw, 92px)));
+      }
+
+      .urgent-page .internal-page-hero__grid {
+        grid-template-columns: minmax(0, 0.82fr) minmax(500px, 1fr);
+        gap: clamp(38px, 4.5vw, 72px);
+      }
+
+      .urgent-page .internal-page-hero__copy {
+        position: sticky;
+        top: 150px;
+      }
+
       .urgent-hero {
         display: flex;
         align-items: flex-start;
@@ -249,6 +269,18 @@ const currentPath = Astro.url.pathname;
       }
 
       @media (max-width: 980px) {
+        .urgent-page .internal-page-hero__container {
+          width: min(100% - 36px, 760px);
+        }
+
+        .urgent-page .internal-page-hero__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .urgent-page .internal-page-hero__copy {
+          position: static;
+        }
+
         .urgent-page .mobile-nav > a:last-child {
           display: none;
         }
@@ -550,9 +582,12 @@ const currentPath = Astro.url.pathname;
       >
         <div slot="actions" class="internal-page-hero__actions">
           <a class="internal-page-hero__button" href="tel:+390392022489">Chiama in studio: 039 2022489</a>
-          <a class="internal-page-hero__button internal-page-hero__button--secondary" href="/richiesta-generale/">
-            Richiedi appuntamento
+          <a class="internal-page-hero__button internal-page-hero__button--secondary" href="#modulo-urgenze">
+            Compila il modulo urgenze
           </a>
+        </div>
+        <div slot="aside" class="urgent-form-aside">
+          <UrgentMultiStepForm />
         </div>
       </InternalPageHero>
     </main>

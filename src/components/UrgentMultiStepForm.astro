@@ -1,0 +1,1016 @@
+---
+const newPatientProblems = [
+  "Dolore forte o improvviso",
+  "Gonfiore o sospetta infezione",
+  "Dente rotto o trauma",
+  "Otturazione, corona o protesi danneggiata",
+  "Sanguinamento o fastidio alle gengive",
+  "Altro problema urgente",
+];
+
+const previousTreatments = [
+  "Otturazione o ricostruzione",
+  "Devitalizzazione",
+  "Estrazione o chirurgia orale",
+  "Impianto dentale",
+  "Corona, ponte o protesi",
+  "Igiene o trattamento gengivale",
+  "Ortodonzia o apparecchio",
+  "Altro trattamento",
+];
+---
+
+<aside class="urgent-form-card" id="modulo-urgenze" aria-labelledby="urgent-form-title">
+  <form
+    class="urgent-form"
+    id="urgent-multistep-form"
+    action="/api/send-lead"
+    method="post"
+    autocomplete="on"
+    data-urgent-form
+    novalidate
+  >
+    <div
+      class="urgent-form__progress"
+      role="progressbar"
+      aria-label="Avanzamento richiesta urgente"
+      aria-valuemin="1"
+      aria-valuemax="4"
+      aria-valuenow="1"
+      data-urgent-progress
+    >
+      <span aria-hidden="true"></span>
+    </div>
+
+    <div class="urgent-form__step is-active" data-urgent-step="1">
+      <p class="urgent-form__eyebrow" data-urgent-eyebrow>Prima informazione</p>
+      <h2 id="urgent-form-title" tabindex="-1">Da dove nasce l’urgenza?</h2>
+      <fieldset>
+        <legend>Seleziona la situazione che ti riguarda</legend>
+        <div class="urgent-form__choices urgent-form__choices--single" role="group" aria-label="Tipo di paziente">
+          <button
+            type="button"
+            class="urgent-form__choice"
+            data-urgent-choice
+            data-field="patientType"
+            data-value="Nuovo paziente"
+            aria-pressed="false"
+          >
+            <strong>È la prima volta che contatto lo studio</strong>
+            <small>Ho un problema urgente e non sono ancora vostro paziente.</small>
+          </button>
+          <button
+            type="button"
+            class="urgent-form__choice"
+            data-urgent-choice
+            data-field="patientType"
+            data-value="Urgenza dopo un trattamento dello studio"
+            aria-pressed="false"
+          >
+            <strong>L’urgenza riguarda un vostro trattamento</strong>
+            <small>Il problema è comparso dopo una cura eseguita nello studio.</small>
+          </button>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="urgent-form__step" data-urgent-step="2" hidden>
+      <p class="urgent-form__eyebrow" data-branch-eyebrow>Descrivi il problema</p>
+      <h2 tabindex="-1" data-branch-title>Qual è il problema principale?</h2>
+
+      <fieldset data-new-patient-options hidden>
+        <legend>Seleziona la voce più vicina alla tua situazione</legend>
+        <div class="urgent-form__choices" role="group" aria-label="Tipo di problema urgente">
+          {
+            newPatientProblems.map((problem) => (
+              <button
+                type="button"
+                class="urgent-form__choice"
+                data-urgent-choice
+                data-field="problemType"
+                data-value={problem}
+                aria-pressed="false"
+              >
+                <strong>{problem}</strong>
+              </button>
+            ))
+          }
+        </div>
+      </fieldset>
+
+      <fieldset data-treatment-options hidden>
+        <legend>Quale trattamento avevi effettuato?</legend>
+        <div class="urgent-form__choices" role="group" aria-label="Trattamento effettuato nello studio">
+          {
+            previousTreatments.map((treatment) => (
+              <button
+                type="button"
+                class="urgent-form__choice"
+                data-urgent-choice
+                data-field="treatmentType"
+                data-value={treatment}
+                aria-pressed="false"
+              >
+                <strong>{treatment}</strong>
+              </button>
+            ))
+          }
+        </div>
+      </fieldset>
+
+      <label class="urgent-form__details" for="urgent-details">
+        Aggiungi un dettaglio utile <span>(facoltativo)</span>
+        <textarea
+          id="urgent-details"
+          name="emergency_details"
+          rows="3"
+          placeholder="Descrivi brevemente cosa è successo o cosa senti"
+          data-urgent-details
+        ></textarea>
+      </label>
+    </div>
+
+    <div class="urgent-form__step" data-urgent-step="3" hidden>
+      <p class="urgent-form__eyebrow">Disponibilità per la visita</p>
+      <h2 tabindex="-1">Quando puoi venire?</h2>
+
+      <div class="urgent-form__preferences">
+        <fieldset>
+          <legend>Giorni preferiti</legend>
+          <div class="urgent-form__pills urgent-form__pills--days" role="group" aria-label="Giorni preferiti">
+            <button type="button" data-preference="day" data-value="Lunedì" aria-pressed="false">Lun</button>
+            <button type="button" data-preference="day" data-value="Martedì" aria-pressed="false">Mar</button>
+            <button type="button" data-preference="day" data-value="Mercoledì" aria-pressed="false">Mer</button>
+            <button type="button" data-preference="day" data-value="Giovedì" aria-pressed="false">Gio</button>
+            <button type="button" data-preference="day" data-value="Venerdì" aria-pressed="false">Ven</button>
+            <button type="button" data-preference="day" data-value="Sabato" aria-pressed="false">Sab</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Fascia oraria</legend>
+          <div class="urgent-form__pills urgent-form__pills--time" role="group" aria-label="Fascia oraria preferita">
+            <button type="button" data-preference="time" data-value="Mattina" aria-pressed="false">Mattina</button>
+            <button type="button" data-preference="time" data-value="Pomeriggio" aria-pressed="false">Pomeriggio</button>
+            <button type="button" data-preference="time" data-value="Indifferente" aria-pressed="false">Indifferente</button>
+          </div>
+        </fieldset>
+      </div>
+
+      <p class="urgent-form__note">
+        La richiesta non conferma automaticamente l’appuntamento: lo studio ti richiamerà per verificare la prima
+        disponibilità utile.
+      </p>
+    </div>
+
+    <div class="urgent-form__step" data-urgent-step="4" hidden>
+      <p class="urgent-form__eyebrow">Recapiti</p>
+      <h2 tabindex="-1">Dove possiamo ricontattarti?</h2>
+
+      <div class="urgent-form__summary" data-urgent-summary aria-label="Riepilogo della richiesta"></div>
+
+      <div class="urgent-form__contact-grid">
+        <label for="urgent-name">
+          Nome e cognome
+          <input
+            id="urgent-name"
+            name="name"
+            type="text"
+            autocomplete="section-emergency name"
+            autocapitalize="words"
+            enterkeyhint="next"
+            minlength="2"
+            required
+          />
+        </label>
+        <label for="urgent-phone">
+          Telefono
+          <input
+            id="urgent-phone"
+            name="phone"
+            type="tel"
+            inputmode="tel"
+            autocomplete="section-emergency tel"
+            enterkeyhint="next"
+            minlength="6"
+            required
+          />
+        </label>
+        <label for="urgent-email">
+          Email <span>(facoltativa)</span>
+          <input
+            id="urgent-email"
+            name="email"
+            type="email"
+            inputmode="email"
+            autocomplete="section-emergency email"
+            autocapitalize="none"
+            autocorrect="off"
+            spellcheck="false"
+            enterkeyhint="done"
+          />
+        </label>
+      </div>
+
+      <label class="urgent-form__privacy" for="urgent-privacy">
+        <input id="urgent-privacy" name="privacy_consent" type="checkbox" required />
+        <span>
+          Ho letto la <a href="/privacy-policy/">Privacy Policy</a> e acconsento al trattamento dei dati per essere
+          ricontattato in merito alla richiesta.
+        </span>
+      </label>
+    </div>
+
+    <p class="urgent-form__error" data-urgent-error aria-live="assertive"></p>
+
+    <div class="urgent-form__navigation">
+      <button type="button" class="urgent-form__back" data-urgent-back hidden><span>Indietro</span></button>
+      <button type="button" class="urgent-form__next" data-urgent-next disabled><span>Continua</span></button>
+      <button type="submit" class="urgent-form__submit" data-urgent-submit hidden><span>Invia la richiesta</span></button>
+    </div>
+  </form>
+</aside>
+
+<script>
+  const initialiseUrgentForms = () => {
+    document.querySelectorAll<HTMLFormElement>("[data-urgent-form]").forEach((form) => {
+      if (form.dataset.formReady === "true") return;
+      form.dataset.formReady = "true";
+
+      const steps = Array.from(form.querySelectorAll<HTMLElement>("[data-urgent-step]"));
+      const progress = form.querySelector<HTMLElement>("[data-urgent-progress]");
+      const nextButton = form.querySelector<HTMLButtonElement>("[data-urgent-next]");
+      const backButton = form.querySelector<HTMLButtonElement>("[data-urgent-back]");
+      const submitButton = form.querySelector<HTMLButtonElement>("[data-urgent-submit]");
+      const errorElement = form.querySelector<HTMLElement>("[data-urgent-error]");
+      const newPatientOptions = form.querySelector<HTMLElement>("[data-new-patient-options]");
+      const treatmentOptions = form.querySelector<HTMLElement>("[data-treatment-options]");
+      const branchTitle = form.querySelector<HTMLElement>("[data-branch-title]");
+      const branchEyebrow = form.querySelector<HTMLElement>("[data-branch-eyebrow]");
+      const detailsInput = form.querySelector<HTMLTextAreaElement>("[data-urgent-details]");
+      const summary = form.querySelector<HTMLElement>("[data-urgent-summary]");
+      const privacyInput = form.querySelector<HTMLInputElement>("#urgent-privacy");
+      const nameInput = form.querySelector<HTMLInputElement>("#urgent-name");
+      const phoneInput = form.querySelector<HTMLInputElement>("#urgent-phone");
+      const emailInput = form.querySelector<HTMLInputElement>("#urgent-email");
+
+      const totalSteps = steps.length;
+      const state = {
+        patientType: "",
+        problemType: "",
+        treatmentType: "",
+        preferredDays: [] as string[],
+        preferredTime: "",
+      };
+      let currentStep = 1;
+      let isSubmitting = false;
+
+      const escapeHtml = (value: string) =>
+        value
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+
+      const setError = (message = "") => {
+        if (errorElement) errorElement.textContent = message;
+      };
+
+      const isTreatmentUrgency = () => state.patientType === "Urgenza dopo un trattamento dello studio";
+
+      const updateBranch = () => {
+        const treatmentBranch = isTreatmentUrgency();
+        if (newPatientOptions) newPatientOptions.hidden = treatmentBranch || !state.patientType;
+        if (treatmentOptions) treatmentOptions.hidden = !treatmentBranch;
+        if (branchEyebrow) branchEyebrow.textContent = treatmentBranch ? "Trattamento effettuato" : "Descrivi il problema";
+        if (branchTitle) {
+          branchTitle.textContent = treatmentBranch
+            ? "Quale trattamento avevi effettuato?"
+            : "Qual è il problema principale?";
+        }
+      };
+
+      const canContinue = (step = currentStep) => {
+        if (step === 1) return Boolean(state.patientType);
+        if (step === 2) return isTreatmentUrgency() ? Boolean(state.treatmentType) : Boolean(state.problemType);
+        if (step === 3) return state.preferredDays.length > 0 && Boolean(state.preferredTime);
+        return true;
+      };
+
+      const updateNavigation = () => {
+        if (backButton) backButton.hidden = currentStep === 1;
+        if (nextButton) {
+          nextButton.hidden = currentStep === totalSteps;
+          nextButton.disabled = !canContinue();
+        }
+        if (submitButton) submitButton.hidden = currentStep !== totalSteps;
+      };
+
+      const buildSummary = () => {
+        if (!summary) return;
+        const situation = isTreatmentUrgency() ? state.treatmentType : state.problemType;
+        summary.innerHTML = [
+          ["Richiesta", state.patientType],
+          [isTreatmentUrgency() ? "Trattamento" : "Problema", situation],
+          ["Disponibilità", `${state.preferredDays.join(", ")} · ${state.preferredTime}`],
+        ]
+          .filter(([, value]) => value)
+          .map(
+            ([label, value]) =>
+              `<span><strong>${escapeHtml(label)}</strong>${escapeHtml(value)}</span>`,
+          )
+          .join("");
+      };
+
+      const showStep = (step: number, focusHeading = true) => {
+        currentStep = Math.max(1, Math.min(totalSteps, step));
+        steps.forEach((item) => {
+          const active = Number(item.dataset.urgentStep) === currentStep;
+          item.hidden = !active;
+          item.classList.toggle("is-active", active);
+        });
+        progress?.style.setProperty("--progress", `${(currentStep / totalSteps) * 100}%`);
+        progress?.setAttribute("aria-valuenow", String(currentStep));
+        updateBranch();
+        updateNavigation();
+        setError();
+        if (currentStep === totalSteps) buildSummary();
+        if (focusHeading) {
+          steps.find((item) => Number(item.dataset.urgentStep) === currentStep)?.querySelector<HTMLElement>("h2")?.focus({
+            preventScroll: true,
+          });
+        }
+      };
+
+      const focusElement = (element: HTMLElement | null) => {
+        if (!element) return;
+        element.setAttribute("aria-invalid", "true");
+        element.focus({ preventScroll: true });
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+      };
+
+      const validateStep = (step: number) => {
+        if (step === 1 && !state.patientType) {
+          return {
+            valid: false,
+            message: "Indica se è la prima volta che contatti lo studio o se l’urgenza segue un nostro trattamento.",
+            element: form.querySelector<HTMLElement>('[data-field="patientType"]'),
+          };
+        }
+
+        if (step === 2 && !canContinue(2)) {
+          return {
+            valid: false,
+            message: isTreatmentUrgency()
+              ? "Seleziona il trattamento che avevi effettuato."
+              : "Seleziona il tipo di problema urgente.",
+            element: form.querySelector<HTMLElement>(
+              isTreatmentUrgency() ? '[data-field="treatmentType"]' : '[data-field="problemType"]',
+            ),
+          };
+        }
+
+        if (step === 3 && state.preferredDays.length === 0) {
+          return {
+            valid: false,
+            message: "Seleziona almeno un giorno in cui puoi venire.",
+            element: form.querySelector<HTMLElement>('[data-preference="day"]'),
+          };
+        }
+
+        if (step === 3 && !state.preferredTime) {
+          return {
+            valid: false,
+            message: "Seleziona una fascia oraria.",
+            element: form.querySelector<HTMLElement>('[data-preference="time"]'),
+          };
+        }
+
+        if (step === 4) {
+          if (phoneInput) {
+            const phoneDigits = phoneInput.value.replace(/\D/g, "");
+            phoneInput.setCustomValidity(phoneDigits.length >= 6 ? "" : "Inserisci un numero di telefono valido.");
+          }
+
+          const requiredControls = [nameInput, phoneInput, privacyInput].filter(
+            (control): control is HTMLInputElement => control instanceof HTMLInputElement,
+          );
+          const invalidControl = requiredControls.find((control) => !control.checkValidity());
+          if (invalidControl) {
+            const message =
+              invalidControl === privacyInput
+                ? "Accetta la Privacy Policy per inviare la richiesta."
+                : invalidControl === phoneInput
+                  ? "Inserisci un numero di telefono valido."
+                  : "Inserisci nome e cognome.";
+            return { valid: false, message, element: invalidControl };
+          }
+
+          if (emailInput?.value && !emailInput.checkValidity()) {
+            return {
+              valid: false,
+              message: "Inserisci un indirizzo email valido oppure lascia il campo vuoto.",
+              element: emailInput,
+            };
+          }
+        }
+
+        return { valid: true, message: "", element: null as HTMLElement | null };
+      };
+
+      form.querySelectorAll<HTMLButtonElement>("[data-urgent-choice]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const field = button.dataset.field as "patientType" | "problemType" | "treatmentType" | undefined;
+          const value = button.dataset.value || "";
+          if (!field) return;
+
+          if (field === "patientType" && state.patientType !== value) {
+            state.problemType = "";
+            state.treatmentType = "";
+            form.querySelectorAll<HTMLButtonElement>('[data-field="problemType"], [data-field="treatmentType"]').forEach((item) => {
+              item.setAttribute("aria-pressed", "false");
+            });
+          }
+
+          state[field] = value;
+          form.querySelectorAll<HTMLButtonElement>(`[data-field="${field}"]`).forEach((item) => {
+            item.setAttribute("aria-pressed", item === button ? "true" : "false");
+            item.removeAttribute("aria-invalid");
+          });
+          updateBranch();
+          updateNavigation();
+          setError();
+        });
+      });
+
+      form.querySelectorAll<HTMLButtonElement>("[data-preference]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const type = button.dataset.preference;
+          const value = button.dataset.value || "";
+          if (type === "day") {
+            if (state.preferredDays.includes(value)) {
+              state.preferredDays = state.preferredDays.filter((day) => day !== value);
+              button.setAttribute("aria-pressed", "false");
+            } else {
+              state.preferredDays.push(value);
+              button.setAttribute("aria-pressed", "true");
+            }
+          } else if (type === "time") {
+            state.preferredTime = value;
+            form.querySelectorAll<HTMLButtonElement>('[data-preference="time"]').forEach((item) => {
+              item.setAttribute("aria-pressed", item === button ? "true" : "false");
+            });
+          }
+          button.removeAttribute("aria-invalid");
+          updateNavigation();
+          setError();
+        });
+      });
+
+      nextButton?.addEventListener("click", () => {
+        const result = validateStep(currentStep);
+        if (!result.valid) {
+          setError(result.message);
+          focusElement(result.element);
+          return;
+        }
+        showStep(currentStep + 1);
+      });
+
+      backButton?.addEventListener("click", () => showStep(currentStep - 1));
+
+      form.addEventListener("input", (event) => {
+        if (event.target instanceof HTMLElement) event.target.removeAttribute("aria-invalid");
+        if (event.target === phoneInput) phoneInput.setCustomValidity("");
+        setError();
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (isSubmitting) return;
+
+        for (let step = 1; step <= totalSteps; step += 1) {
+          const result = validateStep(step);
+          if (!result.valid) {
+            showStep(step, false);
+            setError(result.message);
+            focusElement(result.element);
+            return;
+          }
+        }
+
+        isSubmitting = true;
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.querySelector("span")!.textContent = "Invio in corso…";
+        }
+
+        const payload = {
+          nome: nameInput?.value || "",
+          telefono: phoneInput?.value || "",
+          email: emailInput?.value || "",
+          servizio: "Urgenza odontoiatrica",
+          messaggio: detailsInput?.value || "",
+          paginaProvenienza: document.referrer || "",
+          paginaCorrente: window.location.href,
+          landing_page: "/urgenze/",
+          page_title: document.title,
+          urgenza: "Richiesta urgente",
+          emergency_patient_type: state.patientType,
+          emergency_problem_type: state.problemType,
+          emergency_treatment_type: state.treatmentType,
+          emergency_details: detailsInput?.value || "",
+          preferred_visit_days: state.preferredDays,
+          preferred_visit_time: state.preferredTime,
+          privacy_consent: privacyInput?.checked ? "true" : "",
+        };
+
+        try {
+          const response = await fetch("/api/send-lead", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            const result = await response.json().catch(() => ({}));
+            throw new Error(result.error || "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+          }
+
+          try {
+            window.sessionStorage.removeItem("lead_conversion_scope");
+            window.sessionStorage.removeItem("lead_conversion_id");
+            window.sessionStorage.removeItem("lead_conversion_pending");
+          } catch {
+            // Il redirect non dipende dalla disponibilità dello storage.
+          }
+          window.location.href = "/thank-you-page/";
+        } catch (error) {
+          isSubmitting = false;
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.querySelector("span")!.textContent = "Invia la richiesta";
+          }
+          setError(
+            error instanceof Error
+              ? error.message
+              : "Non siamo riusciti a inviare la richiesta. Riprova tra poco.",
+          );
+        }
+      });
+
+      showStep(1, false);
+    });
+  };
+
+  initialiseUrgentForms();
+  document.addEventListener("astro:page-load", initialiseUrgentForms);
+</script>
+
+<style>
+  .urgent-form-card {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgba(14, 56, 76, 0.1);
+    border-radius: 32px;
+    background: #fff;
+    box-shadow: 0 28px 72px rgba(14, 56, 76, 0.16);
+  }
+
+  .urgent-form {
+    display: grid;
+    min-height: 640px;
+    grid-template-rows: auto 1fr auto auto;
+    padding: clamp(26px, 3vw, 38px);
+    color: var(--brand-primary, #0e384c);
+  }
+
+  .urgent-form__progress {
+    --progress: 25%;
+    position: relative;
+    height: 5px;
+    margin-bottom: 34px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e4ebef;
+  }
+
+  .urgent-form__progress span {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--progress);
+    border-radius: inherit;
+    background: var(--brand-secondary, #1e84b5);
+    transition: width 220ms ease;
+  }
+
+  .urgent-form__step[hidden] {
+    display: none;
+  }
+
+  .urgent-form__step.is-active {
+    display: grid;
+    align-content: start;
+    gap: 20px;
+  }
+
+  .urgent-form__eyebrow {
+    margin: 0;
+    color: var(--brand-secondary, #1e84b5);
+    font-size: 0.68rem;
+    font-weight: 850;
+    letter-spacing: 0.2em !important;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .urgent-form h2 {
+    max-width: 21ch;
+    margin: -7px 0 2px;
+    color: var(--brand-primary, #0e384c) !important;
+    font-size: clamp(1.65rem, 2.4vw, 2.25rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.035em !important;
+    line-height: 1.05 !important;
+    text-transform: none !important;
+  }
+
+  .urgent-form h2:focus {
+    outline: none;
+  }
+
+  .urgent-form fieldset {
+    display: grid;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    gap: 13px;
+  }
+
+  .urgent-form fieldset[hidden] {
+    display: none;
+  }
+
+  .urgent-form legend {
+    margin: 0 0 2px;
+    padding: 0;
+    color: #526773;
+    font-size: 0.83rem;
+    font-weight: 650;
+    line-height: 1.4;
+  }
+
+  .urgent-form__choices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .urgent-form__choices--single {
+    grid-template-columns: 1fr;
+  }
+
+  .urgent-form__choice {
+    position: relative;
+    display: grid;
+    min-height: 64px;
+    align-content: center;
+    padding: 12px 44px 12px 15px;
+    border: 1px solid #d3dee3;
+    border-radius: 14px;
+    background: #fff;
+    color: var(--brand-primary, #0e384c);
+    cursor: pointer;
+    gap: 4px;
+    text-align: left;
+    transition: border-color 170ms ease, background 170ms ease, box-shadow 170ms ease;
+  }
+
+  .urgent-form__choice::after {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #a9bbc4;
+    border-radius: 50%;
+    content: "";
+    transform: translateY(-50%);
+  }
+
+  .urgent-form__choice strong {
+    color: inherit;
+    font-size: 0.82rem;
+    font-weight: 750;
+    line-height: 1.3;
+  }
+
+  .urgent-form__choice small {
+    color: #617480;
+    font-size: 0.7rem;
+    font-weight: 450;
+    line-height: 1.35;
+  }
+
+  .urgent-form__choice:is(:hover, :focus-visible) {
+    border-color: var(--brand-secondary, #1e84b5);
+    background: var(--brand-secondary-pale, #eef8fc);
+  }
+
+  .urgent-form__choice[aria-pressed="true"] {
+    border-color: var(--brand-secondary, #1e84b5);
+    background: var(--brand-secondary-pale, #eef8fc);
+    box-shadow: 0 0 0 1px var(--brand-secondary, #1e84b5);
+  }
+
+  .urgent-form__choice[aria-pressed="true"]::after {
+    border: 5px solid var(--brand-secondary, #1e84b5);
+  }
+
+  .urgent-form__choice[aria-invalid="true"] {
+    border-color: #b42318;
+  }
+
+  .urgent-form__details,
+  .urgent-form__contact-grid label {
+    display: grid;
+    color: var(--brand-primary, #0e384c);
+    font-size: 0.76rem;
+    font-weight: 750;
+    gap: 7px;
+  }
+
+  .urgent-form__details span,
+  .urgent-form__contact-grid label span {
+    color: #70828c;
+    font-weight: 450;
+  }
+
+  .urgent-form textarea,
+  .urgent-form input:not([type="checkbox"]) {
+    width: 100%;
+    min-height: 49px;
+    border: 1px solid #c8d6dc;
+    border-radius: 12px;
+    padding: 11px 13px;
+    background: #fff;
+    color: var(--brand-primary, #0e384c);
+    font: inherit;
+  }
+
+  .urgent-form textarea {
+    min-height: 76px;
+    resize: vertical;
+  }
+
+  .urgent-form textarea:focus-visible,
+  .urgent-form input:focus-visible,
+  .urgent-form button:focus-visible {
+    outline: 3px solid rgba(30, 132, 181, 0.23);
+    outline-offset: 2px;
+  }
+
+  .urgent-form input[aria-invalid="true"] {
+    border-color: #b42318;
+  }
+
+  .urgent-form__preferences {
+    display: grid;
+    gap: 24px;
+  }
+
+  .urgent-form__pills {
+    display: grid;
+    gap: 9px;
+  }
+
+  .urgent-form__pills--days {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .urgent-form__pills--time {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .urgent-form__pills button {
+    min-height: 48px;
+    border: 1px solid #cdd9df;
+    border-radius: 12px;
+    background: #fff;
+    color: var(--brand-primary, #0e384c);
+    cursor: pointer;
+    font-size: 0.76rem;
+    font-weight: 750;
+    transition: border-color 170ms ease, background 170ms ease, color 170ms ease;
+  }
+
+  .urgent-form__pills button:is(:hover, :focus-visible),
+  .urgent-form__pills button[aria-pressed="true"] {
+    border-color: var(--brand-secondary, #1e84b5);
+    background: var(--brand-secondary, #1e84b5);
+    color: #fff;
+  }
+
+  .urgent-form__pills button[aria-invalid="true"] {
+    border-color: #b42318;
+  }
+
+  .urgent-form__note {
+    margin: 0;
+    padding: 12px 14px;
+    border-left: 3px solid var(--brand-secondary, #1e84b5);
+    border-radius: 8px;
+    background: var(--brand-secondary-pale, #eef8fc);
+    color: #526773;
+    font-size: 0.7rem;
+    line-height: 1.5;
+  }
+
+  .urgent-form__summary {
+    display: grid;
+    overflow: hidden;
+    border: 1px solid #dbe5ea;
+    border-radius: 12px;
+    background: #f7fafb;
+  }
+
+  .urgent-form__summary span {
+    display: grid;
+    grid-template-columns: minmax(92px, 0.42fr) 1fr;
+    padding: 9px 11px;
+    color: #526773;
+    font-size: 0.68rem;
+    line-height: 1.35;
+    gap: 10px;
+  }
+
+  .urgent-form__summary span + span {
+    border-top: 1px solid #e2eaee;
+  }
+
+  .urgent-form__summary strong {
+    color: var(--brand-primary, #0e384c);
+  }
+
+  .urgent-form__contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .urgent-form__contact-grid label:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .urgent-form__privacy {
+    display: flex;
+    align-items: flex-start;
+    color: #526773;
+    cursor: pointer;
+    font-size: 0.68rem;
+    line-height: 1.45;
+    gap: 9px;
+  }
+
+  .urgent-form__privacy input {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    margin: 1px 0 0;
+    accent-color: var(--brand-secondary, #1e84b5);
+  }
+
+  .urgent-form__privacy input[aria-invalid="true"] {
+    outline: 2px solid #b42318;
+    outline-offset: 2px;
+  }
+
+  .urgent-form__privacy a {
+    color: var(--brand-secondary, #1e84b5);
+    font-weight: 700;
+  }
+
+  .urgent-form__error {
+    min-height: 19px;
+    margin: 12px 0 0;
+    color: #b42318;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .urgent-form__navigation {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .urgent-form__navigation button {
+    position: relative;
+    isolation: isolate;
+    min-height: 52px;
+    overflow: hidden;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .urgent-form__navigation button span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .urgent-form__back {
+    flex: 0 0 92px;
+    border: 1px solid #c4d2d9;
+    background: #fff;
+    color: var(--brand-primary, #0e384c);
+  }
+
+  .urgent-form__back:is(:hover, :focus-visible) {
+    border-color: var(--brand-primary, #0e384c);
+  }
+
+  .urgent-form__next,
+  .urgent-form__submit {
+    flex: 1 1 auto;
+    border: 1px solid var(--brand-secondary, #1e84b5);
+    background: transparent;
+    color: #fff;
+    transition: color 220ms ease;
+  }
+
+  .urgent-form__next::before,
+  .urgent-form__submit::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: var(--brand-secondary, #1e84b5);
+    content: "";
+    transform: scaleX(1);
+    transform-origin: left center;
+    transition: transform 220ms ease;
+  }
+
+  .urgent-form__next:is(:hover, :focus-visible):not(:disabled),
+  .urgent-form__submit:is(:hover, :focus-visible):not(:disabled) {
+    color: var(--brand-secondary, #1e84b5);
+  }
+
+  .urgent-form__next:is(:hover, :focus-visible):not(:disabled)::before,
+  .urgent-form__submit:is(:hover, :focus-visible):not(:disabled)::before {
+    transform: scaleX(0);
+    transform-origin: right center;
+  }
+
+  .urgent-form__navigation button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  @media (max-width: 620px) {
+    .urgent-form-card {
+      border-radius: 25px;
+    }
+
+    .urgent-form {
+      min-height: 0;
+      padding: 24px 19px;
+    }
+
+    .urgent-form__progress {
+      margin-bottom: 28px;
+    }
+
+    .urgent-form__choices,
+    .urgent-form__contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .urgent-form__contact-grid label:last-child {
+      grid-column: 1;
+    }
+
+    .urgent-form__pills--time {
+      grid-template-columns: 1fr;
+    }
+
+    .urgent-form__back {
+      flex-basis: 78px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .urgent-form__progress span,
+    .urgent-form__choice,
+    .urgent-form__pills button,
+    .urgent-form__next::before,
+    .urgent-form__submit::before {
+      transition: none;
+    }
+  }
+</style>
