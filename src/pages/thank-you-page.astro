@@ -24,6 +24,76 @@ import SiteHeader from "../components/SiteHeader.astro";
     <script is:inline>
       (() => {
         try {
+          const leadPendingStorageKey = "lead_conversion_pending_v1";
+          const LEAD_CONVERSION_PENDING_TTL_MS = 30 * 60 * 1000;
+          const clearLegacyPending = () => {
+            window.sessionStorage.removeItem("lead_conversion_scope");
+            window.sessionStorage.removeItem("lead_conversion_id");
+            window.sessionStorage.removeItem("lead_conversion_pending");
+          };
+          const rawLeadPending = window.sessionStorage.getItem(leadPendingStorageKey);
+          let leadPending = null;
+
+          if (rawLeadPending) {
+            try {
+              const parsedLeadPending = JSON.parse(rawLeadPending);
+              const now = Date.now();
+              const isPendingObject =
+                parsedLeadPending !== null &&
+                typeof parsedLeadPending === "object" &&
+                !Array.isArray(parsedLeadPending);
+              const hasValidCreatedAt =
+                isPendingObject &&
+                typeof parsedLeadPending.createdAt === "number" &&
+                Number.isFinite(parsedLeadPending.createdAt) &&
+                parsedLeadPending.createdAt > 0;
+              const isWithinPendingTtl =
+                hasValidCreatedAt &&
+                parsedLeadPending.createdAt <= now &&
+                now - parsedLeadPending.createdAt <
+                  LEAD_CONVERSION_PENDING_TTL_MS;
+              const transactionId =
+                isPendingObject &&
+                typeof parsedLeadPending.transactionId === "string"
+                  ? parsedLeadPending.transactionId.trim()
+                  : "";
+
+              if (
+                isPendingObject &&
+                parsedLeadPending.version === 1 &&
+                parsedLeadPending.scope === "lead" &&
+                transactionId &&
+                isWithinPendingTtl
+              ) {
+                leadPending = { transactionId };
+              } else {
+                window.sessionStorage.removeItem(leadPendingStorageKey);
+              }
+            } catch {
+              window.sessionStorage.removeItem(leadPendingStorageKey);
+            }
+          }
+
+          if (leadPending) {
+            clearLegacyPending();
+            const sentKey = `lead_conversion_sent_${leadPending.transactionId}`;
+            const wasSent = window.sessionStorage.getItem(sentKey) === "true";
+
+            if (wasSent) {
+              window.sessionStorage.removeItem(leadPendingStorageKey);
+              return;
+            }
+            if (typeof window.gtag !== "function") return;
+
+            window.gtag("event", "conversion", {
+              send_to: "AW-18196734570/lK03CIzcu7wcEOrE8ORD",
+              transaction_id: leadPending.transactionId,
+            });
+            window.sessionStorage.setItem(sentKey, "true");
+            window.sessionStorage.removeItem(leadPendingStorageKey);
+            return;
+          }
+
           const scope = window.sessionStorage.getItem("lead_conversion_scope");
           const conversionId = window.sessionStorage.getItem("lead_conversion_id");
           const isPending = window.sessionStorage.getItem("lead_conversion_pending") === "true";

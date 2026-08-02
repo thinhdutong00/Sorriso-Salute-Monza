@@ -17,7 +17,7 @@ export type Props = {
   presetTreatment?: string;
   /** Default 1 per le props; lo step 2 richiede un servizio preselezionato valido. */
   initialStep?: 1 | 2;
-  /** Pagina di origine esplicita, usata al posto del referrer nel payload. */
+  /** Pagina che contiene l'istanza; non modifica landing o referrer iniziali. */
   sourcePage?: string;
   /** Adatta contenitore e gerarchia del titolo all'inserimento in un'altra pagina. */
   embedded?: boolean;
@@ -74,6 +74,20 @@ const secondStepProfiles = generalRequestSecondStepProfiles;
 const serviceSecondStepProfileIds = generalRequestServiceSecondStepProfiles;
 const treatmentSecondStepProfileIds = generalRequestTreatmentSecondStepOverrides;
 const fallbackSecondStepProfileId = generalRequestFallbackSecondStepProfileId;
+const serializedClientConfig = JSON.stringify({
+  serviceOptions,
+  treatmentPresets,
+  secondStepProfiles,
+  serviceSecondStepProfileIds,
+  treatmentSecondStepProfileIds,
+  fallbackSecondStepProfileId,
+  normalizedPresetService,
+  normalizedPresetTreatment,
+  normalizedSourcePage,
+  hasPresetProps,
+  hasExplicitInitialStep,
+  requestedInitialStep,
+}).replaceAll("<", "\\u003c");
 ---
 
 <section
@@ -281,6 +295,11 @@ const fallbackSecondStepProfileId = generalRequestFallbackSecondStepProfileId;
       </div>
     </form>
   </div>
+  <script
+    type="application/json"
+    data-general-request-config
+    set:html={serializedClientConfig}
+  ></script>
 </section>
 
 <style is:global>
@@ -1003,29 +1022,55 @@ const fallbackSecondStepProfileId = generalRequestFallbackSecondStepProfileId;
       }
     </style>
 
-    <script
-      define:vars={{
-        serviceOptions,
-        treatmentPresets,
-        secondStepProfiles,
-        serviceSecondStepProfileIds,
-        treatmentSecondStepProfileIds,
-        fallbackSecondStepProfileId,
-        normalizedPresetService,
-        normalizedPresetTreatment,
-        normalizedSourcePage,
-        hasPresetProps,
-        hasExplicitInitialStep,
-        requestedInitialStep,
-        instanceId,
-      }}
-    >
-      (() => {
-        const root = document.querySelector(
-          `[data-general-request-form="${instanceId}"]`,
+    <script>
+      import {
+        clearLeadAttribution,
+        resolveLeadAttribution,
+      } from "../scripts/leadAttribution";
+
+      type LeadConversionPending = {
+        version: 1;
+        scope: "lead";
+        transactionId: string;
+        createdAt: number;
+      };
+
+      const LEAD_CONVERSION_PENDING_STORAGE_KEY =
+        "lead_conversion_pending_v1";
+
+      const initializeGeneralRequestForm = (root) => {
+        if (!(root instanceof HTMLElement)) return;
+        if (root.dataset.generalRequestInitialized === "true") return;
+
+        const configElement = root.querySelector(
+          "script[data-general-request-config]",
         );
-        const form = root?.querySelector("form.request-form");
+        if (!(configElement instanceof HTMLScriptElement)) return;
+
+        let config;
+        try {
+          config = JSON.parse(configElement.textContent || "");
+        } catch {
+          return;
+        }
+
+        const {
+          serviceOptions,
+          treatmentPresets,
+          secondStepProfiles,
+          serviceSecondStepProfileIds,
+          treatmentSecondStepProfileIds,
+          fallbackSecondStepProfileId,
+          normalizedPresetService,
+          normalizedPresetTreatment,
+          normalizedSourcePage,
+          hasPresetProps,
+          hasExplicitInitialStep,
+          requestedInitialStep,
+        } = config;
+        const form = root.querySelector("form.request-form");
         if (!(form instanceof HTMLFormElement)) return;
+        root.dataset.generalRequestInitialized = "true";
 
         const ageRangeOptions = ["18–25", "26–35", "36–50", "50+"];
 
@@ -1338,25 +1383,40 @@ const fallbackSecondStepProfileId = generalRequestFallbackSecondStepProfileId;
           return true;
         };
 
-        const buildLeadPayload = () => ({
-          nome: fields.nomeCompleto?.value || "",
-          telefono: fields.telefono?.value || "",
-          email: fields.email?.value || "",
-          servizio: quiz.servizio || "Richiesta generale",
-          trattamentoSpecifico: quiz.trattamentoSpecifico,
-          messaggio: fields.messaggio?.value || "",
-          paginaProvenienza: normalizedSourcePage || document.referrer || "",
-          paginaCorrente: window.location.href,
-          domandaAnamnestica: quiz.domandaAnamnestica,
-          rispostaAnamnestica: quiz.rispostaAnamnestica,
-          durataProblema: quiz.anamnesiRappresentaDurata
-            ? quiz.rispostaAnamnestica
-            : "",
-          fasciaEta: quiz.fasciaEta,
-          preferred_visit_days: quiz.giorniPreferiti,
-          preferred_visit_time: quiz.fasciaOraria,
-          urgenza: `Disponibilità urgente: ${quiz.disponibilitaUrgente}`,
-        });
+        const buildLeadPayload = () => {
+          const attribution = resolveLeadAttribution({
+            currentUrl: window.location.href,
+            pageTitle: document.title,
+            documentReferrer: document.referrer,
+          });
+
+          return {
+            nome: fields.nomeCompleto?.value || "",
+            telefono: fields.telefono?.value || "",
+            email: fields.email?.value || "",
+            servizio: quiz.servizio || "Richiesta generale",
+            trattamentoSpecifico: quiz.trattamentoSpecifico,
+            messaggio: fields.messaggio?.value || "",
+            ...attribution,
+            source_page: normalizedSourcePage || window.location.pathname,
+            current_page: window.location.href,
+            domandaAnamnestica: quiz.domandaAnamnestica,
+            rispostaAnamnestica: quiz.rispostaAnamnestica,
+            durataProblema: quiz.anamnesiRappresentaDurata
+              ? quiz.rispostaAnamnestica
+              : "",
+            fasciaEta: quiz.fasciaEta,
+            preferred_visit_days: quiz.giorniPreferiti,
+            preferred_visit_time: quiz.fasciaOraria,
+            urgenza: `Disponibilità urgente: ${quiz.disponibilitaUrgente}`,
+            form_source: "general_request",
+            service_interest: quiz.servizio || "Richiesta generale",
+          };
+        };
+
+        const createConversionTransactionId = () =>
+          window.crypto?.randomUUID?.() ||
+          `lead-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
         const sendLead = async () => {
           const response = await fetch("/api/send-lead", {
@@ -1365,9 +1425,36 @@ const fallbackSecondStepProfileId = generalRequestFallbackSecondStepProfileId;
             body: JSON.stringify(buildLeadPayload()),
           });
 
-          if (response.ok) return;
           const result = await response.json().catch(() => ({}));
-          throw new Error(result.error || "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
+          if (!response.ok) {
+            const errorMessage =
+              result && typeof result.error === "string"
+                ? result.error
+                : "Non siamo riusciti a inviare la richiesta. Riprova tra poco.";
+            throw new Error(errorMessage);
+          }
+
+          return result && typeof result.id === "string" && result.id.trim()
+            ? result.id.trim()
+            : createConversionTransactionId();
+        };
+
+        const markLeadConversionPending = (conversionId: string) => {
+          const pending: LeadConversionPending = {
+            version: 1,
+            scope: "lead",
+            transactionId: conversionId,
+            createdAt: Date.now(),
+          };
+
+          try {
+            window.sessionStorage.setItem(
+              LEAD_CONVERSION_PENDING_STORAGE_KEY,
+              JSON.stringify(pending),
+            );
+          } catch {
+            // Il redirect resta valido; senza pending la thank-you non converte.
+          }
         };
 
         renderChoiceButtons(serviceGroup, serviceOptions, "servizio");
@@ -1434,14 +1521,9 @@ const fallbackSecondStepProfileId = generalRequestFallbackSecondStepProfileId;
           if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = true;
 
           try {
-            await sendLead();
-            try {
-              window.sessionStorage.removeItem("lead_conversion_scope");
-              window.sessionStorage.removeItem("lead_conversion_id");
-              window.sessionStorage.removeItem("lead_conversion_pending");
-            } catch {
-              // Il redirect non dipende dalla disponibilità dello storage.
-            }
+            const conversionId = await sendLead();
+            markLeadConversionPending(conversionId);
+            clearLeadAttribution();
             window.location.href = "/thank-you-page/";
           } catch (error) {
             isSubmitting = false;
@@ -1451,5 +1533,26 @@ const fallbackSecondStepProfileId = generalRequestFallbackSecondStepProfileId;
         });
 
         showStep(currentStep, false);
-      })();
+      };
+
+      const initializeGeneralRequestForms = () => {
+        document
+          .querySelectorAll("[data-general-request-form]")
+          .forEach((root) => initializeGeneralRequestForm(root));
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener(
+          "DOMContentLoaded",
+          initializeGeneralRequestForms,
+          { once: true },
+        );
+      } else {
+        initializeGeneralRequestForms();
+      }
+
+      document.addEventListener(
+        "astro:page-load",
+        initializeGeneralRequestForms,
+      );
     </script>

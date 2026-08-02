@@ -5,6 +5,9 @@ const normalizeText = (value) => {
   return value.trim();
 };
 
+const hasOwnField = (object, field) =>
+  Boolean(object && Object.prototype.hasOwnProperty.call(object, field));
+
 const normalizeTextList = (value) => {
   const pending = Array.isArray(value) ? [...value] : [value];
   const normalized = [];
@@ -135,10 +138,12 @@ const buildSections = (lead) => {
     lead.landingPage.startsWith("/implantologia/") ||
     Boolean(lead.implantologiaProblemType || lead.implantologiaProblemDuration);
   const isAnamnesis = Boolean(lead.formVariant);
+  const isGeneralRequest = lead.formSource === "general_request";
   const isEmergency =
-    lead.landingPage.startsWith("/urgenze") ||
-    lead.servizio === "Urgenza odontoiatrica" ||
-    Boolean(lead.emergencyPatientType);
+    !isGeneralRequest &&
+    (lead.landingPage.startsWith("/urgenze") ||
+      lead.servizio === "Urgenza odontoiatrica" ||
+      Boolean(lead.emergencyPatientType));
 
   return [
     {
@@ -184,8 +189,10 @@ const buildSections = (lead) => {
     {
       title: "Dettagli richiesta",
       rows: compactRows([
-        ["Pagina di provenienza", lead.paginaProvenienza],
-        ["Pagina form", lead.paginaCorrente],
+        ["Origine modulo", lead.formSource],
+        ["Referrer iniziale", lead.initialReferrer],
+        ["Pagina sorgente modulo", lead.sourcePage],
+        ["Pagina corrente all'invio", lead.currentPage],
         ["Problema principale", lead.problema],
         ["Obiettivo desiderato", lead.obiettivo],
         ["Domanda di approfondimento", lead.domandaAnamnestica],
@@ -204,7 +211,7 @@ const buildSections = (lead) => {
     {
       title: "Tracking marketing",
       rows: compactRows([
-        ["Landing page", lead.landingPage],
+        ["Landing page iniziale", lead.landingPage],
         ["Titolo pagina", lead.pageTitle],
         ["UTM source", lead.utmSource],
         ["UTM medium", lead.utmMedium],
@@ -252,6 +259,16 @@ export default async function handler(req, res) {
     }
 
     const email = normalizeText(body.email);
+    const legacyInitialReferrer =
+      normalizeText(body.paginaProvenienza) ||
+      normalizeText(body.page) ||
+      normalizeText(req.headers?.referer);
+    const initialReferrer = hasOwnField(body, "initial_referrer")
+      ? normalizeText(body.initial_referrer)
+      : legacyInitialReferrer;
+    const currentPage = hasOwnField(body, "current_page")
+      ? normalizeText(body.current_page)
+      : normalizeText(body.paginaCorrente);
     const lead = {
       nome: normalizeText(body.nome || body.nomeCompleto || body.name),
       telefono: normalizeText(body.telefono || body.phone),
@@ -259,8 +276,9 @@ export default async function handler(req, res) {
       servizio: normalizeText(body.servizio) || "Valutazione implantologica",
       trattamentoSpecifico: normalizeText(body.trattamentoSpecifico),
       messaggio: normalizeText(body.messaggio || body.message),
-      paginaProvenienza: normalizeText(body.paginaProvenienza || body.page || req.headers?.referer),
-      paginaCorrente: normalizeText(body.paginaCorrente),
+      initialReferrer,
+      sourcePage: normalizeText(body.source_page),
+      currentPage,
       problema: normalizeText(body.problema),
       obiettivo: normalizeText(body.obiettivo),
       domandaAnamnestica: normalizeText(body.domandaAnamnestica),
@@ -290,6 +308,7 @@ export default async function handler(req, res) {
       emergencyTreatmentType: normalizeText(body.emergency_treatment_type),
       emergencyDetails: normalizeText(body.emergency_details),
       privacyConsent: normalizeText(body.privacy_consent),
+      formSource: normalizeText(body.form_source),
       formVariant,
       landingPage: normalizeText(body.landing_page),
       serviceInterest: anamnesisServiceInterest || normalizeText(body.service_interest),
@@ -310,9 +329,10 @@ export default async function handler(req, res) {
     };
 
     const isEmergency =
-      lead.landingPage.startsWith("/urgenze") ||
-      lead.servizio === "Urgenza odontoiatrica" ||
-      Boolean(lead.emergencyPatientType);
+      lead.formSource !== "general_request" &&
+      (lead.landingPage.startsWith("/urgenze") ||
+        lead.servizio === "Urgenza odontoiatrica" ||
+        Boolean(lead.emergencyPatientType));
 
     if (anamnesisServiceInterest) {
       if (lead.implantologiaProblemType !== "Altro") {

@@ -103,3 +103,25 @@
     document.addEventListener("astro:page-load", attachWhatsappConversionListener);
   })();
 </script>
+
+<script>
+  import { captureLeadAttribution } from "../scripts/leadAttribution";
+
+  const attributionWindow = window as Window & {
+    __leadAttributionListenerAttached?: boolean;
+  };
+
+  if (!attributionWindow.__leadAttributionListenerAttached) {
+    attributionWindow.__leadAttributionListenerAttached = true;
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => captureLeadAttribution(), {
+        once: true,
+      });
+    } else {
+      captureLeadAttribution();
+    }
+
+    document.addEventListener("astro:page-load", () => captureLeadAttribution());
+  }
+</script>
