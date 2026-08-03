@@ -95,6 +95,45 @@ const EMERGENCY_TREATMENT_TYPES = new Set([
   "Altro trattamento",
 ]);
 
+const PREFERRED_CONTACT_CHANNELS = new Set([
+  "telefono",
+  "whatsapp",
+  "email",
+]);
+const GENERAL_REQUEST_SERVICE_IDS = new Set([
+  "igiene-orale-e-profilassi",
+  "odontoiatria-conservativa",
+  "endodonzia",
+  "parodontologia",
+  "protesi-dentale",
+  "implantologia",
+  "estetica-del-sorriso",
+  "ortodonzia",
+  "gnatologia",
+  "chirurgia-orale",
+  "pedodonzia",
+]);
+const GENERAL_REQUEST_FORM_MODES = new Set(["standalone", "embedded"]);
+const TECHNICAL_SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+const normalizeSingleLineText = (value) =>
+  normalizeText(value)
+    .replace(/[\u0000-\u001f\u007f-\u009f]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const isBoundedText = (value, maxLength) =>
+  Boolean(value) && value.length <= maxLength;
+
+const isTechnicalSlug = (value, maxLength = 120) =>
+  isBoundedText(value, maxLength) && TECHNICAL_SLUG_PATTERN.test(value);
+
+const isSpecificTreatmentId = (value, serviceId) => {
+  if (!isBoundedText(value, 240) || !serviceId) return false;
+  const prefix = `${serviceId}--`;
+  return value.startsWith(prefix) && isTechnicalSlug(value.slice(prefix.length));
+};
+
 const recipientsFromEnv = (value) =>
   normalizeText(value)
     .split(",")
@@ -135,6 +174,7 @@ const compactRows = (rows) => rows.filter(([, value]) => normalizeText(value));
 
 const buildSections = (lead) => {
   const isImplantologia =
+    lead.serviceId === "implantologia" ||
     lead.landingPage.startsWith("/implantologia/") ||
     Boolean(lead.implantologiaProblemType || lead.implantologiaProblemDuration);
   const isAnamnesis = Boolean(lead.formVariant);
@@ -159,8 +199,22 @@ const buildSections = (lead) => {
         ["Dettagli dell'urgenza", lead.emergencyDetails],
         ["Variante modulo", isAnamnesis ? lead.formVariant : ""],
         ["Trattamento richiesto", isAnamnesis ? lead.serviceInterest : ""],
-        ["Servizio/interesse", isAnamnesis ? "" : lead.serviceInterest || lead.servizio],
-        ["Trattamento specifico", lead.trattamentoSpecifico],
+        ["ID servizio", isGeneralRequest ? lead.serviceId : ""],
+        [
+          "Servizio/interesse",
+          isAnamnesis
+            ? ""
+            : isGeneralRequest
+              ? lead.serviceLabel
+              : lead.serviceInterest || lead.servizio,
+        ],
+        ["ID trattamento", isGeneralRequest ? lead.specificTreatmentId : ""],
+        [
+          "Trattamento specifico",
+          isGeneralRequest
+            ? lead.specificTreatment
+            : lead.trattamentoSpecifico,
+        ],
         ["Situazione indicata", lead.implantologiaProblemType],
         ["Dettagli della situazione", lead.implantologiaProblemDetail],
         ["Durata del problema", lead.implantologiaProblemDuration],
@@ -190,6 +244,13 @@ const buildSections = (lead) => {
       title: "Dettagli richiesta",
       rows: compactRows([
         ["Origine modulo", lead.formSource],
+        ["Modalità modulo", isGeneralRequest ? lead.formMode : ""],
+        [
+          "Privacy Policy",
+          isGeneralRequest && lead.privacyConsent === "true"
+            ? "Presa visione confermata"
+            : "",
+        ],
         ["Referrer iniziale", lead.initialReferrer],
         ["Pagina sorgente modulo", lead.sourcePage],
         ["Pagina corrente all'invio", lead.currentPage],
@@ -275,6 +336,11 @@ export default async function handler(req, res) {
       email,
       servizio: normalizeText(body.servizio) || "Valutazione implantologica",
       trattamentoSpecifico: normalizeText(body.trattamentoSpecifico),
+      serviceId: normalizeText(body.serviceId),
+      serviceLabel: normalizeSingleLineText(body.serviceLabel),
+      specificTreatmentId: normalizeText(body.specificTreatmentId),
+      specificTreatment: normalizeSingleLineText(body.specificTreatment),
+      formMode: normalizeText(body.formMode),
       messaggio: normalizeText(body.messaggio || body.message),
       initialReferrer,
       sourcePage: normalizeText(body.source_page),
@@ -343,8 +409,9 @@ export default async function handler(req, res) {
       }
 
       const preferredContactChannel = lead.preferredContactChannel.toLocaleLowerCase("it-IT");
-      const allowedContactChannels = ["telefono", "whatsapp", "email"];
-      const requiresPhone = ["telefono", "whatsapp"].includes(preferredContactChannel);
+      const requiresPhone =
+        !preferredContactChannel ||
+        ["telefono", "whatsapp"].includes(preferredContactChannel);
       const phoneDigits = lead.telefono.replace(/\D/g, "");
       const hasValidPhone = phoneDigits.length >= 6;
 
@@ -378,7 +445,10 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: "Inserisci un nome valido" });
       }
 
-      if (!allowedContactChannels.includes(preferredContactChannel)) {
+      if (
+        preferredContactChannel &&
+        !PREFERRED_CONTACT_CHANNELS.has(preferredContactChannel)
+      ) {
         return res.status(400).json({ error: "Seleziona un canale di contatto valido" });
       }
 
@@ -446,6 +516,66 @@ export default async function handler(req, res) {
       if (lead.privacyConsent !== "true") {
         return res.status(400).json({ error: "Il consenso privacy è obbligatorio" });
       }
+    } else if (lead.formSource === "general_request") {
+      const preferredContactChannel =
+        lead.preferredContactChannel.toLocaleLowerCase("it-IT");
+      const hasTreatmentId = Boolean(lead.specificTreatmentId);
+      const hasTreatmentLabel = Boolean(lead.specificTreatment);
+
+      if (lead.nome.length < 2) {
+        return res.status(400).json({ error: "Inserisci un nome valido" });
+      }
+
+      if (lead.telefono.replace(/\D/g, "").length < 6) {
+        return res.status(400).json({ error: "Inserisci un numero di telefono valido" });
+      }
+
+      if (lead.email && !isEmail(lead.email)) {
+        return res.status(400).json({ error: "Inserisci un indirizzo email valido" });
+      }
+
+      if (
+        !isTechnicalSlug(lead.serviceId) ||
+        !GENERAL_REQUEST_SERVICE_IDS.has(lead.serviceId)
+      ) {
+        return res.status(400).json({ error: "Identificativo del servizio non valido" });
+      }
+
+      if (!isBoundedText(lead.serviceLabel, 160)) {
+        return res.status(400).json({ error: "Servizio non valido" });
+      }
+
+      if (!GENERAL_REQUEST_FORM_MODES.has(lead.formMode)) {
+        return res.status(400).json({ error: "Modalità del modulo non valida" });
+      }
+
+      if (hasTreatmentId !== hasTreatmentLabel) {
+        return res.status(400).json({
+          error: "Identificativo e trattamento specifico devono essere inviati insieme",
+        });
+      }
+
+      if (
+        hasTreatmentId &&
+        (!isSpecificTreatmentId(lead.specificTreatmentId, lead.serviceId) ||
+          !isBoundedText(lead.specificTreatment, 200))
+      ) {
+        return res.status(400).json({ error: "Trattamento specifico non valido" });
+      }
+
+      if (!PREFERRED_CONTACT_CHANNELS.has(preferredContactChannel)) {
+        return res.status(400).json({ error: "Seleziona un canale di contatto valido" });
+      }
+
+      if (preferredContactChannel === "email" && !isEmail(lead.email)) {
+        return res.status(400).json({
+          error: "Inserisci un indirizzo email valido per il canale di contatto selezionato",
+        });
+      }
+
+      if (lead.privacyConsent !== "true") {
+        return res.status(400).json({ error: "Il consenso privacy è obbligatorio" });
+      }
     } else if (!lead.nome || !lead.telefono) {
       return res.status(400).json({ error: "Nome e telefono sono obbligatori" });
     }
@@ -488,7 +618,7 @@ export default async function handler(req, res) {
     const payload = {
       from,
       to,
-      subject: `Nuova richiesta - ${sanitizeEmailSubjectPart(lead.servizio, 80) || "valutazione"} - ${sanitizeEmailSubjectPart(lead.nome) || "Richiesta"}`.slice(
+      subject: `Nuova richiesta - ${sanitizeEmailSubjectPart(lead.formSource === "general_request" ? lead.serviceLabel : lead.servizio, 80) || "valutazione"} - ${sanitizeEmailSubjectPart(lead.nome) || "Richiesta"}`.slice(
         0,
         240,
       ),

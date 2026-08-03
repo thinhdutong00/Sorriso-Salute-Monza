@@ -45,6 +45,7 @@ const titleId = `${instanceId}-title`;
 const nameId = `${instanceId}-name`;
 const phoneId = `${instanceId}-phone`;
 const emailId = `${instanceId}-email`;
+const privacyId = `${instanceId}-privacy`;
 const HeadingTag = embedded ? "h2" : "h1";
 const StepHeadingTag = embedded ? "h3" : "h2";
 
@@ -208,6 +209,23 @@ const serializedClientConfig = JSON.stringify({
               <button class="request-preference-btn" type="button" data-value="No" aria-pressed="false">No</button>
             </div>
           </fieldset>
+
+          <fieldset class="request-preference-group">
+            <legend>
+              Come preferisci essere ricontattato?
+              <span class="sr-only">Campo obbligatorio.</span>
+            </legend>
+            <div
+              class="request-preference-options request-preference-options--contact"
+              data-field="preferredContactChannel"
+              role="group"
+              aria-label="Seleziona il canale di contatto preferito"
+            >
+              <button class="request-preference-btn" type="button" data-value="telefono" aria-pressed="false">Telefono</button>
+              <button class="request-preference-btn" type="button" data-value="whatsapp" aria-pressed="false">WhatsApp</button>
+              <button class="request-preference-btn" type="button" data-value="email" aria-pressed="false">Email</button>
+            </div>
+          </fieldset>
         </div>
       </div>
 
@@ -226,6 +244,7 @@ const serializedClientConfig = JSON.stringify({
               autocomplete="section-visit name"
               autocapitalize="words"
               enterkeyhint="next"
+              minlength="2"
               required
             />
           </label>
@@ -262,6 +281,17 @@ const serializedClientConfig = JSON.stringify({
             name="messaggio"
             placeholder="Aggiungi dettagli utili o sintomi particolari"
           ></textarea>
+        </label>
+        <label class="request-privacy" for={privacyId}>
+          <input
+            id={privacyId}
+            name="privacy_consent"
+            type="checkbox"
+            required
+          />
+          <span>
+            Ho letto la <a href="/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a> e acconsento al trattamento dei dati per essere ricontattato in merito alla richiesta.
+          </span>
         </label>
       </div>
 
@@ -493,7 +523,8 @@ const serializedClientConfig = JSON.stringify({
         grid-template-columns: repeat(6, minmax(0, 1fr));
       }
 
-      body .general-request-form[data-general-request-form] .request-preference-options--time {
+      body .general-request-form[data-general-request-form] .request-preference-options--time,
+      body .general-request-form[data-general-request-form] .request-preference-options--contact {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
@@ -719,6 +750,56 @@ const serializedClientConfig = JSON.stringify({
         outline: 3px solid rgba(255, 255, 255, 0.52) !important;
         outline-color: rgba(255, 255, 255, 0.52) !important;
         outline-offset: 2px;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .request-privacy {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.72rem;
+        margin-top: 0.2rem;
+        color: rgba(255, 255, 255, 0.76) !important;
+        cursor: pointer;
+        font-size: 0.88rem !important;
+        font-weight: 600;
+        line-height: 1.5;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .request-privacy
+        input {
+        width: 18px !important;
+        min-width: 18px;
+        height: 18px;
+        min-height: 0;
+        flex: 0 0 18px;
+        margin: 0.12rem 0 0;
+        padding: 0 !important;
+        border: 0 !important;
+        border-color: transparent !important;
+        border-radius: 4px;
+        accent-color: #fff;
+        background: transparent !important;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .request-privacy
+        input[aria-invalid="true"] {
+        outline: 2px solid #fff !important;
+        outline-offset: 3px;
+      }
+
+      body .general-request-form[data-general-request-form]
+        .request-form
+        .request-privacy
+        a {
+        color: #fff !important;
+        font-weight: 800;
+        text-decoration: underline;
+        text-underline-offset: 0.14em;
       }
 
       body .general-request-form[data-general-request-form] .request-form .summary-box {
@@ -1146,6 +1227,10 @@ const serializedClientConfig = JSON.stringify({
             : hasExplicitInitialStep
               ? requestedInitialStep === 2
               : true);
+        const canReturnToServiceStep =
+          shouldSkipServiceStep && root.dataset.embedded === "true";
+        const formMode =
+          root.dataset.embedded === "true" ? "embedded" : "standalone";
         const totalSteps = shouldSkipServiceStep ? 4 : 5;
         const steps = [...form.querySelectorAll(".request-step")];
         const progress = form.querySelector(".request-progress");
@@ -1158,12 +1243,16 @@ const serializedClientConfig = JSON.stringify({
         const secondStepGroup = form.querySelector("[data-second-step-options]");
         const secondStepTitle = form.querySelector("[data-second-step-title]");
         const ageRangeGroup = form.querySelector('[data-field="fasciaEta"]');
+        const contactChannelGroup = form.querySelector(
+          '[data-field="preferredContactChannel"]',
+        );
         const summaryBox = form.querySelector("[data-summary-box]");
         const fields = {
           nomeCompleto: form.querySelector('[name="nomeCompleto"]'),
           telefono: form.querySelector('[name="telefono"]'),
           email: form.querySelector('[name="email"]'),
           messaggio: form.querySelector('[name="messaggio"]'),
+          privacyConsent: form.querySelector('[name="privacy_consent"]'),
         };
         const quiz = {
           servizio: selectedService?.label || "",
@@ -1185,6 +1274,7 @@ const serializedClientConfig = JSON.stringify({
           giorniPreferiti: [],
           fasciaOraria: "",
           disponibilitaUrgente: "",
+          preferredContactChannel: "",
         };
         let currentStep = shouldSkipServiceStep ? 2 : 1;
         let isSubmitting = false;
@@ -1193,6 +1283,11 @@ const serializedClientConfig = JSON.stringify({
           3: "Fascia d’età",
           4: "Indica le tue preferenze",
           5: "Inserisci i tuoi dati",
+        };
+        const contactChannelLabels: Record<string, string> = {
+          telefono: "Telefono",
+          whatsapp: "WhatsApp",
+          email: "Email",
         };
 
         const setError = (message = "") => {
@@ -1208,7 +1303,7 @@ const serializedClientConfig = JSON.stringify({
             .replaceAll("'", "&#39;");
 
         const effectiveStepIndex = (step) =>
-          shouldSkipServiceStep ? step - 1 : step;
+          shouldSkipServiceStep ? Math.max(1, step - 1) : step;
 
         const updateNavigationState = () => {
           if (!(nextBtn instanceof HTMLButtonElement)) return;
@@ -1220,7 +1315,8 @@ const serializedClientConfig = JSON.stringify({
             (currentStep === 4 &&
               quiz.giorniPreferiti.length > 0 &&
               Boolean(quiz.fasciaOraria) &&
-              Boolean(quiz.disponibilitaUrgente));
+              Boolean(quiz.disponibilitaUrgente) &&
+              Boolean(quiz.preferredContactChannel));
 
           nextBtn.disabled = currentStep < 5 && !stepIsComplete;
         };
@@ -1304,6 +1400,10 @@ const serializedClientConfig = JSON.stringify({
             ["Giorni preferiti", quiz.giorniPreferiti.join(", ")],
             ["Fascia oraria", quiz.fasciaOraria],
             ["Disponibilità urgente", quiz.disponibilitaUrgente],
+            [
+              "Contatto preferito",
+              contactChannelLabels[quiz.preferredContactChannel] || "",
+            ],
           ]
             .filter(([, value]) => value)
             .map(([label, value]) => `<span class="summary-line"><strong>${escapeHtml(label)}</strong>${escapeHtml(value)}</span>`)
@@ -1330,7 +1430,11 @@ const serializedClientConfig = JSON.stringify({
           progress?.style.setProperty("--progress", `${(stepIndex / totalSteps) * 100}%`);
           progress?.setAttribute("aria-valuemax", String(totalSteps));
           progress?.setAttribute("aria-valuenow", String(stepIndex));
-          if (prevBtn instanceof HTMLButtonElement) prevBtn.hidden = stepIndex <= 1;
+          if (prevBtn instanceof HTMLButtonElement) {
+            prevBtn.hidden = canReturnToServiceStep
+              ? step <= 1
+              : stepIndex <= 1;
+          }
           if (nextBtn instanceof HTMLButtonElement) nextBtn.hidden = step === 5;
           if (submitBtn instanceof HTMLButtonElement) submitBtn.hidden = step !== 5;
           if (step === 5) buildSummary();
@@ -1366,6 +1470,14 @@ const serializedClientConfig = JSON.stringify({
             setError("Indica se hai disponibilità urgente.");
             return false;
           }
+          if (currentStep === 4 && !quiz.preferredContactChannel) {
+            setError("Seleziona come preferisci essere ricontattato.");
+            contactChannelGroup?.setAttribute("aria-invalid", "true");
+            contactChannelGroup
+              ?.querySelector<HTMLButtonElement>("button")
+              ?.focus();
+            return false;
+          }
           if (currentStep === 5) {
             const required = [fields.nomeCompleto, fields.telefono].filter((field) => field instanceof HTMLInputElement);
             const invalid = required.find((field) => !field.checkValidity());
@@ -1374,9 +1486,48 @@ const serializedClientConfig = JSON.stringify({
               setError("Completa nome e telefono per inviare la richiesta.");
               return false;
             }
-            if (fields.email instanceof HTMLInputElement && fields.email.value && !fields.email.checkValidity()) {
-              fields.email.reportValidity();
-              setError("Inserisci un indirizzo email valido oppure lascia il campo vuoto.");
+            if (
+              fields.nomeCompleto instanceof HTMLInputElement &&
+              fields.nomeCompleto.value.trim().length < 2
+            ) {
+              fields.nomeCompleto.focus();
+              setError("Inserisci un nome valido.");
+              return false;
+            }
+            if (
+              fields.telefono instanceof HTMLInputElement &&
+              fields.telefono.value.replace(/\D/g, "").length < 6
+            ) {
+              fields.telefono.focus();
+              setError("Inserisci un numero di telefono valido.");
+              return false;
+            }
+            if (fields.email instanceof HTMLInputElement) {
+              if (
+                quiz.preferredContactChannel === "email" &&
+                !fields.email.value.trim()
+              ) {
+                fields.email.focus();
+                setError(
+                  "Inserisci un indirizzo email valido per il canale di contatto selezionato.",
+                );
+                return false;
+              }
+              if (fields.email.value && !fields.email.checkValidity()) {
+                fields.email.reportValidity();
+                setError("Inserisci un indirizzo email valido oppure lascia il campo vuoto.");
+                return false;
+              }
+            }
+            if (
+              !(fields.privacyConsent instanceof HTMLInputElement) ||
+              !fields.privacyConsent.checked
+            ) {
+              if (fields.privacyConsent instanceof HTMLInputElement) {
+                fields.privacyConsent.setAttribute("aria-invalid", "true");
+                fields.privacyConsent.reportValidity();
+              }
+              setError("Accetta la Privacy Policy per inviare la richiesta.");
               return false;
             }
           }
@@ -1396,6 +1547,11 @@ const serializedClientConfig = JSON.stringify({
             email: fields.email?.value || "",
             servizio: quiz.servizio || "Richiesta generale",
             trattamentoSpecifico: quiz.trattamentoSpecifico,
+            serviceId: quiz.servizioSlug,
+            serviceLabel: quiz.servizio || "Richiesta generale",
+            specificTreatmentId: quiz.trattamentoId,
+            specificTreatment: quiz.trattamentoSpecifico,
+            formMode,
             messaggio: fields.messaggio?.value || "",
             ...attribution,
             source_page: normalizedSourcePage || window.location.pathname,
@@ -1408,6 +1564,12 @@ const serializedClientConfig = JSON.stringify({
             fasciaEta: quiz.fasciaEta,
             preferred_visit_days: quiz.giorniPreferiti,
             preferred_visit_time: quiz.fasciaOraria,
+            preferred_contact_channel: quiz.preferredContactChannel,
+            privacy_consent:
+              fields.privacyConsent instanceof HTMLInputElement &&
+              fields.privacyConsent.checked
+                ? "true"
+                : "",
             urgenza: `Disponibilità urgente: ${quiz.disponibilitaUrgente}`,
             form_source: "general_request",
             service_interest: quiz.servizio || "Richiesta generale",
@@ -1463,7 +1625,7 @@ const serializedClientConfig = JSON.stringify({
         if (selectedService) {
           markChoice("servizio", quiz.servizio);
         }
-        if (shouldSkipServiceStep) {
+        if (shouldSkipServiceStep && !canReturnToServiceStep) {
           steps.find((step) => Number(step.dataset.step) === 1)?.setAttribute("hidden", "");
         }
 
@@ -1490,16 +1652,25 @@ const serializedClientConfig = JSON.stringify({
                 if (field === "disponibilitaUrgente") {
                   quiz.disponibilitaUrgente = value;
                 }
+                if (field === "preferredContactChannel") {
+                  quiz.preferredContactChannel = value;
+                }
                 group
                   .querySelectorAll(".request-preference-btn")
                   .forEach((item) => item.setAttribute("aria-pressed", "false"));
                 button.setAttribute("aria-pressed", "true");
               }
 
+              group.removeAttribute("aria-invalid");
               setError();
               updateNavigationState();
             });
           });
+        });
+
+        fields.privacyConsent?.addEventListener("change", () => {
+          fields.privacyConsent?.removeAttribute("aria-invalid");
+          setError();
         });
 
         nextBtn?.addEventListener("click", () => {
@@ -1507,10 +1678,9 @@ const serializedClientConfig = JSON.stringify({
         });
 
         prevBtn?.addEventListener("click", () => {
-          const previous = Math.max(
-            shouldSkipServiceStep ? 2 : 1,
-            currentStep - 1,
-          );
+          const minimumStep =
+            shouldSkipServiceStep && !canReturnToServiceStep ? 2 : 1;
+          const previous = Math.max(minimumStep, currentStep - 1);
           if (previous !== currentStep) showStep(previous);
         });
 

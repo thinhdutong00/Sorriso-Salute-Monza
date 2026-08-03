@@ -1,6 +1,7 @@
 ---
 import "../../styles/global.css";
 import FaviconLinks from "../FaviconLinks.astro";
+import GeneralRequestForm from "../GeneralRequestForm.astro";
 import GoogleAdsTracking from "../GoogleAdsTracking.astro";
 import SiteFooter from "../SiteFooter.astro";
 import type { ImplantologiaPage } from "../../data/implantologiaPages";
@@ -15,6 +16,7 @@ interface Props {
 
 const { page } = Astro.props;
 const canonical = `https://sorrisoesalutemonza.it/implantologia/${page.slug}/`;
+const usesGeneralRequestForm = page.slug === "impianto-singolo";
 
 const methodCards = [
   {
@@ -129,8 +131,24 @@ const visitChecks = [
               </ul>
             </div>
 
-            <div class="implant-hero__form">
-              <ImplantologiaAnamnesiForm slug={page.slug} serviceInterest={page.serviceInterest} />
+            <div
+              class="implant-hero__form"
+              id={usesGeneralRequestForm ? "prenota" : undefined}
+            >
+              {usesGeneralRequestForm ? (
+                <GeneralRequestForm
+                  presetService="implantologia"
+                  presetTreatment="implantologia--sostituire-un-solo-dente"
+                  initialStep={2}
+                  sourcePage="/implantologia/impianto-singolo/"
+                  embedded={true}
+                />
+              ) : (
+                <ImplantologiaAnamnesiForm
+                  slug={page.slug}
+                  serviceInterest={page.serviceInterest}
+                />
+              )}
             </div>
           </div>
         </div>
