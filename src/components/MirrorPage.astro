@@ -1974,10 +1974,36 @@ const reviewsPageScript = `
             titleAccent={internalHero.titleAccent}
             lead={internalHero.lead}
             breadcrumbs={internalHero.breadcrumbs}
-            panel={internalHeroPanel}
+            panel={requestFormPreset ? undefined : internalHeroPanel}
             quote={internalHero.quote}
             carousel={internalHero.carousel}
-          />
+          >
+            {
+              requestFormPreset && (
+                <div slot="actions" class="internal-page-hero__actions">
+                  <a class="internal-page-hero__button" href={requestFormHref}>
+                    {internalHeroPanel?.ctaLabel ?? "Richiedi una visita"}
+                  </a>
+                </div>
+              )
+            }
+            {
+              requestFormPreset && (
+                <div
+                  slot="aside"
+                  id="richiesta"
+                  class="internal-page-hero__request-form clinical-hero-form"
+                >
+                  <GeneralRequestForm
+                    presetService={requestFormPreset.serviceId}
+                    initialStep={requestFormPreset.initialStep}
+                    sourcePage={requestFormPreset.sourcePage}
+                    embedded={true}
+                  />
+                </div>
+              )
+            }
+          </InternalPageHero>
         )
       }
       {categoryTreatments && <CategoryTreatmentsSection {...categoryTreatments} />}
@@ -2000,18 +2026,6 @@ const reviewsPageScript = `
             }
             <Fragment set:html={bodyWithoutLegacyAboutTreatmentSection} />
           </>
-        )
-      }
-      {
-        requestFormPreset && (
-          <div id="richiesta">
-            <GeneralRequestForm
-              presetService={requestFormPreset.serviceId}
-              initialStep={requestFormPreset.initialStep}
-              sourcePage={requestFormPreset.sourcePage}
-              embedded={true}
-            />
-          </div>
         )
       }
     </div>

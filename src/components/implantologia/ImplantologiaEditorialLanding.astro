@@ -139,26 +139,16 @@ const editorialHeroTitle = editorialHeroTitles[page.slug];
               </div>
             </div>
 
-            <figure class="implant-editorial__hero-visual">
-              <div class="implant-editorial__hero-orbit" aria-hidden="true"></div>
-              <picture>
-                <source
-                  type={page.heroSourceType}
-                  srcset={page.heroSrcSet}
-                  sizes="(max-width: 767px) calc(100vw - 84px), (max-width: 1100px) 44vw, 520px"
-                />
-                <img
-                  src={page.heroImage}
-                  alt={page.heroAlt}
-                  width={page.heroWidth}
-                  height={page.heroHeight}
-                  loading="eager"
-                  decoding="async"
-                  fetchpriority="high"
-                />
-              </picture>
-              <figcaption>Valutazione clinica e progettazione implantare e protesica individuale</figcaption>
-            </figure>
+            <div class="implant-editorial__hero-form clinical-hero-form" id="richiesta">
+              <GeneralRequestForm
+                presetService={requestFormPreset.serviceId}
+                presetTreatment={requestFormPreset.treatmentId}
+                initialStep={requestFormPreset.initialStep}
+                sourcePage={requestFormPreset.sourcePage}
+                secondStepProfileId={requestFormPreset.secondStepProfileId}
+                embedded={true}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -391,16 +381,6 @@ const editorialHeroTitle = editorialHeroTitles[page.slug];
         </div>
       </section>
 
-      <div class="implant-editorial__request" id="richiesta">
-        <GeneralRequestForm
-          presetService={requestFormPreset.serviceId}
-          presetTreatment={requestFormPreset.treatmentId}
-          initialStep={requestFormPreset.initialStep}
-          sourcePage={requestFormPreset.sourcePage}
-          secondStepProfileId={requestFormPreset.secondStepProfileId}
-          embedded={true}
-        />
-      </div>
     </main>
 
     <SiteFooter trackWhatsappAsImplantologia />
@@ -420,10 +400,6 @@ const editorialHeroTitle = editorialHeroTitles[page.slug];
     background: #fff;
     color: var(--editorial-ink);
     font-family: var(--font-family-body);
-  }
-
-  .implant-editorial__request {
-    scroll-margin-top: var(--implant-home-header-height, 88px);
   }
 
   .implant-editorial,
@@ -488,13 +464,18 @@ const editorialHeroTitle = editorialHeroTitles[page.slug];
     z-index: 1;
     display: grid;
     min-height: 650px;
-    grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr);
-    align-items: center;
-    gap: clamp(48px, 7vw, 104px);
+    grid-template-columns: minmax(0, 1fr) minmax(500px, 1fr);
+    align-items: start;
+    gap: clamp(36px, 5vw, 72px);
     padding: clamp(56px, 7vw, 102px) 0 clamp(76px, 8vw, 120px);
   }
 
   .implant-editorial__hero-copy { min-width: 0; }
+
+  .implant-editorial__hero-form {
+    width: 100%;
+    min-width: 0;
+  }
 
   .implant-editorial__kicker {
     margin: 0 0 16px;
@@ -952,7 +933,8 @@ const editorialHeroTitle = editorialHeroTitles[page.slug];
   .implant-editorial__final-cta p:not(.implant-editorial__kicker) { max-width: 720px; margin: 22px auto 0; color: rgba(255, 255, 255, .72); font-size: 17px; line-height: 1.72; }
 
   @media (max-width: 1023px) {
-    .implant-editorial__hero-grid { min-height: 0; grid-template-columns: minmax(0, 1.04fr) minmax(290px, .8fr); gap: 36px; }
+    .implant-editorial__hero-grid { min-height: 0; grid-template-columns: 1fr; gap: 42px; }
+    .implant-editorial__hero-form { width: min(100%, 680px); }
     .implant-editorial__hero h1 { font-size: clamp(38px, 5.8vw, 58px); }
     .implant-editorial__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .implant-editorial__timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -967,6 +949,7 @@ const editorialHeroTitle = editorialHeroTitles[page.slug];
     }
     .implant-editorial__breadcrumb ol { font-size: 11px; }
     .implant-editorial__hero-grid { grid-template-columns: 1fr; gap: 34px; padding: 44px 0 68px; }
+    .implant-editorial__hero-form { width: 100%; }
     .implant-editorial__hero h1 { font-size: clamp(36px, 11vw, 50px); line-height: 1.02; }
     .implant-editorial__hero-intro { margin-top: 22px; font-size: 16px; }
     .implant-editorial__actions { width: 100%; }

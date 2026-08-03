@@ -856,23 +856,24 @@ const conventionGroups = [
           { label: "Trattamenti", href: "/attivita/" },
           { label: "Implantologia" },
         ]}
-        panel={{
-          label: "Il percorso implantologico",
-          title: "Dalla situazione di oggi a un piano verificabile",
-          items: [
-            "Valutazione clinica e diagnostica",
-            "Confronto tra soluzioni e alternative",
-            "Tempi, fasi e controlli spiegati con chiarezza",
-          ],
-          ctaLabel: "Inizia la valutazione",
-          ctaHref: requestFormHref,
-        }}
       >
         <div slot="actions" class="internal-page-hero__actions">
           <a class="internal-page-hero__button" href={requestFormHref}>Richiedi una valutazione</a>
           <a class="internal-page-hero__button internal-page-hero__button--secondary" href="#situazioni-oggi-title">
             Scopri le soluzioni
           </a>
+        </div>
+        <div
+          slot="aside"
+          id="richiesta"
+          class="internal-page-hero__request-form clinical-hero-form"
+        >
+          <GeneralRequestForm
+            presetService={requestFormPreset.serviceId}
+            initialStep={requestFormPreset.initialStep}
+            sourcePage={requestFormPreset.sourcePage}
+            embedded={true}
+          />
         </div>
       </InternalPageHero>
 
@@ -1209,14 +1210,6 @@ const conventionGroups = [
         </div>
       </section>
 
-      <div id="richiesta">
-        <GeneralRequestForm
-          presetService={requestFormPreset.serviceId}
-          initialStep={requestFormPreset.initialStep}
-          sourcePage={requestFormPreset.sourcePage}
-          embedded={true}
-        />
-      </div>
     </main>
 
     <SiteFooter trackWhatsappAsImplantologia />

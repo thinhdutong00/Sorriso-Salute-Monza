@@ -136,7 +136,7 @@ const structuredData = {
             </ol>
           </nav>
 
-          <div class="prosthetics__hero-grid">
+          <div class:list={["prosthetics__hero-grid", requestFormPreset && "prosthetics__hero-grid--with-form"]}>
             <div class="prosthetics__hero-copy">
               <p class="prosthetics__kicker">Protesi dentale</p>
               <h1 id="prosthetics-title">
@@ -161,26 +161,39 @@ const structuredData = {
               </div>
             </div>
 
-            <figure class="prosthetics__hero-visual">
-              <div class="prosthetics__hero-orbit" aria-hidden="true"></div>
-              <picture>
-                <source
-                  type="image/avif"
-                  srcset={heroImageSrcSet}
-                  sizes="(max-width: 767px) calc(100vw - 72px), (max-width: 1100px) 42vw, 510px"
-                />
-                <img
-                  src={heroImage}
-                  alt="Esempio illustrativo di una protesi sostenuta da impianti"
-                  width="1448"
-                  height="1086"
-                  loading="eager"
-                  decoding="async"
-                  fetchpriority="high"
-                />
-              </picture>
-              <figcaption>Una delle possibili forme di supporto protesico, da valutare nel singolo caso</figcaption>
-            </figure>
+            {
+              requestFormPreset ? (
+                <div class="prosthetics__hero-form clinical-hero-form" id="richiesta">
+                  <GeneralRequestForm
+                    presetService={requestFormPreset.serviceId}
+                    initialStep={requestFormPreset.initialStep}
+                    sourcePage={requestFormPreset.sourcePage}
+                    embedded={true}
+                  />
+                </div>
+              ) : (
+                <figure class="prosthetics__hero-visual">
+                  <div class="prosthetics__hero-orbit" aria-hidden="true"></div>
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcset={heroImageSrcSet}
+                      sizes="(max-width: 767px) calc(100vw - 72px), (max-width: 1100px) 42vw, 510px"
+                    />
+                    <img
+                      src={heroImage}
+                      alt="Esempio illustrativo di una protesi sostenuta da impianti"
+                      width="1448"
+                      height="1086"
+                      loading="eager"
+                      decoding="async"
+                      fetchpriority="high"
+                    />
+                  </picture>
+                  <figcaption>Una delle possibili forme di supporto protesico, da valutare nel singolo caso</figcaption>
+                </figure>
+              )
+            }
           </div>
         </div>
       </section>
@@ -460,18 +473,6 @@ const structuredData = {
         </div>
       </section>
 
-      {
-        requestFormPreset && (
-          <div id="richiesta">
-            <GeneralRequestForm
-              presetService={requestFormPreset.serviceId}
-              initialStep={requestFormPreset.initialStep}
-              sourcePage={requestFormPreset.sourcePage}
-              embedded={true}
-            />
-          </div>
-        )
-      }
     </main>
 
     <SiteFooter />
@@ -575,7 +576,18 @@ const structuredData = {
     padding: clamp(54px, 7vw, 96px) 0 clamp(76px, 8vw, 116px);
   }
 
+  .prosthetics__hero-grid--with-form {
+    grid-template-columns: minmax(0, 1fr) minmax(500px, 1fr);
+    align-items: start;
+    gap: clamp(36px, 5vw, 72px);
+  }
+
   .prosthetics__hero-copy { min-width: 0; }
+
+  .prosthetics__hero-form {
+    width: 100%;
+    min-width: 0;
+  }
 
   .prosthetics__kicker {
     margin: 0 0 16px;
@@ -1016,6 +1028,8 @@ const structuredData = {
 
   @media (max-width: 1023px) {
     .prosthetics__hero-grid { min-height: 0; grid-template-columns: minmax(0, 1.04fr) minmax(290px, .8fr); gap: 36px; }
+    .prosthetics__hero-grid--with-form { grid-template-columns: 1fr; gap: 42px; }
+    .prosthetics__hero-form { width: min(100%, 680px); }
     .prosthetics__hero h1 { font-size: clamp(38px, 5.6vw, 56px); }
     .prosthetics__card-grid--three,
     .prosthetics__definition-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1026,6 +1040,7 @@ const structuredData = {
     .prosthetics__breadcrumb { padding-top: calc(var(--implant-home-header-height, 68px) + 18px); }
     .prosthetics__breadcrumb ol { font-size: 11px; }
     .prosthetics__hero-grid { grid-template-columns: 1fr; gap: 34px; padding: 44px 0 68px; }
+    .prosthetics__hero-form { width: 100%; }
     .prosthetics__hero h1 { font-size: clamp(35px, 10.6vw, 49px); line-height: 1.03; }
     .prosthetics__hero-intro { margin-top: 22px; font-size: 16px; }
     .prosthetics__actions { width: 100%; }
