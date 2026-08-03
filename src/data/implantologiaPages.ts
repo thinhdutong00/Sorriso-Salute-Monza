@@ -31,17 +31,6 @@ export interface ImplantologiaPage {
   faqs: ImplantologiaFaq[];
 }
 
-type ImplantologiaTreatmentPresetId = `implantologia--${string}`;
-
-export const implantologiaGeneralRequestTreatmentBySlug: Readonly<
-  Record<ImplantologiaPageSlug, ImplantologiaTreatmentPresetId>
-> = Object.freeze({
-  "impianto-singolo": "implantologia--sostituire-un-solo-dente",
-  "denti-fissi": "implantologia--ritrovare-denti-fissi",
-  "ponte-su-impianti": "implantologia--sostituire-piu-denti",
-  "protesi-instabile": "implantologia--stabilizzare-una-protesi-mobile",
-});
-
 const sharedFaqs: ImplantologiaFaq[] = [
   {
     question: "La richiesta online conferma già l’appuntamento?",

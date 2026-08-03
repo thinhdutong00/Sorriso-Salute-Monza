@@ -5,10 +5,8 @@ import GeneralRequestForm from "../GeneralRequestForm.astro";
 import GoogleAdsTracking from "../GoogleAdsTracking.astro";
 import SiteFooter from "../SiteFooter.astro";
 import type { ImplantologiaPage } from "../../data/implantologiaPages";
-import {
-  implantologiaGeneralRequestTreatmentBySlug,
-  implantologiaPages,
-} from "../../data/implantologiaPages";
+import { implantologiaPages } from "../../data/implantologiaPages";
+import { getRequestFormPagePreset } from "../../data/requestFormPagePresets";
 import ImplantologiaHeader from "./ImplantologiaHeader.astro";
 import ImplantologiaReviews from "./ImplantologiaReviews.astro";
 
@@ -19,7 +17,11 @@ interface Props {
 const { page } = Astro.props;
 const canonical = `https://sorrisoesalutemonza.it/implantologia/${page.slug}/`;
 const sourcePage = `/implantologia/${page.slug}/`;
-const presetTreatment = implantologiaGeneralRequestTreatmentBySlug[page.slug];
+const requestFormPreset = getRequestFormPagePreset(sourcePage);
+
+if (!requestFormPreset) {
+  throw new Error(`Preset del modulo mancante per ${sourcePage}`);
+}
 
 const methodCards = [
   {
@@ -136,10 +138,11 @@ const visitChecks = [
 
             <div class="implant-hero__form" id="prenota">
               <GeneralRequestForm
-                presetService="implantologia"
-                presetTreatment={presetTreatment}
-                initialStep={2}
-                sourcePage={sourcePage}
+                presetService={requestFormPreset.serviceId}
+                presetTreatment={requestFormPreset.treatmentId}
+                initialStep={requestFormPreset.initialStep}
+                sourcePage={requestFormPreset.sourcePage}
+                secondStepProfileId={requestFormPreset.secondStepProfileId}
                 embedded={true}
               />
             </div>

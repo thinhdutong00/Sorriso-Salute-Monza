@@ -8,6 +8,7 @@ import {
   generalRequestSecondStepProfiles,
   generalRequestServiceSecondStepProfiles,
   generalRequestTreatmentSecondStepOverrides,
+  type GeneralRequestSecondStepProfileId,
 } from "../data/generalRequestSecondStep";
 
 export type Props = {
@@ -19,6 +20,8 @@ export type Props = {
   initialStep?: 1 | 2;
   /** Pagina che contiene l'istanza; non modifica landing o referrer iniziali. */
   sourcePage?: string;
+  /** Override del profilo iniziale, validato contro generalRequestSecondStep.ts. */
+  secondStepProfileId?: GeneralRequestSecondStepProfileId;
   /** Adatta contenitore e gerarchia del titolo all'inserimento in un'altra pagina. */
   embedded?: boolean;
 };
@@ -28,12 +31,17 @@ const {
   presetTreatment,
   initialStep,
   sourcePage,
+  secondStepProfileId,
   embedded = false,
 } = Astro.props;
 
 const normalizedPresetService = presetService?.trim() || "";
 const normalizedPresetTreatment = presetTreatment?.trim() || "";
 const normalizedSourcePage = sourcePage?.trim() || "";
+const normalizedSecondStepProfileId =
+  secondStepProfileId && generalRequestSecondStepProfiles[secondStepProfileId]
+    ? secondStepProfileId
+    : "";
 const hasPresetProps = Boolean(
   normalizedPresetService || normalizedPresetTreatment,
 );
@@ -85,6 +93,7 @@ const serializedClientConfig = JSON.stringify({
   normalizedPresetService,
   normalizedPresetTreatment,
   normalizedSourcePage,
+  normalizedSecondStepProfileId,
   hasPresetProps,
   hasExplicitInitialStep,
   requestedInitialStep,
@@ -1145,6 +1154,7 @@ const serializedClientConfig = JSON.stringify({
           normalizedPresetService,
           normalizedPresetTreatment,
           normalizedSourcePage,
+          normalizedSecondStepProfileId,
           hasPresetProps,
           hasExplicitInitialStep,
           requestedInitialStep,
@@ -1204,7 +1214,13 @@ const serializedClientConfig = JSON.stringify({
           ? resolvedService
           : undefined;
         const resolveSecondStepProfile = (serviceSlug = "", treatmentId = "") => {
+          const presetProfileApplies =
+            normalizedSecondStepProfileId &&
+            serviceSlug === normalizedPresetService &&
+            (!normalizedPresetTreatment ||
+              treatmentId === normalizedPresetTreatment);
           const profileId =
+            (presetProfileApplies && normalizedSecondStepProfileId) ||
             (treatmentId && treatmentSecondStepProfileIds[treatmentId]) ||
             serviceSecondStepProfileIds[serviceSlug] ||
             fallbackSecondStepProfileId;

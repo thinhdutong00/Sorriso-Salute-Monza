@@ -8,6 +8,8 @@ export type GeneralRequestSecondStepProfileId =
   | "parodontologia-duration"
   | "protesi-current-situation"
   | "implantologia-missing-tooth-duration"
+  | "implantologia-tooth-presence"
+  | "implantologia-bone-evaluation"
   | "estetica-previous-treatment"
   | "ortodonzia-previous-evaluation"
   | "gnatologia-duration"
@@ -137,6 +139,36 @@ export const generalRequestSecondStepProfiles: Readonly<
       "Il dente è ancora presente / deve essere estratto",
     ],
     isDuration: true,
+  },
+  "implantologia-tooth-presence": {
+    id: "implantologia-tooth-presence",
+    eyebrow: "Situazione dei denti",
+    question: "Il dente o i denti da sostituire sono ancora presenti?",
+    ariaLabel: "Indica se il dente o i denti da sostituire sono ancora presenti",
+    summaryLabel: "Presenza dei denti da sostituire",
+    validationMessage: "Indica se il dente o i denti da sostituire sono ancora presenti.",
+    options: [
+      "Sì",
+      "No, sono stati estratti recentemente",
+      "No, mancano da più tempo",
+      "Non sono sicuro",
+    ],
+    isDuration: false,
+  },
+  "implantologia-bone-evaluation": {
+    id: "implantologia-bone-evaluation",
+    eyebrow: "Valutazione dell’osso",
+    question: "Ti è già stato detto che potrebbe esserci poco osso?",
+    ariaLabel: "Indica se ti è già stato detto che potrebbe esserci poco osso",
+    summaryLabel: "Valutazione ossea precedente",
+    validationMessage: "Indica se ti è già stato detto che potrebbe esserci poco osso.",
+    options: [
+      "Sì, dopo una visita",
+      "Sì, dopo una TAC o un esame 3D",
+      "No",
+      "Non sono sicuro",
+    ],
+    isDuration: false,
   },
   "estetica-previous-treatment": {
     id: "estetica-previous-treatment",
@@ -297,6 +329,8 @@ export const generalRequestTreatmentSecondStepOverrides: Readonly<
   "parodontologia--controlli-parodontali": "parodontologia-last-check",
   "parodontologia--terapia-parodontale-di-supporto": "parodontologia-last-check",
   "parodontologia--sedute-periodiche-di-mantenimento": "parodontologia-last-check",
+  "implantologia--carico-immediato": "implantologia-tooth-presence",
+  "implantologia--soluzioni-in-caso-di-poco-osso": "implantologia-bone-evaluation",
   "implantologia--controlli-degli-impianti": "implantologia-last-check",
   "implantologia--igiene-e-mantenimento-degli-impianti": "implantologia-last-check",
   "implantologia--manutenzione-delle-protesi-su-impianti": "implantologia-last-check",
