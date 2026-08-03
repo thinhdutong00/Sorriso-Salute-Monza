@@ -5,8 +5,10 @@ import GeneralRequestForm from "../GeneralRequestForm.astro";
 import GoogleAdsTracking from "../GoogleAdsTracking.astro";
 import SiteFooter from "../SiteFooter.astro";
 import type { ImplantologiaPage } from "../../data/implantologiaPages";
-import { implantologiaPages } from "../../data/implantologiaPages";
-import ImplantologiaAnamnesiForm from "./ImpiantoSingoloAnamnesiForm.astro";
+import {
+  implantologiaGeneralRequestTreatmentBySlug,
+  implantologiaPages,
+} from "../../data/implantologiaPages";
 import ImplantologiaHeader from "./ImplantologiaHeader.astro";
 import ImplantologiaReviews from "./ImplantologiaReviews.astro";
 
@@ -16,7 +18,8 @@ interface Props {
 
 const { page } = Astro.props;
 const canonical = `https://sorrisoesalutemonza.it/implantologia/${page.slug}/`;
-const usesGeneralRequestForm = page.slug === "impianto-singolo";
+const sourcePage = `/implantologia/${page.slug}/`;
+const presetTreatment = implantologiaGeneralRequestTreatmentBySlug[page.slug];
 
 const methodCards = [
   {
@@ -131,24 +134,14 @@ const visitChecks = [
               </ul>
             </div>
 
-            <div
-              class="implant-hero__form"
-              id={usesGeneralRequestForm ? "prenota" : undefined}
-            >
-              {usesGeneralRequestForm ? (
-                <GeneralRequestForm
-                  presetService="implantologia"
-                  presetTreatment="implantologia--sostituire-un-solo-dente"
-                  initialStep={2}
-                  sourcePage="/implantologia/impianto-singolo/"
-                  embedded={true}
-                />
-              ) : (
-                <ImplantologiaAnamnesiForm
-                  slug={page.slug}
-                  serviceInterest={page.serviceInterest}
-                />
-              )}
+            <div class="implant-hero__form" id="prenota">
+              <GeneralRequestForm
+                presetService="implantologia"
+                presetTreatment={presetTreatment}
+                initialStep={2}
+                sourcePage={sourcePage}
+                embedded={true}
+              />
             </div>
           </div>
         </div>

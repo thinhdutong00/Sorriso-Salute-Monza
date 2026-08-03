@@ -8,8 +8,14 @@ export interface ImplantologiaContentCard {
   text: string;
 }
 
+export type ImplantologiaPageSlug =
+  | "impianto-singolo"
+  | "denti-fissi"
+  | "ponte-su-impianti"
+  | "protesi-instabile";
+
 export interface ImplantologiaPage {
-  slug: "impianto-singolo" | "denti-fissi" | "ponte-su-impianti" | "protesi-instabile";
+  slug: ImplantologiaPageSlug;
   title: string;
   metaDescription: string;
   cardTitle: string;
@@ -24,6 +30,17 @@ export interface ImplantologiaPage {
   causeCards: ImplantologiaContentCard[];
   faqs: ImplantologiaFaq[];
 }
+
+type ImplantologiaTreatmentPresetId = `implantologia--${string}`;
+
+export const implantologiaGeneralRequestTreatmentBySlug: Readonly<
+  Record<ImplantologiaPageSlug, ImplantologiaTreatmentPresetId>
+> = Object.freeze({
+  "impianto-singolo": "implantologia--sostituire-un-solo-dente",
+  "denti-fissi": "implantologia--ritrovare-denti-fissi",
+  "ponte-su-impianti": "implantologia--sostituire-piu-denti",
+  "protesi-instabile": "implantologia--stabilizzare-una-protesi-mobile",
+});
 
 const sharedFaqs: ImplantologiaFaq[] = [
   {
