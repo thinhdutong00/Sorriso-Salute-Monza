@@ -86,7 +86,7 @@ export const primaryTreatmentMenuLinks: PrimaryTreatmentMenuLink[] = [
   {
     href: "/implantologia/",
     label: "Sostituire i denti mancanti",
-    technicalLabel: "Implantologia",
+    technicalLabel: "Impianti dentali",
     image: "/assets/brand/implantologia-dental-implant.png",
     imageAlt: "Impianto dentale in titanio",
   },
