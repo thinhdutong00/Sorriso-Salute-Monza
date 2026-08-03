@@ -8,7 +8,6 @@ import PageLoader from "../components/PageLoader.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
-import ImplantologiaAttribution from "../components/implantologia/ImplantologiaAttribution.astro";
 import { getCategoryTreatments } from "../data/categoryTreatments";
 import { implantologiaMenuLinks, protesiDentaleMenuLink } from "../data/implantologiaNavigation";
 import { getRequestFormPagePreset } from "../data/requestFormPagePresets";
@@ -600,7 +599,6 @@ const conventionGroups = [
   </head>
   <body class="has-sticky-cta internal-page implantologia-hub-page">
     <PageLoader />
-    <ImplantologiaAttribution serviceInterest="Implantologia" isLanding />
     <SiteHeader />
 
     {false && (

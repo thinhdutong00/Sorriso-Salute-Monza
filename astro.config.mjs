@@ -9,6 +9,7 @@ export default defineConfig({
         !page.endsWith("/attivita/implantologia/") &&
         !page.endsWith("/attivita/protesi-dentale/") &&
         !page.endsWith("/implantologia/percorso/") &&
+        !page.endsWith("/richiesta/") &&
         !page.endsWith("/prenota-una-visita/"),
     }),
   ],

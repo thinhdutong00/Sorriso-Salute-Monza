@@ -3,14 +3,18 @@ import BrandPalette from "../components/BrandPalette.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+
+const destination = "/richiesta-generale/";
 ---
 
 <!doctype html>
-<html lang="it">
+<html lang="it" data-redirect-destination={destination}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=/richiesta-generale/" />
+    <noscript>
+      <meta http-equiv="refresh" content={`0; url=${destination}`} />
+    </noscript>
     <link rel="canonical" href="https://sorrisoesalutemonza.it/richiesta-generale/" />
     <title>Prenota una visita - Studio Dentistico Sorriso & Salute</title>
     <FaviconLinks />
@@ -19,8 +23,24 @@ import SiteFooter from "../components/SiteFooter.astro";
   </head>
   <body class="brand-palette">
     <main style="min-height:100vh;display:grid;place-items:center;font-family:var(--font-family-body);text-align:center;padding:24px;background:#ffffff">
-      <a href="/richiesta-generale/" style="color:#0E384C;font-weight:800">Vai alla richiesta di prenotazione</a>
+      <a href={destination} data-redirect-link style="color:#0E384C;font-weight:800">Vai alla richiesta di prenotazione</a>
     </main>
     <SiteFooter />
+
+    <script>
+      const redirectDestination =
+        document.documentElement.dataset.redirectDestination ||
+        "/richiesta-generale/";
+      const target = new URL(redirectDestination, window.location.origin);
+      target.search = window.location.search;
+      target.hash = window.location.hash;
+
+      const fallbackLink = document.querySelector("[data-redirect-link]");
+      if (fallbackLink instanceof HTMLAnchorElement) {
+        fallbackLink.href = `${target.pathname}${target.search}${target.hash}`;
+      }
+
+      window.location.replace(target.toString());
+    </script>
   </body>
 </html>

@@ -5,10 +5,12 @@ const destination = "/implantologia/";
 ---
 
 <!doctype html>
-<html lang="it">
+<html lang="it" data-redirect-destination={destination}>
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    <noscript>
+      <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    </noscript>
     <meta name="robots" content="noindex" />
     <link
       rel="canonical"
@@ -19,10 +21,22 @@ const destination = "/implantologia/";
   <body>
     <p>
       Reindirizzamento al
-      <a href={destination}>percorso implantologico</a>.
+      <a href={destination} data-redirect-link>percorso implantologico</a>.
     </p>
-    <script is:inline>
-      window.location.replace("/implantologia/");
+    <script>
+      const redirectDestination =
+        document.documentElement.dataset.redirectDestination ||
+        "/implantologia/";
+      const target = new URL(redirectDestination, window.location.origin);
+      target.search = window.location.search;
+      target.hash = window.location.hash;
+
+      const fallbackLink = document.querySelector("[data-redirect-link]");
+      if (fallbackLink instanceof HTMLAnchorElement) {
+        fallbackLink.href = `${target.pathname}${target.search}${target.hash}`;
+      }
+
+      window.location.replace(target.toString());
     </script>
   </body>
 </html>

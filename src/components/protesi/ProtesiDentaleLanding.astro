@@ -41,7 +41,7 @@ if (!legacyRoute && !requestFormPreset) {
   throw new Error("Preset del modulo mancante per /protesi-dentale/");
 }
 
-const ctaHref = requestFormPreset ? "#richiesta" : "/richiesta/";
+const ctaHref = requestFormPreset ? "#richiesta" : "/richiesta-generale/";
 const categoryTreatments = getCategoryTreatments("/protesi-dentale/");
 
 const webPageSchema = {

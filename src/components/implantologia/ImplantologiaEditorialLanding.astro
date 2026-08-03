@@ -6,7 +6,6 @@ import GoogleAdsTracking from "../GoogleAdsTracking.astro";
 import SiteFooter from "../SiteFooter.astro";
 import type { ImplantologiaEditorialPage } from "../../data/implantologiaEditorialPages";
 import { getRequestFormPagePreset } from "../../data/requestFormPagePresets";
-import ImplantologiaAttribution from "./ImplantologiaAttribution.astro";
 import ImplantologiaHeader from "./ImplantologiaHeader.astro";
 
 interface Props {
@@ -106,7 +105,6 @@ const editorialHeroTitle = editorialHeroTitles[page.slug];
     <GoogleAdsTracking />
   </head>
   <body class="implant-landing implant-editorial-page internal-page">
-    <ImplantologiaAttribution serviceInterest={page.serviceInterest} isLanding />
     <ImplantologiaHeader />
 
     <main class="implant-editorial" id="main-content" tabindex="-1">

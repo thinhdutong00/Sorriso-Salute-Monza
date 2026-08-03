@@ -1,435 +1,93 @@
 ---
-import "../styles/global.css";
-import BrandPalette from "../components/BrandPalette.astro";
-import FaviconLinks from "../components/FaviconLinks.astro";
-import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
-import InternalPageHero from "../components/InternalPageHero.astro";
-import SiteFooter from "../components/SiteFooter.astro";
-import SiteHeader from "../components/SiteHeader.astro";
-import ImplantologiaAttribution from "../components/implantologia/ImplantologiaAttribution.astro";
-import ImplantologiaHiddenFields from "../components/implantologia/ImplantologiaHiddenFields.astro";
+const destination = "/richiesta-generale/";
+const canonical = "https://sorrisoesalutemonza.it/richiesta-generale/";
 ---
 
 <!doctype html>
-<html lang="it">
+<html lang="it" data-request-redirect-destination={destination}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Richiedi una valutazione implantologica allo Studio Dentistico Sorriso & Salute di Monza."
-    />
-    <meta name="theme-color" content="#0E384C" />
-    <FaviconLinks />
-    <GoogleAdsTracking />
-    <BrandPalette />
-    <title>Richiedi una valutazione | Sorriso & Salute Monza</title>
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={canonical} />
+    <title>Richiedi una valutazione | Sorriso &amp; Salute Monza</title>
+    <noscript>
+      <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    </noscript>
   </head>
-  <body class="request-body brand-palette internal-page">
-    <SiteHeader />
-
-    <main id="main-content" tabindex="-1">
-      <InternalPageHero
-        id="request-title"
-        eyebrow="Valutazione implantologica"
-        titlePrimary="Raccontaci la tua situazione."
-        titleAccent="Inizia dalla valutazione."
-        lead="Rispondi a poche domande: lo studio userà le informazioni per ricontattarti e organizzare il primo approfondimento."
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Implantologia", href: "/implantologia/" },
-          { label: "Richiedi una valutazione" },
-        ]}
-        compact
-      />
-
-      <section class="request-shell" aria-label="Modulo di valutazione implantologica">
-        <form class="request-form" id="valutazione" action="/api/send-lead" method="post" data-implantologia-form novalidate>
-          <ImplantologiaHiddenFields />
-          <div class="request-progress" role="progressbar" aria-label="Avanzamento richiesta" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"></div>
-
-          <div class="request-step is-active" data-step="1">
-            <p class="quiz-kicker">Inquadramento clinico</p>
-            <h2 class="quiz-title">Quale problema vuoi risolvere?</h2>
-            <div class="quiz-options" data-field="problema">
-              <button class="choice-btn" type="button" data-value="Mi manca un solo dente"><strong>Mi manca un solo dente</strong></button>
-              <button class="choice-btn" type="button" data-value="Mi mancano più denti vicini"><strong>Mi mancano più denti vicini</strong></button>
-              <button class="choice-btn" type="button" data-value="La mia dentiera o protesi si muove"><strong>La mia dentiera o protesi si muove</strong></button>
-              <button class="choice-btn" type="button" data-value="Ho perso molti denti o uso una dentiera"><strong>Ho perso molti denti o uso una dentiera</strong></button>
-            </div>
-          </div>
-
-          <div class="request-step" data-step="2">
-            <p class="quiz-kicker">Preferenza appuntamento</p>
-            <h2 class="quiz-title">Scegli una data per la prima valutazione</h2>
-            <div class="calendar-head">
-              <p class="calendar-title" data-calendar-title></p>
-              <div class="calendar-nav" aria-label="Navigazione calendario">
-                <button type="button" data-prev-month aria-label="Mese precedente">‹</button>
-                <button type="button" data-next-month aria-label="Mese successivo">›</button>
-              </div>
-            </div>
-            <div class="calendar-grid" data-calendar-grid aria-label="Calendario selezionabile"></div>
-          </div>
-
-          <div class="request-step" data-step="3">
-            <p class="quiz-kicker">Orario preferito</p>
-            <h2 class="quiz-title">Scegli una fascia oraria</h2>
-            <div class="slot-grid" data-slot-grid aria-label="Orari selezionabili"></div>
-          </div>
-
-          <div class="request-step" data-step="4">
-            <p class="quiz-kicker">Dati di contatto</p>
-            <h2 class="quiz-title">Lascia i tuoi recapiti</h2>
-            <div class="field-grid">
-              <label for="nomeCompleto">
-                Nome e cognome
-                <input id="nomeCompleto" name="nomeCompleto" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" required />
-              </label>
-              <label for="telefono">
-                Telefono
-                <input id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="next" required />
-              </label>
-              <label for="email">
-                Email
-                <input id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="next" required />
-              </label>
-            </div>
-            <label>
-              Note/Messaggio (facoltativo)
-              <textarea name="messaggio" placeholder="Aggiungi dettagli utili"></textarea>
-            </label>
-          </div>
-
-          <p class="form-error" data-form-error aria-live="polite"></p>
-
-          <div class="request-actions">
-            <button class="request-btn request-btn-primary" type="submit" data-submit-step hidden>Invia la tua richiesta</button>
-          </div>
-        </form>
-        <ImplantologiaAttribution serviceInterest="Implantologia" />
-      </section>
-    </main>
-
-    <SiteFooter />
+  <body>
+    <p>
+      Reindirizzamento al
+      <a href={destination} data-request-redirect-link>modulo di richiesta generale</a>.
+    </p>
 
     <script>
-      (() => {
-        const backLink = document.querySelector("[data-back-link]");
-        backLink?.addEventListener("click", (event) => {
-          if (window.history.length <= 1) return;
-          event.preventDefault();
-          window.history.back();
-        });
+      import { captureLeadAttribution } from "../scripts/leadAttribution";
 
-        const form = document.querySelector("#valutazione");
-        if (!(form instanceof HTMLFormElement)) return;
+      captureLeadAttribution();
 
-        const totalSteps = 4;
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+      const redirectDestination =
+        document.documentElement.dataset.requestRedirectDestination ||
+        "/richiesta-generale/";
+      const target = new URL(redirectDestination, window.location.origin);
+      target.search = window.location.search;
+      target.hash = window.location.hash;
 
-        const maxDate = new Date(today);
-        maxDate.setMonth(maxDate.getMonth() + 3);
+      const legacyProblemMappings = new Map<
+        string,
+        { service: string; treatment?: string }
+      >([
+        [
+          "dente-mancante",
+          {
+            service: "implantologia",
+            treatment: "implantologia--sostituire-un-solo-dente",
+          },
+        ],
+        [
+          "piu-denti-mancanti",
+          {
+            service: "implantologia",
+            treatment: "implantologia--sostituire-piu-denti",
+          },
+        ],
+        [
+          "protesi-mobile-instabile",
+          {
+            service: "implantologia",
+            treatment: "implantologia--stabilizzare-una-protesi-mobile",
+          },
+        ],
+        [
+          "arcata-completa",
+          {
+            service: "implantologia",
+          },
+        ],
+      ]);
+      const legacyProblem = target.searchParams.get("problema") || "";
+      const legacyMapping = legacyProblemMappings.get(legacyProblem);
 
-        const minMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-        const maxMonth = new Date(maxDate.getFullYear(), maxDate.getMonth(), 1);
-
-        const monthFormatter = new Intl.DateTimeFormat("it-IT", { month: "long", year: "numeric" });
-        const dateFormatter = new Intl.DateTimeFormat("it-IT", { weekday: "long", day: "2-digit", month: "long" });
-        const isoDate = (date) => {
-          const offset = date.getTimezoneOffset() * 60000;
-          return new Date(date.getTime() - offset).toISOString().slice(0, 10);
-        };
-        const isSameMonth = (a, b) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth();
-
-        const steps = [...form.querySelectorAll(".request-step")];
-        const progress = form.querySelector(".request-progress");
-        const actions = form.querySelector(".request-actions");
-        const submitBtn = form.querySelector("[data-submit-step]");
-        const formError = form.querySelector("[data-form-error]");
-        const calendarGrid = form.querySelector("[data-calendar-grid]");
-        const calendarTitle = form.querySelector("[data-calendar-title]");
-        const prevMonthBtn = form.querySelector("[data-prev-month]");
-        const nextMonthBtn = form.querySelector("[data-next-month]");
-        const slotGrid = form.querySelector("[data-slot-grid]");
-        const fields = {
-          nomeCompleto: form.querySelector('[name="nomeCompleto"]'),
-          telefono: form.querySelector('[name="telefono"]'),
-          email: form.querySelector('[name="email"]'),
-          messaggio: form.querySelector('[name="messaggio"]'),
-        };
-
-        let currentStep = 1;
-        let selectedDate = "";
-        let selectedDateLabel = "";
-        let selectedSlot = "";
-        let displayedMonth = new Date(minMonth);
-        let isSubmitting = false;
-        const quiz = {
-          problema: "",
-        };
-        const problemPresets = new Map([
-          ["dente-mancante", "Mi manca un solo dente"],
-          ["piu-denti-mancanti", "Mi mancano più denti vicini"],
-          ["protesi-mobile-instabile", "La mia dentiera o protesi si muove"],
-          ["arcata-completa", "Ho perso molti denti o uso una dentiera"],
-        ]);
-
-        const setError = (message = "") => {
-          if (formError) formError.textContent = message;
-        };
-
-        const buildLeadPayload = () => ({
-          ...Object.fromEntries(new FormData(form).entries()),
-          nome: fields.nomeCompleto?.value || "",
-          telefono: fields.telefono?.value || "",
-          email: fields.email?.value || "",
-          servizio: "Valutazione implantologica",
-          messaggio: fields.messaggio?.value || "",
-          paginaProvenienza: document.referrer || "",
-          paginaCorrente: window.location.href,
-          problema: quiz.problema,
-          dataPreferita: selectedDateLabel && selectedDate ? `${selectedDateLabel} (${selectedDate})` : selectedDateLabel || selectedDate,
-          orarioPreferito: selectedSlot,
-        });
-
-        const markImplantologiaConversionPending = () => {
-          const conversionId =
-            typeof window.crypto?.randomUUID === "function"
-              ? window.crypto.randomUUID()
-              : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-
-          try {
-            window.sessionStorage.setItem("lead_conversion_scope", "implantologia");
-            window.sessionStorage.setItem("lead_conversion_id", conversionId);
-            window.sessionStorage.setItem("lead_conversion_pending", "true");
-          } catch {
-            // Il lead è già stato inviato: il redirect deve continuare anche senza storage.
-          }
-        };
-
-        const sendLead = async () => {
-          const response = await fetch("/api/send-lead", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(buildLeadPayload()),
-          });
-
-          if (response.ok) return;
-
-          const result = await response.json().catch(() => ({}));
-          throw new Error(result.error || "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
-        };
-
-        const officeSlots = () => {
-          const ranges = [
-            ["09:00", "12:30"],
-            ["14:00", "19:00"],
-          ];
-          const slots = [];
-          ranges.forEach(([start, end]) => {
-            const [startH, startM] = start.split(":").map(Number);
-            const [endH, endM] = end.split(":").map(Number);
-            const cursor = new Date(2000, 0, 1, startH, startM);
-            const limit = new Date(2000, 0, 1, endH, endM);
-            while (cursor <= limit) {
-              slots.push(cursor.toTimeString().slice(0, 5));
-              cursor.setMinutes(cursor.getMinutes() + 30);
-            }
-          });
-          return slots;
-        };
-
-        const showStep = (step, shouldScroll = true) => {
-          currentStep = step;
-          steps.forEach((item) => item.classList.toggle("is-active", Number(item.dataset.step) === step));
-          progress?.style.setProperty("--progress", `${(step / totalSteps) * 100}%`);
-          progress?.setAttribute("aria-valuenow", String(step));
-          if (actions instanceof HTMLElement) actions.hidden = step !== totalSteps;
-          if (submitBtn instanceof HTMLButtonElement) submitBtn.hidden = step !== totalSteps;
-          setError();
-          if (shouldScroll) {
-            requestAnimationFrame(() => {
-              form.scrollIntoView({ behavior: "smooth", block: "start" });
-            });
-          }
-        };
-
-        const validateStep = () => {
-          if (currentStep === 1) {
-            const activeStep = steps.find((item) => Number(item.dataset.step) === currentStep);
-            const field = activeStep?.querySelector(".quiz-options")?.dataset.field;
-            if (field && !quiz[field]) {
-              setError("Seleziona una risposta per continuare.");
-              return false;
-            }
-          }
-
-          if (currentStep === 2 && !selectedDate) {
-            setError("Seleziona una data disponibile.");
-            return false;
-          }
-
-          if (currentStep === 3 && !selectedSlot) {
-            setError("Seleziona un orario preferito.");
-            return false;
-          }
-
-          if (currentStep === 4) {
-            const required = [fields.nomeCompleto, fields.telefono, fields.email].filter((field) => field instanceof HTMLInputElement);
-            const invalid = required.find((field) => !field.checkValidity());
-            if (invalid) {
-              invalid.reportValidity();
-              setError("Completa i dati di contatto per inviare la richiesta.");
-              return false;
-            }
-          }
-
-          return true;
-        };
-
-        const buildCalendar = () => {
-          if (!calendarGrid || !calendarTitle || !(prevMonthBtn instanceof HTMLButtonElement) || !(nextMonthBtn instanceof HTMLButtonElement)) return;
-          calendarGrid.innerHTML = "";
-          calendarTitle.textContent = monthFormatter.format(displayedMonth);
-          prevMonthBtn.disabled = isSameMonth(displayedMonth, minMonth);
-          nextMonthBtn.disabled = isSameMonth(displayedMonth, maxMonth);
-
-          ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"].forEach((day) => {
-            const label = document.createElement("span");
-            label.className = "calendar-weekday";
-            label.textContent = day;
-            calendarGrid.append(label);
-          });
-
-          const firstDay = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth(), 1);
-          const daysInMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() + 1, 0).getDate();
-          const leadingBlanks = (firstDay.getDay() + 6) % 7;
-
-          for (let i = 0; i < leadingBlanks; i += 1) {
-            const blank = document.createElement("span");
-            blank.setAttribute("aria-hidden", "true");
-            calendarGrid.append(blank);
-          }
-
-          for (let dayNumber = 1; dayNumber <= daysInMonth; dayNumber += 1) {
-            const date = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth(), dayNumber);
-            const day = date.getDay();
-            const isWeekend = day === 0 || day === 6;
-            const isOutOfRange = date < today || date > maxDate;
-            const value = isoDate(date);
-            const label = dateFormatter.format(date);
-            const button = document.createElement("button");
-            button.type = "button";
-            button.className = "date-btn";
-            button.setAttribute("aria-pressed", "false");
-            button.disabled = isWeekend || isOutOfRange;
-            button.dataset.value = value;
-            button.dataset.label = label;
-            button.innerHTML = `<span>${dayNumber}</span>`;
-            if (selectedDate === value) button.setAttribute("aria-pressed", "true");
-            button.addEventListener("click", () => {
-              selectedDate = value;
-              selectedDateLabel = label;
-              form.querySelectorAll(".date-btn").forEach((btn) => btn.setAttribute("aria-pressed", "false"));
-              button.setAttribute("aria-pressed", "true");
-              setError();
-              window.setTimeout(() => showStep(3), 140);
-            });
-            calendarGrid.append(button);
-          }
-        };
-
-        const buildSlots = () => {
-          if (!slotGrid) return;
-          slotGrid.innerHTML = "";
-          officeSlots().forEach((slot) => {
-            const button = document.createElement("button");
-            button.type = "button";
-            button.className = "slot-btn";
-            button.textContent = slot;
-            button.setAttribute("aria-pressed", "false");
-            button.addEventListener("click", () => {
-              selectedSlot = slot;
-              form.querySelectorAll(".slot-btn").forEach((btn) => btn.setAttribute("aria-pressed", "false"));
-              button.setAttribute("aria-pressed", "true");
-              setError();
-              window.setTimeout(() => showStep(4), 140);
-            });
-            slotGrid.append(button);
-          });
-        };
-
-        const markQuizChoice = (field, value) => {
-          const group = form.querySelector(`.quiz-options[data-field="${field}"]`);
-          if (!group) return;
-          group.querySelectorAll(".choice-btn").forEach((button) => {
-            button.setAttribute("aria-pressed", button.dataset.value === value ? "true" : "false");
-          });
-        };
-
-        form.querySelectorAll(".quiz-options").forEach((group) => {
-          const field = group.dataset.field;
-          group.querySelectorAll(".choice-btn").forEach((button) => {
-            button.setAttribute("aria-pressed", "false");
-            button.addEventListener("click", () => {
-              if (!field) return;
-              quiz[field] = button.dataset.value || "";
-              group.querySelectorAll(".choice-btn").forEach((btn) => btn.setAttribute("aria-pressed", "false"));
-              button.setAttribute("aria-pressed", "true");
-              setError();
-              if (currentStep === 1) {
-                window.setTimeout(() => showStep(currentStep + 1), 140);
-              }
-            });
-          });
-        });
-
-        prevMonthBtn?.addEventListener("click", () => {
-          displayedMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() - 1, 1);
-          buildCalendar();
-        });
-        nextMonthBtn?.addEventListener("click", () => {
-          displayedMonth = new Date(displayedMonth.getFullYear(), displayedMonth.getMonth() + 1, 1);
-          buildCalendar();
-        });
-
-        form.addEventListener("submit", async (event) => {
-          event.preventDefault();
-          if (currentStep !== totalSteps) {
-            if (validateStep()) showStep(Math.min(totalSteps, currentStep + 1));
-            return;
-          }
-          if (!validateStep()) return;
-          if (isSubmitting) return;
-          isSubmitting = true;
-          if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = true;
-
-          try {
-            await sendLead();
-            markImplantologiaConversionPending();
-            window.location.href = "/thank-you-page/";
-          } catch (error) {
-            isSubmitting = false;
-            if (submitBtn instanceof HTMLButtonElement) submitBtn.disabled = false;
-            setError(error instanceof Error ? error.message : "Non siamo riusciti a inviare la richiesta. Riprova tra poco.");
-          }
-        });
-
-        buildCalendar();
-        buildSlots();
-        const presetProblem = problemPresets.get(new URLSearchParams(window.location.search).get("problema") || "");
-        if (presetProblem) {
-          quiz.problema = presetProblem;
-          markQuizChoice("problema", presetProblem);
-          showStep(2, false);
-        } else {
-          showStep(1, false);
+      if (legacyMapping) {
+        if (!target.searchParams.has("servizio")) {
+          target.searchParams.set("servizio", legacyMapping.service);
         }
-      })();
+        if (
+          legacyMapping.treatment &&
+          !target.searchParams.has("trattamento")
+        ) {
+          target.searchParams.set("trattamento", legacyMapping.treatment);
+        }
+      }
+
+      const fallbackLink = document.querySelector("[data-request-redirect-link]");
+      if (fallbackLink instanceof HTMLAnchorElement) {
+        fallbackLink.href = `${target.pathname}${target.search}${target.hash}`;
+      }
+
+      if (target.href !== window.location.href) {
+        window.location.replace(target.href);
+      }
     </script>
   </body>
 </html>
