@@ -58,6 +58,61 @@ const defineRequestFormPagePresets = <
 };
 
 export const requestFormPagePresets = defineRequestFormPagePresets({
+  "/attivita/igiene-orale-e-profilassi/": {
+    serviceId: "igiene-orale-e-profilassi",
+    initialStep: 2,
+    sourcePage: "/attivita/igiene-orale-e-profilassi/",
+  },
+  "/attivita/odontoiatria-conservativa/": {
+    serviceId: "odontoiatria-conservativa",
+    initialStep: 2,
+    sourcePage: "/attivita/odontoiatria-conservativa/",
+  },
+  "/attivita/endodonzia/": {
+    serviceId: "endodonzia",
+    initialStep: 2,
+    sourcePage: "/attivita/endodonzia/",
+  },
+  "/attivita/parodontologia/": {
+    serviceId: "parodontologia",
+    initialStep: 2,
+    sourcePage: "/attivita/parodontologia/",
+  },
+  "/protesi-dentale/": {
+    serviceId: "protesi-dentale",
+    initialStep: 2,
+    sourcePage: "/protesi-dentale/",
+  },
+  "/implantologia/": {
+    serviceId: "implantologia",
+    initialStep: 2,
+    sourcePage: "/implantologia/",
+  },
+  "/attivita/estetica-del-sorriso/": {
+    serviceId: "estetica-del-sorriso",
+    initialStep: 2,
+    sourcePage: "/attivita/estetica-del-sorriso/",
+  },
+  "/attivita/ortodonzia/": {
+    serviceId: "ortodonzia",
+    initialStep: 2,
+    sourcePage: "/attivita/ortodonzia/",
+  },
+  "/attivita/gnatologia/": {
+    serviceId: "gnatologia",
+    initialStep: 2,
+    sourcePage: "/attivita/gnatologia/",
+  },
+  "/attivita/chirurgia-orale/": {
+    serviceId: "chirurgia-orale",
+    initialStep: 2,
+    sourcePage: "/attivita/chirurgia-orale/",
+  },
+  "/attivita/pedodonzia/": {
+    serviceId: "pedodonzia",
+    initialStep: 2,
+    sourcePage: "/attivita/pedodonzia/",
+  },
   "/implantologia/impianto-singolo/": {
     serviceId: "implantologia",
     treatmentId: "implantologia--sostituire-un-solo-dente",

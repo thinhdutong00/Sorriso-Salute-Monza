@@ -2,10 +2,12 @@
 import "../../styles/global.css";
 import CategoryTreatmentsSection from "../CategoryTreatmentsSection.astro";
 import FaviconLinks from "../FaviconLinks.astro";
+import GeneralRequestForm from "../GeneralRequestForm.astro";
 import GoogleAdsTracking from "../GoogleAdsTracking.astro";
 import SiteFooter from "../SiteFooter.astro";
 import ImplantologiaHeader from "../implantologia/ImplantologiaHeader.astro";
 import { getCategoryTreatments } from "../../data/categoryTreatments";
+import { getRequestFormPagePreset } from "../../data/requestFormPagePresets";
 import {
   choiceFactors,
   costFactors,
@@ -31,7 +33,15 @@ const heroImage = "/assets/brand/implant-solutions/implant-prosthesis.png";
 const heroImageSrcSet =
   "/assets/brand/implant-solutions/optimized/implant-prosthesis-480.avif 480w, /assets/brand/implant-solutions/optimized/implant-prosthesis-720.avif 720w, /assets/brand/implant-solutions/optimized/implant-prosthesis-1080.avif 1080w";
 const socialImage = `${siteUrl}/assets/brand/implant-solutions/implant-prosthesis.png`;
-const ctaHref = "/richiesta/";
+const requestFormPreset = legacyRoute
+  ? undefined
+  : getRequestFormPagePreset("/protesi-dentale/");
+
+if (!legacyRoute && !requestFormPreset) {
+  throw new Error("Preset del modulo mancante per /protesi-dentale/");
+}
+
+const ctaHref = requestFormPreset ? "#richiesta" : "/richiesta/";
 const categoryTreatments = getCategoryTreatments("/protesi-dentale/");
 
 const webPageSchema = {
@@ -449,6 +459,19 @@ const structuredData = {
           </a>
         </div>
       </section>
+
+      {
+        requestFormPreset && (
+          <div id="richiesta">
+            <GeneralRequestForm
+              presetService={requestFormPreset.serviceId}
+              initialStep={requestFormPreset.initialStep}
+              sourcePage={requestFormPreset.sourcePage}
+              embedded={true}
+            />
+          </div>
+        )
+      }
     </main>
 
     <SiteFooter />

@@ -4,6 +4,7 @@ import path from "node:path";
 import AboutTreatmentAreasSection from "./AboutTreatmentAreasSection.astro";
 import BrandPalette from "./BrandPalette.astro";
 import CategoryTreatmentsSection from "./CategoryTreatmentsSection.astro";
+import GeneralRequestForm from "./GeneralRequestForm.astro";
 import GoogleAdsTracking from "./GoogleAdsTracking.astro";
 import HomeCarePathSection from "./HomeCarePathSection.astro";
 import HomeContactSection from "./HomeContactSection.astro";
@@ -13,6 +14,7 @@ import SiteFooter from "./SiteFooter.astro";
 import SiteHeader from "./SiteHeader.astro";
 import { getCategoryTreatments } from "../data/categoryTreatments";
 import { getInternalPageHero } from "../data/internalPageHeroes";
+import { getRequestFormPagePreset } from "../data/requestFormPagePresets";
 import {
   kebabAllTreatmentsLink,
   kebabTreatmentCategories,
@@ -178,6 +180,12 @@ const internalHero = isInternalPage && !isContactPage
   ? getInternalPageHero(page.path, page.title)
   : null;
 const categoryTreatments = getCategoryTreatments(page.path);
+const requestFormPreset = getRequestFormPagePreset(page.path);
+const requestFormHref = requestFormPreset ? "#richiesta" : "/richiesta-generale/";
+const internalHeroPanel =
+  requestFormPreset && internalHero?.panel
+    ? { ...internalHero.panel, ctaHref: requestFormHref }
+    : internalHero?.panel;
 
 const legacyHeaderPagePaths = new Set([
   "/cookie-policy/",
@@ -635,8 +643,8 @@ const applyStudioMapEmbed = (html: string) =>
 
 const applyGeneralRequestCtaLinks = (html: string) =>
   html
-    .replaceAll('href="/richiesta/"', 'href="/richiesta-generale/"')
-    .replaceAll("href='/richiesta/'", "href='/richiesta-generale/'");
+    .replaceAll('href="/richiesta/"', `href="${requestFormHref}"`)
+    .replaceAll("href='/richiesta/'", `href='${requestFormHref}'`);
 
 const applyStructureAnchorLinks = (html: string) =>
   html
@@ -876,7 +884,9 @@ const stickyCtaVariant = isActivityServicePage
   : "activity-sticky-cta activity-sticky-cta--generic";
 const stickyCtaServiceSlug = isActivityServicePage ? page.path.replace(/^\/attivita\/|\/$/g, "") : "";
 const stickyCtaHref = stickyCtaServiceSlug
-  ? `/richiesta-generale/?servizio=${encodeURIComponent(stickyCtaServiceSlug)}`
+  ? requestFormPreset
+    ? requestFormHref
+    : `/richiesta-generale/?servizio=${encodeURIComponent(stickyCtaServiceSlug)}`
   : "/richiesta-generale/";
 const shouldRenderStickyCta = page.path !== "/recensioni-studio-dentistico-monza/";
 
@@ -1964,7 +1974,7 @@ const reviewsPageScript = `
             titleAccent={internalHero.titleAccent}
             lead={internalHero.lead}
             breadcrumbs={internalHero.breadcrumbs}
-            panel={internalHero.panel}
+            panel={internalHeroPanel}
             quote={internalHero.quote}
             carousel={internalHero.carousel}
           />
@@ -1990,6 +2000,18 @@ const reviewsPageScript = `
             }
             <Fragment set:html={bodyWithoutLegacyAboutTreatmentSection} />
           </>
+        )
+      }
+      {
+        requestFormPreset && (
+          <div id="richiesta">
+            <GeneralRequestForm
+              presetService={requestFormPreset.serviceId}
+              initialStep={requestFormPreset.initialStep}
+              sourcePage={requestFormPreset.sourcePage}
+              embedded={true}
+            />
+          </div>
         )
       }
     </div>

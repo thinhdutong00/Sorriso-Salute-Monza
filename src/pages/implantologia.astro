@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import CategoryTreatmentsSection from "../components/CategoryTreatmentsSection.astro";
 import FaviconLinks from "../components/FaviconLinks.astro";
+import GeneralRequestForm from "../components/GeneralRequestForm.astro";
 import InternalPageHero from "../components/InternalPageHero.astro";
 import PageLoader from "../components/PageLoader.astro";
 import GoogleAdsTracking from "../components/GoogleAdsTracking.astro";
@@ -10,6 +11,7 @@ import SiteHeader from "../components/SiteHeader.astro";
 import ImplantologiaAttribution from "../components/implantologia/ImplantologiaAttribution.astro";
 import { getCategoryTreatments } from "../data/categoryTreatments";
 import { implantologiaMenuLinks, protesiDentaleMenuLink } from "../data/implantologiaNavigation";
+import { getRequestFormPagePreset } from "../data/requestFormPagePresets";
 import {
   kebabAllTreatmentsLink,
   kebabTreatmentCategories,
@@ -38,6 +40,13 @@ const mobileNavItems = [
 ];
 const currentPath = Astro.url.pathname;
 const categoryTreatments = getCategoryTreatments("/implantologia/");
+const requestFormPreset = getRequestFormPagePreset("/implantologia/");
+
+if (!requestFormPreset) {
+  throw new Error("Preset del modulo mancante per /implantologia/");
+}
+
+const requestFormHref = "#richiesta";
 
 const advantages = [
   {
@@ -858,11 +867,11 @@ const conventionGroups = [
             "Tempi, fasi e controlli spiegati con chiarezza",
           ],
           ctaLabel: "Inizia la valutazione",
-          ctaHref: "/richiesta/",
+          ctaHref: requestFormHref,
         }}
       >
         <div slot="actions" class="internal-page-hero__actions">
-          <a class="internal-page-hero__button" href="/richiesta/">Richiedi una valutazione</a>
+          <a class="internal-page-hero__button" href={requestFormHref}>Richiedi una valutazione</a>
           <a class="internal-page-hero__button internal-page-hero__button--secondary" href="#situazioni-oggi-title">
             Scopri le soluzioni
           </a>
@@ -926,7 +935,7 @@ const conventionGroups = [
                 <span>Diagnosi, fattibilità e alternative</span>
               </div>
             </div>
-            <a class="button button-dark advantage-cta" href="/richiesta/">Prenota una Visita Ora</a>
+            <a class="button button-dark advantage-cta" href={requestFormHref}>Prenota una Visita Ora</a>
           </div>
 
           <div class="advantage-copy">
@@ -994,7 +1003,7 @@ const conventionGroups = [
                 </article>
               ))}
             </div>
-            <a class="button button-dark mobile-advantage-cta" href="/richiesta/">Prenota una Visita Ora</a>
+            <a class="button button-dark mobile-advantage-cta" href={requestFormHref}>Prenota una Visita Ora</a>
           </div>
         </div>
       </section>
@@ -1030,7 +1039,7 @@ const conventionGroups = [
         </div>
 
         <div class="pain-cta">
-          <a class="button button-dark" href="/richiesta/">Richiedi una valutazione</a>
+          <a class="button button-dark" href={requestFormHref}>Richiedi una valutazione</a>
         </div>
       </section>
 
@@ -1064,7 +1073,7 @@ const conventionGroups = [
                 </article>
               ))}
             </div>
-            <a class="button button-primary method-mobile-cta" href="/richiesta/">
+            <a class="button button-primary method-mobile-cta" href={requestFormHref}>
               Prenota visita implantologica <span aria-hidden="true">-&gt;</span>
             </a>
           </div>
@@ -1195,12 +1204,21 @@ const conventionGroups = [
               Il percorso raccoglie problema, obiettivo, preferenza di data e recapiti, poi prepara la richiesta da inviare allo studio.
             </p>
           </div>
-          <a class="button button-dark" href="/richiesta/">
+          <a class="button button-dark" href={requestFormHref}>
             Voglio capire se posso mettere gli impianti
           </a>
           <p class="contact-note">La nostra segretaria ti contatterà entro 2 ore lavorative per confermare l'appuntamento.</p>
         </div>
       </section>
+
+      <div id="richiesta">
+        <GeneralRequestForm
+          presetService={requestFormPreset.serviceId}
+          initialStep={requestFormPreset.initialStep}
+          sourcePage={requestFormPreset.sourcePage}
+          embedded={true}
+        />
+      </div>
     </main>
 
     <SiteFooter trackWhatsappAsImplantologia />
@@ -1211,7 +1229,7 @@ const conventionGroups = [
           <span>Servizio</span>
           <strong>Implantologia</strong>
         </div>
-        <a class="activity-sticky-cta__button" href="/richiesta/">
+        <a class="activity-sticky-cta__button" href={requestFormHref}>
           Richiedi una visita
         </a>
       </div>
@@ -1302,7 +1320,7 @@ const conventionGroups = [
                 ))}
               </div>
 
-              <a class="button button-dark convention-booking-cta" href="/richiesta/" data-booking-link>
+              <a class="button button-dark convention-booking-cta" href={requestFormHref} data-booking-link>
                 Prenota Ora la Tua Visita
               </a>
             </section>
@@ -1568,7 +1586,7 @@ const conventionGroups = [
 
       const updateBookingLinks = () => {
         document.querySelectorAll("[data-booking-link]").forEach((link) => {
-          if (link instanceof HTMLAnchorElement) link.setAttribute("href", "/richiesta/");
+          if (link instanceof HTMLAnchorElement) link.setAttribute("href", "#richiesta");
         });
       };
 
