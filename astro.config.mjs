@@ -1,7 +1,12 @@
 import { readdir, writeFile } from "node:fs/promises";
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
-import { MAINTENANCE_MODE } from "./src/config/maintenance";
+import {
+  isMaintenanceModeEnabled,
+  MAINTENANCE_MODE_ENV,
+} from "./src/config/maintenance";
+
+const maintenanceEnabled = isMaintenanceModeEnabled(process.env[MAINTENANCE_MODE_ENV]);
 
 const maintenancePage = `<!doctype html>
 <html lang="it">
@@ -56,11 +61,11 @@ const findHtmlFiles = async (directory) => {
   return matches.flat();
 };
 
-const globalMaintenanceMode = () => ({
+const globalMaintenanceMode = (maintenanceEnabled) => ({
   name: "global-maintenance-mode",
   hooks: {
     "astro:build:done": async ({ dir }) => {
-      if (!MAINTENANCE_MODE) return;
+      if (!maintenanceEnabled) return;
 
       const htmlFiles = await findHtmlFiles(dir);
 
@@ -73,7 +78,7 @@ const globalMaintenanceMode = () => ({
 export default defineConfig({
   site: "https://sorrisoesalutemonza.it",
   integrations: [
-    globalMaintenanceMode(),
+    globalMaintenanceMode(maintenanceEnabled),
     sitemap({
       filter: (page) =>
         !page.endsWith("/attivita/implantologia/") &&
