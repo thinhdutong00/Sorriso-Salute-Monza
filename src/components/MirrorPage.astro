@@ -180,12 +180,27 @@ const isContactPage = page.path === "/contatti/";
 const isHygienePage = page.path === "/attivita/igiene-orale-e-profilassi/";
 const isConservativePage = page.path === "/attivita/odontoiatria-conservativa/";
 const isEndodonticsPage = page.path === "/attivita/endodonzia/";
-const usesClinicalCareFunnel = isHygienePage || isConservativePage || isEndodonticsPage;
-const clinicalCareFunnelVariant = isEndodonticsPage
-  ? "endodontics"
-  : isConservativePage
-    ? "conservative"
-    : "hygiene";
+const isPeriodonticsPage = page.path === "/attivita/parodontologia/";
+const isPediatricPage = page.path === "/attivita/pedodonzia/";
+const isGnathologyPage = page.path === "/attivita/gnatologia/";
+const usesClinicalCareFunnel =
+  isHygienePage ||
+  isConservativePage ||
+  isEndodonticsPage ||
+  isPeriodonticsPage ||
+  isPediatricPage ||
+  isGnathologyPage;
+const clinicalCareFunnelVariant = isGnathologyPage
+  ? "gnathology"
+  : isPediatricPage
+    ? "pediatric"
+    : isPeriodonticsPage
+      ? "periodontics"
+      : isEndodonticsPage
+        ? "endodontics"
+        : isConservativePage
+          ? "conservative"
+          : "hygiene";
 const isInternalPage = page.path !== "/";
 const internalHero = isInternalPage && !isContactPage
   ? getInternalPageHero(page.path, page.title)

@@ -2,7 +2,13 @@
 import { sourceReviews } from "../data/reviews-seed";
 
 type Props = {
-  variant?: "hygiene" | "conservative" | "endodontics";
+  variant?:
+    | "hygiene"
+    | "conservative"
+    | "endodontics"
+    | "periodontics"
+    | "pediatric"
+    | "gnathology";
 };
 
 const { variant = "hygiene" } = Astro.props;
@@ -17,7 +23,232 @@ const getReview = (id: string) => {
   return review;
 };
 
-const funnelContent = variant === "endodontics"
+const funnelContent = variant === "gnathology"
+  ? {
+      reviewIds: ["review-9102", "review-9111", "review-9105"],
+      causesEyebrow: "Comprendere il problema",
+      causesLead:
+        "Dolore alla mandibola, tensione al risveglio, rumori articolari o difficoltà ad aprire la bocca sono segnali da valutare. Sintomi simili possono dipendere da componenti muscolari, articolari e funzionali diverse.",
+      clinicalNote:
+        "Serramento, postura mandibolare e contatti dentali non spiegano da soli ogni disturbo. Analizziamo sintomi, movimenti e funzione prima di indicare un dispositivo o un trattamento.",
+      causes: [
+        {
+          number: "01",
+          title: "Tensione dei muscoli masticatori",
+          text: "Serramento e sovraccarico possono affaticare i muscoli di mandibola, tempie e collo, soprattutto al risveglio o nei periodi più intensi.",
+        },
+        {
+          number: "02",
+          title: "Articolazione temporo-mandibolare",
+          text: "Scatti, rumori, dolore o limitazione dei movimenti possono coinvolgere l’articolazione. La visita chiarisce come si muove e quali strutture richiedono attenzione.",
+        },
+        {
+          number: "03",
+          title: "Funzione e contatti dentali",
+          text: "Il modo in cui mandibola e denti lavorano insieme va valutato nel contesto complessivo, senza attribuire automaticamente il sintomo al solo morso.",
+        },
+      ],
+      solutionsLead:
+        "Serve ricostruire quando compare il sintomo, misurare i movimenti e distinguere la componente muscolare da quella articolare. Solo dopo si definisce il percorso più appropriato.",
+      solutions: [
+        {
+          title: "Valutazione funzionale mirata",
+          text: "Esaminiamo apertura, movimenti, muscoli, articolazioni e contatti dentali collegandoli ai sintomi riferiti.",
+          icon: "check",
+        },
+        {
+          title: "Gestione del sovraccarico",
+          text: "Indicazioni comportamentali e, quando clinicamente indicato, un dispositivo su misura aiutano a gestire carichi e serramento.",
+          icon: "shield",
+        },
+        {
+          title: "Percorso coordinato",
+          text: "Se il quadro lo richiede, integriamo controlli e competenze diverse per affrontare in modo coerente le componenti del disturbo.",
+          icon: "spark",
+        },
+      ],
+      processLead:
+        "Un percorso progressivo per comprendere il disturbo, ridurre i fattori di sovraccarico e verificare nel tempo la risposta funzionale.",
+      processSteps: [
+        {
+          number: "01",
+          title: "Ascoltiamo",
+          text: "Ricostruiamo sintomi, frequenza, momenti della giornata e abitudini che possono influenzare mandibola e muscoli.",
+        },
+        {
+          number: "02",
+          title: "Valutiamo",
+          text: "Controlliamo movimenti, articolazioni, muscoli e occlusione e definiamo se servono ulteriori approfondimenti.",
+        },
+        {
+          number: "03",
+          title: "Gestiamo",
+          text: "Impostiamo il percorso indicato e monitoriamo dolore, mobilità e funzione per adattarlo alla risposta clinica.",
+        },
+      ],
+      trustItems: [
+        "Sintomi e funzione valutati insieme",
+        "Dispositivi soltanto se indicati",
+        "Risposta clinica monitorata",
+      ],
+      reviewSectionId: "recensioni-gnatologia",
+      ctaSectionId: "prenota-gnatologia",
+      ctaTitleId: "gnathology-final-cta-title",
+      ctaTitle: "Ritrova comfort nei movimenti della mandibola.",
+      ctaText:
+        "Descrivici quando compare il fastidio: ti ricontattiamo per organizzare una valutazione funzionale e definire il percorso più adatto.",
+    }
+  : variant === "pediatric"
+  ? {
+      reviewIds: ["review-9104", "review-9111", "review-9108"],
+      causesEyebrow: "Comprendere il problema",
+      causesLead:
+        "Dolore, sensibilità, difficoltà a masticare o un cambiamento nell’aspetto di un dente meritano attenzione. Ascoltare il bambino e controllare presto il segnale aiuta a evitare che la visita diventi un’urgenza.",
+      clinicalNote:
+        "I bambini non sempre riescono a descrivere con precisione ciò che sentono. Osserviamo denti, gengive e comportamento con un approccio adatto all’età prima di proporre qualsiasi cura.",
+      causes: [
+        {
+          number: "01",
+          title: "Carie nei denti da latte o permanenti",
+          text: "Una carie può causare sensibilità, dolore o difficoltà durante i pasti. Valutarne profondità e posizione permette di scegliere la cura più adatta.",
+        },
+        {
+          number: "02",
+          title: "Trauma o dente scheggiato",
+          text: "Cadute e urti possono coinvolgere denti da latte o permanenti. Anche senza dolore immediato è importante controllare dente, radice e tessuti vicini.",
+        },
+        {
+          number: "03",
+          title: "Eruzione e gengive sensibili",
+          text: "La comparsa dei nuovi denti e alcune infiammazioni gengivali possono creare fastidio. La visita distingue una fase normale da una situazione da trattare.",
+        },
+      ],
+      solutionsLead:
+        "Serve un ambiente rassicurante, una spiegazione comprensibile e una cura proporzionata al problema. Il bambino deve sapere cosa accade e la famiglia deve avere indicazioni chiare.",
+      solutions: [
+        {
+          title: "Visita adatta all’età",
+          text: "Tempi, linguaggio e passaggi vengono calibrati sul bambino per costruire collaborazione senza forzature inutili.",
+          icon: "check",
+        },
+        {
+          title: "Prevenzione concreta",
+          text: "Controlli, igiene, fluoroprofilassi o sigillature vengono valutati in base all’età e al rischio individuale.",
+          icon: "shield",
+        },
+        {
+          title: "Cura mirata del dente",
+          text: "Quando serve intervenire, scegliamo la soluzione compatibile con il tipo di dente, la crescita e la situazione clinica.",
+          icon: "spark",
+        },
+      ],
+      processLead:
+        "Un percorso semplice per far sentire il bambino al sicuro, capire il problema e proteggere la salute orale durante la crescita.",
+      processSteps: [
+        {
+          number: "01",
+          title: "Accogliamo",
+          text: "Conosciamo il bambino, ascoltiamo la famiglia e spieghiamo la visita con parole e tempi adatti alla sua età.",
+        },
+        {
+          number: "02",
+          title: "Valutiamo",
+          text: "Controlliamo denti, gengive, sviluppo e abitudini per distinguere ciò che va curato da ciò che va monitorato.",
+        },
+        {
+          number: "03",
+          title: "Proteggiamo",
+          text: "Eseguiamo la cura necessaria e definiamo prevenzione e controlli per accompagnare il sorriso nella crescita.",
+        },
+      ],
+      trustItems: [
+        "Comunicazione adatta all’età",
+        "Famiglia coinvolta nel percorso",
+        "Prevenzione durante la crescita",
+      ],
+      reviewSectionId: "recensioni-pedodonzia",
+      ctaSectionId: "prenota-pedodonzia",
+      ctaTitleId: "pediatric-final-cta-title",
+      ctaTitle: "Una buona esperienza dal dentista comincia dal primo incontro.",
+      ctaText:
+        "Raccontaci l’esigenza del bambino: ti ricontattiamo per organizzare una visita con tempi e modalità adatti alla sua età.",
+    }
+  : variant === "periodontics"
+  ? {
+      reviewIds: ["review-9098", "review-9110", "review-9105"],
+      causesEyebrow: "Comprendere il problema",
+      causesLead:
+        "Sanguinamento, gonfiore, alito persistente o denti che sembrano meno stabili sono segnali da controllare. I problemi parodontali possono progredire anche senza dolore evidente.",
+      clinicalNote:
+        "L’aspetto delle gengive da solo non indica quanto siano coinvolti i tessuti di sostegno. Misuriamo tasche gengivali e stabilità dei denti e, quando indicato, valutiamo il livello osseo.",
+      causes: [
+        {
+          number: "01",
+          title: "Placca e tartaro sotto gengiva",
+          text: "I depositi che si accumulano vicino e sotto il margine gengivale mantengono l’infiammazione e non possono essere rimossi con la sola igiene domestica.",
+        },
+        {
+          number: "02",
+          title: "Infiammazione persistente",
+          text: "Gengive che sanguinano, si gonfiano o si ritirano richiedono una valutazione. Intervenire aiuta a controllare il processo prima che coinvolga più tessuti.",
+        },
+        {
+          number: "03",
+          title: "Supporto del dente ridotto",
+          text: "Quando l’infiammazione interessa osso e legamento parodontale possono formarsi tasche profonde e aumentare la mobilità dei denti.",
+        },
+      ],
+      solutionsLead:
+        "Serve misurare la situazione, ridurre la carica batterica nelle aree difficili da raggiungere e mantenere il risultato con controlli definiti sul rischio individuale.",
+      solutions: [
+        {
+          title: "Valutazione parodontale completa",
+          text: "Controlliamo sanguinamento, profondità delle tasche, recessioni e mobilità per definire l’estensione del problema.",
+          icon: "check",
+        },
+        {
+          title: "Terapia mirata delle gengive",
+          text: "Rimuoviamo placca e tartaro dalle superfici coinvolte con un trattamento calibrato sulla profondità e sull’infiammazione.",
+          icon: "spark",
+        },
+        {
+          title: "Mantenimento personalizzato",
+          text: "Richiami professionali e indicazioni domiciliari specifiche aiutano a controllare nel tempo i fattori che favoriscono la recidiva.",
+          icon: "shield",
+        },
+      ],
+      processLead:
+        "Un percorso misurabile per controllare l’infiammazione, proteggere il sostegno dei denti e mantenere i risultati nel tempo.",
+      processSteps: [
+        {
+          number: "01",
+          title: "Misuriamo",
+          text: "Registriamo i parametri parodontali e definiamo quali aree richiedono trattamento e controllo più attento.",
+        },
+        {
+          number: "02",
+          title: "Trattiamo",
+          text: "Detergiamo le superfici dentali sopra e sotto gengiva e interveniamo sulle zone interessate secondo il piano clinico.",
+        },
+        {
+          number: "03",
+          title: "Manteniamo",
+          text: "Rivalutiamo la risposta dei tessuti e programmiamo richiami personalizzati per ridurre il rischio di nuova progressione.",
+        },
+      ],
+      trustItems: [
+        "Parametri parodontali misurati",
+        "Terapia definita per area",
+        "Richiami basati sul rischio",
+      ],
+      reviewSectionId: "recensioni-parodontologia",
+      ctaSectionId: "prenota-parodontologia",
+      ctaTitleId: "periodontics-final-cta-title",
+      ctaTitle: "Proteggi oggi il sostegno dei tuoi denti.",
+      ctaText:
+        "Descrivici cosa noti: ti ricontattiamo per organizzare una valutazione delle gengive e indicarti il percorso più adatto.",
+    }
+  : variant === "endodontics"
   ? {
       reviewIds: ["review-9109", "review-9099", "review-9110"],
       causesEyebrow: "Comprendere il problema",
