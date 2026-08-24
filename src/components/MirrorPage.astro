@@ -731,8 +731,31 @@ const normalizeInternalLinks = (html: string) =>
     .replaceAll('href="/compass/"', 'href="https://www.compass.it/"')
     .replaceAll('href="/wp-admin/"', 'href="/"');
 
+const homepageHeroVideoMarkup = `
+<video
+  class="home-hero-background-video"
+  muted
+  autoplay
+  loop
+  playsinline
+  preload="none"
+  aria-hidden="true"
+  tabindex="-1"
+  data-home-hero-video
+  data-src="/assets/video/home-hero-smile-720.mp4"
+></video>`;
+
+const applyHomepageHeroVideo = (html: string) => {
+  if (page.path !== "/") return html;
+
+  return html.replace(
+    /<div\b(?=[^>]*\bid=["']hero-video["'])[^>]*>/i,
+    (heroOpeningTag) => `${heroOpeningTag}${homepageHeroVideoMarkup}`,
+  );
+};
+
 const head = applyAboutHeadImage(applyBrandColorTokens(applyActivityIndexItalianHead(rawHead)));
-const transformedBody = removeMirroredFooter(applyAboutTeamAnchor(applyTeamAnchorLinks(applyStructureAnchorLinks(applyGeneralRequestCtaLinks(removeConventionHeroBreadcrumb(
+const transformedBody = applyHomepageHeroVideo(removeMirroredFooter(applyAboutTeamAnchor(applyTeamAnchorLinks(applyStructureAnchorLinks(applyGeneralRequestCtaLinks(removeConventionHeroBreadcrumb(
   removeReviewsHeroBreadcrumb(
     removeAboutHeroBreadcrumb(
       applyActivityHeroDescription(
@@ -776,7 +799,7 @@ const transformedBody = removeMirroredFooter(applyAboutTeamAnchor(applyTeamAncho
       ),
     ),
   ),
-))))));
+)))))));
 const homepageSectionsMovedToDedicatedPages = ["653d69fd", "422c1ea", "9cf3cbc", "8806ad1"];
 const bodyWithoutMovedHomepageSections =
   page.path === "/"
@@ -827,6 +850,93 @@ const isActivityServicePage =
   page.path !== "/attivita/" &&
   page.path !== "/attivita/implantologia/";
 const isActivityMirrorPage = page.path === "/attivita/" || isActivityServicePage;
+
+const homeHeroVideoStyles = `
+body.brand-palette.home #hero-video > .home-hero-background-video {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 420ms ease;
+}
+
+body.brand-palette.home #hero-video > .home-hero-background-video.is-ready {
+  opacity: 1;
+}
+
+body.brand-palette.home #hero-video::after {
+  z-index: 1 !important;
+}
+
+body.brand-palette.home #hero-video > .e-con-inner {
+  z-index: 2 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.brand-palette.home #hero-video > .home-hero-background-video {
+    display: none !important;
+  }
+}
+`;
+
+const homeHeroVideoScript = `
+(() => {
+  const video = document.querySelector("[data-home-hero-video]");
+  if (!(video instanceof HTMLVideoElement)) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+  if (reduceMotion || saveData) return;
+
+  const playVideo = () => {
+    video.muted = true;
+    video.play().catch(() => {});
+  };
+
+  const loadVideo = () => {
+    const source = video.dataset.src;
+    if (!source || video.src) return;
+
+    video.addEventListener("canplay", () => {
+      video.classList.add("is-ready");
+      playVideo();
+    }, { once: true });
+
+    video.src = source;
+    video.load();
+  };
+
+  const scheduleVideo = () => {
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(loadVideo, { timeout: 1800 });
+      return;
+    }
+
+    window.setTimeout(loadVideo, 350);
+  };
+
+  if (document.readyState === "complete") {
+    scheduleVideo();
+  } else {
+    window.addEventListener("load", scheduleVideo, { once: true });
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      video.pause();
+    } else if (video.classList.contains("is-ready")) {
+      playVideo();
+    }
+  });
+})();
+`;
 
 const aboutTeamMobileStyles = `
 body.brand-palette.page-id-539 #team {
@@ -1958,6 +2068,7 @@ const reviewsPageScript = `
     <Fragment set:html={head} />
     <GoogleAdsTracking />
     <BrandPalette />
+    {page.path === "/" && <style is:inline set:html={homeHeroVideoStyles} />}
     {isAboutPage && <style is:inline set:html={aboutTeamMobileStyles} />}
   </head>
   <body class:list={[page.bodyClass, "brand-palette", isInternalPage && "internal-page mirror-internal-page", hasImageHero && "mirror-hero-image", isActivityMirrorPage && "mirror-activity-page", isReviewsPage && "mirror-reviews-page"]} id={page.bodyId || undefined}>
@@ -2303,6 +2414,7 @@ const reviewsPageScript = `
     <SiteFooter />
     <script is:inline set:html={counterFallbackScript} />
     <script is:inline set:html={treatmentCardsScript} />
+    {page.path === "/" && <script is:inline set:html={homeHeroVideoScript} />}
     {isReviewsPage && <script is:inline set:html={reviewsPageScript} />}
     {
       shouldRenderStickyCta && (
