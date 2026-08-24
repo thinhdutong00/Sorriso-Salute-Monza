@@ -883,6 +883,24 @@ body.brand-palette.home #hero-video > .e-con-inner {
   z-index: 2 !important;
 }
 
+@media (min-width: 768px) {
+  body.brand-palette.home #hero-video .elementor-element-9daee80 {
+    transform: translateY(clamp(32px, 5vh, 64px)) !important;
+  }
+
+  body.brand-palette.home #main-content #hero-video .elementor-element-1376b220 .elementor-heading-title {
+    font-size: clamp(72px, 6.05vw, 112px) !important;
+    letter-spacing: -0.02em !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.brand-palette.home #main-content #hero-video .elementor-element-1376b220 .elementor-heading-title::before {
+    font-size: clamp(32px, 11.8vw, 40px) !important;
+    letter-spacing: 0.01em !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   body.brand-palette.home #hero-video > .home-hero-background-video {
     display: none !important;
