@@ -2,7 +2,7 @@
 import { sourceReviews } from "../data/reviews-seed";
 
 type Props = {
-  variant?: "hygiene" | "conservative";
+  variant?: "hygiene" | "conservative" | "endodontics";
 };
 
 const { variant = "hygiene" } = Astro.props;
@@ -17,7 +17,82 @@ const getReview = (id: string) => {
   return review;
 };
 
-const funnelContent = variant === "conservative"
+const funnelContent = variant === "endodontics"
+  ? {
+      reviewIds: ["review-9109", "review-9099", "review-9110"],
+      causesEyebrow: "Comprendere il problema",
+      causesLead:
+        "Un dolore che pulsa, una sensibilità persistente o fastidio durante la masticazione possono indicare che la parte interna del dente richiede attenzione. Valutare presto il sintomo aiuta a capire se il dente può essere conservato.",
+      clinicalNote:
+        "Intensità e durata del dolore non bastano per definire la causa. Controlliamo la vitalità del dente e, quando indicato, utilizziamo esami radiografici prima di proporre la terapia.",
+      causes: [
+        {
+          number: "01",
+          title: "Polpa infiammata",
+          text: "Una carie profonda o un restauro molto vicino alla polpa possono provocare dolore al caldo, al freddo o spontaneo. La valutazione chiarisce se l’irritazione è reversibile.",
+        },
+        {
+          number: "02",
+          title: "Infezione nei canali",
+          text: "Quando i batteri raggiungono l’interno del dente possono comparire dolore alla pressione, gonfiore o un ascesso. Il sistema canalare deve essere trattato in modo mirato.",
+        },
+        {
+          number: "03",
+          title: "Trauma o frattura",
+          text: "Un urto o una crepa possono compromettere la polpa anche senza un danno evidente. Verificare radice e tessuti circostanti permette di pianificare la cura corretta.",
+        },
+      ],
+      solutionsLead:
+        "L’obiettivo è controllare dolore e infezione, trattare i tessuti interni compromessi e mantenere il dente in funzione quando le condizioni cliniche lo consentono.",
+      solutions: [
+        {
+          title: "Diagnosi mirata",
+          text: "Test clinici ed esami radiografici, quando necessari, permettono di localizzare il dente responsabile e valutare radici e tessuti.",
+          icon: "check",
+        },
+        {
+          title: "Terapia canalare precisa",
+          text: "I canali vengono detersi, disinfettati e sigillati per trattare l’infezione presente all’interno del dente.",
+          icon: "spark",
+        },
+        {
+          title: "Dente ricostruito e protetto",
+          text: "Dopo la terapia recuperiamo forma e funzione con una ricostruzione definita in base alla struttura dentale residua.",
+          icon: "shield",
+        },
+      ],
+      processLead:
+        "Un percorso controllato per individuare il dente responsabile, trattarlo dall’interno e riportarlo a una funzione stabile.",
+      processSteps: [
+        {
+          number: "01",
+          title: "Valutiamo",
+          text: "Raccogliamo i sintomi, eseguiamo i test necessari e controlliamo radiograficamente il dente quando indicato.",
+        },
+        {
+          number: "02",
+          title: "Trattiamo",
+          text: "In anestesia locale accediamo ai canali, li detergiamo e disinfettiamo, quindi li sigilliamo in modo accurato.",
+        },
+        {
+          number: "03",
+          title: "Ricostruiamo",
+          text: "Proteggiamo il dente con il restauro più adatto e programmiamo i controlli utili a verificarne funzione e stabilità.",
+        },
+      ],
+      trustItems: [
+        "Diagnosi prima della terapia",
+        "Attenzione al comfort",
+        "Conservazione del dente quando possibile",
+      ],
+      reviewSectionId: "recensioni-endodonzia",
+      ctaSectionId: "prenota-endodonzia",
+      ctaTitleId: "endodontics-final-cta-title",
+      ctaTitle: "Non lasciare che il dolore decida al posto tuo.",
+      ctaText:
+        "Descrivici il sintomo: ti ricontattiamo per organizzare una valutazione e capire se il dente può essere curato e conservato.",
+    }
+  : variant === "conservative"
   ? {
       reviewIds: ["review-9103", "review-9100", "review-9101"],
       causesEyebrow: "Comprendere il problema",

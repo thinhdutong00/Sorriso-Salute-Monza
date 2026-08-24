@@ -179,7 +179,13 @@ const isAboutPage = aboutBreadcrumbPagePaths.has(page.path);
 const isContactPage = page.path === "/contatti/";
 const isHygienePage = page.path === "/attivita/igiene-orale-e-profilassi/";
 const isConservativePage = page.path === "/attivita/odontoiatria-conservativa/";
-const usesClinicalCareFunnel = isHygienePage || isConservativePage;
+const isEndodonticsPage = page.path === "/attivita/endodonzia/";
+const usesClinicalCareFunnel = isHygienePage || isConservativePage || isEndodonticsPage;
+const clinicalCareFunnelVariant = isEndodonticsPage
+  ? "endodontics"
+  : isConservativePage
+    ? "conservative"
+    : "hygiene";
 const isInternalPage = page.path !== "/";
 const internalHero = isInternalPage && !isContactPage
   ? getInternalPageHero(page.path, page.title)
@@ -2182,7 +2188,7 @@ const reviewsPageScript = `
         ) : isContactPage ? (
           <HomeContactSection />
         ) : usesClinicalCareFunnel ? (
-          <HygieneCareFunnel variant={isConservativePage ? "conservative" : "hygiene"} />
+          <HygieneCareFunnel variant={clinicalCareFunnelVariant} />
         ) : (
           <>
             {isAboutPage && <AboutTreatmentAreasSection />}
