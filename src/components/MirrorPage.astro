@@ -324,7 +324,7 @@ ${links.join("\n")}
 </div></div>`;
 };
 
-const reviewsFormMarkup = `<p><div class="glsr glsr-default" id="glsr_5cfbac45" data-from="shortcode" data-shortcode="site_reviews_form"><div class="glsr-form-wrap">
+const reviewsFormMarkup = `<div class="glsr glsr-default" id="glsr_5cfbac45" data-from="shortcode" data-shortcode="site_reviews_form"><div class="glsr-form-wrap">
 <form class="glsr-review-form glsr-form" method="post" enctype="multipart/form-data" data-review-form novalidate>
 <input type="hidden" name="site-reviews[_action]" value="submit-review" />
 <input type="hidden" name="site-reviews[_nonce]" value="" />
@@ -395,7 +395,7 @@ const reviewsFormMarkup = `<p><div class="glsr glsr-default" id="glsr_5cfbac45" 
 </div>
 </div>
 </form>
-</div></div></p>`;
+</div></div>`;
 
 const reviewsListMarkup = `<p><div class="glsr glsr-default" id="glsr_85761207" data-from="shortcode" data-shortcode="site_reviews" data-pagination="ajax" data-reviews-app><div class="glsr-reviews-wrap">
 <div class="glsr-reviews" data-reviews-list>
@@ -825,8 +825,13 @@ const body = normalizeInternalLinks(
     removeLegacyInternalHero(removeMirroredHeader(bodyWithHomepageSectionOrder)),
   ),
 );
+const bodyWithoutLegacyReviewsFormSection = isReviewsPage
+  ? removeDivElementByDataId(body, "9179570")
+  : body;
 const bodyWithoutHomepageClaritySection =
-  page.path === "/" ? removeDivElementByDataId(body, "e8411f6") : body;
+  page.path === "/"
+    ? removeDivElementByDataId(bodyWithoutLegacyReviewsFormSection, "e8411f6")
+    : bodyWithoutLegacyReviewsFormSection;
 const homeCarePathInsertIndex =
   page.path === "/"
     ? findDivElementEndByDataId(bodyWithoutHomepageClaritySection, "69bfb3fc")
@@ -845,7 +850,7 @@ const bodyWithoutReplacedAboutSections =
         (next, dataId) => removeDivElementByDataId(next, dataId),
         body,
       )
-    : body;
+    : bodyWithoutLegacyReviewsFormSection;
 const bodyWithoutLegacyAboutTreatmentSection = isAboutPage
   ? removeDivElementByDataId(bodyWithoutReplacedAboutSections, "ce5d034")
   : bodyWithoutReplacedAboutSections;
@@ -2134,6 +2139,20 @@ const reviewsPageScript = `
                     embedded={true}
                   />
                 </div>
+              )
+            }
+            {
+              isReviewsPage && (
+                <aside
+                  slot="aside"
+                  class="internal-page-hero__review-form"
+                  aria-labelledby="reviews-hero-form-title"
+                >
+                  <h2 id="reviews-hero-form-title">
+                    Scrivi e racconta la tua esperienza in Sorriso&amp;Salute
+                  </h2>
+                  <Fragment set:html={reviewsFormMarkup} />
+                </aside>
               )
             }
           </InternalPageHero>
