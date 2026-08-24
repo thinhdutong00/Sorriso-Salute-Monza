@@ -183,24 +183,28 @@ const isEndodonticsPage = page.path === "/attivita/endodonzia/";
 const isPeriodonticsPage = page.path === "/attivita/parodontologia/";
 const isPediatricPage = page.path === "/attivita/pedodonzia/";
 const isGnathologyPage = page.path === "/attivita/gnatologia/";
+const isOrthodonticsPage = page.path === "/attivita/ortodonzia/";
 const usesClinicalCareFunnel =
   isHygienePage ||
   isConservativePage ||
   isEndodonticsPage ||
   isPeriodonticsPage ||
   isPediatricPage ||
-  isGnathologyPage;
-const clinicalCareFunnelVariant = isGnathologyPage
-  ? "gnathology"
-  : isPediatricPage
-    ? "pediatric"
-    : isPeriodonticsPage
-      ? "periodontics"
-      : isEndodonticsPage
-        ? "endodontics"
-        : isConservativePage
-          ? "conservative"
-          : "hygiene";
+  isGnathologyPage ||
+  isOrthodonticsPage;
+const clinicalCareFunnelVariant = isOrthodonticsPage
+  ? "orthodontics"
+  : isGnathologyPage
+    ? "gnathology"
+    : isPediatricPage
+      ? "pediatric"
+      : isPeriodonticsPage
+        ? "periodontics"
+        : isEndodonticsPage
+          ? "endodontics"
+          : isConservativePage
+            ? "conservative"
+            : "hygiene";
 const isInternalPage = page.path !== "/";
 const internalHero = isInternalPage && !isContactPage
   ? getInternalPageHero(page.path, page.title)

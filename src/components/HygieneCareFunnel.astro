@@ -8,7 +8,8 @@ type Props = {
     | "endodontics"
     | "periodontics"
     | "pediatric"
-    | "gnathology";
+    | "gnathology"
+    | "orthodontics";
 };
 
 const { variant = "hygiene" } = Astro.props;
@@ -23,7 +24,82 @@ const getReview = (id: string) => {
   return review;
 };
 
-const funnelContent = variant === "gnathology"
+const funnelContent = variant === "orthodontics"
+  ? {
+      reviewIds: ["review-9089", "review-9102", "review-9111"],
+      causesEyebrow: "Comprendere la situazione",
+      causesLead:
+        "Affollamento, spazi, denti inclinati o un morso che non chiude in modo equilibrato possono dipendere da crescita, eruzione e rapporti tra le arcate. Una valutazione chiarisce quali aspetti richiedono davvero correzione.",
+      clinicalNote:
+        "L’allineamento visibile è solo una parte del quadro. Controlliamo anche funzione, spazio disponibile, posizione delle radici e salute di denti e gengive prima di scegliere l’apparecchio.",
+      causes: [
+        {
+          number: "01",
+          title: "Spazio ed eruzione dei denti",
+          text: "Quando lo spazio disponibile non corrisponde alle dimensioni o alla posizione dei denti possono comparire affollamento, rotazioni o denti che erompono fuori arcata.",
+        },
+        {
+          number: "02",
+          title: "Rapporto tra le arcate",
+          text: "Il modo in cui arcata superiore e inferiore si incontrano influenza morso e masticazione. La visita distingue un disallineamento dentale da una componente scheletrica.",
+        },
+        {
+          number: "03",
+          title: "Crescita e funzione",
+          text: "Età, sviluppo e alcune abitudini possono influire sull’equilibrio della bocca. Il momento della valutazione aiuta a definire se intervenire o monitorare.",
+        },
+      ],
+      solutionsLead:
+        "Non esiste un apparecchio adatto a tutti. Serve una diagnosi completa, un obiettivo condiviso e una soluzione compatibile con età, condizioni cliniche e quotidianità.",
+      solutions: [
+        {
+          title: "Valutazione ortodontica completa",
+          text: "Analizziamo denti, morso, spazio e crescita e utilizziamo la documentazione necessaria per impostare il piano.",
+          icon: "check",
+        },
+        {
+          title: "Soluzione scelta sul caso",
+          text: "Apparecchi tradizionali, estetici o allineatori vengono confrontati in base a indicazioni, obiettivi e collaborazione richiesta.",
+          icon: "spark",
+        },
+        {
+          title: "Controlli e contenzione",
+          text: "Seguiamo i movimenti durante la terapia e programmiamo la fase di contenzione per mantenere il risultato raggiunto.",
+          icon: "shield",
+        },
+      ],
+      processLead:
+        "Un percorso pianificato per definire l’obiettivo, guidare i movimenti e proteggere nel tempo il nuovo equilibrio del sorriso.",
+      processSteps: [
+        {
+          number: "01",
+          title: "Analizziamo",
+          text: "Valutiamo posizione dei denti, occlusione, spazio disponibile e condizioni dei tessuti prima di formulare il piano.",
+        },
+        {
+          number: "02",
+          title: "Allineiamo",
+          text: "Applichiamo la soluzione concordata e controlliamo progressivamente i movimenti, adattando il percorso quando necessario.",
+        },
+        {
+          number: "03",
+          title: "Manteniamo",
+          text: "Al termine definiamo contenzione e controlli per limitare gli spostamenti e conservare funzione e allineamento.",
+        },
+      ],
+      trustItems: [
+        "Diagnosi prima dell’apparecchio",
+        "Opzioni confrontate sul caso",
+        "Contenzione programmata",
+      ],
+      reviewSectionId: "recensioni-ortodonzia",
+      ctaSectionId: "prenota-ortodonzia",
+      ctaTitleId: "orthodontics-final-cta-title",
+      ctaTitle: "Il primo passo verso un sorriso più allineato è una valutazione corretta.",
+      ctaText:
+        "Raccontaci cosa vorresti migliorare: ti ricontattiamo per organizzare una valutazione ortodontica e confrontare le soluzioni adatte al tuo caso.",
+    }
+  : variant === "gnathology"
   ? {
       reviewIds: ["review-9102", "review-9111", "review-9105"],
       causesEyebrow: "Comprendere il problema",
@@ -477,6 +553,9 @@ const reviews = funnelContent.reviewIds.map(getReview);
 const causes = funnelContent.causes;
 const solutions = funnelContent.solutions;
 const processSteps = funnelContent.processSteps;
+const causesHeading = variant === "orthodontics"
+  ? { lead: "Perché i denti", accent: "si disallineano?" }
+  : { lead: "Perché senti", accent: "dolore?" };
 ---
 
 <div class="hygiene-funnel">
@@ -484,7 +563,7 @@ const processSteps = funnelContent.processSteps;
     <div class="hygiene-funnel__container hygiene-funnel__causes-layout">
       <header class="hygiene-funnel__intro">
         <p class="hygiene-funnel__eyebrow">{funnelContent.causesEyebrow}</p>
-        <h2>Perché senti <span>dolore?</span></h2>
+        <h2>{causesHeading.lead} <span>{causesHeading.accent}</span></h2>
         <p>{funnelContent.causesLead}</p>
         <div class="hygiene-funnel__clinical-note">
           <span aria-hidden="true">i</span>
