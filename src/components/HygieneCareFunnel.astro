@@ -1,0 +1,940 @@
+---
+import { sourceReviews } from "../data/reviews-seed";
+
+type Props = {
+  variant?: "hygiene" | "conservative";
+};
+
+const { variant = "hygiene" } = Astro.props;
+
+const getReview = (id: string) => {
+  const review = sourceReviews.find((item) => item.id === id);
+
+  if (!review) {
+    throw new Error(`Recensione non trovata per il funnel clinico: ${id}`);
+  }
+
+  return review;
+};
+
+const funnelContent = variant === "conservative"
+  ? {
+      reviewIds: ["review-9103", "review-9100", "review-9101"],
+      causesEyebrow: "Comprendere il problema",
+      causesLead:
+        "Dolore, sensibilità, una parte di dente scheggiata o una macchia scura sono segnali da valutare. Intervenire in tempo permette spesso di preservare più tessuto dentale naturale.",
+      clinicalNote:
+        "Sintomi simili possono avere cause e profondità diverse. Prima di ricostruire il dente verifichiamo sempre quanto tessuto è coinvolto e se la polpa è protetta.",
+      causes: [
+        {
+          number: "01",
+          title: "Carie e tessuto indebolito",
+          text: "La carie può avanzare senza essere evidente. Quando il dente perde consistenza, una diagnosi tempestiva aiuta a limitare l’estensione della ricostruzione.",
+        },
+        {
+          number: "02",
+          title: "Otturazioni usurate",
+          text: "Un vecchio restauro può consumarsi, infiltrarsi o non aderire più correttamente. Controllarlo permette di proteggere il tessuto sottostante.",
+        },
+        {
+          number: "03",
+          title: "Scheggiature e fratture",
+          text: "Traumi e carichi masticatori possono danneggiare il dente. Stabilire profondità e margini della lesione è essenziale per ricostruirlo in sicurezza.",
+        },
+      ],
+      solutionsLead:
+        "L’obiettivo non è coprire il sintomo, ma rimuovere il tessuto compromesso e ricostruire il dente con la soluzione più conservativa compatibile con il caso.",
+      solutions: [
+        {
+          title: "Diagnosi precisa della lesione",
+          text: "Valutiamo estensione, profondità e stabilità del dente per capire quale parte può essere preservata.",
+          icon: "check",
+        },
+        {
+          title: "Ricostruzione su misura",
+          text: "Otturazione, restauro o intarsio vengono scelti in base alla quantità di tessuto da recuperare.",
+          icon: "spark",
+        },
+        {
+          title: "Funzione ed estetica recuperate",
+          text: "Ricreiamo forma, contatti e superficie masticatoria con materiali compatibili con il dente naturale.",
+          icon: "shield",
+        },
+      ],
+      processLead:
+        "Un percorso lineare per fermare il danno, conservare il dente e recuperare una masticazione stabile.",
+      processSteps: [
+        {
+          number: "01",
+          title: "Valutiamo",
+          text: "Esaminiamo il dente e, quando necessario, approfondiamo la lesione per definire la cura corretta.",
+        },
+        {
+          number: "02",
+          title: "Ricostruiamo",
+          text: "Rimuoviamo il tessuto compromesso e ripristiniamo la parte mancante con tecnica e materiale adeguati.",
+        },
+        {
+          number: "03",
+          title: "Controlliamo",
+          text: "Verifichiamo forma, contatti e masticazione e definiamo i controlli utili a proteggere il risultato.",
+        },
+      ],
+      trustItems: [
+        "Tessuto sano preservato",
+        "Restauro calibrato sul dente",
+        "Forma e funzione controllate",
+      ],
+      reviewSectionId: "recensioni-conservativa",
+      ctaSectionId: "prenota-conservativa",
+      ctaTitleId: "conservative-final-cta-title",
+      ctaTitle: "Proteggi il dente prima che il danno diventi più esteso.",
+      ctaText:
+        "Descrivici il problema: ti ricontattiamo per organizzare una valutazione e capire come conservare e ricostruire il dente.",
+    }
+  : {
+      reviewIds: ["review-9098", "review-9110", "review-9107"],
+      causesEyebrow: "Comprendere il segnale",
+      causesLead:
+        "Dolore, sensibilità o sanguinamento non vanno ignorati. Sono segnali che la bocca richiede attenzione, anche quando il fastidio sembra lieve o occasionale.",
+      clinicalNote:
+        "Il sintomo da solo non rivela la causa. Per questo partiamo sempre da una valutazione mirata, prima di indicare qualsiasi trattamento.",
+      causes: [
+        {
+          number: "01",
+          title: "Placca e tartaro",
+          text: "Quando si accumulano vicino alle gengive favoriscono irritazione e infiammazione. Il tartaro, una volta formato, non si elimina con il normale spazzolino.",
+        },
+        {
+          number: "02",
+          title: "Gengive infiammate",
+          text: "Sanguinamento, gonfiore e alito persistente sono segnali da controllare: intervenire presto aiuta a proteggere la stabilità di denti e gengive.",
+        },
+        {
+          number: "03",
+          title: "Sensibilità o dolore",
+          text: "Fastidio al freddo, al caldo o durante la masticazione può avere cause diverse. Identificarle è il primo passo per scegliere il trattamento corretto.",
+        },
+      ],
+      solutionsLead:
+        "Non serve procedere per tentativi. Serve capire la situazione, rimuovere ciò che mantiene il problema e darti indicazioni concrete per evitare che si ripresenti.",
+      solutions: [
+        {
+          title: "Igiene professionale accurata",
+          text: "Rimuove placca, tartaro e depositi anche nelle zone che a casa sono difficili da raggiungere.",
+          icon: "spark",
+        },
+        {
+          title: "Controllo di denti e gengive",
+          text: "Permette di individuare i segnali da non trascurare e di capire se serve un approfondimento specifico.",
+          icon: "check",
+        },
+        {
+          title: "Indicazioni semplici per casa",
+          text: "Strumenti, tecnica e frequenza vengono adattati alla tua bocca, così puoi mantenere più a lungo il risultato.",
+          icon: "shield",
+        },
+      ],
+      processLead:
+        "Un percorso chiaro, senza passaggi inutili, costruito sulle condizioni reali della tua bocca.",
+      processSteps: [
+        {
+          number: "01",
+          title: "Valutiamo",
+          text: "Ascoltiamo i sintomi e controlliamo denti, gengive e abitudini di igiene per capire da dove partire.",
+        },
+        {
+          number: "02",
+          title: "Trattiamo",
+          text: "Eseguiamo una seduta professionale calibrata sulle condizioni della bocca e sul tuo comfort.",
+        },
+        {
+          number: "03",
+          title: "Manteniamo",
+          text: "Definiamo indicazioni domiciliari e richiami personalizzati per proteggere il risultato nel tempo.",
+        },
+      ],
+      trustItems: [
+        "Valutazione prima del trattamento",
+        "Seduta personalizzata",
+        "Richiami definiti sul tuo caso",
+      ],
+      reviewSectionId: "recensioni-igiene",
+      ctaSectionId: "prenota-igiene",
+      ctaTitleId: "hygiene-final-cta-title",
+      ctaTitle: "Non aspettare che il fastidio diventi un problema più grande.",
+      ctaText:
+        "Descrivici la tua situazione: ti ricontattiamo per organizzare una valutazione e indicarti il percorso più adatto.",
+    };
+
+const reviews = funnelContent.reviewIds.map(getReview);
+const causes = funnelContent.causes;
+const solutions = funnelContent.solutions;
+const processSteps = funnelContent.processSteps;
+---
+
+<div class="hygiene-funnel">
+  <section class="hygiene-funnel__section hygiene-funnel__section--causes" id="perche-dolore">
+    <div class="hygiene-funnel__container hygiene-funnel__causes-layout">
+      <header class="hygiene-funnel__intro">
+        <p class="hygiene-funnel__eyebrow">{funnelContent.causesEyebrow}</p>
+        <h2>Perché senti <span>dolore?</span></h2>
+        <p>{funnelContent.causesLead}</p>
+        <div class="hygiene-funnel__clinical-note">
+          <span aria-hidden="true">i</span>
+          <p>{funnelContent.clinicalNote}</p>
+        </div>
+      </header>
+
+      <div class="hygiene-funnel__cause-list">
+        {causes.map((cause) => (
+          <article class="hygiene-funnel__cause-card">
+            <span class="hygiene-funnel__cause-number" aria-hidden="true">{cause.number}</span>
+            <div>
+              <h3>{cause.title}</h3>
+              <p>{cause.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="hygiene-funnel__section hygiene-funnel__section--solutions" id="cosa-puo-aiutarti">
+    <div class="hygiene-funnel__container">
+      <div class="hygiene-funnel__solutions-heading">
+        <header class="hygiene-funnel__intro">
+          <p class="hygiene-funnel__eyebrow hygiene-funnel__eyebrow--pill">Agire in modo mirato</p>
+          <h2>Cosa può aiutarti a <span>stare meglio</span></h2>
+        </header>
+        <p class="hygiene-funnel__solutions-lead">{funnelContent.solutionsLead}</p>
+      </div>
+
+      <div class="hygiene-funnel__solution-grid">
+        {solutions.map((solution, index) => (
+          <article class:list={["hygiene-funnel__solution-card", index === 0 && "hygiene-funnel__solution-card--featured"]}>
+            <span class="hygiene-funnel__solution-icon" aria-hidden="true">
+              {solution.icon === "spark" && (
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" />
+                </svg>
+              )}
+              {solution.icon === "check" && (
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8" />
+                  <path d="m8.2 12.2 2.4 2.4 5.4-5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+              {solution.icon === "shield" && (
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3.5 19 6v5.2c0 4.3-2.7 7.7-7 9.3-4.3-1.6-7-5-7-9.3V6l7-2.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                  <path d="m8.8 12 2.1 2.1 4.4-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              )}
+            </span>
+            <h3>{solution.title}</h3>
+            <p>{solution.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="hygiene-funnel__section hygiene-funnel__section--process" id="come-risolviamo">
+    <div class="hygiene-funnel__container">
+      <div class="hygiene-funnel__process-card">
+        <header class="hygiene-funnel__process-heading">
+          <p class="hygiene-funnel__eyebrow">Il percorso</p>
+          <h2>Come <span>risolviamo?</span></h2>
+          <p>{funnelContent.processLead}</p>
+        </header>
+
+        <div class="hygiene-funnel__process-grid">
+          {processSteps.map((step) => (
+            <article>
+              <span aria-hidden="true">{step.number}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
+          ))}
+        </div>
+
+        <ul class="hygiene-funnel__trust-list" role="list">
+          {funnelContent.trustItems.map((item) => (
+            <li><span aria-hidden="true"></span>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="hygiene-funnel__section hygiene-funnel__section--reviews" id={funnelContent.reviewSectionId}>
+    <div class="hygiene-funnel__container">
+      <div class="hygiene-funnel__reviews-heading">
+        <header class="hygiene-funnel__intro">
+          <p class="hygiene-funnel__eyebrow hygiene-funnel__eyebrow--pill">Esperienze dei pazienti</p>
+          <h2>Professionalità che <span>si riconosce</span></h2>
+        </header>
+        <a href="/recensioni-studio-dentistico-monza/">Leggi tutte le recensioni <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="hygiene-funnel__review-grid">
+        {reviews.map((review) => (
+          <article class="hygiene-funnel__review-card">
+            <div class="hygiene-funnel__stars" aria-label={`${review.rating} stelle su 5`}>
+              {"★".repeat(review.rating)}
+            </div>
+            <h3>{review.title}</h3>
+            <blockquote>“{review.content}”</blockquote>
+            <div class="hygiene-funnel__review-author">
+              <span aria-hidden="true">{review.author.charAt(0)}</span>
+              <strong>{review.author}</strong>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="hygiene-funnel__section hygiene-funnel__section--cta"
+    id={funnelContent.ctaSectionId}
+    aria-labelledby={funnelContent.ctaTitleId}
+  >
+    <div class="hygiene-funnel__container">
+      <div class="hygiene-funnel__cta-card">
+        <div>
+          <p class="hygiene-funnel__eyebrow">Il prossimo passo</p>
+          <h2 id={funnelContent.ctaTitleId}>{funnelContent.ctaTitle}</h2>
+          <p>{funnelContent.ctaText}</p>
+        </div>
+        <div class="hygiene-funnel__cta-actions">
+          <a class="hygiene-funnel__button hygiene-funnel__button--primary" href="#richiesta">
+            Richiedi una visita <span aria-hidden="true">→</span>
+          </a>
+          <a class="hygiene-funnel__button hygiene-funnel__button--secondary" href="tel:+390392022489">
+            Chiama 039 2022489
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .hygiene-funnel {
+    --hygiene-navy: #0e384c;
+    --hygiene-navy-deep: #082a38;
+    --hygiene-blue: #1e84b5;
+    --hygiene-sky: #56b8ef;
+    --hygiene-ice: #edf7fb;
+    --hygiene-text: #527282;
+    overflow: hidden;
+    background: #ffffff;
+    color: var(--hygiene-navy);
+  }
+
+  .hygiene-funnel,
+  .hygiene-funnel * {
+    box-sizing: border-box;
+  }
+
+  .hygiene-funnel__section {
+    padding: clamp(78px, 8vw, 124px) 24px;
+  }
+
+  .hygiene-funnel__container {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+  }
+
+  .hygiene-funnel__eyebrow {
+    margin: 0 0 20px;
+    color: var(--hygiene-blue);
+    font-size: 0.72rem;
+    font-weight: 850;
+    letter-spacing: 0.2em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .hygiene-funnel__eyebrow--pill {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(30, 132, 181, 0.09);
+    letter-spacing: 0.14em;
+  }
+
+  .hygiene-funnel__intro h2,
+  .hygiene-funnel__process-heading h2,
+  .hygiene-funnel__cta-card h2 {
+    margin: 0;
+    color: var(--hygiene-navy);
+    font-size: clamp(2.5rem, 5.3vw, 4.7rem);
+    font-weight: 750;
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+  }
+
+  .hygiene-funnel__intro h2 span,
+  .hygiene-funnel__process-heading h2 span {
+    color: var(--hygiene-blue);
+  }
+
+  .hygiene-funnel__intro > p:not(.hygiene-funnel__eyebrow) {
+    max-width: 620px;
+    margin: 28px 0 0;
+    color: var(--hygiene-text);
+    font-size: clamp(1rem, 1.35vw, 1.15rem);
+    line-height: 1.75;
+  }
+
+  .hygiene-funnel__section--causes {
+    background:
+      radial-gradient(circle at 8% 90%, rgba(86, 184, 239, 0.11), transparent 28rem),
+      #ffffff;
+  }
+
+  .hygiene-funnel__causes-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.83fr) minmax(500px, 1.17fr);
+    align-items: start;
+    gap: clamp(48px, 7vw, 96px);
+  }
+
+  .hygiene-funnel__clinical-note {
+    display: flex;
+    align-items: flex-start;
+    max-width: 560px;
+    margin-top: 34px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(14, 56, 76, 0.13);
+    gap: 14px;
+  }
+
+  .hygiene-funnel__clinical-note > span {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--hygiene-ice);
+    color: var(--hygiene-blue);
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+
+  .hygiene-funnel__clinical-note p {
+    margin: 1px 0 0;
+    color: var(--hygiene-text);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .hygiene-funnel__cause-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .hygiene-funnel__cause-card {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    padding: 26px 28px;
+    border: 1px solid rgba(14, 56, 76, 0.1);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 14px 34px rgba(14, 56, 76, 0.07);
+    gap: 22px;
+  }
+
+  .hygiene-funnel__cause-number {
+    color: rgba(30, 132, 181, 0.36);
+    font-size: 2.15rem;
+    font-weight: 850;
+    letter-spacing: -0.06em;
+    line-height: 1;
+  }
+
+  .hygiene-funnel__cause-card h3,
+  .hygiene-funnel__solution-card h3,
+  .hygiene-funnel__process-grid h3,
+  .hygiene-funnel__review-card h3 {
+    margin: 0;
+    color: var(--hygiene-navy);
+    font-size: 1.12rem;
+    font-weight: 750;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+  }
+
+  .hygiene-funnel__cause-card p,
+  .hygiene-funnel__solution-card p,
+  .hygiene-funnel__process-grid p {
+    margin: 9px 0 0;
+    color: var(--hygiene-text);
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .hygiene-funnel__section--solutions {
+    background: #f5f9fc;
+  }
+
+  .hygiene-funnel__solutions-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.7fr);
+    align-items: end;
+    gap: clamp(40px, 7vw, 100px);
+  }
+
+  .hygiene-funnel__solutions-lead {
+    margin: 0 0 4px;
+    color: var(--hygiene-text);
+    font-size: 1.04rem;
+    line-height: 1.75;
+  }
+
+  .hygiene-funnel__solution-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: clamp(44px, 6vw, 72px);
+    gap: 18px;
+  }
+
+  .hygiene-funnel__solution-card {
+    min-height: 300px;
+    padding: 34px 30px;
+    border: 1px solid rgba(14, 56, 76, 0.09);
+    border-radius: 24px;
+    background: #ffffff;
+  }
+
+  .hygiene-funnel__solution-card--featured {
+    border-color: var(--hygiene-navy);
+    background: var(--hygiene-navy);
+  }
+
+  .hygiene-funnel__solution-icon {
+    display: grid;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 54px;
+    place-items: center;
+    border-radius: 14px;
+    background: var(--hygiene-ice);
+    color: var(--hygiene-blue);
+  }
+
+  .hygiene-funnel__solution-icon svg {
+    width: 27px;
+    height: 27px;
+  }
+
+  .hygiene-funnel__solution-card--featured .hygiene-funnel__solution-icon {
+    background: rgba(86, 184, 239, 0.14);
+    color: var(--hygiene-sky);
+  }
+
+  .hygiene-funnel__solution-card--featured h3 {
+    color: #ffffff !important;
+  }
+
+  .hygiene-funnel__solution-card--featured p {
+    color: rgba(255, 255, 255, 0.74);
+  }
+
+  .hygiene-funnel__section--process {
+    background: #edf5fa;
+  }
+
+  .hygiene-funnel__process-card {
+    padding: clamp(38px, 6vw, 76px);
+    border: 1px solid rgba(14, 56, 76, 0.1);
+    border-radius: 32px;
+    background: #ffffff;
+    box-shadow: 0 20px 50px rgba(14, 56, 76, 0.07);
+  }
+
+  .hygiene-funnel__process-heading {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hygiene-funnel__process-heading h2 {
+    font-size: clamp(2.35rem, 4.8vw, 4.2rem);
+  }
+
+  .hygiene-funnel__process-heading > p:last-child {
+    max-width: 600px;
+    margin: 22px auto 0;
+    color: var(--hygiene-text);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .hygiene-funnel__process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: clamp(44px, 6vw, 70px);
+  }
+
+  .hygiene-funnel__process-grid article {
+    min-width: 0;
+    padding: 0 clamp(20px, 3vw, 38px);
+    border-right: 1px solid rgba(14, 56, 76, 0.1);
+  }
+
+  .hygiene-funnel__process-grid article:first-child {
+    padding-left: 0;
+  }
+
+  .hygiene-funnel__process-grid article:last-child {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .hygiene-funnel__process-grid article > span {
+    display: block;
+    margin-bottom: 24px;
+    color: rgba(30, 132, 181, 0.55);
+    font-size: 2.7rem;
+    font-weight: 850;
+    letter-spacing: -0.07em;
+    line-height: 1;
+  }
+
+  .hygiene-funnel__trust-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 54px 0 0;
+    padding: 24px 0 0;
+    border-top: 1px solid rgba(14, 56, 76, 0.1);
+    gap: 14px 30px;
+    list-style: none;
+  }
+
+  .hygiene-funnel__trust-list li {
+    display: inline-flex;
+    align-items: center;
+    color: var(--hygiene-navy);
+    font-size: 0.84rem;
+    font-weight: 700;
+    gap: 9px;
+  }
+
+  .hygiene-funnel__trust-list li span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--hygiene-blue);
+  }
+
+  .hygiene-funnel__section--reviews {
+    background:
+      radial-gradient(circle at 90% 20%, rgba(86, 184, 239, 0.13), transparent 28rem),
+      #f8fbfd;
+  }
+
+  .hygiene-funnel__reviews-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .hygiene-funnel__reviews-heading .hygiene-funnel__intro h2 {
+    max-width: 720px;
+  }
+
+  .hygiene-funnel__reviews-heading > a {
+    flex: 0 0 auto;
+    padding-bottom: 9px;
+    border-bottom: 1px solid rgba(14, 56, 76, 0.22);
+    color: var(--hygiene-navy);
+    font-size: 0.9rem;
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .hygiene-funnel__reviews-heading > a span {
+    margin-left: 8px;
+    color: var(--hygiene-blue);
+  }
+
+  .hygiene-funnel__review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: clamp(44px, 6vw, 68px);
+    gap: 18px;
+  }
+
+  .hygiene-funnel__review-card {
+    display: flex;
+    min-height: 330px;
+    flex-direction: column;
+    padding: 32px;
+    border: 1px solid rgba(14, 56, 76, 0.1);
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: 0 15px 36px rgba(14, 56, 76, 0.06);
+  }
+
+  .hygiene-funnel__stars {
+    margin-bottom: 24px;
+    color: #f6b819;
+    font-size: 0.92rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hygiene-funnel__review-card blockquote {
+    margin: 18px 0 28px;
+    color: var(--hygiene-text);
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.68;
+  }
+
+  .hygiene-funnel__review-author {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    gap: 12px;
+  }
+
+  .hygiene-funnel__review-author span {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--hygiene-navy) !important;
+    color: #ffffff !important;
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  .hygiene-funnel__review-author strong {
+    color: var(--hygiene-navy) !important;
+    font-size: 0.88rem !important;
+  }
+
+  .hygiene-funnel__section--cta {
+    padding-top: clamp(70px, 7vw, 100px);
+    padding-bottom: clamp(90px, 9vw, 136px);
+    background: #ffffff;
+  }
+
+  .hygiene-funnel__cta-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    overflow: hidden;
+    padding: clamp(42px, 6vw, 76px);
+    border-radius: 30px;
+    background: var(--hygiene-navy-deep);
+    box-shadow: 0 22px 52px rgba(8, 42, 56, 0.2);
+    gap: clamp(36px, 6vw, 80px);
+  }
+
+  .hygiene-funnel__cta-card::after {
+    position: absolute;
+    top: -150px;
+    right: -100px;
+    width: 360px;
+    height: 360px;
+    border: 48px solid rgba(30, 132, 181, 0.09);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+  }
+
+  .hygiene-funnel__cta-card > div {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hygiene-funnel__cta-card .hygiene-funnel__eyebrow {
+    color: var(--hygiene-sky);
+  }
+
+  .hygiene-funnel__cta-card h2 {
+    max-width: 770px;
+    color: #ffffff !important;
+    font-size: clamp(2.2rem, 4.2vw, 3.9rem);
+  }
+
+  .hygiene-funnel__cta-card div > p:last-child {
+    max-width: 650px;
+    margin: 24px 0 0;
+    color: rgba(255, 255, 255, 0.72) !important;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .hygiene-funnel__cta-actions {
+    display: grid;
+    min-width: 230px;
+    gap: 12px;
+  }
+
+  .hygiene-funnel__button {
+    display: inline-flex;
+    min-height: 52px;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 22px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 0.87rem;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+  }
+
+  .hygiene-funnel__button:hover,
+  .hygiene-funnel__button:focus-visible {
+    transform: translateY(-2px);
+  }
+
+  .hygiene-funnel__button--primary {
+    background: var(--hygiene-sky);
+    color: var(--hygiene-navy-deep);
+  }
+
+  .hygiene-funnel__button--primary span {
+    margin-left: 10px;
+  }
+
+  .hygiene-funnel__button--secondary {
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #ffffff;
+  }
+
+  .hygiene-funnel__button--secondary:hover,
+  .hygiene-funnel__button--secondary:focus-visible {
+    border-color: rgba(255, 255, 255, 0.62);
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  @media (max-width: 980px) {
+    .hygiene-funnel__causes-layout,
+    .hygiene-funnel__solutions-heading,
+    .hygiene-funnel__cta-card {
+      grid-template-columns: 1fr;
+    }
+
+    .hygiene-funnel__solution-grid,
+    .hygiene-funnel__review-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hygiene-funnel__solution-card:last-child,
+    .hygiene-funnel__review-card:last-child {
+      grid-column: 1 / -1;
+    }
+
+    .hygiene-funnel__cta-actions {
+      width: min(100%, 460px);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .hygiene-funnel__section {
+      padding: 68px 18px;
+    }
+
+    .hygiene-funnel__intro h2,
+    .hygiene-funnel__process-heading h2,
+    .hygiene-funnel__cta-card h2 {
+      font-size: clamp(2.3rem, 12vw, 3.2rem);
+      line-height: 1;
+    }
+
+    .hygiene-funnel__cause-card {
+      grid-template-columns: 52px minmax(0, 1fr);
+      padding: 23px 20px;
+      border-radius: 18px;
+      gap: 12px;
+    }
+
+    .hygiene-funnel__cause-number {
+      font-size: 1.65rem;
+    }
+
+    .hygiene-funnel__solution-grid,
+    .hygiene-funnel__review-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hygiene-funnel__solution-card,
+    .hygiene-funnel__review-card,
+    .hygiene-funnel__solution-card:last-child,
+    .hygiene-funnel__review-card:last-child {
+      min-height: 0;
+      grid-column: auto;
+    }
+
+    .hygiene-funnel__solution-icon {
+      margin-bottom: 40px;
+    }
+
+    .hygiene-funnel__process-card {
+      padding: 34px 22px;
+      border-radius: 24px;
+    }
+
+    .hygiene-funnel__process-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .hygiene-funnel__process-grid article,
+    .hygiene-funnel__process-grid article:first-child,
+    .hygiene-funnel__process-grid article:last-child {
+      padding: 28px 0;
+      border-right: 0;
+      border-bottom: 1px solid rgba(14, 56, 76, 0.1);
+    }
+
+    .hygiene-funnel__process-grid article:last-child {
+      border-bottom: 0;
+    }
+
+    .hygiene-funnel__process-grid article > span {
+      margin-bottom: 15px;
+    }
+
+    .hygiene-funnel__trust-list {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .hygiene-funnel__reviews-heading {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .hygiene-funnel__review-card {
+      padding: 26px 22px;
+    }
+
+    .hygiene-funnel__cta-card {
+      padding: 34px 24px;
+      border-radius: 24px;
+    }
+
+    .hygiene-funnel__cta-actions {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+</style>

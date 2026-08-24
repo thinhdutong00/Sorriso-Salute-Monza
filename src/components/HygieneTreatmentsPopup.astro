@@ -1,0 +1,193 @@
+---
+import type { CategoryTreatmentsData } from "../data/categoryTreatments";
+import CategoryTreatmentsSection from "./CategoryTreatmentsSection.astro";
+
+type Props = CategoryTreatmentsData;
+
+const popupData = Astro.props;
+const popupTitleId = `${popupData.sectionId}-title`;
+---
+
+<dialog
+  class="hygiene-treatments-popup"
+  aria-labelledby={popupTitleId}
+  data-hygiene-treatments-popup
+>
+  <div class="hygiene-treatments-popup__shell">
+    <button
+      class="hygiene-treatments-popup__close"
+      type="button"
+      aria-label="Chiudi la finestra dei trattamenti"
+      data-hygiene-treatments-popup-close
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </button>
+
+    <CategoryTreatmentsSection {...popupData} />
+  </div>
+</dialog>
+
+<script>
+  const HYGIENE_POPUP_DELAY_MS = 10_000;
+
+  const initializeHygieneTreatmentsPopup = () => {
+    document
+      .querySelectorAll<HTMLDialogElement>("[data-hygiene-treatments-popup]")
+      .forEach((dialog) => {
+        if (dialog.dataset.popupReady === "true") return;
+        dialog.dataset.popupReady = "true";
+
+        const closeButton = dialog.querySelector<HTMLButtonElement>(
+          "[data-hygiene-treatments-popup-close]",
+        );
+
+        const closePopup = () => {
+          if (dialog.open) dialog.close();
+        };
+
+        closeButton?.addEventListener("click", closePopup);
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) closePopup();
+        });
+
+        window.setTimeout(() => {
+          if (!dialog.isConnected || dialog.open) return;
+
+          if (typeof dialog.showModal === "function") {
+            dialog.showModal();
+          } else {
+            dialog.setAttribute("open", "");
+          }
+        }, HYGIENE_POPUP_DELAY_MS);
+      });
+  };
+
+  initializeHygieneTreatmentsPopup();
+  document.addEventListener("astro:page-load", initializeHygieneTreatmentsPopup);
+</script>
+
+<style>
+  .hygiene-treatments-popup {
+    width: min(1080px, calc(100% - 36px));
+    max-width: none;
+    max-height: min(88dvh, 900px);
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 28px;
+    background: #f8fafc;
+    color: var(--brand-primary, #0e384c);
+    box-shadow: 0 30px 90px rgba(8, 42, 56, 0.3);
+  }
+
+  .hygiene-treatments-popup::backdrop {
+    background: rgba(8, 42, 56, 0.62);
+    backdrop-filter: blur(5px);
+  }
+
+  .hygiene-treatments-popup__shell {
+    position: relative;
+    max-height: min(88dvh, 900px);
+    overflow: hidden;
+  }
+
+  .hygiene-treatments-popup__close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 3;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    place-items: center;
+    border: 1px solid rgba(14, 56, 76, 0.14);
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--brand-primary, #0e384c);
+    box-shadow: 0 8px 22px rgba(14, 56, 76, 0.12);
+    cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+  }
+
+  .hygiene-treatments-popup__close:hover,
+  .hygiene-treatments-popup__close:focus-visible {
+    background: var(--brand-primary, #0e384c);
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .hygiene-treatments-popup__close:focus-visible {
+    outline: 3px solid rgba(86, 184, 239, 0.5);
+    outline-offset: 3px;
+  }
+
+  .hygiene-treatments-popup__close svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hygiene-treatments-popup :global(.category-treatments) {
+    max-height: min(88dvh, 900px);
+    padding: clamp(42px, 5vw, 62px) clamp(26px, 5vw, 58px);
+    overflow-y: auto;
+    border: 0;
+    background: #f8fafc;
+    overscroll-behavior: contain;
+  }
+
+  .hygiene-treatments-popup :global(.category-treatments__heading) {
+    max-width: 790px;
+    margin-bottom: clamp(32px, 4vw, 46px);
+    padding-right: 52px;
+  }
+
+  .hygiene-treatments-popup :global(.category-treatments__heading h2) {
+    font-size: clamp(2rem, 4.2vw, 3.45rem);
+  }
+
+  .hygiene-treatments-popup :global(.category-treatments__description) {
+    font-size: 1rem;
+  }
+
+  .hygiene-treatments-popup :global(.category-treatments__grid) {
+    gap: 32px 54px;
+  }
+
+  @media (max-width: 767px) {
+    .hygiene-treatments-popup {
+      width: calc(100% - 20px);
+      max-height: calc(100dvh - 20px);
+      border-radius: 20px;
+    }
+
+    .hygiene-treatments-popup__shell,
+    .hygiene-treatments-popup :global(.category-treatments) {
+      max-height: calc(100dvh - 20px);
+    }
+
+    .hygiene-treatments-popup__close {
+      top: 12px;
+      right: 12px;
+      width: 40px;
+      height: 40px;
+    }
+
+    .hygiene-treatments-popup :global(.category-treatments) {
+      padding: 58px 18px 32px;
+    }
+
+    .hygiene-treatments-popup :global(.category-treatments__heading) {
+      padding-right: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hygiene-treatments-popup__close {
+      transition: none;
+    }
+  }
+</style>
