@@ -102,17 +102,50 @@ export const symptomRoutingPages: readonly SymptomRoutingPage[] = [
       treatment(
         "Impianti dentali",
         "implantologia",
-        "Possono essere valutati per sostituire uno o più denti mancanti con supporti fissi nell’osso. La visita permette di controllare gengive, osso e alternative disponibili prima di decidere.",
+        [
+          {
+            text: "Se ti manca uno o più denti, possiamo valutare ",
+          },
+          {
+            text: "impianti dentali in titanio",
+            strong: true,
+          },
+          {
+            text: ", dall’impianto singolo al ponte su impianti fino ai denti fissi su impianti. Anche in caso di protesi mobile instabile o poco osso possono essere valutate soluzioni dedicate, come stabilizzazione della protesi e rigenerazione ossea.",
+          },
+        ],
       ),
       treatment(
         "Protesi dentale",
         "protesi-dentale",
-        "Può aiutare quando uno o più denti sono molto danneggiati o mancanti e occorre recuperarne forma, stabilità e funzione. La soluzione viene scelta in base alla bocca e alle esigenze della persona.",
+        [
+          {
+            text: "Per sostituire denti mancanti o recuperare denti molto compromessi possiamo valutare ",
+          },
+          {
+            text: "corone, ponti, protesi fisse o mobili e protesi su impianti",
+            strong: true,
+          },
+          {
+            text: ", scegliendo la soluzione più adatta per ritrovare masticazione ed estetica.",
+          },
+        ],
       ),
       treatment(
         "Chirurgia orale",
         "chirurgia-orale",
-        "Può entrare in gioco per denti non recuperabili, denti del giudizio o altre situazioni che richiedono un intervento mirato. Prima di procedere vengono valutate immagini, anatomia e possibili alternative.",
+        [
+          {
+            text: "Comprende interventi come ",
+          },
+          {
+            text: "estrazione di denti compromessi o del giudizio, denti inclusi, chirurgia endodontica e interventi rigenerativi dell’osso e delle gengive",
+            strong: true,
+          },
+          {
+            text: ", quando necessari nel percorso di cura.",
+          },
+        ],
       ),
     ],
   },
