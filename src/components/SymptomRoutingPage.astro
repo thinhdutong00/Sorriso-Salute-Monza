@@ -3,7 +3,6 @@ import "../styles/global.css";
 import BrandPalette from "./BrandPalette.astro";
 import FaviconLinks from "./FaviconLinks.astro";
 import GoogleAdsTracking from "./GoogleAdsTracking.astro";
-import InternalPageHero from "./InternalPageHero.astro";
 import SiteFooter from "./SiteFooter.astro";
 import SiteHeader from "./SiteHeader.astro";
 import SymptomTreatmentAccordion from "./SymptomTreatmentAccordion.astro";
@@ -15,6 +14,7 @@ type Props = {
 
 const { page } = Astro.props;
 const canonicalUrl = `https://sorrisoesalutemonza.it${page.path}`;
+const pageTitleId = `symptom-title-${page.slug}`;
 const optionsTitleId = `symptom-options-${page.slug}`;
 ---
 
@@ -35,31 +35,32 @@ const optionsTitleId = `symptom-options-${page.slug}`;
     <SiteHeader />
 
     <main id="main-content" tabindex="-1">
-      <InternalPageHero
-        id={`symptom-title-${page.slug}`}
-        eyebrow="Orientamento ai trattamenti"
-        titlePrimary={page.titlePrimary}
-        titleAccent={page.titleAccent}
-        lead={page.intro}
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: page.title },
-        ]}
-        compact
-      />
-
       <section
         class="symptom-routing-options"
-        aria-labelledby={optionsTitleId}
+        aria-labelledby={pageTitleId}
       >
         <div class="symptom-routing-options__container">
+          <nav
+            class="symptom-routing-breadcrumb"
+            aria-label="Percorso di navigazione"
+          >
+            <ol>
+              <li><a href="/">Home</a></li>
+              <li aria-current="page"><span>{page.title}</span></li>
+            </ol>
+          </nav>
+
           <header class="symptom-routing-options__heading">
             <p class="symptom-routing-options__eyebrow">Possibili aree</p>
-            <h2 id={optionsTitleId}>Da quale trattamento iniziare?</h2>
-            <p>
-              Apri ogni voce per leggere una spiegazione breve, prenotare una
-              visita o consultare la pagina completa del trattamento.
-            </p>
+            <h1 id={pageTitleId}>{page.title}</h1>
+
+            <div class="symptom-routing-options__guide">
+              <h2 id={optionsTitleId}>Da quale trattamento iniziare?</h2>
+              <p>
+                Apri ogni voce per leggere una spiegazione breve, prenotare una
+                visita o consultare la pagina completa del trattamento.
+              </p>
+            </div>
           </header>
 
           <div class="symptom-routing-options__list">
@@ -83,9 +84,62 @@ const optionsTitleId = `symptom-options-${page.slug}`;
 </html>
 
 <style>
+  .symptom-routing-breadcrumb {
+    margin: 0;
+    padding-bottom: clamp(64px, 7vw, 96px);
+    color: var(--color-text-description, #64748b);
+  }
+
+  .symptom-routing-breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    gap: 10px;
+  }
+
+  .symptom-routing-breadcrumb li {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    gap: 10px;
+  }
+
+  .symptom-routing-breadcrumb li:not(:last-child)::after {
+    color: color-mix(in srgb, currentColor 58%, transparent);
+    content: "\203A";
+  }
+
+  .symptom-routing-breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+
+  .symptom-routing-breadcrumb a:is(:hover, :focus-visible),
+  .symptom-routing-breadcrumb li[aria-current="page"] {
+    color: var(--brand-primary, #0e384c);
+  }
+
+  .symptom-routing-breadcrumb li[aria-current="page"] {
+    font-weight: 700;
+  }
+
+  .symptom-routing-breadcrumb a:focus-visible {
+    border-radius: 3px;
+    outline: 2px solid var(--brand-secondary, #1e84b5);
+    outline-offset: 3px;
+  }
+
   .symptom-routing-options {
-    padding: clamp(68px, 8vw, 106px) 24px;
-    border-top: 1px solid rgba(14, 56, 76, 0.08);
+    padding:
+      calc(var(--primary-site-header-height, 98px) + clamp(24px, 3vw, 38px))
+      24px clamp(68px, 8vw, 106px);
     background:
       radial-gradient(
         circle at 96% 8%,
@@ -102,7 +156,7 @@ const optionsTitleId = `symptom-options-${page.slug}`;
   }
 
   .symptom-routing-options__heading {
-    max-width: 780px;
+    max-width: 900px;
     margin-bottom: clamp(36px, 5vw, 52px);
   }
 
@@ -113,8 +167,8 @@ const optionsTitleId = `symptom-options-${page.slug}`;
     gap: 14px;
     color: var(--brand-secondary, #1e84b5);
     font-size: 0.75rem;
-    font-weight: 850;
-    letter-spacing: 0.18em;
+    font-weight: 850 !important;
+    letter-spacing: 0.18em !important;
     line-height: 1.35;
     text-transform: uppercase;
   }
@@ -127,20 +181,34 @@ const optionsTitleId = `symptom-options-${page.slug}`;
     content: "";
   }
 
-  .symptom-routing-options__heading h2 {
-    max-width: 14ch;
+  .symptom-routing-options__heading h1 {
+    max-width: 13ch;
     margin: 0;
-    color: var(--brand-primary, #0e384c);
-    font-size: clamp(2.25rem, 5vw, 4.35rem);
-    font-weight: 700;
-    letter-spacing: -0.045em;
-    line-height: 1.02;
+    color: var(--brand-primary, #0e384c) !important;
+    font-size: clamp(3.6rem, 6.6vw, 6.35rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.05em !important;
+    line-height: 0.96 !important;
     text-wrap: balance;
   }
 
-  .symptom-routing-options__heading > p:last-child {
+  .symptom-routing-options__guide {
     max-width: 690px;
-    margin: 22px 0 0;
+    margin-top: clamp(38px, 5vw, 58px);
+  }
+
+  .symptom-routing-options__guide h2 {
+    margin: 0;
+    color: var(--brand-primary, #0e384c) !important;
+    font-size: clamp(1.75rem, 3vw, 2.6rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1.08 !important;
+    text-wrap: balance;
+  }
+
+  .symptom-routing-options__guide p {
+    margin: 20px 0 0;
     color: var(--color-text-description, #334155);
     font-size: clamp(1rem, 1.4vw, 1.1rem);
     line-height: 1.7;
@@ -160,8 +228,23 @@ const optionsTitleId = `symptom-options-${page.slug}`;
   }
 
   @media (max-width: 680px) {
+    .symptom-routing-breadcrumb {
+      padding-bottom: 52px;
+    }
+
+    .symptom-routing-breadcrumb ol {
+      font-size: 0.78rem;
+      gap: 7px;
+    }
+
+    .symptom-routing-breadcrumb li {
+      gap: 7px;
+    }
+
     .symptom-routing-options {
-      padding: 60px 18px 72px;
+      padding:
+        calc(var(--primary-site-header-height, 84px) + 20px)
+        18px 72px;
     }
 
     .symptom-routing-options__heading {
@@ -171,19 +254,28 @@ const optionsTitleId = `symptom-options-${page.slug}`;
     .symptom-routing-options__eyebrow {
       margin-bottom: 16px;
       gap: 10px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.14em !important;
     }
 
     .symptom-routing-options__eyebrow::before {
       width: 30px;
     }
 
-    .symptom-routing-options__heading h2 {
-      font-size: clamp(2.1rem, 11vw, 3rem);
+    .symptom-routing-options__heading h1 {
+      max-width: 100%;
+      font-size: clamp(3rem, 15vw, 4.1rem) !important;
     }
 
-    .symptom-routing-options__heading > p:last-child {
-      margin-top: 18px;
+    .symptom-routing-options__guide {
+      margin-top: 34px;
+    }
+
+    .symptom-routing-options__guide h2 {
+      font-size: clamp(1.65rem, 8vw, 2.15rem) !important;
+    }
+
+    .symptom-routing-options__guide p {
+      margin-top: 16px;
       font-size: 1rem;
     }
 

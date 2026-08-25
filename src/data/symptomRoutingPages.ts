@@ -15,10 +15,7 @@ export type SymptomRoutingPage = {
   slug: string;
   path: `/sintomi/${string}/`;
   title: string;
-  titlePrimary: string;
-  titleAccent: string;
   metaDescription: string;
-  intro: string;
   treatments: readonly SymptomRoutingTreatment[];
 };
 
@@ -51,19 +48,13 @@ const treatment = (
   };
 };
 
-const sharedIntro =
-  "Situazioni simili possono dipendere da problemi diversi. Le aree qui sotto ti aiutano a capire da dove iniziare, senza sostituire una valutazione in studio.";
-
 export const symptomRoutingPages: readonly SymptomRoutingPage[] = [
   {
     slug: "mal-di-denti-o-sensibilita",
     path: "/sintomi/mal-di-denti-o-sensibilita/",
     title: "Mal di denti o sensibilità",
-    titlePrimary: "Mal di denti",
-    titleAccent: "o sensibilità",
     metaDescription:
       "Orientati tra odontoiatria conservativa ed endodonzia in caso di mal di denti o sensibilità.",
-    intro: sharedIntro,
     treatments: [
       treatment(
         "Odontoiatria conservativa",
@@ -81,11 +72,8 @@ export const symptomRoutingPages: readonly SymptomRoutingPage[] = [
     slug: "gengive-gonfie-o-sanguinanti",
     path: "/sintomi/gengive-gonfie-o-sanguinanti/",
     title: "Gengive gonfie o sanguinanti",
-    titlePrimary: "Gengive gonfie",
-    titleAccent: "o sanguinanti",
     metaDescription:
       "Orientati tra parodontologia e igiene orale in caso di gengive gonfie o sanguinanti.",
-    intro: sharedIntro,
     treatments: [
       treatment(
         "Parodontologia",
@@ -103,11 +91,8 @@ export const symptomRoutingPages: readonly SymptomRoutingPage[] = [
     slug: "denti-mancanti-o-danneggiati",
     path: "/sintomi/denti-mancanti-o-danneggiati/",
     title: "Denti mancanti o danneggiati",
-    titlePrimary: "Denti mancanti",
-    titleAccent: "o danneggiati",
     metaDescription:
       "Orientati tra impianti dentali, protesi dentale e chirurgia orale per denti mancanti o danneggiati.",
-    intro: sharedIntro,
     treatments: [
       treatment(
         "Impianti dentali",
@@ -130,11 +115,8 @@ export const symptomRoutingPages: readonly SymptomRoutingPage[] = [
     slug: "denti-storti-forma-o-colore",
     path: "/sintomi/denti-storti-forma-o-colore/",
     title: "Denti storti, forma o colore",
-    titlePrimary: "Denti storti,",
-    titleAccent: "forma o colore",
     metaDescription:
       "Orientati tra estetica del sorriso e ortodonzia per denti storti o per migliorare forma e colore.",
-    intro: sharedIntro,
     treatments: [
       treatment(
         "Estetica del sorriso",
@@ -152,11 +134,8 @@ export const symptomRoutingPages: readonly SymptomRoutingPage[] = [
     slug: "dolore-alla-mandibola-o-masticazione",
     path: "/sintomi/dolore-alla-mandibola-o-masticazione/",
     title: "Dolore alla mandibola o masticazione",
-    titlePrimary: "Dolore alla mandibola",
-    titleAccent: "o masticazione",
     metaDescription:
       "Scopri quando la gnatologia può essere pertinente per dolore alla mandibola o difficoltà nella masticazione.",
-    intro: sharedIntro,
     treatments: [
       treatment(
         "Gnatologia",
@@ -169,11 +148,8 @@ export const symptomRoutingPages: readonly SymptomRoutingPage[] = [
     slug: "cure-dentali-per-bambini",
     path: "/sintomi/cure-dentali-per-bambini/",
     title: "Cure dentali per bambini",
-    titlePrimary: "Cure dentali",
-    titleAccent: "per bambini",
     metaDescription:
       "Scopri quando la pedodonzia può aiutare nella prevenzione e nelle cure dentali per bambini.",
-    intro: sharedIntro,
     treatments: [
       treatment(
         "Pedodonzia",
