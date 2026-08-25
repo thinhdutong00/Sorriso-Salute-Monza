@@ -1,26 +1,15 @@
 ---
 import "../../styles/global.css";
-import CategoryTreatmentsSection from "../CategoryTreatmentsSection.astro";
 import FaviconLinks from "../FaviconLinks.astro";
 import GeneralRequestForm from "../GeneralRequestForm.astro";
 import GoogleAdsTracking from "../GoogleAdsTracking.astro";
+import HygieneCareFunnel from "../HygieneCareFunnel.astro";
+import HygieneTreatmentsPopup from "../HygieneTreatmentsPopup.astro";
 import SiteFooter from "../SiteFooter.astro";
 import ImplantologiaHeader from "../implantologia/ImplantologiaHeader.astro";
 import { getCategoryTreatments } from "../../data/categoryTreatments";
 import { getRequestFormPagePreset } from "../../data/requestFormPagePresets";
-import {
-  choiceFactors,
-  costFactors,
-  definitions,
-  faqs,
-  fixedOptions,
-  maintenanceItems,
-  mobileOptions,
-  pathway,
-  protesiDentaleSeo,
-  relatedLinks,
-  situations,
-} from "../../data/protesiDentale";
+import { protesiDentaleSeo } from "../../data/protesiDentale";
 
 interface Props {
   legacyRoute?: boolean;
@@ -52,7 +41,6 @@ const webPageSchema = {
   description: protesiDentaleSeo.description,
   inLanguage: "it-IT",
   breadcrumb: { "@id": `${canonical}#breadcrumb` },
-  mainEntity: { "@id": `${canonical}#faq` },
 };
 
 const breadcrumbSchema = {
@@ -80,23 +68,9 @@ const breadcrumbSchema = {
   ],
 };
 
-const faqSchema = {
-  "@type": "FAQPage",
-  "@id": `${canonical}#faq`,
-  url: canonical,
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer,
-    },
-  })),
-};
-
 const structuredData = {
   "@context": "https://schema.org",
-  "@graph": [webPageSchema, breadcrumbSchema, faqSchema],
+  "@graph": [webPageSchema, breadcrumbSchema],
 };
 ---
 
@@ -198,281 +172,8 @@ const structuredData = {
         </div>
       </section>
 
-      {categoryTreatments && <CategoryTreatmentsSection {...categoryTreatments} />}
-
-      <section class="prosthetics__section prosthetics__situations" id="situazioni" aria-labelledby="situations-title">
-        <div class="prosthetics__container">
-          <div class="prosthetics__section-heading">
-            <p class="prosthetics__kicker">Il punto di partenza</p>
-            <h2 id="situations-title">Qual è la tua situazione?</h2>
-            <p>
-              Lo stesso termine può descrivere esigenze molto diverse. Riconoscere la situazione aiuta a capire quali
-              domande portare alla visita, senza formulare diagnosi online.
-            </p>
-          </div>
-          <div class="prosthetics__card-grid prosthetics__card-grid--three">
-            {situations.map((item, index) => (
-              <article class="prosthetics__card prosthetics__card--numbered">
-                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section class="prosthetics__section prosthetics__section--paper" id="cos-e" aria-labelledby="definition-title">
-        <div class="prosthetics__container">
-          <div class="prosthetics__section-heading">
-            <p class="prosthetics__kicker">Parole da distinguere</p>
-            <h2 id="definition-title">Che cos’è una protesi dentale</h2>
-            <p>
-              La protesi sostituisce o ricostruisce la parte visibile di uno o più denti. Il supporto può essere un dente
-              naturale, un impianto o, per le soluzioni rimovibili, anche i tessuti orali e i denti residui.
-            </p>
-          </div>
-          <div class="prosthetics__definition-grid">
-            {definitions.map((item) => (
-              <article class="prosthetics__definition">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-          <aside class="prosthetics__clarification" aria-label="Chiarimento su impianto e protesi">
-            <strong>Impianto e protesi non sono sinonimi.</strong>
-            <p>L’impianto è il supporto; corona, ponte o arcata sono le parti protesiche che sostituiscono i denti visibili.</p>
-          </aside>
-        </div>
-      </section>
-
-      <section class="prosthetics__section" id="protesi-fisse" aria-labelledby="fixed-title">
-        <div class="prosthetics__container">
-          <div class="prosthetics__section-heading">
-            <p class="prosthetics__kicker">Soluzioni che il paziente non rimuove</p>
-            <h2 id="fixed-title">Protesi fisse</h2>
-            <p>
-              Una soluzione fissa può utilizzare denti naturali, impianti o entrambi in progetti distinti. La scelta
-              dipende dalle condizioni cliniche e non esiste un’opzione sempre migliore delle altre.
-            </p>
-          </div>
-          <div class="prosthetics__card-grid prosthetics__card-grid--three">
-            {fixedOptions.map((item) => (
-              <article class="prosthetics__card">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section class="prosthetics__section prosthetics__section--dark" id="protesi-mobili" aria-labelledby="mobile-title">
-        <div class="prosthetics__container">
-          <div class="prosthetics__section-heading">
-            <p class="prosthetics__kicker prosthetics__kicker--light">Soluzioni rimovibili</p>
-            <h2 id="mobile-title">Protesi mobili</h2>
-            <p>
-              Le protesi mobili sostituiscono alcuni o tutti i denti e possono avere configurazioni diverse. Devono
-              poter essere rimosse dal paziente per la pulizia e richiedono controlli anche dopo la consegna.
-            </p>
-          </div>
-          <div class="prosthetics__card-grid prosthetics__card-grid--two">
-            {mobileOptions.map((item) => (
-              <article class="prosthetics__card prosthetics__card--dark">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-          <p class="prosthetics__emphasis">
-            Una protesi stabilizzata su impianti resta rimovibile dal paziente: la maggiore ritenzione non la trasforma in una protesi fissa.
-          </p>
-        </div>
-      </section>
-
-      <section class="prosthetics__section" id="denti-o-impianti" aria-labelledby="choice-title">
-        <div class="prosthetics__container prosthetics__split">
-          <div class="prosthetics__heading">
-            <p class="prosthetics__kicker">Preservare, sostituire, mantenere</p>
-            <h2 id="choice-title">Denti naturali o impianti?</h2>
-            <p>
-              La domanda non ha una risposta automatica. Un dente recuperabile e mantenibile va valutato diversamente
-              da un dente con prognosi sfavorevole; allo stesso modo, un impianto richiede condizioni e manutenzione adeguate.
-            </p>
-            <p>
-              La visita mette in relazione esame clinico, eventuali immagini, esigenze funzionali e possibilità di
-              igiene. Le informazioni online non possono sostituire questa valutazione.
-            </p>
-          </div>
-          <ul class="prosthetics__factor-list">
-            {choiceFactors.map((factor) => (
-              <li><span aria-hidden="true">✓</span><p>{factor}</p></li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section class="prosthetics__section prosthetics__section--paper" id="percorso" aria-labelledby="pathway-title">
-        <div class="prosthetics__container">
-          <div class="prosthetics__section-heading">
-            <p class="prosthetics__kicker">Dalla prima domanda ai controlli</p>
-            <h2 id="pathway-title">Il percorso protesico</h2>
-            <p>
-              Fasi e ordine vengono adattati alla situazione. Questo schema mostra i passaggi che possono comporre il
-              percorso, senza presupporre che siano tutti necessari in ogni caso.
-            </p>
-          </div>
-          <ol class="prosthetics__timeline">
-            {pathway.map((step, index) => (
-              <li>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section class="prosthetics__section" id="provvisoria-definitiva" aria-labelledby="temporary-title">
-        <div class="prosthetics__container">
-          <div class="prosthetics__section-heading">
-            <p class="prosthetics__kicker">Fasi con funzioni diverse</p>
-            <h2 id="temporary-title">Protesi provvisoria e definitiva</h2>
-            <p>
-              Una protesi provvisoria può essere utilizzata in determinate fasi per accompagnare guarigione,
-              adattamento o verifiche del progetto. Non coincide necessariamente con il lavoro definitivo.
-            </p>
-          </div>
-          <div class="prosthetics__comparison">
-            <article>
-              <span>Durante il percorso</span>
-              <h3>Protesi provvisoria</h3>
-              <p>
-                Ha obiettivi e durata legati alla fase in cui viene utilizzata. Può richiedere modifiche e va seguita
-                secondo le indicazioni ricevute.
-              </p>
-            </article>
-            <article>
-              <span>Al termine delle fasi previste</span>
-              <h3>Protesi definitiva</h3>
-              <p>
-                Viene realizzata per il progetto conclusivo, ma richiede comunque igiene, controlli e possibili
-                interventi di manutenzione nel tempo.
-              </p>
-            </article>
-          </div>
-          <p class="prosthetics__inline-note">
-            La possibilità di avere un provvisorio, il momento della consegna e il passaggio alla protesi definitiva dipendono dal piano individuale.
-          </p>
-        </div>
-      </section>
-
-      <section class="prosthetics__section prosthetics__section--soft" id="manutenzione" aria-labelledby="maintenance-title">
-        <div class="prosthetics__container">
-          <div class="prosthetics__section-heading">
-            <p class="prosthetics__kicker">Dopo la consegna</p>
-            <h2 id="maintenance-title">Adattamento e manutenzione</h2>
-            <p>
-              Il percorso non termina con la consegna. Igiene, controlli e comunicazione tempestiva dei cambiamenti
-              aiutano a mantenere monitorati protesi e tessuti di supporto.
-            </p>
-          </div>
-          <div class="prosthetics__card-grid prosthetics__card-grid--two">
-            {maintenanceItems.map((item) => (
-              <article class="prosthetics__card">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section class="prosthetics__section prosthetics__cost" id="preventivo" aria-labelledby="cost-title">
-        <div class="prosthetics__container prosthetics__split">
-          <div class="prosthetics__heading">
-            <p class="prosthetics__kicker">Un progetto prima di un importo</p>
-            <h2 id="cost-title">Che cosa determina il preventivo</h2>
-            <p>
-              Senza una valutazione non è possibile formulare un preventivo attendibile. L’importo deriva dal progetto
-              clinico e protesico e dalle fasi effettivamente necessarie.
-            </p>
-          </div>
-          <ol class="prosthetics__cost-list">
-            {costFactors.map((factor, index) => (
-              <li><span>{String(index + 1).padStart(2, "0")}</span><p>{factor}</p></li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section class="prosthetics__section prosthetics__section--paper" id="approfondimenti" aria-labelledby="related-title">
-        <div class="prosthetics__container">
-          <div class="prosthetics__section-heading">
-            <p class="prosthetics__kicker">Approfondimenti implantologici</p>
-            <h2 id="related-title">Quando la protesi utilizza impianti</h2>
-            <p>
-              Queste pagine spiegano situazioni e fasi specifiche. Consultarle non sostituisce la valutazione necessaria
-              per stabilire se gli impianti siano indicati.
-            </p>
-          </div>
-          <div class="prosthetics__related-grid">
-            {relatedLinks.map((link) => (
-              <a href={link.href}>
-                <span>
-                  <strong>{link.label}</strong>
-                  <small>{link.text}</small>
-                </span>
-                <b aria-hidden="true">→</b>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section class="prosthetics__section" id="faq" aria-labelledby="faq-title">
-        <div class="prosthetics__container prosthetics__faq-layout">
-          <div class="prosthetics__heading prosthetics__faq-heading">
-            <p class="prosthetics__kicker">Domande frequenti</p>
-            <h2 id="faq-title">Dubbi su protesi, supporti e tempi</h2>
-            <p>Le risposte sono generali e vanno riferite alle condizioni individuali attraverso una visita.</p>
-          </div>
-          <div class="prosthetics__faqs">
-            {faqs.map((faq, index) => (
-              <details open={index === 0}>
-                <summary>{faq.question}<span aria-hidden="true">+</span></summary>
-                <p>{faq.answer}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <aside class="prosthetics__information-note" aria-label="Nota informativa sanitaria">
-        <div class="prosthetics__container">
-          <p>Le informazioni presenti sono di carattere generale e non sostituiscono una valutazione odontoiatrica individuale.</p>
-        </div>
-      </aside>
-
-      <section class="prosthetics__final-cta" aria-labelledby="final-cta-title">
-        <div class="prosthetics__container prosthetics__final-cta-inner">
-          <p class="prosthetics__kicker prosthetics__kicker--light">Sorriso &amp; Salute · Monza</p>
-          <h2 id="final-cta-title">Inizia da una valutazione della tua situazione</h2>
-          <p>
-            Racconta allo studio quali denti mancano, quali difficoltà incontri o quale protesi vuoi controllare. La
-            visita permetterà di confrontare possibilità, limiti, passaggi e manutenzione.
-          </p>
-          <a class="prosthetics__button prosthetics__button--accent" href={ctaHref}>
-            Richiedi una valutazione protesica
-          </a>
-        </div>
-      </section>
-
+      {categoryTreatments && <HygieneTreatmentsPopup {...categoryTreatments} />}
+      <HygieneCareFunnel variant="prosthetics" ctaHref={ctaHref} />
     </main>
 
     <SiteFooter />

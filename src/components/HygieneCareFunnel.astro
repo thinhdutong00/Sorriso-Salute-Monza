@@ -2,8 +2,10 @@
 import { sourceReviews } from "../data/reviews-seed";
 
 type Props = {
+  ctaHref?: string;
   variant?:
     | "hygiene"
+    | "prosthetics"
     | "conservative"
     | "endodontics"
     | "periodontics"
@@ -12,7 +14,7 @@ type Props = {
     | "orthodontics";
 };
 
-const { variant = "hygiene" } = Astro.props;
+const { ctaHref = "#richiesta", variant = "hygiene" } = Astro.props;
 
 const getReview = (id: string) => {
   const review = sourceReviews.find((item) => item.id === id);
@@ -24,7 +26,82 @@ const getReview = (id: string) => {
   return review;
 };
 
-const funnelContent = variant === "orthodontics"
+const funnelContent = variant === "prosthetics"
+  ? {
+      reviewIds: ["review-9100", "review-9105", "review-9102"],
+      causesEyebrow: "Comprendere il problema",
+      causesLead:
+        "Dolore quando mastichi, sensibilità, irritazione o una protesi che si muove non sono fastidi da sopportare. Possono indicare che un dente, i tessuti di supporto o una vecchia protesi non stanno più lavorando correttamente.",
+      clinicalNote:
+        "Il sintomo indica che qualcosa va controllato, ma non basta da solo per scegliere la soluzione. Valutiamo denti, gengive, masticazione e protesi presenti per individuare la causa reale.",
+      causes: [
+        {
+          number: "01",
+          title: "Un dente è compromesso",
+          text: "Carie profonde, fratture o vecchi restauri possono indebolire il dente e provocare dolore, sensibilità o difficoltà durante la masticazione.",
+        },
+        {
+          number: "02",
+          title: "Mancano uno o più denti",
+          text: "Gli spazi vuoti possono alterare l’appoggio della masticazione e sovraccaricare denti, gengive e articolazioni, rendendo meno naturale mangiare e sorridere.",
+        },
+        {
+          number: "03",
+          title: "La protesi non è più stabile",
+          text: "Una corona, un ponte o una protesi mobile usurati o non più adatti possono muoversi, creare pressione, trattenere residui e irritare i tessuti.",
+        },
+      ],
+      solutionsLead:
+        "Non devi adattarti a una masticazione scomoda. Una valutazione protesica completa permette di capire cosa conservare, cosa sostituire e quale soluzione può restituirti stabilità, funzione e sicurezza.",
+      solutions: [
+        {
+          title: "Valutazione protesica precisa",
+          text: "Controlliamo denti, gengive, appoggi, spazi e protesi presenti per definire con chiarezza il punto di partenza.",
+          icon: "check",
+        },
+        {
+          title: "Soluzione costruita sul tuo caso",
+          text: "Corone, ponti, protesi mobili o soluzioni su impianti vengono confrontati in base alle condizioni reali della tua bocca.",
+          icon: "spark",
+        },
+        {
+          title: "Comfort e stabilità nel tempo",
+          text: "Prove, regolazioni e controlli programmati aiutano a ottenere una protesi funzionale, pulibile e semplice da gestire ogni giorno.",
+          icon: "shield",
+        },
+      ],
+      processLead:
+        "Ti accompagniamo dalla prima valutazione alla soluzione definitiva con un piano chiaro, passaggi spiegati e controlli programmati.",
+      processSteps: [
+        {
+          number: "01",
+          title: "Valutiamo",
+          text: "Ascoltiamo il problema, esaminiamo denti, gengive e masticazione e definiamo gli approfondimenti realmente necessari.",
+        },
+        {
+          number: "02",
+          title: "Progettiamo",
+          text: "Confrontiamo le alternative e costruiamo il piano protesico più adatto, chiarendo soluzione, fasi e tempi prima di iniziare.",
+        },
+        {
+          number: "03",
+          title: "Ripristiniamo",
+          text: "Realizziamo la protesi, verifichiamo comfort e stabilità e programmiamo i controlli per mantenere il risultato nel tempo.",
+        },
+      ],
+      trustItems: [
+        "Diagnosi prima della soluzione",
+        "Piano protesico personalizzato",
+        "Controlli e manutenzione programmati",
+      ],
+      reviewSectionId: "recensioni-protesi",
+      ctaSectionId: "prenota-protesi",
+      ctaTitleId: "prosthetics-final-cta-title",
+      ctaTitle: "Torna a masticare e sorridere con sicurezza.",
+      ctaText:
+        "Raccontaci cosa ti crea disagio: ti ricontattiamo per organizzare una valutazione protesica e indicarti con chiarezza il percorso più adatto.",
+    }
+  : variant === "orthodontics"
   ? {
       reviewIds: ["review-9089", "review-9102", "review-9111"],
       causesEyebrow: "Comprendere la situazione",
@@ -559,7 +636,10 @@ const causesHeading = variant === "orthodontics"
 ---
 
 <div class="hygiene-funnel">
-  <section class="hygiene-funnel__section hygiene-funnel__section--causes" id="perche-dolore">
+  <section
+    class="hygiene-funnel__section hygiene-funnel__section--causes"
+    id={variant === "prosthetics" ? "situazioni" : "perche-dolore"}
+  >
     <div class="hygiene-funnel__container hygiene-funnel__causes-layout">
       <header class="hygiene-funnel__intro">
         <p class="hygiene-funnel__eyebrow">{funnelContent.causesEyebrow}</p>
@@ -695,7 +775,7 @@ const causesHeading = variant === "orthodontics"
           <p>{funnelContent.ctaText}</p>
         </div>
         <div class="hygiene-funnel__cta-actions">
-          <a class="hygiene-funnel__button hygiene-funnel__button--primary" href="#richiesta">
+          <a class="hygiene-funnel__button hygiene-funnel__button--primary" href={ctaHref}>
             Richiedi una visita <span aria-hidden="true">→</span>
           </a>
           <a class="hygiene-funnel__button hygiene-funnel__button--secondary" href="tel:+390392022489">
