@@ -1,0 +1,22 @@
+---
+import SymptomRoutingPage from "../../components/SymptomRoutingPage.astro";
+import {
+  symptomRoutingPages,
+  type SymptomRoutingPage as SymptomRoutingPageData,
+} from "../../data/symptomRoutingPages";
+
+export function getStaticPaths() {
+  return symptomRoutingPages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+type Props = {
+  page: SymptomRoutingPageData;
+};
+
+const { page } = Astro.props;
+---
+
+<SymptomRoutingPage page={page} />

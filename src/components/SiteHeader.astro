@@ -1,5 +1,6 @@
 ---
 import { primaryTreatmentMenuLinks } from "../data/kebabTreatmentNavigation";
+import { symptomMenuLinks } from "../data/symptomRoutingPages";
 
 const currentPath = Astro.url.pathname;
 const isHome = currentPath === "/";
@@ -20,49 +21,6 @@ const contactLinks = [
   {
     href: "/le-nostre-piattaforme-di-prenotazione/",
     label: "Prenota una visita",
-  },
-];
-
-const patientNeedLinks = [
-  { href: "/implantologia/", label: "Denti mancanti" },
-  {
-    href: "/attivita/estetica-del-sorriso/faccette-dentali/",
-    label: "Forma e armonia del sorriso",
-  },
-  {
-    href: "/attivita/ortodonzia/",
-    label: "Denti storti o poco allineati",
-  },
-  {
-    href: "/attivita/chirurgia-orale/",
-    label: "Dente del giudizio",
-  },
-  { href: "/attivita/endodonzia/", label: "Mal di denti" },
-  { href: "/attivita/endodonzia/", label: "Dolore durante la masticazione" },
-  {
-    href: "/attivita/endodonzia/",
-    label: "Sensibilità a caldo e freddo",
-  },
-  { href: "/attivita/parodontologia/", label: "Dente mobile" },
-  {
-    href: "/attivita/parodontologia/",
-    label: "Gengive gonfie o sanguinanti",
-  },
-  {
-    href: "/attivita/odontoiatria-conservativa/",
-    label: "Dente rotto o scheggiato",
-  },
-  {
-    href: "/attivita/gnatologia/",
-    label: "Dolore alla mandibola",
-  },
-  {
-    href: "/attivita/estetica-del-sorriso/denti-piu-bianchi/",
-    label: "Colore dei denti",
-  },
-  {
-    href: "/attivita/igiene-orale-e-profilassi/",
-    label: "Controllo o igiene dentale",
   },
 ];
 
@@ -118,7 +76,7 @@ const informationIsActive =
             aria-controls="header-patient-needs-menu"
             data-header-dropdown-toggle
           >
-            <span>Hai uno di questi sintomi?</span>
+            <span>Cosa ti porta dal dentista?</span>
             <span class="primary-site-header__chevron" aria-hidden="true"></span>
           </button>
         </div>
@@ -131,8 +89,13 @@ const informationIsActive =
             Parti da ciò che senti o vuoi migliorare
           </p>
           {
-            patientNeedLinks.map((link) => (
-              <a href={link.href}>{link.label}</a>
+            symptomMenuLinks.map((link) => (
+              <a
+                href={link.href}
+                aria-current={currentPath === link.href ? "page" : undefined}
+              >
+                {link.label}
+              </a>
             ))
           }
         </div>
@@ -335,11 +298,16 @@ const informationIsActive =
   >
     <nav aria-label="Navigazione mobile">
       <details>
-        <summary>Hai uno di questi sintomi?</summary>
+        <summary>Cosa ti porta dal dentista?</summary>
         <div class="primary-site-header__mobile-links primary-site-header__mobile-links--patient-needs">
           {
-            patientNeedLinks.map((link) => (
-              <a href={link.href}>{link.label}</a>
+            symptomMenuLinks.map((link) => (
+              <a
+                href={link.href}
+                aria-current={currentPath === link.href ? "page" : undefined}
+              >
+                {link.label}
+              </a>
             ))
           }
         </div>
@@ -751,10 +719,9 @@ const informationIsActive =
   }
 
   .primary-site-header__dropdown--patient-needs {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: min(760px, calc(100vw - 48px));
+    grid-template-columns: minmax(0, 1fr);
+    width: min(420px, calc(100vw - 48px));
     padding: 14px;
-    column-gap: 10px;
   }
 
   .primary-site-header__dropdown--patient-needs > .primary-site-header__dropdown-eyebrow {

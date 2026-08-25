@@ -1,0 +1,194 @@
+---
+import "../styles/global.css";
+import BrandPalette from "./BrandPalette.astro";
+import FaviconLinks from "./FaviconLinks.astro";
+import GoogleAdsTracking from "./GoogleAdsTracking.astro";
+import InternalPageHero from "./InternalPageHero.astro";
+import SiteFooter from "./SiteFooter.astro";
+import SiteHeader from "./SiteHeader.astro";
+import SymptomTreatmentAccordion from "./SymptomTreatmentAccordion.astro";
+import type { SymptomRoutingPage } from "../data/symptomRoutingPages";
+
+type Props = {
+  page: SymptomRoutingPage;
+};
+
+const { page } = Astro.props;
+const canonicalUrl = `https://sorrisoesalutemonza.it${page.path}`;
+const optionsTitleId = `symptom-options-${page.slug}`;
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={page.metaDescription} />
+    <meta name="theme-color" content="#0E384C" />
+    <link rel="canonical" href={canonicalUrl} />
+    <FaviconLinks />
+    <GoogleAdsTracking />
+    <BrandPalette />
+    <title>{page.title} | Sorriso & Salute Monza</title>
+  </head>
+  <body class="brand-palette internal-page symptom-routing-page">
+    <SiteHeader />
+
+    <main id="main-content" tabindex="-1">
+      <InternalPageHero
+        id={`symptom-title-${page.slug}`}
+        eyebrow="Orientamento ai trattamenti"
+        titlePrimary={page.titlePrimary}
+        titleAccent={page.titleAccent}
+        lead={page.intro}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: page.title },
+        ]}
+        compact
+      />
+
+      <section
+        class="symptom-routing-options"
+        aria-labelledby={optionsTitleId}
+      >
+        <div class="symptom-routing-options__container">
+          <header class="symptom-routing-options__heading">
+            <p class="symptom-routing-options__eyebrow">Possibili aree</p>
+            <h2 id={optionsTitleId}>Da quale trattamento iniziare?</h2>
+            <p>
+              Apri ogni voce per leggere una spiegazione breve, prenotare una
+              visita o consultare la pagina completa del trattamento.
+            </p>
+          </header>
+
+          <div class="symptom-routing-options__list">
+            {
+              page.treatments.map((treatment) => (
+                <SymptomTreatmentAccordion treatment={treatment} />
+              ))
+            }
+          </div>
+
+          <p class="symptom-routing-options__note">
+            Queste indicazioni servono solo a orientarti: il trattamento più
+            adatto viene definito dopo una valutazione professionale.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>
+
+<style>
+  .symptom-routing-options {
+    padding: clamp(68px, 8vw, 106px) 24px;
+    border-top: 1px solid rgba(14, 56, 76, 0.08);
+    background:
+      radial-gradient(
+        circle at 96% 8%,
+        rgba(217, 236, 244, 0.42),
+        transparent 29rem
+      ),
+      #fff;
+    color: var(--brand-primary, #0e384c);
+  }
+
+  .symptom-routing-options__container {
+    width: min(1040px, 100%);
+    margin: 0 auto;
+  }
+
+  .symptom-routing-options__heading {
+    max-width: 780px;
+    margin-bottom: clamp(36px, 5vw, 52px);
+  }
+
+  .symptom-routing-options__eyebrow {
+    display: flex;
+    align-items: center;
+    margin: 0 0 20px;
+    gap: 14px;
+    color: var(--brand-secondary, #1e84b5);
+    font-size: 0.75rem;
+    font-weight: 850;
+    letter-spacing: 0.18em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .symptom-routing-options__eyebrow::before {
+    width: 46px;
+    height: 1px;
+    flex: 0 0 auto;
+    background: currentColor;
+    content: "";
+  }
+
+  .symptom-routing-options__heading h2 {
+    max-width: 14ch;
+    margin: 0;
+    color: var(--brand-primary, #0e384c);
+    font-size: clamp(2.25rem, 5vw, 4.35rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .symptom-routing-options__heading > p:last-child {
+    max-width: 690px;
+    margin: 22px 0 0;
+    color: var(--color-text-description, #334155);
+    font-size: clamp(1rem, 1.4vw, 1.1rem);
+    line-height: 1.7;
+  }
+
+  .symptom-routing-options__list {
+    display: grid;
+    gap: 16px;
+  }
+
+  .symptom-routing-options__note {
+    max-width: 780px;
+    margin: 30px 0 0;
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 680px) {
+    .symptom-routing-options {
+      padding: 60px 18px 72px;
+    }
+
+    .symptom-routing-options__heading {
+      margin-bottom: 32px;
+    }
+
+    .symptom-routing-options__eyebrow {
+      margin-bottom: 16px;
+      gap: 10px;
+      letter-spacing: 0.14em;
+    }
+
+    .symptom-routing-options__eyebrow::before {
+      width: 30px;
+    }
+
+    .symptom-routing-options__heading h2 {
+      font-size: clamp(2.1rem, 11vw, 3rem);
+    }
+
+    .symptom-routing-options__heading > p:last-child {
+      margin-top: 18px;
+      font-size: 1rem;
+    }
+
+    .symptom-routing-options__note {
+      margin-top: 26px;
+    }
+  }
+</style>
