@@ -22,6 +22,8 @@ export interface GeneralRequestServiceOption {
 export interface CategoryTreatmentItem {
   id: string;
   label: string;
+  /** Copy shown in the treatment accordion; `label` remains the technical form value. */
+  patientLabel?: string;
   description: string;
   categoryId: TreatmentCategoryId;
   specificTreatmentValue: string;
@@ -66,6 +68,11 @@ const treatmentFor = (categoryId: TreatmentCategoryId): TreatmentFactory =>
     specificTreatmentValue: label,
     ...(internalHref ? { internalHref } : {}),
   });
+
+const forPatient = (
+  treatment: CategoryTreatmentItem,
+  patientLabel: string,
+): CategoryTreatmentItem => ({ ...treatment, patientLabel });
 
 const service = (
   slug: TreatmentCategoryId,
@@ -706,84 +713,138 @@ export const categoryTreatmentsByPath: Readonly<Record<string, CategoryTreatment
       "estetica",
       7,
     ),
-    eyebrow: "I trattamenti",
-    title: "Trattamenti per un sorriso più armonioso",
+    eyebrow: "Cosa vuoi migliorare",
+    title: "Scegli il risultato che desideri per il tuo sorriso",
     description:
-      "Soluzioni per migliorare colore, forma e proporzioni dei denti, rispettando l’equilibrio naturale del sorriso.",
+      "Parti da ciò che vorresti migliorare. Dopo la valutazione, l’odontoiatra ti indicherà il trattamento più adatto al tuo caso.",
     sectionId: "trattamenti-estetica-del-sorriso",
     groups: [
       {
-        title: "Colore dei denti",
+        title: "Denti più bianchi",
         items: [
-          estetica(
-            "sbiancamento-dentale-professionale",
-            "Sbiancamento dentale professionale",
-            "Il trattamento schiarisce le pigmentazioni dei denti naturali con prodotti professionali, dopo aver controllato salute orale e possibili sensibilità.",
+          forPatient(
+            estetica(
+              "sbiancamento-dentale-professionale",
+              "Sbiancamento dentale professionale",
+              "Lo sbiancamento dentale professionale aiuta a rendere più chiaro il colore dei denti naturali. Dopo un controllo della salute orale, può essere eseguito in studio o con mascherine domiciliari secondo le indicazioni del dentista.",
+            ),
+            "Rendere i denti più bianchi",
           ),
-          estetica(
-            "sbiancamento-dentale-in-studio",
-            "Sbiancamento dentale in studio",
-            "Il gel sbiancante viene applicato e controllato durante la seduta, proteggendo i tessuti gengivali secondo il protocollo scelto.",
+          forPatient(
+            estetica(
+              "correzione-dei-denti-macchiati",
+              "Correzione dei denti macchiati",
+              "Macchie e discromie possono avere cause diverse. La valutazione distingue le pigmentazioni superficiali dalle alterazioni interne e permette di scegliere tra igiene, sbiancamento, restauro o altre soluzioni indicate.",
+            ),
+            "Schiarire denti macchiati o scuriti",
           ),
-          estetica(
-            "sbiancamento-domiciliare-con-mascherine",
-            "Sbiancamento domiciliare con mascherine",
-            "Mascherine realizzate su misura consentono di applicare a casa il prodotto indicato seguendo tempi e controlli stabiliti dal dentista.",
+          forPatient(
+            estetica(
+              "sbiancamento-interno-dei-denti-devitalizzati",
+              "Sbiancamento interno dei denti devitalizzati",
+              "Se un dente devitalizzato è diventato più scuro, può essere valutato lo sbiancamento interno. Il trattamento viene scelto solo dopo aver controllato il dente e il precedente trattamento canalare.",
+            ),
+            "Schiarire un dente diventato più scuro",
           ),
-          estetica(
-            "sbiancamento-interno-dei-denti-devitalizzati",
-            "Sbiancamento interno dei denti devitalizzati",
-            "Il materiale sbiancante viene posizionato all’interno di un dente non vitale discromico dopo aver verificato il precedente trattamento canalare.",
+          forPatient(
+            estetica(
+              "sbiancamento-dentale-in-studio",
+              "Sbiancamento dentale in studio",
+              "È una modalità dello sbiancamento dentale professionale: il prodotto viene applicato e controllato durante la seduta, proteggendo i tessuti gengivali secondo il protocollo scelto.",
+            ),
+            "Opzione: trattamento in studio",
+          ),
+          forPatient(
+            estetica(
+              "sbiancamento-domiciliare-con-mascherine",
+              "Sbiancamento domiciliare con mascherine",
+              "È una modalità domiciliare dello sbiancamento professionale: mascherine realizzate su misura permettono di usare a casa il prodotto indicato, rispettando tempi e controlli stabiliti dal dentista.",
+            ),
+            "Opzione: mascherine da usare a casa",
           ),
         ],
       },
       {
-        title: "Forma e armonia",
+        title: "Forma più armoniosa",
         items: [
-          estetica(
-            "faccette-dentali-in-ceramica",
-            "Faccette dentali in ceramica",
-            "Sottili elementi ceramici vengono progettati per modificare forma, colore o proporzione della superficie visibile di denti selezionati.",
+          forPatient(
+            estetica(
+              "miglioramento-della-forma-dei-denti",
+              "Miglioramento della forma dei denti",
+              "Per migliorare la forma dei denti e uniformare elementi di forme o dimensioni diverse si possono valutare composito, faccette, rimodellamento o altre soluzioni. La scelta dipende dal dente, dal morso e dal risultato desiderato.",
+            ),
+            "Migliorare la forma dei denti",
           ),
-          estetica(
-            "faccette-dentali-in-composito",
-            "Faccette dentali in composito",
-            "Il composito viene modellato sulla superficie del dente per correggere caratteristiche estetiche con un approccio definito dopo la valutazione clinica.",
+          forPatient(
+            estetica(
+              "miglioramento-delle-proporzioni-dentali",
+              "Miglioramento delle proporzioni dentali",
+              "La valutazione del sorriso considera larghezza e lunghezza dei denti e il rapporto con gengive e labbra. In base al caso si definisce come rendere l’insieme più equilibrato senza indicare automaticamente le faccette.",
+            ),
+            "Rendere il sorriso più proporzionato",
           ),
-          estetica(
-            "correzione-dei-denti-macchiati",
-            "Correzione dei denti macchiati",
-            "La causa e la profondità delle discromie guidano la scelta tra pulizia, sbiancamento, restauro o rivestimento estetico.",
+        ],
+      },
+      {
+        title: "Piccoli difetti",
+        items: [
+          forPatient(
+            estetica(
+              "correzione-dei-denti-scheggiati",
+              "Correzione dei denti scheggiati",
+              "Per correggere una piccola imperfezione o una parte scheggiata, il dente può essere ricostruito con materiali adesivi o con un’altra soluzione proporzionata all’estensione del danno.",
+            ),
+            "Riparare un dente scheggiato",
           ),
-          estetica(
-            "correzione-dei-denti-scheggiati",
-            "Correzione dei denti scheggiati",
-            "La parte mancante può essere ricostruita con materiali adesivi o altre soluzioni proporzionate all’estensione dello scheggiamento.",
+          forPatient(
+            estetica(
+              "correzione-dei-denti-consumati",
+              "Correzione dei denti consumati",
+              "Prima di ricostruire denti consumati si individua la causa dell’usura. Poi si valuta come recuperare forma e funzione senza creare sovraccarichi.",
+            ),
+            "Ricostruire denti consumati",
           ),
-          estetica(
-            "correzione-dei-denti-consumati",
-            "Correzione dei denti consumati",
-            "Dopo aver individuato le cause dell’usura, si valuta come ripristinare forma e funzione senza sovraccaricare i denti.",
+        ],
+      },
+      {
+        title: "Spazi tra i denti",
+        items: [
+          forPatient(
+            estetica(
+              "chiusura-dei-piccoli-spazi-tra-i-denti",
+              "Chiusura dei piccoli spazi tra i denti",
+              "Gli spazi contenuti possono essere ridotti con composito, faccette o altre soluzioni, dopo aver verificato proporzioni, posizione dei denti e contatti.",
+            ),
+            "Chiudere gli spazi tra i denti",
           ),
-          estetica(
-            "miglioramento-della-forma-dei-denti",
-            "Miglioramento della forma dei denti",
-            "Contorni e volumi dentali possono essere modificati con tecniche additive o restaurative pianificate nel rispetto del morso.",
+          forPatient(
+            estetica(
+              "correzione-estetica-dei-diastemi",
+              "Correzione estetica dei diastemi",
+              "Lo spazio visibile tra due denti viene definito anche diastema. La sua chiusura richiede una valutazione di denti, radici e gengive e può includere soluzioni restaurative oppure ortodontiche.",
+            ),
+            "Quando lo spazio è un diastema",
           ),
-          estetica(
-            "miglioramento-delle-proporzioni-dentali",
-            "Miglioramento delle proporzioni dentali",
-            "La valutazione del sorriso guida interventi mirati su larghezza, lunghezza e rapporti tra denti, gengive e labbra.",
+        ],
+      },
+      {
+        title: "Faccette dentali",
+        items: [
+          forPatient(
+            estetica(
+              "faccette-dentali-in-ceramica",
+              "Faccette dentali in ceramica",
+              "Le faccette in ceramica sono una possibile soluzione per migliorare forma, colore e proporzioni di denti selezionati. Vengono considerate solo quando sono adatte al caso e al risultato desiderato.",
+            ),
+            "Faccette in ceramica",
           ),
-          estetica(
-            "chiusura-dei-piccoli-spazi-tra-i-denti",
-            "Chiusura dei piccoli spazi tra i denti",
-            "Spazi contenuti possono essere ridotti con restauri adesivi o altre soluzioni, verificando proporzioni e contatti tra i denti.",
-          ),
-          estetica(
-            "correzione-estetica-dei-diastemi",
-            "Correzione estetica dei diastemi",
-            "La chiusura dei diastemi viene pianificata considerando dimensioni dentali, posizione delle radici, gengive e possibili alternative ortodontiche.",
+          forPatient(
+            estetica(
+              "faccette-dentali-in-composito",
+              "Faccette dentali in composito",
+              "Le faccette in composito vengono modellate sulla superficie del dente e possono migliorare forma e proporzioni in casi selezionati. La scelta rispetto ad altre soluzioni segue sempre la valutazione clinica.",
+            ),
+            "Faccette in composito",
           ),
         ],
       },

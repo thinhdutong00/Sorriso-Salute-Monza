@@ -73,7 +73,9 @@ const hasMobileOverflow = treatmentIndex > mobileTreatmentLimit;
                     >
                       <details>
                         <summary>
-                          <span class="category-treatments__item-label">{item.label}</span>
+                          <span class="category-treatments__item-label">
+                            {item.patientLabel ?? item.label}
+                          </span>
                           <span class="category-treatments__indicator" aria-hidden="true">+</span>
                         </summary>
                         <div class="category-treatments__panel">
