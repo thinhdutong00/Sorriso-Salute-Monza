@@ -66,11 +66,6 @@ const patientNeedLinks = [
   },
 ];
 
-const informationIsActive =
-  currentPath.startsWith("/chi-siamo") ||
-  currentPath.startsWith("/recensioni-") ||
-  currentPath.startsWith("/convenzioni-") ||
-  currentPath === "/tutte-le-convenzioni/";
 const treatmentsIsActive =
   currentPath.startsWith("/attivita/") ||
   currentPath.startsWith("/implantologia/") ||
@@ -82,6 +77,12 @@ const contactsIsActive =
   currentPath === "/lavora-con-noi/" ||
   currentPath === "/richiesta-generale/" ||
   currentPath === "/le-nostre-piattaforme-di-prenotazione/";
+const informationIsActive =
+  currentPath.startsWith("/chi-siamo") ||
+  currentPath.startsWith("/recensioni-") ||
+  currentPath.startsWith("/convenzioni-") ||
+  currentPath === "/tutte-le-convenzioni/" ||
+  contactsIsActive;
 ---
 
 <a class="primary-site-skip-link" href="#main-content">Vai al contenuto</a>
@@ -105,43 +106,6 @@ const contactsIsActive =
     </a>
 
     <nav class="primary-site-header__desktop-nav" aria-label="Navigazione principale">
-      <div
-        class:list={[
-          "primary-site-header__item",
-          informationIsActive && "is-current",
-        ]}
-        data-header-dropdown
-      >
-        <div class="primary-site-header__item-trigger">
-          <a href="/chi-siamo/" aria-current={currentPath === "/chi-siamo/" ? "page" : undefined}>
-            Informazioni
-          </a>
-          <button
-            type="button"
-            aria-label="Apri il menu Informazioni"
-            aria-expanded="false"
-            aria-controls="header-information-menu"
-            data-header-dropdown-toggle
-          >
-            <span class="primary-site-header__chevron" aria-hidden="true"></span>
-          </button>
-        </div>
-        <div
-          class="primary-site-header__dropdown primary-site-header__dropdown--simple"
-          id="header-information-menu"
-          data-header-dropdown-panel
-        >
-          <p class="primary-site-header__dropdown-eyebrow">Informazioni sullo studio</p>
-          {
-            informationLinks.map((link) => (
-              <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
-                {link.label}
-              </a>
-            ))
-          }
-        </div>
-      </div>
-
       <div
         class="primary-site-header__item primary-site-header__item--patient-needs"
         data-header-dropdown
@@ -291,19 +255,19 @@ const contactsIsActive =
       <div
         class:list={[
           "primary-site-header__item",
-          contactsIsActive && "is-current",
+          informationIsActive && "is-current",
         ]}
         data-header-dropdown
       >
         <div class="primary-site-header__item-trigger">
-          <a href="/contatti/" aria-current={currentPath === "/contatti/" ? "page" : undefined}>
-            Contatti
+          <a href="/chi-siamo/" aria-current={currentPath === "/chi-siamo/" ? "page" : undefined}>
+            Informazioni
           </a>
           <button
             type="button"
-            aria-label="Apri il menu Contatti"
+            aria-label="Apri il menu Informazioni"
             aria-expanded="false"
-            aria-controls="header-contacts-menu"
+            aria-controls="header-information-menu"
             data-header-dropdown-toggle
           >
             <span class="primary-site-header__chevron" aria-hidden="true"></span>
@@ -311,10 +275,20 @@ const contactsIsActive =
         </div>
         <div
           class="primary-site-header__dropdown primary-site-header__dropdown--simple primary-site-header__dropdown--right"
-          id="header-contacts-menu"
+          id="header-information-menu"
           data-header-dropdown-panel
         >
-          <p class="primary-site-header__dropdown-eyebrow">Contatti e appuntamenti</p>
+          <p class="primary-site-header__dropdown-eyebrow">Informazioni sullo studio</p>
+          {
+            informationLinks.map((link) => (
+              <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
+                {link.label}
+              </a>
+            ))
+          }
+          <p class="primary-site-header__dropdown-eyebrow primary-site-header__dropdown-eyebrow--section">
+            Contatti e appuntamenti
+          </p>
           {
             contactLinks.map((link) => (
               <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
@@ -360,19 +334,6 @@ const contactsIsActive =
     hidden
   >
     <nav aria-label="Navigazione mobile">
-      <details>
-        <summary>Informazioni</summary>
-        <div class="primary-site-header__mobile-links">
-          {
-            informationLinks.map((link) => (
-              <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
-                {link.label}
-              </a>
-            ))
-          }
-        </div>
-      </details>
-
       <details>
         <summary>Hai uno di questi sintomi?</summary>
         <div class="primary-site-header__mobile-links primary-site-header__mobile-links--patient-needs">
@@ -447,8 +408,19 @@ const contactsIsActive =
       </a>
 
       <details>
-        <summary>Contatti</summary>
+        <summary>Informazioni</summary>
         <div class="primary-site-header__mobile-links">
+          <p class="primary-site-header__mobile-section-title">Informazioni sullo studio</p>
+          {
+            informationLinks.map((link) => (
+              <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
+                {link.label}
+              </a>
+            ))
+          }
+          <p class="primary-site-header__mobile-section-title primary-site-header__mobile-section-title--section">
+            Contatti e appuntamenti
+          </p>
           {
             contactLinks.map((link) => (
               <a href={link.href} aria-current={currentPath === link.href ? "page" : undefined}>
@@ -810,6 +782,10 @@ const contactsIsActive =
     letter-spacing: 0.1em;
     line-height: 1.3;
     text-transform: uppercase;
+  }
+
+  .primary-site-header__dropdown-eyebrow--section {
+    margin-top: 10px;
   }
 
   .primary-site-header__dropdown--simple > a {
@@ -1350,6 +1326,21 @@ const contactsIsActive =
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.04);
       gap: 3px;
+    }
+
+    .primary-site-header__mobile-section-title {
+      margin: 0 4px 4px;
+      padding: 2px 8px 9px;
+      border-bottom: 1px solid rgba(191, 232, 247, 0.24);
+      color: #bfe8f7;
+      font-size: 0.68rem;
+      font-weight: 780;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .primary-site-header__mobile-section-title--section {
+      margin-top: 10px;
     }
 
     .primary-site-header__mobile-links > a {
