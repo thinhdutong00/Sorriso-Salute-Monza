@@ -42,6 +42,8 @@ export interface CategoryTreatmentsData {
   title: string;
   description?: string;
   groups: readonly CategoryTreatmentGroup[];
+  /** Presets kept for existing form deep-links but intentionally omitted from the UI. */
+  formOnlyTreatments?: readonly CategoryTreatmentItem[];
   sectionId: string;
 }
 
@@ -726,7 +728,7 @@ export const categoryTreatmentsByPath: Readonly<Record<string, CategoryTreatment
             estetica(
               "sbiancamento-dentale-professionale",
               "Sbiancamento dentale professionale",
-              "Lo sbiancamento dentale professionale aiuta a rendere più chiaro il colore dei denti naturali. Dopo un controllo della salute orale, può essere eseguito in studio o con mascherine domiciliari secondo le indicazioni del dentista.",
+              "Lo sbiancamento dentale professionale aiuta a rendere più chiaro il colore dei denti naturali. Dopo un controllo della salute orale, il dentista valuta se eseguirlo in studio oppure a casa con mascherine su misura, indicando tempi e controlli.",
             ),
             "Rendere i denti più bianchi",
           ),
@@ -746,47 +748,10 @@ export const categoryTreatmentsByPath: Readonly<Record<string, CategoryTreatment
             ),
             "Schiarire un dente diventato più scuro",
           ),
-          forPatient(
-            estetica(
-              "sbiancamento-dentale-in-studio",
-              "Sbiancamento dentale in studio",
-              "È una modalità dello sbiancamento dentale professionale: il prodotto viene applicato e controllato durante la seduta, proteggendo i tessuti gengivali secondo il protocollo scelto.",
-            ),
-            "Opzione: trattamento in studio",
-          ),
-          forPatient(
-            estetica(
-              "sbiancamento-domiciliare-con-mascherine",
-              "Sbiancamento domiciliare con mascherine",
-              "È una modalità domiciliare dello sbiancamento professionale: mascherine realizzate su misura permettono di usare a casa il prodotto indicato, rispettando tempi e controlli stabiliti dal dentista.",
-            ),
-            "Opzione: mascherine da usare a casa",
-          ),
         ],
       },
       {
-        title: "Forma più armoniosa",
-        items: [
-          forPatient(
-            estetica(
-              "miglioramento-della-forma-dei-denti",
-              "Miglioramento della forma dei denti",
-              "Per migliorare la forma dei denti e uniformare elementi di forme o dimensioni diverse si possono valutare composito, faccette, rimodellamento o altre soluzioni. La scelta dipende dal dente, dal morso e dal risultato desiderato.",
-            ),
-            "Migliorare la forma dei denti",
-          ),
-          forPatient(
-            estetica(
-              "miglioramento-delle-proporzioni-dentali",
-              "Miglioramento delle proporzioni dentali",
-              "La valutazione del sorriso considera larghezza e lunghezza dei denti e il rapporto con gengive e labbra. In base al caso si definisce come rendere l’insieme più equilibrato senza indicare automaticamente le faccette.",
-            ),
-            "Rendere il sorriso più proporzionato",
-          ),
-        ],
-      },
-      {
-        title: "Piccoli difetti",
+        title: "Denti scheggiati o consumati",
         items: [
           forPatient(
             estetica(
@@ -804,6 +769,14 @@ export const categoryTreatmentsByPath: Readonly<Record<string, CategoryTreatment
             ),
             "Ricostruire denti consumati",
           ),
+          forPatient(
+            estetica(
+              "miglioramento-della-forma-dei-denti",
+              "Miglioramento della forma dei denti",
+              "Per correggere piccole imperfezioni della forma e uniformare denti di forme o dimensioni diverse si possono valutare composito, faccette, rimodellamento o altre soluzioni. La scelta dipende dal dente, dal morso e dal risultato desiderato.",
+            ),
+            "Correggere piccole imperfezioni della forma",
+          ),
         ],
       },
       {
@@ -813,17 +786,9 @@ export const categoryTreatmentsByPath: Readonly<Record<string, CategoryTreatment
             estetica(
               "chiusura-dei-piccoli-spazi-tra-i-denti",
               "Chiusura dei piccoli spazi tra i denti",
-              "Gli spazi contenuti possono essere ridotti con composito, faccette o altre soluzioni, dopo aver verificato proporzioni, posizione dei denti e contatti.",
+              "Uno spazio visibile tra due denti viene chiamato anche diastema. Può essere ridotto con composito, faccette, ortodonzia o altre soluzioni, dopo aver valutato proporzioni, posizione dei denti, radici, gengive e contatti.",
             ),
             "Chiudere gli spazi tra i denti",
-          ),
-          forPatient(
-            estetica(
-              "correzione-estetica-dei-diastemi",
-              "Correzione estetica dei diastemi",
-              "Lo spazio visibile tra due denti viene definito anche diastema. La sua chiusura richiede una valutazione di denti, radici e gengive e può includere soluzioni restaurative oppure ortodontiche.",
-            ),
-            "Quando lo spazio è un diastema",
           ),
         ],
       },
@@ -834,7 +799,7 @@ export const categoryTreatmentsByPath: Readonly<Record<string, CategoryTreatment
             estetica(
               "faccette-dentali-in-ceramica",
               "Faccette dentali in ceramica",
-              "Le faccette in ceramica sono una possibile soluzione per migliorare forma, colore e proporzioni di denti selezionati. Vengono considerate solo quando sono adatte al caso e al risultato desiderato.",
+              "Le faccette in ceramica sono una possibile soluzione per migliorare forma, colore, proporzioni e uniformità estetica di denti selezionati. Vengono considerate solo quando sono adatte al caso e al risultato desiderato.",
             ),
             "Faccette in ceramica",
           ),
@@ -842,12 +807,34 @@ export const categoryTreatmentsByPath: Readonly<Record<string, CategoryTreatment
             estetica(
               "faccette-dentali-in-composito",
               "Faccette dentali in composito",
-              "Le faccette in composito vengono modellate sulla superficie del dente e possono migliorare forma e proporzioni in casi selezionati. La scelta rispetto ad altre soluzioni segue sempre la valutazione clinica.",
+              "Le faccette in composito vengono modellate sulla superficie del dente e possono migliorare forma, colore, proporzioni e uniformità estetica in casi selezionati. La scelta rispetto ad altre soluzioni segue sempre la valutazione clinica.",
             ),
             "Faccette in composito",
           ),
         ],
       },
+    ],
+    formOnlyTreatments: [
+      estetica(
+        "sbiancamento-dentale-in-studio",
+        "Sbiancamento dentale in studio",
+        "È una modalità dello sbiancamento dentale professionale: il prodotto viene applicato e controllato durante la seduta, proteggendo i tessuti gengivali secondo il protocollo scelto.",
+      ),
+      estetica(
+        "sbiancamento-domiciliare-con-mascherine",
+        "Sbiancamento domiciliare con mascherine",
+        "È una modalità domiciliare dello sbiancamento professionale: mascherine realizzate su misura permettono di usare a casa il prodotto indicato, rispettando tempi e controlli stabiliti dal dentista.",
+      ),
+      estetica(
+        "miglioramento-delle-proporzioni-dentali",
+        "Miglioramento delle proporzioni dentali",
+        "La valutazione del sorriso considera larghezza e lunghezza dei denti e il rapporto con gengive e labbra. In base al caso si definisce come rendere l’insieme più equilibrato senza indicare automaticamente le faccette.",
+      ),
+      estetica(
+        "correzione-estetica-dei-diastemi",
+        "Correzione estetica dei diastemi",
+        "Lo spazio visibile tra due denti viene definito anche diastema. La sua chiusura richiede una valutazione di denti, radici e gengive e può includere soluzioni restaurative oppure ortodontiche.",
+      ),
     ],
   },
   "/attivita/ortodonzia/": {
@@ -1341,9 +1328,10 @@ export const categoryTreatmentsByPath: Readonly<Record<string, CategoryTreatment
 };
 
 const allCategories = Object.values(categoryTreatmentsByPath);
-const allTreatments = allCategories.flatMap((category) =>
-  category.groups.flatMap((group) => group.items),
-);
+const allTreatments = allCategories.flatMap((category) => [
+  ...category.groups.flatMap((group) => group.items),
+  ...(category.formOnlyTreatments ?? []),
+]);
 
 export const generalRequestServiceOptions: readonly GeneralRequestServiceOption[] =
   allCategories

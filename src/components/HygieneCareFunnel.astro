@@ -5,6 +5,7 @@ type Props = {
   ctaHref?: string;
   variant?:
     | "hygiene"
+    | "aesthetics"
     | "prosthetics"
     | "conservative"
     | "endodontics"
@@ -26,7 +27,82 @@ const getReview = (id: string) => {
   return review;
 };
 
-const funnelContent = variant === "prosthetics"
+const funnelContent = variant === "aesthetics"
+  ? {
+      reviewIds: ["review-9103", "review-9100", "review-9102"],
+      causesEyebrow: "Prima del trattamento",
+      causesLead:
+        "Dolore, sensibilità e fastidio non sono problemi da coprire con una soluzione estetica. Prima di intervenire su colore, forma o spazi, individuiamo la causa e riportiamo denti e gengive nelle condizioni corrette.",
+      clinicalNote:
+        "Un sorriso più armonioso parte sempre dalla salute orale. La visita distingue una semplice esigenza estetica da carie, usura, infiammazione o altri problemi che richiedono prima una cura specifica.",
+      causes: [
+        {
+          number: "01",
+          title: "Smalto e dentina sono più esposti",
+          text: "Usura, recessioni gengivali o piccole fratture possono rendere il dente sensibile al freddo, al caldo o durante la masticazione.",
+        },
+        {
+          number: "02",
+          title: "Un dente è danneggiato o alterato",
+          text: "Carie, vecchi restauri, traumi o un dente devitalizzato possono modificare colore e forma e, in alcuni casi, provocare dolore o fastidio.",
+        },
+        {
+          number: "03",
+          title: "Gengive e contatti non sono in equilibrio",
+          text: "Infiammazione gengivale, spazi o contatti irregolari possono cambiare l’aspetto del sorriso e creare disagio. La causa va chiarita prima di correggere l’estetica.",
+        },
+      ],
+      solutionsLead:
+        "Nel nostro studio trovi valutazione, pianificazione e trattamenti per colore, forma, proporzioni e piccoli difetti. Non devi scegliere da solo: partiamo dalla tua esigenza e definiamo la soluzione più adatta al tuo sorriso.",
+      solutions: [
+        {
+          title: "Valutazione estetica e clinica completa",
+          text: "Controlliamo salute orale, colore, forma, proporzioni, gengive e masticazione per stabilire con precisione cosa può essere migliorato.",
+          icon: "check",
+        },
+        {
+          title: "Trattamenti mirati, senza soluzioni standard",
+          text: "Sbiancamento professionale, ricostruzioni adesive e faccette vengono confrontati solo quando sono coerenti con il problema e con il risultato desiderato.",
+          icon: "spark",
+        },
+        {
+          title: "Un risultato naturale e controllato",
+          text: "Pianifichiamo ogni passaggio per rispettare denti, gengive e lineamenti e definiamo fin dall’inizio controlli e manutenzione.",
+          icon: "shield",
+        },
+      ],
+      processLead:
+        "Ti guidiamo dalla prima esigenza al risultato con un percorso chiaro: capiamo cosa vuoi migliorare, definiamo le opzioni corrette e realizziamo il trattamento concordato.",
+      processSteps: [
+        {
+          number: "01",
+          title: "Ascoltiamo",
+          text: "Partiamo da ciò che vuoi cambiare e dagli eventuali fastidi, senza dare per scontato quale trattamento ti serva.",
+        },
+        {
+          number: "02",
+          title: "Pianifichiamo",
+          text: "Valutiamo salute, proporzioni e alternative e ti spieghiamo con chiarezza risultato possibile, fasi, tempi e mantenimento.",
+        },
+        {
+          number: "03",
+          title: "Miglioriamo",
+          text: "Eseguiamo il trattamento scelto con un approccio conservativo e controlliamo nel tempo stabilità, comfort e risultato estetico.",
+        },
+      ],
+      trustItems: [
+        "Salute prima dell’estetica",
+        "Trattamenti scelti sul caso",
+        "Risultato naturale e controllato",
+      ],
+      reviewSectionId: "recensioni-estetica",
+      ctaSectionId: "prenota-estetica",
+      ctaTitleId: "aesthetics-final-cta-title",
+      ctaTitle: "Il sorriso che desideri parte da una valutazione corretta.",
+      ctaText:
+        "Non devi sapere già quale trattamento ti serve. Raccontaci cosa vuoi migliorare: ti ricontattiamo per fissare una visita e costruire il percorso più adatto al tuo sorriso.",
+    }
+  : variant === "prosthetics"
   ? {
       reviewIds: ["review-9100", "review-9105", "review-9102"],
       causesEyebrow: "Comprendere il problema",

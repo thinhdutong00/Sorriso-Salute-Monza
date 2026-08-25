@@ -1,0 +1,1170 @@
+---
+import "../../styles/global.css";
+import FaviconLinks from "../FaviconLinks.astro";
+import GoogleAdsTracking from "../GoogleAdsTracking.astro";
+import SiteFooter from "../SiteFooter.astro";
+import SiteHeader from "../SiteHeader.astro";
+import {
+  esteticaSorrisoPages,
+  type EsteticaSorrisoPage,
+} from "../../data/esteticaSorrisoPages";
+import { sourceReviews } from "../../data/reviews-seed";
+
+interface Props {
+  page: EsteticaSorrisoPage;
+}
+
+const { page } = Astro.props;
+const parentHref = "/attivita/estetica-del-sorriso/";
+const requestHref = `${parentHref}#richiesta`;
+const pagePath = `${parentHref}${page.slug}/`;
+const canonical = `https://sorrisoesalutemonza.it${pagePath}`;
+const socialImage = "https://sorrisoesalutemonza.it/assets/generated/esthetic-smile-natural.jpg";
+const reviews = page.reviewIds.map((id) => {
+  const review = sourceReviews.find((item) => item.id === id);
+
+  if (!review) {
+    throw new Error(`Recensione non trovata per la pagina ${page.slug}: ${id}`);
+  }
+
+  return review;
+});
+const relatedPages = esteticaSorrisoPages.filter((item) => item.slug !== page.slug);
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${canonical}#webpage`,
+      url: canonical,
+      name: page.title,
+      description: page.metaDescription,
+      inLanguage: "it-IT",
+      isPartOf: {
+        "@type": "WebSite",
+        "@id": "https://sorrisoesalutemonza.it/#website",
+        url: "https://sorrisoesalutemonza.it/",
+        name: "Studio Dentistico Sorriso & Salute",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://sorrisoesalutemonza.it/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Trattamenti",
+          item: "https://sorrisoesalutemonza.it/attivita/",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Estetica del sorriso",
+          item: `https://sorrisoesalutemonza.it${parentHref}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 4,
+          name: page.navLabel,
+          item: canonical,
+        },
+      ],
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{page.title}</title>
+    <meta name="description" content={page.metaDescription} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0e384c" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:title" content={page.title} />
+    <meta property="og:description" content={page.metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+    <FaviconLinks />
+    <GoogleAdsTracking />
+  </head>
+  <body class="aesthetic-detail-page internal-page">
+    <SiteHeader />
+
+    <main class="aesthetic-detail" id="main-content" tabindex="-1">
+      <section class="aesthetic-detail__hero" aria-labelledby="aesthetic-detail-title">
+        <div class="aesthetic-detail__container">
+          <nav class="aesthetic-detail__breadcrumb" aria-label="Percorso di navigazione">
+            <ol>
+              <li><a href="/">Home</a></li>
+              <li><a href="/attivita/">Trattamenti</a></li>
+              <li><a href={parentHref}>Estetica del sorriso</a></li>
+              <li aria-current="page">{page.navLabel}</li>
+            </ol>
+          </nav>
+
+          <div class="aesthetic-detail__hero-grid">
+            <div class="aesthetic-detail__hero-copy">
+              <p class="aesthetic-detail__eyebrow">{page.eyebrow}</p>
+              <h1 id="aesthetic-detail-title">
+                <span>{page.h1}</span>
+                {page.heroAccent && <strong>{page.heroAccent}</strong>}
+              </h1>
+              <p class="aesthetic-detail__hero-intro">{page.heroIntro}</p>
+              <p class="aesthetic-detail__clinical-note">
+                <span aria-hidden="true">i</span>
+                {page.clinicalNote}
+              </p>
+              <div class="aesthetic-detail__actions">
+                <a class="aesthetic-detail__button aesthetic-detail__button--primary" href={requestHref}>
+                  Richiedi una valutazione estetica
+                </a>
+                <a class="aesthetic-detail__button aesthetic-detail__button--secondary" href="tel:+390392022489">
+                  Chiama lo studio
+                </a>
+              </div>
+            </div>
+
+            <aside class="aesthetic-detail__index" aria-labelledby="aesthetic-detail-index-title">
+              <p class="aesthetic-detail__index-label">In questa pagina</p>
+              <h2 id="aesthetic-detail-index-title">Vai subito a ciò che vuoi migliorare</h2>
+              <ol>
+                {page.topics.map((topic, index) => (
+                  <li>
+                    <a href={`#${topic.id}`}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <strong>{topic.title}</strong>
+                      <span class="aesthetic-detail__index-arrow" aria-hidden="true">→</span>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+              <p>Nessuna scelta viene fatta prima della visita: partiamo dal risultato che desideri e valutiamo il percorso adatto.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="aesthetic-detail__orientation" aria-labelledby="aesthetic-orientation-title">
+        <div class="aesthetic-detail__container aesthetic-detail__orientation-grid">
+          <div class="aesthetic-detail__section-heading">
+            <p class="aesthetic-detail__eyebrow">{page.orientation.kicker}</p>
+            <h2 id="aesthetic-orientation-title">{page.orientation.title}</h2>
+            <p>{page.orientation.intro}</p>
+          </div>
+
+          <div class="aesthetic-detail__orientation-list">
+            {page.orientation.items.map((item, index) => (
+              <article>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div class="aesthetic-detail__topics" aria-label={`Approfondimenti: ${page.navLabel}`}>
+        {page.topics.map((topic, index) => (
+          <section
+            class:list={[
+              "aesthetic-detail__topic",
+              index % 2 === 1 && "aesthetic-detail__topic--soft",
+            ]}
+            id={topic.id}
+            aria-labelledby={`${topic.id}-title`}
+          >
+            <div class="aesthetic-detail__container aesthetic-detail__topic-grid">
+              <div class="aesthetic-detail__topic-marker" aria-hidden="true">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <i></i>
+              </div>
+
+              <div class="aesthetic-detail__topic-copy">
+                <p class="aesthetic-detail__eyebrow">{topic.kicker}</p>
+                <h2 id={`${topic.id}-title`}>{topic.title}</h2>
+                <p class="aesthetic-detail__topic-intro">{topic.intro}</p>
+                <div class="aesthetic-detail__prose">
+                  {topic.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+                </div>
+              </div>
+
+              <aside class="aesthetic-detail__topic-card">
+                {topic.points?.length ? (
+                  <>
+                    <p class="aesthetic-detail__topic-card-label">Cosa consideriamo</p>
+                    <ul>
+                      {topic.points.map((point) => (
+                        <li><span aria-hidden="true">✓</span>{point}</li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <>
+                    <p class="aesthetic-detail__topic-card-label">Il punto chiave</p>
+                    <p>La soluzione si sceglie dopo aver valutato salute, proporzioni e funzione del sorriso.</p>
+                  </>
+                )}
+                {topic.note && <p class="aesthetic-detail__topic-note">{topic.note}</p>}
+                <a href={requestHref}>Parlane con l’odontoiatra <span aria-hidden="true">→</span></a>
+              </aside>
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <section class="aesthetic-detail__process" aria-labelledby="aesthetic-process-title">
+        <div class="aesthetic-detail__container">
+          <div class="aesthetic-detail__process-heading">
+            <div>
+              <p class="aesthetic-detail__eyebrow aesthetic-detail__eyebrow--light">{page.process.kicker}</p>
+              <h2 id="aesthetic-process-title">{page.process.title}</h2>
+            </div>
+            <p>{page.process.intro}</p>
+          </div>
+
+          <ol class="aesthetic-detail__process-list">
+            {page.process.steps.map((step, index) => (
+              <li>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section class="aesthetic-detail__reviews" aria-labelledby="aesthetic-reviews-title">
+        <div class="aesthetic-detail__container">
+          <div class="aesthetic-detail__reviews-heading">
+            <div>
+              <p class="aesthetic-detail__eyebrow">Dicono di noi</p>
+              <h2 id="aesthetic-reviews-title">Ascolto, precisione, risultati naturali.</h2>
+            </div>
+            <a href="/recensioni-studio-dentistico-monza/">Leggi tutte le recensioni <span aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="aesthetic-detail__review-grid">
+            {reviews.map((review) => (
+              <article class="aesthetic-detail__review-card">
+                <div class="aesthetic-detail__stars" aria-label={`${review.rating} stelle su 5`}>
+                  {"★".repeat(review.rating)}
+                </div>
+                <h3>{review.title}</h3>
+                <blockquote>“{review.content}”</blockquote>
+                <p>{review.author}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="aesthetic-detail__related" aria-labelledby="aesthetic-related-title">
+        <div class="aesthetic-detail__container">
+          <div class="aesthetic-detail__related-heading">
+            <p class="aesthetic-detail__eyebrow">Estetica del sorriso</p>
+            <h2 id="aesthetic-related-title">Esplora anche le altre possibilità.</h2>
+          </div>
+          <div class="aesthetic-detail__related-grid">
+            {relatedPages.map((related) => (
+              <a href={`${parentHref}${related.slug}/`}>
+                <span>{related.navLabel}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="aesthetic-detail__final-cta" aria-labelledby="aesthetic-final-cta-title">
+        <div class="aesthetic-detail__container aesthetic-detail__final-cta-inner">
+          <div>
+            <p class="aesthetic-detail__eyebrow aesthetic-detail__eyebrow--light">Il prossimo passo</p>
+            <h2 id="aesthetic-final-cta-title">{page.finalCta.title}</h2>
+            <p>{page.finalCta.text}</p>
+          </div>
+          <div class="aesthetic-detail__actions">
+            <a class="aesthetic-detail__button aesthetic-detail__button--light" href={page.finalCta.href}>
+              {page.finalCta.label}
+            </a>
+            <a class="aesthetic-detail__button aesthetic-detail__button--outline-light" href="tel:+390392022489">
+              039 2022489
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
+  </body>
+</html>
+
+<style>
+  :global(body.aesthetic-detail-page) {
+    background: #ffffff;
+    color: #0e2637;
+    overflow-x: hidden;
+  }
+
+  .aesthetic-detail {
+    --aesthetic-navy: #0e2637;
+    --aesthetic-teal: #0e384c;
+    --aesthetic-blue: #1686bb;
+    --aesthetic-pale: #eaf6fb;
+    --aesthetic-soft: #f5f8fa;
+    --aesthetic-line: #d7e1e7;
+    --aesthetic-muted: #526576;
+    background: #ffffff;
+  }
+
+  .aesthetic-detail__container {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+  }
+
+  .aesthetic-detail__hero {
+    position: relative;
+    padding: 36px 0 92px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 88% 16%, rgba(160, 221, 244, 0.48), transparent 28%),
+      linear-gradient(145deg, #f7fbfd 0%, #e8f5fa 100%);
+  }
+
+  .aesthetic-detail__hero::after {
+    position: absolute;
+    right: -130px;
+    bottom: -220px;
+    width: 520px;
+    height: 520px;
+    border: 1px solid rgba(22, 134, 187, 0.16);
+    border-radius: 50%;
+    content: "";
+  }
+
+  .aesthetic-detail__breadcrumb {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 60px;
+  }
+
+  .aesthetic-detail__breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    color: #607483;
+    font-size: 13px;
+    list-style: none;
+  }
+
+  .aesthetic-detail__breadcrumb li:not(:last-child)::after {
+    margin-left: 8px;
+    color: #9cadb8;
+    content: "/";
+  }
+
+  .aesthetic-detail__breadcrumb a:hover {
+    color: var(--aesthetic-blue);
+  }
+
+  .aesthetic-detail__hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(340px, 0.72fr);
+    gap: clamp(48px, 7vw, 104px);
+    align-items: center;
+  }
+
+  .aesthetic-detail__eyebrow {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 0 0 18px;
+    color: var(--aesthetic-blue);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .aesthetic-detail__eyebrow::before {
+    width: 42px;
+    height: 1px;
+    background: currentColor;
+    content: "";
+  }
+
+  .aesthetic-detail__eyebrow--light {
+    color: #78ccef;
+  }
+
+  .aesthetic-detail__hero h1 {
+    max-width: 760px;
+    margin: 0;
+    color: var(--aesthetic-navy);
+    font-size: clamp(48px, 6vw, 82px);
+    font-weight: 790;
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+  }
+
+  .aesthetic-detail__hero h1 span,
+  .aesthetic-detail__hero h1 strong {
+    display: block;
+  }
+
+  .aesthetic-detail__hero h1 strong {
+    margin-top: 8px;
+    color: var(--aesthetic-blue);
+    font-weight: inherit;
+  }
+
+  .aesthetic-detail__hero-intro {
+    max-width: 680px;
+    margin: 30px 0 0;
+    color: #344c5d;
+    font-size: clamp(19px, 2vw, 23px);
+    line-height: 1.55;
+  }
+
+  .aesthetic-detail__clinical-note {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    max-width: 680px;
+    margin: 24px 0 0;
+    color: #526b7a;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .aesthetic-detail__clinical-note span {
+    display: grid;
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    place-items: center;
+    border: 1px solid rgba(22, 134, 187, 0.45);
+    border-radius: 50%;
+    color: var(--aesthetic-blue);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .aesthetic-detail__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 34px;
+  }
+
+  .aesthetic-detail__button {
+    display: inline-flex;
+    min-height: 54px;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 22px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 780;
+    line-height: 1.2;
+    text-align: center;
+    transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+  }
+
+  .aesthetic-detail__button:hover {
+    transform: translateY(-2px);
+  }
+
+  .aesthetic-detail__button--primary {
+    background: var(--aesthetic-blue);
+    color: #ffffff;
+    box-shadow: 0 14px 32px rgba(22, 134, 187, 0.22);
+  }
+
+  .aesthetic-detail__button--primary:hover {
+    background: #0e739f;
+  }
+
+  .aesthetic-detail__button--secondary {
+    border-color: rgba(14, 56, 76, 0.2);
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--aesthetic-teal);
+  }
+
+  .aesthetic-detail__index {
+    padding: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 24px 70px rgba(14, 56, 76, 0.12);
+    backdrop-filter: blur(12px);
+  }
+
+  .aesthetic-detail__index-label {
+    margin: 0 0 8px;
+    color: var(--aesthetic-blue);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .aesthetic-detail__index h2 {
+    margin: 0 0 24px;
+    color: var(--aesthetic-navy);
+    font-size: 25px;
+    letter-spacing: -0.025em;
+    line-height: 1.18;
+  }
+
+  .aesthetic-detail__index ol {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--aesthetic-line);
+    list-style: none;
+  }
+
+  .aesthetic-detail__index li {
+    border-bottom: 1px solid var(--aesthetic-line);
+  }
+
+  .aesthetic-detail__index li a {
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 16px 0;
+  }
+
+  .aesthetic-detail__index li a > span:first-child {
+    color: var(--aesthetic-blue);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .aesthetic-detail__index li strong {
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .aesthetic-detail__index-arrow {
+    color: var(--aesthetic-blue);
+    transition: transform 180ms ease;
+  }
+
+  .aesthetic-detail__index li a:hover .aesthetic-detail__index-arrow {
+    transform: translateX(4px);
+  }
+
+  .aesthetic-detail__index > p:last-child {
+    margin: 22px 0 0;
+    color: var(--aesthetic-muted);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .aesthetic-detail__orientation {
+    padding: 110px 0;
+  }
+
+  .aesthetic-detail__orientation-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(60px, 9vw, 132px);
+    align-items: start;
+  }
+
+  .aesthetic-detail__section-heading h2,
+  .aesthetic-detail__process h2,
+  .aesthetic-detail__reviews h2,
+  .aesthetic-detail__related h2,
+  .aesthetic-detail__final-cta h2 {
+    margin: 0;
+    font-size: clamp(38px, 4.5vw, 62px);
+    font-weight: 780;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+  }
+
+  .aesthetic-detail__section-heading > p:last-child {
+    margin: 24px 0 0;
+    color: var(--aesthetic-muted);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .aesthetic-detail__orientation-list {
+    border-top: 1px solid var(--aesthetic-line);
+  }
+
+  .aesthetic-detail__orientation-list article {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--aesthetic-line);
+  }
+
+  .aesthetic-detail__orientation-list article > span {
+    color: var(--aesthetic-blue);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .aesthetic-detail__orientation-list h3 {
+    margin: 0 0 8px;
+    color: var(--aesthetic-navy);
+    font-size: 21px;
+    line-height: 1.25;
+  }
+
+  .aesthetic-detail__orientation-list p {
+    margin: 0;
+    color: var(--aesthetic-muted);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .aesthetic-detail__topics {
+    border-top: 1px solid var(--aesthetic-line);
+  }
+
+  .aesthetic-detail__topic {
+    padding: 112px 0;
+    scroll-margin-top: 100px;
+  }
+
+  .aesthetic-detail__topic--soft {
+    background: var(--aesthetic-soft);
+  }
+
+  .aesthetic-detail__topic-grid {
+    display: grid;
+    grid-template-columns: 82px minmax(0, 1fr) minmax(290px, 0.58fr);
+    gap: clamp(30px, 5vw, 72px);
+    align-items: start;
+  }
+
+  .aesthetic-detail__topic-marker {
+    display: grid;
+    justify-items: center;
+    gap: 16px;
+    color: var(--aesthetic-blue);
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .aesthetic-detail__topic-marker span {
+    display: grid;
+    width: 54px;
+    height: 54px;
+    place-items: center;
+    border: 1px solid rgba(22, 134, 187, 0.38);
+    border-radius: 50%;
+  }
+
+  .aesthetic-detail__topic-marker i {
+    width: 1px;
+    height: 88px;
+    background: linear-gradient(var(--aesthetic-blue), transparent);
+  }
+
+  .aesthetic-detail__topic-copy h2 {
+    max-width: 690px;
+    margin: 0;
+    color: var(--aesthetic-navy);
+    font-size: clamp(38px, 4.4vw, 60px);
+    font-weight: 780;
+    letter-spacing: -0.045em;
+    line-height: 1.03;
+  }
+
+  .aesthetic-detail__topic-intro {
+    max-width: 720px;
+    margin: 26px 0 0;
+    color: #314b5c;
+    font-size: 21px;
+    font-weight: 650;
+    line-height: 1.55;
+  }
+
+  .aesthetic-detail__prose {
+    max-width: 720px;
+    margin-top: 26px;
+    color: var(--aesthetic-muted);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  .aesthetic-detail__prose p {
+    margin: 0 0 16px;
+  }
+
+  .aesthetic-detail__prose p:last-child {
+    margin-bottom: 0;
+  }
+
+  .aesthetic-detail__topic-card {
+    position: sticky;
+    top: 112px;
+    padding: 28px;
+    border: 1px solid var(--aesthetic-line);
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 16px 44px rgba(14, 56, 76, 0.07);
+  }
+
+  .aesthetic-detail__topic-card-label {
+    margin: 0 0 18px;
+    color: var(--aesthetic-navy);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .aesthetic-detail__topic-card ul {
+    display: grid;
+    gap: 13px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .aesthetic-detail__topic-card li {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 10px;
+    color: #405768;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .aesthetic-detail__topic-card li span {
+    color: var(--aesthetic-blue);
+    font-weight: 800;
+  }
+
+  .aesthetic-detail__topic-card > p:not(.aesthetic-detail__topic-card-label) {
+    color: var(--aesthetic-muted);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .aesthetic-detail__topic-note {
+    margin: 22px 0 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--aesthetic-line);
+  }
+
+  .aesthetic-detail__topic-card > a {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--aesthetic-line);
+    color: var(--aesthetic-blue);
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .aesthetic-detail__process {
+    padding: 112px 0;
+    background: var(--aesthetic-teal);
+    color: #ffffff;
+  }
+
+  .aesthetic-detail__process-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.7fr);
+    gap: 80px;
+    align-items: end;
+  }
+
+  .aesthetic-detail__process-heading > p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .aesthetic-detail__process-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin: 64px 0 0;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.18);
+    list-style: none;
+  }
+
+  .aesthetic-detail__process-list li {
+    min-height: 270px;
+    padding: 34px;
+    background: var(--aesthetic-teal);
+  }
+
+  .aesthetic-detail__process-list li > span {
+    display: block;
+    margin-bottom: 58px;
+    color: #78ccef;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .aesthetic-detail__process-list h3 {
+    margin: 0 0 14px;
+    font-size: 25px;
+  }
+
+  .aesthetic-detail__process-list p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .aesthetic-detail__reviews {
+    padding: 112px 0;
+    background: var(--aesthetic-pale);
+  }
+
+  .aesthetic-detail__reviews-heading {
+    display: flex;
+    gap: 28px;
+    align-items: end;
+    justify-content: space-between;
+  }
+
+  .aesthetic-detail__reviews-heading > a {
+    flex: 0 0 auto;
+    padding-bottom: 8px;
+    color: var(--aesthetic-blue);
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .aesthetic-detail__review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 54px;
+  }
+
+  .aesthetic-detail__review-card {
+    display: flex;
+    min-height: 330px;
+    flex-direction: column;
+    padding: 30px;
+    border: 1px solid rgba(14, 56, 76, 0.08);
+    border-radius: 18px;
+    background: #ffffff;
+  }
+
+  .aesthetic-detail__stars {
+    color: #e0a72f;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+  }
+
+  .aesthetic-detail__review-card h3 {
+    margin: 22px 0 12px;
+    font-size: 21px;
+  }
+
+  .aesthetic-detail__review-card blockquote {
+    margin: 0;
+    color: var(--aesthetic-muted);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .aesthetic-detail__review-card > p {
+    margin: auto 0 0;
+    padding-top: 24px;
+    color: var(--aesthetic-navy);
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .aesthetic-detail__related {
+    padding: 104px 0;
+  }
+
+  .aesthetic-detail__related-heading {
+    max-width: 680px;
+  }
+
+  .aesthetic-detail__related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 48px;
+  }
+
+  .aesthetic-detail__related-grid a {
+    display: flex;
+    min-height: 118px;
+    gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+    border: 1px solid var(--aesthetic-line);
+    border-radius: 16px;
+    color: var(--aesthetic-navy);
+    font-size: 18px;
+    font-weight: 750;
+    transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+  }
+
+  .aesthetic-detail__related-grid a:hover {
+    border-color: rgba(22, 134, 187, 0.45);
+    background: var(--aesthetic-pale);
+    transform: translateY(-3px);
+  }
+
+  .aesthetic-detail__related-grid a span:last-child {
+    color: var(--aesthetic-blue);
+  }
+
+  .aesthetic-detail__final-cta {
+    padding: 100px 0;
+    background: #082a38;
+    color: #ffffff;
+  }
+
+  .aesthetic-detail__final-cta-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) auto;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .aesthetic-detail__final-cta h2 {
+    max-width: 820px;
+  }
+
+  .aesthetic-detail__final-cta p:not(.aesthetic-detail__eyebrow) {
+    max-width: 720px;
+    margin: 22px 0 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  .aesthetic-detail__final-cta .aesthetic-detail__actions {
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .aesthetic-detail__button--light {
+    background: #ffffff;
+    color: var(--aesthetic-teal);
+  }
+
+  .aesthetic-detail__button--outline-light {
+    border-color: rgba(255, 255, 255, 0.34);
+    color: #ffffff;
+  }
+
+  @media (max-width: 980px) {
+    .aesthetic-detail__hero-grid,
+    .aesthetic-detail__orientation-grid,
+    .aesthetic-detail__process-heading {
+      grid-template-columns: 1fr;
+    }
+
+    .aesthetic-detail__hero-grid {
+      gap: 52px;
+    }
+
+    .aesthetic-detail__index {
+      max-width: 720px;
+    }
+
+    .aesthetic-detail__orientation-grid,
+    .aesthetic-detail__process-heading {
+      gap: 48px;
+    }
+
+    .aesthetic-detail__topic-grid {
+      grid-template-columns: 62px minmax(0, 1fr);
+    }
+
+    .aesthetic-detail__topic-card {
+      position: static;
+      grid-column: 2;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .aesthetic-detail__review-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .aesthetic-detail__review-card:last-child {
+      grid-column: 1 / -1;
+      min-height: 260px;
+    }
+
+    .aesthetic-detail__final-cta-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .aesthetic-detail__final-cta .aesthetic-detail__actions {
+      flex-direction: row;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .aesthetic-detail__container {
+      width: min(100% - 32px, 1180px);
+    }
+
+    .aesthetic-detail__hero {
+      padding: 24px 0 72px;
+    }
+
+    .aesthetic-detail__breadcrumb {
+      margin-bottom: 42px;
+    }
+
+    .aesthetic-detail__breadcrumb li:nth-child(2) {
+      display: none;
+    }
+
+    .aesthetic-detail__hero h1 {
+      font-size: clamp(44px, 13vw, 64px);
+    }
+
+    .aesthetic-detail__hero-intro {
+      font-size: 18px;
+    }
+
+    .aesthetic-detail__actions,
+    .aesthetic-detail__final-cta .aesthetic-detail__actions {
+      flex-direction: column;
+    }
+
+    .aesthetic-detail__button {
+      width: 100%;
+    }
+
+    .aesthetic-detail__index {
+      padding: 26px 22px;
+      border-radius: 18px;
+    }
+
+    .aesthetic-detail__orientation,
+    .aesthetic-detail__topic,
+    .aesthetic-detail__process,
+    .aesthetic-detail__reviews,
+    .aesthetic-detail__related,
+    .aesthetic-detail__final-cta {
+      padding: 76px 0;
+    }
+
+    .aesthetic-detail__section-heading h2,
+    .aesthetic-detail__process h2,
+    .aesthetic-detail__reviews h2,
+    .aesthetic-detail__related h2,
+    .aesthetic-detail__final-cta h2,
+    .aesthetic-detail__topic-copy h2 {
+      font-size: clamp(36px, 10vw, 48px);
+    }
+
+    .aesthetic-detail__orientation-list article {
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+    }
+
+    .aesthetic-detail__topic-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .aesthetic-detail__topic-marker {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .aesthetic-detail__topic-marker span {
+      width: 46px;
+      height: 46px;
+    }
+
+    .aesthetic-detail__topic-marker i {
+      display: none;
+    }
+
+    .aesthetic-detail__topic-card {
+      grid-column: auto;
+      padding: 24px;
+    }
+
+    .aesthetic-detail__topic-intro {
+      font-size: 19px;
+    }
+
+    .aesthetic-detail__process-list,
+    .aesthetic-detail__review-grid,
+    .aesthetic-detail__related-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .aesthetic-detail__process-list li {
+      min-height: 0;
+      padding: 28px 0;
+    }
+
+    .aesthetic-detail__process-list li > span {
+      margin-bottom: 32px;
+    }
+
+    .aesthetic-detail__review-card,
+    .aesthetic-detail__review-card:last-child {
+      grid-column: auto;
+      min-height: 0;
+    }
+
+    .aesthetic-detail__reviews-heading {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .aesthetic-detail__related-grid a {
+      min-height: 92px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aesthetic-detail__button,
+    .aesthetic-detail__index-arrow,
+    .aesthetic-detail__related-grid a {
+      transition: none;
+    }
+  }
+</style>

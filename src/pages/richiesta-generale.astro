@@ -25,7 +25,7 @@ import SiteHeader from "../components/SiteHeader.astro";
     <title>Richiedi una visita | Sorriso & Salute Monza</title>
   </head>
   <body class="request-body brand-palette internal-page">
-    <SiteHeader overlay />
+    <SiteHeader />
 
     <main id="main-content" tabindex="-1">
       <GeneralRequestForm />
@@ -38,48 +38,6 @@ import SiteHeader from "../components/SiteHeader.astro";
         min-height: 100vh;
         background: var(--brand-secondary, #1e84b5) !important;
         color: #fff !important;
-      }
-
-      body.request-body
-        .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open) {
-        --primary-header-foreground: #fff;
-        --primary-header-accent: rgba(255, 255, 255, 0.78);
-        --primary-header-control-border: rgba(255, 255, 255, 0.52);
-        --primary-header-control-hover: rgba(255, 255, 255, 0.14);
-        --primary-header-control-hover-border: #fff;
-        --primary-header-control-hover-color: #fff;
-        --primary-header-phone-background: rgba(255, 255, 255, 0.08);
-        --primary-header-phone-color: #fff;
-        --primary-header-booking-background: #fff;
-        --primary-header-booking-border: #fff;
-        --primary-header-booking-color: var(--brand-secondary, #1e84b5);
-        --primary-header-booking-hover-background: transparent;
-        --primary-header-booking-hover-border: #fff;
-        --primary-header-booking-hover-color: #fff;
-        background: transparent !important;
-        box-shadow: none !important;
-        backdrop-filter: none !important;
-      }
-
-      body.request-body
-        .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open)
-        .primary-site-header__brand
-        img {
-        filter: none !important;
-      }
-
-      body.request-body
-        .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open)
-        .primary-site-header__booking:is(:hover, :focus-visible) {
-        border-color: #fff !important;
-        background: transparent !important;
-        color: #fff !important;
-      }
-
-      body.request-body
-        .primary-site-header--overlay:not(.is-scrolled, .is-mobile-open)
-        .primary-site-header__booking:is(:hover, :focus-visible)::before {
-        background: transparent !important;
       }
 
       body.request-body.brand-palette footer.site-footer {

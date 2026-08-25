@@ -1,4 +1,5 @@
 import { implantologiaMenuLinks, protesiDentaleMenuLink } from "./implantologiaNavigation";
+import { esteticaSorrisoNavigationLinks } from "./esteticaSorrisoPages";
 
 export interface KebabTreatmentLink {
   kind: "link";
@@ -45,6 +46,7 @@ export interface PrimaryTreatmentMenuLink {
   technicalLabel: string;
   image: string;
   imageAlt: string;
+  children?: readonly { href: string; label: string }[];
 }
 
 export const primaryTreatmentMenuLinks: PrimaryTreatmentMenuLink[] = [
@@ -96,6 +98,7 @@ export const primaryTreatmentMenuLinks: PrimaryTreatmentMenuLink[] = [
     technicalLabel: "Estetica del sorriso",
     image: "/assets/generated/esthetic-smile-natural.jpg",
     imageAlt: "Valutazione estetica del sorriso allo specchio",
+    children: esteticaSorrisoNavigationLinks,
   },
   {
     href: "/attivita/ortodonzia/",

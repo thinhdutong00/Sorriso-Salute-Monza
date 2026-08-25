@@ -1,0 +1,22 @@
+---
+import EsteticaSorrisoLanding from "../../../components/estetica/EsteticaSorrisoLanding.astro";
+import {
+  esteticaSorrisoPages,
+  type EsteticaSorrisoPage,
+} from "../../../data/esteticaSorrisoPages";
+
+export function getStaticPaths() {
+  return esteticaSorrisoPages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+interface Props {
+  page: EsteticaSorrisoPage;
+}
+
+const { page } = Astro.props;
+---
+
+<EsteticaSorrisoLanding page={page} />
