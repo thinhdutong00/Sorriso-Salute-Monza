@@ -104,8 +104,8 @@ export const esteticaSorrisoPages: readonly EsteticaSorrisoPage[] = [
     metaDescription:
       "Sbiancamento dentale a Monza: valutazione di macchie, discromie e denti devitalizzati per scegliere il trattamento più adatto al tuo sorriso.",
     eyebrow: "Estetica del sorriso · Denti più bianchi",
-    h1: "Denti più bianchi, con un trattamento scelto sulla causa del colore",
-    heroAccent: "Il colore giusto parte da una diagnosi, non da un prodotto.",
+    h1: "Ritrova un sorriso più luminoso con denti più bianchi",
+    heroAccent: "Un trattamento su misura per valorizzare il tuo colore naturale.",
     heroIntro:
       "Se i denti ti sembrano spenti, macchiati o più scuri, possiamo individuare il motivo e scegliere come intervenire. Lo sbiancamento professionale è una delle possibilità, ma non è la risposta automatica a ogni discromia.",
     clinicalNote:
@@ -195,8 +195,8 @@ export const esteticaSorrisoPages: readonly EsteticaSorrisoPage[] = [
     metaDescription:
       "Ricostruzione estetica di denti scheggiati o consumati a Monza: valutiamo causa, morso e tessuto residuo per recuperare forma e funzione.",
     eyebrow: "Estetica del sorriso · Forma dei denti",
-    h1: "Denti scheggiati o consumati: recuperiamo forma, equilibrio e funzione",
-    heroAccent: "Ricostruire bene significa capire prima perché il dente si è danneggiato.",
+    h1: "Ripara i denti scheggiati o consumati e torna a sorridere con sicurezza",
+    heroAccent: "Recuperiamo forma e funzione con una ricostruzione su misura.",
     heroIntro:
       "Una scheggiatura può dipendere da un trauma; un consumo diffuso può indicare attrito, serramento, erosione o un equilibrio del morso da controllare. Valutiamo la causa prima di scegliere come ricostruire.",
     clinicalNote:
@@ -279,8 +279,8 @@ export const esteticaSorrisoPages: readonly EsteticaSorrisoPage[] = [
     metaDescription:
       "Chiusura degli spazi tra i denti a Monza: valutiamo proporzioni, posizione, gengive e morso per scegliere tra composito, faccette o ortodonzia.",
     eyebrow: "Estetica del sorriso · Spazi tra i denti",
-    h1: "Spazi tra i denti: li chiudiamo solo con una soluzione armonica e stabile",
-    heroAccent: "Lo spazio è visibile. La causa e la soluzione vanno misurate.",
+    h1: "Chiudi gli spazi tra i denti e ritrova un sorriso più armonioso",
+    heroAccent: "La soluzione giusta rispetta le proporzioni del tuo sorriso.",
     heroIntro:
       "Un diastema può dipendere dalla posizione dei denti, dalle loro proporzioni o dai tessuti circostanti. Prima di chiuderlo, valutiamo quale soluzione può integrarsi davvero nel tuo sorriso.",
     clinicalNote:
@@ -345,8 +345,8 @@ export const esteticaSorrisoPages: readonly EsteticaSorrisoPage[] = [
     metaDescription:
       "Faccette dentali a Monza: confronto tra ceramica e composito, valutazione di smalto, morso e proporzioni per un risultato naturale e pianificato.",
     eyebrow: "Estetica del sorriso · Faccette dentali",
-    h1: "Faccette dentali: forma, colore e proporzioni progettati sul tuo sorriso",
-    heroAccent: "",
+    h1: "Trasforma il tuo sorriso con faccette progettate su di te",
+    heroAccent: "Più armonia nella forma, nel colore e nelle proporzioni.",
     heroIntro:
       "Ceramica e composito permettono di modificare l’aspetto dei denti in modi diversi. Valutiamo salute, smalto, occlusione e obiettivi prima di indicare se una faccetta è davvero il trattamento adatto.",
     clinicalNote:
