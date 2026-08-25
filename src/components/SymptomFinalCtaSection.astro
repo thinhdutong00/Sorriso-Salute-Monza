@@ -1,0 +1,165 @@
+---
+type Props = {
+  titleId: string;
+};
+
+const { titleId } = Astro.props;
+---
+
+<section class="symptom-final-callout" aria-labelledby={titleId}>
+  <div class="symptom-final-callout__inner">
+    <p class="symptom-final-callout__eyebrow">Il prossimo passo</p>
+    <h2 id={titleId}>Non sai quale trattamento è meglio per il tuo caso?</h2>
+    <p class="symptom-final-callout__description">
+      Raccontaci cosa senti: durante la visita valuteremo la situazione e ti
+      indicheremo il percorso più adatto.
+    </p>
+    <a
+      class="site-button symptom-final-callout__button"
+      data-site-button
+      href="/richiesta-generale/"
+    >
+      Prenota una visita
+    </a>
+  </div>
+</section>
+
+<style>
+  .symptom-final-callout {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: clamp(88px, 9vw, 136px) 24px;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: linear-gradient(135deg, #082a38, #0e384c 62%, #155a66);
+    box-shadow: none !important;
+    color: #fff;
+    text-align: center;
+    isolation: isolate;
+  }
+
+  .symptom-final-callout::before,
+  .symptom-final-callout::after {
+    position: absolute;
+    z-index: -1;
+    width: 380px;
+    height: 380px;
+    border: 1px solid rgba(86, 184, 239, 0.2);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+  }
+
+  .symptom-final-callout::before {
+    top: -230px;
+    left: -120px;
+  }
+
+  .symptom-final-callout::after {
+    right: -150px;
+    bottom: -255px;
+  }
+
+  .symptom-final-callout__inner {
+    width: min(1280px, 100%);
+    margin: 0 auto;
+  }
+
+  .symptom-final-callout__eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 22px;
+    color: #56b8ef;
+    font-size: 0.75rem;
+    font-weight: 850 !important;
+    letter-spacing: 0.2em !important;
+    line-height: 1.4;
+    text-transform: uppercase;
+    gap: 14px;
+  }
+
+  .symptom-final-callout__eyebrow::before,
+  .symptom-final-callout__eyebrow::after {
+    width: 38px;
+    height: 1px;
+    background: currentColor;
+    content: "";
+  }
+
+  .symptom-final-callout h2 {
+    max-width: 18ch;
+    margin: 0 auto;
+    color: #fff !important;
+    font-size: clamp(2.7rem, 5.2vw, 4.9rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.05em !important;
+    line-height: 0.98 !important;
+    text-wrap: balance;
+  }
+
+  .symptom-final-callout__description {
+    max-width: 710px;
+    margin: 26px auto 0;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: clamp(1rem, 1.5vw, 1.12rem);
+    line-height: 1.72;
+  }
+
+  .symptom-final-callout__button {
+    --site-button-base-fill: #fff !important;
+    --site-button-base-color: var(--brand-primary, #0e384c) !important;
+    --site-button-base-border: #fff !important;
+    --site-button-hover-fill: var(--brand-secondary, #1e84b5) !important;
+    --site-button-hover-color: #fff !important;
+    --site-button-hover-border: var(--brand-secondary, #1e84b5) !important;
+    display: inline-flex;
+    min-height: 56px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 34px;
+    padding: 16px 28px;
+    font-size: 0.94rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 680px) {
+    .symptom-final-callout {
+      padding: 76px 18px 82px;
+    }
+
+    .symptom-final-callout h2 {
+      max-width: 100%;
+      font-size: clamp(2.35rem, 11vw, 3.35rem) !important;
+    }
+
+    .symptom-final-callout__description {
+      margin-top: 22px;
+      font-size: 1rem;
+    }
+
+    .symptom-final-callout__eyebrow {
+      margin-bottom: 18px;
+      letter-spacing: 0.16em !important;
+      gap: 10px;
+    }
+
+    .symptom-final-callout__eyebrow::before,
+    .symptom-final-callout__eyebrow::after {
+      width: 24px;
+    }
+
+    .symptom-final-callout__button {
+      width: min(100%, 360px);
+      white-space: normal;
+    }
+  }
+</style>
