@@ -26,7 +26,15 @@ const panelId = `symptom-treatment-${treatment.serviceSlug}-panel`;
     role="region"
     aria-labelledby={summaryId}
   >
-    <p>{treatment.description}</p>
+    <p>
+      {
+        typeof treatment.description === "string"
+          ? treatment.description
+          : treatment.description.map((part) =>
+              part.strong ? <strong>{part.text}</strong> : part.text,
+            )
+      }
+    </p>
     <div class="symptom-treatment-accordion__actions">
       <a
         class="site-button symptom-treatment-accordion__button"
@@ -163,6 +171,11 @@ const panelId = `symptom-treatment-${treatment.serviceSlug}-panel`;
     color: var(--color-text-description, #334155);
     font-size: clamp(1rem, 1.35vw, 1.08rem);
     line-height: 1.7;
+  }
+
+  .symptom-treatment-accordion__panel p strong {
+    color: inherit;
+    font-weight: 750;
   }
 
   .symptom-treatment-accordion__actions {

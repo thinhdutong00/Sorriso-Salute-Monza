@@ -6,7 +6,12 @@ import {
 export type SymptomRoutingTreatment = {
   label: string;
   serviceSlug: TreatmentCategoryId;
-  description: string;
+  description:
+    | string
+    | readonly {
+        text: string;
+        strong?: boolean;
+      }[];
   treatmentHref: string;
   bookingHref: string;
 };
@@ -29,7 +34,7 @@ const treatmentPageHrefByService = Object.fromEntries(
 const treatment = (
   label: string,
   serviceSlug: TreatmentCategoryId,
-  description: string,
+  description: SymptomRoutingTreatment["description"],
 ): SymptomRoutingTreatment => {
   const treatmentHref = treatmentPageHrefByService[serviceSlug];
 
@@ -121,12 +126,34 @@ export const symptomRoutingPages: readonly SymptomRoutingPage[] = [
       treatment(
         "Estetica del sorriso",
         "estetica-del-sorriso",
-        "Può essere utile quando si desidera migliorare colore, forma o armonia dei denti e del sorriso. La visita aiuta a capire quali cambiamenti sono realistici e rispettosi dei denti.",
+        [
+          {
+            text: "Se vuoi migliorare forma, colore o proporzioni dei denti, possiamo valutare soluzioni come ",
+          },
+          {
+            text: "faccette in ceramica o composito, sbiancamento e altri trattamenti estetici",
+            strong: true,
+          },
+          {
+            text: ", scegliendo il percorso più adatto al tuo sorriso.",
+          },
+        ],
       ),
       treatment(
         "Ortodonzia",
         "ortodonzia",
-        "Può essere pertinente quando i denti sono storti, affollati o il morso non chiude in modo equilibrato. La valutazione chiarisce se e come guidare gradualmente i denti verso una posizione più adatta.",
+        [
+          {
+            text: "Se hai denti storti, affollati o vuoi migliorare l’allineamento del sorriso, possiamo valutare ",
+          },
+          {
+            text: "allineatori invisibili, tra cui Invisalign®, oppure apparecchi ortodontici tradizionali",
+            strong: true,
+          },
+          {
+            text: ", in base alla tua situazione.",
+          },
+        ],
       ),
     ],
   },
