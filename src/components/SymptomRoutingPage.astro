@@ -16,6 +16,7 @@ const { page } = Astro.props;
 const canonicalUrl = `https://sorrisoesalutemonza.it${page.path}`;
 const pageTitleId = `symptom-title-${page.slug}`;
 const optionsTitleId = `symptom-options-${page.slug}`;
+const finalCtaTitleId = `symptom-final-cta-${page.slug}`;
 ---
 
 <!doctype html>
@@ -75,6 +76,25 @@ const optionsTitleId = `symptom-options-${page.slug}`;
             Queste indicazioni servono solo a orientarti: il trattamento più
             adatto viene definito dopo una valutazione professionale.
           </p>
+
+          <aside
+            class="symptom-routing-final-cta"
+            aria-labelledby={finalCtaTitleId}
+          >
+            <div class="symptom-routing-final-cta__copy">
+              <p>Un aiuto per scegliere</p>
+              <h2 id={finalCtaTitleId}>
+                Non sai quale trattamento è meglio per il tuo caso?
+              </h2>
+            </div>
+            <a
+              class="site-button symptom-routing-final-cta__button"
+              data-site-button
+              href="/richiesta-generale/"
+            >
+              Prenota una visita
+            </a>
+          </aside>
         </div>
       </section>
     </main>
@@ -228,6 +248,73 @@ const optionsTitleId = `symptom-options-${page.slug}`;
     line-height: 1.65;
   }
 
+  .symptom-routing-final-cta {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    overflow: hidden;
+    width: min(1040px, 100%);
+    margin-top: clamp(56px, 7vw, 88px);
+    padding: clamp(32px, 4vw, 52px);
+    border-radius: 28px;
+    background:
+      radial-gradient(
+        circle at 92% 0%,
+        rgba(30, 132, 181, 0.52),
+        transparent 21rem
+      ),
+      var(--brand-primary, #0e384c);
+    box-shadow: 0 24px 58px rgba(14, 56, 76, 0.18);
+    color: #fff;
+    gap: clamp(28px, 5vw, 64px);
+  }
+
+  .symptom-routing-final-cta__copy {
+    max-width: 680px;
+  }
+
+  .symptom-routing-final-cta__copy > p {
+    margin: 0 0 14px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.75rem;
+    font-weight: 850 !important;
+    letter-spacing: 0.16em !important;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .symptom-routing-final-cta h2 {
+    max-width: 19ch;
+    margin: 0;
+    color: #fff !important;
+    font-size: clamp(1.8rem, 3.2vw, 2.85rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.035em !important;
+    line-height: 1.08 !important;
+    text-wrap: balance;
+  }
+
+  .symptom-routing-final-cta__button {
+    --site-button-base-fill: #fff !important;
+    --site-button-base-color: var(--brand-primary, #0e384c) !important;
+    --site-button-base-border: #fff !important;
+    --site-button-hover-fill: var(--brand-secondary, #1e84b5) !important;
+    --site-button-hover-color: #fff !important;
+    --site-button-hover-border: var(--brand-secondary, #1e84b5) !important;
+    display: inline-flex;
+    min-height: 54px;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 24px;
+    font-size: 0.94rem;
+    font-weight: 800;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
   @media (max-width: 680px) {
     .symptom-routing-breadcrumb {
       padding-bottom: 52px;
@@ -282,6 +369,24 @@ const optionsTitleId = `symptom-options-${page.slug}`;
 
     .symptom-routing-options__note {
       margin-top: 26px;
+    }
+
+    .symptom-routing-final-cta {
+      grid-template-columns: 1fr;
+      margin-top: 48px;
+      padding: 30px 24px;
+      border-radius: 22px;
+      gap: 26px;
+    }
+
+    .symptom-routing-final-cta h2 {
+      max-width: 100%;
+      font-size: clamp(1.75rem, 9vw, 2.3rem) !important;
+    }
+
+    .symptom-routing-final-cta__button {
+      width: 100%;
+      white-space: normal;
     }
   }
 </style>
