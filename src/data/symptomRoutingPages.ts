@@ -211,7 +211,7 @@ export const symptomRoutingPages: readonly SymptomRoutingPage[] = [
       "Se vuoi rendere i denti più armoniosi, chiari o allineati, esistono percorsi diversi in base a ciò che desideri migliorare. Puoi intervenire sulla forma e sul colore dei denti oppure sul loro allineamento.",
     treatments: [
       treatment(
-        "Migliorare forma e colore dei denti",
+        "Migliorare forma, spazio e colore dei denti",
         "estetica-del-sorriso",
         [
           {
