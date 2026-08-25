@@ -16,7 +16,16 @@ const panelId = `symptom-treatment-${treatment.serviceSlug}-panel`;
     aria-expanded="false"
     aria-controls={panelId}
   >
-    <span>{treatment.label}</span>
+    <span class="symptom-treatment-accordion__summary-copy">
+      <span>{treatment.label}</span>
+      {
+        treatment.technicalName && (
+          <span class="symptom-treatment-accordion__technical-name">
+            {`-\u00a0${treatment.technicalName}`}
+          </span>
+        )
+      }
+    </span>
     <span class="symptom-treatment-accordion__indicator" aria-hidden="true"></span>
   </summary>
 
@@ -46,7 +55,7 @@ const panelId = `symptom-treatment-${treatment.serviceSlug}-panel`;
         class="site-button symptom-treatment-accordion__button symptom-treatment-accordion__button--secondary"
         href={treatment.treatmentHref}
       >
-        Vai alla pagina
+        {treatment.treatmentCtaLabel ?? "Vai alla pagina"}
       </a>
     </div>
   </div>
@@ -124,6 +133,22 @@ const panelId = `symptom-treatment-${treatment.serviceSlug}-panel`;
     border-radius: 18px;
     outline: 3px solid rgba(30, 132, 181, 0.32);
     outline-offset: -5px;
+  }
+
+  .symptom-treatment-accordion__summary-copy {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    align-items: center;
+    gap: clamp(18px, 4vw, 56px);
+  }
+
+  .symptom-treatment-accordion__technical-name {
+    margin-left: auto;
+    color: #71808a;
+    font-size: 0.86em;
+    font-weight: 500;
+    text-align: right;
   }
 
   .symptom-treatment-accordion__indicator {
@@ -221,6 +246,16 @@ const panelId = `symptom-treatment-${treatment.serviceSlug}-panel`;
 
     .symptom-treatment-accordion__panel {
       padding: 0 18px 24px;
+    }
+
+    .symptom-treatment-accordion__summary-copy {
+      gap: 12px;
+    }
+
+    .symptom-treatment-accordion__technical-name {
+      max-width: 44%;
+      font-size: 0.78em;
+      line-height: 1.35;
     }
 
     .symptom-treatment-accordion__actions {

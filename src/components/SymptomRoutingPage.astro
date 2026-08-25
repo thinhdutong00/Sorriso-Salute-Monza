@@ -18,6 +18,11 @@ const canonicalUrl = `https://sorrisoesalutemonza.it${page.path}`;
 const pageTitleId = `symptom-title-${page.slug}`;
 const optionsTitleId = `symptom-options-${page.slug}`;
 const finalCtaTitleId = `symptom-final-cta-${page.slug}`;
+const orientationTitle =
+  page.orientationTitle ?? "Da quale trattamento iniziare?";
+const orientationDescription =
+  page.orientationDescription ??
+  "Apri ogni voce per leggere una spiegazione breve, prenotare una visita o consultare la pagina completa del trattamento.";
 ---
 
 <!doctype html>
@@ -53,15 +58,14 @@ const finalCtaTitleId = `symptom-final-cta-${page.slug}`;
           </nav>
 
           <header class="symptom-routing-options__heading">
-            <p class="symptom-routing-options__eyebrow">Possibili aree</p>
+            <p class="symptom-routing-options__eyebrow">
+              {page.eyebrow ?? "Possibili aree"}
+            </p>
             <h1 id={pageTitleId}>{page.title}</h1>
 
             <div class="symptom-routing-options__guide">
-              <h2 id={optionsTitleId}>Da quale trattamento iniziare?</h2>
-              <p>
-                Apri ogni voce per leggere una spiegazione breve, prenotare una
-                visita o consultare la pagina completa del trattamento.
-              </p>
+              <h2 id={optionsTitleId}>{orientationTitle}</h2>
+              <p>{orientationDescription}</p>
             </div>
           </header>
 
